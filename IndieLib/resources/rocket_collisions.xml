@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bounding_areas>
+	<circle id="rocket_boy_head" x="120" y="65" radius="65" />
+	<triangle id="rocket_head" ax="352" ay="152" bx="300" by="127" cx="300" cy="175" />
+	<rectangle id="engines" x="20" y="187" width="106" height="30" />
+	<rectangle id="engines" x="20" y="105" width="40" height="30" />
+</bounding_areas>

@@ -1,0 +1,291 @@
+Welcome to the first IndieLib Tutorial. In this tutorial you will learn how to create your first application using IndieLib from the very beginning.
+__FORCETOC__
+= Things you have to download =
+
+If you haven't done it yet, you should read the [http://www.indielib.com/wiki/index.php?title=IndieLib_FAQ FAQ] before anything.
+
+The are some things you need in order to use IndieLib. The first thing is a '''programming environment''', for example you can use Visual C++ 2008 Express Edition, this is a programming environment for c++ that you can download for free. You will also need the '''DirectX SDK''' (at least November 2007 version), that IndieLib uses for rendering the 2d staff using hardware acceleration. The last thing you need, of course, is the last '''IndieLib SDK''' that includes all the tutorials files and engine binaries and documentation.
+
+'''Things you need to develope an IndieLib application:'''
+* [http://www.microsoft.com/express/vc/ Visual C++ 2008 Express  Edition]
+* [http://www.microsoft.com/downloads/details.aspx?FamilyID=4b78a58a-e672-4b83-a28e-72b5e93bd60a&DisplayLang=en/ DirectX SDK (November 2007)] 
+* [http://www.indielib.com/sdk/IndieLib_LatestVersion_SDK.rar IndieLib SDK]
+
+
+'''The folder tree of the SDK is as follows:'''
+:* documentation
+::* html
+:* Tutorials
+::* exe
+:::* vc2008 - Executable files compiled with vc2008 and .dll that each IndieLib project needs.
+:::* resources - graphical staff
+::* tutorials
+:::* common - IndieLib includes, and IndieLib .lib file. These files are neccesary for linking an IndieLib project.
+:::* [For each tutorial folder]
+::::* common - source files of the example
+::::* vc2008 - vc2008 project files
+
+= You have two ways of doing this tutorial =
+
+* '''1. The easy way'''
+: Just download the SDK files, then go to a_01_Installing folder (IndieLib_SDK\tutorials\source\a_01_Installing\vc2008) and open the vc2008 project. The only thing you need to verify in order to be able to compile is that your programming environment is correctly linked to DXSDK. Check "Tool>Options>Project_and_solutions>Vc++ Directories" (in vc2008) and verify that you have a path to both the include and library files of the DXSDK. You can use this folder as the start point for your projects because it has everything you need in order to initialize IndieLib and their classes. That's all, you can jump directly to next tutorial, for starting drawing some amazing graphical staff. Go to the [http://www.indielib.com/wiki/index.php?title=Tutorial_02_IND_Surface next tutorial], please.
+
+'''OR'''
+
+* '''1. From scratch'''
+: In the following sections you will learn how to create an IndieLib project from the beginning using vc2008.
+
+= Creating the Project =
+
+Once you have downloaded the files of the previous section you are ready for creating your first project.
+
+* '''1.''' Open Visual C++ 2008 Express Edition
+* '''2.''' Click on "File>New>Project"
+* '''3.''' On "Visual Studio installed templates" choose "Win32 Project"
+* '''4.''' On "Name", enter a name for your project, for example "01_Installing"
+* '''5.''' Choose a location for your project
+* '''6.''' Click on "Next"
+* '''7.''' On "Additional options", check "Empty project"
+* '''8.''' Click on "Finish"
+
+Well done, you have created your first Visual C++ 2008 Express Edition project. Now we have to create one file: '''Main.cpp'''. And we have to include a singleton class (CIndieLib) that will help us to initialize the engine.
+
+* '''1.''' The first thing you have to do is to copy the "LibHeaders" folder, "CIndieLib_vc2008.cpp" and "CIndieLib_vc2008.h" files that are inside the IndieLib rar to the root folder of your project.
+** "LibHeaders" folder is located here: IndieLib_SDK\tutorials\source\common\LibHeaders
+** "CIndieLib_vc2008.cpp" and "CIndieLib_vc2008.h" are inside each tutorial folder, for example here: IndieLib_SDK\tutorials\source\a_01_Installing\common
+* '''2.''' Click on "Project>Add Item"
+* '''3.''' On "Categories" choose "Visual C++>Code"
+* '''4.''' On "Visual Studio installed templates" choose "C++ File (.cpp)"
+* '''5.''' On "Name", write "Main.cpp"
+* '''6.''' Click on "Add"
+* '''7.''' Click on "Project>Add New Existing Item"
+* '''8.''' Choose the "CIndieLib_vc2008.cpp" file that is in the rar you have downloaded
+* '''9.''' Click on "Add"
+* '''10.''' Click on "Project>Add New Existing Item"
+* '''11.''' Choose the "CIndieLib_vc2008.h" file that is in the rar you have downloaded
+* '''12.''' Click on "Add"
+
+Very good. At this point you have created a VC++ 2008 project and included some files. Now we have to prepare the project in order it links both IndieLib and Direct3d.
+
+* '''1.''' Click on Tool>Options>Project_and_solutions>Vc++ Directories
+* '''2.''' On the upper-right corner click on "Show directories for">Include Files
+* '''3.''' Click on the folder icon (Insert New Line)
+* '''4.''' Add the path to your DXSDK include directory. For example "C:\Program files\DXSDK_nov2007\Include"
+* '''5.''' On the upper-right corner click on "Show directories for">Library Files
+* '''6.''' Click on the folder icon (Insert New Line)
+* '''7.''' Add the path to your DXSDK x86 lib directory. For example "C:\Program files\DXSDK_nov2007\Lib\x86"
+* '''8.''' Click on "Accept"
+* '''9.''' Click on "Build>Configuration Manager"
+* '''10.''' On "Active Solution Configuration" choose "Release" (It's really important that your project be on Release mode or it will not work correctly)
+* '''11.''' Click on "Close"
+
+And that's all. You can click on "File>Save All" in order to save your project. And you are ready now for writting your first IndieLib application.
+
+= Writing your first IndieLib application =
+
+== IndieLib Initialization ==
+
+The initialization of IndieLib is quite easy, but you need to know a little of C++ and Object Oriented Programming.
+
+For all the tutorials we will use the same initialization class that is in "CIndieLib_vc2008.cpp" and "CIndieLib_vc2008.h" files. This is a singleton class, that means that you can use it globally from all the classes of your game and that there will be always only one instance of this class. Here it is the code of the important methods:
+
+<source lang="Cpp">
+/*
+==================
+Init singleton
+==================
+*/
+CIndieLib* CIndieLib::pinstance = 0;// initialize pointer
+CIndieLib* CIndieLib::Instance () 
+{
+	if (pinstance == 0)  // is it the first call?
+	{  
+		pinstance = new CIndieLib; // create sole instance
+	}
+	return pinstance; // address of sole instance
+}
+
+
+/*
+==================
+Init IndieLib
+==================
+*/
+bool CIndieLib::Init()
+{
+	// IndieLib Initialization, a debug.log file will be created.
+	IndieLib::Init (IND_DEBUG_MODE);
+		
+	Input			=	new		IND_Input;
+	Window			=	new		IND_Window;
+	Render			=	new		IND_Render;
+	LightManager		=	new		IND_LightManager;
+	ImageManager		=	new		IND_ImageManager;
+	SurfaceManager		=	new		IND_SurfaceManager;
+	Mesh3dManager		=	new		IND_3dMeshManager;
+	AnimationManager	=	new		IND_AnimationManager;
+	FontManager		=	new		IND_FontManager;
+	MeshManager		=	new		IND_3dMeshManager;
+	Entity2dManager		=	new		IND_Entity2dManager;
+	Entity3dManager		=	new		IND_Entity3dManager;
+	Math			=	new		IND_Math;
+
+	if (!Window		->Init ("", 800, 600, 32, 0, 0))		return 0;
+	if (!Render		->Init (Window))				return 0;
+	if (!LightManager	->Init (Render))				return 0;
+	if (!ImageManager	->Init ())					return 0;
+	if (!SurfaceManager	->Init (ImageManager, Render))			return 0;
+	if (!Mesh3dManager	->Init (Render))				return 0;
+	if (!AnimationManager	->Init (ImageManager, SurfaceManager))		return 0;
+	if (!FontManager	->Init (ImageManager, SurfaceManager))		return 0;	
+	if (!Entity2dManager	->Init (Render))				return 0;
+	if (!Entity3dManager	->Init (Render))				return 0;
+	if (!MeshManager	->Init (Render))				return 0;
+	if (!Input		->Init (Render))				return 0;
+	if (!Math		->Init ())					return 0;
+
+	return 1;
+}
+
+
+/*
+==================
+Free Indielib managers
+==================
+*/
+void CIndieLib::End()
+{
+	// ----- Freeing objects -----
+
+	Math			->End();
+	MeshManager		->End();
+	Input			->End();
+	Entity2dManager		->End();
+	Entity3dManager		->End();
+	FontManager		->End();
+	AnimationManager	->End();
+	Mesh3dManager		->End();
+	SurfaceManager		->End();
+	ImageManager		->End();
+	LightManager		->End();
+	Render			->End();
+	Window			->End();
+
+	IndieLib::End ();
+}
+</source>
+
+'''Let's explain this methods.''' 
+
+In order to initialize the engine, you need to use the '''Init()''' method. '''IND_DEBUG_MODE''' tells the engine that this is not the final release of our application. In debug mode a "debug.log" file with information about the exucution of the IndieLib will be created in the root of your application. This debug file can be very useful because it will inform you about possible errors about initialization, loading / saving resources, etc. When your IndieLib application will be ready for the release, use '''IND_RELEASE_MODE''' instead.
+<source lang="Cpp">
+// IndieLib Initialization in Debug Mode
+IndieLib::Init (IND_DEBUG_MODE);
+</source>
+
+After this line, all the managers are created and initialized. Changing the initialization line of the '''IND_Window''' object, you can change the size and aspect of the application window. The parameters are: window title, width, height, bpp, vsync, fullscreen. For having full color quality use 32 bits, but you can also chose 16. If "vsync" is equal to "true", the [http://en.wikipedia.org/wiki/Vertical_synchronization vertical synchronization] will be activated. If "fullscreen" is equal to "true", then the application window will be full-screen.
+
+In this line, we create a 800x600 non fullscreen window, with no title text and vsync deactivated using 32 bpp.
+<source lang="Cpp">
+if (!Window		->Init ("", 800, 600, 32, false, false))	return 0;
+</source>
+
+The rest of the sourcecode it's easy to understand. We have an '''End()''' method that destroys all the managers and frees the memory. And we also have the variable members of the class, that are the IndieLib Managers that we are going to use for developing our application.
+
+== Main Loop ==
+
+So, everything it's ready in order to create our game :). We will just create a IndieLib application that shows a grey window (nothing else!). You will be able to exit by clicking  on "ESC" key or by closing the window. So, double click in your previously add "Main.cpp" file in your project and copy this source code (you can also download it from here):
+
+<source lang="Cpp">
+/*****************************************************************************************
+/* Desc: Tutorial a) 01 Installing
+/*****************************************************************************************/
+
+#include "CIndieLib_vc2008.h"
+
+/*
+==================
+Main
+==================
+*/
+int IndieLib()		
+{
+	// ----- IndieLib intialization -----
+
+	CIndieLib *mI = CIndieLib::Instance();
+	if (!mI->Init ()) return 0;	
+	
+	// ----- Main Loop -----
+
+	while (!mI->Input->OnKeyPress (IND_ESCAPE) && !mI->Input->Quit())
+	{
+		// ----- Input Update ----
+
+		mI->Input->Update ();
+
+		// -------- Render -------
+
+		mI->Render->ClearViewPort (60, 60, 60);
+		mI->Render->BeginScene ();
+		mI->Render->EndScene ();
+	}
+
+	// ----- Indielib End -----
+
+	mI->End ();
+
+	return 0;
+}
+</source>
+
+'''Let's explain the source code'''
+
+It seems easy to understand, isn't it? The first important line is the calling to the initialization method of the class we talked about in the previous section. This will initialize the IndieLib engine. For getting the pointer to our singleton IndieLib class, we use the method Instance(). You can do this from each class in wich you want to use IndieLib.
+<source lang="Cpp">
+CIndieLib *mI = CIndieLib::Instance();
+if (!mI->Init ()) return 0;	
+</source>
+
+After that, we have the game loop. The source code inside the while will be running until you press '''IND_ESCAPE''' (esc key) or the windows is closed. Both methods are given by the '''Input''' class that we will study later in another tutorial.
+<source lang="Cpp">
+while (!mI->Input->OnKeyPress (IND_ESCAPE) && !mI->Input->Quit())
+</source>
+
+Inside the loop, we call to several importat methods:
+
+* Input update. Necessary in order the input works correctly.
+<source lang="Cpp">
+mI->Input->Update ();
+</source>
+
+* Clearing the viewport. This is an optional method, used for clearing the view port area (the area where you are drawing) to a certain color.
+<source lang="Cpp">
+mI->Render->ClearViewPort (60, 60, 60);
+</source>
+
+* Begin scene. You have to use this method before rendering.
+<source lang="Cpp">
+mI->Render->BeginScene ();
+</source>
+
+* End scene. You have to use this method after rendering, it presents into the screen all the graphical staff.
+<source lang="Cpp">
+mL.Render->EndScene ();
+</source>
+
+Finally, after the loop, we call to our '''End()''' method in order to free all the memory used.
+<source lang="Cpp">
+mI->End ();
+</source>
+
+= Compiling and executing =
+
+So, quite everything it's ready for running your first IndieLib application. You only have to do three steps more:
+
+*'''1.''' In your VC++2008 project, click on "Build>Build Solution". If you followed correctly the previous sections, after compilation, a "Release" folder will be created in the root folder of your project. Inside this "Release" folder, you will find and .exe file with the name of your project. For example "01_Installing.exe". This is your IndieLib application.
+*'''2.''' In order to execute this file, you need to copy it to the folder where the dll engine files are. In the SDK, there is a file called "moveExeVc2008.bat" that will do the work for you moving your .exe to "IndieLib_SDK>exe>vc2008". If you have built you application not using the SDK, just copy the .dll engine files of the SDK to the folder where your .exe application file is for being able to execute it.
+*'''3.''' ¡Final step! Just go to "IndieLib_SDK>exe>vc2008" folder an double click on your execution file. A black background window should be displayed. That's your first IndieLib application.
+
+You are ready now for starting drawing some amazing graphical staff. Go to the [http://www.indielib.com/wiki/index.php?title=Tutorial_02_IND_Surface next tutorial], please.
+
+{{Category_Tutorials|cat=Basic Tutorials}}

@@ -1,0 +1,88 @@
+ENHACEMENTS TO ORIGINAL LIBRARY
+	MODIFICATIONS FROM ORIGINAL:
+		- IND_RENDER METHOD: BlitTriangleList Added
+		- IND_RENDER: Method SetForPrimitive was not adding IND_ALPHA to make transparencies when blitting!
+		- IND_Entity2d: Method GetLayer() added, added int variable mLayer (to get layer of entity easily)
+						Method SetLayer(int newlayer) added
+		- IND_Entity2d: Method Add(int layer, IND_Entity2d* entity) changed to make a setlayer of the entity
+		- IND_Entity2d: Method SetSequence (int pSequence) didnt restart previous animation when setting a new one
+										                   this caused me a lot of problems having 1 replay more when 
+														   changing animations and replaying no times (pReplays 1)
+														   Also needed to put "Active" flag right on to 1, as from there, it 
+														   must be considered that animation is active (coherence of flags)
+		- IND_Entity2d: Method SetNumReplays(int pReplays  Had to change it as now, to replay, you put how many times 
+															you want to replay. If parameter is 0, no replays are made
+		- IND_RenderText2d: Method BlitText() Changed it to be able to scale the related entity and make the text bigger as it 
+											  should be. Before scale didnt affect to text
+
+
+CODE PORT TO OTHER PLATFORMS (IOS INITIALLY)
+HIGH NOTE!!!! IMPORTANT!!!!
+CODE FOR LIGHTS AND 3D MESHES IS BROKEN NOW! IT WASN'T UPDATED TO BE CROSS-PLATFORM YET!
+- devilLib - changed use of devilLib image manipulation library to FreeImage. DevilLib had many problems for cross-platform  behaviour.
+
+- Various Classes - Where the class was friend of IND_Render, now it is friend of IND_Render, DirectXRender and OpenGLES_iOS_Render
+                    because the render-specific code is divided in various classes, but render data is contained
+					through the specific render object. All this is kept private from the library interface, so user doesn't have 
+					to bother with it, and can't access to it.
+					
+				  - Broke some encapsulation adding some internal friend classes, to make a quick'n'dirty port to iOS. Maybe it should
+				    change in the future. Nevertheless, the library uses extensively internal friends to create a "private API", so 
+				    it doesn't break the concept of the original author.
+				    
+				  - Code style adopted to one like in SCUMMVM project. So, 2 changes:
+				            + spacing and linescapes, etc 
+				            + method names and internal variables names (BREAKS WITH INDIELIB ORIGINAL!)
+				  
+				  - Casts are C++ type now (static_cast, reinterpret_cast, ... ) to allow better finding, type safety and readability for future optimizations and code changes
+				  
+				  - removed usage of 'byte' type, changed to BYTE, used by freeimage and by us, it is an unsigned char.
+
+- Indie.h - Deleted Platform-specific includes
+- Defines.h - Conditionally compile platform-specific code. 
+			- Library export definition in a general way
+			- Redefinition of some common structures. Special redefinition of column-order matrix for opengl
+			- Changed IND_ColorFormat name to IND_ColorFormat. It had a confusing name in my opinion.
+			
+- DebugAPI  - Code now dependant of IND_Timer instead of direct calls to Win32 timing functions
+
+- IND_Timer - No longer depends on SDL Timer, but in a custom class which implements higher resolution timing
+
+- IND_Entity2dManager - Changed D3DMATRIX-dependant code to a call of mRender
+
+- IND_Render - Method added to accept an IND_Matrix and apply this as transform of the underlying render
+			 - Now wraps an internal render object to call functionality specific to diferent renders, without
+			   the user noticing it
+			 - Init Method inits window and the render internally. Name changed in API to reflect that
+			   The method returns an instance of created window
+
+- DirectXRender - This class implements the code that the original IND_Render implemented
+					
+- OpenGLRender - This class implements the new code to render OpenGL, OS dependant code is in another class
+               - Changed method setForPrimitive() added parameter to control transform resetting. 
+
+- WindowsOpenGLManager - Class to manage windows-specific GL code (normally init/end)
+
+- IND_Window - Deleted the HWND dependency in the class. This was Windows-only
+             - IND_OpenGLRender is friend of IND_Window to access it's internal API
+             - No init method externally. this is called by renderer.
+
+- IND_Light - Changed header file temporary to hide D3D implementation. needs rework.
+
+- IND_LightManager - Does nothing now. Not supported till everything else works
+
+- Added extensions to IND_Math to handle matrix multiplications, matrix building and vector operations
+
+- Added IND_Vector3 Class to better handle vector manipulations than with a structure
+
+- IND_Camera2d and 3d: Use of IND_Vector3 class as vector positions and orientations. This yields small changes to render code
+
+- IND_Font: Internal characters format is unsigned char. Previously was the "byte" windows type, which is unsigned char. Made for portability
+
+- IND_Surface: Added a POINTER to structure holding texture data. The definition is made internal to the engine, as to abstract render-specific types
+
+- IND_Image: Convert method now uses bpp parameter (before allways bpp was and UNSIGNED_BYTE)
+
+- CIndielib (Demo class to create the indie library and manage it): Internal way of creating window and render changed.
+Render now creates internally the window, which doesn't have a public init method. 
+  

@@ -1,0 +1,112 @@
+{{Stub}}
+
+<source lang="Cpp">
+/*****************************************************************************************
+/* Desc: Tutorials a) 16 IND_Timer
+/*****************************************************************************************/
+
+#include "CIndieLib_vc2008.h"
+
+/*
+==================
+Main
+==================
+*/
+int IndieLib()			
+
+{
+	// ----- IndieLib intialization -----
+
+	CIndieLib *mI = CIndieLib::Instance();
+	if (!mI->Init ()) return 0;			
+
+	// ----- Surface loading -----
+
+	// Font
+	IND_Font mFontBig;
+	if (!mI->FontManager->Add (&mFontBig, "..\\resources\\font_big.png", "..\\resources\\font_big.xml", IND_ALPHA, IND_32)) return 0;
+
+	// Loading draco
+	IND_Surface mSurfaceDraco;
+	if (!mI->SurfaceManager->Add (&mSurfaceDraco, "..\\resources\\draco.png", IND_ALPHA, IND_32)) return 0;
+
+	// ----- Entities -----
+
+	// Title text
+	IND_Entity2d mTextTime;					
+	mI->Entity2dManager->Add (&mTextTime);					// Entity adding
+	mTextTime.SetFont (&mFontBig);							// Set the font into the entity
+
+	// Creating 2d entity for the draco
+	IND_Entity2d mDraco;					
+	mI->Entity2dManager->Add (&mDraco);						// Entity adding
+	mDraco.SetSurface (&mSurfaceDraco);						// Set the surface into the entity
+	mDraco.SetHotSpot (0.5f, 0.5f);
+	mDraco.SetPosition (400, 330, 1);
+
+	// ----- Changing the attributes of the 2d entities -----
+
+	// Text showing the time
+	mTextTime.SetLineSpacing		(18);
+	mTextTime.SetCharSpacing		(-8);
+	mTextTime.SetPosition			(280, 20, 1);
+	mTextTime.SetAlign				(IND_LEFT);
+
+	// ----- Main Loop -----
+
+	char mTimeString [128]; mTimeString [0] = 0;
+	char mTempTime [1024];
+
+	// Create and start the timer;
+	IND_Timer mTimer;
+	mTimer.Start();
+
+	int mX = 0;
+	int mSecond;
+
+	while (!mI->Input->OnKeyPress (IND_ESCAPE) && !mI->Input->Quit())
+	{
+		// ----- Input update ----
+
+		mI->Input->Update ();
+
+		// ----- Input ----
+
+		// Pause / Restart time when pressing space
+		if (mI->Input->OnKeyPress (IND_SPACE))
+		{
+			if (mTimer.IsPaused()) mTimer.Unpause(); else mTimer.Pause();
+		}
+
+		// ----- Updating entities attributes  -----
+
+		mSecond = (int) (mTimer.GetTicks() / 1000.0f);
+
+		// Show the time passing in seconds
+		sprintf (mTempTime, "%d", mSecond);
+		strcpy (mTimeString, "Seconds: ");
+		strcat (mTimeString, mTempTime);
+		mTextTime.SetText	 (mTimeString);	
+
+		// Update Draco position each second
+		mDraco.SetAngleXYZ (0, 0, (float) mSecond + 10);
+
+		// ----- Render  -----
+
+		mI->Render->BeginScene ();
+		mI->Render->ClearViewPort (60, 60, 60);
+		mI->Entity2dManager->RenderEntities2d ();
+		mI->Render->EndScene ();	
+	}
+
+	// ----- Free -----
+
+	mI->End ();
+
+	return 0;
+}
+
+</source>
+
+{{Category_Tutorials|cat=Basic Tutorials}}
+

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation>
+	<!-- frames declaration -->
+	<frames>	
+		<frame name="Rock1" file="../../resources/animations/advance/Rock_Avanza_01.png" offset_x="30" offset_y="0" />
+		<frame name="Rock2" file="../../resources/animations/advance/Rock_Avanza_02.png" offset_x="30" offset_y="0" />
+		<frame name="Rock3" file="../../resources/animations/advance/Rock_Avanza_03.png" offset_x="30" offset_y="0" />
+		<frame name="Rock4" file="../../resources/animations/advance/Rock_Avanza_04.png" offset_x="30" offset_y="30" />
+		<frame name="Rock5" file="../../resources/animations/advance/Rock_Avanza_05.png" offset_x="30" offset_y="30" />
+		<frame name="Rock6" file="../../resources/animations/advance/Rock_Avanza_06.png" offset_x="30" offset_y="30" />
+		<frame name="Rock7" file="../../resources/animations/advance/Rock_Avanza_07.png" offset_x="0" offset_y="30" />
+		<frame name="Rock8" file="../../resources/animations/advance/Rock_Avanza_08.png" offset_x="0" offset_y="30" />
+		<frame name="Rock9" file="../../resources/animations/advance/Rock_Avanza_09.png" offset_x="0" offset_y="30" />
+		<frame name="Rock10" file="../../resources/animations/advance/Rock_Avanza_10.png" offset_x="0" offset_y="0" />		
+	</frames>
+		
+	<!-- sequences declaration -->
+	<sequences>
+		<sequence name="rock_advance">
+			<frame name="Rock1" time="150" />
+			<frame name="Rock2" time="150" />
+			<frame name="Rock3" time="150" />
+			<frame name="Rock4" time="150" />
+			<frame name="Rock5" time="150" />
+			<frame name="Rock6" time="150" />
+			<frame name="Rock7" time="150" />
+			<frame name="Rock8" time="150" />
+			<frame name="Rock9" time="150" />
+			<frame name="Rock10" time="150" />
+		</sequence>			
+	</sequences>
+</animation>

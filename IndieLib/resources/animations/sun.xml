@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation>
+	<!-- frames declaration -->
+	<frames>	
+		<!-- character 1 -->
+		<frame name="sun1" file="../../resources/animations/sun/sun_01.png" />
+		<frame name="sun2" file="../../resources/animations/sun/sun_02.png" />
+		<frame name="sun3" file="../../resources/animations/sun/sun_03.png" />
+		<frame name="sun4" file="../../resources/animations/sun/sun_04.png" />
+		<frame name="sun5" file="../../resources/animations/sun/sun_05.png" />
+	</frames>
+		
+	<!-- sequences declaration -->
+	<sequences>
+		<!--Sun 1 -->
+		<sequence name="sun_animation">
+			<frame name="sun1" time="150" />
+			<frame name="sun2" time="150" />
+			<frame name="sun3" time="150" />
+			<frame name="sun4" time="150" />
+			<frame name="sun5" time="1000" />
+			<frame name="sun4" time="150" />
+			<frame name="sun3" time="150" />
+			<frame name="sun2" time="150" />
+			<frame name="sun1" time="1000" />
+		</sequence>			
+	</sequences>
+</animation>

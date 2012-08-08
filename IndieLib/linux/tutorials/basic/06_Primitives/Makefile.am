@@ -1,0 +1,7 @@
+bin_PROGRAMS = tutorial06
+
+AM_CXXFLAGS = $(INTI_CFLAGS) -I @top_srcdir@/../common/include -I @top_srcdir@/../tutorials/basic/06_Primitives
+
+tutorial06_SOURCES = ../../../../tutorials/basic/06_Primitives/CIndieLib_vc2008.cpp ../../../../tutorials/basic/06_Primitives/Tutorial06.cpp
+
+tutorial06_LDADD = -L@top_srcdir@/.libs $(INTI_LIBS) -lIndieLib -lSDL -lGLEW -lGLU -lGL -lILU -lILUT

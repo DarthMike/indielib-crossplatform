@@ -1,0 +1,77 @@
+/*****************************************************************************************
+ * File: RenderCollision2dOpenGL.cpp
+ * Desc: Collision between 2d objects
+ *****************************************************************************************/
+
+/*
+IndieLib 2d library Copyright (C) 2005 Javier López López (info@pixelartgames.com)
+THIS FILE IS AN ADDITIONAL FILE ADDED BY Miguel Angel Quiñones (2011) (mail:m.quinones.garcia@gmail.com / mikeskywalker007@gmail.com), BUT HAS THE
+SAME LICENSE AS THE WHOLE LIBRARY TO RESPECT ORIGINAL AUTHOR OF LIBRARY
+
+This library is free software; you can redistribute it and/or modify it under the
+terms of the GNU Lesser General Public License as published by the Free Software
+Foundation; either version 2.1 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License along with
+this library; if not, write to the Free Software Foundation, Inc., 59 Temple Place,
+Suite 330, Boston, MA 02111-1307 USA
+*/
+#include "Defines.h"
+
+#ifdef INDIERENDER_OPENGL
+
+// ----- Includes -----
+
+#include "Global.h"
+#include "IND_SurfaceManager.h"
+#include "OpenGLRender.h"
+
+
+// --------------------------------------------------------------------------------
+//							       Private methods
+// --------------------------------------------------------------------------------
+
+/*
+==================
+Check collision between two circles that are not transformed
+==================
+*/
+bool   OpenGLRender::isCircleToCircleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1, float pScale1,
+        BOUNDING_COLLISION *pB2, IND_Matrix pMat2, float pScale2) {
+	//TODO
+
+	return 0;
+}
+
+
+/*
+==================
+Check collision between two triangles that are not transformed
+==================
+*/
+bool   OpenGLRender::isTriangleToTriangleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1,
+        BOUNDING_COLLISION *pB2, IND_Matrix pMat2) {
+//TODO
+
+	return 0;
+}
+
+
+/*
+==================
+Check collision between a circle an a triangle that are not transformed
+==================
+*/
+bool OpenGLRender::isCircleToTriangleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1, float pScale,
+        BOUNDING_COLLISION *pB2, IND_Matrix pMat2) {
+//TODO
+
+	return 0;
+}
+
+
+#endif //INDIERENDER_OPENGL

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation>
+		<!-- frames declaration -->
+		<frames>	
+			<frame name="Dust1" file="../../resources/animations/dust/kof2k-teleportdust01.png" />
+			<frame name="Dust2" file="../../resources/animations/dust/kof2k-teleportdust02.png" />
+			<frame name="Dust3" file="../../resources/animations/dust/kof2k-teleportdust03.png" />
+			<frame name="Dust4" file="../../resources/animations/dust/kof2k-teleportdust04.png" />
+			<frame name="Dust5" file="../../resources/animations/dust/kof2k-teleportdust05.png" />
+			<frame name="Dust6" file="../../resources/animations/dust/kof2k-teleportdust06.png" />
+			<frame name="Dust6" file="../../resources/animations/dust/kof2k-teleportdust06.png" />
+			<frame name="Dust7" file="../../resources/animations/dust/kof2k-teleportdust07.png" />
+			<frame name="Dust8" file="../../resources/animations/dust/kof2k-teleportdust08.png" />
+			<frame name="Dust9" file="../../resources/animations/dust/kof2k-teleportdust09.png" />
+			<frame name="Dust10" file="../../resources/animations/dust/kof2k-teleportdust10.png" />
+			<frame name="Dust11" file="../../resources/animations/dust/kof2k-teleportdust11.png" />
+			<frame name="Dust12" file="../../resources/animations/dust/kof2k-teleportdust12.png" />
+		</frames>
+		
+		<!-- sequences declaration -->
+		<sequences>
+			<sequence name="dust_explosion">
+				<frame name="Dust1" time="150" />
+				<frame name="Dust2" time="150" />
+				<frame name="Dust3" time="150" />
+				<frame name="Dust4" time="150" />
+				<frame name="Dust5" time="150" />
+				<frame name="Dust6" time="150" />
+				<frame name="Dust7" time="150" />
+				<frame name="Dust8" time="150" />
+				<frame name="Dust9" time="150" />
+				<frame name="Dust10" time="150" />
+				<frame name="Dust11" time="150" />
+				<frame name="Dust12" time="150" />
+			</sequence>
+		</sequences>
+</animation>

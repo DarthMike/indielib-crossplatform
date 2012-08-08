@@ -1,0 +1,162 @@
+Come on sprites! Let's go dancing!
+__FORCETOC__
+= Tutorial files =
+
+'''Download the IndieLib SDK in order to have all the tutorial files with the sources for vc2008, and all the example tutorials compiled, so you can try them directly'''
+* [http://www.indielib.com/sdk/IndieLib_LatestVersion_SDK.rar IndieLib SDK]
+
+Note: This tutorial uses some sprites created by Danc from his great [http://lostgarden.com/2007/03/spacecute-prototyping-challenge.html SpaceCute Prototyping Challenge].
+
+= Introduction =
+
+In this tutorial you will learn about how to check the input from the keyboard and mouse. We will move and rotate some sprites using the keyboard and mouse. The classes covered in this tutorial are:
+
+* IND_Input
+* IND_Surface
+* IND_SurfaceManager
+* IND_Entity2d
+* IND_Entity2dManager
+
+= Tutorial =
+
+== IND_Input ==
+
+The input in IndieLib is provided by the IND_Input class. Using this class you can check is several keys or buttons are pressed at the same time, if a key or button has been pressed more than n milliseconds, etc. Chech the methods of IND_Input in the Api Reference.
+
+There is a difference between the methods that starts by "On" like OnKeyPress() and the methods that starts by "Is" like IsKeyPressed(). For example, on the one hand, OnKeyPress() will return true the first time you press the key and it will not return true again until you release it and press the key again. On the other hand, IsKeyPressed() will return true while you are pressing the key.
+
+Using the "Is" method you have the possibility of choosing the amount of time that the key/button need to be pressed in order to return true. Check the Api Reference in order to see all the methods of IND_Input.
+
+== Let's start with the source code ==
+
+We will follow this tutorial reading from the "Main.cpp" file of the "a_06_Input" project.
+
+First of all, let's load all the surfaces we need. So, double click in you "Main.cpp" file, and read this lines:
+
+<source lang="Cpp">
+// ----- Surface loading -----
+
+// Loading Background
+IND_Surface mSurfaceBack;
+if (!mI->SurfaceManager->Add (&mSurfaceBack, "..\\resources\\twist.jpg", IND_OPAQUE, IND_32)) return 0;
+
+// Loading Beettleship
+IND_Surface mSurfaceBeetleship;
+if (!mI->SurfaceManager->Add (&mSurfaceBeetleship, "..\\resources\\beetleship.png", IND_ALPHA, IND_32)) return 0;
+
+// Loading Octopus
+IND_Surface mSurfaceOctopus;
+if (!mI->SurfaceManager->Add (&mSurfaceOctopus, "..\\resources\\octopus.png", IND_ALPHA, IND_32)) return 0;
+
+// Loading Planet
+IND_Surface mSurfacePlanet;
+if (!mI->SurfaceManager->Add (&mSurfacePlanet, "..\\resources\\planet.png", IND_ALPHA, IND_32)) return 0;
+</source>
+
+Nothing new here, just creating the surfaces from our image files. Now, let's do something that you already should know too:
+
+<source lang="Cpp">
+// ----- Set the surfaces into 2d entities -----
+
+// Creating 2d entity for the background
+IND_Entity2d mBack;					
+mI->Entity2dManager->Add (&mBack);					// Entity adding
+mBack.SetSurface (&mSurfaceBack);					// Set the surface into the entity
+
+// Creating 2d entity for the bettleship
+IND_Entity2d mBeetleship;					
+mI->Entity2dManager->Add (&mBeetleship);				// Entity adding
+mBeetleship.SetSurface (&mSurfaceBeetleship);				// Set the surface into the entity
+
+// Creating 2d entity for the octopus
+IND_Entity2d mOctopus;					
+mI->Entity2dManager->Add (&mOctopus);					// Entity adding
+mOctopus.SetSurface (&mSurfaceOctopus);					// Set the surface into the entity
+
+// Creating 2d entity for the planet
+IND_Entity2d mPlanet;					
+mI->Entity2dManager->Add (&mPlanet);					// Entity adding
+mPlanet.SetSurface (&mSurfacePlanet);					// Set the surface into the entity
+</source>
+
+As always, we join the surfaces to the 2d entities. And know, let's change their attributes:
+
+<source lang="Cpp">
+// ----- Changing the attributes of the 2d entities -----
+
+mBack.SetHotSpot (0.5f, 0.5f);
+mBack.SetPosition (400, 300, 0);
+mBack.SetScale (1.7f, 1.7f);
+
+mBeetleship.SetHotSpot (0.5f, 0.5f); 
+
+mOctopus.SetMirrorX (true);
+mOctopus.SetHotSpot (0.5f, 0.5f);
+
+mPlanet.SetHotSpot (0.5f, 0.5f);
+</source>
+
+Until here you haven't seen anything you have alredy seen in other tutorials. Now, let's go with the input.
+
+<source lang="Cpp">
+// ----- Main Loop -----
+
+float	mAngle = 0;
+int	mMis = 400;
+
+while (!mI->Input->OnKeyPress (IND_ESCAPE) && !mI->Input->Quit())
+{
+	// ----- Input update -----
+
+	mI->Input->Update ();
+
+	// ----- Input -----
+
+	// Move entities when pressing right
+	if (mI->Input->IsKeyPressed (IND_KEYRIGHT))	mMis += 1;
+
+	// Move entities when pressing left
+	if (mI->Input->IsKeyPressed (IND_KEYLEFT))	mMis -= 1;
+
+	// If CTRL + X pressed then exit
+	if (mI->Input->IsKeyPressed (IND_LCTRL) && mI->Input->IsKeyPressed (IND_X))	
+	{
+		mI->Render->EndScene ();
+		mI->End();
+		exit (0);
+	}
+
+	mAngle += 0.1f;
+
+	// ----- Updating entities attributes  -----
+
+	// Back
+	mBack.SetAngleXYZ (0, 0, mAngle);		
+
+	// Beetle
+	mBeetleship.SetPosition ((float) mMis, 140, 1);
+	mBeetleship.SetAngleXYZ (0, 0, (float) mMis);
+
+	// Planet
+	mPlanet.SetPosition ((float) mI->Input->GetMouseX(), 300, 2);
+		
+	// Octopus
+	mOctopus.SetPosition (800 - (float) mMis, 480, 3);
+
+	// ----- Render -----
+
+	mI->Render->BeginScene ();
+	mI->Entity2dManager->RenderEntities2d ();
+	mI->Render->EndScene ();	
+}
+</source>
+
+As you can see, we have defined two variables. "mAngle" is used in order to slowly rotate the background. "mMis" will be updated trought the keyboard and is used for moving horizontally the two ships and to rotate at the same time one of them. The horizontal position of the planet will be updated using the mouse. Pressing "CTRL + X" the application will exit.
+
+So, what you can do now it trying to make your own graphical objects, whose attributes can be updated using the input from the keyboard or mouse. Enjoy!
+
+
+You are ready for the [http://www.indielib.com/wiki/index.php?title=Tutorial_08_Collisions next tutorial].
+
+{{Category_Tutorials|cat=Basic Tutorials}}
+

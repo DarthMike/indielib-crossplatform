@@ -1,0 +1,129 @@
+== '''Starting with 3D meshes.''' ==
+
+Before you read this tutorial I suggest you to make a small program with 2d entities on IndieLib, in order to get the basic concepts.
+
+For this tutorial course you need 3d models exported to .x file with textures. You can use example models stored in "resources" folder in the IndieLib SDK. You can also get .x files from exporting it from 3ds max or another modelling program.
+
+=== Introduction ===
+In This tutorial you’ll learn how to insert and manage 3d objects. Your game will be now 3D, and it’s quite easy. Check it yourself.
+
+=== [http://www.indielib.com/documentation/class_i_n_d__3d_mesh.html 3D Meshes] ===
+3D meshes are used to initialize your models to engine. You can add them to 3d entities.
+
+=== [http://www.indielib.com/documentation/class_i_n_d___entity3d.html 3D Entity] ===
+Used for drawing graphical objects into the screen and manipulating their attributes, like "SetAnimationSpeed”, "Set Position”, etc. See more in the Api Reference.
+
+=== [http://www.indielib.com/documentation/class_i_n_d___entity3d_manager.html 3D Entity Manager] ===
+Manager used for Adding/Removing 3D Entities.
+
+== '''Starting with Code'''==
+
+
+OK, let’s start with that what is most important – code.
+Open file "Main.cpp" stored in "a_09_IND_3dMesh" folder. First important code, with 3D Mesh Loading, we will load quite nice skeleton:
+
+<source lang="Cpp">
+// Bones loading
+
+IND_3dMesh mMeshBones;
+if (!mI->MeshManager->Add (&mMeshBones, "..\\resources\\skeleton\\skeleton.x", "..\\resources\\skeleton")) return 0;
+</source>
+- Creating 3dMesh
+- Loading skeleton.x file (3d Model) and his textures.
+
+Now we have to add mesh into entities:
+<source lang="Cpp">
+// Creating 3d entity
+
+IND_Entity3d mBones;               
+mI->Entity3dManager->Add (&mBones);         // Entity adding
+mBones.Set3dMesh (&mMeshBones);             // Set the 3d mesh into the entity
+</source>
+When we add mesh to entity, it must be placed somewhere. We do it like with 2d entities.
+
+<source lang="Cpp">
+// ----- Changing the attributes of the 3d entities -----
+
+   mBones.SetPosition (0, 0, 0);            //Set Position
+   mBones.SetScale (1.5f, 1.5f, 1.5f);      //Scaling model
+</source>
+
+Camera settings – setting 2d camera for gui objects, and 3d camera for our skeleton model (2d/3d camera will be analyzed in next tutorials):
+
+<source lang="Cpp">
+IND_Camera2d mCamera2d (mI->Window->GetWidth () / 2, mI->Window->GetHeight() / 2);
+IND_Camera3d mCamera3d (0.0f, 1.4f, -4.0f);
+mCamera3d.SetAspect ((float) mI->Window->GetWidth () / mI->Window->GetHeight());
+</source>
+Light - without this our model can’t be seen. Setting direction light, position etc. This will be analyzed in next tutorial:
+
+<source lang="Cpp">
+IND_Light mLight;
+mI->LightManager->Add (&mLight, IND_DIRECTIONAL_LIGHT);
+mLight.SetPosition (0, 0, 0);
+mLight.SetColor (1.0f, 1.0f, 1.0f, 1.0f);
+mLight.SetDirection (0.0f, -0.3f, 0.5f);
+mLight.SetRange (1000.0f);
+</source>
+Important Variables:
+<source lang="Cpp">
+float   mAngle = 0;                   // Skeleton angle
+int   mSequence = 0;                  // Sequence of animations
+char   mText [2048]; mText [0] = 0;   // Text variables
+int   mSpeed = 25;                    // Rotating speed
+float   mDelta;                       //Delta time
+</source>
+Animation Changing:
+
+<source lang="Cpp">
+// Change animation sequence Up
+      if (mI->Input->OnKeyPress (IND_KEYUP))
+      {
+         mSequence++;                                                     // Next animation
+         if (mSequence == mMeshBones.GetNumSequences()) mSequence = 0;    // Looping sequences
+         mBones.SetSequence (mSequence);                                  //Setting animation
+      }
+
+      // Change animation sequence Down
+      if (mI->Input->OnKeyPress (IND_KEYDOWN))
+      {
+         mSequence--;                                                      // Animation sequence -1
+         if (mSequence < 0) mSequence = mMeshBones.GetNumSequences() - 1;  // Looping sequences
+         mBones.SetSequence (mSequence);                                   // Setting animation
+      }
+</source>
+SetSequence mean which one sequence you’ll now play, when exporting from .ex 3ds max you set sequences animation of your model.
+Turning around own pivot:
+<source lang="Cpp">
+mAngle += mDelta * mSpeed;
+
+Updating angle of entities:
+<source lang="Cpp">
+// Back
+mBack.SetAngleXYZ (0, 0, mAngle);   
+
+// Skeleton
+mBones.SetAngleXYZ (0, mAngle, 0);
+</source>
+Rendering functions:
+
+<source lang="Cpp">
+mI->Render->BeginScene ();
+mI->Render->SetViewPort2d (0, 0, 800, 600);      //Setting VievPort 2d
+mI->Render->SetCamera2d (&mCamera2d);            //Setting Camera 2d
+mI->Entity2dManager->RenderEntities2d ();        //Rendering back and fonts
+
+mI->Render->SetViewPort3d (0, 0, 800, 600);      //Setting VievPort 3d
+mI->Render->SetCamera3d (&mCamera3d);            //Setting Camera 3d
+mI->LightManager->Update ();                     //Updating light
+mI->Entity3dManager->RenderEntities3d ();        //Rendering our skeleton
+</source>
+
+I hope that this tutorial wasn’t too hard, and after reading it you’ll be able to make your own program with own super models of monsters ; ). Remember to check the Api Reference.
+
+Now you can check [[Tutorial_10_IND_Light|light tutorial]].
+
+By Armageddon ;)
+
+{{Category_Tutorials|cat=Basic Tutorials}}
+

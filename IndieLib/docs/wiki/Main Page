@@ -1,0 +1,38 @@
+__NOTOC__  __NOEDITSECTION__
+{| width="100%" cellspacing="4" cellpadding="10"
+| valign="top" colspan="2" bgcolor="#fcfcfc" style="border:1px solid #CCC;" |
+== Getting started ==
+
+* [[IndieLib_FAQ]]
+
+|-
+| valign="top" bgcolor="#f0f0ff" style="border:1px solid #c6c9ff;" |
+== Basic Tutorials ==
+
+* [[Tutorial_01_Installing]]
+* [[Tutorial_02_IND_Surface]]
+* [[Tutorial_03_IND_Image]]
+* [[Tutorial_04_IND_Animation]]
+* [[Tutorial_05_IND_Font]]
+* [[Tutorial_06_Primitives]]
+* [[Tutorial_07_IND_Input]]
+* [[Tutorial_08_Collisions]]
+* [[Tutorial_09_IND_3dMesh]]
+* [[Tutorial_10_IND_Light]]
+* [[Tutorial_11_Animated_Tile_Scrolling]]
+* [[Tutorial_12_???]]
+* [[Tutorial_13_2D_Camera]]
+* [[Tutorial_14_3D_Camera]]
+* [[Tutorial_15_Parallax_Scrolling]]
+* [[Tutorial_16_IND_Timer]]
+
+| valign="top" bgcolor="#fff3f3" style="border:1px solid #ffc9c9;" |
+== Advanced Tutorials ==
+
+* [[Advanced_Tutorial_01_IND_Surface_Grids]]
+* [[Advanced_Tutorial_02_Blitting_2d_Directly]]
+* [[Advanced_Tutorial_03_Blitting_3d_Directly]]
+* [[Advanced_Tutorial_04_Several_ViewPorts]]
+
+|}
+

@@ -1,0 +1,164 @@
+Gimp and photoshop have a really interesting feature: filters. IndieLib too!
+__FORCETOC__
+= Download the tutorials =
+
+'''Download the IndieLib SDK in order to have all the tutorial files with the sources for vc2008, and all the example tutorials compiled, so you can try them directly'''
+* [http://www.indielib.com/sdk/IndieLib_LatestVersion_SDK.rar IndieLib SDK]
+
+Note: This tutorial uses an sprite created by Danc from his great [http://lostgarden.com/2007/05/cutegod-prototyping-challenge.html Cute God Prototyping Challenge].
+
+= Introduction =
+
+In this tutorial you will learn about IND_Image objects. These objects are bitmaps that can't be rendered directly. So... for what are they useful you will ask? With IND_Image objects you can, for example, apply filters (similar to the ones of Gimp or Photoshop programs) to the loaded images. And later, you can transform this IND_Image objects into IND_Surface objects that can be rendered directly to the screen. The classes covered in this tutorial are:
+
+* IND_Image
+* IND_ImageManager
+* IND_Surface
+* IND_SurfaceManager
+* IND_Entity2d
+* IND_Entity2dManager
+
+= Tutorial =
+
+== IND_Image and IND_ImageManager ==
+
+IND_ImageManager is a manager that stores IND_Image objects. IND objects works as a mediator between the image (bitmap) loaded in memory and the IND_Surface object which finally appears in the screen. The IND_Image objects which are stored in this class can not be rendered directly to the screen , so the filters applied to them can not be visualized in real time.
+
+So, the uses of this class are:
+
+* Filters. Gaussian, negative, pixelize, equalize... and more. You can apply this filters after loading your images and before converting them to IND_Surface objects in order to render them to the screen.
+* Hardness maps. Used for making collisions or path finding.
+* GetPixel() / PutPixel()
+* Colorkey. By changing a certain color into transparent using SetAlpha().
+* Generation of new images (procedurally).
+* Convert formats. Changing the number of bytes per pixel using Convert()
+* Direct accesing to the bitmap. Using IND_Image::GetPointer() 
+
+== Let's start with the source code ==
+
+We will follow this tutorial reading from the "Main.cpp" file of the "a_03_IND_Image" project. 
+
+The first thing we are going to do is loading one image from the disk and making three duplicates. So, double click in you "Main.cpp" file, and read this lines:
+
+<source lang="Cpp">
+// ----- Loading of the original image and making 4 duplicates -----
+
+IND_Image mImageBugOriginal;
+if (!mI->ImageManager->Add (&mImageBugOriginal, "..\\resources\\Enemy Bug.png")) return 0;
+
+IND_Image mImageBugGaussian;
+if (!mI->ImageManager->Clone (&mImageBugGaussian, &mImageBugOriginal)) return 0;
+
+IND_Image mImageBugPixelize;
+if (!mI->ImageManager->Clone (&mImageBugPixelize, &mImageBugOriginal)) return 0;
+
+IND_Image mImageBugContrast;
+if (!mI->ImageManager->Clone (&mImageBugContrast, &mImageBugOriginal)) return 0;
+</source>
+
+We have just loaded an image, adding it to the image manager. Later, we make 3 duplicates of this image.
+
+No we are going to apply the filters:
+
+<source lang="Cpp">
+// ----- Applying filters -----
+
+mImageBugGaussian.GaussianBlur	(5);
+mImageBugPixelize.Pixelize		(5);
+mImageBugContrast.Contrast		(20);
+</source>
+
+We apply three filtes: gaussian blur, pixelize and contrast to each of our duplicated images.
+
+Now, let's create the IND_Surface objects:
+
+<source lang="Cpp">
+// ----- Surface creation -----
+
+// Loading Background
+IND_Surface mSurfaceBack;
+if (!mI->SurfaceManager->Add (&mSurfaceBack, "..\\resources\\blue_background.jpg", IND_OPAQUE, IND_32)) return 0;
+
+// Creating the "Original Bug" surface from the IND_Image
+IND_Surface mOriginalSurface;
+if (!mI->SurfaceManager->Add (&mOriginalSurface, &mImageBugOriginal, IND_ALPHA, IND_32)) return 0;
+
+// Creating the "Gaussian bug" surface from the IND_Image
+IND_Surface mGaussianSurface;
+if (!mI->SurfaceManager->Add (&mGaussianSurface, &mImageBugGaussian, IND_ALPHA, IND_32)) return 0;
+	
+// Creating the "Pixelize bug" surface from the IND_Image
+IND_Surface mPixelizeSurface;
+if (!mI->SurfaceManager->Add (&mPixelizeSurface, &mImageBugPixelize, IND_ALPHA, IND_32)) return 0;
+
+// Creating the "Contrast bug" surface from the IND_Image
+IND_Surface mContrastSurface;
+if (!mI->SurfaceManager->Add (&mContrastSurface, &mImageBugContrast, IND_ALPHA, IND_32)) return 0;
+</source>
+
+We have created four IND_Surface objects. The first one is the background. The other four are the original image and it's duplicates with the applied filters. We have to create these surfaces because IND_Image objects can not be rendered directly to the screen. The next optional step is to delete the IND_Image objects.
+
+<source lang="Cpp">
+// ----- Deletion of images -----
+
+mI->ImageManager->Delete (&mImageBugOriginal);
+mI->ImageManager->Delete (&mImageBugGaussian);
+mI->ImageManager->Delete (&mImageBugPixelize);
+mI->ImageManager->Delete (&mImageBugContrast);
+</source>
+
+Like we have already created the surfaces, we can free the images if we are not going to use them anymore.
+
+Now, we are going to create the 2d entities and join them with our surfaces, like we have already done in the previous tutorial:
+
+<source lang="Cpp">
+// ----- Set the surfaces into the 2d entities -----
+
+// Creating 2d entity for the background
+IND_Entity2d mBack;					
+mI->Entity2dManager->Add (&mBack);					// Entity adding
+mBack.SetSurface (&mSurfaceBack);					// Set the surface into the entity
+
+// Creating 2d entity for the "Original bug"
+IND_Entity2d mOriginal;					
+mI->Entity2dManager->Add (&mOriginal);					// Entity adding
+mOriginal.SetSurface (&mOriginalSurface);				// Set the surface into the entity
+
+// Creating 2d entity for the "Gaussian bug"
+IND_Entity2d mGaussian;					
+mI->Entity2dManager->Add (&mGaussian);					// Entity adding
+mGaussian.SetSurface (&mGaussianSurface);				// Set the surface into the entity
+
+// Creating 2d entity for the "pixelize bug"
+IND_Entity2d mPixelize;					
+mI->Entity2dManager->Add (&mPixelize);					// Entity adding
+mPixelize.SetSurface (&mPixelizeSurface);				// Set the surface into the entity
+
+// Creating 2d entity for the "Contrast bug"
+IND_Entity2d mContrast;					
+mI->Entity2dManager->Add (&mContrast);					// Entity adding
+mContrast.SetSurface (&mContrastSurface);				// Set the surface into the entity
+</source>
+
+Great, now everything it's ready for changing the attributes of our 2d entities:
+
+<source lang="Cpp">
+// ----- Changing the attributes of the 2d entities -----
+
+mOriginal.SetPosition (290, 90, 0);
+mGaussian.SetPosition (50, 230, 0);
+mPixelize.SetPosition (290, 230, 0);
+mContrast.SetPosition (520, 230, 0);
+</source>
+
+As you can see, we only change the position of each of the entities. The original image will be displayed in the top and centered. The three duplicates with the applied filters will appear in a lower position.
+
+The rest of the source code is the main loop that we already saw in the previous tutorials.
+
+So, what you can do now it trying to create your own images and applying filters. Remember you can also access directly to the bitmap data and doing GetPixel() and PutPixel() operations. Check IND_ImageManager methods in the Api Reference to see all the features.
+
+
+You are ready for the [http://www.indielib.com/wiki/index.php?title=Tutorial_04_IND_Animation next tutorial].
+
+{{Category_Tutorials|cat=Basic Tutorials}}
+

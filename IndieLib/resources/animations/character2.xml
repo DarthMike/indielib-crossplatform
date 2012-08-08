@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation>
+	<!-- frames declaration -->
+	<frames>	
+		<frame name="Terry1" file="../../resources/animations/stop/Terry_Parado_01.png" />
+		<frame name="Terry2" file="../../resources/animations/stop/Terry_Parado_02.png" />
+		<frame name="Terry3" file="../../resources/animations/stop/Terry_Parado_03.png" />
+		<frame name="Terry4" file="../../resources/animations/stop/Terry_Parado_04.png" />
+		<frame name="Terry5" file="../../resources/animations/stop/Terry_Parado_05.png" />
+		<frame name="Terry6" file="../../resources/animations/stop/Terry_Parado_06.png" />
+		<frame name="Terry7" file="../../resources/animations/stop/Terry_Parado_07.png" />
+		<frame name="Terry8" file="../../resources/animations/stop/Terry_Parado_08.png" />
+		<frame name="Terry9" file="../../resources/animations/stop/Terry_Parado_09.png" />
+	</frames>
+		
+	<!-- sequences declaration -->
+	<sequences>
+		<sequence name="terry_stop">
+			<frame name="Terry1" time="150" />
+			<frame name="Terry2" time="150" />
+			<frame name="Terry3" time="150" />
+			<frame name="Terry4" time="150" />
+			<frame name="Terry5" time="150" />
+			<frame name="Terry6" time="150" />
+			<frame name="Terry7" time="150" />
+			<frame name="Terry8" time="150" />
+			<frame name="Terry9" time="150" />
+		</sequence>
+	</sequences>
+</animation>

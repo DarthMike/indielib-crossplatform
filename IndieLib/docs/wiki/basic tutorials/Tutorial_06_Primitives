@@ -1,0 +1,124 @@
+Primitives... no, I'm not talking about The Flinstones!
+__FORCETOC__
+= Tutorial files =
+
+'''Download the IndieLib SDK in order to have all the tutorial files with the sources for vc2008, and all the example tutorials compiled, so you can try them directly'''
+* [http://www.indielib.com/sdk/IndieLib_LatestVersion_SDK.rar IndieLib SDK]
+
+= Introduction =
+
+In this tutorial you will learn about how to draw primitives (lines, rectangles, circles, polygons, etc) to the screen. The classes covered in this tutorial are:
+
+* IND_Primitive2d
+* IND_Render
+* IND_Entity2d
+* IND_Entity2dManager
+
+= Tutorial =
+
+== Rendering primitives: two methods ==
+
+There are two ways of bliting primitives to the screen. On the one hand you can joint them to IND_Entity2d objects using the SetPrimitive2d() method and setting their attributes. On the other hand, you can blit them directly to the screen using the IND_Render class.
+
+These are the kind of primitives you can draw:
+* IND_PIXEL
+* IND_REGULAR_POLY
+* IND_RECTANGLE
+* IND_FILL_RECTANGLE
+* IND_POLY2D
+
+You can read more about the IND_Entity2d objects methods for primitive drawing in the Api Reference. And also about the direct bliting methods in IND_Render class.
+
+== Let's start with the source code ==
+
+We will follow this tutorial reading from the "Main.cpp" file of the "a_06_Primitives" project.
+
+In this tutorial, we will draw the primitives using the two possible methods. First, we will create some 2d entities each one joint to a 2d primitive. So, double click in you "Main.cpp" file, and read this lines:
+
+<source lang="Cpp">
+// ----- Set the primitives into 2d entities -----
+
+// Pixel
+IND_Entity2d mPixel;					
+mI->Entity2dManager->Add (&mPixel);			
+mPixel.SetPrimitive2d (IND_PIXEL);
+mPixel.SetPosition (200, 75, 0);
+mPixel.SetTint (255, 255, 255);
+	
+// Regular poly
+IND_Entity2d mRegularPoly;					
+mI->Entity2dManager->Add (&mRegularPoly);			
+mRegularPoly.SetPrimitive2d (IND_REGULAR_POLY);		
+mRegularPoly.SetPosition (200, 75, 0);									
+mRegularPoly.SetNumSides (5);
+mRegularPoly.SetRadius (50);
+mRegularPoly.SetTint (255, 0, 0);
+
+// Line
+IND_Entity2d mLine;					
+mI->Entity2dManager->Add (&mLine);			
+mLine.SetPrimitive2d (IND_LINE);
+mLine.SetLine (100, 100, 50, 50);
+mLine.SetTint (0, 255, 0);
+
+// Rectangle
+IND_Entity2d mRectangle;					
+mI->Entity2dManager->Add (&mRectangle);			
+mRectangle.SetPrimitive2d (IND_RECTANGLE);
+mRectangle.SetRectangle (350, 50, 400, 100);
+mRectangle.SetTint (0, 0, 255);
+
+// Filled rectangle
+IND_Entity2d mFillRectangle;					
+mI->Entity2dManager->Add (&mFillRectangle);			
+mFillRectangle.SetPrimitive2d (IND_FILL_RECTANGLE);
+mFillRectangle.SetRectangle (550, 40, 650, 110);
+mFillRectangle.SetTint (250, 0, 0);
+mFillRectangle.SetTransparency (50);
+
+// 2d Poly
+IND_Entity2d mPoly2d;					
+mI->Entity2dManager->Add (&mPoly2d);			
+mPoly2d.SetPrimitive2d (IND_POLY2D);
+IND_Point mVertPoly2 [] = { {440, 200},  {480, 100},  {450, 10},  {470, 220} };		// Poly points
+mPoly2d.SetPolyPoints (mVertPoly2);													
+mPoly2d.SetNumLines	(3);								// Number of edges - 1
+mPoly2d.SetTint (255, 128, 255);
+</source>
+
+The source code is quite self explanatory. For each 2d entity we create we set a 2d primitive on it. Later, we change the necessary attributes in order to display the primitive into the screen. You can use SetTint() and SetTransparency() methods in order to change the color and transparency of the primitive. The SetFade() method will not affect the primitive. Primitives can not be rotated using SetAngleXYZ() or scaled using SetScale(). The only primitive you can rotate is IND_REGULAR_POLY one, using SetPolyAngle() method.
+
+Now, we are going to see the other method for primitive drawing: using the methods of IND_Render directly. Just check the source inside the Main Loop:
+
+<source lang="Cpp">
+// ----- Input update -----
+
+mI->Input->Update ();
+
+// ----- Render -----
+
+mI->Render->ClearViewPort (0, 0, 0);
+mI->Render->BeginScene ();
+
+// Direct bliting of primitives
+for (int i = 0; i < 400; i += 5)
+{	
+	mI->Render->BlitLine		(70, 150, i * 2, 500, i, 255 -i, 255, 255);
+	mI->Render->BlitRegularPoly	(600, 600, i, 70, 0, 255 - i, i, i*4, 255);
+}
+
+mI->Entity2dManager->RenderEntities2d();
+mI->Render->EndScene ();
+</source>
+
+Like we don't have a background, we have to clear the viewport using ClearViewPort() method. Later, we render to the screen several lines an regular polys (that have so many sides that appears to be circles). As you can see, we are using directly the methods of IND_Render class: BlitLine() and BlitRegularPoly(). This can be useful for rendering lot of primitives at the same time, because having to join them to IND_Entity2d could be painful.
+
+Like we also have primitives joint to 2d entities, we make a call to the RenderEntities2d() method.
+
+So, what you can do now it trying to draw your own primitives, change their colors, transparency levels, etc.
+
+
+You are ready for the [http://www.indielib.com/wiki/index.php?title=Tutorial_07_IND_Input next tutorial].
+
+{{Category_Tutorials|cat=Basic Tutorials}}
+

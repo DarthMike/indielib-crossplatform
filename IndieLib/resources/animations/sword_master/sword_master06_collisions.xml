@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bounding_areas>
+	<triangle id="sword" ax="5" ay="51" bx="173" by="59" cx="93" cy="99" />
+</bounding_areas>

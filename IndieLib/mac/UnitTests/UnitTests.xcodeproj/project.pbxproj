@@ -1,0 +1,491 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E70712C915A0A21000BF34D9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E70712C815A0A21000BF34D9 /* Cocoa.framework */; };
+		E70712D315A0A21000BF34D9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E70712D115A0A21000BF34D9 /* InfoPlist.strings */; };
+		E70712D915A0A21000BF34D9 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E70712D715A0A21000BF34D9 /* Credits.rtf */; };
+		E70712E515A0A28600BF34D9 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E70712E315A0A28600BF34D9 /* WorkingPath.cpp */; };
+		E70712E715A0A4F800BF34D9 /* AssertException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E707126815A09A2E00BF34D9 /* AssertException.cpp */; };
+		E70712EA15A0A4F800BF34D9 /* Checks.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E707126B15A09A2E00BF34D9 /* Checks.cpp */; };
+		E70712ED15A0A4F800BF34D9 /* CurrentTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E707126E15A09A2E00BF34D9 /* CurrentTest.cpp */; };
+		E70712EF15A0A4F800BF34D9 /* DeferredTestReporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E707127015A09A2E00BF34D9 /* DeferredTestReporter.cpp */; };
+		E70712F115A0A4F800BF34D9 /* DeferredTestResult.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E707127215A09A2E00BF34D9 /* DeferredTestResult.cpp */; };
+		E70712F415A0A4F800BF34D9 /* MemoryOutStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E707127515A09A2E00BF34D9 /* MemoryOutStream.cpp */; };
+		E70712F615A0A4F800BF34D9 /* SignalTranslator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E707127815A09A2E00BF34D9 /* SignalTranslator.cpp */; };
+		E70712F815A0A4F800BF34D9 /* TimeHelpers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E707127A15A09A2E00BF34D9 /* TimeHelpers.cpp */; };
+		E70712FA15A0A4F800BF34D9 /* ReportAssert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E707127C15A09A2E00BF34D9 /* ReportAssert.cpp */; };
+		E70712FC15A0A4F800BF34D9 /* Test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E707127E15A09A2E00BF34D9 /* Test.cpp */; };
+		E70712FE15A0A4F800BF34D9 /* TestDetails.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E707128015A09A2E00BF34D9 /* TestDetails.cpp */; };
+		E707130015A0A4F800BF34D9 /* TestList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E707128215A09A2E00BF34D9 /* TestList.cpp */; };
+		E707130315A0A4F800BF34D9 /* TestReporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E707128515A09A2E00BF34D9 /* TestReporter.cpp */; };
+		E707130515A0A4F800BF34D9 /* TestReporterStdout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E707128715A09A2E00BF34D9 /* TestReporterStdout.cpp */; };
+		E707130715A0A4F800BF34D9 /* TestResults.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E707128915A09A2E00BF34D9 /* TestResults.cpp */; };
+		E707130915A0A4F800BF34D9 /* TestRunner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E707128B15A09A2E00BF34D9 /* TestRunner.cpp */; };
+		E707130C15A0A4F800BF34D9 /* TimeConstraint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E707128E15A09A2E00BF34D9 /* TimeConstraint.cpp */; };
+		E707131015A0A4F800BF34D9 /* XmlTestReporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E707129515A09A2E00BF34D9 /* XmlTestReporter.cpp */; };
+		E707131215A0A52500BF34D9 /* CIndieLib_vc2008.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E70712AA15A09AAC00BF34D9 /* CIndieLib_vc2008.cpp */; };
+		E707131315A0A52500BF34D9 /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E707125E15A09A0000BF34D9 /* Image.cpp */; };
+		E707131415A0A52500BF34D9 /* ImageManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E707125F15A09A0000BF34D9 /* ImageManager.cpp */; };
+		E707131515A0A52500BF34D9 /* Math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E707126015A09A0000BF34D9 /* Math.cpp */; };
+		E707131615A0A52500BF34D9 /* UnitTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E707126115A09A0000BF34D9 /* UnitTests.cpp */; };
+		E707131715A0A54200BF34D9 /* libIndielib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E70712AD15A09B0700BF34D9 /* libIndielib.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		E707125E15A09A0000BF34D9 /* Image.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Image.cpp; path = ../../../tests/unittests/Image.cpp; sourceTree = "<group>"; };
+		E707125F15A09A0000BF34D9 /* ImageManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ImageManager.cpp; path = ../../../tests/unittests/ImageManager.cpp; sourceTree = "<group>"; };
+		E707126015A09A0000BF34D9 /* Math.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Math.cpp; path = ../../../tests/unittests/Math.cpp; sourceTree = "<group>"; };
+		E707126115A09A0000BF34D9 /* UnitTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = UnitTests.cpp; path = ../../../tests/unittests/UnitTests.cpp; sourceTree = "<group>"; };
+		E707126815A09A2E00BF34D9 /* AssertException.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AssertException.cpp; sourceTree = "<group>"; };
+		E707126915A09A2E00BF34D9 /* AssertException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssertException.h; sourceTree = "<group>"; };
+		E707126A15A09A2E00BF34D9 /* CheckMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckMacros.h; sourceTree = "<group>"; };
+		E707126B15A09A2E00BF34D9 /* Checks.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Checks.cpp; sourceTree = "<group>"; };
+		E707126C15A09A2E00BF34D9 /* Checks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Checks.h; sourceTree = "<group>"; };
+		E707126D15A09A2E00BF34D9 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
+		E707126E15A09A2E00BF34D9 /* CurrentTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CurrentTest.cpp; sourceTree = "<group>"; };
+		E707126F15A09A2E00BF34D9 /* CurrentTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentTest.h; sourceTree = "<group>"; };
+		E707127015A09A2E00BF34D9 /* DeferredTestReporter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DeferredTestReporter.cpp; sourceTree = "<group>"; };
+		E707127115A09A2E00BF34D9 /* DeferredTestReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeferredTestReporter.h; sourceTree = "<group>"; };
+		E707127215A09A2E00BF34D9 /* DeferredTestResult.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DeferredTestResult.cpp; sourceTree = "<group>"; };
+		E707127315A09A2E00BF34D9 /* DeferredTestResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeferredTestResult.h; sourceTree = "<group>"; };
+		E707127415A09A2E00BF34D9 /* ExecuteTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExecuteTest.h; sourceTree = "<group>"; };
+		E707127515A09A2E00BF34D9 /* MemoryOutStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MemoryOutStream.cpp; sourceTree = "<group>"; };
+		E707127615A09A2E00BF34D9 /* MemoryOutStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoryOutStream.h; sourceTree = "<group>"; };
+		E707127815A09A2E00BF34D9 /* SignalTranslator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SignalTranslator.cpp; sourceTree = "<group>"; };
+		E707127915A09A2E00BF34D9 /* SignalTranslator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignalTranslator.h; sourceTree = "<group>"; };
+		E707127A15A09A2E00BF34D9 /* TimeHelpers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TimeHelpers.cpp; sourceTree = "<group>"; };
+		E707127B15A09A2E00BF34D9 /* TimeHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeHelpers.h; sourceTree = "<group>"; };
+		E707127C15A09A2E00BF34D9 /* ReportAssert.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ReportAssert.cpp; sourceTree = "<group>"; };
+		E707127D15A09A2E00BF34D9 /* ReportAssert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportAssert.h; sourceTree = "<group>"; };
+		E707127E15A09A2E00BF34D9 /* Test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Test.cpp; sourceTree = "<group>"; };
+		E707127F15A09A2E00BF34D9 /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
+		E707128015A09A2E00BF34D9 /* TestDetails.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestDetails.cpp; sourceTree = "<group>"; };
+		E707128115A09A2E00BF34D9 /* TestDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestDetails.h; sourceTree = "<group>"; };
+		E707128215A09A2E00BF34D9 /* TestList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestList.cpp; sourceTree = "<group>"; };
+		E707128315A09A2E00BF34D9 /* TestList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestList.h; sourceTree = "<group>"; };
+		E707128415A09A2E00BF34D9 /* TestMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestMacros.h; sourceTree = "<group>"; };
+		E707128515A09A2E00BF34D9 /* TestReporter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestReporter.cpp; sourceTree = "<group>"; };
+		E707128615A09A2E00BF34D9 /* TestReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestReporter.h; sourceTree = "<group>"; };
+		E707128715A09A2E00BF34D9 /* TestReporterStdout.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestReporterStdout.cpp; sourceTree = "<group>"; };
+		E707128815A09A2E00BF34D9 /* TestReporterStdout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestReporterStdout.h; sourceTree = "<group>"; };
+		E707128915A09A2E00BF34D9 /* TestResults.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestResults.cpp; sourceTree = "<group>"; };
+		E707128A15A09A2E00BF34D9 /* TestResults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestResults.h; sourceTree = "<group>"; };
+		E707128B15A09A2E00BF34D9 /* TestRunner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestRunner.cpp; sourceTree = "<group>"; };
+		E707128C15A09A2E00BF34D9 /* TestRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestRunner.h; sourceTree = "<group>"; };
+		E707128D15A09A2E00BF34D9 /* TestSuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestSuite.h; sourceTree = "<group>"; };
+		E707128E15A09A2E00BF34D9 /* TimeConstraint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TimeConstraint.cpp; sourceTree = "<group>"; };
+		E707128F15A09A2E00BF34D9 /* TimeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeConstraint.h; sourceTree = "<group>"; };
+		E707129015A09A2E00BF34D9 /* TimeHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeHelpers.h; sourceTree = "<group>"; };
+		E707129115A09A2E00BF34D9 /* UnitTest++.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UnitTest++.h"; sourceTree = "<group>"; };
+		E707129515A09A2E00BF34D9 /* XmlTestReporter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XmlTestReporter.cpp; sourceTree = "<group>"; };
+		E707129615A09A2E00BF34D9 /* XmlTestReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlTestReporter.h; sourceTree = "<group>"; };
+		E70712AA15A09AAC00BF34D9 /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CIndieLib_vc2008.cpp; path = ../../../tests/CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
+		E70712AB15A09AAC00BF34D9 /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CIndieLib_vc2008.h; path = ../../../tests/CIndieLib_vc2008.h; sourceTree = "<group>"; };
+		E70712AD15A09B0700BF34D9 /* libIndielib.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libIndielib.dylib; path = "../../../../../../Library/Developer/Xcode/DerivedData/IndielibOSX-gisftblgzyoxmvbdkzahtucdzcjj/Build/Products/Debug/libIndielib.dylib"; sourceTree = "<group>"; };
+		E70712C515A0A21000BF34D9 /* UnitTestsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnitTestsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E70712C815A0A21000BF34D9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		E70712CB15A0A21000BF34D9 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		E70712CC15A0A21000BF34D9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		E70712CD15A0A21000BF34D9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		E70712D015A0A21000BF34D9 /* UnitTestsApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTestsApp-Info.plist"; sourceTree = "<group>"; };
+		E70712D215A0A21000BF34D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E70712D615A0A21000BF34D9 /* UnitTestsApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UnitTestsApp-Prefix.pch"; sourceTree = "<group>"; };
+		E70712D815A0A21000BF34D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		E70712E315A0A28600BF34D9 /* WorkingPath.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = WorkingPath.cpp; path = ../../../tests/WorkingPath.cpp; sourceTree = "<group>"; };
+		E70712E415A0A28600BF34D9 /* WorkingPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WorkingPath.h; path = ../../../tests/WorkingPath.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E70712C215A0A21000BF34D9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E707131715A0A54200BF34D9 /* libIndielib.dylib in Frameworks */,
+				E70712C915A0A21000BF34D9 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E707124615A0995900BF34D9 = {
+			isa = PBXGroup;
+			children = (
+				E70712AD15A09B0700BF34D9 /* libIndielib.dylib */,
+				E707126715A09A2E00BF34D9 /* UnitTest++ src */,
+				E707125615A099AA00BF34D9 /* UnitTests */,
+				E70712CE15A0A21000BF34D9 /* UnitTestsApp */,
+				E70712C715A0A21000BF34D9 /* Frameworks */,
+				E707125415A099AA00BF34D9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E707125415A099AA00BF34D9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E70712C515A0A21000BF34D9 /* UnitTestsApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E707125615A099AA00BF34D9 /* UnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				E70712E315A0A28600BF34D9 /* WorkingPath.cpp */,
+				E70712E415A0A28600BF34D9 /* WorkingPath.h */,
+				E70712AA15A09AAC00BF34D9 /* CIndieLib_vc2008.cpp */,
+				E70712AB15A09AAC00BF34D9 /* CIndieLib_vc2008.h */,
+				E707125E15A09A0000BF34D9 /* Image.cpp */,
+				E707125F15A09A0000BF34D9 /* ImageManager.cpp */,
+				E707126015A09A0000BF34D9 /* Math.cpp */,
+				E707126115A09A0000BF34D9 /* UnitTests.cpp */,
+			);
+			path = UnitTests;
+			sourceTree = "<group>";
+		};
+		E707126715A09A2E00BF34D9 /* UnitTest++ src */ = {
+			isa = PBXGroup;
+			children = (
+				E707126815A09A2E00BF34D9 /* AssertException.cpp */,
+				E707126915A09A2E00BF34D9 /* AssertException.h */,
+				E707126A15A09A2E00BF34D9 /* CheckMacros.h */,
+				E707126B15A09A2E00BF34D9 /* Checks.cpp */,
+				E707126C15A09A2E00BF34D9 /* Checks.h */,
+				E707126D15A09A2E00BF34D9 /* Config.h */,
+				E707126E15A09A2E00BF34D9 /* CurrentTest.cpp */,
+				E707126F15A09A2E00BF34D9 /* CurrentTest.h */,
+				E707127015A09A2E00BF34D9 /* DeferredTestReporter.cpp */,
+				E707127115A09A2E00BF34D9 /* DeferredTestReporter.h */,
+				E707127215A09A2E00BF34D9 /* DeferredTestResult.cpp */,
+				E707127315A09A2E00BF34D9 /* DeferredTestResult.h */,
+				E707127415A09A2E00BF34D9 /* ExecuteTest.h */,
+				E707127515A09A2E00BF34D9 /* MemoryOutStream.cpp */,
+				E707127615A09A2E00BF34D9 /* MemoryOutStream.h */,
+				E707127715A09A2E00BF34D9 /* Posix */,
+				E707127C15A09A2E00BF34D9 /* ReportAssert.cpp */,
+				E707127D15A09A2E00BF34D9 /* ReportAssert.h */,
+				E707127E15A09A2E00BF34D9 /* Test.cpp */,
+				E707127F15A09A2E00BF34D9 /* Test.h */,
+				E707128015A09A2E00BF34D9 /* TestDetails.cpp */,
+				E707128115A09A2E00BF34D9 /* TestDetails.h */,
+				E707128215A09A2E00BF34D9 /* TestList.cpp */,
+				E707128315A09A2E00BF34D9 /* TestList.h */,
+				E707128415A09A2E00BF34D9 /* TestMacros.h */,
+				E707128515A09A2E00BF34D9 /* TestReporter.cpp */,
+				E707128615A09A2E00BF34D9 /* TestReporter.h */,
+				E707128715A09A2E00BF34D9 /* TestReporterStdout.cpp */,
+				E707128815A09A2E00BF34D9 /* TestReporterStdout.h */,
+				E707128915A09A2E00BF34D9 /* TestResults.cpp */,
+				E707128A15A09A2E00BF34D9 /* TestResults.h */,
+				E707128B15A09A2E00BF34D9 /* TestRunner.cpp */,
+				E707128C15A09A2E00BF34D9 /* TestRunner.h */,
+				E707128D15A09A2E00BF34D9 /* TestSuite.h */,
+				E707128E15A09A2E00BF34D9 /* TimeConstraint.cpp */,
+				E707128F15A09A2E00BF34D9 /* TimeConstraint.h */,
+				E707129015A09A2E00BF34D9 /* TimeHelpers.h */,
+				E707129115A09A2E00BF34D9 /* UnitTest++.h */,
+				E707129515A09A2E00BF34D9 /* XmlTestReporter.cpp */,
+				E707129615A09A2E00BF34D9 /* XmlTestReporter.h */,
+			);
+			name = "UnitTest++ src";
+			path = "../../common/dependencies/unittest++/src";
+			sourceTree = "<group>";
+		};
+		E707127715A09A2E00BF34D9 /* Posix */ = {
+			isa = PBXGroup;
+			children = (
+				E707127815A09A2E00BF34D9 /* SignalTranslator.cpp */,
+				E707127915A09A2E00BF34D9 /* SignalTranslator.h */,
+				E707127A15A09A2E00BF34D9 /* TimeHelpers.cpp */,
+				E707127B15A09A2E00BF34D9 /* TimeHelpers.h */,
+			);
+			path = Posix;
+			sourceTree = "<group>";
+		};
+		E70712C715A0A21000BF34D9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E70712C815A0A21000BF34D9 /* Cocoa.framework */,
+				E70712CA15A0A21000BF34D9 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E70712CA15A0A21000BF34D9 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E70712CB15A0A21000BF34D9 /* AppKit.framework */,
+				E70712CC15A0A21000BF34D9 /* CoreData.framework */,
+				E70712CD15A0A21000BF34D9 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		E70712CE15A0A21000BF34D9 /* UnitTestsApp */ = {
+			isa = PBXGroup;
+			children = (
+				E70712CF15A0A21000BF34D9 /* Supporting Files */,
+			);
+			path = UnitTestsApp;
+			sourceTree = "<group>";
+		};
+		E70712CF15A0A21000BF34D9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E70712D015A0A21000BF34D9 /* UnitTestsApp-Info.plist */,
+				E70712D115A0A21000BF34D9 /* InfoPlist.strings */,
+				E70712D615A0A21000BF34D9 /* UnitTestsApp-Prefix.pch */,
+				E70712D715A0A21000BF34D9 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E70712C415A0A21000BF34D9 /* UnitTestsApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E70712E015A0A21000BF34D9 /* Build configuration list for PBXNativeTarget "UnitTestsApp" */;
+			buildPhases = (
+				E70712C115A0A21000BF34D9 /* Sources */,
+				E70712C215A0A21000BF34D9 /* Frameworks */,
+				E70712C315A0A21000BF34D9 /* Resources */,
+				E70712E615A0A29B00BF34D9 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UnitTestsApp;
+			productName = UnitTestsApp;
+			productReference = E70712C515A0A21000BF34D9 /* UnitTestsApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E707124815A0995900BF34D9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = E707124B15A0995900BF34D9 /* Build configuration list for PBXProject "UnitTests" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E707124615A0995900BF34D9;
+			productRefGroup = E707125415A099AA00BF34D9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E70712C415A0A21000BF34D9 /* UnitTestsApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E70712C315A0A21000BF34D9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E70712D315A0A21000BF34D9 /* InfoPlist.strings in Resources */,
+				E70712D915A0A21000BF34D9 /* Credits.rtf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E70712E615A0A29B00BF34D9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#$TARGET_BUILD_DIR/UnitTestsApp.app/Contents/MacOS/UnitTestsApp";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E70712C115A0A21000BF34D9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E707131215A0A52500BF34D9 /* CIndieLib_vc2008.cpp in Sources */,
+				E707131315A0A52500BF34D9 /* Image.cpp in Sources */,
+				E707131415A0A52500BF34D9 /* ImageManager.cpp in Sources */,
+				E707131515A0A52500BF34D9 /* Math.cpp in Sources */,
+				E707131615A0A52500BF34D9 /* UnitTests.cpp in Sources */,
+				E70712E715A0A4F800BF34D9 /* AssertException.cpp in Sources */,
+				E70712EA15A0A4F800BF34D9 /* Checks.cpp in Sources */,
+				E70712ED15A0A4F800BF34D9 /* CurrentTest.cpp in Sources */,
+				E70712EF15A0A4F800BF34D9 /* DeferredTestReporter.cpp in Sources */,
+				E70712F115A0A4F800BF34D9 /* DeferredTestResult.cpp in Sources */,
+				E70712F415A0A4F800BF34D9 /* MemoryOutStream.cpp in Sources */,
+				E70712F615A0A4F800BF34D9 /* SignalTranslator.cpp in Sources */,
+				E70712F815A0A4F800BF34D9 /* TimeHelpers.cpp in Sources */,
+				E70712FA15A0A4F800BF34D9 /* ReportAssert.cpp in Sources */,
+				E70712FC15A0A4F800BF34D9 /* Test.cpp in Sources */,
+				E70712FE15A0A4F800BF34D9 /* TestDetails.cpp in Sources */,
+				E707130015A0A4F800BF34D9 /* TestList.cpp in Sources */,
+				E707130315A0A4F800BF34D9 /* TestReporter.cpp in Sources */,
+				E707130515A0A4F800BF34D9 /* TestReporterStdout.cpp in Sources */,
+				E707130715A0A4F800BF34D9 /* TestResults.cpp in Sources */,
+				E707130915A0A4F800BF34D9 /* TestRunner.cpp in Sources */,
+				E707130C15A0A4F800BF34D9 /* TimeConstraint.cpp in Sources */,
+				E707131015A0A4F800BF34D9 /* XmlTestReporter.cpp in Sources */,
+				E70712E515A0A28600BF34D9 /* WorkingPath.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E70712D115A0A21000BF34D9 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E70712D215A0A21000BF34D9 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		E70712D715A0A21000BF34D9 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E70712D815A0A21000BF34D9 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E707124D15A0995900BF34D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../common",
+					"$(SRCROOT)/../../common/include",
+				);
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../../../../../../Library/Developer/Xcode/DerivedData/IndielibOSX-gisftblgzyoxmvbdkzahtucdzcjj/Build/Products/Debug\"";
+			};
+			name = Debug;
+		};
+		E707124E15A0995900BF34D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../common",
+					"$(SRCROOT)/../../common/include",
+				);
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../../../../../../Library/Developer/Xcode/DerivedData/IndielibOSX-gisftblgzyoxmvbdkzahtucdzcjj/Build/Products/Debug\"";
+			};
+			name = Release;
+		};
+		E70712E115A0A21000BF34D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "UnitTestsApp/UnitTestsApp-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "UnitTestsApp/UnitTestsApp-Info.plist";
+				INSTALL_PATH = /../../bin;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../../../Library/Developer/Xcode/DerivedData/IndielibOSX-gisftblgzyoxmvbdkzahtucdzcjj/Build/Products/Debug\"",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E70712E215A0A21000BF34D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "UnitTestsApp/UnitTestsApp-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "UnitTestsApp/UnitTestsApp-Info.plist";
+				INSTALL_PATH = /../../bin;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../../../Library/Developer/Xcode/DerivedData/IndielibOSX-gisftblgzyoxmvbdkzahtucdzcjj/Build/Products/Debug\"",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E707124B15A0995900BF34D9 /* Build configuration list for PBXProject "UnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E707124D15A0995900BF34D9 /* Debug */,
+				E707124E15A0995900BF34D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E70712E015A0A21000BF34D9 /* Build configuration list for PBXNativeTarget "UnitTestsApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E70712E115A0A21000BF34D9 /* Debug */,
+				E70712E215A0A21000BF34D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E707124815A0995900BF34D9 /* Project object */;
+}

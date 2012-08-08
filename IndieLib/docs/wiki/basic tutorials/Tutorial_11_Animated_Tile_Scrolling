@@ -1,0 +1,162 @@
+This tutorial deals with scrolling of animated tile. We will make animating picture tiled over the screen region. And then with a slightest change our image will begin to shift in one direction and reappear in the other as if it is glued to the conveyor belt which is constantly moving.
+
+Such technique can be used for example to make a fancy game menu background in the style of Advance Wars and other titles on GBA and NDS.
+
+So lets get such effect with IndieLib!
+
+__FORCETOC__
+
+== Prepare project ==
+
+This can be called by step number 0, because normally you would have to do this only one time for your game at the very beginning. So, if you have an IndieLib project ready to test your code, you can skip this section and move to the Step 1.
+
+If you need to get a project for test purposes of this tutorial and don't really want to bother yourself with initial chores, you can just go to the "''tutorials/source''" folder of Indielib SDK and open project in the "'''a_11_Animated_Tile_Scrolling'''" folder. I will be using code from this project in this tutorial.
+
+If you want to create a new project from scratch or it is your first IndieLib tutorial I recommend to read through [[Tutorial_01_Installing|the first tutorial]] and then come back here.
+
+Also you can copy "''a_01_Installing''" folder and rename solution and project file, then open project file in Visual Studio and change your project and solution names in Solution Explorer window.
+
+== Prepare basic structure ==
+When you have working environment set up for the test purposes, it is good to start from a very basic code which will allow you to run your game to test what you've achieved in the last step. So, I've cleaned the code of "Main_vc2008.cpp" file of this tutorial and recommend you to replace the whole "Main_vc2008.cpp" with this:
+<source lang="Cpp">
+/*****************************************************************************************
+/* Desc: Tutorial a) 11 Animated Tile Scrolling
+/*****************************************************************************************/
+
+#include "CIndieLib_vc2008.h"
+
+/*
+==================
+Main
+==================
+*/
+int IndieLib()			
+{
+	// ----- IndieLib initialization -----
+
+	CIndieLib *mI = CIndieLib::Instance();
+	if (!mI->Init ()) return 0;								
+
+	// ----- Main Loop -----
+
+	while (!mI->Input->OnKeyPress (IND_ESCAPE) && !mI->Input->Quit())
+	{
+		// ----- Input update ----
+
+		mI->Input->Update ();
+
+		// ----- Render  -----
+
+		mI->Render->BeginScene ();
+		mI->Entity2dManager->RenderEntities2d ();
+		mI->Render->EndScene ();
+
+	}
+
+	// ----- Free -----
+
+	mI->End ();
+
+	return 0;
+}
+</source>
+
+When you compile and run this, you will see a window with only a black background. But that's OK. Because this code only initializes IndieLib and then waits silently for exit sequence updating input and calling empty list of entities to render.
+
+Now will bring all back to life by our own hands!  
+
+== Step 1. Make entity with animation ==
+
+To show something on the screen we must load that "something" first. For this purpose insert the following code after the "''IndieLib initialization''" section and before the "''Main Loop''" section. 
+<source lang="Cpp">
+// Sun animation
+IND_Animation mAnimationSun;
+if (!mI->AnimationManager->AddToSurface (&mAnimationSun, "..\\resources\\animations\\sun.xml", IND_OPAQUE, IND_32)) 
+	return 0;
+</source>
+This loads animation sequence images with timing description into memory. (For more information on this subject please refer to the [[Tutorial 04 IND Animation]].)
+
+But the data in memory by itself is useless, we need a way to display it. For this purpose we'll create an entity. Put the following after the previous block of code:
+<source lang="Cpp">
+// ----- Set the surface and animations into 2d entities -----
+
+// Sun
+IND_Entity2d mSun;
+mI->Entity2dManager->Add (&mSun);			// Entity adding
+mSun.SetAnimation (&mAnimationSun);			// Set the animation into the entity
+</source>    
+
+Now we can compile and run our application. The sun animation will be displayed at the top-left corner of the window (because by default the entity is created with coordinates equal to 0,0)
+
+== Step 2. Set tiling mode ==
+
+With an easy move we can switch our entity to the tiling mode:
+<source lang="Cpp">
+// ----- Changing the attributes of the 2d entities -----
+
+mSun.ToggleWrap (1);
+mSun.SetRegion (0, 0, 800, 600);
+</source>  
+
+[http://www.indielib.com/documentation/class_i_n_d___entity2d.html#2d4ceb2821dbe9f71dac6b52cf927b34 First method] commands our entity '''mSun''' to turn wrap mode on. The wrap mode is responsible for tiling, because it says that now entity must tile all its region with the image that is linked to it).
+
+The next line [http://www.indielib.com/documentation/class_i_n_d___entity2d.html#a38237c59ef9eb4d95bfd3deec2a7128 sets the region]. We've chosen the whole window region here, but that isn't necessary, any region can be provided here.
+
+Build and run to see what have changed. 
+ 
+== Step 3. Move our tile ==
+
+The final step is to make that conveyor belt effect. For this purpose we will use entity's [http://www.indielib.com/documentation/class_i_n_d___entity2d.html#a7315bcf967644667666a36661192931 SetWrapDisplacement()] method. This method takes two floating point numbers as parameters representing the amount of displacement that must be made.
+
+And in order to make displacement animated on the screen, its value must be changed by a small amount every frame. So we must define variables which will help us to track old displacement and set new one every frame. Insert this after the previous block of code:
+
+<source lang="Cpp">
+float	mDisp = 0.0f;
+float	mSpeed = 0.5f;
+float	mDelta;
+</source>
+'''mDisp''' will hold the total amount of displacement that will be applied to the entity every frame.
+
+'''mSpeed''' and '''mDelta''' are used to make displacement speed a constant value and to prevent depending on the rendering frame rate. You can change the '''mSpeed''''s value to try movement on different speed.
+
+The next code has to be added in the '''while''' loop after the "''Input update''" section and before the "''Render''" one:
+<source lang="Cpp">
+	// ----- Updating entities attributes  -----
+
+	mDelta = mI->Render->GetFrameTime() / 1000.0f;
+
+	mDisp += mSpeed * mDelta;
+	mSun.SetWrapDisplacement (mDisp, mDisp);	
+</source>
+
+The total amount of displacement for this frame is calculated using the time of this frame (mDelta). After calculations this displacement is applied to our entity. 
+
+Build and run to see the movement in action.
+
+== Moving further == 
+
+We used one variable for representation of X and Y displacement, so we get diagonal movement. If you want you can try to make some other kinds of movements (test horizontal or vertical by setting only one coordinate for displacement, or maybe circular by calculating X and Y using some trigonometric equation). 
+
+Also you can experiment with an image itself, the only drawback is that the width and height of an image must be a power of two number. [http://www.indielib.com/documentation/class_i_n_d___entity2d.html#a38237c59ef9eb4d95bfd3deec2a7128 Said here.] (That's for IndieLib 1.0. With the next versions, I think, this restriction will be removed.)
+
+Interesting effects can be achieved by animating other entity's parameters. I've played with rotation and rotated the whole animated tiled picture, also I think scaling can also look good:
+
+Example with rotation. At the init stage:
+<source lang="Cpp">
+mSun.ToggleWrap (1);
+mSun.SetRegion (0, 0, 1092, 1080);
+mSun.SetPosition( 400, 300, 0 );
+mSun.SetHotSpot( 4.0f, 3.8f );
+</source>
+In the main loop:
+<source lang="Cpp">
+rot_angle += rot_speed * mDelta;
+mSun.SetAngleXYZ( 0, 0, rot_angle );
+</source>
+
+So at the end can say that tiling is the one of possibilities in IndieLib to achieve interesting looking picture. So consider it when thinking on the next cool stunt for your highly innovative and creative game. 
+
+Good Luck!
+
+{{Category_Tutorials|cat=Basic Tutorials}}
+

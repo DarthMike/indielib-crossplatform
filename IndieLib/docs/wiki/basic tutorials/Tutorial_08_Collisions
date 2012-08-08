@@ -1,0 +1,137 @@
+The famous "IndieLib" collision system... isn't famous yes
+__FORCETOC__
+= Tutorial files =
+
+'''Download the IndieLib SDK in order to have all the tutorial files with the sources for vc2008, and all the example tutorials compiled, so you can try them directly'''
+* [http://www.indielib.com/sdk/IndieLib_LatestVersion_SDK.rar IndieLib SDK]
+
+Note: This tutorial uses some sprites created by Danc from his great [http://lostgarden.com/2007/03/spacecute-prototyping-challenge.html SpaceCute Prototyping Challenge].
+
+= Introduction =
+
+The collision system of IndieLib is one of it's cooler features. Imagine you have a set of sprites of a man making a punch, for example for a fighting game. IndieLib allows you to set as many collision areas (circles, triangles or rectangles) as you want to each different frame of your animation. Furthermore, you can group these areas giving names. For example, in your first sprite-frame you could have:
+
+* 3 Circles with the id="head"
+* 4 Triangles with the id="legs"
+* 1 Rectangle with the id="poing"
+
+These collision areas can be defined in an XML file and loaded at the same time of your IND_Animation.
+
+But there is more. You can translate, rotate or scale your sprite without any problem, because the areas will always fit your sprite perfectly.
+
+In this tutorial you will learn about how to check collision between entities. You will see that using IndieLib it's really easy to define collision areas and join them to your IND_Entity2d objects. The classes covered in this tutorial are:
+
+* IND_Entity2d
+* IND_Entity2dManager
+
+= Tutorial =
+
+== Setting collision areas to your IND_Entity2d objects ==
+
+The collision system of IndieLib allow you to check collision between IND_Entity2d objects that have an IND_Surface or IND_Animation object assigned. The first thing you have to do is setting the collision areas.
+
+=== Setting collision areas in an IND_Entity2d object with an IND_Surface assigned ===
+
+For IND_Entity2d object with an IND_Surface assigned you can use these methods to set the collisions directly from your program: 
+* Entity2d::SetBoundingTriangle  (id, ...)
+* Entity2d::SetBoundingCircle    (id, ...)
+* Entity2d::SetBoundingRectangle (id, ...) 
+
+Using these methods you can set a triangular, circular or rectangular areas. You can assign all the areas you want to the entity. Furthermore, it is possible to "group" the bounding areas of the 2d entity using the "id" parameter of these methods. For example you can add 3 triangles and 2 circles using the same id="head". An having at the same time 4 rectangles with the id="foot". 
+
+Other way of setting your collisions is using the method Entity2d::SetBoundingAreas() in order to load all the bounding areas directly from an XML file. This way you can change the collisions of your entities without having to recompile your program. Let's see an example of a collision xml file that we will use later in the current tutorial:
+
+<source lang="XML">
+<?xml version="1.0" encoding="utf-8"?>
+<bounding_areas>
+	<circle id="rocket_boy_head" x="120" y="65" radius="65" />
+	<triangle id="rocket_head" ax="352" ay="152" bx="300" by="127" cx="300" cy="175" />
+	<rectangle id="engines" x="20" y="187" width="106" height="30" />
+	<rectangle id="engines" x="20" y="105" width="40" height="30" />
+</bounding_areas>
+</source>
+
+You can also delete the collision areas of an entity using Entity2d::DeleteBoundingAreas().
+
+=== Setting collision areas in an IND_Entity2d object with an IND_Animation assigned ===
+
+IndieLib supports a really cool feature: collision per frame in the animations. So, you can have an IND_Animation object in which each frame has different collision areas. Imagine a fighting game like "Street Fighter", using this system you will be able to set collision areas for each frame of an animation of a warrior punching and enemy. So, if you want to check the collision between the poing and another character, you can set an area for that punch in each of the different frames and later to check if it collides with another area of the enemy. Here you have an example of an animation XML file (like seen in previous tutorials) but this time assigning a collision file to each frame (this file will be used too in the current tutorial):
+
+<source lang="XML">
+<?xml version="1.0" encoding="utf-8"?>
+<animation>
+	<!-- frames declaration -->
+	<frames>	
+		<!-- Sword Master 1 -->
+		<frame name="sword1" file="..\resources\animations\sword_master\sword_master01.png" collision="..\resources\animations\sword_master\sword_master01_collisions.xml" />
+		<frame name="sword2" file="..\resources\animations\sword_master\sword_master02.png" collision="..\resources\animations\sword_master\sword_master02_collisions.xml" />
+		<frame name="sword3" file="..\resources\animations\sword_master\sword_master03.png" collision="..\resources\animations\sword_master\sword_master03_collisions.xml" />
+		<frame name="sword4" file="..\resources\animations\sword_master\sword_master04.png" collision="..\resources\animations\sword_master\sword_master04_collisions.xml" />
+		<frame name="sword5" file="..\resources\animations\sword_master\sword_master05.png" collision="..\resources\animations\sword_master\sword_master05_collisions.xml" />
+		<frame name="sword6" file="..\resources\animations\sword_master\sword_master06.png" collision="..\resources\animations\sword_master\sword_master06_collisions.xml" />
+		<frame name="sword7" file="..\resources\animations\sword_master\sword_master07.png" collision="..\resources\animations\sword_master\sword_master07_collisions.xml" />	
+	</frames>
+		
+	<!-- sequences declaration -->
+	<sequences>
+		<!-- character 1 -->
+		<sequence name="sword_attack">
+			<frame name="sword1" time="1000" />
+			<frame name="sword2" time="1000" />
+			<frame name="sword3" time="1000" />
+			<frame name="sword4" time="1000" />
+			<frame name="sword5" time="1000" />
+			<frame name="sword6" time="1000" />
+			<frame name="sword7" time="3000" />
+		</sequence>			
+	</sequences>
+</animation>
+</source>
+
+== Checking collisions  ==
+
+Use the IND_Entity2dManager::IsCollision() method for checking collision between entities. You can check collision between the groups you defined when setting the bounding areas by passing the name of the group like a parameter, or to use "*" for choosing "all the groups". You will see an example of this in the following sourcecode of the this tutorial.
+
+== Showing the collision areas in you application ==
+
+In order to check if your collision areas are accurate, you can use the IND_Entity2dManager::RenderCollisionAreas() method. If you want to turn off the showing of the collision areas of a certain entity, use the method IND_Entity2d::ShowCollisionAreas().
+
+== Let's start with the source code ==
+
+We will follow this tutorial reading from the "Main.cpp" file of the "a_08_Collisions" project. So, double click in you "Main.cpp" file, and follow the tutorial.
+
+In the first part of the program sourcecode there are things that you are already used to and we are not going to repeat. First we load all the surfaces, animations (the animation we use is the previous one we have seen, the one that assigns a collision file to each frame) and fonts. Later we join them to IND_Entity2d objects and finally we change their attributes. Now, for each entity, we set the collision areas in different ways.
+
+For the beetle, we set then directly from the code:
+<source lang="Cpp">
+mBeetle.SetBoundingTriangle ("beetle_head", 160, 105, 160, 170, 190, 135);
+mBeetle.SetBoundingCircle ("beetle_boy_head", 85, 52, 55);
+</source>
+
+For the rocket, we use an xml file:
+<source lang="Cpp">
+mRocket.SetBoundingAreas ("..\\resources\\rocket_collisions.xml");
+</source>
+
+Later, in the game loop, we can check collisions between the entities and groups we prefer. We haven't use it here, but if you want to check the collision of all the group of a particular entity, use "*" instead the group name.
+
+<source lang="Cpp">
+if (mI->Entity2dManager->IsCollision (&mRocket, "engines", &mBeetle, "beetle_boy_head"))
+	mTextSmallWhite.SetText	("Collision between rocket boy head and engines");	
+
+if (mI->Entity2dManager->IsCollision (&mRocket, "rocket_head", &mBeetle, "beetle_head")) 
+	mTextSmallWhite.SetText	("Collision between rokect head and beetle head");	
+		
+if (mI->Entity2dManager->IsCollision (&mRocket, "rocket_boy_head", &mBeetle, "beetle_boy_head")) 
+	mTextSmallWhite.SetText	("Collision between rocket boy head and beetle boy head");	
+
+if (mI->Entity2dManager->IsCollision (&mBeetle, "beetle_boy_head", &mSwordMaster, "sword")) 
+	mTextSmallWhite.SetText	("Collision between beetle boy head and the sword");
+</source>
+
+So, now you already know how to check if your entities collides between them. Try it yourself!
+
+You are ready for the [[Tutorial_09_IND_3dMesh|3D Mesh Tutorial]].
+
+{{Category_Tutorials|cat=Basic Tutorials}}
+

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:IndieLib/Indielib.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:UnitTests/UnitTests.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:TestsOSX/TestsOSX.xcodeproj">
+   </FileRef>
+</Workspace>

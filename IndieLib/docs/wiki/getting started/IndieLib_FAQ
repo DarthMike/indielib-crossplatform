@@ -1,0 +1,48 @@
+__FORCETOC__
+= What is IndieLib? =
+IndieLib is a c++ 2.5d engine for game development and fast game prototyping in a really easy way. Internally it uses Direct3d for hardware acceleration, but doesn't use DirectDraw or ID3DXSprite, it directly draws textures on polygons. The engine is focused in fast 2d rendering, but also allows you to use 3d models. The main IndieLib features are:
+* Simple interface and extreme easiness: really fast game prototyping using entities for each of the graphical objects and changing their attributes. All the methods are as simple as "SetPos", "SetCollisionArea", "SetFade", "SetTransparency", etc.
+* Translations, rotation, mirroring and scaling of sprites.
+* Alpha blending, transparency, tinting and fading of sprites.
+* Render images of any size (not only power of two). You can load images as big as 10000x10000 pixels or more, and IndieLib will cut them internally in smaller blocks. Furthermore, IndieLib will automatically discard all the blocks out of the screen, also if your sprites are transformed and the camera making a zoom or rotated, only what you see is what is going to be rendered.
+* SetGrid method in order to create grids for your sprites. Later you can move each grid point in order to make a lot of different effects like waves, etc.
+* 2d and 3d camera concepts, completely independent of the graphical objects. Easy methods to translate, rotate or zoom you camera.
+* Easily creation of several viewports. Just create as many viewports as you want using different cameras assigned to them. This is really useful for making widescreen games, etc.
+* Scrolls of any size, with automatic block discarding.
+* Animation system using XML animation scripts, for defining the frames and sequences.
+* Advanced collision system. Create an xml file defining your collision areas per sprite using circles, rectangles or triangles. You can define as many collision groups as you want, each one with a different name. Join this file to an entity object and check collision between the collision groups of other entities. Don't worry about translating, rotating or scaling your entities, the collision groups will always fit perfectly your entity. You can also have sprite animations in which each frame has different collision groups (imagine this feature in a "Street Fighter" type game).
+* Bitmap font system, for drawing graphical texts of fonts created with MudgeFont for IndieLib. Change the alignment, char spacing and line spacing easily.
+* Rendering of 3d Meshes (you can mix 2d and 3d easily). You can also apply transformations to them (rotation, scaling, fading, etc). This will allow you to make games like "New Super Mario Bros" in which the characters are 3d models and the scenario is 2d.
+* Light manager, for lighting your 3d models. Enable / Disable lights, change their attributes, etc.
+* Timers. Start, stop, pause them easily.
+* Entity class, for both 2d and 3d objects, for managing the graphical objects in a really easy way. Just create an entity, join a graphical object to it, an change it's attributes (space transformations, color transformations, etc).
+* Image class, for loading / saving different types of image files and for accessing to the bitmaps directly. You can also apply filters to the images like gaussian, noise, equalize, saturation, etc.
+* Direct blitting of primitives (rectangles, circles, polygons, lines, etc).
+* Mouse and keyboard input. Check if any key/button has been pressed, is being pressed or has been pressed more than n milliseconds. Check combination of keys/buttons that are pressed at the same time.
+
+= What is the IndieLib license? =
+IndieLib is OpenSource under the [http://www.gnu.org/copyleft/lesser.html LGPL] License. You can access to the repository [http://www.indielib.com/forum/viewtopic.php?t=48 here]. Donations are really necessary and will be highly appreciated. Help us maintaining the project!
+
+= Is IndieLib documented? Is there a forum for posting my doubts? =
+Yes! Check out these links:
+* [http://www.indielib.com/documentation/modules.html Api Reference]
+* [http://www.indielib.com/wiki Tutorials Wiki]
+* [http://www.indielib.com/forum Forum]
+
+= What do I need to develop an IndieLib application =
+The are some things you need in order to use IndieLib. The first thing is a '''programming environment'''. IndieLib is compiled for Visual C++ 2008 Express Edition (that is free) and Visual C++ 6. You will also need the '''DirectX SDK''', that IndieLib uses for rendering the 2d stuff using hardware acceleration. The last thing you need is, of course, the '''IndieLib SDK'''. Check out the [http://www.indielib.com/wiki/index.php?title=Tutorial_01_Installing Tutorial 01 Installing] for getting started.
+
+= Is IndieLib portable? =
+IndieLib uses Direct3d for rendering. So, unfortunately, it's not portable to Mac or Linux. Isolationg the renderer in a plugin is a "must to do" feature in a near future.
+
+= Has IndieLib a Music engine? =
+No, there are already really good libraries for that. Check out [http://www.openal.org/ OpeanAL] or [http://www.libsdl.org/projects/SDL_mixer/ SDL_Mixer].
+
+= Who is the developer of IndieLib =
+
+Javier López López, a Spanish game designer / programmer / 3d artist, who likes all the stuff related to digital art, game development and game designing.
+
+= Am I almost a computer FREAK if I'm reading this stuff and I'm liking it? =
+
+HELL YEAH! Now, make games!
+

@@ -1,0 +1,120 @@
+TODO LIST: 
+CHECK PROJECT ISSUES LIST. MANY ISSUES ARE LISTED THERE. NOT KEPT HERE FOR CONSISTENCY.
+
+DIRECTX TO OPENGL (THINKING IN OPENGL ES)
+    - Review Mem. leaks related to texture data change!
+	- when features are more complete, go back to init code and add device info gathering, as done
+	  with directx render.
+	- FOR OPENGL 3.5: Delve into supporting extensions
+	- there are some public methods on original IND_Render (Now DirectX_Render)
+	  which depended in D3D types. Refactor API and include in IND_Render (and opengl implementations) ex: BlitGridLine(...)
+
+INPUT FOR IOS (MAY NEED ABSTRACTIONS)
+- Should be handled by SDL 2.0 correctly.
+
+CHECK FOR PROPER RESOURCE LOADING IN A CROSSPLATFORM WAY
+- Added working path utility. Anyway, our tests depend on loading the resources from the <bin> directory to the <resources> directory.
+This will break with sandboxed environments, like MACOSX Mountain Lion (10.8) and iOS. The resources need to be inside the bundled app. 
+Must reformat tests philosophy for resource loading in this case.
+
+OPTIMIZATION AND PERFORMANCE
+- Noticed that OpenGL is just slower now than DirectX. Without measuring it's noticable in windows high-end computer.
+
+CORRECT API TO COMPLY WITH C++ CONST-CORRECTNESS
+SEARCH FOR CONVERSION OF FORMATS AND TRY TO REDUCE THEM. SOME ARE NOT NEEDED  EXAMPLE: FILLPIXEL(INT X, INT Y...) INTS ARE CONVERTED TO FLOATS WHEN 
+        UNDERLYING STRUCTURE IS FLOATS!
+REMOVE ALL C-STYLE CASTS (<type>) TO THE C++ EQUIVALENT WITH static_cast<type>(..).
+
+-------------------------------------------------------------------------------------------------------------------
+MIGUEL RAMBLINGS:
+GENERAL:
+	GOOD INFO: http://iphonedevelopment.blogspot.com/2009/05/opengl-es-from-ground-up-table-of.html
+	http://mitchallen.com/iphone/archives/100
+`	http://unlogica.com/blog/2008/04/making_c_and_objective_c_play.html
+
+	REVIEW (OPENGL ES): http://maniacdev.com/2009/04/converting-opengl-code-to-iphone-opengl-es/
+	
+	Good resources for SDL 2.0 and iOS: http://immersedcode.org/2011/4/25/sdl-on-ios/
+	                                    http://immersedcode.org/2011/4/27/sdl-ios-behavior/
+	http://www.opengl.org/wiki/Tutorial1:_Creating_a_Cross_Platfor_OpenGL_3.2_Context_in_SDL_%28C_/_SDL%29
+	Classes:
+		Ind_Input: Different platforms, specially with touch controls, handle input in different way. Handle this in good way. 
+		           Now for iOS doesn't define any keyboard and mouse specific inputs
+		Ind_Render: For now, just to keep things "simple" there isn't an abstract class defining the interface to render.
+		            This may change. Took this decision as almost all methods are inline, so if we use abstract class, we loose
+		            performance there. May not be an issue and an overuse of optimization at the beginning... but it was also
+		            less work in the process of porting. May need to test once library and OpenGL render is more complete.
+		
+DIRECTX/RENDER RELATED:
+	THESE REMAIN TO BE DONE IN SUBSEQUENT VERSIONS (3D IS NOT USED IN MY GAMES FOR NOW...)
+		Ind_Light
+		IND_LightManager
+		3d: Xmesh depends directly (and only) in DirectX
+			3DMesh Classes....
+	
+CROSS-COMPILING:
+GLEW vs. SDL 2.0 typedefs clash under Linux
+
+CLOSING:
+data definition on OPENGL (for tests now) is depending in float data type. It should depend in GLfloat to be 
+totally portable in future (but requires ugly includes I don't want to think about now)
+
+
+-------------------------------------------------------------------------------------------------------------------
+MICHAEL RAMBLINGS (MOSTLY ABOUT THE LINUX PORT)
+
+CODE RELATED
+* Move the code fro the tools class to Ind_Math as suggested by DartMike. If we again get the need, we can recreate the Tools class. 
+* Use Valgrind to squish mem leaks.
+* Check up on SDL's typedef clashes..
+
+other thing to look at => http://sourceforge.net/tracker/?func=detail&aid=3357768&group_id=67586&atid=523274
+
+
+SIZE RELATED
+The Compiled libIndieLib.a is about 1.5 mb, there should be way to optimize size
+* (look at the -s in the makefile, and look at the gcc check in define.h) to strip the symbols
+* consider the -O3 instead of -O2
+
+
+FEATURE RELATED:
+Could be cool to load files from one or more zipped datafiles (obfucation is possible)
+look at this http://zziplib.sourceforge.net/download.html
+project crosscompiles, is lightweight, lgpl, etc etc.   
+
+
+PRESENT LINUX COMPILE STATUS:
+
+# CollisionParser.cpp       // ok
+# DebugApi.cpp              // ok
+# Global.cpp                // ok
+# ImageCutter.cpp           // ok
+# IND_3dMesh.cpp            // not ported yet
+# IND_3dMeshManager.cpp     // not ported yet
+# IND_Animation.cpp         // ok
+# IND_AnimationManager.cpp  // ok
+# IND_Camera2d.cpp          // ok
+# IND_Camera3d.cpp          // not ported yet
+# IND_Entity2d.cpp          // ok
+# IND_Entity2dManager.cpp   // ok
+# IND_Entity3d.cpp          // not ported yet
+# IND_Entity3dManager.cpp   // not ported yet
+# IND_FontManager.cpp       // ok
+# IndieLib.cpp              // ok
+# IND_Image.cpp             // ok
+# IND_ImageManager.cpp      // ok
+# IND_Input.cpp             // ok
+# IND_Light.cpp             // not ported yet
+# IND_LightManager.cpp      // not ported yet
+# IND_Math.cpp              // ok
+# IND_Render.cpp            // ok
+# IND_Surface.cpp           // ok
+# IND_SurfaceManager.cpp    // ok
+# IND_Timer.cpp             // ok
+# IND_Window.cpp            // ok
+# PrecissionTimer.cpp       // ok
+
+./configure
+make
+
+the resulting libIndieLib.a is placed in /linux/.libs/

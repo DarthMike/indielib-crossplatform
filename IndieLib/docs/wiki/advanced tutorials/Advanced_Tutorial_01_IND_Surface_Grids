@@ -1,0 +1,138 @@
+== Note == 
+{{Stub}}
+
+== Code == 
+<source lang="Cpp">
+/*****************************************************************************************
+/* Desc: Tutorials b) 01 IND_Surface grids
+/*****************************************************************************************/
+
+#include "CIndieLib_vc2008.h"
+
+/*
+==================
+Main
+==================
+*/
+int IndieLib()			
+{
+	// ----- IndieLib intialization -----
+
+	CIndieLib *mI = CIndieLib::Instance();
+	if (!mI->Init ()) return 0;			
+
+	// ----- Surface loading -----
+
+	// Loading Background
+	IND_Surface mSurfaceBack;
+	if (!mI->SurfaceManager->Add (&mSurfaceBack, "..\\resources\\twist.jpg", IND_OPAQUE, IND_32)) return 0;
+
+	// Loading draco
+	IND_Surface mSurfaceDraco;
+	if (!mI->SurfaceManager->Add (&mSurfaceDraco, "..\\resources\\draco.png", IND_ALPHA, IND_32)) return 0;
+
+	// Font
+	IND_Font mFontSmall;
+	if (!mI->FontManager->Add (&mFontSmall, "..\\resources\\font_small.png", "..\\resources\\font_small.xml", IND_ALPHA, IND_32)) return 0;
+
+	// ----- Font creation -----
+
+	IND_Entity2d mTextSmallWhite;					
+	mI->Entity2dManager->Add		(&mTextSmallWhite);			// Entity adding
+	mTextSmallWhite.SetFont			(&mFontSmall);				// Set the font into the entity
+	mTextSmallWhite.SetLineSpacing	(18);
+	mTextSmallWhite.SetCharSpacing	(-8);
+	mTextSmallWhite.SetPosition		(5, 5, 1);
+	mTextSmallWhite.SetAlign		(IND_LEFT);
+
+	// ----- Create a grid for Draco IND_Surface -----
+
+	mSurfaceDraco.SetGrid (8, 8);
+
+	// ----- Set the surfaces into 2d entities -----
+
+	// Creating 2d entity for the background
+	IND_Entity2d mBack;					
+	mI->Entity2dManager->Add (&mBack);						// Entity adding
+	mBack.SetSurface (&mSurfaceBack);						// Set the surface into the entity
+
+	// Creating 2d entity for the draco
+	IND_Entity2d mDraco;					
+	mI->Entity2dManager->Add (&mDraco);						// Entity adding
+	mDraco.SetSurface (&mSurfaceDraco);						// Set the surface into the entity
+
+	// ----- Changing the attributes of the 2d entities -----
+
+	// Background
+	mBack.SetHotSpot (0.5f, 0.5f);
+	mBack.SetPosition (400, 300, 0);
+	mBack.SetScale (1.7f, 1.7f);
+
+	// Draco
+	mDraco.SetPosition (150, 50, 1);
+
+	// ----- Main Loop -----
+
+	int mNumBlocksX = mSurfaceDraco.GetBlocksX();
+	int mNumBlocksY = mSurfaceDraco.GetBlocksY();
+	int mWidthBlock = mSurfaceDraco.GetWidthBlock();
+	int mHeightBlock = mSurfaceDraco.GetHeightBlock();
+	bool mShowGrid = 0;
+	float mAngle = 0;
+	IND_Timer mTimer; mTimer.Start();
+	float mT;
+	char	mText [2048]; mText [0] = 0;
+
+	while (!mI->Input->OnKeyPress (IND_ESCAPE) && !mI->Input->Quit())
+	{
+		// ----- Input update ----
+
+		mI->Input->Update ();
+
+		// ----- Text -----
+
+		strcpy (mText, "Press space to see the grid in action. This is really cool, isn't it?");
+		mTextSmallWhite.SetText	 (mText);
+
+		// ----- Input ----
+
+		// Show / Hide the grid pressing "space"
+		if (mI->Input->OnKeyPress (IND_SPACE))
+		{
+			if (mShowGrid) mShowGrid = 0; else mShowGrid = 1;
+		}
+
+		// ----- Updating entities attributes  -----
+
+		mAngle += 0.1f;
+		mBack.SetAngleXYZ (0, 0, mAngle);
+
+		// Update grid vertices for making a "wave" effect
+		mT = mTimer.GetTicks() / 1000.0f;
+		
+		for (int i = 1; i < mNumBlocksX; i++)
+			for (int j = 1; j < mNumBlocksY; j++)
+				mSurfaceDraco.SetVertexPos (j, 
+											i, 
+											(int) ((j * mHeightBlock + cosf (mT * 10 + (i + j) / 2) * 5)), 
+											(int) ((i * mWidthBlock	+ sinf (mT * 10 + (i + j) / 2) * 5)));
+
+		// ----- Render  -----
+
+		mI->Render->BeginScene ();
+		mI->Render->ClearViewPort (60, 60, 60);
+		mI->Entity2dManager->RenderEntities2d ();
+		if (mShowGrid) 	mI->Entity2dManager->RenderGridAreas (0, 0, 0, 255);
+		mI->Render->EndScene ();	
+	}
+
+	// ----- Free -----
+
+	mI->End ();
+
+	return 0;
+}
+</source>
+
+{{Category_Tutorials|cat=Advanced Tutorials}}
+

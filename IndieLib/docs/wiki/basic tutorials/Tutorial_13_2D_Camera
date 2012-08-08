@@ -1,0 +1,164 @@
+{{Template:Stub}}
+
+<source lang="Cpp">
+/*****************************************************************************************
+/* Desc: Tutorials a) 13 2d Camera
+/*****************************************************************************************/
+
+#include "CIndieLib_vc2008.h"
+
+/*
+==================
+Main
+==================
+*/
+int IndieLib()			
+{
+	// ----- IndieLib intialization -----
+
+	CIndieLib *mI = CIndieLib::Instance();
+	if (!mI->Init ()) return 0;			
+
+	// ----- Surface loading -----
+
+	// Loading tile for the terrain
+	IND_Surface mSurfaceBack;
+	if (!mI->SurfaceManager->Add (&mSurfaceBack, "..\\resources\\twist.jpg", IND_OPAQUE, IND_32)) return 0;
+	
+	// Loading beetle
+	IND_Surface mSurfaceBeetle;
+	if (!mI->SurfaceManager->Add (&mSurfaceBeetle, "..\\resources\\beetleship.png", IND_ALPHA, IND_32)) return 0;
+	
+	// Loading octopus
+	IND_Surface mSurfaceOctopus;
+	if (!mI->SurfaceManager->Add (&mSurfaceOctopus, "..\\resources\\octopus.png", IND_ALPHA, IND_32)) return 0;
+
+	// Loading bug
+	IND_Surface mSurfaceBug;
+	if (!mI->SurfaceManager->Add (&mSurfaceBug, "..\\resources\\Enemy Bug.png", IND_ALPHA, IND_32)) return 0;
+
+	// Font
+	IND_Font mFontSmall;
+	if (!mI->FontManager->Add (&mFontSmall, "..\\resources\\font_small.png", "..\\resources\\font_small.xml", IND_ALPHA, IND_32)) return 0;
+
+	// ----- Font creation -----
+
+	IND_Entity2d mTextSmallWhite;					
+	mI->Entity2dManager->Add		(&mTextSmallWhite);			// Entity adding
+	mTextSmallWhite.SetFont			(&mFontSmall);				// Set the font into the entity
+	mTextSmallWhite.SetLineSpacing	(18);
+	mTextSmallWhite.SetCharSpacing	(-8);
+	mTextSmallWhite.SetPosition		(5, 5, 1);
+	mTextSmallWhite.SetAlign		(IND_LEFT);
+
+	// ----- Entities -----
+
+	// Terrain
+	IND_Entity2d mTerrain;
+	mI->Entity2dManager->Add (&mTerrain);
+	mTerrain.SetSurface (&mSurfaceBack);
+
+	// Beetle
+	IND_Entity2d mBeetle;
+	mI->Entity2dManager->Add (&mBeetle);
+	mBeetle.SetSurface (&mSurfaceBeetle);
+	mBeetle.SetHotSpot (0.5f, 0.5f);
+	mBeetle.SetPosition (150, 300, 2);
+
+	// Octopus
+	IND_Entity2d mOctopus;
+	mI->Entity2dManager->Add (&mOctopus);
+	mOctopus.SetSurface (&mSurfaceOctopus);
+	mOctopus.SetHotSpot (0.5f, 0.5f);
+	mOctopus.SetPosition (450, 300, 2);
+
+	// But
+	IND_Entity2d mBug;
+	mI->Entity2dManager->Add (&mBug);
+	mBug.SetSurface (&mSurfaceBug);
+	mBug.SetHotSpot (0.5f, 0.5f);
+	mBug.SetPosition (700, 300, 2);
+
+	// ----- Camera -----
+
+	float		mCameraX = (float) mI->Window->GetWidth () / 2;
+	float		mCameraY = (float) mI->Window->GetHeight () / 2;
+	IND_Camera2d mCamera ((int) mCameraX, (int) mCameraY);
+
+	// ----- Main Loop -----
+
+	float	mZoom = 1.0f;
+	float	mCameraAngle = 0;
+	float	mBugAngle = 0;
+	char	mText [2048]; mText [0] = 0;
+	int		mSpeedMoveCamera		= 200;
+	int		mSpeedRotation			= 50;
+	float	mDelta;
+
+	while (!mI->Input->OnKeyPress (IND_ESCAPE) && !mI->Input->Quit())
+	{
+		// ----- Input update ----
+
+		mI->Input->Update ();
+
+		// ----- Text -----
+
+		strcpy (mText, "Use WASD keys for translating the camera\n");
+		strcat (mText, "Use mouse wheel for zooming in/out\n");
+		strcat (mText, "Use mouse buttons for rotating the camera");
+		mTextSmallWhite.SetText	 (mText);	
+
+		// ----- Input ----
+
+		mDelta = mI->Render->GetFrameTime() / 1000.0f;
+
+		// Camera translation
+		if (mI->Input->IsKeyPressed (IND_W))							mCameraY -= mSpeedMoveCamera * mDelta;
+		if (mI->Input->IsKeyPressed (IND_S))							mCameraY += mSpeedMoveCamera * mDelta;
+		if (mI->Input->IsKeyPressed (IND_A))							mCameraX -= mSpeedMoveCamera * mDelta;
+		if (mI->Input->IsKeyPressed (IND_D))							mCameraX += mSpeedMoveCamera * mDelta;
+
+		// Camera Zoom in / out
+		if (mI->Input->OnMouseButtonPress	(IND_MBUTTON_WHEELUP))		mZoom += 0.1f;
+		if (mI->Input->OnMouseButtonPress	(IND_MBUTTON_WHEELDOWN))	mZoom -= 0.1f;		
+
+		// Camera angle
+		if (mI->Input->IsMouseButtonPressed (IND_MBUTTON_LEFT))			mCameraAngle += mSpeedRotation * mDelta;
+		if (mI->Input->IsMouseButtonPressed (IND_MBUTTON_RIGHT))		mCameraAngle -= mSpeedRotation * mDelta;
+
+		// ----- Updating entities attributes  -----
+
+		// Rotation of the beetle and bug
+		mBugAngle += mSpeedRotation * mDelta;
+		mBeetle.SetAngleXYZ (0, 0, mBugAngle);
+		mBeetle.SetAngleXYZ (0, 0, mBugAngle);
+		mBug.SetAngleXYZ (0, 0, -mBugAngle);
+		mBug.SetAngleXYZ (0, 0, -mBugAngle);
+
+		// Tranlasting, zooming and rotating the camera
+		if (mZoom < 0.1f) mZoom =  0.1f;
+		mCamera.SetPosition ((int) mCameraX, (int) mCameraY);
+		mCamera.SetAngle (mCameraAngle);
+		mCamera.SetZoom (mZoom);
+
+		// ----- Render  -----
+
+		mI->Render->BeginScene ();
+		mI->Render->ClearViewPort (60, 60, 60);
+		mI->Render->SetViewPort2d (0, 0, mI->Window->GetWidth(), mI->Window->GetHeight());
+		mI->Render->SetCamera2d (&mCamera);
+		mI->Entity2dManager->RenderEntities2d ();
+		mI->Render->EndScene();
+	}
+
+	// ----- Free -----
+
+	mI->End ();
+
+	return 0;
+}
+</source>
+
+
+{{Category_Tutorials|cat=Basic Tutorials}}
+

@@ -1,0 +1,142 @@
+Cervantes and Shakespeare... they liked IndieLib fonts!
+__FORCETOC__
+= Tutorial files =
+
+'''Download the IndieLib SDK in order to have all the tutorial files with the sources for vc2008, and all the example tutorials compiled, so you can try them directly'''
+* [http://www.indielib.com/sdk/IndieLib_LatestVersion_SDK.rar IndieLib SDK]
+
+Note: This tutorial uses fonts created with a modified version of Mudge Font. You can download this program from the tools section:
+* [http://www.indielib.com/sdk/MudgeFont_LatestVersion.rar MudgeFont for IndieLib]
+
+= Introduction =
+
+In this tutorial you will learn about how to create graphical fonts (using MudgeFont for IndieLib) and how to blit texts to the screen. The classes covered in this tutorial are:
+
+* IND_Font
+* IND_FontManager
+* IND_Surface
+* IND_SurfaceManager
+* IND_Entity2d
+* IND_Entity2dManager
+
+= Tutorial =
+
+== IND_Font and IND_FontManager ==
+
+IND_FontManager is a manager that stores IND_Font objects. The fonts that the manager can load are created with a program called MudgeFont. IndieLib uses a modified version of this program.
+
+You can read more about IND_Font objects in the Api Reference.
+
+In order to render the IND_Font objects they have to be joint to a IND_Entity2d. Using the methods of this class you will be able to change the attributes of the text object in a really easy way. If you have already read the IND_Surface tutorial you will be already familiarized with 2d entities.
+
+== Creating a font using MudgeFont for IndieLib ==
+
+Once you have downloaded the program, follow this steps:
+* Double click on "mudFont.exe"
+* Click on "Tools>Add characters". Here you have to enter the characters that you are going to need in your font. For example: "abcdefghijklmnñopqrstuvwxyzáéíóúàèìòùâêîôûäëïöüçÇ ABCDEFGHIJKLMNÑOPQRSTUVWXYZ¿?¡!-><1234567890,.:;*\+-=""%()&'@#$_/{}|[]~ÁÉÍÓÚÄËÏÖÜ´¨ÂÊÎÔÛÀÈÌÒÙ"
+* Now, you can chose the font you want to use. After that, you can change several parameters like: antialiasing, size of the font, borders, size of the final image, etc. Play with the parameters until you be satisfied.
+* One thing you usually will have to take care are the borders of the space " " character because the cell created for containing this character will be usually really narrow. You can fix this problem this way: click on "character", select the space character " " and give to it some values using "border left" and "border right".
+* Finally, click on "File>Export as TGA & XML" for exporting your font. Two files will be created. The first one is a .tga image file containing all the characters. The second one is a .xml configuration file. You will need both files in order to load a font into IndieLib using the Add() method of IND_FontManager.
+
+== Let's start with the source code ==
+
+We will follow this tutorial reading from the "Main.cpp" file of the "a_05_IND_Font" project.
+
+The first thing we are going to do is loading the background and the fonts. So, double click in you "Main.cpp" file, and read this lines:
+
+<source lang="Cpp">
+// ----- Surface and font loading -----
+
+// Loading Background
+IND_Surface mSurfaceBack;
+if (!mI->SurfaceManager->Add (&mSurfaceBack, "..\\resources\\blue_background.jpg", IND_OPAQUE, IND_32)) return 0;
+
+// Loading tip page
+IND_Surface mSurfaceTip;
+if (!mI->SurfaceManager->Add (&mSurfaceTip, "..\\resources\\tip.png", IND_ALPHA, IND_32)) return 0;
+
+// Font 1
+IND_Font mFontSmall;
+if (!mI->FontManager->Add (&mFontSmall, "..\\resources\\font_small.png", "..\\resources\\font_small.xml", IND_ALPHA, IND_32)) return 0;
+
+// Font 2
+IND_Font mFontBig;
+if (!mI->FontManager->Add (&mFontBig, "..\\resources\\font_big.png", "..\\resources\\font_big.xml", IND_ALPHA, IND_32)) return 0;
+</source>
+
+We have just loaded a background into a IND_SurfaceObject. Later, we have loaded two fonts that were created using MudgeFont. 
+
+After that, we joint the surfaces and fonts with the 2d entities:
+
+<source lang="Cpp">
+// ----- Set the surfaces and fonts into 2d entities -----
+
+// Creating 2d entity for the background
+IND_Entity2d mBack;					
+mI->Entity2dManager->Add (&mBack);					// Entity adding
+mBack.SetSurface (&mSurfaceBack);					// Set the surface into the entity
+
+// Creating 2d entity for the tips page
+IND_Entity2d mTip;					
+mI->Entity2dManager->Add (&mTip);					// Entity adding
+mTip.SetSurface (&mSurfaceTip);						// Set the surface into the entity
+
+// Title text
+IND_Entity2d mTextTitle;					
+mI->Entity2dManager->Add (&mTextTitle);					// Entity adding
+mTextTitle.SetFont (&mFontBig);						// Set the font into the entity
+
+// Text small black
+IND_Entity2d mTextSmallBlack;					
+mI->Entity2dManager->Add (&mTextSmallBlack);				// Entity adding
+mTextSmallBlack.SetFont (&mFontSmall);					// Set the font into the entity
+
+// Text small white
+IND_Entity2d mTextSmallWhite;					
+mI->Entity2dManager->Add (&mTextSmallWhite);				// Entity adding
+mTextSmallWhite.SetFont (&mFontSmall);					// Set the font into the entity
+</source>
+
+This is something you have already learnt in previous tutorials, just joining the surface, and also in this case, the fonts, to the 2d entities. Now, we are going to put some text into the entities and to change some attributes:
+
+<source lang="Cpp">
+// ----- Changing the attributes of the 2d entities -----
+
+mTip.SetHotSpot (0.5f, 0.5f);
+mTip.SetPosition (250, 300, 0);
+
+mTextTitle.SetText				("IndieLib Fonts");	
+mTextTitle.SetLineSpacing		(18);
+mTextTitle.SetCharSpacing		(-8);
+mTextTitle.SetPosition			(400, 40, 1);
+mTextTitle.SetAlign				(IND_CENTER);
+
+mTextSmallBlack.SetText			("This paragraph is\ncentered using.\nIND_CENTER\n\nThis font has\nblack color using\nSetTint() method.\n\nRocks!");	
+mTextSmallBlack.SetLineSpacing	(18);
+mTextSmallBlack.SetCharSpacing	(-8);
+mTextSmallBlack.SetPosition		(242, 230, 1);
+mTextSmallBlack.SetAlign		(IND_CENTER);
+mTextSmallBlack.SetTint			(0, 0, 0);
+
+mTextSmallWhite.SetText			("This is a another paragraph. This time\nusing the font without changing the color\nand with a IND_LEFT alignment.\n\nThis is a really easy way of writing\ntexts, isn't it?");	
+mTextSmallWhite.SetLineSpacing	(18);
+mTextSmallWhite.SetCharSpacing	(-7);
+mTextSmallWhite.SetPosition		(400, 230, 1);
+mTextSmallWhite.SetAlign		(IND_LEFT);
+</source>
+
+We put each entity in a place of the screen, the entities that are joint to fonts will display a text. The SetText() method is used to set that text. A carriage return can be forced writing "\n".
+
+You can also change the spaces between characters using SetCharSpacing() method and the space between lines using SetLineSpacing(). The text alignment is controlled using the method SetAlign(), there are three alignment types IND_RIGHT, IND_CENTER and IND_LEFT.
+
+Important: A 2d entity with a font can not use the SetAngleXYZ() or SetScale() methods. But there are other interesting attributes, like the one provided by SetTint() that you can change. In the example we use SetTint() in order to change the color of the font. SetFade() and SetTransparency() methods are also allowed, so you can also make fonts fading to a certain color or change their transparency level.
+
+The rest of the source code is the main loop that we already saw in the previous tutorial.
+
+So, what you can do now it trying to create your own fonts using MudgeFont for IndieLib and displaying them into the screen.
+
+
+You are ready for the [http://www.indielib.com/wiki/index.php?title=Tutorial_06_Primitives next tutorial].
+
+{{Category_Tutorials|cat=Basic Tutorials}}
+

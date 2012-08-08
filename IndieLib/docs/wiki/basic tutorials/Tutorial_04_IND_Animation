@@ -1,0 +1,155 @@
+A 2d game need animations... let's have them in an easy way!
+__FORCETOC__
+= Download the tutorials =
+
+'''Download the IndieLib SDK in order to have all the tutorial files with the sources for vc2008, and all the example tutorials compiled, so you can try them directly'''
+* [http://www.indielib.com/sdk/IndieLib_LatestVersion_SDK.rar IndieLib SDK]
+
+Note: This tutorial uses sprite animations from some old games I don't remember. I'm only using them for didactic purposes.
+
+= Introduction =
+
+In this tutorial you will learn about how to create animations from xml script files. You will be able to set frames and to create animations sequences using these frames. The classes covered in this tutorial are:
+
+* IND_Animation
+* IND_AnimationManager
+* IND_Surface
+* IND_SurfaceManager
+* IND_Entity2d
+* IND_Entity2dManager
+
+= Tutorial =
+
+== IND_Animation and IND_AnimationManager ==
+
+IND_AnimationManager is a manager that stores IND_Animation objects. In order to load an animation it is necessary to create an xml animation script. The structure of the script is quite easy to understand. In each animation script you define first de frames (each of the sprites) that you will use for the sequences that you want to create. Later, you create sequences, using references to these frames, and specifying the time delay between frames. So, you can set different sequences using the same frames.
+
+You can read more about IND_Animations objects in the Api Reference.
+
+In order to render the IND_Animation objects they have to be joint to an IND_Entity2d. Using the methods of this class you will be able to change the attributes of the animation object in a really easy way. If you have already read the IND_Surface tutorial you will be already familiarized with 2d entities.
+
+== Let's start with the source code ==
+
+We will follow this tutorial reading from the "Main.cpp" file of the "a_04_IND_Animation" project.
+
+The first thing we are going to do is loading the background and the animations. So, double click in you "Main.cpp" file, and read this lines:
+
+<source lang="Cpp">
+// ----- Surface loading -----
+
+// Loading Background
+IND_Surface mSurfaceBack;
+if (!mI->SurfaceManager->Add (&mSurfaceBack, "..\\resources\\blue_background.jpg", IND_OPAQUE, IND_32)) return 0;
+
+// ----- Animations loading -----
+
+// Characters animations, we apply a color key of (0, 48, 152)
+IND_Animation mAnimationCharacter1;
+if (!mI->AnimationManager->AddToSurface (&mAnimationCharacter1, "..\\resources\\animations\\character1.xml", IND_ALPHA, IND_32, 0, 48, 152)) return 0;
+
+// Characters animations, we apply a color key of (0, 48, 152)
+IND_Animation mAnimationCharacter2;
+if (!mI->AnimationManager->AddToSurface (&mAnimationCharacter2, "..\\resources\\animations\\character2.xml", IND_ALPHA, IND_32, 0, 48, 152)) return 0;
+
+// Dust animation, we apply a color key of (255, 0, 255)
+IND_Animation mAnimationDust;
+if (!mI->AnimationManager->AddToSurface (&mAnimationDust, "..\\resources\\animations\\dust.xml", IND_ALPHA, IND_16, 255, 0, 255)) return 0;
+</source>
+
+We have just loaded a background into an IND_SurfaceObject. Later, we have loaded some animations applying color keys because the sprites backgroung were no transparent. "animations\\players.txt" is the path to the animation script where the frames and sequences are defined.
+
+Take a look to the animation script called "character1.xml":
+
+<source lang="XML">
+<?xml version="1.0" encoding="utf-8"?>
+<animation>
+	<!-- frames declaration -->
+	<frames>	
+		<frame name="Rock1" file="..\resources\animations\advance\Rock_Avanza_01.png" offset_x="2" offset_y="2" />
+		<frame name="Rock2" file="..\resources\animations\advance\Rock_Avanza_02.png" offset_x="2" offset_y="2" />
+		<frame name="Rock3" file="..\resources\animations\advance\Rock_Avanza_03.png" />
+		<frame name="Rock4" file="..\resources\animations\advance\Rock_Avanza_04.png" />
+		<frame name="Rock5" file="..\resources\animations\advance\Rock_Avanza_05.png" />
+		<frame name="Rock6" file="..\resources\animations\advance\Rock_Avanza_06.png" />
+		<frame name="Rock7" file="..\resources\animations\advance\Rock_Avanza_07.png" />
+		<frame name="Rock8" file="..\resources\animations\advance\Rock_Avanza_08.png" />
+		<frame name="Rock9" file="..\resources\animations\advance\Rock_Avanza_09.png" />
+		<frame name="Rock10" file="..\resources\animations\advance\Rock_Avanza_10.png" />		
+	</frames>
+		
+	<!-- sequences declaration -->
+	<sequences>
+		<sequence name="rock_advance">
+			<frame name="Rock1" time="150" />
+			<frame name="Rock2" time="150" />
+			<frame name="Rock3" time="150" />
+			<frame name="Rock4" time="150" />
+			<frame name="Rock5" time="150" />
+			<frame name="Rock6" time="150" />
+			<frame name="Rock7" time="150" />
+			<frame name="Rock8" time="150" />
+			<frame name="Rock9" time="150" />
+			<frame name="Rock10" time="150" />
+		</sequence>			
+	</sequences>
+</animation>
+</source>
+
+As you can see, in <frames> section we define all the frames names and the associated image files. Later, in <sequences> section, we create sequences using the names of these frames. This way we don't have to load more that one time each frame, becase we work with references to that frames.
+
+In the following lines of source code we create the entities and join them to the surfaces and to the animations:
+
+<source lang="Cpp">
+// ----- Set the surface and animations into 2d entities -----
+
+// Creating 2d entity for the background
+IND_Entity2d mBack;					
+mI->Entity2dManager->Add (&mBack);					// Entity adding
+mBack.SetSurface (&mSurfaceBack);					// Set the surface into the entity
+
+// Character 1
+IND_Entity2d mPlayer1;
+mI->Entity2dManager->Add (&mPlayer1);					// Entity adding
+mPlayer1.SetAnimation (&mAnimationCharacter1);				// Set the animation into the entity
+
+// Character 2
+IND_Entity2d mPlayer2;
+mI->Entity2dManager->Add (&mPlayer2);					// Entity adding
+mPlayer2.SetAnimation (&mAnimationCharacter2);				// Set the animation into the entity
+
+// Dust explosion
+IND_Entity2d mDust;
+mI->Entity2dManager->Add (&mDust);					// Entity adding
+mDust.SetAnimation (&mAnimationDust);					// Set the animation into the entity
+</source>
+
+This is something you have already learnt in previous tutorials, just joining the surface, and also in this case, the animations, to the 2d entities. The last reamaining thing for finishing the tutorial is to change the attributes of our 2d entities, like we did in the previous tutorial too:
+
+<source lang="Cpp">
+// ----- Changing the attributes of the 2d entities -----
+
+// Player 1
+mPlayer1.SetSequence (0);				// Active sequence
+mPlayer1.SetPosition (140, 200, 0);
+mPlayer1.SetMirrorX (1);				// Horizontal mirroring
+	
+// Dust explosion
+mDust.SetPosition (360, 250, 0);
+	
+// Player 2
+mPlayer2.SetSequence (0);				// Active sequence
+mPlayer2.SetPosition (550, 200, 0);				
+mPlayer2.SetNumReplays (3);				// The animation will be displayed 5 times
+</source>
+
+We put each entity in a place of the screen. The SetMirrorX() method just makes an horizontal mirroring of the sprite. With the SetSequence() method you can change between animation sequences. Finally, using SetNumReplays() you can set the number of times that the animation will be displayed. Use "-1" in order to have a looping animation, this is the value an animation has by default.
+
+The rest of the source code is the main loop that we already saw in the previous tutorial.
+
+So, what you can do now it trying to create your own animations. Check IND_AnimationManager methods for additional information.
+
+
+You are ready for the [http://www.indielib.com/wiki/index.php?title=Tutorial_05_IND_Font next tutorial].
+
+{{Category_Tutorials|cat=Basic Tutorials}}
+

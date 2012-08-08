@@ -1,0 +1,159 @@
+__FORCETOC__
+== What is parallax scrolling? ==
+
+Parallax scrolling is a kind of beast that you may see in many many 2D titles on every possible platform.
+
+Commonly it is used with a simple motive, to imitate the properties of our real 3D environment using 2D graphics.
+
+For more detailed description you may look for a [http://www.google.com.ua/search?q=define%3Aparallax definition of the word 'parallax'] or read [http://en.wikipedia.org/wiki/Parallax_scrolling an article in Wikipedia] about it. 
+
+Also it is a good thing to [http://video.google.com/videosearch?q=parallax+scrolling# see this technique] once in action than read a hundred explanations about it.
+[[http://www.jackpotjoy.com/ |Bingo]]
+
+[[http://financial.tmcnet.com/news/2011/03/03/5353542.htm |Sightline Payments Bally Technologies]]
+
+
+== General way to implement it. ==
+
+The main idea of implementing simulation of parallax in 2D is to break background (and maybe foreground) image in layers and scroll these layers using different speed for each of them. To look realistic the fastest scrolling layer must be the closest layer to the player.
+
+== How it can be managed with IndieLib? ==
+
+The IndieLib makes the implementation of parallax scrolling easy and smooth. 
+Mostly because:
+# It is a great lib in general. :)
+# It supports [http://www.indielib.com/documentation/class_i_n_d___entity2d_manager.html#ee160f7eaeaa40bea06921ba97f02f09 layered rendering].
+# It has a concept of [http://www.indielib.com/documentation/group___camera2d.html a 2D camera]. (For more details see  [[Tutorial_13_2D_Camera|2D Camera tutorial]]).
+That means that to make parallax you have to load graphics into layered entities. Then create a separate cameras for each of the layers and move the cameras with a different speed. 
+
+== Lets try it in a step-by-step basis. ==
+
+The code for this tutorial is located in ''tutorials/source/a_15_Parallax_Scrolling'' folder. 
+
+=== Loading graphics to entities ===
+
+This first part of this step is very common. Just loading images from files to memory:
+<source lang="Cpp">
+	
+	// Loading cave
+	IND_Surface mSurfaceCave;
+	if (!mI->SurfaceManager->Add (&mSurfaceCave, "..\\resources\\cave.png", IND_ALPHA, IND_32)) return 0;
+
+	// Loading cave (first plane)
+	IND_Surface mSurfaceCaveFirstPlane;
+	if (!mI->SurfaceManager->Add (&mSurfaceCaveFirstPlane, "..\\resources\\cave_near.png", IND_ALPHA, IND_32)) return 0;
+
+	// Loading sky
+	IND_Surface mSurfaceSky;
+	if (!mI->SurfaceManager->Add (&mSurfaceSky, "..\\resources\\sky.jpg", IND_OPAQUE, IND_32)) return 0;
+</source>
+The next part deals with loading and setting up font, which will be used to output help information. For more details about working with fonts in IndieLib please refer to the [[Tutorial_05_IND_Font|corresponding tutorial]].
+
+In the next section we continue working with our loaded images. And create entities with them:
+<source lang="Cpp">
+
+	// ----- Entities -----
+
+	// Creating 2d entity for the sky
+	IND_Entity2d mSky;					
+	mI->Entity2dManager->Add (0, &mSky);							// Entity adding (Layer 0)
+	mSky.SetSurface (&mSurfaceSky);
+	mSky.SetPosition (600, 0, 0);
+
+	// Creating 2d entity for the cave
+	IND_Entity2d mCave;					
+	mI->Entity2dManager->Add (1, &mCave);							// Entity adding (Layer 1)
+	mCave.SetSurface (&mSurfaceCave);
+
+	// Creating 2d entity for the cave (first plane)
+	IND_Entity2d mCaveFirstPlane;					
+	mI->Entity2dManager->Add (2, &mCaveFirstPlane);					// Entity adding (Layer 2)
+	mCaveFirstPlane.SetSurface (&mSurfaceCaveFirstPlane);
+</source>
+The code is usual, except for a small but important thing. We use here the second variant of [http://www.indielib.com/documentation/class_i_n_d___entity2d_manager.html#6e175b5db4ebf6dc9d78efde45855203 Entity2dManager->Add()] method. The first argument of which is the number of layer to which we add our new entity. The layer may be treated as some kind of Z coordinate. The entity with the biggest layer value will be the top-most entity on the screen. 
+
+So now we have entities, which were layered to be shown in order. We need to move these layers on the screen separately with different speed. It's time to create cameras.
+=== Setting up cameras ===
+
+<source lang="Cpp">
+	// ----- Cameras -----
+
+	// --- Cameras for the parallax layers --- 
+
+	int mMiddleScreenX = mI->Window->GetWidth () / 2;
+	int mMiddleScreenY = mI->Window->GetHeight() / 2;
+
+	float mPosXCamera0 = (float) mMiddleScreenX;
+	float mPosXCamera1 = (float) mMiddleScreenX;
+	float mPosXCamera2 = (float) mMiddleScreenX;
+
+	IND_Camera2d mCamera0	((int) mPosXCamera0, mMiddleScreenY);
+	IND_Camera2d mCamera1	((int) mPosXCamera1, mMiddleScreenY);
+	IND_Camera2d mCamera2	((int) mPosXCamera2, mMiddleScreenY);
+</source>
+At first we get coordinates of the screen center. We need them because initially our cameras will be pointing to this point. 
+
+And using the constructor of [http://www.indielib.com/documentation/group___camera2d.html IND_Camera2d] class we create new camera objects and set the position point of them.
+
+=== What should be done every frame? ===
+
+Now, when we have entities loaded and cameras pointed to some point, we are ready to shift the cameras differently with the user input. That must be done every frame, so its written inside the main loop.
+<source lang="Cpp">
+	// Move cameras when pressing right key
+	if (mI->Input->IsKeyPressed (IND_KEYRIGHT))	
+	{
+		// Check limits
+		if (mPosXCamera2 < mSurfaceCaveFirstPlane.GetWidth() - mMiddleScreenX)
+		{
+			mPosXCamera0 += mSpeedLayer0 * mDelta;
+			mPosXCamera1 += mSpeedLayer1 * mDelta;
+			mPosXCamera2 += mSpeedLayer2 * mDelta;
+		}
+	}
+
+	// Move cameras when pressing left key
+	if (mI->Input->IsKeyPressed (IND_KEYLEFT))	
+	{
+		// Check limits
+		if (mPosXCamera2 > mMiddleScreenX)
+		{
+			mPosXCamera0 -= mSpeedLayer0 * mDelta;
+			mPosXCamera1 -= mSpeedLayer1 * mDelta;
+			mPosXCamera2 -= mSpeedLayer2 * mDelta;
+		}
+	}
+
+	// ----- Updating cameras-----
+
+	mCamera0.SetPosition ((int) mPosXCamera0, mMiddleScreenY);
+	mCamera1.SetPosition ((int) mPosXCamera1, mMiddleScreenY);
+	mCamera2.SetPosition ((int) mPosXCamera2, mMiddleScreenY);
+</source>
+After positioning the cameras the final picture must be rendered due to theirs placement:
+<source lang="Cpp">
+	// ----- Render  -----
+
+	mI->Render->ClearViewPort(60, 60, 60);
+	mI->Render->BeginScene ();
+
+	// Render sky (Layer 0)
+	mI->Render->SetCamera2d (&mCamera0);
+	mI->Entity2dManager->RenderEntities2d (0);
+
+	// Render cave (Layer 1)
+	mI->Render->SetCamera2d (&mCamera1);
+	mI->Entity2dManager->RenderEntities2d (1);
+
+	// Render the first plane cave (Layer 2)
+	mI->Render->SetCamera2d (&mCamera2);
+	mI->Entity2dManager->RenderEntities2d (2);
+</source>
+We [http://www.indielib.com/documentation/class_i_n_d___render.html#d954af2322b61d0f4c59c899b0125ff8 set each camera] for each layer and do [http://www.indielib.com/documentation/class_i_n_d___entity2d_manager.html#ee160f7eaeaa40bea06921ba97f02f09 rendering of entities of that layer]. In this tutorial we only have one entity in each layer but that's only in consideration of simplicity. In real projects the number of entities in one layer can be wast, providing very nice looking picture.
+
+== Conclusion. ==
+Parallax scrolling is really a good thing for a scrollable game especially for such old-school types like shumps and platformers. Also this technique can be used not only to simulate the look and feel of the real world, but also it new interesting types of visual output can be achieved. This can be achieved by using different speed values and(or) adding some transformations and transitions to the layers. And it is pretty cheap and can be made reasonably fast, so make sure to try it, maybe, it'll suits in your plans very well.
+
+Cheers and good gamedeving! (:
+
+{{Category_Tutorials|cat=Basic Tutorials}}
+

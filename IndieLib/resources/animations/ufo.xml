@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation>
+	<!-- frames declaration -->
+	<frames>	
+		<!-- Ufo -->
+		<frame name="ufo0" file="../../resources/animations/ufo/renders_ovni0000.png" />
+		<frame name="ufo1" file="../../resources/animations/ufo/renders_ovni0001.png" />
+		<frame name="ufo2" file="../../resources/animations/ufo/renders_ovni0002.png" />
+		<frame name="ufo3" file="../../resources/animations/ufo/renders_ovni0003.png" />
+		<frame name="ufo4" file="../../resources/animations/ufo/renders_ovni0004.png" />
+		<frame name="ufo5" file="../../resources/animations/ufo/renders_ovni0005.png" />
+		<frame name="ufo6" file="../../resources/animations/ufo/renders_ovni0006.png" />
+		<frame name="ufo7" file="../../resources/animations/ufo/renders_ovni0007.png" />
+		<frame name="ufo8" file="../../resources/animations/ufo/renders_ovni0008.png" />
+		<frame name="ufo9" file="../../resources/animations/ufo/renders_ovni0009.png" />
+		<frame name="ufo10" file="../../resources/animations/ufo/renders_ovni0010.png" />
+		<frame name="ufo11" file="../../resources/animations/ufo/renders_ovni0011.png" />
+		<frame name="ufo12" file="../../resources/animations/ufo/renders_ovni0012.png" />
+		<frame name="ufo13" file="../../resources/animations/ufo/renders_ovni0013.png" />
+		<frame name="ufo14" file="../../resources/animations/ufo/renders_ovni0014.png" />
+		<frame name="ufo15" file="../../resources/animations/ufo/renders_ovni0015.png" />
+		<frame name="ufo16" file="../../resources/animations/ufo/renders_ovni0016.png" />
+	</frames>
+		
+	<!-- sequences declaration -->
+	<sequences>
+		<!-- Ufo -->
+		<sequence name="ufo">
+			<frame name="ufo0" time="50" />
+			<frame name="ufo1" time="50" />
+			<frame name="ufo2" time="50" />
+			<frame name="ufo3" time="50" />
+			<frame name="ufo4" time="50" />
+			<frame name="ufo5" time="50" />
+			<frame name="ufo6" time="50" />
+			<frame name="ufo7" time="50" />
+			<frame name="ufo8" time="50" />
+			<frame name="ufo9" time="50" />
+			<frame name="ufo10" time="50" />
+			<frame name="ufo11" time="50" />
+			<frame name="ufo12" time="50" />
+			<frame name="ufo13" time="50" />
+			<frame name="ufo14" time="50" />
+			<frame name="ufo15" time="50" />
+			<frame name="ufo16" time="50" />
+		</sequence>			
+	</sequences>
+</animation>

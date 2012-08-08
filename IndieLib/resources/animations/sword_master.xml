@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation>
+	<!-- frames declaration -->
+	<frames>	
+		<!-- Sword Master 1 -->
+		<frame name="sword1" file="../../resources/animations/sword_master/sword_master01.png" collision="../../resources/animations/sword_master/sword_master01_collisions.xml" />
+		<frame name="sword2" file="../../resources/animations/sword_master/sword_master02.png" collision="../../resources/animations/sword_master/sword_master02_collisions.xml" />
+		<frame name="sword3" file="../../resources/animations/sword_master/sword_master03.png" collision="../../resources/animations/sword_master/sword_master03_collisions.xml" />
+		<frame name="sword4" file="../../resources/animations/sword_master/sword_master04.png" collision="../../resources/animations/sword_master/sword_master04_collisions.xml" />
+		<frame name="sword5" file="../../resources/animations/sword_master/sword_master05.png" collision="../../resources/animations/sword_master/sword_master05_collisions.xml" />
+		<frame name="sword6" file="../../resources/animations/sword_master/sword_master06.png" collision="../../resources/animations/sword_master/sword_master06_collisions.xml" />
+		<frame name="sword7" file="../../resources/animations/sword_master/sword_master07.png" collision="../../resources/animations/sword_master/sword_master07_collisions.xml" />	
+	</frames>
+		
+	<!-- sequences declaration -->
+	<sequences>
+		<!-- character 1 -->
+		<sequence name="sword_attack">
+			<frame name="sword1" time="1000" />
+			<frame name="sword2" time="1000" />
+			<frame name="sword3" time="1000" />
+			<frame name="sword4" time="1000" />
+			<frame name="sword5" time="1000" />
+			<frame name="sword6" time="1000" />
+			<frame name="sword7" time="3000" />
+		</sequence>			
+	</sequences>
+</animation>

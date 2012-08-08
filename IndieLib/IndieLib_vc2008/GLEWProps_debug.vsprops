@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="GLEWProps_Debug"
+	>
+	<Tool
+		Name="VCLinkerTool"
+		AdditionalDependencies="glew32d.lib"
+		AdditionalLibraryDirectories="&quot;..\Common\Dependencies\glew-1.7.0\lib\Win&quot;"
+	/>
+</VisualStudioPropertySheet>

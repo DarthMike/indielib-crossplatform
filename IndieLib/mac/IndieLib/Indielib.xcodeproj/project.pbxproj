@@ -713,9 +713,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/../../common",
-					"$(SRCROOT)/../../defines",
-					"$(SRCROOT)/../../common/src",
+					"\"$(SRCROOT)/../../common\"",
+					"\"$(SRCROOT)/../../common/src\"",
 				);
 				INCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
@@ -743,9 +742,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/../../common",
-					"$(SRCROOT)/../../defines",
-					"$(SRCROOT)/../../common/src",
+					"\"$(SRCROOT)/../../common\"",
+					"\"$(SRCROOT)/../../common/src\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = "";

@@ -603,7 +603,7 @@
 		4C76AB72153B5A2800A80F99 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0440;
 			};
 			buildConfigurationList = 4C76AB75153B5A2800A80F99 /* Build configuration list for PBXProject "Indielib" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -757,6 +757,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_PREFIX = lib;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -783,6 +784,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_PREFIX = lib;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

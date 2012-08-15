@@ -67,7 +67,7 @@ bool IND_Math::init() {
     mach_port_deallocate(mach_task_self(), cclock);
     tp.tv_sec = mts.tv_sec;
     tp.tv_nsec = mts.tv_nsec;
-    srand(tp.tv_nsec);
+    srand(static_cast<unsigned>(tp.tv_nsec));
 #endif
     
 #ifdef PLATFORM_WIN32	 
@@ -102,7 +102,7 @@ void IND_Math::end() {
  * Sets the seed for random numbers
  */
 void IND_Math::randSeed(long pNum) {
-	srand(pNum);
+	srand(static_cast<unsigned>(pNum));
 }
 
 

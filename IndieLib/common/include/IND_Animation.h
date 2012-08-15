@@ -113,7 +113,7 @@ public:
 		return _animation._sumSequences;
 	}
 	//! This function returns the total number of animation frames.
-	int                     getNumTotalFrames()              {
+	unsigned long getNumTotalFrames()              {
 		return _vectorFrames->size();
 	}
 	//! This function returns the pointer to the object ::IND_Image that contains the frame received or NULL in case that the object has not been loaded.

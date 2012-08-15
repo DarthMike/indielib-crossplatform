@@ -702,7 +702,9 @@ void Listener::ListenBackDropBrush()
 	// -------------------- Switch between brush backdrop images (previous) --------------------
 
 	// Switch between brush backdrop images (previous)
-	if (mI->_input->onMouseButtonPress (IND_MBUTTON_WHEELDOWN )) 
+
+	bool scrolled = mI->_input->isMouseScroll();
+	if (scrolled && mI->_input->getMouseScrollY() > 0.0f) 
 	{
 		// Hide current backdrop, we are going to change to another one
 		mBackDropBrushes [mCurrentBackDropBrush].mEntity.setShow (false);
@@ -716,7 +718,7 @@ void Listener::ListenBackDropBrush()
 	}
 
 	// Switch between brush backdrop images (next)
-	if (mI->_input->onMouseButtonPress (IND_MBUTTON_WHEELUP )) 
+	if (scrolled && mI->_input->getMouseScrollY() < 0.0f) 
 	{
 		// Hide current backdrop, we are going to change to another one
 		mBackDropBrushes [mCurrentBackDropBrush].mEntity.setShow (false);

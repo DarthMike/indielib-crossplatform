@@ -715,6 +715,7 @@
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../../common\"",
 					"\"$(SRCROOT)/../../common/src\"",
+					"\"/usr/X11/include\"",
 				);
 				INCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
@@ -722,6 +723,7 @@
 				OTHER_LDFLAGS = "";
 				OTHER_TEST_FLAGS = "";
 				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../common\" \"$(SRCROOT)/../../common/src\"";
 			};
 			name = Debug;
 		};
@@ -744,18 +746,19 @@
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../../common\"",
 					"\"$(SRCROOT)/../../common/src\"",
+					"\"/usr/X11/include\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = "";
 				OTHER_TEST_FLAGS = "";
 				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../common\" \"$(SRCROOT)/../../common/src\"";
 			};
 			name = Release;
 		};
 		E72B9F44158CBEF70003C431 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_PREFIX = lib;
@@ -782,7 +785,6 @@
 		E72B9F45158CBEF70003C431 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_PREFIX = lib;

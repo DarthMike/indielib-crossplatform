@@ -30,19 +30,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		E70712B315A09C4800BF34D9 /* PBXContainerItemProxy */ = {
+		E72ECC2215DBB00200250CEE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E70712AF15A09C4700BF34D9 /* UnitTests.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = E707125315A099AA00BF34D9;
-			remoteInfo = UnitTests;
-		};
-		E70712BC15A09E4E00BF34D9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E70712AF15A09C4700BF34D9 /* UnitTests.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = E707125215A099AA00BF34D9;
-			remoteInfo = UnitTests;
+			remoteGlobalIDString = E70712C515A0A21000BF34D9;
+			remoteInfo = UnitTestsApp;
 		};
 		E75EB2B0159CAFEA00693F41 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -122,7 +115,7 @@
 		E70712B015A09C4700BF34D9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E70712B415A09C4800BF34D9 /* UnitTests */,
+				E72ECC2315DBB00200250CEE /* UnitTestsApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -303,7 +296,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				E70712BD15A09E4E00BF34D9 /* PBXTargetDependency */,
 				E75EB2B3159CAFF500693F41 /* PBXTargetDependency */,
 			);
 			name = IndielibTests;
@@ -347,11 +339,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		E70712B415A09C4800BF34D9 /* UnitTests */ = {
+		E72ECC2315DBB00200250CEE /* UnitTestsApp.app */ = {
 			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
-			path = UnitTests;
-			remoteRef = E70712B315A09C4800BF34D9 /* PBXContainerItemProxy */;
+			fileType = wrapper.application;
+			path = UnitTestsApp.app;
+			remoteRef = E72ECC2215DBB00200250CEE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */ = {
@@ -402,11 +394,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		E70712BD15A09E4E00BF34D9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = UnitTests;
-			targetProxy = E70712BC15A09E4E00BF34D9 /* PBXContainerItemProxy */;
-		};
 		E75EB2B3159CAFF500693F41 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Indielib;

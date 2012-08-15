@@ -425,9 +425,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/../../common/include",
-					"$(SRCROOT)/../../tests",
-					"$(SRCROOT)/../../common",
+					"\"$(SRCROOT)/../../common/include\"",
+					"\"$(SRCROOT)/../../tests\"",
+					"\"$(SRCROOT)/../../common\"",
 				);
 			};
 			name = Debug;
@@ -436,9 +436,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/../../common/include",
-					"$(SRCROOT)/../../tests",
-					"$(SRCROOT)/../../common",
+					"\"$(SRCROOT)/../../common/include\"",
+					"\"$(SRCROOT)/../../tests\"",
+					"\"$(SRCROOT)/../../common\"",
 				);
 			};
 			name = Release;

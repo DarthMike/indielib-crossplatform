@@ -782,6 +782,14 @@
 			>
 		</File>
 		<File
+			RelativePath="..\LICENSE"
+			>
+		</File>
+		<File
+			RelativePath="..\README"
+			>
+		</File>
+		<File
 			RelativePath="..\TODO"
 			>
 		</File>

@@ -488,10 +488,10 @@ Return "" if the file hasn't got an extension
 ==================
 */
 void IND_ImageManager::getExtensionFromName(char *pName, char* pExtImage) {
-	
-	int i;
+	int length = static_cast<int>(strlen(pName));
+    int i;
 	// The search starts at the end of the name
-	for (i = strlen(pName); i > -1; i--)
+	for (i = length; i > -1; i--)
 		if (pName [i] == '.') 
 			break;
 

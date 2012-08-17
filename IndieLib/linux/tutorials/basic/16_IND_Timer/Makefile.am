@@ -4,4 +4,4 @@ AM_CXXFLAGS = $(INTI_CFLAGS) -I @top_srcdir@/../common/include -I @top_srcdir@/.
 
 tutorial16_SOURCES = ../../../../tutorials/basic/16_IND_Timer/CIndieLib_vc2008.cpp ../../../../tutorials/basic/16_IND_Timer/Tutorial16.cpp
 
-tutorial16_LDADD = -L@top_srcdir@/.libs $(INTI_LIBS) -lIndieLib -lSDL -lGLEW -lGLU -lGL -lILU -lILUT
+tutorial16_LDADD = -L@top_srcdir@/.libs $(INTI_LIBS) -lIndieLib -lSDL2 -lGLEW -lGLU -lGL

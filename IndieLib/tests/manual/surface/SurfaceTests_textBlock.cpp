@@ -81,11 +81,6 @@ void SurfaceTests_textBlock::setActive(bool active){
 			iLib->_entity2dManager->add(_entities[i]);
 		}
 
-	    // ----- Changing the attributes of the 2d entities -----
-		//Repeat texture for whole screen
-	    _entities[0]->toggleWrap(1);
-		_entities[0]->setRegion(0, 0, 800, 600);
-
     } else { //Inactive
         //Release all variables from indieLib before exiting
 		for (int i = 0; i < _testedEntities; ++i) {

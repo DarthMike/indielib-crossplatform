@@ -49,9 +49,14 @@ void SurfaceTests_textBlock::performTests(float dt) {
 	int mHeightBlock = _surfaces[0]->getHeightBlock();
 
 	float mT = dt / 1000.f;
-	for (int i = 1; i < mNumBlocksX; i++)
-		for (int j = 1; j < mNumBlocksY; j++)
-				_surfaces[0]->setVertexPos (j, i, (int) ((j * mHeightBlock + cosf (mT * 10 + (i + j) / 2) * 5)), (int) ((i * mWidthBlock	+ sinf (mT * 10 + (i + j) / 2) * 5)));
+	for (int i = 1; i < mNumBlocksX; i++) {
+		for (int j = 1; j < mNumBlocksY; j++) {
+            int newPosX = static_cast<int>((j * mHeightBlock + cosf (mT * 10 + (i + j) / 2) * 5));
+            int newPosY = static_cast<int>((i * mWidthBlock	+ sinf (mT * 10 + (i + j) / 2) * 5));
+            _surfaces[0]->setVertexPos (j, i, newPosX, newPosY);
+        }
+    }
+
 	//Toggling of entity border lines in entities
 	if(iLib->_input->onKeyPress(IND_F1) && _active) {
 		for (int i = 0; i < _testedEntities; ++i) {

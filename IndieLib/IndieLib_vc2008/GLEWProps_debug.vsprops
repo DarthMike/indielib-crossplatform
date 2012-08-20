@@ -7,6 +7,6 @@
 	<Tool
 		Name="VCLinkerTool"
 		AdditionalDependencies="glew32d.lib"
-		AdditionalLibraryDirectories="&quot;..\Common\Dependencies\glew-1.7.0\lib\Win&quot;"
+		AdditionalLibraryDirectories="&quot;..\Common\Dependencies\glew-1.9.0\lib\Win&quot;"
 	/>
 </VisualStudioPropertySheet>

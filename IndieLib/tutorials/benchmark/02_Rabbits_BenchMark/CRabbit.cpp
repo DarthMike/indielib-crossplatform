@@ -47,9 +47,9 @@ void CRabbit::init(IND_Surface *pSurfaceRabbit, int pZ)
 
 	// Set a random tint color to some of the rabbits
 	if (mI->_math->randnum(0, 5) != 5)
-		mRabbit->setTint((byte) mI->_math->randnum(128, 255),
-				 (byte) mI->_math->randnum(128, 255),
-				 (byte) mI->_math->randnum(128, 255));
+		mRabbit->setTint((BYTE) mI->_math->randnum(128, 255),
+				 (BYTE) mI->_math->randnum(128, 255),
+				 (BYTE) mI->_math->randnum(128, 255));
 
 	// Hot spot in the middle of the rabbit
 	mRabbit->setHotSpot(0.5f, 0.5f);

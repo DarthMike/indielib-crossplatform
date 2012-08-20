@@ -41,6 +41,10 @@ IND_Entity2d::IND_Entity2d() {
 
 IND_Entity2d::~IND_Entity2d() {
 	DISPOSE(_listBoundingCollision);
+
+	if (_text) {
+		free (_text);
+	}
 }
 
 
@@ -282,11 +286,19 @@ void IND_Entity2d::setLineSpacing(int pLineSpacing) {
  * Default: "" (Empty String).
  * @param pText					Text to draw in the screen.
  */
-void IND_Entity2d::setText(char *pText) {
-	if (!pText) {
-		return;
+void IND_Entity2d::setText(const char *pText) {
+	if (pText) {
+		if (_text) {
+			free (_text);
+			_text = NULL;
+		}
+
+		size_t textSize = strlen(pText);
+		//Reallocate text on heap memory. Characters in string +1 (line ending)
+		_text = static_cast<char*>(malloc((textSize+1) * sizeof(char)));
+		//Cooy string contents
+		strcpy(_text,pText);
 	}
-	_text   = pText;
 }
 
 /**
@@ -890,7 +902,10 @@ void IND_Entity2d::initAttrib() {
 	_align = IND_RIGHT;
 	_charSpacing = 0;
 	_lineSpacing = 20;
-	_text = (char*)"";
+
+	_text = NULL;
+	char* defText = "";
+	setText(defText);
 
 	// Collision attributes
 	_showCollisionAreas = 1;

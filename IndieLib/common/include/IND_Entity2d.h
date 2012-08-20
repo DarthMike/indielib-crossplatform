@@ -119,7 +119,7 @@ public:
 	void    setAlign(IND_Align pAlign);
 	void    setCharSpacing(int pCharSpacing);
 	void    setLineSpacing(int pLineSpacing);
-	void    setText(char *pText);
+	void    setText(const char *pText);
 	//@}
 
 

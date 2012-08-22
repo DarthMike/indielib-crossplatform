@@ -84,11 +84,15 @@ void DirectXRender::blitSurface(IND_Surface *pSu) {
 		if (CullFrustumBox(mP1_f3, mP2_f3)) {
 			_info.mDevice->SetFVF(D3DFVF_CUSTOMVERTEX2D);
 
-			if (!pSu->isHaveGrid())
+			if (!pSu->isHaveGrid()) {
+				//Texture ID - If it doesn't have a grid, every other block must be blit by 
+				//a different texture in texture array ID. 
                 _info.mDevice->SetTexture(0, pSu->_surface->_texturesArray[i]._texture);
-			else
+			} else {
+				//In a case of rendering a grid. Same texture (but different vertex position)
+				//is rendered all the time. In other words, different pieces of same texture are rendered
 				_info.mDevice->SetTexture(0, pSu->_surface->_texturesArray[0]._texture);
-
+			}
 
 			_info.mDevice->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, pSu->_surface->_vertexArray + mCont, sizeof(CUSTOMVERTEX2D));
 

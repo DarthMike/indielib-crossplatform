@@ -74,7 +74,16 @@ void OpenGLRender::blitSurface(IND_Surface *pSu) {
         //Surface drawing
 	    glEnableClientState(GL_VERTEX_ARRAY);
 	    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-		glBindTexture(GL_TEXTURE_2D,pSu->_surface->_texturesArray[i]);
+		
+		if (!pSu->isHaveGrid()) {
+			//Texture ID - If it doesn't have a grid, every other block must be blit by 
+			//a different texture in texture array ID. 
+			glBindTexture(GL_TEXTURE_2D,pSu->_surface->_texturesArray[i]);
+		} else {
+			//In a case of rendering a grid. Same texture (but different vertex position)
+			//is rendered all the time. In other words, different pieces of same texture are rendered
+			glBindTexture(GL_TEXTURE_2D,pSu->_surface->_texturesArray[0]);
+		}
 	    glVertexPointer(3, GL_FLOAT, sizeof(CUSTOMVERTEX2D), &pSu->_surface->_vertexArray[mCont]._x);
 	    glTexCoordPointer(2, GL_FLOAT, sizeof(CUSTOMVERTEX2D), &pSu->_surface->_vertexArray[mCont]._u);
 	    glDrawArrays(GL_TRIANGLE_STRIP, 0,4);	

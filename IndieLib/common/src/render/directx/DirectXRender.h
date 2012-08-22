@@ -317,14 +317,7 @@ public:
 	// ----- Rendering steps -----
 	void calculeFrustumPlanes();
 
-	// ----- Collisions -----
-	void blitCollisionCircle(int pPosX, int pPosY, int pRadius, float pScale, BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pWorldMatrix);
-	void blitCollisionLine(int pPosX1, int pPosY1, int pPosX2, int pPosY2,  BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pIndWorldMatrix);
-
-	bool   isTriangleToTriangleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1, BOUNDING_COLLISION *pB2, IND_Matrix pMat2);
-	bool   isCircleToCircleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1, float pScale1, BOUNDING_COLLISION *pB2, IND_Matrix pMat2, float pScale2);
-	bool   isCircleToTriangleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1, float pScale1, BOUNDING_COLLISION *pB2, IND_Matrix pMat2);
-	// ----- Atributos -----
+	// ----- Atributtes -----
 
 	//This function returns the x position of the actual viewport
 	int getViewPortX()      {
@@ -531,9 +524,15 @@ private:
 	                  int pDx, int pDy,
 	                  BYTE pR, BYTE pG, BYTE pB, BYTE pA,
 	                  D3DXMATRIX pWorldMatrix);
-
+	
 	// ----- Collisions  -----
+	void blitCollisionCircle(int pPosX, int pPosY, int pRadius, float pScale, BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pWorldMatrix);
+	void blitCollisionLine(int pPosX1, int pPosY1, int pPosX2, int pPosY2,  BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pIndWorldMatrix);
 
+	bool   isTriangleToTriangleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1, BOUNDING_COLLISION *pB2, IND_Matrix pMat2);
+	bool   isCircleToCircleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1, float pScale1, BOUNDING_COLLISION *pB2, IND_Matrix pMat2, float pScale2);
+	bool   isCircleToTriangleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1, float pScale1, BOUNDING_COLLISION *pB2, IND_Matrix pMat2);
+	
 	bool isTriangleToTriangleCollision(D3DXVECTOR2 pA1,
 	                                   D3DXVECTOR2 pB1,
 	                                   D3DXVECTOR2 pC1,
@@ -597,6 +596,7 @@ private:
 
 	// ----- Friends ------
 	friend class DirectXTextureBuilder;
+	friend class IND_Render;
 };
 
 #endif // _DIRECTXRENDER_H_

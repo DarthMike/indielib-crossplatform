@@ -573,6 +573,97 @@ bool OpenGLRender::blitRegularPoly(int pX,
 }
 /*@}*/
 
+// --------------------------------------------------------------------------------
+//							         Private methods
+// --------------------------------------------------------------------------------
+void OpenGLRender::fillPixel(PIXEL *pPixel,
+                             float pX,
+                             float pY,
+                             float pR,
+                             float pG,
+                             float pB,
+                             float pA) {
+	// Pixel
+	pPixel->_x      =  pX;
+	pPixel->_y      =  pY;
+	pPixel->_z      = 0.0f;
+	pPixel->_colorR = pR;
+	pPixel->_colorG = pG;
+	pPixel->_colorB = pB;
+	pPixel->_colorA = pA;
+}
+
+
+void OpenGLRender::setForPrimitive(BYTE pA, bool pResetTransform) {
+	// Transformation reset
+	if (pResetTransform) {
+		setTransform2d(0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0);
+	}
+
+	//IF - Totally opaque
+	if (pA == 255) {
+		setRainbow2d(IND_OPAQUE, 1, 0, 0, IND_FILTER_POINT, 255, 255, 255, pA, 0, 0, 0, 255, 0, 0);
+	} else { // ELSE - Some transparency
+		setRainbow2d(IND_ALPHA, 1, 0, 0, IND_FILTER_POINT, 255, 255, 255, pA, 0, 0, 0, 255, 0, 0);
+	}
+}
+
+/*
+==================
+Blits a bounding line
+==================
+*/
+ void OpenGLRender::BlitGridLine (int pPosX1, int pPosY1, int pPosX2, int pPosY2,  BYTE pR, BYTE pG, BYTE pB, BYTE pA)
+{	
+	float r(static_cast<float>(pR) / 255.0f), g(static_cast<float>(pG) / 255.0f), b(static_cast<float>(pB) / 255.0f), a(static_cast<float>(pA) / 255.0f);
+	// Filling pixels
+    fillPixel (&_pixels[0], pPosX1, pPosY1, r, g, b, a);
+    fillPixel (&_pixels[1], pPosX2, pPosY2, r, g, b, a);
+
+	//Render primitive - No textures
+	glDisable(GL_TEXTURE_2D);
+	// Color settings
+    setRainbow2d (IND_OPAQUE, 1, 0, 0, IND_FILTER_POINT, pR, pG, pB, pA, 0, 0, 0, 255, 0, 0);
+
+	//Blitting
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_COLOR_ARRAY);
+
+	//Polygon blitting
+	glVertexPointer(3, GL_FLOAT, sizeof(PIXEL), &_pixels[0]._x);
+	glColorPointer(4, GL_FLOAT, sizeof(PIXEL), &_pixels[0]._colorR);
+	glDrawArrays(GL_LINE_STRIP, 0, 2);
+
+#ifdef _DEBUG
+    GLenum glerror = glGetError();
+	if (glerror) {
+		g_debug->header("OpenGL error in grid line blitting ", 2);
+	}
+#endif
+	glDisableClientState(GL_VERTEX_ARRAY);
+	glDisableClientState(GL_COLOR_ARRAY);	
+
+	//NOTE: Not called mvTransformResetState(); as it is done in BlitGrid public API method
+}
+
+/*
+==================
+Blits quad of the grid of an IND_Surface
+==================
+*/
+void OpenGLRender::BlitGridQuad    (int pAx, int pAy,
+                                   int pBx, int pBy,
+                                   int pCx, int pCy,
+                                   int pDx, int pDy,
+                                   BYTE pR, BYTE pG, BYTE pB, BYTE pA)
+{
+	BlitGridLine (pAx, pAy, pBx, pBy, pR, pG, pB, pA);
+	BlitGridLine (pBx, pBy, pDx, pDy, pR, pG, pB, pA);
+	BlitGridLine (pDx, pDy, pCx, pCy, pR, pG, pB, pA);
+	BlitGridLine (pCx, pCy, pAx, pAy, pR, pG, pB, pA);
+
+	//NOTE: Not called mvTransformResetState(); as it is done in BlitGrid public API method
+}
 
 /*
 ==================
@@ -642,104 +733,5 @@ void OpenGLRender::blitCollisionLine(int pPosX1, int pPosY1, int pPosX2, int pPo
 
 	//mvTransformResetState();  //needed not to modify next rendering call transforms! (mvTransformPresetState()) is called inside the transform setting methods
 }
-
-
-/*
-==================
-Blits a bounding line
-==================
-*/
- void OpenGLRender::BlitGridLine (int pPosX1, int pPosY1, int pPosX2, int pPosY2,  BYTE pR, BYTE pG, BYTE pB, BYTE pA)
-{	
-	float r(static_cast<float>(pR) / 255.0f), g(static_cast<float>(pG) / 255.0f), b(static_cast<float>(pB) / 255.0f), a(static_cast<float>(pA) / 255.0f);
-	// Filling pixels
-    fillPixel (&_pixels[0], pPosX1, pPosY1, r, g, b, a);
-    fillPixel (&_pixels[1], pPosX2, pPosY2, r, g, b, a);
-
-	//Render primitive - No textures
-	glDisable(GL_TEXTURE_2D);
-	// Color settings
-    setRainbow2d (IND_OPAQUE, 1, 0, 0, IND_FILTER_POINT, pR, pG, pB, pA, 0, 0, 0, 255, 0, 0);
-
-	//Blitting
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
-
-	//Polygon blitting
-	glVertexPointer(3, GL_FLOAT, sizeof(PIXEL), &_pixels[0]._x);
-	glColorPointer(4, GL_FLOAT, sizeof(PIXEL), &_pixels[0]._colorR);
-	glDrawArrays(GL_LINE_STRIP, 0, 2);
-
-#ifdef _DEBUG
-    GLenum glerror = glGetError();
-	if (glerror) {
-		g_debug->header("OpenGL error in grid line blitting ", 2);
-	}
-#endif
-	glDisableClientState(GL_VERTEX_ARRAY);
-	glDisableClientState(GL_COLOR_ARRAY);	
-
-	//NOTE: Not called mvTransformResetState(); as it is done in BlitGrid public API method
-}
-
-/*
-==================
-Blits quad of the grid of an IND_Surface
-==================
-*/
-void OpenGLRender::BlitGridQuad    (int pAx, int pAy,
-                                   int pBx, int pBy,
-                                   int pCx, int pCy,
-                                   int pDx, int pDy,
-                                   BYTE pR, BYTE pG, BYTE pB, BYTE pA)
-{
-	BlitGridLine (pAx, pAy, pBx, pBy, pR, pG, pB, pA);
-	BlitGridLine (pBx, pBy, pDx, pDy, pR, pG, pB, pA);
-	BlitGridLine (pDx, pDy, pCx, pCy, pR, pG, pB, pA);
-	BlitGridLine (pCx, pCy, pAx, pAy, pR, pG, pB, pA);
-
-	//NOTE: Not called mvTransformResetState(); as it is done in BlitGrid public API method
-}
-
-
-
-// --------------------------------------------------------------------------------
-//							         Private methods
-// --------------------------------------------------------------------------------
-
-
-
-void OpenGLRender::fillPixel(PIXEL *pPixel,
-                             float pX,
-                             float pY,
-                             float pR,
-                             float pG,
-                             float pB,
-                             float pA) {
-	// Pixel
-	pPixel->_x      =  pX;
-	pPixel->_y      =  pY;
-	pPixel->_z      = 0.0f;
-	pPixel->_colorR = pR;
-	pPixel->_colorG = pG;
-	pPixel->_colorB = pB;
-	pPixel->_colorA = pA;
-}
-
-
-void OpenGLRender::setForPrimitive(BYTE pA, bool pResetTransform) {
-	// Transformation reset
-	if (pResetTransform) {
-		setTransform2d(0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0);
-	}
-
-	//IF - Totally opaque
-	if (pA == 255) {
-		setRainbow2d(IND_OPAQUE, 1, 0, 0, IND_FILTER_POINT, 255, 255, 255, pA, 0, 0, 0, 255, 0, 0);
-	} else { // ELSE - Some transparency
-		setRainbow2d(IND_ALPHA, 1, 0, 0, IND_FILTER_POINT, 255, 255, 255, pA, 0, 0, 0, 255, 0, 0);
-	}
-}
-
 
 #endif //INDIERENDER_OPENGL

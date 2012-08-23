@@ -1,0 +1,404 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E72ECCA615E6B5FF00250CEE /* IndielibTutorials-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA415E6B5FF00250CEE /* IndielibTutorials-Info.plist */; };
+		E72ECCAD15E6B67800250CEE /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA915E6B67800250CEE /* Credits.rtf */; };
+		E72ECCAE15E6B67800250CEE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCAB15E6B67800250CEE /* InfoPlist.strings */; };
+		E72ECCC015E6BBC300250CEE /* CIndieLib_vc2008.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E72ECCBB15E6BBC300250CEE /* CIndieLib_vc2008.cpp */; };
+		E72ECCC115E6BBC300250CEE /* Tutorial01.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E72ECCBD15E6BBC300250CEE /* Tutorial01.cpp */; };
+		E75EB2B6159CB25100693F41 /* libIndielib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E7DBCB1D159C78F600C8B2D9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */; };
+		E7DBCB27159C78F600C8B2D9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E7DBCB25159C78F600C8B2D9 /* InfoPlist.strings */; };
+		E7DBCB2D159C78F600C8B2D9 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E7DBCB2B159C78F600C8B2D9 /* Credits.rtf */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E72ECC2215DBB00200250CEE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E70712AF15A09C4700BF34D9 /* UnitTests.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E70712C515A0A21000BF34D9;
+			remoteInfo = UnitTestsApp;
+		};
+		E75EB2B0159CAFEA00693F41 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E75EAB9A159CADF400693F41;
+			remoteInfo = Indielib;
+		};
+		E75EB2B2159CAFF500693F41 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E72B9F41158CBEF60003C431;
+			remoteInfo = Indielib;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E70712AF15A09C4700BF34D9 /* UnitTests.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = UnitTests.xcodeproj; path = ../UnitTests/UnitTests.xcodeproj; sourceTree = "<group>"; };
+		E72ECCA415E6B5FF00250CEE /* IndielibTutorials-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "IndielibTutorials-Info.plist"; path = "IndielibTutorials/IndielibTutorials-Info.plist"; sourceTree = SOURCE_ROOT; };
+		E72ECCA515E6B5FF00250CEE /* IndielibTutorials-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "IndielibTutorials-Prefix.pch"; path = "IndielibTutorials/IndielibTutorials-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		E72ECCAA15E6B67800250CEE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = IndielibTutorials/en.lproj/Credits.rtf; sourceTree = SOURCE_ROOT; };
+		E72ECCAC15E6B67800250CEE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = IndielibTutorials/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
+		E72ECCBB15E6BBC300250CEE /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
+		E72ECCBC15E6BBC300250CEE /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIndieLib_vc2008.h; sourceTree = "<group>"; };
+		E72ECCBD15E6BBC300250CEE /* Tutorial01.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial01.cpp; sourceTree = "<group>"; };
+		E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Indielib.xcodeproj; path = ../IndieLib/Indielib.xcodeproj; sourceTree = "<group>"; };
+		E7DBCB18159C78F600C8B2D9 /* Tutorial01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial01.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		E7DBCB1F159C78F600C8B2D9 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		E7DBCB20159C78F600C8B2D9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		E7DBCB21159C78F600C8B2D9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E7DBCB15159C78F600C8B2D9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E75EB2B6159CB25100693F41 /* libIndielib.dylib in Frameworks */,
+				E7DBCB1D159C78F600C8B2D9 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E70712B015A09C4700BF34D9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E72ECC2315DBB00200250CEE /* UnitTestsApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E72ECCB715E6BBC300250CEE /* 01_Installing */ = {
+			isa = PBXGroup;
+			children = (
+				E72ECCBB15E6BBC300250CEE /* CIndieLib_vc2008.cpp */,
+				E72ECCBC15E6BBC300250CEE /* CIndieLib_vc2008.h */,
+				E72ECCBD15E6BBC300250CEE /* Tutorial01.cpp */,
+			);
+			name = 01_Installing;
+			path = ../../tutorials/basic/01_Installing;
+			sourceTree = "<group>";
+		};
+		E75EB2AD159CAFEA00693F41 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E7DBCAAE159C432500C8B2D9 = {
+			isa = PBXGroup;
+			children = (
+				E70712AF15A09C4700BF34D9 /* UnitTests.xcodeproj */,
+				E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */,
+				E7DBCB22159C78F600C8B2D9 /* IndielibTutorials */,
+				E72ECCB715E6BBC300250CEE /* 01_Installing */,
+				E7DBCB1B159C78F600C8B2D9 /* Frameworks */,
+				E7DBCB19159C78F600C8B2D9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E7DBCB19159C78F600C8B2D9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E7DBCB18159C78F600C8B2D9 /* Tutorial01.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E7DBCB1B159C78F600C8B2D9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */,
+				E7DBCB1E159C78F600C8B2D9 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E7DBCB1E159C78F600C8B2D9 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E7DBCB1F159C78F600C8B2D9 /* AppKit.framework */,
+				E7DBCB20159C78F600C8B2D9 /* CoreData.framework */,
+				E7DBCB21159C78F600C8B2D9 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		E7DBCB22159C78F600C8B2D9 /* IndielibTutorials */ = {
+			isa = PBXGroup;
+			children = (
+				E7DBCB23159C78F600C8B2D9 /* Supporting Files */,
+			);
+			name = IndielibTutorials;
+			path = IndielibTests;
+			sourceTree = "<group>";
+		};
+		E7DBCB23159C78F600C8B2D9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E72ECCA415E6B5FF00250CEE /* IndielibTutorials-Info.plist */,
+				E72ECCA515E6B5FF00250CEE /* IndielibTutorials-Prefix.pch */,
+				E72ECCA915E6B67800250CEE /* Credits.rtf */,
+				E72ECCAB15E6B67800250CEE /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E7DBCB17159C78F600C8B2D9 /* Tutorial01 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E7DBCB36159C78F600C8B2D9 /* Build configuration list for PBXNativeTarget "Tutorial01" */;
+			buildPhases = (
+				E7DBCB14159C78F600C8B2D9 /* Sources */,
+				E7DBCB15159C78F600C8B2D9 /* Frameworks */,
+				E7DBCB16159C78F600C8B2D9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E75EB2B3159CAFF500693F41 /* PBXTargetDependency */,
+			);
+			name = Tutorial01;
+			productName = IndielibTests;
+			productReference = E7DBCB18159C78F600C8B2D9 /* Tutorial01.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E7DBCAB0159C432500C8B2D9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = E7DBCAB3159C432500C8B2D9 /* Build configuration list for PBXProject "IndielibTutorials" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E7DBCAAE159C432500C8B2D9;
+			productRefGroup = E7DBCB19159C78F600C8B2D9 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = E75EB2AD159CAFEA00693F41 /* Products */;
+					ProjectRef = E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */;
+				},
+				{
+					ProductGroup = E70712B015A09C4700BF34D9 /* Products */;
+					ProjectRef = E70712AF15A09C4700BF34D9 /* UnitTests.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				E7DBCB17159C78F600C8B2D9 /* Tutorial01 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		E72ECC2315DBB00200250CEE /* UnitTestsApp.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = UnitTestsApp.app;
+			remoteRef = E72ECC2215DBB00200250CEE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libIndielib.dylib;
+			remoteRef = E75EB2B0159CAFEA00693F41 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E7DBCB16159C78F600C8B2D9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E7DBCB27159C78F600C8B2D9 /* InfoPlist.strings in Resources */,
+				E7DBCB2D159C78F600C8B2D9 /* Credits.rtf in Resources */,
+				E72ECCA615E6B5FF00250CEE /* IndielibTutorials-Info.plist in Resources */,
+				E72ECCAD15E6B67800250CEE /* Credits.rtf in Resources */,
+				E72ECCAE15E6B67800250CEE /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E7DBCB14159C78F600C8B2D9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E72ECCC015E6BBC300250CEE /* CIndieLib_vc2008.cpp in Sources */,
+				E72ECCC115E6BBC300250CEE /* Tutorial01.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E75EB2B3159CAFF500693F41 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Indielib;
+			targetProxy = E75EB2B2159CAFF500693F41 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E72ECCA915E6B67800250CEE /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E72ECCAA15E6B67800250CEE /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		E72ECCAB15E6B67800250CEE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E72ECCAC15E6B67800250CEE /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		E7DBCB25159C78F600C8B2D9 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+			);
+			name = InfoPlist.strings;
+			path = "/Users/mquinones/Desktop/SOFTWARE DEV/PROJECTS/indielib-gitrepo/IndieLib/mac/Tutorials/IndielibTests";
+			sourceTree = "<absolute>";
+		};
+		E7DBCB2B159C78F600C8B2D9 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+			);
+			name = Credits.rtf;
+			path = "/Users/mquinones/Desktop/SOFTWARE DEV/PROJECTS/indielib-gitrepo/IndieLib/mac/Tutorials/IndielibTests";
+			sourceTree = "<absolute>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E7DBCAB5159C432500C8B2D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "IndielibTutorials/IndielibTutorials-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../common/include\"",
+					"\"$(SRCROOT)/../../tests\"",
+					"\"$(SRCROOT)/../../common\"",
+				);
+			};
+			name = Debug;
+		};
+		E7DBCAB6159C432500C8B2D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "IndielibTutorials/IndielibTutorials-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../common/include\"",
+					"\"$(SRCROOT)/../../tests\"",
+					"\"$(SRCROOT)/../../common\"",
+				);
+			};
+			name = Release;
+		};
+		E7DBCB34159C78F600C8B2D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_PREFIX_HEADER = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INFOPLIST_FILE = "IndielibTutorials/IndielibTutorials-Info.plist";
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E7DBCB35159C78F600C8B2D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_PREFIX_HEADER = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INFOPLIST_FILE = "IndielibTutorials/IndielibTutorials-Info.plist";
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E7DBCAB3159C432500C8B2D9 /* Build configuration list for PBXProject "IndielibTutorials" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E7DBCAB5159C432500C8B2D9 /* Debug */,
+				E7DBCAB6159C432500C8B2D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E7DBCB36159C78F600C8B2D9 /* Build configuration list for PBXNativeTarget "Tutorial01" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E7DBCB34159C78F600C8B2D9 /* Debug */,
+				E7DBCB35159C78F600C8B2D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E7DBCAB0159C432500C8B2D9 /* Project object */;
+}

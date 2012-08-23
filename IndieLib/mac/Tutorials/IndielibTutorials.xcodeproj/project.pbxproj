@@ -36,6 +36,14 @@
 		E73EAF5F15E6C9DA00B95FE4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCAB15E6B67800250CEE /* InfoPlist.strings */; };
 		E73EAF6A15E6CA2C00B95FE4 /* CIndieLib_vc2008.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E73EAF6715E6CA2C00B95FE4 /* CIndieLib_vc2008.cpp */; };
 		E73EAF6B15E6CA2C00B95FE4 /* Tutorial04.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E73EAF6915E6CA2C00B95FE4 /* Tutorial04.cpp */; };
+		E73EAF7015E6CB3900B95FE4 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E73EAF3415E6C5F800B95FE4 /* WorkingPath.cpp */; };
+		E73EAF7415E6CB3900B95FE4 /* libIndielib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E73EAF7515E6CB3900B95FE4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */; };
+		E73EAF7715E6CB3900B95FE4 /* IndielibTutorials-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA415E6B5FF00250CEE /* IndielibTutorials-Info.plist */; };
+		E73EAF7815E6CB3900B95FE4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA915E6B67800250CEE /* Credits.rtf */; };
+		E73EAF7915E6CB3900B95FE4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCAB15E6B67800250CEE /* InfoPlist.strings */; };
+		E73EAF8415E6CC2700B95FE4 /* CIndieLib_vc2008.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E73EAF8115E6CC2700B95FE4 /* CIndieLib_vc2008.cpp */; };
+		E73EAF8515E6CC2700B95FE4 /* Tutorial05.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E73EAF8315E6CC2700B95FE4 /* Tutorial05.cpp */; };
 		E75EB2B6159CB25100693F41 /* libIndielib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
 		E7DBCB1D159C78F600C8B2D9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -63,6 +71,13 @@
 			remoteInfo = Indielib;
 		};
 		E73EAF5415E6C9DA00B95FE4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E72B9F41158CBEF60003C431;
+			remoteInfo = Indielib;
+		};
+		E73EAF6E15E6CB3900B95FE4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */;
 			proxyType = 1;
@@ -110,6 +125,11 @@
 		E73EAF6715E6CA2C00B95FE4 /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
 		E73EAF6815E6CA2C00B95FE4 /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIndieLib_vc2008.h; sourceTree = "<group>"; };
 		E73EAF6915E6CA2C00B95FE4 /* Tutorial04.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial04.cpp; sourceTree = "<group>"; };
+		E73EAF7D15E6CB3900B95FE4 /* Tutorial05.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial05.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E73EAF7F15E6CB3900B95FE4 /* Tutorial04 copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Tutorial04 copy-Info.plist"; path = "/Users/mquinones/Desktop/SOFTWARE DEV/PROJECTS/indielib-gitrepo/IndieLib/mac/Tutorials/Tutorial04 copy-Info.plist"; sourceTree = "<absolute>"; };
+		E73EAF8115E6CC2700B95FE4 /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
+		E73EAF8215E6CC2700B95FE4 /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIndieLib_vc2008.h; sourceTree = "<group>"; };
+		E73EAF8315E6CC2700B95FE4 /* Tutorial05.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial05.cpp; sourceTree = "<group>"; };
 		E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Indielib.xcodeproj; path = ../IndieLib/Indielib.xcodeproj; sourceTree = "<group>"; };
 		E7DBCB18159C78F600C8B2D9 /* Tutorial01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial01.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -143,6 +163,15 @@
 			files = (
 				E73EAF5A15E6C9DA00B95FE4 /* libIndielib.dylib in Frameworks */,
 				E73EAF5B15E6C9DA00B95FE4 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73EAF7315E6CB3900B95FE4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73EAF7415E6CB3900B95FE4 /* libIndielib.dylib in Frameworks */,
+				E73EAF7515E6CB3900B95FE4 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,6 +239,17 @@
 			path = ../../tutorials/basic/04_IND_Animation;
 			sourceTree = "<group>";
 		};
+		E73EAF8015E6CC2700B95FE4 /* 05_IND_Font */ = {
+			isa = PBXGroup;
+			children = (
+				E73EAF8115E6CC2700B95FE4 /* CIndieLib_vc2008.cpp */,
+				E73EAF8215E6CC2700B95FE4 /* CIndieLib_vc2008.h */,
+				E73EAF8315E6CC2700B95FE4 /* Tutorial05.cpp */,
+			);
+			name = 05_IND_Font;
+			path = ../../tutorials/basic/05_IND_Font;
+			sourceTree = "<group>";
+		};
 		E75EB2AD159CAFEA00693F41 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,10 +270,12 @@
 				E73EAF2E15E6C1AE00B95FE4 /* 02_IND_Surface */,
 				E73EAF4B15E6C81600B95FE4 /* 03_IND_Image */,
 				E73EAF6615E6CA2C00B95FE4 /* 04_IND_Animation */,
+				E73EAF8015E6CC2700B95FE4 /* 05_IND_Font */,
 				E7DBCB1B159C78F600C8B2D9 /* Frameworks */,
 				E7DBCB19159C78F600C8B2D9 /* Products */,
 				E73EAF4A15E6C7B400B95FE4 /* Tutorial02 copy-Info.plist */,
 				E73EAF6515E6C9DA00B95FE4 /* Tutorial03 copy-Info.plist */,
+				E73EAF7F15E6CB3900B95FE4 /* Tutorial04 copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -244,6 +286,7 @@
 				E73EAF2915E6BF7E00B95FE4 /* Tutorial 02.app */,
 				E73EAF4815E6C7B400B95FE4 /* Tutorial03.app */,
 				E73EAF6315E6C9DA00B95FE4 /* Tutorial04.app */,
+				E73EAF7D15E6CB3900B95FE4 /* Tutorial05.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -344,6 +387,24 @@
 			productReference = E73EAF6315E6C9DA00B95FE4 /* Tutorial04.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E73EAF6C15E6CB3900B95FE4 /* Tutorial05 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E73EAF7A15E6CB3900B95FE4 /* Build configuration list for PBXNativeTarget "Tutorial05" */;
+			buildPhases = (
+				E73EAF6F15E6CB3900B95FE4 /* Sources */,
+				E73EAF7315E6CB3900B95FE4 /* Frameworks */,
+				E73EAF7615E6CB3900B95FE4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E73EAF6D15E6CB3900B95FE4 /* PBXTargetDependency */,
+			);
+			name = Tutorial05;
+			productName = IndielibTests;
+			productReference = E73EAF7D15E6CB3900B95FE4 /* Tutorial05.app */;
+			productType = "com.apple.product-type.application";
+		};
 		E7DBCB17159C78F600C8B2D9 /* Tutorial01 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E7DBCB36159C78F600C8B2D9 /* Build configuration list for PBXNativeTarget "Tutorial01" */;
@@ -396,6 +457,7 @@
 				E73EAF1715E6BF7E00B95FE4 /* Tutorial02 */,
 				E73EAF3715E6C7B400B95FE4 /* Tutorial03 */,
 				E73EAF5215E6C9DA00B95FE4 /* Tutorial04 */,
+				E73EAF6C15E6CB3900B95FE4 /* Tutorial05 */,
 			);
 		};
 /* End PBXProject section */
@@ -448,6 +510,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E73EAF7615E6CB3900B95FE4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73EAF7715E6CB3900B95FE4 /* IndielibTutorials-Info.plist in Resources */,
+				E73EAF7815E6CB3900B95FE4 /* Credits.rtf in Resources */,
+				E73EAF7915E6CB3900B95FE4 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E7DBCB16159C78F600C8B2D9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -491,6 +563,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E73EAF6F15E6CB3900B95FE4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73EAF7015E6CB3900B95FE4 /* WorkingPath.cpp in Sources */,
+				E73EAF8415E6CC2700B95FE4 /* CIndieLib_vc2008.cpp in Sources */,
+				E73EAF8515E6CC2700B95FE4 /* Tutorial05.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E7DBCB14159C78F600C8B2D9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -517,6 +599,11 @@
 			isa = PBXTargetDependency;
 			name = Indielib;
 			targetProxy = E73EAF5415E6C9DA00B95FE4 /* PBXContainerItemProxy */;
+		};
+		E73EAF6D15E6CB3900B95FE4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Indielib;
+			targetProxy = E73EAF6E15E6CB3900B95FE4 /* PBXContainerItemProxy */;
 		};
 		E75EB2B3159CAFF500693F41 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -653,6 +740,42 @@
 			};
 			name = Release;
 		};
+		E73EAF7B15E6CB3900B95FE4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = Tutorial05;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E73EAF7C15E6CB3900B95FE4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = Tutorial05;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 		E7DBCAB5159C432500C8B2D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -756,6 +879,15 @@
 			buildConfigurations = (
 				E73EAF6115E6C9DA00B95FE4 /* Debug */,
 				E73EAF6215E6C9DA00B95FE4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E73EAF7A15E6CB3900B95FE4 /* Build configuration list for PBXNativeTarget "Tutorial05" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E73EAF7B15E6CB3900B95FE4 /* Debug */,
+				E73EAF7C15E6CB3900B95FE4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

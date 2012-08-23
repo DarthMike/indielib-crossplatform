@@ -145,7 +145,7 @@
 		E73EAF8115E6CC2700B95FE4 /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
 		E73EAF8215E6CC2700B95FE4 /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIndieLib_vc2008.h; sourceTree = "<group>"; };
 		E73EAF8315E6CC2700B95FE4 /* Tutorial05.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial05.cpp; sourceTree = "<group>"; };
-		E73EAF9715E6CE5D00B95FE4 /* Tutorial06.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial06.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E73EAF9715E6CE5D00B95FE4 /* Tutorial07.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial07.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E73EAF9915E6CE5D00B95FE4 /* Tutorial05 copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Tutorial05 copy-Info.plist"; path = "/Users/mquinones/Desktop/SOFTWARE DEV/PROJECTS/indielib-gitrepo/IndieLib/mac/Tutorials/Tutorial05 copy-Info.plist"; sourceTree = "<absolute>"; };
 		E73EAF9B15E6CED700B95FE4 /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
 		E73EAF9C15E6CED700B95FE4 /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIndieLib_vc2008.h; sourceTree = "<group>"; };
@@ -329,7 +329,7 @@
 				E73EAF4815E6C7B400B95FE4 /* Tutorial03.app */,
 				E73EAF6315E6C9DA00B95FE4 /* Tutorial04.app */,
 				E73EAF7D15E6CB3900B95FE4 /* Tutorial05.app */,
-				E73EAF9715E6CE5D00B95FE4 /* Tutorial06.app */,
+				E73EAF9715E6CE5D00B95FE4 /* Tutorial07.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -463,7 +463,7 @@
 			);
 			name = Tutorial07;
 			productName = IndielibTests;
-			productReference = E73EAF9715E6CE5D00B95FE4 /* Tutorial06.app */;
+			productReference = E73EAF9715E6CE5D00B95FE4 /* Tutorial07.app */;
 			productType = "com.apple.product-type.application";
 		};
 		E7DBCB17159C78F600C8B2D9 /* Tutorial01 */ = {
@@ -875,7 +875,7 @@
 				INSTALL_PATH = /mac;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = Tutorial06;
+				PRODUCT_NAME = Tutorial07;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
@@ -893,7 +893,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INSTALL_PATH = /mac;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				PRODUCT_NAME = Tutorial06;
+				PRODUCT_NAME = Tutorial07;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};

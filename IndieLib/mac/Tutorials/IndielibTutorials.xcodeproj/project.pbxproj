@@ -118,6 +118,23 @@
 		E74485E715E7EAF100DDE3BF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCAB15E6B67800250CEE /* InfoPlist.strings */; };
 		E74485F215E7EB1800DDE3BF /* CIndieLib_vc2008.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E74485EF15E7EB1800DDE3BF /* CIndieLib_vc2008.cpp */; };
 		E74485F315E7EB1800DDE3BF /* Tutorial05.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E74485F115E7EB1800DDE3BF /* Tutorial05.cpp */; };
+		E74485FC15E7EBF900DDE3BF /* libIndielib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E74485FD15E7EBF900DDE3BF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */; };
+		E74485FF15E7EBF900DDE3BF /* IndielibTutorials-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA415E6B5FF00250CEE /* IndielibTutorials-Info.plist */; };
+		E744860015E7EBF900DDE3BF /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA915E6B67800250CEE /* Credits.rtf */; };
+		E744860115E7EBF900DDE3BF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCAB15E6B67800250CEE /* InfoPlist.strings */; };
+		E744861015E7EC2000DDE3BF /* CIndieLib_vc2008.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E744860915E7EC2000DDE3BF /* CIndieLib_vc2008.cpp */; };
+		E744861115E7EC2000DDE3BF /* CTerrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E744860B15E7EC2000DDE3BF /* CTerrain.cpp */; };
+		E744861215E7EC2000DDE3BF /* CUfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E744860D15E7EC2000DDE3BF /* CUfo.cpp */; };
+		E744861315E7EC2000DDE3BF /* Tutorial01.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E744860F15E7EC2000DDE3BF /* Tutorial01.cpp */; };
+		E744861D15E7EC2900DDE3BF /* libIndielib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E744861E15E7EC2900DDE3BF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */; };
+		E744862015E7EC2900DDE3BF /* IndielibTutorials-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA415E6B5FF00250CEE /* IndielibTutorials-Info.plist */; };
+		E744862115E7EC2900DDE3BF /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA915E6B67800250CEE /* Credits.rtf */; };
+		E744862215E7EC2900DDE3BF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCAB15E6B67800250CEE /* InfoPlist.strings */; };
+		E744862F15E7EC5100DDE3BF /* CIndieLib_vc2008.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E744862A15E7EC5100DDE3BF /* CIndieLib_vc2008.cpp */; };
+		E744863015E7EC5100DDE3BF /* CRabbit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E744862C15E7EC5100DDE3BF /* CRabbit.cpp */; };
+		E744863115E7EC5100DDE3BF /* Tutorial02.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E744862E15E7EC5100DDE3BF /* Tutorial02.cpp */; };
 		E75EB2B6159CB25100693F41 /* libIndielib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
 		E7DBCB1D159C78F600C8B2D9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -235,6 +252,20 @@
 			remoteGlobalIDString = E72B9F41158CBEF60003C431;
 			remoteInfo = Indielib;
 		};
+		E74485F715E7EBF900DDE3BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E72B9F41158CBEF60003C431;
+			remoteInfo = Indielib;
+		};
+		E744861615E7EC2900DDE3BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E72B9F41158CBEF60003C431;
+			remoteInfo = Indielib;
+		};
 		E75EB2B0159CAFEA00693F41 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */;
@@ -322,6 +353,22 @@
 		E74485EF15E7EB1800DDE3BF /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
 		E74485F015E7EB1800DDE3BF /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIndieLib_vc2008.h; sourceTree = "<group>"; };
 		E74485F115E7EB1800DDE3BF /* Tutorial05.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial05.cpp; sourceTree = "<group>"; };
+		E744860515E7EBF900DDE3BF /* Benchmark01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Benchmark01.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E744860715E7EBF900DDE3BF /* TutorialAdvanced05 copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "TutorialAdvanced05 copy-Info.plist"; path = "/Users/mquinones/Desktop/SOFTWARE DEV/PROJECTS/indielib-gitrepo/IndieLib/mac/Tutorials/TutorialAdvanced05 copy-Info.plist"; sourceTree = "<absolute>"; };
+		E744860915E7EC2000DDE3BF /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
+		E744860A15E7EC2000DDE3BF /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIndieLib_vc2008.h; sourceTree = "<group>"; };
+		E744860B15E7EC2000DDE3BF /* CTerrain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CTerrain.cpp; sourceTree = "<group>"; };
+		E744860C15E7EC2000DDE3BF /* CTerrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTerrain.h; sourceTree = "<group>"; };
+		E744860D15E7EC2000DDE3BF /* CUfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CUfo.cpp; sourceTree = "<group>"; };
+		E744860E15E7EC2000DDE3BF /* CUfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUfo.h; sourceTree = "<group>"; };
+		E744860F15E7EC2000DDE3BF /* Tutorial01.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial01.cpp; sourceTree = "<group>"; };
+		E744862615E7EC2900DDE3BF /* Benchmark02.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Benchmark02.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E744862815E7EC2900DDE3BF /* Benchmark01 copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Benchmark01 copy-Info.plist"; path = "/Users/mquinones/Desktop/SOFTWARE DEV/PROJECTS/indielib-gitrepo/IndieLib/mac/Tutorials/Benchmark01 copy-Info.plist"; sourceTree = "<absolute>"; };
+		E744862A15E7EC5100DDE3BF /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
+		E744862B15E7EC5100DDE3BF /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIndieLib_vc2008.h; sourceTree = "<group>"; };
+		E744862C15E7EC5100DDE3BF /* CRabbit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CRabbit.cpp; sourceTree = "<group>"; };
+		E744862D15E7EC5100DDE3BF /* CRabbit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRabbit.h; sourceTree = "<group>"; };
+		E744862E15E7EC5100DDE3BF /* Tutorial02.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial02.cpp; sourceTree = "<group>"; };
 		E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Indielib.xcodeproj; path = ../IndieLib/Indielib.xcodeproj; sourceTree = "<group>"; };
 		E7DBCB18159C78F600C8B2D9 /* Tutorial01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial01.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -463,6 +510,24 @@
 			files = (
 				E74485E215E7EAF100DDE3BF /* libIndielib.dylib in Frameworks */,
 				E74485E315E7EAF100DDE3BF /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E74485FB15E7EBF900DDE3BF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E74485FC15E7EBF900DDE3BF /* libIndielib.dylib in Frameworks */,
+				E74485FD15E7EBF900DDE3BF /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E744861C15E7EC2900DDE3BF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E744861D15E7EC2900DDE3BF /* libIndielib.dylib in Frameworks */,
+				E744861E15E7EC2900DDE3BF /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -694,6 +759,43 @@
 			name = Advanced;
 			sourceTree = "<group>";
 		};
+		E744860815E7EC2000DDE3BF /* 01_Alien_BenchMark */ = {
+			isa = PBXGroup;
+			children = (
+				E744860915E7EC2000DDE3BF /* CIndieLib_vc2008.cpp */,
+				E744860A15E7EC2000DDE3BF /* CIndieLib_vc2008.h */,
+				E744860B15E7EC2000DDE3BF /* CTerrain.cpp */,
+				E744860C15E7EC2000DDE3BF /* CTerrain.h */,
+				E744860D15E7EC2000DDE3BF /* CUfo.cpp */,
+				E744860E15E7EC2000DDE3BF /* CUfo.h */,
+				E744860F15E7EC2000DDE3BF /* Tutorial01.cpp */,
+			);
+			name = 01_Alien_BenchMark;
+			path = ../../tutorials/benchmark/01_Alien_BenchMark;
+			sourceTree = "<group>";
+		};
+		E744862915E7EC5100DDE3BF /* 02_Rabbits_BenchMark */ = {
+			isa = PBXGroup;
+			children = (
+				E744862A15E7EC5100DDE3BF /* CIndieLib_vc2008.cpp */,
+				E744862B15E7EC5100DDE3BF /* CIndieLib_vc2008.h */,
+				E744862C15E7EC5100DDE3BF /* CRabbit.cpp */,
+				E744862D15E7EC5100DDE3BF /* CRabbit.h */,
+				E744862E15E7EC5100DDE3BF /* Tutorial02.cpp */,
+			);
+			name = 02_Rabbits_BenchMark;
+			path = ../../tutorials/benchmark/02_Rabbits_BenchMark;
+			sourceTree = "<group>";
+		};
+		E744863215E7EC5900DDE3BF /* Benchmark */ = {
+			isa = PBXGroup;
+			children = (
+				E744860815E7EC2000DDE3BF /* 01_Alien_BenchMark */,
+				E744862915E7EC5100DDE3BF /* 02_Rabbits_BenchMark */,
+			);
+			name = Benchmark;
+			sourceTree = "<group>";
+		};
 		E75EB2AD159CAFEA00693F41 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -710,8 +812,11 @@
 				E7DBCB22159C78F600C8B2D9 /* IndielibTutorials */,
 				E74485A815E7EA0000DDE3BF /* Basic */,
 				E74485F415E7EB2300DDE3BF /* Advanced */,
+				E744863215E7EC5900DDE3BF /* Benchmark */,
 				E7DBCB1B159C78F600C8B2D9 /* Frameworks */,
 				E7DBCB19159C78F600C8B2D9 /* Products */,
+				E744860715E7EBF900DDE3BF /* TutorialAdvanced05 copy-Info.plist */,
+				E744862815E7EC2900DDE3BF /* Benchmark01 copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -734,6 +839,8 @@
 				E74485B915E7EA2400DDE3BF /* TutorialAdvanced02.app */,
 				E74485D215E7EA5900DDE3BF /* TutorialAdvanced04.app */,
 				E74485EB15E7EAF100DDE3BF /* TutorialAdvanced05.app */,
+				E744860515E7EBF900DDE3BF /* Benchmark01.app */,
+				E744862615E7EC2900DDE3BF /* Benchmark02.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1050,6 +1157,42 @@
 			productReference = E74485EB15E7EAF100DDE3BF /* TutorialAdvanced05.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E74485F515E7EBF900DDE3BF /* Benchmark01 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E744860215E7EBF900DDE3BF /* Build configuration list for PBXNativeTarget "Benchmark01" */;
+			buildPhases = (
+				E74485F815E7EBF900DDE3BF /* Sources */,
+				E74485FB15E7EBF900DDE3BF /* Frameworks */,
+				E74485FE15E7EBF900DDE3BF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E74485F615E7EBF900DDE3BF /* PBXTargetDependency */,
+			);
+			name = Benchmark01;
+			productName = IndielibTests;
+			productReference = E744860515E7EBF900DDE3BF /* Benchmark01.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E744861415E7EC2900DDE3BF /* Benchmark02 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E744862315E7EC2900DDE3BF /* Build configuration list for PBXNativeTarget "Benchmark02" */;
+			buildPhases = (
+				E744861715E7EC2900DDE3BF /* Sources */,
+				E744861C15E7EC2900DDE3BF /* Frameworks */,
+				E744861F15E7EC2900DDE3BF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E744861515E7EC2900DDE3BF /* PBXTargetDependency */,
+			);
+			name = Benchmark02;
+			productName = IndielibTests;
+			productReference = E744862615E7EC2900DDE3BF /* Benchmark02.app */;
+			productType = "com.apple.product-type.application";
+		};
 		E7DBCB17159C78F600C8B2D9 /* Tutorial01 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E7DBCB36159C78F600C8B2D9 /* Build configuration list for PBXNativeTarget "Tutorial01" */;
@@ -1114,6 +1257,8 @@
 				E74485A915E7EA2400DDE3BF /* TutorialAdvanced02 */,
 				E74485C215E7EA5900DDE3BF /* TutorialAdvanced04 */,
 				E74485DB15E7EAF100DDE3BF /* TutorialAdvanced05 */,
+				E74485F515E7EBF900DDE3BF /* Benchmark01 */,
+				E744861415E7EC2900DDE3BF /* Benchmark02 */,
 			);
 		};
 /* End PBXProject section */
@@ -1286,6 +1431,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E74485FE15E7EBF900DDE3BF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E74485FF15E7EBF900DDE3BF /* IndielibTutorials-Info.plist in Resources */,
+				E744860015E7EBF900DDE3BF /* Credits.rtf in Resources */,
+				E744860115E7EBF900DDE3BF /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E744861F15E7EC2900DDE3BF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E744862015E7EC2900DDE3BF /* IndielibTutorials-Info.plist in Resources */,
+				E744862115E7EC2900DDE3BF /* Credits.rtf in Resources */,
+				E744862215E7EC2900DDE3BF /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E7DBCB16159C78F600C8B2D9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1435,6 +1600,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E74485F815E7EBF900DDE3BF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E744861015E7EC2000DDE3BF /* CIndieLib_vc2008.cpp in Sources */,
+				E744861115E7EC2000DDE3BF /* CTerrain.cpp in Sources */,
+				E744861215E7EC2000DDE3BF /* CUfo.cpp in Sources */,
+				E744861315E7EC2000DDE3BF /* Tutorial01.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E744861715E7EC2900DDE3BF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E744862F15E7EC5100DDE3BF /* CIndieLib_vc2008.cpp in Sources */,
+				E744863015E7EC5100DDE3BF /* CRabbit.cpp in Sources */,
+				E744863115E7EC5100DDE3BF /* Tutorial02.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E7DBCB14159C78F600C8B2D9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1521,6 +1707,16 @@
 			isa = PBXTargetDependency;
 			name = Indielib;
 			targetProxy = E74485DD15E7EAF100DDE3BF /* PBXContainerItemProxy */;
+		};
+		E74485F615E7EBF900DDE3BF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Indielib;
+			targetProxy = E74485F715E7EBF900DDE3BF /* PBXContainerItemProxy */;
+		};
+		E744861515E7EC2900DDE3BF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Indielib;
+			targetProxy = E744861615E7EC2900DDE3BF /* PBXContainerItemProxy */;
 		};
 		E75EB2B3159CAFF500693F41 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2089,6 +2285,78 @@
 			};
 			name = Release;
 		};
+		E744860315E7EBF900DDE3BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = Benchmark01;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E744860415E7EBF900DDE3BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = Benchmark01;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E744862415E7EC2900DDE3BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = Benchmark02;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E744862515E7EC2900DDE3BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = Benchmark02;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 		E7DBCAB5159C432500C8B2D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2300,6 +2568,24 @@
 			buildConfigurations = (
 				E74485E915E7EAF100DDE3BF /* Debug */,
 				E74485EA15E7EAF100DDE3BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E744860215E7EBF900DDE3BF /* Build configuration list for PBXNativeTarget "Benchmark01" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E744860315E7EBF900DDE3BF /* Debug */,
+				E744860415E7EBF900DDE3BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E744862315E7EC2900DDE3BF /* Build configuration list for PBXNativeTarget "Benchmark02" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E744862415E7EC2900DDE3BF /* Debug */,
+				E744862515E7EC2900DDE3BF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

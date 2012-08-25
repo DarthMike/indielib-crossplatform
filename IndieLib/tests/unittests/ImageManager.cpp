@@ -47,7 +47,7 @@ TEST(add1) {
 	iLib->init();
 
 	IND_Image *mImageBug = new IND_Image();
-	CHECK(iLib->_imageManager->add(mImageBug, "../resources/Enemy Bug.png"));
+	CHECK(iLib->_imageManager->add(mImageBug, "../../resources/Enemy Bug.png"));
 
 //	iLib->end();
 }
@@ -61,7 +61,7 @@ TEST(remove) {
 //	iLib->init();
 	
 	IND_Image *mImageBug = new IND_Image();
-	iLib->_imageManager->add(mImageBug, "../resources/Enemy Bug.png");
+	iLib->_imageManager->add(mImageBug, "../../resources/Enemy Bug.png");
 	
 	CHECK(iLib->_imageManager->remove(mImageBug));
 
@@ -78,7 +78,7 @@ TEST(clone) {
 	
 	IND_Image *mImageBug = new IND_Image();
 	IND_Image *mImageClone = new IND_Image();
-	iLib->_imageManager->add(mImageBug, "../resources/Enemy Bug.png");
+	iLib->_imageManager->add(mImageBug, "../../resources/Enemy Bug.png");
 	
 	CHECK(iLib->_imageManager->clone(mImageClone,mImageBug));
 	CHECK(mImageClone->getFreeImageHandle() != NULL);
@@ -90,7 +90,7 @@ TEST(clone) {
 TEST(load) {
 	CIndieLib *iLib = CIndieLib::instance();
 
-	FIBITMAP* bitmap = iLib->_imageManager->load("../resources/Enemy Bug.png");
+	FIBITMAP* bitmap = iLib->_imageManager->load("../../resources/Enemy Bug.png");
 	CHECK(bitmap != NULL);
 }
 /*

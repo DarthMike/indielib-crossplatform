@@ -49,21 +49,21 @@ void CollisionTests::prepareTests() {
 	// Rocket
 	_entities[0]->setSurface(_surfaces[0]);
 	_entities[0]->setHotSpot(0.5f, 0.5f);
-	_entities[0]->setPosition(400, 450, 1);
+	_entities[0]->setPosition(200, 450, 1);
 	_entities[0]->setBoundingAreas("../../resources/rocket_collisions.xml");
 
 	// Beetle
 	_entities[1]->setSurface(_surfaces[1]);
 	_entities[1]->setHotSpot(0.5f, 0.5f);
 	_entities[1]->setMirrorX(1);
-	_entities[1]->setPosition(100,0,1);
+	_entities[1]->setPosition(0,0,1);
 	_entities[1]->setBoundingTriangle("beetle_head", 160, 105, 160, 170, 190, 135);
 	_entities[1]->setBoundingCircle("beetle_boy_head", 85, 52, 55);
 
 	// Sword Master Animation
 	_entities[2]->setAnimation(_animations[0]);
 	_entities[2]->setHotSpot(0.5f, 0.5f);
-	_entities[2]->setPosition(400, 220, 3);
+	_entities[2]->setPosition(500, 220, 3);
 
 	// Text
 	_entities[3]->setFont(_fonts[0]);
@@ -93,10 +93,10 @@ void CollisionTests::performTests(float dt) {
 
 	float mDelta = iLib->_render->getFrameTime() / 1000.0f;
 
-	if (iLib->_input->isKeyPressed(IND_KEYRIGHT)){
+	if (iLib->_input->isKeyPressed(IND_KEYUP)){
 		_scale += _speedScaling * mDelta;
 	}
-	if (iLib->_input->isKeyPressed(IND_KEYLEFT)){
+	if (iLib->_input->isKeyPressed(IND_KEYDOWN)){
 		_scale -= _speedScaling * mDelta;
 	}
 

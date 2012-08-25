@@ -37,7 +37,11 @@ public:
         _animations(NULL),
 		_entities(NULL),
 		_fonts(NULL),
-		_surfaces(NULL){
+		_surfaces(NULL),
+		_angle(0),
+		_scale(1.0f),
+		_speedRotation(5),
+		_speedScaling(1){
 		init();
 	}
 
@@ -64,6 +68,11 @@ private:
 	IND_Surface** _surfaces;
 
 	IND_Font** _fonts; 
+
+	float _angle;
+	float _scale;
+	int _speedRotation;
+	int _speedScaling;
 };
 
 

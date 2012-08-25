@@ -648,14 +648,29 @@ public:
 	==================
 	*/
 	inline void transformVector3DbyMatrix4D(IND_Vector3 &vector, const IND_Matrix &mat)const {
-	float x = vector._x;
-	float y = vector._y;
-	float z = vector._z;
+		float x = vector._x;
+		float y = vector._y;
+		float z = vector._z;
 
-	vector._x = mat._11 * x + mat._12 * y + mat._13 * z + mat._14;
-	vector._y = mat._21 * x + mat._22 * y + mat._23 * z + mat._24;
-	vector._z = mat._31 * x + mat._32 * y + mat._33 * z + mat._34;
-};
+		vector._x = mat._11 * x + mat._12 * y + mat._13 * z + mat._14;
+		vector._y = mat._21 * x + mat._22 * y + mat._23 * z + mat._24;
+		vector._z = mat._31 * x + mat._32 * y + mat._33 * z + mat._34;
+	}
+
+	/*
+	==================
+	Multiplies the column vector to the matrix (from the right side)
+	As 2d vector can't be multiplied, a 3D vector is created with z = 0
+	==================
+	*/
+	inline void transformVector2DbyMatrix4D(IND_Vector2 &vector, const IND_Matrix &mat)const {
+		IND_Vector3 fake (vector._x,vector._y,0.0f);
+
+		transformVector3DbyMatrix4D(fake,mat);
+
+		vector._x = fake._x;
+		vector._y = fake._y;
+	}
 #endif
 private:
 

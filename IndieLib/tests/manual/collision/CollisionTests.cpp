@@ -88,6 +88,50 @@ void CollisionTests::performTests(float dt) {
 			_entities[i]->showCollisionAreas(!_entities[i]->isShowCollisionAreas());
 		}
 	}
+
+	// ----- Input ----
+
+	float mDelta = iLib->_render->getFrameTime() / 1000.0f;
+
+	if (iLib->_input->isKeyPressed(IND_KEYRIGHT)){
+		_scale += _speedScaling * mDelta;
+	}
+	if (iLib->_input->isKeyPressed(IND_KEYLEFT)){
+		_scale -= _speedScaling * mDelta;
+	}
+
+	_angle += _speedRotation * mDelta;
+	
+	if (_scale < 0){
+		_scale = 0;
+	}
+
+	// ----- Updating entities attributes  -----
+
+	_entities[0]->setAngleXYZ (0, 0, _angle);
+	_entities[1]->setScale (_scale, _scale);	
+	_entities[1]->setPosition((float) iLib->_input->getMouseX(), (float) iLib->_input->getMouseY(), 5);
+
+	// ----- Check collisions -----
+
+	_entities[3]->setText("No collision between the groups we are checking");
+
+	if (iLib->_entity2dManager->isCollision(_entities[0], "engines", _entities[1], "beetle_boy_head")){
+		_entities[3]->setText("Collision between rocket boy head and engines");
+	}	
+
+	if (iLib->_entity2dManager->isCollision(_entities[0], "rocket_head", _entities[1], "beetle_head")){ 
+		_entities[3]->setText("Collision between rokect head and beetle head");
+	}	
+	
+	if (iLib->_entity2dManager->isCollision(_entities[0], "rocket_boy_head", _entities[1], "beetle_boy_head")){ 
+		_entities[3]->setText("Collision between rocket boy head and beetle boy head");	
+	}
+
+	if (iLib->_entity2dManager->isCollision(_entities[1], "beetle_boy_head", _entities[2], "sword")){ 
+		_entities[3]->setText("Collision between beetle boy head and the sword");
+	}
+
 }
 
 bool CollisionTests::isActive(){

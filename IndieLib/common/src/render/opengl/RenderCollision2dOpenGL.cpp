@@ -29,7 +29,7 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "Global.h"
 #include "IND_SurfaceManager.h"
 #include "OpenGLRender.h"
-#include "IND_Math.h"
+#include "IND_math.h"
 #include "IND_Vector2.h"
 
 // --------------------------------------------------------------------------------
@@ -41,32 +41,28 @@ Suite 330, Boston, MA 02111-1307 USA
 Check collision between two circles that are not transformed
 ==================
 */
-bool   OpenGLRender::isCircleToCircleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1, float pScale1,
-        BOUNDING_COLLISION *pB2, IND_Matrix pMat2, float pScale2) {
-	//// Untransformed points
+bool   OpenGLRender::isCircleToCircleCollision(BOUNDING_COLLISION *pB1, 
+											   IND_Matrix pMat1, 
+											   float pScale1,
+											   BOUNDING_COLLISION *pB2, 
+											   IND_Matrix pMat2, 
+											   float pScale2) {
+	// Untransformed points
 
-	//// Circle 1
-	//IND_Vector2 mCenter1((float) pB1->_posX, (float) pB1->_posY);
-	//int mRadius1 = (int)(pB1->_radius * pScale1);
+	// Circle 1
+	IND_Vector2 mCenter1((float) pB1->_posX, (float) pB1->_posY);
+	int mRadius1 = (int)(pB1->_radius * pScale1);
 
-	//// Circle 1
-	//IND_Vector2 mCenter2((float) pB2->_posX, (float) pB2->_posY);
-	//int mRadius2 = (int)(pB2->_radius * pScale2);
+	// Circle 1
+	IND_Vector2 mCenter2((float) pB2->_posX, (float) pB2->_posY);
+	int mRadius2 = (int)(pB2->_radius * pScale2);
 
-	//// Transformations
-	//D3DXVECTOR4 mCenter1t, mCenter2t;
+	// Transformations
+	_math.transformVector2DbyMatrix4D(mCenter1,pMat1);
+	_math.transformVector2DbyMatrix4D(mCenter2,pMat2);
 
-	//D3DXVec2Transform(&mCenter1t, &mCenter1, &pMat1);
-	//D3DXVec2Transform(&mCenter2t, &mCenter2, &pMat2);
-
-	//// Center 1 vector final
-	//IND_Vector2 mCenter1f(mCenter1t);
-
-	//// Center 2 vector final
-	//IND_Vector2 mCenter2f(mCenter2t);
-
-	//if (isCircleToCircleCollision(mCenter1f, mRadius1, mCenter2f, mRadius2))
-	//	return 1;
+	if (isCircleToCircleCollision(mCenter1, mRadius1, mCenter2, mRadius2))
+		return 1;
 
 	return 0;
 }
@@ -173,8 +169,8 @@ bool OpenGLRender::isCircleToTriangleCollision(BOUNDING_COLLISION *pB1, IND_Matr
 /*
 ==================
 Check collision between two triangles (a1, b1, c1) and (a2, b2, c2)
-- First checks if each of the vertices of either triange is within inside the other triangle.
-- After that it checks for intersections between the triangle segments.
+- First checks if each of the vertices of either triange is within inside the other triangle->
+- After that it checks for intersections between the triangle segments->
 ==================
 */
 bool OpenGLRender::isTriangleToTriangleCollision(IND_Vector2 &a1,
@@ -184,30 +180,30 @@ bool OpenGLRender::isTriangleToTriangleCollision(IND_Vector2 &a1,
         IND_Vector2 &b2,
         IND_Vector2 &c2) {
 	// Check if any vertex of triange 1 is inside triange 2
-	//if (_math->isPointInsideTriangle(a1, a2, b2, c2)) return 1;
-	//if (_math->isPointInsideTriangle(b1, a2, b2, c2)) return 1;
-	//if (_math->isPointInsideTriangle(c1, a2, b2, c2)) return 1;
+	if (_math.isPointInsideTriangle(a1, a2, b2, c2)) return 1;
+	if (_math.isPointInsideTriangle(b1, a2, b2, c2)) return 1;
+	if (_math.isPointInsideTriangle(c1, a2, b2, c2)) return 1;
 
-	//// Check if any vertex of triange 2 is inside triange 1
-	//if (_math->isPointInsideTriangle(a2, a1, b1, c1)) return 1;
-	//if (_math->isPointInsideTriangle(c2, a1, b1, c1)) return 1;
-	//if (_math->isPointInsideTriangle(c2, a1, b1, c1)) return 1;
+	// Check if any vertex of triange 2 is inside triange 1
+	if (_math.isPointInsideTriangle(a2, a1, b1, c1)) return 1;
+	if (_math.isPointInsideTriangle(c2, a1, b1, c1)) return 1;
+	if (_math.isPointInsideTriangle(c2, a1, b1, c1)) return 1;
 
-	//// Checks if any segment of triange 1 intersects with any segment of triange 2
-	//// Segment (a1 - b1)
-	//if (_math->isSegmentIntersection(a1, b1, a2, b2)) return 1;
-	//if (_math->isSegmentIntersection(a1, b1, b2, c2)) return 1;
-	//if (_math->isSegmentIntersection(a1, b1, c2, a2)) return 1;
+	// Checks if any segment of triange 1 intersects with any segment of triange 2
+	// Segment (a1 - b1)
+	if (_math.isSegmentIntersection(a1, b1, a2, b2)) return 1;
+	if (_math.isSegmentIntersection(a1, b1, b2, c2)) return 1;
+	if (_math.isSegmentIntersection(a1, b1, c2, a2)) return 1;
 
-	//// Segment (b1 - c1)
-	//if (_math->isSegmentIntersection(b1, c1, a2, b2)) return 1;
-	//if (_math->isSegmentIntersection(b1, c1, b2, c2)) return 1;
-	//if (_math->isSegmentIntersection(b1, c1, c2, a2)) return 1;
+	// Segment (b1 - c1)
+	if (_math.isSegmentIntersection(b1, c1, a2, b2)) return 1;
+	if (_math.isSegmentIntersection(b1, c1, b2, c2)) return 1;
+	if (_math.isSegmentIntersection(b1, c1, c2, a2)) return 1;
 
-	//// Segment (c1 - a1)
-	//if (_math->isSegmentIntersection(c1, a1, a2, b2)) return 1;
-	//if (_math->isSegmentIntersection(c1, a1, b2, c2)) return 1;
-	//if (_math->isSegmentIntersection(c1, a1, c2, a2)) return 1;
+	// Segment (c1 - a1)
+	if (_math.isSegmentIntersection(c1, a1, a2, b2)) return 1;
+	if (_math.isSegmentIntersection(c1, a1, b2, c2)) return 1;
+	if (_math.isSegmentIntersection(c1, a1, c2, a2)) return 1;
 
 	return 0;
 }
@@ -223,11 +219,11 @@ bool OpenGLRender::isCircleToCircleCollision(IND_Vector2 &pP1, int pRadius1,
 	// h^2 = x^2 + y^2 Pythagoras :D
 
 	// x^2
-	/*double mDeltaXSquared = pP1.x - pP2.x;
+	double mDeltaXSquared = pP1._x - pP2._x;
 	mDeltaXSquared *= mDeltaXSquared;
 
 	// y^2
-	double mDeltaYSquared = pP1.y - pP2.y;
+	double mDeltaYSquared = pP1._y - pP2._y;
 	mDeltaYSquared *= mDeltaYSquared;
 
 	// Adding radius^2
@@ -238,7 +234,7 @@ bool OpenGLRender::isCircleToCircleCollision(IND_Vector2 &pP1, int pRadius1,
 	// then there is a collision
 	if (mDeltaXSquared + mDeltaYSquared <= mSumRadiiSquared)
 		return 1;
-	else*/
+	else
 		return 0;
 }
 
@@ -251,62 +247,14 @@ Check collision between a circle and a triangle
 bool OpenGLRender::isCircleToTriangleCollision(IND_Vector2 &pPCenter, int pRadius,
         IND_Vector2 &pA2, IND_Vector2 &pB2, IND_Vector2 &pC2) {
 	// Check if circle center inside the triangle
-	//if (_math->isPointInsideTriangle(pPCenter, pA2, pB2, pC2)) return 1;
+	if (_math.isPointInsideTriangle(pPCenter, pA2, pB2, pC2)) return 1;
 
-	//// Check the distance of the circle center to the 3 triangle segments
-	//if (_math->pointToLineDistance(pA2, pB2, pPCenter, 1) < pRadius) return 1;
-	//if (_math->pointToLineDistance(pB2, pC2, pPCenter, 1) < pRadius) return 1;
-	//if (_math->pointToLineDistance(pC2, pA2, pPCenter, 1) < pRadius) return 1;
+	// Check the distance of the circle center to the 3 triangle segments
+	if (_math.pointToLineDistance(pA2, pB2, pPCenter, 1) < pRadius) return 1;
+	if (_math.pointToLineDistance(pB2, pC2, pPCenter, 1) < pRadius) return 1;
+	if (_math.pointToLineDistance(pC2, pA2, pPCenter, 1) < pRadius) return 1;
 
 	return 0;
 }
-
-
-///*
-//==================
-//Compute the dot product AB . BC
-//==================
-//*/
-//int OpenGLRender::Dot3(IND_Vector2 &pA, IND_Vector2 &pB, IND_Vector2 &pC) {
-//	IND_Vector2 mAB;
-//	IND_Vector2 mBC;
-//
-//	mAB.x = pB.x - pA.x;
-//	mAB.y = pB.y - pA.y;
-//	mBC.x = pC.x - pB.x;
-//	mBC.y = pC.y - pB.y;
-//	return (int)((mAB.x * mBC.x) + (mAB.y * mBC.y));
-//}
-//
-//
-///*
-//==================
-//Compute the cross product AB x AC
-//==================
-//*/
-//int OpenGLRender::Cross3(IND_Vector2 &pA, IND_Vector2 &pB, IND_Vector2 &pC) {
-//	IND_Vector2mAB;
-//	IND_Vector2mAC;
-//	mAB.x = pB.x - pA.x;
-//	mAB.y = pB.y - pA.y;
-//	mAC.x = pC.x - pA.x;
-//	mAC.y = pC.y - pA.y;
-//
-//	return (int)((mAB.x * mAC.y) - (mAB.y * mAC.x));
-//}
-
-
-///*
-//==================
-//Compute the distance from A to B
-//==================
-//*/
-//double OpenGLRender::Distance(IND_Vector2 &pA, IND_Vector2 &pB) {
-//	float mD1 = (pA.x - pB.x);
-//	float mD2 = (pA.y - pB.y);
-//	return sqrt((mD1 * mD1) + (mD2 * mD2));
-//}
-//
-//
 
 #endif //INDIERENDER_OPENGL

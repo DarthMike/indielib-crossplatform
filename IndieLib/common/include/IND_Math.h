@@ -35,9 +35,9 @@ Suite 330, Boston, MA 02111-1307 USA
 #ifndef _IND_MATH_
 #define _IND_MATH_
 
-#ifdef PLATFORM_LINUX
+
 #include <stdlib.h>
-#endif
+#include <math.h>
 
 #include "Defines.h"
 #include "IND_Vector2.h"
@@ -162,7 +162,8 @@ public:
 
 		return len;
 	}
-// ----- Collision utilities -----
+    
+    // ----- Collision utilities -----
 	/*
 	==================
 	Check if point p is inside the triangle with vertex a, b, c
@@ -200,11 +201,11 @@ public:
 	if isSegment is true, AB is a segment, not a line.
 	==================
 	*/
-	double pointToLineDistance(IND_Vector2 &pA, IND_Vector2 &pB, IND_Vector2 &pC, bool pIsSegment) {
+	float pointToLineDistance(IND_Vector2 &pA, IND_Vector2 &pB, IND_Vector2 &pC, bool pIsSegment) {
 		IND_Vector2 ab (pB._x - pA._x, pB._y - pA._y);
 		IND_Vector2 ac (pC._x - pA._x, pC._y - pA._y);
 		
-		double mDist (ab.crossProduct(ac) / pA.distance(pB));
+		float mDist (ab.crossProduct(ac) / pA.distance(pB));
 
 		if (pIsSegment) {
 			IND_Vector2 bc (pC._x - pB._x, pC._y - pB._y);
@@ -220,7 +221,7 @@ public:
 			}
 		}
 
-		return abs(mDist);
+		return fabs(static_cast<int>(mDist));
 	}
 
 	/*

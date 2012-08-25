@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E72BA060158CC7BB0003C431 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E72BA05F158CC7BB0003C431 /* OpenGL.framework */; };
+		E744863915E952D100DDE3BF /* IND_Vector2.h in Headers */ = {isa = PBXBuildFile; fileRef = E744863815E952D100DDE3BF /* IND_Vector2.h */; };
 		E75EB0D5159CADF800693F41 /* tinystr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAA49159CADEF00693F41 /* tinystr.cpp */; };
 		E75EB0D6159CADF800693F41 /* tinystr.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAA4A159CADEF00693F41 /* tinystr.h */; };
 		E75EB0D7159CADF800693F41 /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAA4B159CADEF00693F41 /* tinyxml.cpp */; };
@@ -133,6 +134,7 @@
 
 /* Begin PBXFileReference section */
 		E72BA05F158CC7BB0003C431 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		E744863815E952D100DDE3BF /* IND_Vector2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IND_Vector2.h; sourceTree = "<group>"; };
 		E75EAA49159CADEF00693F41 /* tinystr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinystr.cpp; sourceTree = "<group>"; };
 		E75EAA4A159CADEF00693F41 /* tinystr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinystr.h; sourceTree = "<group>"; };
 		E75EAA4B159CADEF00693F41 /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
@@ -395,6 +397,7 @@
 				E75EAABA159CADEF00693F41 /* IND_TmxMap.h */,
 				E75EAABB159CADEF00693F41 /* IND_TmxMapManager.h */,
 				E75EAABC159CADEF00693F41 /* IND_Vector3.h */,
+				E744863815E952D100DDE3BF /* IND_Vector2.h */,
 				E75EAABD159CADEF00693F41 /* IND_Window.h */,
 				E75EAABE159CADEF00693F41 /* Indie.h */,
 				E75EAABF159CADEF00693F41 /* IndieLib.h */,
@@ -567,6 +570,7 @@
 				E75EB180159CADF900693F41 /* OpenGLTextureBuilder.h in Headers */,
 				E75EB18A159CADF900693F41 /* TextureBuilder.h in Headers */,
 				E75EB18B159CADF900693F41 /* TextureDefinitions.h in Headers */,
+				E744863915E952D100DDE3BF /* IND_Vector2.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -420,7 +420,7 @@ void DirectXRender::blitCollisionCircle(int pPosX, int pPosY, int pRadius, float
 	setTransform2d(0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0);
 
 	D3DXMATRIX mWorldMatrix;
-	GetD3DMatrix(pIndWorldMatrix, &mWorldMatrix);
+	d3DMatrixToIndMatrix(pIndWorldMatrix, &mWorldMatrix);
 
 	// Untransformed points
 	D3DXVECTOR2 mP1Untransformed((float) pPosX, (float) pPosY);
@@ -466,7 +466,7 @@ void DirectXRender::blitCollisionLine(int pPosX1, int pPosY1, int pPosX2, int pP
 	setTransform2d(0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0);
 
 	D3DXMATRIX mWorldMatrix;
-	GetD3DMatrix(pIndWorldMatrix, &mWorldMatrix);
+	d3DMatrixToIndMatrix(pIndWorldMatrix, &mWorldMatrix);
 
 	// Untransformed points
 	D3DXVECTOR2 mP1Untransformed((float) pPosX1, (float) pPosY1);

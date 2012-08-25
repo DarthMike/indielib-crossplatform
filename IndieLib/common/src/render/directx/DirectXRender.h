@@ -563,7 +563,7 @@ private:
 	                           D3DXVECTOR2 c,
 	                           D3DXVECTOR2 d);
 
-	void GetD3DMatrix(IND_Matrix pMatrix, D3DXMATRIX *pD3DMatrix);
+	void d3DMatrixToIndMatrix(IND_Matrix pMatrix, D3DXMATRIX *pD3DMatrix);
 
 	// ----- Culling -----
 

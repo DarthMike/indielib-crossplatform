@@ -43,8 +43,8 @@ Check collision between two circles that are not transformed
 bool   DirectXRender::isCircleToCircleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1, float pScale1,
         BOUNDING_COLLISION *pB2, IND_Matrix pMat2, float pScale2) {
 	D3DXMATRIX mMat1, mMat2;
-	GetD3DMatrix(pMat1, &mMat1);
-	GetD3DMatrix(pMat2, &mMat2);
+	d3DMatrixToIndMatrix(pMat1, &mMat1);
+	d3DMatrixToIndMatrix(pMat2, &mMat2);
 
 	// Untransformed points
 
@@ -83,8 +83,8 @@ Check collision between two triangles that are not transformed
 bool   DirectXRender::isTriangleToTriangleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1,
         BOUNDING_COLLISION *pB2, IND_Matrix pMat2) {
 	D3DXMATRIX mMat1, mMat2;
-	GetD3DMatrix(pMat1, &mMat1);
-	GetD3DMatrix(pMat2, &mMat2);
+	d3DMatrixToIndMatrix(pMat1, &mMat1);
+	d3DMatrixToIndMatrix(pMat2, &mMat2);
 
 	// Untransformed points
 
@@ -134,8 +134,8 @@ Check collision between a circle an a triangle that are not transformed
 bool DirectXRender::isCircleToTriangleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1, float pScale,
         BOUNDING_COLLISION *pB2, IND_Matrix pMat2) {
 	D3DXMATRIX mMat1, mMat2;
-	GetD3DMatrix(pMat1, &mMat1);
-	GetD3DMatrix(pMat2, &mMat2);
+	d3DMatrixToIndMatrix(pMat1, &mMat1);
+	d3DMatrixToIndMatrix(pMat2, &mMat2);
 
 	// ----- Circle -----
 

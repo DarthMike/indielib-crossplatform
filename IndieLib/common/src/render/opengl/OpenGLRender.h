@@ -42,6 +42,7 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "Defines.h"
 #include "IND_Math.h"
 #include "IND_Render.h"
+#include "IND_Vector2.h"
 
 // ----- Forward Declarations -----
 class IND_Window;
@@ -431,7 +432,21 @@ private:
 	bool   isTriangleToTriangleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1, BOUNDING_COLLISION *pB2, IND_Matrix pMat2);
 	bool   isCircleToCircleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1, float pScale1, BOUNDING_COLLISION *pB2, IND_Matrix pMat2, float pScale2);
 	bool   isCircleToTriangleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1, float pScale1, BOUNDING_COLLISION *pB2, IND_Matrix pMat2);
+	
+	bool isTriangleToTriangleCollision(IND_Vector2 &pA1,
+	                                   IND_Vector2 &pB1,
+	                                   IND_Vector2 &pC1,
+	                                   IND_Vector2 &pA2,
+	                                   IND_Vector2 &pB2,
+	                                   IND_Vector2 &pC2);
 
+	bool isCircleToCircleCollision(IND_Vector2 &pP1, int pRadius1,
+	                               IND_Vector2 &pP2, int pRadius2);
+
+	bool isCircleToTriangleCollision(IND_Vector2 &pPCenter, int pRadius1,
+	                                 IND_Vector2 &a2,
+	                                 IND_Vector2 &b2,
+	                                 IND_Vector2 &c2);
 	// ----- Objects -----
 	IND_Math _math;
 	IND_Window *_window;

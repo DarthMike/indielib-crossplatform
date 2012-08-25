@@ -112,41 +112,28 @@ Check collision between a circle an a triangle that are not transformed
 bool OpenGLRender::isCircleToTriangleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1, float pScale,
         BOUNDING_COLLISION *pB2, IND_Matrix pMat2) {
 
-	//// ----- Circle -----
+	// ----- Circle -----
 
-	//// Circle 1
-	//IND_Vector2 mCenter((float) pB1->_posX, (float) pB1->_posY);
-	//int _radius = (int)(pB1->_radius * pScale);
+	// Circle 1
+	IND_Vector2 mCenter((float) pB1->_posX, (float) pB1->_posY);
+	int _radius = (int)(pB1->_radius * pScale);
+	
+	_math.transformVector2DbyMatrix4D(mCenter,pMat1);
 
-	//// Transformations
-	//D3DXVECTOR4 mCenterT;
+	// ----- Triangle -----
 
-	//D3DXVec2Transform(&mCenterT, &mCenter, &pMat1);
+	// Triangle
+	IND_Vector2 mA((float) pB2->_ax, (float) pB2->_ay);
+	IND_Vector2 mB((float) pB2->_bx, (float) pB2->_by);
+	IND_Vector2 mC((float) pB2->_cx, (float) pB2->_cy);
 
-	//// Center 1 vector final
-	//IND_Vector2 mCenterf(mCenterT);
+	// Transformations
+	_math.transformVector2DbyMatrix4D(mA,pMat2);
+	_math.transformVector2DbyMatrix4D(mB,pMat2);
+	_math.transformVector2DbyMatrix4D(mC,pMat2);
 
-	//// ----- Triangle -----
-
-	//// Triangle
-	//IND_Vector2 _a((float) pB2->_ax, (float) pB2->_ay);
-	//IND_Vector2 _b((float) pB2->_bx, (float) pB2->_by);
-	//IND_Vector2 mC((float) pB2->_cx, (float) pB2->_cy);
-
-	//// Transformations
-	//D3DXVECTOR4 mAt, mBt, mCt;
-
-	//D3DXVec2Transform(&mAt, &_a, &pMat2);
-	//D3DXVec2Transform(&mBt, &_b, &pMat2);
-	//D3DXVec2Transform(&mCt, &mC, &pMat2);
-
-	//// Triangle in VECTOR2
-	//IND_Vector2 mAf(mAt);
-	//IND_Vector2 mBf(mBt);
-	//IND_Vector2 mCf(mCt);
-
-	//if (isCircleToTriangleCollision(mCenterf, _radius, mAf, mBf, mCf))
-	//	return 1;
+	if (isCircleToTriangleCollision(mCenter, _radius, mA, mB, mC))
+		return 1;
 
 	return 0;
 }

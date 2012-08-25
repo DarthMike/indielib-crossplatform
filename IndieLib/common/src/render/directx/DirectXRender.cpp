@@ -29,7 +29,7 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "dependencies/SDL 2.0/include/SDL_syswm.h"
 
 #include "Global.h"
-#include "Tools.h"
+#include "IND_Math.h"
 #include "IND_SurfaceManager.h"
 #include "DirectXRender.h"
 #include "IND_Window.h"
@@ -242,11 +242,11 @@ void DirectXRender::showFpsInWindowTitle(char *pFPSString) {
 }
 
 void DirectXRender::getNumrenderedObjectsString(char* pBuffer)      {
-		Tools::itoa(_numrenderedObjects, pBuffer);
+		IND_Math::itoa(_numrenderedObjects, pBuffer);
 }
 
 void DirectXRender::getNumDiscardedObjectsString(char* pBuffer)      {
-		Tools::itoa(_numDiscardedObjects, pBuffer);
+		IND_Math::itoa(_numDiscardedObjects, pBuffer);
 }
 
 /*!

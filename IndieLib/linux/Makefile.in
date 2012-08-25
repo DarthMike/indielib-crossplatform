@@ -90,7 +90,6 @@ am_libIndieLib_la_OBJECTS =  \
 	../common/src/libIndieLib_la-CollisionParser.lo \
 	../common/src/libIndieLib_la-DebugApi.lo \
 	../common/src/libIndieLib_la-Global.lo \
-	../common/src/libIndieLib_la-Tools.lo \
 	../common/src/libIndieLib_la-ImageCutter.lo \
 	../common/src/libIndieLib_la-IND_Animation.lo \
 	../common/src/libIndieLib_la-IND_AnimationManager.lo \
@@ -320,8 +319,7 @@ ACLOCAL_AMFLAGS = ${ACLOCAL_FLAGS} -I m4 --install
 lib_LTLIBRARIES = libIndieLib.la
 libIndieLib_la_SOURCES = ../common/src/CollisionParser.cpp \
 	../common/src/DebugApi.cpp ../common/src/Global.cpp \
-	../common/src/Tools.cpp ../common/src/ImageCutter.cpp \
-	../common/src/IND_Animation.cpp \
+	../common/src/ImageCutter.cpp ../common/src/IND_Animation.cpp \
 	../common/src/IND_AnimationManager.cpp \
 	../common/src/IND_Camera2d.cpp ../common/src/IND_Entity2d.cpp \
 	../common/src/IND_Entity2dManager.cpp \
@@ -476,8 +474,6 @@ clean-libLTLIBRARIES:
 	../common/src/$(am__dirstamp) \
 	../common/src/$(DEPDIR)/$(am__dirstamp)
 ../common/src/libIndieLib_la-Global.lo: ../common/src/$(am__dirstamp) \
-	../common/src/$(DEPDIR)/$(am__dirstamp)
-../common/src/libIndieLib_la-Tools.lo: ../common/src/$(am__dirstamp) \
 	../common/src/$(DEPDIR)/$(am__dirstamp)
 ../common/src/libIndieLib_la-ImageCutter.lo:  \
 	../common/src/$(am__dirstamp) \
@@ -802,8 +798,6 @@ mostlyclean-compile:
 	-rm -f ../common/src/libIndieLib_la-IndieLib.lo
 	-rm -f ../common/src/libIndieLib_la-PrecissionTimer.$(OBJEXT)
 	-rm -f ../common/src/libIndieLib_la-PrecissionTimer.lo
-	-rm -f ../common/src/libIndieLib_la-Tools.$(OBJEXT)
-	-rm -f ../common/src/libIndieLib_la-Tools.lo
 	-rm -f ../common/src/platform/libIndieLib_la-OSOpenGLManager.$(OBJEXT)
 	-rm -f ../common/src/platform/libIndieLib_la-OSOpenGLManager.lo
 	-rm -f ../common/src/render/opengl/libIndieLib_la-OpenGLRender.$(OBJEXT)
@@ -883,7 +877,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@../common/src/$(DEPDIR)/libIndieLib_la-ImageCutter.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../common/src/$(DEPDIR)/libIndieLib_la-IndieLib.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../common/src/$(DEPDIR)/libIndieLib_la-PrecissionTimer.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@../common/src/$(DEPDIR)/libIndieLib_la-Tools.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../common/src/platform/$(DEPDIR)/libIndieLib_la-OSOpenGLManager.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../common/src/render/opengl/$(DEPDIR)/libIndieLib_la-OpenGLRender.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@../common/src/render/opengl/$(DEPDIR)/libIndieLib_la-OpenGLTextureBuilder.Plo@am__quote@
@@ -1042,13 +1035,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../common/src/Global.cpp' object='../common/src/libIndieLib_la-Global.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libIndieLib_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o ../common/src/libIndieLib_la-Global.lo `test -f '../common/src/Global.cpp' || echo '$(srcdir)/'`../common/src/Global.cpp
-
-../common/src/libIndieLib_la-Tools.lo: ../common/src/Tools.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libIndieLib_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT ../common/src/libIndieLib_la-Tools.lo -MD -MP -MF ../common/src/$(DEPDIR)/libIndieLib_la-Tools.Tpo -c -o ../common/src/libIndieLib_la-Tools.lo `test -f '../common/src/Tools.cpp' || echo '$(srcdir)/'`../common/src/Tools.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) ../common/src/$(DEPDIR)/libIndieLib_la-Tools.Tpo ../common/src/$(DEPDIR)/libIndieLib_la-Tools.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../common/src/Tools.cpp' object='../common/src/libIndieLib_la-Tools.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libIndieLib_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o ../common/src/libIndieLib_la-Tools.lo `test -f '../common/src/Tools.cpp' || echo '$(srcdir)/'`../common/src/Tools.cpp
 
 ../common/src/libIndieLib_la-ImageCutter.lo: ../common/src/ImageCutter.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libIndieLib_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT ../common/src/libIndieLib_la-ImageCutter.lo -MD -MP -MF ../common/src/$(DEPDIR)/libIndieLib_la-ImageCutter.Tpo -c -o ../common/src/libIndieLib_la-ImageCutter.lo `test -f '../common/src/ImageCutter.cpp' || echo '$(srcdir)/'`../common/src/ImageCutter.cpp

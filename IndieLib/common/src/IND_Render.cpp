@@ -24,7 +24,7 @@ Suite 330, Boston, MA 02111-1307 USA
 // ----- Includes -----
 
 #include "Global.h"
-#include "Tools.h"
+#include "IND_Math.h"
 #include "IND_SurfaceManager.h"
 #include "IND_Timer.h"
 #include "IND_Render.h"
@@ -1370,7 +1370,7 @@ int  IND_Render::getMaxTextureSize()      {
 }
 
 void IND_Render::getFpsString(char *pBuffer)     {
-	Tools::itoa(_lastFps, pBuffer);
+	IND_Math::itoa(_lastFps, pBuffer);
 }
 
 //! This function returns a pointer to the IND_Window object where the render has been created

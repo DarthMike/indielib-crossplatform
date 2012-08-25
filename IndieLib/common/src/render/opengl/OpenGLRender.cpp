@@ -27,7 +27,7 @@ Suite 330, Boston, MA 02111-1307 USA
 // ----- Includes -----
 
 #include "Global.h"
-#include "Tools.h"
+#include "IND_Math.h"
 #include "OpenGLRender.h"
 #include "IND_Window.h"
 #include "IND_FontManager.h"
@@ -216,11 +216,11 @@ void OpenGLRender::showFpsInWindowTitle(char *pFPSString) {
 }
 
 void OpenGLRender::getNumrenderedObjectsString(char *pBuffer)      {
-	Tools::itoa(_numrenderedObjects, pBuffer);
+	IND_Math::itoa(_numrenderedObjects, pBuffer);
 }
 
 void OpenGLRender::getNumDiscardedObjectsString(char *pBuffer)      {
-	Tools::itoa(_numDiscardedObjects, pBuffer);
+	IND_Math::itoa(_numDiscardedObjects, pBuffer);
 }
 /*!
 \b Operation:

@@ -337,6 +337,18 @@
 				>
 			</File>
 		</Filter>
+		<Filter
+			Name="Collision"
+			>
+			<File
+				RelativePath="..\tests\manual\collision\CollisionTests.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\tests\manual\collision\CollisionTests.h"
+				>
+			</File>
+		</Filter>
 	</Files>
 	<Globals>
 	</Globals>

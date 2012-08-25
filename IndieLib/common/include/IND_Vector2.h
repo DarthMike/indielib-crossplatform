@@ -174,11 +174,11 @@ public:
 	}
 
 	inline float dotProduct(const IND_Vector2 &vec) const {
-		return _x * vec._x + _y * vec._y;
+		return (_x * vec._x) + (_y * vec._y);
 	}
 
 	inline float crossProduct(const IND_Vector2 &vec) const {
-		return _x * vec._y - _y * vec._x;
+		return (_x * vec._y) - (_y * vec._x);
 	}
 
 	//Normalize of vector

@@ -201,25 +201,22 @@ if isSegment is true, AB is a segment, not a line.
 ==================
 */
 double pointToLineDistance(IND_Vector2 &pA, IND_Vector2 &pB, IND_Vector2 &pC, bool pIsSegment) {
-	IND_Vector2 ab(pB._x - pA._x, pB._y - pA._y);
-	IND_Vector2 bc(pC._x - pB._x, pC._y - pB._y);
-	IND_Vector2 distab (pA._x - pB._x,pA._y - pB._y);
+	IND_Vector2 ab (pB._x - pA._x, pB._y - pA._y);
+	IND_Vector2 ac (pC._x - pA._x, pC._y - pA._y);
 	
-	double mDist (ab.crossProduct(bc) / distab.length());
+	double mDist (ab.crossProduct(ac) / pA.distance(pB));
 
 	if (pIsSegment) {
-		float mDot1 (ab.crossProduct(bc));
-		if (mDot1 > 0.0f) { 
-			IND_Vector2 distbc(pB._x - pC._x,pB._y - pC._y);
-			return distbc.length();
-		}
+		IND_Vector2 bc (pC._x - pB._x, pC._y - pB._y);
+		IND_Vector2 ba (pA._x - pB._x, pA._y - pB._y);
 
-		IND_Vector2 ba (pA._x - pB._x,pA._y - pB._y);
-		IND_Vector2 ac (pC._x - pA._x,pC._y - pA._y);
+		float mDot1 (ab.dotProduct(bc));
+		if (mDot1 > 0.0f) { 
+			return pB.distance(pC);
+		}
 		float mDot2 (ba.dotProduct(ac));
 		if (mDot2 > 0.0f) {
-			IND_Vector2 distac(pA._x - pC._x,pA._y - pC._y);
-			return distac.length();
+			return pA.distance(pC);
 		}
 	}
 

@@ -2,25 +2,60 @@
 #include "dependencies/unittest++/src/UnitTest++.h"
 #include "CIndieLib_vc2008.h"
 
-/*==================
-Compute the distance from AB to C
-if isSegment is true, AB is a segment, not a line.
-==================
-*/
-/*double pointToLineDistance(IND_Vector2 &pA, IND_Vector2 &pB, IND_Vector2 &pC, bool pIsSegment) /*
+TEST(pointToLineDistanceFromMiddleIsSegment) {
+	CIndieLib *iLib = CIndieLib::instance();
+	IND_Vector2 a (10.0f, 10.0f);
+	IND_Vector2 b (20.0f, 10.0f);
+	IND_Vector2 c (15.0f, 20.0f);
+	
+	CHECK_CLOSE(10.0,iLib->_math->pointToLineDistance(a,b,c,true),0.1);
+}
 
-/*
-==================
-Check if there is an intersection between two segments
-Segment 1 => (pAx, pAy) - (pBx, pBy)
-Segment 2 => (pCx, pCy) - (pDx, pDy)
-==================
-*/
-/*bool isSegmentIntersection(IND_Vector2 &a,
-        IND_Vector2 &b,
-        IND_Vector2 &c,
-        IND_Vector2 &d) {
-*/
+TEST(pointToLineDistanceFromAIsSegment) {
+	CIndieLib *iLib = CIndieLib::instance();
+	IND_Vector2 a (10.0f, 10.0f);
+	IND_Vector2 b (20.0f, 10.0f);
+	IND_Vector2 c (10.0f, 20.0f);
+	
+	CHECK_CLOSE(10.0,iLib->_math->pointToLineDistance(a,b,c,true),0.1);
+}
+
+TEST(pointToLineDistanceFromBIsSegment) {
+	CIndieLib *iLib = CIndieLib::instance();
+	IND_Vector2 a (10.0f, 10.0f);
+	IND_Vector2 b (20.0f, 10.0f);
+	IND_Vector2 c (20.0f, 20.0f);
+	
+	CHECK_CLOSE(10.0,iLib->_math->pointToLineDistance(a,b,c,true),0.1);
+}
+
+TEST(pointToLineDistanceFromMiddleNotSegment) {
+	CIndieLib *iLib = CIndieLib::instance();
+	IND_Vector2 a (10.0f, 10.0f);
+	IND_Vector2 b (20.0f, 10.0f);
+	IND_Vector2 c (20.0f, 20.0f);
+	
+	CHECK_CLOSE(10.0,iLib->_math->pointToLineDistance(a,b,c,false),0.1);
+}
+
+TEST(pointToLineDistanceFromMiddleFarRightNotSegment) {
+	CIndieLib *iLib = CIndieLib::instance();
+	IND_Vector2 a (10.0f, 10.0f);
+	IND_Vector2 b (20.0f, 10.0f);
+	IND_Vector2 c (150.0f, 20.0f);
+	
+	CHECK_CLOSE(10.0,iLib->_math->pointToLineDistance(a,b,c,false),0.1);
+}
+
+TEST(pointToLineDistanceFromMiddleFarLeftNotSegment) {
+	CIndieLib *iLib = CIndieLib::instance();
+	IND_Vector2 a (10.0f, 10.0f);
+	IND_Vector2 b (20.0f, 10.0f);
+	IND_Vector2 c (-150.0f, 20.0f);
+	
+	CHECK_CLOSE(10.0,iLib->_math->pointToLineDistance(a,b,c,false),0.1);
+}
+
 TEST(segmentIntersectioncrossedyes) {
 	CIndieLib *iLib = CIndieLib::instance();
 	IND_Vector2 a (10.0f, 10.0f);

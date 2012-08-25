@@ -205,7 +205,7 @@ public:
 		IND_Vector2 ab (pB._x - pA._x, pB._y - pA._y);
 		IND_Vector2 ac (pC._x - pA._x, pC._y - pA._y);
 		
-		float mDist (ab.crossProduct(ac) / pA.distance(pB));
+		double mDist (ab.crossProduct(ac) / pA.distance(pB));
 
 		if (pIsSegment) {
 			IND_Vector2 bc (pC._x - pB._x, pC._y - pB._y);
@@ -221,7 +221,7 @@ public:
 			}
 		}
 
-		return fabs(static_cast<int>(mDist));
+		return fabs(mDist);
 	}
 
 	/*

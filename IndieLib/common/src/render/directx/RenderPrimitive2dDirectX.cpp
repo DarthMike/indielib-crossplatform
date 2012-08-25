@@ -439,11 +439,13 @@ void DirectXRender::blitCollisionCircle(int pPosX, int pPosY, int pRadius, float
 
 	// Blitting
 	int x, y, i;
-
-	for (i = 0; i < 30; i++) {
-		float c = i * 2 * (float)(PI / 30);
-		x = (int)(mP1.x + (pRadius * cos(c + D3DXToRadian(0))));
-		y = (int)(mP1.y + (pRadius * sin(c + D3DXToRadian(0))));
+	float c = 2 * (float)(PI / SIDES_PER_CIRCLE);
+	int points (SIDES_PER_CIRCLE + 1);
+	assert (0 != points);
+	for (i = 0; i <= points; i++) {
+		
+		x = (int)(mP1.x + (pRadius * cos((i * c) + D3DXToRadian(0))));
+		y = (int)(mP1.y + (pRadius * sin((i* c) + D3DXToRadian(0))));
 
 		fillPixel(&_pixels [i], x, y, pR, pG, pB);
 	}
@@ -451,7 +453,7 @@ void DirectXRender::blitCollisionCircle(int pPosX, int pPosY, int pRadius, float
 	fillPixel(&_pixels [i], (int) mP1.x + (int)(pRadius * cos(D3DXToRadian(0))), (int) mP1.y + (int)(pRadius * sin(D3DXToRadian(0))), pR, pG, pB);
 
 	// Blitting circle
-	_info.mDevice->DrawPrimitiveUP(D3DPT_LINESTRIP, i, &_pixels, sizeof(PIXEL));
+	_info.mDevice->DrawPrimitiveUP(D3DPT_LINESTRIP, points, &_pixels, sizeof(PIXEL));
 }
 
 

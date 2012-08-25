@@ -31,7 +31,6 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "OpenGLRender.h"
 
 
-
 // --------------------------------------------------------------------------------
 //							         Public methods
 // --------------------------------------------------------------------------------
@@ -671,51 +670,51 @@ Blits a bounding circle area
 ==================
 */
 void OpenGLRender::blitCollisionCircle(int pPosX, int pPosY, int pRadius, float pScale,  BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pIndWorldMatrix) {
-	//TODO
-	/*
-	if (pScale != 1.0f) pRadius = (int) (pRadius * pScale);
-
-	SetTransform2d (0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0);
-
-	D3DXMATRIX mWorldMatrix;
-	GetD3DMatrix (pIndWorldMatrix, &mWorldMatrix);
-
-	// Untransformed points
-	D3DXVECTOR2 mP1Untransformed ((float) pPosX, (float) pPosY);
-
-	D3DXVECTOR4 mP1;
-	D3DXVec2Transform (&mP1, &mP1Untransformed, &mWorldMatrix);
-
-	// Color
-	SetRainbow2d (IND_OPAQUE, 1, 0, 0, IND_FILTER_POINT, pR, pG, pB, pA, 0, 0, 0, 255, 0, 0);
-
-	// Color
-	_info.mDevice->SetTextureStageState (0, D3DTSS_COLORARG1, D3DTA_DIFFUSE);
-
-	// Pixel format
-	_info.mDevice->SetFVF (D3DFVF_PIXEL);
-
-	// Blitting
-	int x, y, i;
-
-	for (i = 0; i < 30; i++)
-	{
-	    float c = i * 2 * (float) (PI / 30);
-	    x = (int) ( mP1.x + (pRadius * cos (c + D3DXToRadian (0))) );
-	    y = (int) ( mP1.y + (pRadius * sin (c + D3DXToRadian (0))) );
-
-	    FillPixel (&_pixels [i], x, y, pR, pG, pB);
-	}
-
-	FillPixel (&_pixels [i], (int) mP1.x + (int) (pRadius * cos (D3DXToRadian (0))), (int) mP1.y + (int) (pRadius * sin (D3DXToRadian (0))), pR, pG, pB);
-
-	// Blitting circle
-	_info.mDevice->DrawPrimitiveUP (D3DPT_LINESTRIP, i, &_pixels, sizeof (PIXEL));
-
-	//mvTransformResetState();  //needed not to modify next rendering call transforms! (mvTransformPresetState()) is called inside the transform setting methods
-	*/
-
+	float r(static_cast<float>(pR) / 255.0f), g(static_cast<float>(pG) / 255.0f), b(static_cast<float>(pB) / 255.0f), a(static_cast<float>(pA) / 255.0f);
 	
+	//Radius transformed by scale parameter.
+	pRadius = static_cast<int>(pScale * pRadius);
+
+	// Filling pixels
+	float x (0.0f);
+	float y (0.0f);
+	int points (SIDES_PER_CIRCLE + 1);
+	assert(0 != points);
+	float angle (2*PI / SIDES_PER_CIRCLE);
+	for (int i = 0; i <= points ; i++) {
+		x = pPosX + (pRadius * cosf(angle*i));
+		y = pPosY + (pRadius * sinf(angle*i));
+		fillPixel (&_pixels[i], x, y, r, g, b, a);
+	}
+    
+	//Render primitive - No textures
+	glDisable(GL_TEXTURE_2D);
+	//Transform
+	setTransform2d(pIndWorldMatrix);
+
+	// Color settings
+    setRainbow2d (IND_OPAQUE, 1, 0, 0, IND_FILTER_POINT, pR, pG, pB, pA, 0, 0, 0, 255, 0, 0);
+
+	//Blitting
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_COLOR_ARRAY);
+
+	//Polygon blitting
+	glVertexPointer(3, GL_FLOAT, sizeof(PIXEL), &_pixels[0]._x);
+	glColorPointer(4, GL_FLOAT, sizeof(PIXEL), &_pixels[0]._colorR);
+	glDrawArrays(GL_LINE_STRIP, 0, points);
+
+#ifdef _DEBUG
+    GLenum glerror = glGetError();
+	if (glerror) {
+		g_debug->header("OpenGL error in circle blitting ", 2);
+	}
+#endif
+	glDisableClientState(GL_VERTEX_ARRAY);
+	glDisableClientState(GL_COLOR_ARRAY);	
+
+	//Reset matrix stack state
+	mvTransformResetState();  //needed not to modify next rendering call transforms! (mvTransformPresetState()) is called inside the transform setting methods
 }
 
 
@@ -726,12 +725,12 @@ Blits a bounding line
 */
 void OpenGLRender::blitCollisionLine(int pPosX1, int pPosY1, int pPosX2, int pPosY2,  BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pIndWorldMatrix) {
 
-	//TODO
-	//setTransform2d (0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0);
-	
-	//BlitGridLine(pPosX1,pPosY1,pPosX2,pPosY2,pR,pG,pB,pA);
-
-	//mvTransformResetState();  //needed not to modify next rendering call transforms! (mvTransformPresetState()) is called inside the transform setting methods
+	//Transform with supplied matrix
+	setTransform2d(pIndWorldMatrix);
+	//Blit the line 
+	BlitGridLine (pPosX1, pPosY1, pPosX2, pPosY2,  pR, pG, pB, pA);
+	//Leave matrix state the same
+	mvTransformResetState();  //needed not to modify next rendering call transforms! (mvTransformPresetState()) is called inside the transform setting methods
 }
 
 #endif //INDIERENDER_OPENGL

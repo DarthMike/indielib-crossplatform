@@ -145,8 +145,8 @@ users for really concrete purposes.
 // ----- Renderer settings -----
 //****Renderer choosing in static time****
 //YOU SHOULD CHANGE HERE THE DEFINITION OF WHICH RENDERER TO COMPILE WITH
-//#define INDIERENDER_DIRECTX
-#define INDIERENDER_OPENGL
+#define INDIERENDER_DIRECTX
+//#define INDIERENDER_OPENGL
 //#define INDIERENDER_GLES_IOS
 
 // ----- Renderer set checkings -----
@@ -1264,5 +1264,7 @@ typedef struct structBoundingCollision BOUNDING_COLLISION;
 // --------------------------------------------------------------------------------
 const int MAX_CHARS_IN_INT32_STR = (10 + 1); // +1 is for '\0' character
 const int MAX_CHARS_IN_INT64_STR = (20 + 1);
+const int SIDES_PER_CIRCLE = 30;   //Number of sides a circle has (will blit as many lines as specified here when blitting a circle primitive)
+
 
 #endif // _DEFINES_

@@ -163,116 +163,116 @@ public:
 		return len;
 	}
 // ----- Collision utilities -----
-/*
-==================
-Check if point p is inside the triangle with vertex a, b, c
-Technique from: http://www.blackpawn.com/texts/pointinpoly/default.html
-==================
-*/
-static bool isPointInsideTriangle(IND_Vector2 &p,
-        IND_Vector2 &a,
-        IND_Vector2 &b,
-        IND_Vector2 &c) {
-	// Compute vectors
-	IND_Vector2 v0 = c - a;
-	IND_Vector2 v1 = b - a;
-	IND_Vector2 v2 = p - a;
+	/*
+	==================
+	Check if point p is inside the triangle with vertex a, b, c
+	Technique from: http://www.blackpawn.com/texts/pointinpoly/default.html
+	==================
+	*/
+	static bool isPointInsideTriangle(IND_Vector2 &p,
+			IND_Vector2 &a,
+			IND_Vector2 &b,
+			IND_Vector2 &c) {
+		// Compute vectors
+		IND_Vector2 v0 = c - a;
+		IND_Vector2 v1 = b - a;
+		IND_Vector2 v2 = p - a;
 
-	// Compute dot products
-	float dot00 = v0.dotProduct(v0);
-	float dot01 = v0.dotProduct(v1);
-	float dot02 = v0.dotProduct(v2);
-	float dot11 = v1.dotProduct(v1);
-	float dot12 = v1.dotProduct(v2);
+		// Compute dot products
+		float dot00 = v0.dotProduct(v0);
+		float dot01 = v0.dotProduct(v1);
+		float dot02 = v0.dotProduct(v2);
+		float dot11 = v1.dotProduct(v1);
+		float dot12 = v1.dotProduct(v2);
 
-	// Compute barycentric coordinates
-	float invDenom = 1 / (dot00 * dot11 - dot01 * dot01);
-	float u = (dot11 * dot02 - dot01 * dot12) * invDenom;
-	float v = (dot00 * dot12 - dot01 * dot02) * invDenom;
+		// Compute barycentric coordinates
+		float invDenom = 1 / (dot00 * dot11 - dot01 * dot01);
+		float u = (dot11 * dot02 - dot01 * dot12) * invDenom;
+		float v = (dot00 * dot12 - dot01 * dot02) * invDenom;
 
-	// Check if point is in triangle
-	return (u > 0) && (v > 0) && (u + v < 1);
-}
-
-/*
-==================
-Compute the distance from AB to C
-if isSegment is true, AB is a segment, not a line.
-==================
-*/
-double pointToLineDistance(IND_Vector2 &pA, IND_Vector2 &pB, IND_Vector2 &pC, bool pIsSegment) {
-	IND_Vector2 ab (pB._x - pA._x, pB._y - pA._y);
-	IND_Vector2 ac (pC._x - pA._x, pC._y - pA._y);
-	
-	double mDist (ab.crossProduct(ac) / pA.distance(pB));
-
-	if (pIsSegment) {
-		IND_Vector2 bc (pC._x - pB._x, pC._y - pB._y);
-		IND_Vector2 ba (pA._x - pB._x, pA._y - pB._y);
-
-		float mDot1 (ab.dotProduct(bc));
-		if (mDot1 > 0.0f) { 
-			return pB.distance(pC);
-		}
-		float mDot2 (ba.dotProduct(ac));
-		if (mDot2 > 0.0f) {
-			return pA.distance(pC);
-		}
+		// Check if point is in triangle
+		return (u > 0) && (v > 0) && (u + v < 1);
 	}
 
-	return abs(mDist);
-}
+	/*
+	==================
+	Compute the distance from AB to C
+	if isSegment is true, AB is a segment, not a line.
+	==================
+	*/
+	double pointToLineDistance(IND_Vector2 &pA, IND_Vector2 &pB, IND_Vector2 &pC, bool pIsSegment) {
+		IND_Vector2 ab (pB._x - pA._x, pB._y - pA._y);
+		IND_Vector2 ac (pC._x - pA._x, pC._y - pA._y);
+		
+		double mDist (ab.crossProduct(ac) / pA.distance(pB));
 
-/*
-==================
-Check if there is an intersection between two segments
-Segment 1 => (pAx, pAy) - (pBx, pBy)
-Segment 2 => (pCx, pCy) - (pDx, pDy)
-==================
-*/
-bool isSegmentIntersection(IND_Vector2 &a,
-        IND_Vector2 &b,
-        IND_Vector2 &c,
-        IND_Vector2 &d) {
-	float mGradAB, mGradCD, mYcptAB, mYcptCD, mInterceptX, mInterceptY;
+		if (pIsSegment) {
+			IND_Vector2 bc (pC._x - pB._x, pC._y - pB._y);
+			IND_Vector2 ba (pA._x - pB._x, pA._y - pB._y);
 
-	// In order to avoid divisions by zero
-	if (a._y == b._y)
-		b._y += 0.0001f;
+			float mDot1 (ab.dotProduct(bc));
+			if (mDot1 > 0.0f) { 
+				return pB.distance(pC);
+			}
+			float mDot2 (ba.dotProduct(ac));
+			if (mDot2 > 0.0f) {
+				return pA.distance(pC);
+			}
+		}
 
-	if (a._x == b._x)
-		b._x += 0.0001f;
+		return abs(mDist);
+	}
 
-	if (c._y == d._y)
-		d._y += 0.0001f;
+	/*
+	==================
+	Check if there is an intersection between two segments
+	Segment 1 => (pAx, pAy) - (pBx, pBy)
+	Segment 2 => (pCx, pCy) - (pDx, pDy)
+	==================
+	*/
+	bool isSegmentIntersection(IND_Vector2 &a,
+			IND_Vector2 &b,
+			IND_Vector2 &c,
+			IND_Vector2 &d) {
+		float mGradAB, mGradCD, mYcptAB, mYcptCD, mInterceptX, mInterceptY;
 
-	if (c._x == d._x)
-		d._x += 0.0001f;
+		// In order to avoid divisions by zero
+		if (a._y == b._y)
+			b._y += 0.0001f;
 
-	// Calculates the intersection between the two lines
-	mGradAB = (a._y - b._y) / (a._x - b._x);
-	mGradCD = (c._y - d._y) / (c._x - d._x);
+		if (a._x == b._x)
+			b._x += 0.0001f;
 
-	mYcptAB = a._y - a._x * mGradAB;
-	mYcptCD = c._y - c._x * mGradCD;
-	mInterceptX = (mYcptAB - mYcptCD) / (mGradCD - mGradAB);
-	mInterceptY = (mYcptAB - (mGradAB * mYcptCD) / mGradCD) / (1 - mGradAB / mGradCD);
+		if (c._y == d._y)
+			d._y += 0.0001f;
 
-	// Checking in the intersection is inside the segment
-	if (!((mInterceptX >= a._x && mInterceptX <= b._x) || (mInterceptX >= b._x && mInterceptX <= a._x)))
-		return 0;
+		if (c._x == d._x)
+			d._x += 0.0001f;
 
-	if (!((mInterceptY >= a._y && mInterceptY <= b._y) || (mInterceptY >= b._y && mInterceptY <= a._y)))
-		return 0;
+		// Calculates the intersection between the two lines
+		mGradAB = (a._y - b._y) / (a._x - b._x);
+		mGradCD = (c._y - d._y) / (c._x - d._x);
 
-	if (!((mInterceptX >= c._x && mInterceptX <= d._x) || (mInterceptX >= d._x && mInterceptX <= c._x)))
-		return 0;
+		mYcptAB = a._y - a._x * mGradAB;
+		mYcptCD = c._y - c._x * mGradCD;
+		mInterceptX = (mYcptAB - mYcptCD) / (mGradCD - mGradAB);
+		mInterceptY = (mYcptAB - (mGradAB * mYcptCD) / mGradCD) / (1 - mGradAB / mGradCD);
 
-	if (!((mInterceptY >= c._y && mInterceptY <= d._y) || (mInterceptY >= d._y && mInterceptY <= c._y)))
-		return 0;
+		// Checking in the intersection is inside the segment
+		if (!((mInterceptX >= a._x && mInterceptX <= b._x) || (mInterceptX >= b._x && mInterceptX <= a._x)))
+			return 0;
 
-	return 1;
-}
+		if (!((mInterceptY >= a._y && mInterceptY <= b._y) || (mInterceptY >= b._y && mInterceptY <= a._y)))
+			return 0;
+
+		if (!((mInterceptX >= c._x && mInterceptX <= d._x) || (mInterceptX >= d._x && mInterceptX <= c._x)))
+			return 0;
+
+		if (!((mInterceptY >= c._y && mInterceptY <= d._y) || (mInterceptY >= d._y && mInterceptY <= c._y)))
+			return 0;
+
+		return 1;
+	}
 	// ----- Matrix utilities -----
 #if defined (INDIERENDER_OPENGL) || defined (INDIERENDER_GLES_IOS)
 

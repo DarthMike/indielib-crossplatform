@@ -2,41 +2,132 @@
 #include "dependencies/unittest++/src/UnitTest++.h"
 #include "CIndieLib_vc2008.h"
 
+/*==================
+Compute the distance from AB to C
+if isSegment is true, AB is a segment, not a line.
+==================
+*/
+/*double pointToLineDistance(IND_Vector2 &pA, IND_Vector2 &pB, IND_Vector2 &pC, bool pIsSegment) /*
 
-TEST(distanceToPoint1) {
-	//CIndieLib *iLib = CIndieLib::instance();
+/*
+==================
+Check if there is an intersection between two segments
+Segment 1 => (pAx, pAy) - (pBx, pBy)
+Segment 2 => (pCx, pCy) - (pDx, pDy)
+==================
+*/
+/*bool isSegmentIntersection(IND_Vector2 &a,
+        IND_Vector2 &b,
+        IND_Vector2 &c,
+        IND_Vector2 &d) {
+*/
 
-	////Result
-	//IND_Matrix result;
-	//IND_Vector3 eye(1.0f, 2.0f, 3.0f);
-	//IND_Vector3 look(1.0f, 2.0f, 2.0f);  //Just on z coord lower
-	//IND_Vector3 up(0.0f, -1.0f, 0.0f);
+TEST(isPointInsideTriangleInside) {
+	CIndieLib *iLib = CIndieLib::instance();
+	
+	IND_Vector2 a = IND_Vector2(0.0f,0.0f);
+	IND_Vector2 b = IND_Vector2(30.0f,0.0f);
+	IND_Vector2 c = IND_Vector2(15.0f,30.0f);
+	IND_Vector2 pointInside = IND_Vector2(15.0f,1.0f);
 
- //   iLib->_math->matrix4DLookAtMatrixEyeLookUpLH(eye,look,up,result);
+	CHECK_EQUAL(true,iLib->_math->isPointInsideTriangle(pointInside,a,b,c));
+}	
 
-	//IND_Vector3 x(1.0f, 0.0f, 0.0f);
- //   IND_Vector3 y(0.0f, -1.0f, 0.0f);
-	//IND_Vector3 z(0.0f, 0.0f, -1.0f);
+TEST(isPointInsideTriangleInsideCloseVertex1) {
+	CIndieLib *iLib = CIndieLib::instance();
+	
+	IND_Vector2 a = IND_Vector2(0.0f,0.0f);
+	IND_Vector2 b = IND_Vector2(30.0f,0.0f);
+	IND_Vector2 c = IND_Vector2(15.0f,30.0f);
+	IND_Vector2 pointInside = IND_Vector2(29.9f,0.1f);
 
-	//CHECK_CLOSE(x._x, result._11, 0.01f);
-	//CHECK_CLOSE(x._y, result._12, 0.01f);
-	//CHECK_CLOSE(x._z, result._13, 0.01f);
-	//CHECK_CLOSE(0.0f, result._41, 0.01f);
+	CHECK_EQUAL(true,iLib->_math->isPointInsideTriangle(pointInside,a,b,c));
+}	
 
-	//CHECK_CLOSE(y._x, result._21, 0.01f);
-	//CHECK_CLOSE(y._y, result._22, 0.01f);
-	//CHECK_CLOSE(y._z, result._23, 0.01f);
-	//CHECK_CLOSE(0.0f, result._42, 0.01f);
+TEST(isPointInsideTriangleInsideCloseVertex2) {
+	CIndieLib *iLib = CIndieLib::instance();
+	
+	IND_Vector2 a = IND_Vector2(0.0f,0.0f);
+	IND_Vector2 b = IND_Vector2(30.0f,0.0f);
+	IND_Vector2 c = IND_Vector2(15.0f,30.0f);
+	IND_Vector2 pointInside = IND_Vector2(29.9f,0.1f);
 
-	//CHECK_CLOSE(z._x, result._31, 0.01f);
-	//CHECK_CLOSE(z._y, result._32, 0.01f);
-	//CHECK_CLOSE(z._z, result._33, 0.01f);
-	//CHECK_CLOSE(0.0f, result._43, 0.01f);
+	CHECK_EQUAL(true,iLib->_math->isPointInsideTriangle(pointInside,a,b,c));
+}	
 
-	//CHECK_CLOSE(-x.dotProduct(eye), result._14, 0.01f);
-	//CHECK_CLOSE(-y.dotProduct(eye), result._24, 0.01f);
-	//CHECK_CLOSE(-z.dotProduct(eye), result._34, 0.01f);
-	//CHECK_CLOSE(1.0f, result._44, 0.01f);
+TEST(isPointInsideTriangleInsideCloseVertex3) {
+	CIndieLib *iLib = CIndieLib::instance();
+	
+	IND_Vector2 a = IND_Vector2(0.0f,0.0f);
+	IND_Vector2 b = IND_Vector2(30.0f,0.0f);
+	IND_Vector2 c = IND_Vector2(15.0f,30.0f);
+	IND_Vector2 pointInside = IND_Vector2(0.1f,0.1f);
+
+	CHECK_EQUAL(true,iLib->_math->isPointInsideTriangle(pointInside,a,b,c));
+}	
+
+TEST(isPointInsideTriangleOutsideRightFar) {
+	CIndieLib *iLib = CIndieLib::instance();
+	
+	IND_Vector2 a = IND_Vector2(0.0f,0.0f);
+	IND_Vector2 b = IND_Vector2(30.0f,0.0f);
+	IND_Vector2 c = IND_Vector2(15.0f,30.0f);
+	IND_Vector2 pointInside = IND_Vector2(150.0f,1.0f);
+
+	CHECK_EQUAL(false,iLib->_math->isPointInsideTriangle(pointInside,a,b,c));
 }
 
-#endif
+TEST(isPointInsideTriangleOutsideRightClose) {
+	CIndieLib *iLib = CIndieLib::instance();
+	
+	IND_Vector2 a = IND_Vector2(0.0f,0.0f);
+	IND_Vector2 b = IND_Vector2(30.0f,0.0f);
+	IND_Vector2 c = IND_Vector2(15.0f,30.0f);
+	IND_Vector2 pointInside = IND_Vector2(30.1f,0.0f);
+
+	CHECK_EQUAL(false,iLib->_math->isPointInsideTriangle(pointInside,a,b,c));
+}
+
+TEST(isPointInsideTriangleOutsideTopFar) {
+	CIndieLib *iLib = CIndieLib::instance();
+	
+	IND_Vector2 a = IND_Vector2(0.0f,0.0f);
+	IND_Vector2 b = IND_Vector2(30.0f,0.0f);
+	IND_Vector2 c = IND_Vector2(15.0f,30.0f);
+	IND_Vector2 pointInside = IND_Vector2(15.0f,150.0f);
+
+	CHECK_EQUAL(false,iLib->_math->isPointInsideTriangle(pointInside,a,b,c));
+}
+
+TEST(isPointInsideTriangleOutsideTopClose) {
+	CIndieLib *iLib = CIndieLib::instance();
+	
+	IND_Vector2 a = IND_Vector2(0.0f,0.0f);
+	IND_Vector2 b = IND_Vector2(30.0f,0.0f);
+	IND_Vector2 c = IND_Vector2(15.0f,30.0f);
+	IND_Vector2 pointInside = IND_Vector2(15.0f,30.1f);
+
+	CHECK_EQUAL(false,iLib->_math->isPointInsideTriangle(pointInside,a,b,c));
+}
+
+TEST(isPointInsideTriangleOutsideLeftFar) {
+	CIndieLib *iLib = CIndieLib::instance();
+	
+	IND_Vector2 a = IND_Vector2(0.0f,0.0f);
+	IND_Vector2 b = IND_Vector2(30.0f,0.0f);
+	IND_Vector2 c = IND_Vector2(15.0f,30.0f);
+	IND_Vector2 pointInside = IND_Vector2(-15.0f,0.0f);
+
+	CHECK_EQUAL(false,iLib->_math->isPointInsideTriangle(pointInside,a,b,c));
+}
+
+TEST(isPointInsideTriangleOutsideLeftClose) {
+	CIndieLib *iLib = CIndieLib::instance();
+	
+	IND_Vector2 a = IND_Vector2(0.0f,0.0f);
+	IND_Vector2 b = IND_Vector2(30.0f,0.0f);
+	IND_Vector2 c = IND_Vector2(15.0f,30.0f);
+	IND_Vector2 pointInside = IND_Vector2(-0.1f,0.0f);
+
+	CHECK_EQUAL(false,iLib->_math->isPointInsideTriangle(pointInside,a,b,c));
+}

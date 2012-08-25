@@ -207,6 +207,10 @@
 			Name="Math"
 			>
 			<File
+				RelativePath="..\tests\unittests\Collisions.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\Tests\UnitTests\Math.cpp"
 				>
 			</File>

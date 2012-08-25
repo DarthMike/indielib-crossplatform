@@ -223,14 +223,6 @@
 					RelativePath="..\Common\src\Global.h"
 					>
 				</File>
-				<File
-					RelativePath="..\common\src\Tools.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\common\src\Tools.h"
-					>
-				</File>
 			</Filter>
 			<Filter
 				Name="Init / End"
@@ -701,6 +693,10 @@
 				</File>
 				<File
 					RelativePath="..\Common\include\IND_Math.h"
+					>
+				</File>
+				<File
+					RelativePath="..\common\include\IND_Vector2.h"
 					>
 				</File>
 				<File

@@ -21,6 +21,38 @@ Segment 2 => (pCx, pCy) - (pDx, pDy)
         IND_Vector2 &c,
         IND_Vector2 &d) {
 */
+TEST(segmentIntersectioncrossedyes) {
+	CIndieLib *iLib = CIndieLib::instance();
+	IND_Vector2 a (10.0f, 10.0f);
+	IND_Vector2 b (20.0f, 20.0f);
+	IND_Vector2 c (10.0f, 20.0f);
+	IND_Vector2 d (20.0f, 10.0f);
+
+	CHECK_EQUAL(true,iLib->_math->isSegmentIntersection(a,b,c,d));
+
+}
+
+TEST(segmentIntersectionperpendicularyes) {
+	CIndieLib *iLib = CIndieLib::instance();
+	IND_Vector2 a (10.0f, 10.0f);
+	IND_Vector2 b (20.0f, 10.0f);
+	IND_Vector2 c (15.0f, 15.0f);
+	IND_Vector2 d (15.0f, 5.0f);
+
+	CHECK_EQUAL(true,iLib->_math->isSegmentIntersection(a,b,c,d));
+
+}
+
+TEST(segmentIntersectionnot) {
+	CIndieLib *iLib = CIndieLib::instance();
+	IND_Vector2 a (10.0f, 10.0f);
+	IND_Vector2 b (20.0f, 20.0f);
+	IND_Vector2 c (-10.0f, -10.0f);
+	IND_Vector2 d (-20.0f, -20.0f);
+
+	CHECK_EQUAL(false,iLib->_math->isSegmentIntersection(a,b,c,d));
+
+}
 
 TEST(isPointInsideTriangleInside) {
 	CIndieLib *iLib = CIndieLib::instance();

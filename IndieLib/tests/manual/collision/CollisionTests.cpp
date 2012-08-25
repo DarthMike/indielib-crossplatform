@@ -117,19 +117,23 @@ void CollisionTests::performTests(float dt) {
 	_entities[3]->setText("No collision between the groups we are checking");
 
 	if (iLib->_entity2dManager->isCollision(_entities[0], "engines", _entities[1], "beetle_boy_head")){
-		_entities[3]->setText("Collision between rocket boy head and engines");
+		_entities[3]->setText("CIRCLE TO RECTANGLE: rocket boy head and engines");
 	}	
 
 	if (iLib->_entity2dManager->isCollision(_entities[0], "rocket_head", _entities[1], "beetle_head")){ 
-		_entities[3]->setText("Collision between rokect head and beetle head");
+		_entities[3]->setText("TRIANGLE TO TRIANGLE: rocket head / beetle head");
 	}	
 	
 	if (iLib->_entity2dManager->isCollision(_entities[0], "rocket_boy_head", _entities[1], "beetle_boy_head")){ 
-		_entities[3]->setText("Collision between rocket boy head and beetle boy head");	
+		_entities[3]->setText("CIRCLE TO CIRCLE: rocket boy head / beetle boy head");	
 	}
 
 	if (iLib->_entity2dManager->isCollision(_entities[1], "beetle_boy_head", _entities[2], "sword")){ 
-		_entities[3]->setText("Collision between beetle boy head and the sword");
+		_entities[3]->setText("CIRCLE TO ANIMATED: boy head / sword");
+	}
+
+	if (iLib->_entity2dManager->isCollision(_entities[0], "rocket_head", _entities[2], "sword")){ 
+		_entities[3]->setText("ANIMATED TO TRIANGLE: rocket head / beetle head");
 	}
 
 }

@@ -57,7 +57,7 @@ bool   OpenGLRender::isCircleToCircleCollision(BOUNDING_COLLISION *pB1,
 	IND_Vector2 mCenter2((float) pB2->_posX, (float) pB2->_posY);
 	int mRadius2 = (int)(pB2->_radius * pScale2);
 
-	// Transformations
+	// Transform the points to it's position in world coordinates by using supplied transform
 	_math.transformVector2DbyMatrix4D(mCenter1,pMat1);
 	_math.transformVector2DbyMatrix4D(mCenter2,pMat2);
 
@@ -74,45 +74,31 @@ Check collision between two triangles that are not transformed
 ==================
 */
 bool   OpenGLRender::isTriangleToTriangleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1,
-        BOUNDING_COLLISION *pB2, IND_Matrix pMat2) {
-	//d3DMatrixToIndMatrix(pMat1, &pMat1);
-	//d3DMatrixToIndMatrix(pMat2, &pMat2);
+												   BOUNDING_COLLISION *pB2, IND_Matrix pMat2) {
+	// Untransformed points
 
-	//// Untransformed points
+	// Triangle 1
+	IND_Vector2 mA1((float) pB1->_ax, (float) pB1->_ay);
+	IND_Vector2 mB1((float) pB1->_bx, (float) pB1->_by);
+	IND_Vector2 mC1((float) pB1->_cx, (float) pB1->_cy);
 
-	//// Triangle 1
-	//IND_Vector2mA1((float) pB1->_ax, (float) pB1->_ay);
-	//IND_Vector2mB1((float) pB1->_bx, (float) pB1->_by);
-	//IND_Vector2 mC1((float) pB1->_cx, (float) pB1->_cy);
+	// Triangle 2
+	IND_Vector2 mA2((float) pB2->_ax, (float) pB2->_ay);
+	IND_Vector2 mB2((float) pB2->_bx, (float) pB2->_by);
+	IND_Vector2 mC2((float) pB2->_cx, (float) pB2->_cy);
 
-	//// Triangle 2
-	//IND_Vector2 mA2((float) pB2->_ax, (float) pB2->_ay);
-	//IND_Vector2 mB2((float) pB2->_bx, (float) pB2->_by);
-	//IND_Vector2 mC2((float) pB2->_cx, (float) pB2->_cy);
+	// Transform the points to it's position in world coordinates by using supplied transform
+	_math.transformVector2DbyMatrix4D(mA1,pMat1);
+	_math.transformVector2DbyMatrix4D(mB1,pMat1);
+	_math.transformVector2DbyMatrix4D(mC1,pMat1);
 
-	//// Transformations
-	//D3DXVECTOR4 mA1t, mB1t, mC1t, mA2t, mB2t, mC2t;
+	_math.transformVector2DbyMatrix4D(mA2,pMat2);
+	_math.transformVector2DbyMatrix4D(mB2,pMat2);
+	_math.transformVector2DbyMatrix4D(mC2,pMat2);
 
-	//D3DXVec2Transform(&mA1t, &mA1, &pMat1);
-	//D3DXVec2Transform(&mB1t, &mB1, &pMat1);
-	//D3DXVec2Transform(&mC1t, &mC1, &pMat1);
 
-	//D3DXVec2Transform(&mA2t, &mA2, &pMat2);
-	//D3DXVec2Transform(&mB2t, &mB2, &pMat2);
-	//D3DXVec2Transform(&mC2t, &mC2, &pMat2);
-
-	//// Triangle 1 in VECTOR2
-	//IND_Vector2 mA1f(mA1t);
-	//IND_Vector2 mB1f(mB1t);
-	//IND_Vector2 mC1f(mC1t);
-
-	//// Triangle 2 in VECTOR2
-	//IND_Vector2 mA2f(mA2t);
-	//IND_Vector2 mB2f(mB2t);
-	//IND_Vector2 mC2f(mC2t);
-
-	//if (isTriangleToTriangleCollision(mA1f, mB1f, mC1f, mA2f, mB2f, mC2f))
-	//	return 1;
+	if (isTriangleToTriangleCollision(mA1, mB1, mC1, mA2, mB2, mC2))
+		return 1;
 
 	return 0;
 }

@@ -627,61 +627,6 @@ bool IND_Entity2dManager::isCollision(IND_Entity2d *pEn1, char *pId1, IND_Entity
 	if (!pEn1->_su && !pEn1->_an) return 0;
 	if (!pEn2->_su && !pEn2->_an) return 0;
 
-	// Apply transformation if the entities dont have a world matrix
-	if (pEn1->isNullMatrix() || pEn2->isNullMatrix()) {
-		int mWidthTemp, mHeightTemp;
-		if (pEn1->_su) {
-			mWidthTemp  = pEn1->_su->getWidth();
-			mHeightTemp = pEn1->_su->getHeight();
-		} else {
-			mWidthTemp  = pEn1->_an->getActualSurface(pEn1->getSequence())->getWidth();
-			mHeightTemp = pEn1->_an->getActualSurface(pEn1->getSequence())->getHeight();
-		}
-
-		IND_Matrix mMat1;
-		_render->setTransform2d((int) pEn1->_x,
-		                        (int) pEn1->_y,
-		                        pEn1->_angleX,
-		                        pEn1->_angleY,
-		                        pEn1->_angleZ,
-		                        pEn1->_scaleX,
-		                        pEn1->_scaleY,
-		                        pEn1->_axisCalX,
-		                        pEn1->_axisCalY,
-		                        pEn1->_mirrorX,
-		                        pEn1->_mirrorY,
-		                        mWidthTemp,
-		                        mHeightTemp,
-		                        &mMat1);
-		pEn1->_mat = mMat1;
-
-
-		if (pEn2->_su) {
-			mWidthTemp  = pEn2->_su->getWidth();
-			mHeightTemp = pEn2->_su->getHeight();
-		} else {
-			mWidthTemp  = pEn2->_an->getActualSurface(pEn2->getSequence())->getWidth();
-			mHeightTemp = pEn2->_an->getActualSurface(pEn2->getSequence())->getHeight();
-		}
-
-		IND_Matrix mMat2;
-		_render->setTransform2d((int) pEn2->_x,
-		                        (int) pEn2->_y,
-		                        pEn2->_angleX,
-		                        pEn2->_angleY,
-		                        pEn2->_angleZ,
-		                        pEn2->_scaleX,
-		                        pEn2->_scaleY,
-		                        pEn2->_axisCalX,
-		                        pEn2->_axisCalY,
-		                        pEn2->_mirrorX,
-		                        pEn2->_mirrorY,
-		                        mWidthTemp,
-		                        mHeightTemp,
-		                        &mMat2);
-		pEn2->_mat = mMat2;
-	}
-
 	list <BOUNDING_COLLISION *> *mBoundingList1;
 	list <BOUNDING_COLLISION *> *mBoundingList2;
 

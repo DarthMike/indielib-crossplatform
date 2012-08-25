@@ -8,7 +8,6 @@
 #include "IND_Surface.h"
 #include "IND_Entity2d.h"
 #include "IND_Timer.h"
-#include "Tools.h"
 
 #include <cstring>
 #include <sstream>
@@ -107,7 +106,7 @@ int IndieLib()
 		mSecond = (int) (mTimer->getTicks() / 1000.0f);
 
 		// Show the time passing in seconds
-		Tools::itoa(mSecond,mTempTime);          
+		mI->_math->itoa(mSecond,mTempTime);
            						   
 		strcpy (mTimeString, "Seconds: ");
 		strcat (mTimeString, mTempTime);

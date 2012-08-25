@@ -88,7 +88,6 @@
 		E73EB02E15E6D66300B95FE4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA915E6B67800250CEE /* Credits.rtf */; };
 		E73EB02F15E6D66300B95FE4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCAB15E6B67800250CEE /* InfoPlist.strings */; };
 		E73EB03C15E6D6D000B95FE4 /* CIndieLib_vc2008.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E73EB03715E6D6D000B95FE4 /* CIndieLib_vc2008.cpp */; };
-		E73EB03D15E6D6D000B95FE4 /* Tools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E73EB03915E6D6D000B95FE4 /* Tools.cpp */; };
 		E73EB03E15E6D6D000B95FE4 /* Tutorial16.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E73EB03B15E6D6D000B95FE4 /* Tutorial16.cpp */; };
 		E744859415E7E9B600DDE3BF /* libIndielib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
 		E744859515E7E9B600DDE3BF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */; };
@@ -334,8 +333,6 @@
 		E73EB03315E6D66300B95FE4 /* Tutorial16.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial16.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E73EB03715E6D6D000B95FE4 /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
 		E73EB03815E6D6D000B95FE4 /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIndieLib_vc2008.h; sourceTree = "<group>"; };
-		E73EB03915E6D6D000B95FE4 /* Tools.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tools.cpp; sourceTree = "<group>"; };
-		E73EB03A15E6D6D000B95FE4 /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
 		E73EB03B15E6D6D000B95FE4 /* Tutorial16.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial16.cpp; sourceTree = "<group>"; };
 		E744859D15E7E9B600DDE3BF /* TutorialAdvanced01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TutorialAdvanced01.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E74485A315E7E9EC00DDE3BF /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
@@ -677,8 +674,6 @@
 			children = (
 				E73EB03715E6D6D000B95FE4 /* CIndieLib_vc2008.cpp */,
 				E73EB03815E6D6D000B95FE4 /* CIndieLib_vc2008.h */,
-				E73EB03915E6D6D000B95FE4 /* Tools.cpp */,
-				E73EB03A15E6D6D000B95FE4 /* Tools.h */,
 				E73EB03B15E6D6D000B95FE4 /* Tutorial16.cpp */,
 			);
 			name = 16_IND_Timer;
@@ -1559,7 +1554,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E73EB03C15E6D6D000B95FE4 /* CIndieLib_vc2008.cpp in Sources */,
-				E73EB03D15E6D6D000B95FE4 /* Tools.cpp in Sources */,
 				E73EB03E15E6D6D000B95FE4 /* Tutorial16.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

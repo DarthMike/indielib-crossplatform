@@ -119,8 +119,6 @@
 		E75EB189159CADF900693F41 /* RenderTransformCommonOpenGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAB0B159CADEF00693F41 /* RenderTransformCommonOpenGL.cpp */; };
 		E75EB18A159CADF900693F41 /* TextureBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAB0C159CADEF00693F41 /* TextureBuilder.h */; };
 		E75EB18B159CADF900693F41 /* TextureDefinitions.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAB0D159CADEF00693F41 /* TextureDefinitions.h */; };
-		E75EB18C159CADF900693F41 /* Tools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAB0E159CADEF00693F41 /* Tools.cpp */; };
-		E75EB18D159CADF900693F41 /* Tools.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAB0F159CADEF00693F41 /* Tools.h */; };
 		E75EB2A9159CAEFF00693F41 /* IND_Camera3d.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EB2A8159CAEFF00693F41 /* IND_Camera3d.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E75EB2AB159CAF1100693F41 /* IND_Camera3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EB2AA159CAF1100693F41 /* IND_Camera3d.cpp */; };
 		E7DBCA5C159B10E900C8B2D9 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCA5B159B10E900C8B2D9 /* CoreFoundation.framework */; };
@@ -247,8 +245,6 @@
 		E75EAB0B159CADEF00693F41 /* RenderTransformCommonOpenGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderTransformCommonOpenGL.cpp; sourceTree = "<group>"; };
 		E75EAB0C159CADEF00693F41 /* TextureBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureBuilder.h; sourceTree = "<group>"; };
 		E75EAB0D159CADEF00693F41 /* TextureDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureDefinitions.h; sourceTree = "<group>"; };
-		E75EAB0E159CADEF00693F41 /* Tools.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tools.cpp; sourceTree = "<group>"; };
-		E75EAB0F159CADEF00693F41 /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
 		E75EB2A8159CAEFF00693F41 /* IND_Camera3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IND_Camera3d.h; sourceTree = "<group>"; };
 		E75EB2AA159CAF1100693F41 /* IND_Camera3d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IND_Camera3d.cpp; sourceTree = "<group>"; };
 		E75EB2B4159CB02400693F41 /* libIndielib.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libIndielib.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -445,8 +441,6 @@
 				E75EAAED159CADEF00693F41 /* render */,
 				E75EAB0C159CADEF00693F41 /* TextureBuilder.h */,
 				E75EAB0D159CADEF00693F41 /* TextureDefinitions.h */,
-				E75EAB0E159CADEF00693F41 /* Tools.cpp */,
-				E75EAB0F159CADEF00693F41 /* Tools.h */,
 			);
 			name = src;
 			path = ../../common/src;
@@ -573,7 +567,6 @@
 				E75EB180159CADF900693F41 /* OpenGLTextureBuilder.h in Headers */,
 				E75EB18A159CADF900693F41 /* TextureBuilder.h in Headers */,
 				E75EB18B159CADF900693F41 /* TextureDefinitions.h in Headers */,
-				E75EB18D159CADF900693F41 /* Tools.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -681,7 +674,6 @@
 				E75EB187159CADF900693F41 /* RenderTransform2dOpenGL.cpp in Sources */,
 				E75EB188159CADF900693F41 /* RenderTransform3dOpenGL.cpp in Sources */,
 				E75EB189159CADF900693F41 /* RenderTransformCommonOpenGL.cpp in Sources */,
-				E75EB18C159CADF900693F41 /* Tools.cpp in Sources */,
 				E75EB2AB159CAF1100693F41 /* IND_Camera3d.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

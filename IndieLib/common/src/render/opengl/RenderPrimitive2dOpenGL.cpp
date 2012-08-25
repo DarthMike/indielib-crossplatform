@@ -671,9 +671,6 @@ Blits a bounding circle area
 */
 void OpenGLRender::blitCollisionCircle(int pPosX, int pPosY, int pRadius, float pScale,  BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pIndWorldMatrix) {
 	float r(static_cast<float>(pR) / 255.0f), g(static_cast<float>(pG) / 255.0f), b(static_cast<float>(pB) / 255.0f), a(static_cast<float>(pA) / 255.0f);
-	
-	//Radius transformed by scale parameter.
-	pRadius = static_cast<int>(pScale * pRadius);
 
 	// Filling pixels
 	float x (0.0f);

@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E70712C415A0A21000BF34D9"
-               BuildableName = "UnitTestsApp.app"
-               BlueprintName = "UnitTestsApp"
+               BlueprintIdentifier = "E744868915EA478800DDE3BF"
+               BuildableName = "UnitTests"
+               BlueprintName = "UnitTests"
                ReferencedContainer = "container:UnitTests/UnitTests.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E70712C415A0A21000BF34D9"
-            BuildableName = "UnitTestsApp.app"
-            BlueprintName = "UnitTestsApp"
+            BlueprintIdentifier = "E744868915EA478800DDE3BF"
+            BuildableName = "UnitTests"
+            BlueprintName = "UnitTests"
             ReferencedContainer = "container:UnitTests/UnitTests.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -51,9 +51,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E70712C415A0A21000BF34D9"
-            BuildableName = "UnitTestsApp.app"
-            BlueprintName = "UnitTestsApp"
+            BlueprintIdentifier = "E744868915EA478800DDE3BF"
+            BuildableName = "UnitTests"
+            BlueprintName = "UnitTests"
             ReferencedContainer = "container:UnitTests/UnitTests.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -69,9 +69,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E70712C415A0A21000BF34D9"
-            BuildableName = "UnitTestsApp.app"
-            BlueprintName = "UnitTestsApp"
+            BlueprintIdentifier = "E744868915EA478800DDE3BF"
+            BuildableName = "UnitTests"
+            BlueprintName = "UnitTests"
             ReferencedContainer = "container:UnitTests/UnitTests.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

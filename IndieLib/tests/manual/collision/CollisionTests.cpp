@@ -69,8 +69,8 @@ void CollisionTests::prepareTests() {
 	_entities[3]->setFont(_fonts[0]);
 	_entities[3]->setLineSpacing	(18);
 	_entities[3]->setCharSpacing	(-7);
-	_entities[3]->setPosition(400, 30, 10);
-	_entities[3]->setAlign(IND_CENTER);
+	_entities[3]->setPosition(150, 30, 10);
+	_entities[3]->setAlign(IND_LEFT);
 }
 
 
@@ -114,28 +114,41 @@ void CollisionTests::performTests(float dt) {
 
 	// ----- Check collisions -----
 
-	_entities[3]->setText("No collision between the groups we are checking");
-
+	char collisionText [1500];
+	char noCollisionText [500];
+	strcpy(noCollisionText,"No collision between the groups we are checking");
+	strcpy(collisionText,"");
+	bool collision = false;
 	if (iLib->_entity2dManager->isCollision(_entities[0], const_cast<char*>("engines"), _entities[1], const_cast<char*>("beetle_boy_head"))){
-		_entities[3]->setText("CIRCLE TO RECTANGLE: rocket boy head and engines");
+		collision = true;
+		strcat(collisionText,"\nCIRCLE TO RECTANGLE: rocket boy head and engines");
 	}	
 
 	if (iLib->_entity2dManager->isCollision(_entities[0], const_cast<char*>("rocket_head"), _entities[1], const_cast<char*>("beetle_head"))){ 
-		_entities[3]->setText("TRIANGLE TO TRIANGLE: rocket head / beetle head");
+		collision = true;
+		strcat(collisionText,"\nTRIANGLE TO TRIANGLE: rocket head / beetle head");
 	}	
 	
 	if (iLib->_entity2dManager->isCollision(_entities[0], const_cast<char*>("rocket_boy_head"), _entities[1], const_cast<char*>("beetle_boy_head"))){ 
-		_entities[3]->setText("CIRCLE TO CIRCLE: rocket boy head / beetle boy head");	
+		collision = true;
+		strcat(collisionText,"\nCIRCLE TO CIRCLE: rocket boy head / beetle boy head");	
 	}
 
 	if (iLib->_entity2dManager->isCollision(_entities[1], const_cast<char*>("beetle_boy_head"), _entities[2], const_cast<char*>("sword"))){ 
-		_entities[3]->setText("CIRCLE TO ANIMATED: boy head / sword");
+		collision = true;
+		strcat(collisionText,"\nCIRCLE TO ANIMATED: boy head / sword");
 	}
 
 	if (iLib->_entity2dManager->isCollision(_entities[0], const_cast<char*>("rocket_head"), _entities[2], const_cast<char*>("sword"))){ 
-		_entities[3]->setText("ANIMATED TO TRIANGLE: rocket head / beetle head");
+		collision = true;
+		strcat(collisionText,"\nANIMATED TO TRIANGLE: rocket head / beetle head");
 	}
 
+	if (collision) {
+		_entities[3]->setText(collisionText);
+	} else {
+		_entities[3]->setText(noCollisionText);
+	}
 }
 
 bool CollisionTests::isActive(){

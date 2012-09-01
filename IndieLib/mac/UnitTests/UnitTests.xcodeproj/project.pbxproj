@@ -33,6 +33,7 @@
 		E74486C815EA497600DDE3BF /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E744866515EA412A00DDE3BF /* Image.cpp */; };
 		E74486C915EA497900DDE3BF /* ImageManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E744866615EA412A00DDE3BF /* ImageManager.cpp */; };
 		E74486D415EA5C1500DDE3BF /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E74486D215EA5C1500DDE3BF /* WorkingPath.cpp */; };
+		E74486FF15F25E2200DDE3BF /* Vector2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E74486FE15F25E2200DDE3BF /* Vector2.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +120,7 @@
 		E744868A15EA478800DDE3BF /* UnitTests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTests; sourceTree = BUILT_PRODUCTS_DIR; };
 		E74486D215EA5C1500DDE3BF /* WorkingPath.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = WorkingPath.cpp; path = ../../tests/WorkingPath.cpp; sourceTree = "<group>"; };
 		E74486D315EA5C1500DDE3BF /* WorkingPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WorkingPath.h; path = ../../tests/WorkingPath.h; sourceTree = "<group>"; };
+		E74486FE15F25E2200DDE3BF /* Vector2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vector2.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +223,7 @@
 		E744866315EA412A00DDE3BF /* unittests */ = {
 			isa = PBXGroup;
 			children = (
+				E74486FE15F25E2200DDE3BF /* Vector2.cpp */,
 				E744866415EA412A00DDE3BF /* Collisions.cpp */,
 				E744866515EA412A00DDE3BF /* Image.cpp */,
 				E744866615EA412A00DDE3BF /* ImageManager.cpp */,
@@ -352,6 +355,7 @@
 				E74486C815EA497600DDE3BF /* Image.cpp in Sources */,
 				E74486C915EA497900DDE3BF /* ImageManager.cpp in Sources */,
 				E74486D415EA5C1500DDE3BF /* WorkingPath.cpp in Sources */,
+				E74486FF15F25E2200DDE3BF /* Vector2.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,6 +466,7 @@
 				E744869315EA478800DDE3BF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

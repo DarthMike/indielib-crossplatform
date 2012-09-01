@@ -119,16 +119,17 @@ void CollisionTests::performTests(float dt) {
 	strcpy(noCollisionText,"No collision between the groups we are checking");
 	strcpy(collisionText,"");
 	bool collision = false;
-	if (iLib->_entity2dManager->isCollision(_entities[0], const_cast<char*>("engines"), _entities[1], const_cast<char*>("beetle_boy_head"))){
+
+	if (iLib->_entity2dManager->isCollision(_entities[0], const_cast<char*>("rocket_head"), _entities[1], const_cast<char*>("beetle_boy_head"))){
 		collision = true;
-		strcat(collisionText,"\nCIRCLE TO RECTANGLE: rocket boy head and engines");
+		strcat(collisionText,"\nCIRCLE TO TRIANGLE: rocket head and beetle boy head");
 	}	
 
 	if (iLib->_entity2dManager->isCollision(_entities[0], const_cast<char*>("rocket_head"), _entities[1], const_cast<char*>("beetle_head"))){ 
 		collision = true;
 		strcat(collisionText,"\nTRIANGLE TO TRIANGLE: rocket head / beetle head");
-	}	
-	
+	}
+
 	if (iLib->_entity2dManager->isCollision(_entities[0], const_cast<char*>("rocket_boy_head"), _entities[1], const_cast<char*>("beetle_boy_head"))){ 
 		collision = true;
 		strcat(collisionText,"\nCIRCLE TO CIRCLE: rocket boy head / beetle boy head");	
@@ -139,9 +140,9 @@ void CollisionTests::performTests(float dt) {
 		strcat(collisionText,"\nCIRCLE TO ANIMATED: boy head / sword");
 	}
 
-	if (iLib->_entity2dManager->isCollision(_entities[0], const_cast<char*>("rocket_head"), _entities[2], const_cast<char*>("sword"))){ 
+	if (iLib->_entity2dManager->isCollision(_entities[1], const_cast<char*>("beetle_head"), _entities[2], const_cast<char*>("sword"))){ 
 		collision = true;
-		strcat(collisionText,"\nANIMATED TO TRIANGLE: rocket head / beetle head");
+		strcat(collisionText,"\nANIMATED TO TRIANGLE: beetle head / sword");
 	}
 
 	if (collision) {

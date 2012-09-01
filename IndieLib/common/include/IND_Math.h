@@ -201,7 +201,7 @@ public:
 	if isSegment is true, AB is a segment, not a line.
 	==================
 	*/
-	float pointToLineDistance(IND_Vector2 &pA, IND_Vector2 &pB, IND_Vector2 &pC, bool pIsSegment) {
+	double pointToLineDistance(IND_Vector2 &pA, IND_Vector2 &pB, IND_Vector2 &pC, bool pIsSegment) {
 		IND_Vector2 ab (pB._x - pA._x, pB._y - pA._y);
 		IND_Vector2 ac (pC._x - pA._x, pC._y - pA._y);
 		

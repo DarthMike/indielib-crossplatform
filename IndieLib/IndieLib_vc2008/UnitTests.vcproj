@@ -214,6 +214,10 @@
 				RelativePath="..\Tests\UnitTests\Math.cpp"
 				>
 			</File>
+			<File
+				RelativePath="..\tests\unittests\Vector2.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="UnitTest++src"

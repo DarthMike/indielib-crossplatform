@@ -2,7 +2,7 @@
 #include "dependencies/unittest++/src/UnitTest++.h"
 #include "CIndieLib_vc2008.h"
 
-TEST(pointToLineDistanceFromMiddleIsSegment) {
+TEST(pointToLineHorizontalDistanceFromMiddleIsSegment) {
 	CIndieLib *iLib = CIndieLib::instance();
 	IND_Vector2 a (10.0f, 10.0f);
 	IND_Vector2 b (20.0f, 10.0f);
@@ -11,7 +11,7 @@ TEST(pointToLineDistanceFromMiddleIsSegment) {
 	CHECK_CLOSE(10.0,iLib->_math->pointToLineDistance(a,b,c,true),0.1);
 }
 
-TEST(pointToLineDistanceFromAIsSegment) {
+TEST(pointToLineHorizontalDistanceFromAIsSegment) {
 	CIndieLib *iLib = CIndieLib::instance();
 	IND_Vector2 a (10.0f, 10.0f);
 	IND_Vector2 b (20.0f, 10.0f);
@@ -20,11 +20,38 @@ TEST(pointToLineDistanceFromAIsSegment) {
 	CHECK_CLOSE(10.0,iLib->_math->pointToLineDistance(a,b,c,true),0.1);
 }
 
-TEST(pointToLineDistanceFromBIsSegment) {
+TEST(pointToLineHorizontaleDistanceFromBIsSegment) {
 	CIndieLib *iLib = CIndieLib::instance();
 	IND_Vector2 a (10.0f, 10.0f);
 	IND_Vector2 b (20.0f, 10.0f);
 	IND_Vector2 c (20.0f, 20.0f);
+	
+	CHECK_CLOSE(10.0,iLib->_math->pointToLineDistance(a,b,c,true),0.1);
+}
+
+TEST(pointToLineHorizontalDistanceFromMiddleIsSegmentInverted) {
+	CIndieLib *iLib = CIndieLib::instance();
+	IND_Vector2 a (20.0f, 10.0f);
+	IND_Vector2 b (10.0f, 10.0f);
+	IND_Vector2 c (15.0f, 20.0f);
+	
+	CHECK_CLOSE(10.0,iLib->_math->pointToLineDistance(a,b,c,true),0.1);
+}
+
+TEST(pointToLineHorizontalDistanceFromAIsSegmentInverted) {
+	CIndieLib *iLib = CIndieLib::instance();
+	IND_Vector2 a (20.0f, 10.0f);
+	IND_Vector2 b (10.0f, 10.0f);
+	IND_Vector2 c (15.0f, 20.0f);
+	
+	CHECK_CLOSE(10.0,iLib->_math->pointToLineDistance(a,b,c,true),0.1);
+}
+
+TEST(pointToLineHorizontalDistanceFromBIsSegmentInverted) {
+	CIndieLib *iLib = CIndieLib::instance();
+	IND_Vector2 a (20.0f, 10.0f);
+	IND_Vector2 b (10.0f, 10.0f);
+	IND_Vector2 c (15.0f, 20.0f);
 	
 	CHECK_CLOSE(10.0,iLib->_math->pointToLineDistance(a,b,c,true),0.1);
 }

@@ -170,15 +170,15 @@ public:
 	//----- OTHER FUNCTIONS -----
 	//Length of vector
 	inline float length() {
-		return(sqrt(_x * _x) + (_y * _y));
+		return(sqrt((_x * _x) + (_y * _y)));
 	}
 
 	inline float dotProduct(const IND_Vector2 &vec) const {
-		return (_x * vec._x) + (_y * vec._y);
+		return ((_x * vec._x) + (_y * vec._y));
 	}
 
 	inline float crossProduct(const IND_Vector2 &vec) const {
-		return (_x * vec._y) - (_y * vec._x);
+		return ((_x * vec._y) - (_y * vec._x));
 	}
 
 	//Normalize of vector

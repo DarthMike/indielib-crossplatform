@@ -145,8 +145,8 @@ users for really concrete purposes.
 // ----- Renderer settings -----
 //****Renderer choosing in static time****
 //YOU SHOULD CHANGE HERE THE DEFINITION OF WHICH RENDERER TO COMPILE WITH
-#define INDIERENDER_DIRECTX
-//#define INDIERENDER_OPENGL
+//#define INDIERENDER_DIRECTX
+#define INDIERENDER_OPENGL
 //#define INDIERENDER_GLES_IOS
 
 // ----- Renderer set checkings -----
@@ -452,6 +452,31 @@ struct structMatrix {
 		}
 		return *this;
 	}
+    
+    //Logs itself to console
+    void description (){
+        std::cout << "\nMATRIX :\n";
+        std::cout << _11 << " ";
+        std::cout << _21 << " ";
+        std::cout << _31 << " ";
+        std::cout << _41 << " ";
+        std::cout << std::endl;
+        std::cout << _12 << " ";
+        std::cout << _22 << " ";
+        std::cout << _32 << " ";
+        std::cout << _42 << " ";
+        std::cout << std::endl;
+        std::cout << _13 << " ";
+        std::cout << _23 << " ";
+        std::cout << _33 << " ";
+        std::cout << _43 << " ";
+        std::cout << std::endl;
+        std::cout << _14 << " ";
+        std::cout << _24 << " ";
+        std::cout << _34 << " ";
+        std::cout << _44 << " ";
+        std::cout << std::endl;
+    }
 };
 //! Matrix 4x4\n (_11, _12, _13, _14,\n _21, _22, _23, _24,\n _31, _32, _33, _34\n _41, _42, _43, _44)
 #endif

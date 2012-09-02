@@ -145,8 +145,8 @@ users for really concrete purposes.
 // ----- Renderer settings -----
 //****Renderer choosing in static time****
 //YOU SHOULD CHANGE HERE THE DEFINITION OF WHICH RENDERER TO COMPILE WITH
-#define INDIERENDER_DIRECTX
-//#define INDIERENDER_OPENGL
+//#define INDIERENDER_DIRECTX
+#define INDIERENDER_OPENGL
 //#define INDIERENDER_GLES_IOS
 
 // ----- Renderer set checkings -----
@@ -254,6 +254,8 @@ typedef unsigned char BYTE;    // HACK: Fixes some code regarding surfaces, BYTE
 #pragma warning (disable : 4089)
 // 'sprintf': This function or variable may be unsafe.
 #pragma warning (disable : 4996)
+//Disables 'unreferenced formal parameter'
+#pragma warning( disable : 4100 )  
 #endif
 
 //---------------------------------------------------------------------------------

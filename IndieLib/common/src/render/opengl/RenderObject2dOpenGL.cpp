@@ -193,10 +193,17 @@ void OpenGLRender::blitRegionSurface(IND_Surface *pSu,
 			//Only draws first texture block in texture
 			// Prepare the quad that is going to be blitted
 			// Calculates the position and mapping coords for that block
-			fillVertex2d(&_vertices2d [0], pWidth, 0, ((float)(pX + pWidth) / pSu->getWidthBlock()), (1.0f - ((float)(pY               + pSu->getSpareY())            / pSu->getHeightBlock())));
-			fillVertex2d(&_vertices2d [1], pWidth, pHeight, ((float)(pX + pWidth) / pSu->getWidthBlock()), (1.0f - ((float)(pY + pHeight + pSu->getSpareY())            / pSu->getHeightBlock())));
-			fillVertex2d(&_vertices2d [2], 0,      0, ((float) pX         / pSu->getWidthBlock()), (1.0f - ((float)(pY               + pSu->getSpareY())            / pSu->getHeightBlock())));
-			fillVertex2d(&_vertices2d [3], 0,      pHeight, ((float) pX         / pSu->getWidthBlock()), (1.0f - ((float)(pY + pHeight + pSu->getSpareY())            / pSu->getHeightBlock())));
+			float x (static_cast<float>(pX));
+			float y (static_cast<float>(pY));
+			float height (static_cast<float>(pHeight));
+			float width (static_cast<float>(pWidth));
+			float bWidth (static_cast<float>(pSu->getWidthBlock()));
+			float bHeight (static_cast<float>(pSu->getHeightBlock()));
+			float spareY (static_cast<float>(pSu->getSpareY()));
+			fillVertex2d(&_vertices2d [0], width, 0.0f, ((x + width) / bWidth), (1.0f - ((y + spareY) / bHeight)));
+			fillVertex2d(&_vertices2d [1], width, height, (x + width) / bWidth, (1.0f - ((y + height + spareY) / bHeight)));
+			fillVertex2d(&_vertices2d [2], 0.0f, 0.0f , (x/bWidth), (1.0f - ((y+ spareY) / bHeight)));
+			fillVertex2d(&_vertices2d [3], 0.0f, height, (x/bWidth), (1.0f - (y + height + spareY) / bHeight));
 		        
 			//Surface drawing
 			glEnableClientState(GL_VERTEX_ARRAY);
@@ -274,17 +281,18 @@ bool OpenGLRender::blitWrapSurface(IND_Surface *pSu,
 
 		// Prepare the quad that is going to be blitted
 		// Calculates the position and mapping coords for that block
-		float _u = (float) pWidth  / pSu->getWidthBlock();
-		float _v = (float) pHeight / pSu->getHeightBlock();
-
+		float u (static_cast<float>(pWidth)  / static_cast<float>(pSu->getWidthBlock()));
+		float v (static_cast<float>(pHeight) / static_cast<float>(pSu->getHeightBlock()));
+		float witdh (static_cast<float>(pWidth));
+		float height (static_cast<float>(pHeight));
 		//Upper-right
-		fillVertex2d(&_vertices2d [0], pWidth, 0,           _u - pUDisplace,   pVDisplace);
+		fillVertex2d(&_vertices2d [0], witdh, 0, u - pUDisplace, pVDisplace);
 		//Lower-right
-		fillVertex2d(&_vertices2d [1], pWidth, pHeight,     _u - pUDisplace,   -_v + pVDisplace);
+		fillVertex2d(&_vertices2d [1], witdh, height, u - pUDisplace, -v + pVDisplace);
 		//Upper-left
-		fillVertex2d(&_vertices2d [2], 0,      0,           -pUDisplace,       pVDisplace);
+		fillVertex2d(&_vertices2d [2], 0.0f, 0.0f,-pUDisplace,pVDisplace);
 		//Lower-left
-		fillVertex2d(&_vertices2d [3], 0,      pHeight,     -pUDisplace,       -_v + pVDisplace);
+		fillVertex2d(&_vertices2d [3], 0.0f, height,-pUDisplace, -v + pVDisplace);
 
 		//Set wrap for this texture
 		glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);

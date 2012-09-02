@@ -616,8 +616,8 @@ Blits a bounding line
 {	
 	float r(static_cast<float>(pR) / 255.0f), g(static_cast<float>(pG) / 255.0f), b(static_cast<float>(pB) / 255.0f), a(static_cast<float>(pA) / 255.0f);
 	// Filling pixels
-    fillPixel (&_pixels[0], pPosX1, pPosY1, r, g, b, a);
-    fillPixel (&_pixels[1], pPosX2, pPosY2, r, g, b, a);
+    fillPixel (&_pixels[0], static_cast<float>(pPosX1), static_cast<float>(pPosY1), r, g, b, a);
+    fillPixel (&_pixels[1], static_cast<float>(pPosX2), static_cast<float>(pPosY2), r, g, b, a);
 
 	//Render primitive - No textures
 	glDisable(GL_TEXTURE_2D);

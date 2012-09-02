@@ -56,7 +56,8 @@ am_unittest_OBJECTS = CIndieLib_vc2008.$(OBJEXT) WorkingPath.$(OBJEXT) \
 	TestReporter.$(OBJEXT) TestReporterStdout.$(OBJEXT) \
 	SignalTranslator.$(OBJEXT) TimeHelpers.$(OBJEXT) \
 	AssertException.$(OBJEXT) MemoryOutStream.$(OBJEXT) \
-	UnitTests.$(OBJEXT) Math.$(OBJEXT)
+	Collisions.$(OBJEXT) Image.$(OBJEXT) ImageManager.$(OBJEXT) \
+	Math.$(OBJEXT) UnitTests.$(OBJEXT) Vector2.$(OBJEXT)
 unittest_OBJECTS = $(am_unittest_OBJECTS)
 unittest_DEPENDENCIES =
 DEFAULT_INCLUDES = -I. -I$(top_builddir)
@@ -77,13 +78,13 @@ DIST_SOURCES = $(unittest_SOURCES)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /home/michael/indielib/linux/build-aux/missing --run aclocal-1.11
+ACLOCAL = ${SHELL} /home/michael/indielib/IndieLib/linux/build-aux/missing --run aclocal-1.11
 AMTAR = $${TAR-tar}
 AR = ar
-AUTOCONF = ${SHELL} /home/michael/indielib/linux/build-aux/missing --run autoconf
-AUTOHEADER = ${SHELL} /home/michael/indielib/linux/build-aux/missing --run autoheader
-AUTOMAKE = ${SHELL} /home/michael/indielib/linux/build-aux/missing --run automake-1.11
-AWK = mawk
+AUTOCONF = ${SHELL} /home/michael/indielib/IndieLib/linux/build-aux/missing --run autoconf
+AUTOHEADER = ${SHELL} /home/michael/indielib/IndieLib/linux/build-aux/missing --run autoheader
+AUTOMAKE = ${SHELL} /home/michael/indielib/IndieLib/linux/build-aux/missing --run automake-1.11
+AWK = gawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2
@@ -119,7 +120,7 @@ LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LIPO = 
 LN_S = ln -s
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /home/michael/indielib/linux/build-aux/missing --run makeinfo
+MAKEINFO = ${SHELL} /home/michael/indielib/IndieLib/linux/build-aux/missing --run makeinfo
 MANIFEST_TOOL = :
 MKDIR_P = /bin/mkdir -p
 NM = /usr/bin/nm -B
@@ -142,10 +143,10 @@ SET_MAKE =
 SHELL = /bin/bash
 STRIP = strip
 VERSION = 0.001
-abs_builddir = /home/michael/indielib/linux/tests/unittests
-abs_srcdir = /home/michael/indielib/linux/tests/unittests
-abs_top_builddir = /home/michael/indielib/linux
-abs_top_srcdir = /home/michael/indielib/linux
+abs_builddir = /home/michael/indielib/IndieLib/linux/tests/unittests
+abs_srcdir = /home/michael/indielib/IndieLib/linux/tests/unittests
+abs_top_builddir = /home/michael/indielib/IndieLib/linux
+abs_top_srcdir = /home/michael/indielib/IndieLib/linux
 ac_ct_AR = ar
 ac_ct_CC = gcc
 ac_ct_CXX = g++
@@ -175,7 +176,7 @@ host_vendor = pc
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/michael/indielib/linux/build-aux/install-sh
+install_sh = ${SHELL} /home/michael/indielib/IndieLib/linux/build-aux/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -184,7 +185,7 @@ mandir = ${datarootdir}/man
 mkdir_p = /bin/mkdir -p
 oldincludedir = /usr/include
 pdfdir = ${docdir}
-prefix = /home/michael/freeimage
+prefix = /home/michael/indielib/IndieLib
 program_transform_name = s,x,x,
 psdir = ${docdir}
 sbindir = ${exec_prefix}/sbin
@@ -196,8 +197,27 @@ top_build_prefix = ../../
 top_builddir = ../..
 top_srcdir = ../..
 AM_CXXFLAGS = $(INTI_CFLAGS) -I ../../../common -I ../../../common/include -I ../../../tests 
-unittest_SOURCES = ../../../tests/CIndieLib_vc2008.cpp  ../../../tests/WorkingPath.cpp ../../../common/dependencies/unittest++/src/TestRunner.cpp ../../../common/dependencies/unittest++/src/Test.cpp ../../../common/dependencies/unittest++/src/TestResults.cpp ../../../common/dependencies/unittest++/src/TestDetails.cpp ../../../common/dependencies/unittest++/src/CurrentTest.cpp ../../../common/dependencies/unittest++/src/TestList.cpp ../../../common/dependencies/unittest++/src/TestReporter.cpp ../../../common/dependencies/unittest++/src/TestReporterStdout.cpp ../../../common/dependencies/unittest++/src/Posix/SignalTranslator.cpp ../../../common/dependencies/unittest++/src/Posix/TimeHelpers.cpp ../../../common/dependencies/unittest++/src/AssertException.cpp ../../../common/dependencies/unittest++/src/MemoryOutStream.cpp ../../../tests/unittests/UnitTests.cpp ../../../tests/unittests/Math.cpp
-unittest_LDADD = -L../../.libs $(INTI_LIBS) -lIndieLib -lSDL -lGLEW -lGLU -lGL -lILU -lILUT
+unittest_SOURCES = ../../../tests/CIndieLib_vc2008.cpp \
+	../../../tests/WorkingPath.cpp \
+	../../../common/dependencies/unittest++/src/TestRunner.cpp \
+	../../../common/dependencies/unittest++/src/Test.cpp \
+	../../../common/dependencies/unittest++/src/TestResults.cpp \
+	../../../common/dependencies/unittest++/src/TestDetails.cpp \
+	../../../common/dependencies/unittest++/src/CurrentTest.cpp \
+	../../../common/dependencies/unittest++/src/TestList.cpp \
+	../../../common/dependencies/unittest++/src/TestReporter.cpp \
+	../../../common/dependencies/unittest++/src/TestReporterStdout.cpp \
+	../../../common/dependencies/unittest++/src/Posix/SignalTranslator.cpp \
+	../../../common/dependencies/unittest++/src/Posix/TimeHelpers.cpp \
+	../../../common/dependencies/unittest++/src/AssertException.cpp \
+	../../../common/dependencies/unittest++/src/MemoryOutStream.cpp \
+	../../../tests/unittests/Collisions.cpp \
+	../../../tests/unittests/Image.cpp \
+	../../../tests/unittests/ImageManager.cpp \
+	../../../tests/unittests/Math.cpp \
+	../../../tests/unittests/UnitTests.cpp \
+	../../../tests/unittests/Vector2.cpp
+unittest_LDADD = -L../../.libs $(INTI_LIBS) -lIndieLib -lSDL2 -lGLEW -lGLU -lGL
 all: all-am
 
 .SUFFIXES:
@@ -287,7 +307,10 @@ distclean-compile:
 
 include ./$(DEPDIR)/AssertException.Po
 include ./$(DEPDIR)/CIndieLib_vc2008.Po
+include ./$(DEPDIR)/Collisions.Po
 include ./$(DEPDIR)/CurrentTest.Po
+include ./$(DEPDIR)/Image.Po
+include ./$(DEPDIR)/ImageManager.Po
 include ./$(DEPDIR)/Math.Po
 include ./$(DEPDIR)/MemoryOutStream.Po
 include ./$(DEPDIR)/SignalTranslator.Po
@@ -300,6 +323,7 @@ include ./$(DEPDIR)/TestResults.Po
 include ./$(DEPDIR)/TestRunner.Po
 include ./$(DEPDIR)/TimeHelpers.Po
 include ./$(DEPDIR)/UnitTests.Po
+include ./$(DEPDIR)/Vector2.Po
 include ./$(DEPDIR)/WorkingPath.Po
 
 .cpp.o:
@@ -519,19 +543,47 @@ MemoryOutStream.obj: ../../../common/dependencies/unittest++/src/MemoryOutStream
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o MemoryOutStream.obj `if test -f '../../../common/dependencies/unittest++/src/MemoryOutStream.cpp'; then $(CYGPATH_W) '../../../common/dependencies/unittest++/src/MemoryOutStream.cpp'; else $(CYGPATH_W) '$(srcdir)/../../../common/dependencies/unittest++/src/MemoryOutStream.cpp'; fi`
 
-UnitTests.o: ../../../tests/unittests/UnitTests.cpp
-	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT UnitTests.o -MD -MP -MF $(DEPDIR)/UnitTests.Tpo -c -o UnitTests.o `test -f '../../../tests/unittests/UnitTests.cpp' || echo '$(srcdir)/'`../../../tests/unittests/UnitTests.cpp
-	$(am__mv) $(DEPDIR)/UnitTests.Tpo $(DEPDIR)/UnitTests.Po
-#	source='../../../tests/unittests/UnitTests.cpp' object='UnitTests.o' libtool=no \
+Collisions.o: ../../../tests/unittests/Collisions.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT Collisions.o -MD -MP -MF $(DEPDIR)/Collisions.Tpo -c -o Collisions.o `test -f '../../../tests/unittests/Collisions.cpp' || echo '$(srcdir)/'`../../../tests/unittests/Collisions.cpp
+	$(am__mv) $(DEPDIR)/Collisions.Tpo $(DEPDIR)/Collisions.Po
+#	source='../../../tests/unittests/Collisions.cpp' object='Collisions.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o UnitTests.o `test -f '../../../tests/unittests/UnitTests.cpp' || echo '$(srcdir)/'`../../../tests/unittests/UnitTests.cpp
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o Collisions.o `test -f '../../../tests/unittests/Collisions.cpp' || echo '$(srcdir)/'`../../../tests/unittests/Collisions.cpp
 
-UnitTests.obj: ../../../tests/unittests/UnitTests.cpp
-	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT UnitTests.obj -MD -MP -MF $(DEPDIR)/UnitTests.Tpo -c -o UnitTests.obj `if test -f '../../../tests/unittests/UnitTests.cpp'; then $(CYGPATH_W) '../../../tests/unittests/UnitTests.cpp'; else $(CYGPATH_W) '$(srcdir)/../../../tests/unittests/UnitTests.cpp'; fi`
-	$(am__mv) $(DEPDIR)/UnitTests.Tpo $(DEPDIR)/UnitTests.Po
-#	source='../../../tests/unittests/UnitTests.cpp' object='UnitTests.obj' libtool=no \
+Collisions.obj: ../../../tests/unittests/Collisions.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT Collisions.obj -MD -MP -MF $(DEPDIR)/Collisions.Tpo -c -o Collisions.obj `if test -f '../../../tests/unittests/Collisions.cpp'; then $(CYGPATH_W) '../../../tests/unittests/Collisions.cpp'; else $(CYGPATH_W) '$(srcdir)/../../../tests/unittests/Collisions.cpp'; fi`
+	$(am__mv) $(DEPDIR)/Collisions.Tpo $(DEPDIR)/Collisions.Po
+#	source='../../../tests/unittests/Collisions.cpp' object='Collisions.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o UnitTests.obj `if test -f '../../../tests/unittests/UnitTests.cpp'; then $(CYGPATH_W) '../../../tests/unittests/UnitTests.cpp'; else $(CYGPATH_W) '$(srcdir)/../../../tests/unittests/UnitTests.cpp'; fi`
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o Collisions.obj `if test -f '../../../tests/unittests/Collisions.cpp'; then $(CYGPATH_W) '../../../tests/unittests/Collisions.cpp'; else $(CYGPATH_W) '$(srcdir)/../../../tests/unittests/Collisions.cpp'; fi`
+
+Image.o: ../../../tests/unittests/Image.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT Image.o -MD -MP -MF $(DEPDIR)/Image.Tpo -c -o Image.o `test -f '../../../tests/unittests/Image.cpp' || echo '$(srcdir)/'`../../../tests/unittests/Image.cpp
+	$(am__mv) $(DEPDIR)/Image.Tpo $(DEPDIR)/Image.Po
+#	source='../../../tests/unittests/Image.cpp' object='Image.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o Image.o `test -f '../../../tests/unittests/Image.cpp' || echo '$(srcdir)/'`../../../tests/unittests/Image.cpp
+
+Image.obj: ../../../tests/unittests/Image.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT Image.obj -MD -MP -MF $(DEPDIR)/Image.Tpo -c -o Image.obj `if test -f '../../../tests/unittests/Image.cpp'; then $(CYGPATH_W) '../../../tests/unittests/Image.cpp'; else $(CYGPATH_W) '$(srcdir)/../../../tests/unittests/Image.cpp'; fi`
+	$(am__mv) $(DEPDIR)/Image.Tpo $(DEPDIR)/Image.Po
+#	source='../../../tests/unittests/Image.cpp' object='Image.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o Image.obj `if test -f '../../../tests/unittests/Image.cpp'; then $(CYGPATH_W) '../../../tests/unittests/Image.cpp'; else $(CYGPATH_W) '$(srcdir)/../../../tests/unittests/Image.cpp'; fi`
+
+ImageManager.o: ../../../tests/unittests/ImageManager.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT ImageManager.o -MD -MP -MF $(DEPDIR)/ImageManager.Tpo -c -o ImageManager.o `test -f '../../../tests/unittests/ImageManager.cpp' || echo '$(srcdir)/'`../../../tests/unittests/ImageManager.cpp
+	$(am__mv) $(DEPDIR)/ImageManager.Tpo $(DEPDIR)/ImageManager.Po
+#	source='../../../tests/unittests/ImageManager.cpp' object='ImageManager.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o ImageManager.o `test -f '../../../tests/unittests/ImageManager.cpp' || echo '$(srcdir)/'`../../../tests/unittests/ImageManager.cpp
+
+ImageManager.obj: ../../../tests/unittests/ImageManager.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT ImageManager.obj -MD -MP -MF $(DEPDIR)/ImageManager.Tpo -c -o ImageManager.obj `if test -f '../../../tests/unittests/ImageManager.cpp'; then $(CYGPATH_W) '../../../tests/unittests/ImageManager.cpp'; else $(CYGPATH_W) '$(srcdir)/../../../tests/unittests/ImageManager.cpp'; fi`
+	$(am__mv) $(DEPDIR)/ImageManager.Tpo $(DEPDIR)/ImageManager.Po
+#	source='../../../tests/unittests/ImageManager.cpp' object='ImageManager.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o ImageManager.obj `if test -f '../../../tests/unittests/ImageManager.cpp'; then $(CYGPATH_W) '../../../tests/unittests/ImageManager.cpp'; else $(CYGPATH_W) '$(srcdir)/../../../tests/unittests/ImageManager.cpp'; fi`
 
 Math.o: ../../../tests/unittests/Math.cpp
 	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT Math.o -MD -MP -MF $(DEPDIR)/Math.Tpo -c -o Math.o `test -f '../../../tests/unittests/Math.cpp' || echo '$(srcdir)/'`../../../tests/unittests/Math.cpp
@@ -546,6 +598,34 @@ Math.obj: ../../../tests/unittests/Math.cpp
 #	source='../../../tests/unittests/Math.cpp' object='Math.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o Math.obj `if test -f '../../../tests/unittests/Math.cpp'; then $(CYGPATH_W) '../../../tests/unittests/Math.cpp'; else $(CYGPATH_W) '$(srcdir)/../../../tests/unittests/Math.cpp'; fi`
+
+UnitTests.o: ../../../tests/unittests/UnitTests.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT UnitTests.o -MD -MP -MF $(DEPDIR)/UnitTests.Tpo -c -o UnitTests.o `test -f '../../../tests/unittests/UnitTests.cpp' || echo '$(srcdir)/'`../../../tests/unittests/UnitTests.cpp
+	$(am__mv) $(DEPDIR)/UnitTests.Tpo $(DEPDIR)/UnitTests.Po
+#	source='../../../tests/unittests/UnitTests.cpp' object='UnitTests.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o UnitTests.o `test -f '../../../tests/unittests/UnitTests.cpp' || echo '$(srcdir)/'`../../../tests/unittests/UnitTests.cpp
+
+UnitTests.obj: ../../../tests/unittests/UnitTests.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT UnitTests.obj -MD -MP -MF $(DEPDIR)/UnitTests.Tpo -c -o UnitTests.obj `if test -f '../../../tests/unittests/UnitTests.cpp'; then $(CYGPATH_W) '../../../tests/unittests/UnitTests.cpp'; else $(CYGPATH_W) '$(srcdir)/../../../tests/unittests/UnitTests.cpp'; fi`
+	$(am__mv) $(DEPDIR)/UnitTests.Tpo $(DEPDIR)/UnitTests.Po
+#	source='../../../tests/unittests/UnitTests.cpp' object='UnitTests.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o UnitTests.obj `if test -f '../../../tests/unittests/UnitTests.cpp'; then $(CYGPATH_W) '../../../tests/unittests/UnitTests.cpp'; else $(CYGPATH_W) '$(srcdir)/../../../tests/unittests/UnitTests.cpp'; fi`
+
+Vector2.o: ../../../tests/unittests/Vector2.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT Vector2.o -MD -MP -MF $(DEPDIR)/Vector2.Tpo -c -o Vector2.o `test -f '../../../tests/unittests/Vector2.cpp' || echo '$(srcdir)/'`../../../tests/unittests/Vector2.cpp
+	$(am__mv) $(DEPDIR)/Vector2.Tpo $(DEPDIR)/Vector2.Po
+#	source='../../../tests/unittests/Vector2.cpp' object='Vector2.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o Vector2.o `test -f '../../../tests/unittests/Vector2.cpp' || echo '$(srcdir)/'`../../../tests/unittests/Vector2.cpp
+
+Vector2.obj: ../../../tests/unittests/Vector2.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT Vector2.obj -MD -MP -MF $(DEPDIR)/Vector2.Tpo -c -o Vector2.obj `if test -f '../../../tests/unittests/Vector2.cpp'; then $(CYGPATH_W) '../../../tests/unittests/Vector2.cpp'; else $(CYGPATH_W) '$(srcdir)/../../../tests/unittests/Vector2.cpp'; fi`
+	$(am__mv) $(DEPDIR)/Vector2.Tpo $(DEPDIR)/Vector2.Po
+#	source='../../../tests/unittests/Vector2.cpp' object='Vector2.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o Vector2.obj `if test -f '../../../tests/unittests/Vector2.cpp'; then $(CYGPATH_W) '../../../tests/unittests/Vector2.cpp'; else $(CYGPATH_W) '$(srcdir)/../../../tests/unittests/Vector2.cpp'; fi`
 
 mostlyclean-libtool:
 	-rm -f *.lo

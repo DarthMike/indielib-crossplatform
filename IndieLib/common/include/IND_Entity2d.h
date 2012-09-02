@@ -175,7 +175,12 @@ public:
 	*/
 	//@{
 
-	//! If the entity has a surface assigned, it returns a pointer to this surface.
+	//! A unique id assigned for this entity instance.
+    unsigned int getId() {
+        return _id;
+    }
+    
+    //! If the entity has a surface assigned, it returns a pointer to this surface.
 	IND_Surface     *getSurface()      {
 		return _su;
 	}
@@ -469,6 +474,8 @@ private:
 	list <BOUNDING_COLLISION *> *_listBoundingCollision; // Vector of bounding areas for collision checking
 
 	int _layer;
+    
+    unsigned int _id;
 
 	// ----- Private methods -----
 

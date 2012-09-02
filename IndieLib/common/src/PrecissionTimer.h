@@ -88,8 +88,11 @@ private:
 #endif
 
 #ifdef PLATFORM_LINUX
+	uint64_t mStartTime;
 	uint64_t _elapsedTime; // TODO: not sure that this is the right type......
+	struct timespec linux_start, linux_end;
 #endif
+
 	//----- INTERNAL FUNCTIONS -----
 	void init();
 };

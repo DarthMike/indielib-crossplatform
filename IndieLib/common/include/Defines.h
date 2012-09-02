@@ -454,6 +454,31 @@ struct structMatrix {
 		}
 		return *this;
 	}
+    
+    //Logs itself to console
+    void description (){
+        std::cout << "\nMATRIX :\n";
+        std::cout << _11 << " ";
+        std::cout << _21 << " ";
+        std::cout << _31 << " ";
+        std::cout << _41 << " ";
+        std::cout << std::endl;
+        std::cout << _12 << " ";
+        std::cout << _22 << " ";
+        std::cout << _32 << " ";
+        std::cout << _42 << " ";
+        std::cout << std::endl;
+        std::cout << _13 << " ";
+        std::cout << _23 << " ";
+        std::cout << _33 << " ";
+        std::cout << _43 << " ";
+        std::cout << std::endl;
+        std::cout << _14 << " ";
+        std::cout << _24 << " ";
+        std::cout << _34 << " ";
+        std::cout << _44 << " ";
+        std::cout << std::endl;
+    }
 };
 //! Matrix 4x4\n (_11, _12, _13, _14,\n _21, _22, _23, _24,\n _31, _32, _33, _34\n _41, _42, _43, _44)
 #endif
@@ -952,6 +977,8 @@ enum {
 	IND_QUOTEDBL,
 	//! hash
 	IND_HASH,
+    //! percent
+    IND_PERCENT,
 	//! Dollar
 	IND_DOLLAR,
 	//! ampersand
@@ -1114,10 +1141,6 @@ enum {
 	IND_RMETA,
 	//! Left Meta
 	IND_LMETA,
-	//! F15
-	IND_LSUPER,
-	//! Right Windows button
-	IND_RSUPER,
 	//! Mode shift
 	IND_MODE,
 	//! Help
@@ -1132,8 +1155,8 @@ enum {
 	IND_MENU,
 	//! Power
 	IND_POWER,
-	//! Euro
-	IND_EURO
+	//! Currency unit in keyboard
+	IND_CURRENCYUNIT
 };
 /*@}*/
 

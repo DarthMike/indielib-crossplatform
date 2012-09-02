@@ -284,6 +284,8 @@ void IND_Input::update() {
 			case SDLK_HASH:
 				_keys [IND_HASH].setState(mEvent.key.state);
 				break;
+            case SDLK_PERCENT:
+                _keys [IND_HASH].setState(mEvent.key.state);
 			case SDLK_DOLLAR:
 				_keys [IND_DOLLAR].setState(mEvent.key.state);
 				break;
@@ -544,20 +546,12 @@ void IND_Input::update() {
 			case SDLK_LALT:
 				_keys [IND_LALT].setState(mEvent.key.state);
 				break;
-                /*	FIXME:	case SDLK_RMETA:
+            case SDLK_RGUI:
                  _keys [IND_RMETA].setState(mEvent.key.state);
                  break;
-                 case SDLK_LMETA:
+            case SDLK_LGUI:
                  _keys [IND_LMETA].setState(mEvent.key.state);
                  break;
-                 
-                 case SDLK_LSUPER:
-                 _keys [IND_LSUPER].setState(mEvent.type);
-                 break;
-                 case SDLK_RSUPER:
-                 _keys [IND_RSUPER].setState(mEvent.type);
-                 break;
-                 */
 			case SDLK_MODE:
 				_keys [IND_MODE].setState(mEvent.key.state);
 				break;
@@ -570,19 +564,17 @@ void IND_Input::update() {
 			case SDLK_SYSREQ:
 				_keys [IND_SYSREQ].setState(mEvent.key.state);
 				break;
-                /*	FIXME:	case SDLK_BREAK:
+            case SDLK_RETURN2:
                  _keys [IND_BREAK].setState(mEvent.key.state);
                  break;
-                 */			case SDLK_MENU:
+			case SDLK_MENU:
 				_keys [IND_MENU].setState(mEvent.key.state);
 				break;
 			case SDLK_POWER:
 				_keys [IND_POWER].setState(mEvent.key.state);
 				break;
-                //FIXME:SDL 2.0
-                //case SDLK_EURO:
-                //	_keys [IND_EURO].setState(mEvent.type);
-                //	break;
+            case SDLK_CURRENCYUNIT:
+                _keys [IND_CURRENCYUNIT].setState(mEvent.type);
                 break;  //KEYDOWN OR KEYUP
                 
             default:

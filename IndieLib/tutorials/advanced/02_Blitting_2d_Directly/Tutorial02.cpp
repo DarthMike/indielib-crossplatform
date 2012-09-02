@@ -24,20 +24,20 @@ int IndieLib()
 
 	// Loading draco
 	IND_Surface *mSurfaceDraco = new IND_Surface();
-	if (!mI->_surfaceManager->add(mSurfaceDraco, "..\\..\\resources\\draco.png", IND_ALPHA, IND_32)) return 0;
+	if (!mI->_surfaceManager->add(mSurfaceDraco, "../../resources/draco.png", IND_ALPHA, IND_32)) return 0;
 
 	// Loading gem (this image has a blue rectangle surronding it)
 	IND_Surface *mSurfaceGem = new IND_Surface();
-	if (!mI->_surfaceManager->add(mSurfaceGem, "..\\..\\resources\\gem_squared.png", IND_ALPHA, IND_32)) return 0;
+	if (!mI->_surfaceManager->add(mSurfaceGem, "../../resources/gem_squared.png", IND_ALPHA, IND_32)) return 0;
 
 	// Loading bug
 	IND_Surface *mSurfaceBug = new IND_Surface();
-	if (!mI->_surfaceManager->add(mSurfaceBug, "..\\..\\resources\\Enemy Bug.png", IND_ALPHA, IND_32)) return 0;
+	if (!mI->_surfaceManager->add(mSurfaceBug, "../../resources/Enemy Bug.png", IND_ALPHA, IND_32)) return 0;
 
 	// ----- Animation loading -----
 
 	IND_Animation *mAnimationUfo = new IND_Animation();
-	if (!mI->_animationManager->addToSurface(mAnimationUfo, "..\\..\\resources\\animations\\ufo.xml", IND_ALPHA, IND_32)) return 0;
+	if (!mI->_animationManager->addToSurface(mAnimationUfo, "../../resources/animations/ufo.xml", IND_ALPHA, IND_32)) return 0;
 
 	// ----- Main Loop -----
 
@@ -75,7 +75,7 @@ int IndieLib()
 
 		mWidth = mSurfaceDraco->getWidth();
 		mHeight = mSurfaceDraco->getHeight();
-		mI->_render->setTransform2d(50,									// x pos
+		mI->_render->setTransform2d(50,					// x pos
 									70,					// y pos
 									0,					// Angle x	
 									0,					// Angle y
@@ -128,7 +128,7 @@ int IndieLib()
 		mAxisCalX = (int) (mHotSpotX * mWidth * -1);
 		mAxisCalY = (int) (mHotSpotY * mHeight * -1);
 
-		mI->_render->setTransform2d(500,							// x pos
+		mI->_render->setTransform2d(500,				// x pos
 									100,				// y pos
 									0,					// Angle x	
 									0,					// Angle y

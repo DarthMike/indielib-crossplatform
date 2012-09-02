@@ -139,13 +139,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		E72ECC2215DBB00200250CEE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E70712AF15A09C4700BF34D9 /* UnitTests.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E70712C515A0A21000BF34D9;
-			remoteInfo = UnitTestsApp;
-		};
 		E73EAF1915E6BF7E00B95FE4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */;
@@ -264,6 +257,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = E72B9F41158CBEF60003C431;
 			remoteInfo = Indielib;
+		};
+		E74486FB15F25E1300DDE3BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E70712AF15A09C4700BF34D9 /* UnitTests.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E744868A15EA478800DDE3BF;
+			remoteInfo = UnitTests;
 		};
 		E75EB2B0159CAFEA00693F41 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -543,7 +543,7 @@
 		E70712B015A09C4700BF34D9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E72ECC2315DBB00200250CEE /* UnitTestsApp.app */,
+				E74486FC15F25E1300DDE3BF /* UnitTests */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1259,11 +1259,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		E72ECC2315DBB00200250CEE /* UnitTestsApp.app */ = {
+		E74486FC15F25E1300DDE3BF /* UnitTests */ = {
 			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = UnitTestsApp.app;
-			remoteRef = E72ECC2215DBB00200250CEE /* PBXContainerItemProxy */;
+			fileType = "compiled.mach-o.executable";
+			path = UnitTests;
+			remoteRef = E74486FB15F25E1300DDE3BF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */ = {

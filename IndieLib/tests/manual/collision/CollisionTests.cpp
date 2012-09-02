@@ -26,6 +26,11 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "IND_Entity2d.h"
 #include "IND_Font.h"
 #include "IND_Surface.h"
+#include "IndiePlatforms.h"
+
+#if defined(PLATFORM_LINUX)
+#include <cstring>  // INFO : since this test uses strcat and strcopy we need this on linux ( basic tutorial 08, uses another solution). DartMike, if this ok then remove this comment. 
+#endif
 
 
 void CollisionTests::prepareTests() {
@@ -50,15 +55,15 @@ void CollisionTests::prepareTests() {
 	_entities[0]->setSurface(_surfaces[0]);
 	_entities[0]->setHotSpot(0.5f, 0.5f);
 	_entities[0]->setPosition(200, 450, 1);
-	_entities[0]->setBoundingAreas("../../resources/rocket_collisions.xml");
+	_entities[0]->setBoundingAreas(const_cast<char*>("../../resources/rocket_collisions.xml"));
 
 	// Beetle
 	_entities[1]->setSurface(_surfaces[1]);
 	_entities[1]->setHotSpot(0.5f, 0.5f);
 	_entities[1]->setMirrorX(1);
 	_entities[1]->setPosition(0,0,1);
-	_entities[1]->setBoundingTriangle("beetle_head", 160, 105, 160, 170, 190, 135);
-	_entities[1]->setBoundingCircle("beetle_boy_head", 85, 52, 55);
+	_entities[1]->setBoundingTriangle(const_cast<char*>("beetle_head"), 160, 105, 160, 170, 190, 135);
+	_entities[1]->setBoundingCircle(const_cast<char*>("beetle_boy_head"), 85, 52, 55);
 
 	// Sword Master Animation
 	_entities[2]->setAnimation(_animations[0]);

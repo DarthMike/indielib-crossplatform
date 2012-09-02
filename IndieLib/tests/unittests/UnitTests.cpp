@@ -101,6 +101,12 @@ If you want to use a global time constraint, but have one test that is notorious
 
 #include "dependencies/unittest++/src/UnitTest++.h"
 #include "WorkingPath.h"
+#include "IndiePlatforms.h"
+
+#if defined(PLATFORM_LINUX)
+#include <stdio.h>
+#endif
+
 
 int main() {
 	//Just run all tests

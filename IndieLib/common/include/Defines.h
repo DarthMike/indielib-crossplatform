@@ -975,6 +975,8 @@ enum {
 	IND_QUOTEDBL,
 	//! hash
 	IND_HASH,
+    //! percent
+    IND_PERCENT,
 	//! Dollar
 	IND_DOLLAR,
 	//! ampersand
@@ -1137,10 +1139,6 @@ enum {
 	IND_RMETA,
 	//! Left Meta
 	IND_LMETA,
-	//! F15
-	IND_LSUPER,
-	//! Right Windows button
-	IND_RSUPER,
 	//! Mode shift
 	IND_MODE,
 	//! Help
@@ -1155,8 +1153,8 @@ enum {
 	IND_MENU,
 	//! Power
 	IND_POWER,
-	//! Euro
-	IND_EURO
+	//! Currency unit in keyboard
+	IND_CURRENCYUNIT
 };
 /*@}*/
 

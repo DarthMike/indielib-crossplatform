@@ -26,21 +26,21 @@ int IndieLib()
 
 	// Loading Background
 	IND_Surface *mSurfaceBack = new IND_Surface();
-	if (!mI->_surfaceManager->add(mSurfaceBack, "..\\..\\resources\\twist.jpg", IND_OPAQUE, IND_32)) return 0;
+	if (!mI->_surfaceManager->add(mSurfaceBack, "../../resources/twist.jpg", IND_OPAQUE, IND_32)) return 0;
 
 	// Loading draco
 	IND_Surface *mSurfaceDraco = new IND_Surface();
-	if (!mI->_surfaceManager->add(mSurfaceDraco, "..\\..\\resources\\draco.png", IND_ALPHA, IND_32)) return 0;
+	if (!mI->_surfaceManager->add(mSurfaceDraco, "../../resources/draco.png", IND_ALPHA, IND_32)) return 0;
 
 	// Font
 	IND_Font *mFontSmall = new IND_Font();
-	if (!mI->_fontManager->add(mFontSmall, "..\\..\\resources\\font_small.png", "..\\..\\resources\\font_small.xml", IND_ALPHA, IND_32)) return 0;
+	if (!mI->_fontManager->add(mFontSmall, "../../resources/font_small.png", "../../resources/font_small.xml", IND_ALPHA, IND_32)) return 0;
 
 	// ----- Font creation -----
 
 	IND_Entity2d *mTextSmallWhite = new IND_Entity2d() ;					
-	mI->_entity2dManager->add(mTextSmallWhite);			// Entity adding
-	mTextSmallWhite->setFont(mFontSmall);				// Set the font into the entity
+	mI->_entity2dManager->add(mTextSmallWhite);				// Entity adding
+	mTextSmallWhite->setFont(mFontSmall);					// Set the font into the entity
 	mTextSmallWhite->setLineSpacing(18);
 	mTextSmallWhite->setCharSpacing(-8);
 	mTextSmallWhite->setPosition(5, 5, 1);
@@ -54,13 +54,13 @@ int IndieLib()
 
 	// Creating 2d entity for the background
 	IND_Entity2d *mBack = new IND_Entity2d();					
-	mI->_entity2dManager->add(mBack);				// Entity adding
-	mBack->setSurface(mSurfaceBack);				// Set the surface into the entity
+	mI->_entity2dManager->add(mBack);						// Entity adding
+	mBack->setSurface(mSurfaceBack);						// Set the surface into the entity
 
 	// Creating 2d entity for the draco
 	IND_Entity2d *mDraco = new IND_Entity2d();					
-	mI->_entity2dManager->add(mDraco);				// Entity adding
-	mDraco->setSurface(mSurfaceDraco);				// Set the surface into the entity
+	mI->_entity2dManager->add(mDraco);						// Entity adding
+	mDraco->setSurface(mSurfaceDraco);						// Set the surface into the entity
 
 	// ----- Changing the attributes of the 2d entities -----
 

@@ -26,6 +26,11 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "IND_Entity2d.h"
 #include "IND_Font.h"
 #include "IND_Surface.h"
+#include "IndiePlatforms.h"
+
+#if defined(PLATFORM_LINUX)
+#include <cstring>  // INFO : since this test uses strcat and strcopy we need this on linux ( basic tutorial 08, uses another solution). DartMike, if this ok then remove this comment. 
+#endif
 
 
 void CollisionTests::prepareTests() {

@@ -29,7 +29,7 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "Global.h"
 #include "IND_SurfaceManager.h"
 #include "OpenGLRender.h"
-#include "IND_math.h"
+#include "IND_Math.h"
 #include "IND_Vector2.h"
 
 // --------------------------------------------------------------------------------

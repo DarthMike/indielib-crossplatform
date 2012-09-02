@@ -430,10 +430,6 @@ bool IND_SurfaceManager::remove(IND_Surface *pSu) {
 
 	// ----- Free object -----
 
-	g_debug->header("Name:", 3);
-    //FIXME: This breaks on LLVM compiler (OSX, XCode)
-	//g_debug->dataInt((int) &pSu->_surface, 1);
-
 	// Quit from list
 	delFromlist(pSu);
 
@@ -467,10 +463,6 @@ bool IND_SurfaceManager::addMain(IND_Surface    *pNewSurface,
 
 	g_debug->header("From image:", 3);
 	g_debug->dataChar(pImage->getName(), 1);
-
-	g_debug->header("File name:", 3);
-    //FIXME: This breaks on LLVM compiler (OSX, XCode)
-	//g_debug->dataInt((int) &pNewSurface->_surface, 1);
 
 	//Convert image if needed
 	convertImage(pImage,pType,pQuality);

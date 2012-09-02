@@ -46,6 +46,8 @@ bool zIsLess(IND_Entity2d *pLhs, IND_Entity2d *pRhs) { //TODO: Move this method 
 }
 
 
+unsigned int IND_Entity2dManager::_idTrack = 0;
+
 // --------------------------------------------------------------------------------
 //							  Initialization / Destruction
 // --------------------------------------------------------------------------------
@@ -109,8 +111,8 @@ void IND_Entity2dManager::end() {
 bool IND_Entity2dManager::add(IND_Entity2d *pNewEntity2d) {
 	g_debug->header("Adding 2d entity", 5);
 	g_debug->header("Name:", 3);
-    //FIXME: This breaks on LLVM compiler (OSX, XCode)
-	//g_debug->dataInt((int) pNewEntity2d, 1);
+    pNewEntity2d->_id = _idTrack++;
+	g_debug->dataInt(pNewEntity2d->getId(), 1);
 
 	if (!_ok) {
 		writeMessage();
@@ -147,10 +149,10 @@ bool IND_Entity2dManager::add(IND_Entity2d *pNewEntity2d) {
 bool IND_Entity2dManager::add(int pLayer, IND_Entity2d *pNewEntity2d) {
 	g_debug->header("Adding 2d entity", 5);
 	g_debug->header("Name:", 3);
-    //FIXME: This breaks on LLVM compiler (OSX, XCode)
-	//g_debug->dataInt((int) pNewEntity2d, 1);
+    pNewEntity2d->_id = _idTrack++;
+	g_debug->dataInt(pNewEntity2d->getId(), 1);
 	g_debug->header("Layer:", 3);
-	g_debug->dataInt((int) pLayer, 1);
+	g_debug->dataInt(pLayer, 1);
 
 	if (!_ok) {
 		writeMessage();
@@ -180,8 +182,7 @@ bool IND_Entity2dManager::add(int pLayer, IND_Entity2d *pNewEntity2d) {
 bool IND_Entity2dManager::remove(IND_Entity2d *pEn) {
 	g_debug->header("Freeing 2d entity", 5);
 	g_debug->header("Name:", 3);
-    //FIXME: This breaks on LLVM compiler (OSX, XCode)
-	//g_debug->dataInt((int) pEn, 1);
+	g_debug->dataInt(pEn->getId(), 1);
 
 	if (!_ok || !pEn) {
 		writeMessage();
@@ -786,8 +787,7 @@ void IND_Entity2dManager::freeVars() {
 
 			// Delete all the bounding areas
 			(*mEntityListIter)->deleteBoundingAreas((char*)"*");
-			//FIXME: This breaks on LLVM compiler (OSX, XCode)
-			//g_debug->dataInt((int)(*mEntityListIter), 1);
+            g_debug->dataInt((*mEntityListIter)->getId(), 1);
 		}
 
 		// Clear list

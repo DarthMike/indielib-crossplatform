@@ -115,6 +115,8 @@ private:
 
 	bool _ok;
 
+    static unsigned int _idTrack;
+    
 	IND_Render *_render;
 
 	// ----- Containers -----

@@ -41,7 +41,9 @@ double PrecissionTimer::getTicks() {
 #endif
 
 #ifdef PLATFORM_LINUX
-	_elapsedTime = 00.1f; // TODO:
+	 clock_gettime(CLOCK_MONOTONIC, &linux_end);
+	_elapsedTime = ((linux_start.tv_sec * 1000000000) + linux_start.tv_nsec) - ((linux_end.tv_sec * 1000000000) + linux_end.tv_nsec);
+
 #endif
 	return(static_cast<double>(_elapsedTime));
 
@@ -58,6 +60,11 @@ void PrecissionTimer::start() {
 
 #if defined (PLATFORM_IOS) || defined (PLATFORM_OSX)
 	mStartTime = mach_absolute_time();
+#endif
+
+#ifdef PLATFORM_LINUX
+    clock_gettime(CLOCK_MONOTONIC, &linux_start);
+	mStartTime = static_cast<uint64_t>((linux_start.tv_sec * 1000000000) + linux_start.tv_nsec);
 #endif
 
 	_started = true;
@@ -96,6 +103,11 @@ void PrecissionTimer::init() {
 #if defined (PLATFORM_IOS) || defined (PLATFORM_OSX)
 	mach_timebase_info(&mTimeBaseInfo);
 	mStartTime = mach_absolute_time();
+#endif
+
+#ifdef PLATFORM_LINUX
+    clock_gettime(CLOCK_MONOTONIC, &linux_start);
+	mStartTime = static_cast<uint64_t>((linux_start.tv_sec * 1000000000) + linux_start.tv_nsec);
 #endif
 }
 

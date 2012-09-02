@@ -52,10 +52,11 @@ am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_manual_OBJECTS = CIndieLib_vc2008.$(OBJEXT) WorkingPath.$(OBJEXT) \
 	ManualTestsMain.$(OBJEXT) AnimationTests.$(OBJEXT) \
-	Camera2dTests.$(OBJEXT) FontTests.$(OBJEXT) \
-	FontTests_Pretty.$(OBJEXT) FunctionalityTests.$(OBJEXT) \
-	PrimitiveTests.$(OBJEXT) SurfaceTests.$(OBJEXT) \
-	SurfaceTests_textBlock.$(OBJEXT) SurfaceTests_wrap.$(OBJEXT) \
+	Camera2dTests.$(OBJEXT) CollisionTests.$(OBJEXT) \
+	FontTests.$(OBJEXT) FontTests_Pretty.$(OBJEXT) \
+	FunctionalityTests.$(OBJEXT) PrimitiveTests.$(OBJEXT) \
+	SurfaceTests.$(OBJEXT) SurfaceTests_textBlock.$(OBJEXT) \
+	SurfaceTests_wrap.$(OBJEXT) \
 	INDImageTests_Conversions.$(OBJEXT) \
 	INDImageTests_Conversions_NonRGB.$(OBJEXT) \
 	INDImageTests_nonPOTLoad.$(OBJEXT) \
@@ -199,8 +200,8 @@ top_build_prefix = ../../
 top_builddir = ../..
 top_srcdir = ../..
 AM_CXXFLAGS = $(INTI_CFLAGS) -I ../../../common/include -I ../../../tests 
-manual_SOURCES = ../../../tests/CIndieLib_vc2008.cpp ../../../tests/WorkingPath.cpp ../../../tests/manual/ManualTestsMain.cpp ../../../tests/manual/animation/AnimationTests.cpp ../../../tests/manual/camera2d/Camera2dTests.cpp ../../../tests/manual/font/FontTests.cpp ../../../tests/manual/font/FontTests_Pretty.cpp ../../../tests/manual/functionality/FunctionalityTests.cpp ../../../tests/manual/primitives/PrimitiveTests.cpp ../../../tests/manual/surface/SurfaceTests.cpp ../../../tests/manual/surface/SurfaceTests_textBlock.cpp ../../../tests/manual/surface/SurfaceTests_wrap.cpp ../../../tests/manual/image/INDImageTests_Conversions.cpp ../../../tests/manual/image/INDImageTests_Conversions_NonRGB.cpp ../../../tests/manual/image/INDImageTests_nonPOTLoad.cpp ../../../tests/manual/image/INDImageTests_POTLoad.cpp
-manual_LDADD = -L../../.libs $(INTI_LIBS) -lIndieLib -lSDL -lGLEW -lGLU -lGL -lILU -lILUT
+manual_SOURCES = ../../../tests/CIndieLib_vc2008.cpp ../../../tests/WorkingPath.cpp ../../../tests/manual/ManualTestsMain.cpp ../../../tests/manual/animation/AnimationTests.cpp ../../../tests/manual/camera2d/Camera2dTests.cpp ../../../tests/manual/collision/CollisionTests.cpp ../../../tests/manual/font/FontTests.cpp ../../../tests/manual/font/FontTests_Pretty.cpp ../../../tests/manual/functionality/FunctionalityTests.cpp ../../../tests/manual/primitives/PrimitiveTests.cpp ../../../tests/manual/surface/SurfaceTests.cpp ../../../tests/manual/surface/SurfaceTests_textBlock.cpp ../../../tests/manual/surface/SurfaceTests_wrap.cpp ../../../tests/manual/image/INDImageTests_Conversions.cpp ../../../tests/manual/image/INDImageTests_Conversions_NonRGB.cpp ../../../tests/manual/image/INDImageTests_nonPOTLoad.cpp ../../../tests/manual/image/INDImageTests_POTLoad.cpp
+manual_LDADD = -L../../.libs $(INTI_LIBS) -lIndieLib -lSDL2 -lGLEW -lGLU -lGL
 all: all-am
 
 .SUFFIXES:
@@ -291,6 +292,7 @@ distclean-compile:
 include ./$(DEPDIR)/AnimationTests.Po
 include ./$(DEPDIR)/CIndieLib_vc2008.Po
 include ./$(DEPDIR)/Camera2dTests.Po
+include ./$(DEPDIR)/CollisionTests.Po
 include ./$(DEPDIR)/FontTests.Po
 include ./$(DEPDIR)/FontTests_Pretty.Po
 include ./$(DEPDIR)/FunctionalityTests.Po
@@ -395,6 +397,20 @@ Camera2dTests.obj: ../../../tests/manual/camera2d/Camera2dTests.cpp
 #	source='../../../tests/manual/camera2d/Camera2dTests.cpp' object='Camera2dTests.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o Camera2dTests.obj `if test -f '../../../tests/manual/camera2d/Camera2dTests.cpp'; then $(CYGPATH_W) '../../../tests/manual/camera2d/Camera2dTests.cpp'; else $(CYGPATH_W) '$(srcdir)/../../../tests/manual/camera2d/Camera2dTests.cpp'; fi`
+
+CollisionTests.o: ../../../tests/manual/collision/CollisionTests.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT CollisionTests.o -MD -MP -MF $(DEPDIR)/CollisionTests.Tpo -c -o CollisionTests.o `test -f '../../../tests/manual/collision/CollisionTests.cpp' || echo '$(srcdir)/'`../../../tests/manual/collision/CollisionTests.cpp
+	$(am__mv) $(DEPDIR)/CollisionTests.Tpo $(DEPDIR)/CollisionTests.Po
+#	source='../../../tests/manual/collision/CollisionTests.cpp' object='CollisionTests.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o CollisionTests.o `test -f '../../../tests/manual/collision/CollisionTests.cpp' || echo '$(srcdir)/'`../../../tests/manual/collision/CollisionTests.cpp
+
+CollisionTests.obj: ../../../tests/manual/collision/CollisionTests.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT CollisionTests.obj -MD -MP -MF $(DEPDIR)/CollisionTests.Tpo -c -o CollisionTests.obj `if test -f '../../../tests/manual/collision/CollisionTests.cpp'; then $(CYGPATH_W) '../../../tests/manual/collision/CollisionTests.cpp'; else $(CYGPATH_W) '$(srcdir)/../../../tests/manual/collision/CollisionTests.cpp'; fi`
+	$(am__mv) $(DEPDIR)/CollisionTests.Tpo $(DEPDIR)/CollisionTests.Po
+#	source='../../../tests/manual/collision/CollisionTests.cpp' object='CollisionTests.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o CollisionTests.obj `if test -f '../../../tests/manual/collision/CollisionTests.cpp'; then $(CYGPATH_W) '../../../tests/manual/collision/CollisionTests.cpp'; else $(CYGPATH_W) '$(srcdir)/../../../tests/manual/collision/CollisionTests.cpp'; fi`
 
 FontTests.o: ../../../tests/manual/font/FontTests.cpp
 	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT FontTests.o -MD -MP -MF $(DEPDIR)/FontTests.Tpo -c -o FontTests.o `test -f '../../../tests/manual/font/FontTests.cpp' || echo '$(srcdir)/'`../../../tests/manual/font/FontTests.cpp

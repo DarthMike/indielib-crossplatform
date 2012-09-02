@@ -114,7 +114,7 @@ bool IND_AnimationManager::addToSurface(IND_Animation *pNewAnimation,
 	if (!addToImage(pNewAnimation, pAnimation))
 		return 0;
 
-	for (int i = 0; i < pNewAnimation->getNumTotalFrames(); i++) {
+	for (unsigned int i = 0; i < pNewAnimation->getNumTotalFrames(); i++) {
 		// Pointer to the image
 		IND_Image *ActualImage = pNewAnimation->getImage(i);
 
@@ -161,7 +161,7 @@ bool IND_AnimationManager::addToSurface(IND_Animation *pNewAnimation,
 	if (IND_ALPHA != pType) 
 		return 0;
 
-	for (int i = 0; i < pNewAnimation->getNumTotalFrames(); i++) {
+	for (unsigned int i = 0; i < pNewAnimation->getNumTotalFrames(); i++) {
 		// Pointer to the image
 		IND_Image *mCurrentImage = pNewAnimation->getImage(i);
 
@@ -200,7 +200,7 @@ bool IND_AnimationManager:: addToSurface(IND_Animation *pNewAnimation,
 	if (!addToImage(pNewAnimation, pAnimation))
 		return 0;
 
-	for (int i = 0; i < pNewAnimation->getNumTotalFrames(); i++) {
+	for (unsigned int i = 0; i < pNewAnimation->getNumTotalFrames(); i++) {
 		// Pointer to the image
 		IND_Image *ActualImage = pNewAnimation->getImage(i);
 

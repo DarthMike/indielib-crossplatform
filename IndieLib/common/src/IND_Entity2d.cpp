@@ -912,7 +912,7 @@ void IND_Entity2d::initAttrib() {
 	_lineSpacing = 20;
 
 	_text = NULL;
-	char* defText = "";
+	const char* defText = "";
 	setText(defText);
 
 	// Collision attributes

@@ -243,7 +243,7 @@ bool IND_AnimationManager::addToSurface(IND_Animation *pNewAnimation,
 		return 0;
 
 
-	for (int i = 0; i < pNewAnimation->getNumTotalFrames(); i++) {
+	for (unsigned int i = 0; i < pNewAnimation->getNumTotalFrames(); i++) {
 		// Pointer to the image
 		IND_Image *mCurrentImage = pNewAnimation->getImage(i);
 

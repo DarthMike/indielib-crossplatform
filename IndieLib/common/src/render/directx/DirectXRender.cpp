@@ -278,11 +278,14 @@ bool DirectXRender::Direct3Dinit(int pWidth,
                                  bool pVsync,
                                  bool pFullscreen) {
 	// Direct3D creation
-	if (!(_info.mDirect3d = Direct3DCreate9(D3D_SDK_VERSION))) {
+	LPDIRECT3D9 direct3d = Direct3DCreate9(D3D_SDK_VERSION);
+	if (!direct3d) {
 		g_debug->header("Error creating D3D object", 2);
 		return 0;
-	} else
+	} else {
 		g_debug->header("Creating D3D object", 1);
+		_info.mDirect3d = direct3d;
+	}
 
 	if (!fillPresentParameters(pWidth,pHeight,pBpp,pVsync,pFullscreen)) return 0;
 
@@ -645,6 +648,8 @@ int DirectXRender::fillPresentParameters(int pWidth,
 	// Vsync
 	if (!pVsync)
 		mPresentParameters.PresentationInterval = D3DPRESENT_INTERVAL_IMMEDIATE;
+
+	return 1;
 }
 /*
 ==================

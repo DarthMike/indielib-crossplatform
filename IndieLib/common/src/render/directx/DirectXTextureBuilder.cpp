@@ -114,12 +114,12 @@ bool DirectXTextureBuilder::createNewTexture(IND_Surface *pNewSurface,
 	BYTE *mPtrBlock = pImage->getPointer();
 
 	// Vars
-	int mActualWidthBlockX;
-	int mActualHeightBlockY;
-	float mActualU;
-	float mActualV;
-	int mActualSpareX;
-	int mActualSpareY;
+	int mActualWidthBlockX (0);
+	int mActualHeightBlockY (0);
+	float mActualU (0.0f);
+	float mActualV (0.0f);
+	int mActualSpareX (0);
+	int mActualSpareY (0);
 	int mSrcBytespp = pImage->getBytespp();
 
 	// ----- Cutting blocks -----
@@ -328,7 +328,6 @@ Receiving a IND_Image returns a D3D format for the source and destination. No co
 ==================
 */
 void DirectXTextureBuilder::getSourceAndDestinationFormat(IND_Image *pImage, D3DFORMAT* pSrcFormat, D3DFORMAT* pDstFormat) {
-	D3DFORMAT format;
 	int bpp (pImage->getBpp());
 	switch (pImage->getFormatInt()) {
 	case IND_RGB: {

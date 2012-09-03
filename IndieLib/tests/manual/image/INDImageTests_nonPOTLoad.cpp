@@ -82,9 +82,9 @@ void INDImageTests_nonPOTLoad::setActive(bool active){
 			iLib->_entity2dManager->add(_entities[i]);
 		}
 	    // ----- Changing the attributes of the 2d entities -----
-		_entities[0]->setPosition(0.0f,0.0f,0.0f);
-		_entities[1]->setPosition(0.0f,0.0f,0.0f);
-		_entities[2]->setPosition(0.0f,_entities[1]->getPosY() + _entities[1]->getSurface()->getHeight(),0.0f);
+		_entities[0]->setPosition(0.0f,0.0f,0);
+		_entities[1]->setPosition(0.0f,0.0f,0);
+		_entities[2]->setPosition(0.0f,_entities[1]->getPosY() + static_cast<float>(_entities[1]->getSurface()->getHeight()),0);
 
     } else { //Inactive
 		//Release all variables from indieLib before exiting

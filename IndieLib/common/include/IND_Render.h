@@ -469,9 +469,6 @@ private:
 	void blitCollisionCircle(int pPosX, int pPosY, int pRadius, float pScale, BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pWorldMatrix);
 	void blitCollisionLine(int pPosX1, int pPosY1, int pPosX2, int pPosY2,  BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pIndWorldMatrix);
 
-	bool isTriangleToTriangleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1, BOUNDING_COLLISION *pB2, IND_Matrix pMat2);
-	bool isCircleToCircleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1, float pScale1, BOUNDING_COLLISION *pB2, IND_Matrix pMat2, float pScale2);
-	bool isCircleToTriangleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1, float pScale1, BOUNDING_COLLISION *pB2, IND_Matrix pMat2);
 	// ----- Friends -----
 	friend class IND_Entity2dManager;
 	friend class IND_Input;

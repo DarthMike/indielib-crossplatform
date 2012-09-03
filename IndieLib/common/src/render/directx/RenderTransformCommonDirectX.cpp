@@ -196,31 +196,4 @@ D3DTEXTUREFILTERTYPE DirectXRender::GetD3DFilter(IND_Filter pFilter) {
 }
 
 
-/*
-==================
-Transforms an IndieLib matrix into a D3DXMATRIX
-==================
-*/
-void DirectXRender::d3DMatrixToIndMatrix(IND_Matrix pMatrix, D3DXMATRIX *pD3DMatrix) {
-	pD3DMatrix->_11 = pMatrix._11;
-	pD3DMatrix->_12 = pMatrix._12;
-	pD3DMatrix->_13 = pMatrix._13;
-	pD3DMatrix->_14 = pMatrix._14;
-
-	pD3DMatrix->_21 = pMatrix._21;
-	pD3DMatrix->_22 = pMatrix._22;
-	pD3DMatrix->_23 = pMatrix._23;
-	pD3DMatrix->_24 = pMatrix._24;
-
-	pD3DMatrix->_31 = pMatrix._31;
-	pD3DMatrix->_32 = pMatrix._32;
-	pD3DMatrix->_33 = pMatrix._33;
-	pD3DMatrix->_34 = pMatrix._34;
-
-	pD3DMatrix->_41 = pMatrix._41;
-	pD3DMatrix->_42 = pMatrix._42;
-	pD3DMatrix->_43 = pMatrix._43;
-	pD3DMatrix->_44 = pMatrix._44;
-}
-
 #endif //INDIERENDER_DIRECTX

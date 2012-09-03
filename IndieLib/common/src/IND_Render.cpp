@@ -1455,20 +1455,3 @@ Perform frustum planes calculation in underlying renderer
 void IND_Render::calculeFrustumPlanes() {
 	_wrappedRenderer->calculeFrustumPlanes();
 }
-
-
-/*
-==================
-Collision calculation methods (render-specific) data used for performance
-==================
-*/
-
-bool IND_Render::isTriangleToTriangleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1, BOUNDING_COLLISION *pB2, IND_Matrix pMat2) {
-	return(_wrappedRenderer->isTriangleToTriangleCollision(pB1, pMat1, pB2, pMat2));
-}
-bool IND_Render::isCircleToCircleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1, float pScale1, BOUNDING_COLLISION *pB2, IND_Matrix pMat2, float pScale2) {
-	return(_wrappedRenderer->isCircleToCircleCollision(pB1, pMat1, pScale1, pB2, pMat2, pScale2));
-}
-bool IND_Render::isCircleToTriangleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1, float pScale1, BOUNDING_COLLISION *pB2, IND_Matrix pMat2) {
-	return(_wrappedRenderer->isCircleToTriangleCollision(pB1, pMat1, pScale1, pB2, pMat2));
-}

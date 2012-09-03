@@ -89,6 +89,8 @@ IND_Window* DirectXRender::initRenderAndWindow(IND_WindowProperties& props) {
 	else
 		_ok = true;
 
+	_math = new IND_Math();
+
 	return _window;
 }
 
@@ -703,6 +705,7 @@ void DirectXRender::freeVars() {
 	// Destroy the render
 	DestroyD3DWindow();
 	DISPOSE(_window);
+	DISPOSE(_math);
 }
 
 #endif //INDIERENDER_DIRECTX

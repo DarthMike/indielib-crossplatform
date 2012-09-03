@@ -33,6 +33,7 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "IND_Render.h"
 #include "CollisionParser.h"
 #include "IND_Entity2d.h"
+#include "IND_Math.h"
 
 
 /**
@@ -76,6 +77,8 @@ bool IND_Entity2dManager::init(IND_Render *pRender) {
 		return _ok;
 	}
 
+	_math = new IND_Math();
+	_math->init();
 	g_debug->header("Entity2dManager OK", 6);
 
 	return _ok;
@@ -88,6 +91,7 @@ bool IND_Entity2dManager::init(IND_Render *pRender) {
 void IND_Entity2dManager::end() {
 	if (_ok) {
 		g_debug->header("Finalizing Entity2dManager", 5);
+		DISPOSE (_math);
 		g_debug->header("Freeing 2d entities" , 5);
 		freeVars();
 		g_debug->header("Entities freed", 6);
@@ -692,25 +696,25 @@ inline bool IND_Entity2dManager::isCollision(list <BOUNDING_COLLISION *> *pBound
 				
 				// Triangle to triangle
 				if ((*i)->_type == 0 && (*j)->_type == 0) {
-					if (_render->isTriangleToTriangleCollision((*i), pMat1, (*j), pMat2))
+					if (_math->isTriangleToTriangleCollision((*i), pMat1, (*j), pMat2))
 						mCollision = 1;
 				}
 
 				// Circle to triangle
 				if ((*i)->_type == 1 && (*j)->_type == 0) {
-					if (_render->isCircleToTriangleCollision((*i), pMat1, pScale1, (*j), pMat2))
+					if (_math->isCircleToTriangleCollision((*i), pMat1, pScale1, (*j), pMat2))
 						mCollision = 1;
 				}
 
 				// Triangle to circle
 				if ((*i)->_type == 0 && (*j)->_type == 1) {
-					if (_render->isCircleToTriangleCollision((*j), pMat2, pScale2, (*i), pMat1))
+					if (_math->isCircleToTriangleCollision((*j), pMat2, pScale2, (*i), pMat1))
 						mCollision = 1;
 				}
 
 				// Circle to circle
 				if ((*i)->_type == 1 && (*j)->_type == 1) {
-					if (_render->isCircleToCircleCollision((*i), pMat1, pScale1, (*j), pMat2, pScale2))
+					if (_math->isCircleToCircleCollision((*i), pMat1, pScale1, (*j), pMat2, pScale2))
 						mCollision = 1;
 				}
 			}

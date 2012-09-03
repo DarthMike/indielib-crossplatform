@@ -55,6 +55,8 @@ class IND_3dMesh;
 class IND_Animation;
 class IND_Camera2d;
 class IND_Camera3d;
+class IND_Math;
+
 // ----- Libs -----
 
 #include <d3d9.h>
@@ -76,7 +78,7 @@ public:
 
 	// ----- Init/End -----
 
-	DirectXRender(): _ok(false),_window(NULL)  { }
+	DirectXRender(): _ok(false),_window(NULL),_math(NULL)  { }
 	~DirectXRender()              {
 		end();
 	}
@@ -393,6 +395,7 @@ private:
 	// ----- Objects -----
 
 	IND_Window *_window;
+	IND_Math *_math;
 	HWND _wnd;
 
 	// ----- Vars -----
@@ -528,42 +531,6 @@ private:
 	// ----- Collisions  -----
 	void blitCollisionCircle(int pPosX, int pPosY, int pRadius, float pScale, BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pWorldMatrix);
 	void blitCollisionLine(int pPosX1, int pPosY1, int pPosX2, int pPosY2,  BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pIndWorldMatrix);
-
-	bool   isTriangleToTriangleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1, BOUNDING_COLLISION *pB2, IND_Matrix pMat2);
-	bool   isCircleToCircleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1, float pScale1, BOUNDING_COLLISION *pB2, IND_Matrix pMat2, float pScale2);
-	bool   isCircleToTriangleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1, float pScale1, BOUNDING_COLLISION *pB2, IND_Matrix pMat2);
-	
-	bool isTriangleToTriangleCollision(D3DXVECTOR2 pA1,
-	                                   D3DXVECTOR2 pB1,
-	                                   D3DXVECTOR2 pC1,
-	                                   D3DXVECTOR2 pA2,
-	                                   D3DXVECTOR2 pB2,
-	                                   D3DXVECTOR2 pC2);
-
-	bool isCircleToCircleCollision(D3DXVECTOR2 pP1, int pRadius1,
-	                               D3DXVECTOR2 pP2, int pRadius2);
-
-	bool isCircleToTriangleCollision(D3DXVECTOR2 pPCenter, int pRadius1,
-	                                 D3DXVECTOR2 a2,
-	                                 D3DXVECTOR2 b2,
-	                                 D3DXVECTOR2 c2);
-
-	double PointToLineDistance(D3DXVECTOR2 pA, D3DXVECTOR2 pB, D3DXVECTOR2 pC, bool pIsSegment);
-	double Distance(D3DXVECTOR2 pA, D3DXVECTOR2 pB);
-	int    Cross3(D3DXVECTOR2 pA, D3DXVECTOR2 pB, D3DXVECTOR2 pC);
-	int    Dot3(D3DXVECTOR2 pA, D3DXVECTOR2 pB, D3DXVECTOR2 pC);
-
-	bool IsPointInsideTriangle(D3DXVECTOR2 p,
-	                           D3DXVECTOR2 a,
-	                           D3DXVECTOR2 b,
-	                           D3DXVECTOR2 c);
-
-	bool IsSegmentIntersection(D3DXVECTOR2 a,
-	                           D3DXVECTOR2 b,
-	                           D3DXVECTOR2 c,
-	                           D3DXVECTOR2 d);
-
-	void d3DMatrixToIndMatrix(IND_Matrix pMatrix, D3DXMATRIX *pD3DMatrix);
 
 	// ----- Culling -----
 

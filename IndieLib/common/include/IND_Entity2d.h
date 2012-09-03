@@ -480,7 +480,6 @@ private:
 	// ----- Private methods -----
 
 	void    initAttrib();
-	bool    isNullMatrix();
 
 	// ----- Friends -----
 

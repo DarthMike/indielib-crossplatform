@@ -923,19 +923,3 @@ void IND_Entity2d::initAttrib() {
 	// Show grid areas
 	_showGridAreas = 1;
 }
-
-
-/*
-==================
-Checks if the matrix has all its member equal to zero
-==================
-*/
-bool IND_Entity2d::isNullMatrix() {
-	if (!_mat._11 && !_mat._12  && !_mat._13 && !_mat._14 &&
-	        !_mat._21 && !_mat._22  && !_mat._23 && !_mat._24 &&
-	        !_mat._31 && !_mat._32  && !_mat._33 && !_mat._34 &&
-	        !_mat._41 && !_mat._42  && !_mat._43 && !_mat._44)
-		return 1;
-
-	return 0;
-}

@@ -37,6 +37,7 @@ class IND_AnimationManager;
 class IND_Render;
 class CollisionParser;
 class IND_Entity2d;
+class IND_Math;
 
 // ----- Defines -----
 
@@ -65,7 +66,7 @@ public:
 
 	// ----- Init/End -----
 
-	IND_Entity2dManager(): _ok(false)  { }
+	IND_Entity2dManager(): _ok(false),_render(NULL),_math(NULL)  { }
 	~IND_Entity2dManager()              {
 		end();
 	}
@@ -118,6 +119,7 @@ private:
     static unsigned int _idTrack;
     
 	IND_Render *_render;
+	IND_Math *_math;
 
 	// ----- Containers -----
 

@@ -52,7 +52,6 @@
 		E75EB16C159CADF900693F41 /* PrecissionTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAAEB159CADEF00693F41 /* PrecissionTimer.cpp */; };
 		E75EB17D159CADF900693F41 /* OpenGLRender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAAFF159CADEF00693F41 /* OpenGLRender.cpp */; };
 		E75EB17F159CADF900693F41 /* OpenGLTextureBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAB01159CADEF00693F41 /* OpenGLTextureBuilder.cpp */; };
-		E75EB181159CADF900693F41 /* RenderCollision2dOpenGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAB03159CADEF00693F41 /* RenderCollision2dOpenGL.cpp */; };
 		E75EB182159CADF900693F41 /* RenderCullingOpenGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAB04159CADEF00693F41 /* RenderCullingOpenGL.cpp */; };
 		E75EB183159CADF900693F41 /* RenderObject2dOpenGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAB05159CADEF00693F41 /* RenderObject2dOpenGL.cpp */; };
 		E75EB184159CADF900693F41 /* RenderObject3dOpenGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAB06159CADEF00693F41 /* RenderObject3dOpenGL.cpp */; };
@@ -176,7 +175,6 @@
 		E75EAB00159CADEF00693F41 /* OpenGLRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLRender.h; sourceTree = "<group>"; };
 		E75EAB01159CADEF00693F41 /* OpenGLTextureBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenGLTextureBuilder.cpp; sourceTree = "<group>"; };
 		E75EAB02159CADEF00693F41 /* OpenGLTextureBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLTextureBuilder.h; sourceTree = "<group>"; };
-		E75EAB03159CADEF00693F41 /* RenderCollision2dOpenGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderCollision2dOpenGL.cpp; sourceTree = "<group>"; };
 		E75EAB04159CADEF00693F41 /* RenderCullingOpenGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderCullingOpenGL.cpp; sourceTree = "<group>"; };
 		E75EAB05159CADEF00693F41 /* RenderObject2dOpenGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderObject2dOpenGL.cpp; sourceTree = "<group>"; };
 		E75EAB06159CADEF00693F41 /* RenderObject3dOpenGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderObject3dOpenGL.cpp; sourceTree = "<group>"; };
@@ -424,7 +422,6 @@
 				E75EAB00159CADEF00693F41 /* OpenGLRender.h */,
 				E75EAB01159CADEF00693F41 /* OpenGLTextureBuilder.cpp */,
 				E75EAB02159CADEF00693F41 /* OpenGLTextureBuilder.h */,
-				E75EAB03159CADEF00693F41 /* RenderCollision2dOpenGL.cpp */,
 				E75EAB04159CADEF00693F41 /* RenderCullingOpenGL.cpp */,
 				E75EAB05159CADEF00693F41 /* RenderObject2dOpenGL.cpp */,
 				E75EAB06159CADEF00693F41 /* RenderObject3dOpenGL.cpp */,
@@ -549,7 +546,6 @@
 				E75EB16C159CADF900693F41 /* PrecissionTimer.cpp in Sources */,
 				E75EB17D159CADF900693F41 /* OpenGLRender.cpp in Sources */,
 				E75EB17F159CADF900693F41 /* OpenGLTextureBuilder.cpp in Sources */,
-				E75EB181159CADF900693F41 /* RenderCollision2dOpenGL.cpp in Sources */,
 				E75EB182159CADF900693F41 /* RenderCullingOpenGL.cpp in Sources */,
 				E75EB183159CADF900693F41 /* RenderObject2dOpenGL.cpp in Sources */,
 				E75EB184159CADF900693F41 /* RenderObject3dOpenGL.cpp in Sources */,

@@ -280,10 +280,6 @@
 							>
 						</File>
 						<File
-							RelativePath="..\Common\src\Render\DirectX\RenderCollision2dDirectX.cpp"
-							>
-						</File>
-						<File
 							RelativePath="..\Common\src\Render\DirectX\RenderCullingDirectX.cpp"
 							>
 						</File>
@@ -329,10 +325,6 @@
 						</File>
 						<File
 							RelativePath="..\Common\src\Render\OpenGL\OpenGLRender.h"
-							>
-						</File>
-						<File
-							RelativePath="..\Common\src\Render\OpenGL\RenderCollision2dOpenGL.cpp"
 							>
 						</File>
 						<File

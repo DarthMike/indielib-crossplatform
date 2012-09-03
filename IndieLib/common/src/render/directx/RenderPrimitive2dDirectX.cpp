@@ -28,7 +28,9 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "IND_SurfaceManager.h"
 #include "IND_Surface.h"
 #include "DirectXRender.h"
-
+#include "IND_Vector2.h"
+#include "IND_Vector3.h"
+#include "IND_Math.h"
 
 
 // --------------------------------------------------------------------------------
@@ -419,14 +421,9 @@ void DirectXRender::blitCollisionCircle(int pPosX, int pPosY, int pRadius, float
 
 	setTransform2d(0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0);
 
-	D3DXMATRIX mWorldMatrix;
-	d3DMatrixToIndMatrix(pIndWorldMatrix, &mWorldMatrix);
 
-	// Untransformed points
-	D3DXVECTOR2 mP1Untransformed((float) pPosX, (float) pPosY);
-
-	D3DXVECTOR4 mP1;
-	D3DXVec2Transform(&mP1, &mP1Untransformed, &mWorldMatrix);
+	IND_Vector3 mP1 (static_cast<float>(pPosX),static_cast<float>(pPosY),0.0f);
+	_math->transformVector3DbyMatrix4D(mP1,pIndWorldMatrix);
 
 	// Color
 	setRainbow2d(IND_OPAQUE, 1, 0, 0, IND_FILTER_POINT, pR, pG, pB, pA, 0, 0, 0, 255, 0, 0);
@@ -444,13 +441,13 @@ void DirectXRender::blitCollisionCircle(int pPosX, int pPosY, int pRadius, float
 	assert (0 != points);
 	for (i = 0; i <= points; i++) {
 		
-		x = (int)(mP1.x + (pRadius * cos((i * c) + D3DXToRadian(0))));
-		y = (int)(mP1.y + (pRadius * sin((i* c) + D3DXToRadian(0))));
+		x = (int)(mP1._x + (pRadius * cos((i * c) + D3DXToRadian(0))));
+		y = (int)(mP1._y + (pRadius * sin((i* c) + D3DXToRadian(0))));
 
 		fillPixel(&_pixels [i], x, y, pR, pG, pB);
 	}
 
-	fillPixel(&_pixels [i], (int) mP1.x + (int)(pRadius * cos(D3DXToRadian(0))), (int) mP1.y + (int)(pRadius * sin(D3DXToRadian(0))), pR, pG, pB);
+	fillPixel(&_pixels [i], (int) mP1._x + (int)(pRadius * cos(D3DXToRadian(0))), (int) mP1._y + (int)(pRadius * sin(D3DXToRadian(0))), pR, pG, pB);
 
 	// Blitting circle
 	_info.mDevice->DrawPrimitiveUP(D3DPT_LINESTRIP, points, &_pixels, sizeof(PIXEL));
@@ -465,16 +462,10 @@ Blits a bounding line
 void DirectXRender::blitCollisionLine(int pPosX1, int pPosY1, int pPosX2, int pPosY2,  BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pIndWorldMatrix) {
 	setTransform2d(0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0);
 
-	D3DXMATRIX mWorldMatrix;
-	d3DMatrixToIndMatrix(pIndWorldMatrix, &mWorldMatrix);
-
-	// Untransformed points
-	D3DXVECTOR2 mP1Untransformed((float) pPosX1, (float) pPosY1);
-	D3DXVECTOR2 mP2Untransformed((float) pPosX2, (float) pPosY2);
-
-	D3DXVECTOR4 mP1, mP2;
-	D3DXVec2Transform(&mP1, &mP1Untransformed, &mWorldMatrix);
-	D3DXVec2Transform(&mP2, &mP2Untransformed, &mWorldMatrix);
+	IND_Vector3 mP1 (static_cast<float>(pPosX1),static_cast<float>(pPosY1),0.0f);
+	IND_Vector3 mP2 (static_cast<float>(pPosX2),static_cast<float>(pPosY2),0.0f);
+	_math->transformVector3DbyMatrix4D(mP1,pIndWorldMatrix);
+	_math->transformVector3DbyMatrix4D(mP2,pIndWorldMatrix);
 
 	// Color
 	setRainbow2d(IND_OPAQUE, 1, 0, 0, IND_FILTER_POINT, pR, pG, pB, pA, 0, 0, 0, 255, 0, 0);
@@ -486,8 +477,8 @@ void DirectXRender::blitCollisionLine(int pPosX1, int pPosY1, int pPosX2, int pP
 	_info.mDevice->SetFVF(D3DFVF_PIXEL);
 
 	// Filling pixels
-	fillPixel(&_pixels [0], (int) mP1.x, (int) mP1.y, pR, pG, pB);
-	fillPixel(&_pixels [1], (int) mP2.x, (int) mP2.y, pR, pG, pB);
+	fillPixel(&_pixels [0], (int) mP1._x, (int) mP1._y, pR, pG, pB);
+	fillPixel(&_pixels [1], (int) mP2._x, (int) mP2._y, pR, pG, pB);
 
 	// Blitting line
 	_info.mDevice->DrawPrimitiveUP(D3DPT_LINESTRIP, 1, &_pixels, sizeof(PIXEL));

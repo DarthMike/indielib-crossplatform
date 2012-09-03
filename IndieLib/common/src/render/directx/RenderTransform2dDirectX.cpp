@@ -311,28 +311,27 @@ void DirectXRender::setTransform2d(int pX,
 
 	if (pMatrix) {
 		pMatrix->_11 = mMatWorld._11;
-		pMatrix->_12 = mMatWorld._12;
-		pMatrix->_13 = mMatWorld._13;
-		pMatrix->_14 = mMatWorld._14;
+		pMatrix->_21 = mMatWorld._12;
+		pMatrix->_31 = mMatWorld._13;
+		pMatrix->_41 = mMatWorld._14;
 
-		pMatrix->_21 = mMatWorld._21;
+		pMatrix->_12 = mMatWorld._21;
 		pMatrix->_22 = mMatWorld._22;
-		pMatrix->_23 = mMatWorld._23;
-		pMatrix->_24 = mMatWorld._24;
+		pMatrix->_32 = mMatWorld._23;
+		pMatrix->_42 = mMatWorld._24;
 
-		pMatrix->_31 = mMatWorld._31;
-		pMatrix->_32 = mMatWorld._32;
+		pMatrix->_13 = mMatWorld._31;
+		pMatrix->_23 = mMatWorld._32;
 		pMatrix->_33 = mMatWorld._33;
-		pMatrix->_34 = mMatWorld._34;
+		pMatrix->_43 = mMatWorld._34;
 
-		pMatrix->_41 = mMatWorld._41;
-		pMatrix->_42 = mMatWorld._42;
-		pMatrix->_43 = mMatWorld._43;
+		pMatrix->_14 = mMatWorld._41;
+		pMatrix->_24 = mMatWorld._42;
+		pMatrix->_34 = mMatWorld._43;
 		pMatrix->_44 = mMatWorld._44;
 	}
 
 	// ----- Applies the transformation -----
-
 	_info.mDevice->SetTransform(D3DTS_WORLD, &mMatWorld);
 }
 
@@ -341,23 +340,23 @@ void DirectXRender::setTransform2d(IND_Matrix &pMatrix) {
 	D3DXMATRIX mMatWorld;
 
 	mMatWorld._11 = pMatrix._11;
-	mMatWorld._12 = pMatrix._12;
-	mMatWorld._13 = pMatrix._13;
-	mMatWorld._14 = pMatrix._14;
+	mMatWorld._21 = pMatrix._12;
+	mMatWorld._31 = pMatrix._13;
+	mMatWorld._41 = pMatrix._14;
 
-	mMatWorld._21 = pMatrix._21;
+	mMatWorld._12 = pMatrix._21;
 	mMatWorld._22 = pMatrix._22;
-	mMatWorld._23 = pMatrix._23;
-	mMatWorld._24 = pMatrix._24;
+	mMatWorld._32 = pMatrix._23;
+	mMatWorld._42 = pMatrix._24;
 
-	mMatWorld._31 = pMatrix._31;
-	mMatWorld._32 = pMatrix._32;
+	mMatWorld._13 = pMatrix._31;
+	mMatWorld._23 = pMatrix._32;
 	mMatWorld._33 = pMatrix._33;
-	mMatWorld._34 = pMatrix._34;
+	mMatWorld._43 = pMatrix._34;
 
-	mMatWorld._41 = pMatrix._41;
-	mMatWorld._42 = pMatrix._42;
-	mMatWorld._43 = pMatrix._43;
+	mMatWorld._14 = pMatrix._41;
+	mMatWorld._24 = pMatrix._42;
+	mMatWorld._34 = pMatrix._43;
 	mMatWorld._44 = pMatrix._44;
 
 

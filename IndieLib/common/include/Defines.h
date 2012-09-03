@@ -356,24 +356,10 @@ typedef struct structVertex2d CUSTOMVERTEX2D;
  */
 /*@{*/
 
-// Matrix (Directx ROW-MAJOR ORDER!) (Note indices are the same, just store order in memory is different)
-#ifdef INDIERENDER_DIRECTX
 struct structMatrix {
-	float _11, _12, _13, _14;
-	float _21, _22, _23, _24;
-	float _31, _32, _33, _34;
-	float _41, _42, _43, _44;
-
-	structMatrix() {
-		_11 = _12 = _13 = _14 = _21 = _22 = _23 = _24 = _31 = _32 = _33 = _34 = _41 = _42 = _43 = _44 = 0;
-	}
-};
-//! Matrix 4x4\n (_11, _12, _13, _14,\n _21, _22, _23, _24,\n _31, _32, _33, _34\n _41, _42, _43, _44)
-#endif
-
-//Matrix (OpenGL COLUM-MAJOR ORDER!) (Note indices are the same, just store order in memory is different)
-#if defined (INDIERENDER_OPENGL) || defined (INDIERENDER_GLES_IOS)
-struct structMatrix {
+	//Matrix (OpenGL COLUM-MAJOR ORDER!) (Note indices are the same, just store order in memory is different)
+	//Be aware that DirectX matrixes are stored in memory using ROW-MAJOR ORDER!. Use methods here to convert
+	//between them safely.
 	float _11, _21, _31, _41;
 	float _12, _22, _32, _42;
 	float _13, _23, _33, _43;
@@ -383,54 +369,100 @@ struct structMatrix {
 		_11 = _12 = _13 = _14 = _21 = _22 = _23 = _24 = _31 = _32 = _33 = _34 = _41 = _42 = _43 = _44 = 0;
 	}
 	//Initializes the structure with a 4x4 matrix in array format. 
-	//Elements are interpreted this way:
+	//Elements are interpreted this way in DIRECTX:
 	//Matrix 4x4\n (_11, _12, _13, _14,\n _21, _22, _23, _24,\n _31, _32, _33, _34\n _41, _42, _43, _44)
+	//Elements are interpreted this way in OPENGL:
+	//Matrix 4x4\n (_11, _21, _31, _41,\n _12, _22, _32, _42,\n _13, _23, _33, _43\n _14, _24, _34, _44)
 	structMatrix(float* matrixArray){
 		if (!matrixArray) {
 			_11 = _12 = _13 = _14 = _21 = _22 = _23 = _24 = _31 = _32 = _33 = _34 = _41 = _42 = _43 = _44 = 0;
             return;
 		}
-		_11 = matrixArray[0];
-		_21 = matrixArray[1];
-		_31 = matrixArray[2];
-		_41 = matrixArray[3];
-		_12 = matrixArray[4];
-		_22 = matrixArray[5];
-		_32 = matrixArray[6];
-		_42 = matrixArray[7];
-		_13 = matrixArray[8];
-		_23 = matrixArray[9];
-		_33 = matrixArray[10];
-		_43 = matrixArray[11];
-		_14 = matrixArray[12];
-		_24 = matrixArray[13];
-		_34 = matrixArray[14];
-		_44 = matrixArray[15];
+		#if defined (INDIERENDER_OPENGL) || defined (INDIERENDER_GLES_IOS)
+			_11 = matrixArray[0];
+			_21 = matrixArray[1];
+			_31 = matrixArray[2];
+			_41 = matrixArray[3];
+			_12 = matrixArray[4];
+			_22 = matrixArray[5];
+			_32 = matrixArray[6];
+			_42 = matrixArray[7];
+			_13 = matrixArray[8];
+			_23 = matrixArray[9];
+			_33 = matrixArray[10];
+			_43 = matrixArray[11];
+			_14 = matrixArray[12];
+			_24 = matrixArray[13];
+			_34 = matrixArray[14];
+			_44 = matrixArray[15];
+		#endif
+
+		#ifdef INDIERENDER_DIRECTX
+			_11 = matrixArray[0];
+			_12 = matrixArray[1];
+			_13 = matrixArray[2];
+			_14 = matrixArray[3];
+			_21 = matrixArray[4];
+			_22 = matrixArray[5];
+			_23 = matrixArray[6];
+			_24 = matrixArray[7];
+			_31 = matrixArray[8];
+			_32 = matrixArray[9];
+			_33 = matrixArray[10];
+			_34 = matrixArray[11];
+			_41 = matrixArray[12];
+			_42 = matrixArray[13];
+			_43 = matrixArray[14];
+			_44 = matrixArray[15];
+		#endif
 	}
 
 	//Writes to passed matrixArray the values inside the IND_Matrix structure
-	//Elements are interpreted this way:
+	//Elements are interpreted this way in DIRECTX:
 	//Matrix 4x4\n (_11, _12, _13, _14,\n _21, _22, _23, _24,\n _31, _32, _33, _34\n _41, _42, _43, _44)
+	//Elements are interpreted this way in OPENGL:
+	//Matrix 4x4\n (_11, _21, _31, _41,\n _12, _22, _32, _42,\n _13, _23, _33, _43\n _14, _24, _34, _44)
 	void arrayRepresentation(float* matrixArray) {
 		if (!matrixArray) {
 			return;
 		}
-		matrixArray[0] = _11;
-		matrixArray[1] = _21;
-		matrixArray[2] = _31;
-		matrixArray[3] = _41;
-		matrixArray[4] = _12;
-		matrixArray[5] = _22;
-		matrixArray[6] = _32;
-		matrixArray[7] = _42;
-		matrixArray[8] = _13;
-		matrixArray[9] = _23;
-		matrixArray[10] = _33;
-		matrixArray[11] = _43;
-		matrixArray[12] = _14;
-		matrixArray[13] = _24;
-		matrixArray[14] = _34;
-		matrixArray[15] = _44;
+		#if defined (INDIERENDER_OPENGL) || defined (INDIERENDER_GLES_IOS)
+			matrixArray[0] = _11;
+			matrixArray[1] = _21;
+			matrixArray[2] = _31;
+			matrixArray[3] = _41;
+			matrixArray[4] = _12;
+			matrixArray[5] = _22;
+			matrixArray[6] = _32;
+			matrixArray[7] = _42;
+			matrixArray[8] = _13;
+			matrixArray[9] = _23;
+			matrixArray[10] = _33;
+			matrixArray[11] = _43;
+			matrixArray[12] = _14;
+			matrixArray[13] = _24;
+			matrixArray[14] = _34;
+			matrixArray[15] = _44;
+		#endif
+
+		#ifdef INDIERENDER_DIRECTX
+			matrixArray[0] = _11;
+			matrixArray[1] = _12;
+			matrixArray[2] = _31;
+			matrixArray[3] = _41;
+			matrixArray[4] = _21;
+			matrixArray[5] = _22;
+			matrixArray[6] = _23;
+			matrixArray[7] = _24;
+			matrixArray[8] = _31;
+			matrixArray[9] = _32;
+			matrixArray[10] = _33;
+			matrixArray[11] = _34;
+			matrixArray[12] = _41;
+			matrixArray[13] = _42;
+			matrixArray[14] = _43;
+			matrixArray[15] = _44;
+		#endif
 	}
 
 	structMatrix & operator=(const structMatrix &rhs) {
@@ -456,7 +488,7 @@ struct structMatrix {
 	}
     
     //Logs itself to console
-    void description (){
+    void description () const {
         std::cout << "\nMATRIX :\n";
         std::cout << _11 << " ";
         std::cout << _21 << " ";
@@ -479,9 +511,22 @@ struct structMatrix {
         std::cout << _44 << " ";
         std::cout << std::endl;
     }
+	/*
+	==================
+	Checks if the matrix has all its member equal to zero
+	==================
+	*/
+	bool isNullMatrix() {
+		if (!_11 && !_12  && !_13 && !_14 &&
+				!_21 && !_22  && !_23 && !_24 &&
+				!_31 && !_32  && !_33 && !_34 &&
+				!_41 && !_42  && !_43 && !_44)
+			return 1;
+
+		return 0;
+	}
 };
-//! Matrix 4x4\n (_11, _12, _13, _14,\n _21, _22, _23, _24,\n _31, _32, _33, _34\n _41, _42, _43, _44)
-#endif
+//! Matrix 4x4\n (_11, _21, _31, _41,\n _12, _22, _32, _42,\n _13, _23, _33, _43\n _14, _24, _34, _44)
 typedef struct structMatrix IND_Matrix;
 
 

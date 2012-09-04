@@ -101,8 +101,6 @@ void OpenGLRender::blitSurface(IND_Surface *pSu) {
 		
   		mCont += 4;
 	}//LOOP END
-
-    mvTransformResetState(); //needed not to modify next rendering call transforms! (mvTransformPresetState()) is called inside the transform setting methods
 }
 
 
@@ -133,8 +131,6 @@ void OpenGLRender::blitGrid(IND_Surface *pSu, BYTE pR, BYTE pG, BYTE pB, BYTE pA
 			             pR, pG, pB, pA);
 		
 	}//LOOP END
-
-   mvTransformResetState();  //needed not to modify next rendering call transforms! (mvTransformPresetState()) is called inside the transform setting methods
 }
 
 
@@ -224,8 +220,6 @@ void OpenGLRender::blitRegionSurface(IND_Surface *pSu,
 			glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 			_numrenderedObjects++;
 		}
-		
-		mvTransformResetState();//needed not to modify next rendering call transforms! (mvTransformPresetState()) is called inside the transform setting methods
 	}
 	
 }
@@ -310,7 +304,6 @@ bool OpenGLRender::blitWrapSurface(IND_Surface *pSu,
 		glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
 		glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);	
    }
-	mvTransformResetState();//needed not to modify next rendering call transforms! (mvTransformPresetState()) is called inside the transform setting methods
 
 	return correctParams;
 }
@@ -391,7 +384,6 @@ int OpenGLRender::blitAnimation(IND_Animation *pAn, int pSequence,
 			}
 		}
 		
-		mvTransformPresetState();
 		glTranslatef(static_cast<float>(pAn->getActualOffsetX(pSequence)),
 					 static_cast<float>(pAn->getActualOffsetY(pSequence)),
 					 0.0f);
@@ -414,7 +406,6 @@ int OpenGLRender::blitAnimation(IND_Animation *pAn, int pSequence,
 		}
 	}
 
-	mvTransformResetState(); //needed not to modify next rendering call transforms! (mvTransformPresetState()) is called inside the transform setting methods
 	return mFinish;
 }
 /*@}*/

@@ -118,8 +118,6 @@ void OpenGLRender::blitPixel(int pX,
 
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_COLOR_ARRAY);
-
-	mvTransformResetState();  //needed not to modify next rendering call transforms! (mvTransformPresetState()) is called inside the transform setting methods
 }
 
 
@@ -177,8 +175,6 @@ void OpenGLRender::blitLine(int pX1,
 
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_COLOR_ARRAY);
-
-	mvTransformResetState();  //needed not to modify next rendering call transforms! (mvTransformPresetState()) is called inside the transform setting methods
 }
 
 
@@ -239,8 +235,6 @@ void OpenGLRender::blitRectangle(int pX1,
 
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_COLOR_ARRAY);
-
-	mvTransformResetState();  //needed not to modify next rendering call transforms! (mvTransformPresetState()) is called inside the transform setting methods
 }
 
 
@@ -301,8 +295,6 @@ void OpenGLRender::blitFillRectangle(int pX1,
 
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_COLOR_ARRAY);
-
-	mvTransformResetState();  //needed not to modify next rendering call transforms! (mvTransformPresetState()) is called inside the transform setting methods
 }
 
 /*!
@@ -359,8 +351,6 @@ void OpenGLRender::blitTriangleList(IND_Point *pTrianglePoints,
 #endif
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_COLOR_ARRAY);
-
-	mvTransformResetState();  //needed not to modify next rendering call transforms! (mvTransformPresetState()) is called inside the transform setting methods
 }
 
 /********************************************************************************/
@@ -426,8 +416,6 @@ void OpenGLRender::blitColoredTriangle(int pX1,
 #endif
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_COLOR_ARRAY);
-
-	mvTransformResetState();  //needed not to modify next rendering call transforms! (mvTransformPresetState()) is called inside the transform setting methods
 }
 
 
@@ -489,8 +477,6 @@ bool OpenGLRender::blitPoly2d(IND_Point *pPolyPoints,
 #endif
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_COLOR_ARRAY);
-
-	mvTransformResetState();  //needed not to modify next rendering call transforms! (mvTransformPresetState()) is called inside the transform setting methods
 
 	return 1;
 }
@@ -566,8 +552,6 @@ bool OpenGLRender::blitRegularPoly(int pX,
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_COLOR_ARRAY);
 
-	mvTransformResetState();  //needed not to modify next rendering call transforms! (mvTransformPresetState()) is called inside the transform setting methods
-
 	return 1;
 }
 /*@}*/
@@ -641,8 +625,6 @@ Blits a bounding line
 #endif
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_COLOR_ARRAY);	
-
-	//NOTE: Not called mvTransformResetState(); as it is done in BlitGrid public API method
 }
 
 /*
@@ -660,8 +642,6 @@ void OpenGLRender::BlitGridQuad    (int pAx, int pAy,
 	BlitGridLine (pBx, pBy, pDx, pDy, pR, pG, pB, pA);
 	BlitGridLine (pDx, pDy, pCx, pCy, pR, pG, pB, pA);
 	BlitGridLine (pCx, pCy, pAx, pAy, pR, pG, pB, pA);
-
-	//NOTE: Not called mvTransformResetState(); as it is done in BlitGrid public API method
 }
 
 /*
@@ -686,6 +666,7 @@ void OpenGLRender::blitCollisionCircle(int pPosX, int pPosY, int pRadius, float 
     
 	//Render primitive - No textures
 	glDisable(GL_TEXTURE_2D);
+	
 	//Transform
 	setTransform2d(pIndWorldMatrix);
 
@@ -709,9 +690,6 @@ void OpenGLRender::blitCollisionCircle(int pPosX, int pPosY, int pRadius, float 
 #endif
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_COLOR_ARRAY);	
-
-	//Reset matrix stack state
-	mvTransformResetState();  //needed not to modify next rendering call transforms! (mvTransformPresetState()) is called inside the transform setting methods
 }
 
 
@@ -726,8 +704,6 @@ void OpenGLRender::blitCollisionLine(int pPosX1, int pPosY1, int pPosX2, int pPo
 	setTransform2d(pIndWorldMatrix);
 	//Blit the line 
 	BlitGridLine (pPosX1, pPosY1, pPosX2, pPosY2,  pR, pG, pB, pA);
-	//Leave matrix state the same
-	mvTransformResetState();  //needed not to modify next rendering call transforms! (mvTransformPresetState()) is called inside the transform setting methods
 }
 
 #endif //INDIERENDER_OPENGL

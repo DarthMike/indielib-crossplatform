@@ -116,6 +116,7 @@ am_libIndieLib_la_OBJECTS =  \
 	../common/src/render/opengl/libIndieLib_la-OpenGLRender.lo \
 	../common/src/platform/libIndieLib_la-OSOpenGLManager.lo \
 	../common/src/render/opengl/libIndieLib_la-OpenGLTextureBuilder.lo \
+	../common/src/render/opengl/libIndieLib_la-RenderCollision2dOpenGL.lo \
 	../common/src/render/opengl/libIndieLib_la-RenderCullingOpenGL.lo \
 	../common/src/render/opengl/libIndieLib_la-RenderObject2dOpenGL.lo \
 	../common/src/render/opengl/libIndieLib_la-RenderObject3dOpenGL.lo \
@@ -337,6 +338,7 @@ libIndieLib_la_SOURCES = ../common/src/CollisionParser.cpp \
 	../common/src/render/opengl/OpenGLRender.cpp \
 	../common/src/platform/OSOpenGLManager.cpp \
 	../common/src/render/opengl/OpenGLTextureBuilder.cpp \
+	../common/src/render/opengl/RenderCollision2dOpenGL.cpp \
 	../common/src/render/opengl/RenderCullingOpenGL.cpp \
 	../common/src/render/opengl/RenderObject2dOpenGL.cpp \
 	../common/src/render/opengl/RenderObject3dOpenGL.cpp \
@@ -569,6 +571,9 @@ clean-libLTLIBRARIES:
 ../common/src/render/opengl/libIndieLib_la-OpenGLTextureBuilder.lo:  \
 	../common/src/render/opengl/$(am__dirstamp) \
 	../common/src/render/opengl/$(DEPDIR)/$(am__dirstamp)
+../common/src/render/opengl/libIndieLib_la-RenderCollision2dOpenGL.lo:  \
+	../common/src/render/opengl/$(am__dirstamp) \
+	../common/src/render/opengl/$(DEPDIR)/$(am__dirstamp)
 ../common/src/render/opengl/libIndieLib_la-RenderCullingOpenGL.lo:  \
 	../common/src/render/opengl/$(am__dirstamp) \
 	../common/src/render/opengl/$(DEPDIR)/$(am__dirstamp)
@@ -799,6 +804,8 @@ mostlyclean-compile:
 	-rm -f ../common/src/render/opengl/libIndieLib_la-OpenGLRender.lo
 	-rm -f ../common/src/render/opengl/libIndieLib_la-OpenGLTextureBuilder.$(OBJEXT)
 	-rm -f ../common/src/render/opengl/libIndieLib_la-OpenGLTextureBuilder.lo
+	-rm -f ../common/src/render/opengl/libIndieLib_la-RenderCollision2dOpenGL.$(OBJEXT)
+	-rm -f ../common/src/render/opengl/libIndieLib_la-RenderCollision2dOpenGL.lo
 	-rm -f ../common/src/render/opengl/libIndieLib_la-RenderCullingOpenGL.$(OBJEXT)
 	-rm -f ../common/src/render/opengl/libIndieLib_la-RenderCullingOpenGL.lo
 	-rm -f ../common/src/render/opengl/libIndieLib_la-RenderObject2dOpenGL.$(OBJEXT)
@@ -873,6 +880,7 @@ include ../common/src/$(DEPDIR)/libIndieLib_la-PrecissionTimer.Plo
 include ../common/src/platform/$(DEPDIR)/libIndieLib_la-OSOpenGLManager.Plo
 include ../common/src/render/opengl/$(DEPDIR)/libIndieLib_la-OpenGLRender.Plo
 include ../common/src/render/opengl/$(DEPDIR)/libIndieLib_la-OpenGLTextureBuilder.Plo
+include ../common/src/render/opengl/$(DEPDIR)/libIndieLib_la-RenderCollision2dOpenGL.Plo
 include ../common/src/render/opengl/$(DEPDIR)/libIndieLib_la-RenderCullingOpenGL.Plo
 include ../common/src/render/opengl/$(DEPDIR)/libIndieLib_la-RenderObject2dOpenGL.Plo
 include ../common/src/render/opengl/$(DEPDIR)/libIndieLib_la-RenderObject3dOpenGL.Plo
@@ -1209,6 +1217,13 @@ include ../common/src/render/opengl/$(DEPDIR)/libIndieLib_la-RenderTransformComm
 #	source='../common/src/render/opengl/OpenGLTextureBuilder.cpp' object='../common/src/render/opengl/libIndieLib_la-OpenGLTextureBuilder.lo' libtool=yes \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libIndieLib_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o ../common/src/render/opengl/libIndieLib_la-OpenGLTextureBuilder.lo `test -f '../common/src/render/opengl/OpenGLTextureBuilder.cpp' || echo '$(srcdir)/'`../common/src/render/opengl/OpenGLTextureBuilder.cpp
+
+../common/src/render/opengl/libIndieLib_la-RenderCollision2dOpenGL.lo: ../common/src/render/opengl/RenderCollision2dOpenGL.cpp
+	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libIndieLib_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT ../common/src/render/opengl/libIndieLib_la-RenderCollision2dOpenGL.lo -MD -MP -MF ../common/src/render/opengl/$(DEPDIR)/libIndieLib_la-RenderCollision2dOpenGL.Tpo -c -o ../common/src/render/opengl/libIndieLib_la-RenderCollision2dOpenGL.lo `test -f '../common/src/render/opengl/RenderCollision2dOpenGL.cpp' || echo '$(srcdir)/'`../common/src/render/opengl/RenderCollision2dOpenGL.cpp
+	$(am__mv) ../common/src/render/opengl/$(DEPDIR)/libIndieLib_la-RenderCollision2dOpenGL.Tpo ../common/src/render/opengl/$(DEPDIR)/libIndieLib_la-RenderCollision2dOpenGL.Plo
+#	source='../common/src/render/opengl/RenderCollision2dOpenGL.cpp' object='../common/src/render/opengl/libIndieLib_la-RenderCollision2dOpenGL.lo' libtool=yes \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libIndieLib_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o ../common/src/render/opengl/libIndieLib_la-RenderCollision2dOpenGL.lo `test -f '../common/src/render/opengl/RenderCollision2dOpenGL.cpp' || echo '$(srcdir)/'`../common/src/render/opengl/RenderCollision2dOpenGL.cpp
 
 ../common/src/render/opengl/libIndieLib_la-RenderCullingOpenGL.lo: ../common/src/render/opengl/RenderCullingOpenGL.cpp
 	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libIndieLib_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT ../common/src/render/opengl/libIndieLib_la-RenderCullingOpenGL.lo -MD -MP -MF ../common/src/render/opengl/$(DEPDIR)/libIndieLib_la-RenderCullingOpenGL.Tpo -c -o ../common/src/render/opengl/libIndieLib_la-RenderCullingOpenGL.lo `test -f '../common/src/render/opengl/RenderCullingOpenGL.cpp' || echo '$(srcdir)/'`../common/src/render/opengl/RenderCullingOpenGL.cpp

@@ -183,6 +183,9 @@ void DirectXRender::setCamera3d(IND_Camera3d *pCamera3d) {
 	_info.mDevice->SetTransform(D3DTS_PROJECTION, &mMatProjection);
 }
 
+void DirectXRender::beginTransform3d() {
+	//Does nothing
+}
 
 
 /*!
@@ -297,6 +300,10 @@ void DirectXRender::setTransform3d(float pX,
 	_info.mDevice->SetTransform(D3DTS_WORLD, &mMatWorld);
 }
 
+
+void DirectXRender::endTransform3d() {
+	//Does nothing
+}
 
 /*!
 \b Parameters:

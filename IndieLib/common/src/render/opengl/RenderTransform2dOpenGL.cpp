@@ -174,6 +174,31 @@ void OpenGLRender::setCamera2d(IND_Camera2d *pCamera2d) {
 \ingroup Advances
 */
 /*@{*/
+/**
+@brief Pushes camera transformation to recover it later on
+
+Will capture the current matrix transform for the camera set by IND_Render::setCamera2d.
+
+Call this if you manually will call later on IND_Render::setTransform2d and you want to 
+preserve the camera transform all along.
+
+If you call this sequentially without ending the transform, the transforms are overwritten, so 
+you could consider that the 'stack' has only one position. No overflow occurs.
+
+@see IND_Render::endTransform2d()
+
+@discussion As in OpenGL, it works similar as glPushMatrix(..), but only with the 'camera' transformation
+set by IND_Render::setCamera2d
+*/
+void OpenGLRender::beginTransform2d() {
+	if (_pushedMatrixes > 1) {
+		mvTransformResetState();
+		_pushedMatrixes--;
+	}
+	mvTransformPresetState();
+	_pushedMatrixes++;
+}
+
 
 /*!
 \b Parameters:
@@ -362,6 +387,30 @@ void OpenGLRender::setIdentityTransform2d ()  {
 	// ----- Applies the transformation -----
 	mvTransformPresetState();
     glLoadIdentity();	
+}
+
+/**
+@brief Pops camera transformation previously pushed
+
+Will restore the matrix transform for the camera set by IND_Render::setCamera2d to the value
+previously set. If no value was set before, this has no effect.
+
+Call this if you manually called  IND_Render::setTransform2d and you want to 
+restored the camera transform all along.
+
+If you call this sequentially without ending the transform, the transforms are overwritten, so 
+you could consider that the 'stack' has only one position. No overflow occurs.
+
+@see IND_Render::beginTransform2d()
+
+@discussion As in OpenGL, it works similar as glPopMatrix(..), but only with the 'camera' transformation
+set by IND_Render::setCamera2d
+*/
+void OpenGLRender::endTransform2d() {
+	if (_pushedMatrixes > 1) {
+		mvTransformResetState();
+		_pushedMatrixes--;
+	}
 }
 
 /*!

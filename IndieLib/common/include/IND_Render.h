@@ -229,7 +229,8 @@ public:
 	*
 	*/
 	//@{
-	void setTransform2d(int pX,
+	inline void beginTransform2d();
+	inline void setTransform2d(int pX,
 	                    int  pY,
 	                    float pAngleX,
 	                    float pAngleY,
@@ -244,10 +245,12 @@ public:
 	                    int pHeight,
 	                    IND_Matrix *pMatrix);
 
-	void setTransform2d(IND_Matrix &pTransformMatrix);
-	
-	void setIdentityTransform2d ();
+	inline void setTransform2d(IND_Matrix &pTransformMatrix);
+		
+	inline void setIdentityTransform2d ();
+	inline void endTransform2d();
 
+	inline void beginTransform3d();
 	inline void setTransform3d(float pX,
 	                           float  pY,
 	                           float  pZ,
@@ -258,8 +261,9 @@ public:
 	                           float pScaleY,
 	                           float pScaleZ,
 	                           IND_Matrix *pMatrix);
+	inline void endTransform3d();
 
-	void setRainbow2d(IND_Type pType,
+	inline void setRainbow2d(IND_Type pType,
 	                  bool pCull,
 	                  bool pMirrorX,
 	                  bool pMirrorY,

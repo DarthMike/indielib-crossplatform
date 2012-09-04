@@ -84,7 +84,8 @@ public:
 		_ok(false),
     	_numrenderedObjects(0),
     	_numDiscardedObjects(0),
-		_doubleBuffer(false)
+		_doubleBuffer(false),
+		_pushedMatrixes(0)
 	{ }
 	~OpenGLRender()              {
 		end();
@@ -200,6 +201,7 @@ public:
 	                     BYTE pB,
 	                     BYTE pA);
 
+	void beginTransform2d();
 	void setTransform2d(int pX,
 	                    int  pY,
 	                    float pAngleX,
@@ -216,19 +218,22 @@ public:
 	                    IND_Matrix *pMatrix);
 
 	void setTransform2d(IND_Matrix &pTransformMatrix);
-
+		
 	void setIdentityTransform2d ();
+	void endTransform2d();
 
+	void beginTransform3d();
 	void setTransform3d(float pX,
-	                    float  pY,
-	                    float  pZ,
-	                    float pAngleX,
-	                    float pAngleY,
-	                    float pAngleZ,
-	                    float pScaleX,
-	                    float pScaleY,
-	                    float pScaleZ,
-	                    IND_Matrix *pMatrix);
+	                           float  pY,
+	                           float  pZ,
+	                           float pAngleX,
+	                           float pAngleY,
+	                           float pAngleZ,
+	                           float pScaleX,
+	                           float pScaleY,
+	                           float pScaleZ,
+	                           IND_Matrix *pMatrix);
+	void endTransform3d();
 
 	void setRainbow2d(IND_Type pType,
 	                  bool pCull,
@@ -441,6 +446,8 @@ private:
 	int _numDiscardedObjects;
 
 	bool _doubleBuffer;
+
+	int _pushedMatrixes;
 
 	struct infoStruct {
 		infoStruct():

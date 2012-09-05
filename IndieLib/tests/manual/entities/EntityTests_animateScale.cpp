@@ -1,5 +1,5 @@
 /*****************************************************************************************
- * Desc: EntityTests_animateRotations class
+ * Desc: EntityTests_animateScale class
  *****************************************************************************************/
 
 /*
@@ -21,7 +21,7 @@ Suite 330, Boston, MA 02111-1307 USA
 */
 
 #include "CIndieLib_vc2008.h"
-#include "EntityTests_animateRotations.h"
+#include "EntityTests_animateScale.h"
 #include "IND_Animation.h"
 #include "IND_Entity2d.h"
 #include "IND_Font.h"
@@ -33,7 +33,7 @@ Suite 330, Boston, MA 02111-1307 USA
 #endif
 
 
-void EntityTests_animateRotations::prepareTests() {
+void EntityTests_animateScale::prepareTests() {
 	// ----- Surface loading -----
     CIndieLib* iLib = CIndieLib::instance();
 
@@ -57,7 +57,6 @@ void EntityTests_animateRotations::prepareTests() {
 	// Rocket
 	_entities[0]->setSurface(_surfaces[0]);
 	_entities[0]->setHotSpot(0.5f, 0.5f);
-	_entities[0]->setScale(2.0f,2.0f);
 	_entities[0]->setPosition(200, 450, 1);
 
 	// Beetle
@@ -69,7 +68,7 @@ void EntityTests_animateRotations::prepareTests() {
 	// Sword Master Animation
 	_entities[2]->setAnimation(_animations[0]);
 	_entities[2]->setHotSpot(0.5f, 0.5f);
-	_entities[2]->setPosition(500, 220, 3);
+	_entities[2]->setPosition(500, 220, 0);
 
 	//Star
 	_entities[3]->setSurface(_surfaces[2]);
@@ -78,7 +77,7 @@ void EntityTests_animateRotations::prepareTests() {
 }
 
 
-void EntityTests_animateRotations::performTests(float dt) {
+void EntityTests_animateScale::performTests(float dt) {
 	//IF - Check if test is active
     if(!_active)
         return;
@@ -97,6 +96,8 @@ void EntityTests_animateRotations::performTests(float dt) {
 
 	float mDelta = iLib->_render->getFrameTime() / 1000.0f;
 
+
+	
 	_animationValue += _animationSpeed * mDelta;
 	
 	if (_animationValue < 0){
@@ -104,17 +105,17 @@ void EntityTests_animateRotations::performTests(float dt) {
 	}
 
 	// ----- Updating entities attributes  -----
-
-	_entities[0]->setAngleXYZ (0, 0, _animationValue*2);
-	_entities[1]->setAngleXYZ (0, 0, _animationValue);	
-	_entities[2]->setAngleXYZ (0, 0, _animationValue*20);
+	float sinValue = 1.0f + sinf(_animationValue);
+	_entities[0]->setScale(2*sinValue,2*sinValue);
+	_entities[1]->setScale(sinValue,sinValue);
+	_entities[2]->setScale(10*sinValue,10*sinValue);
 }
 
-bool EntityTests_animateRotations::isActive(){
+bool EntityTests_animateScale::isActive(){
     return (ManualTests::isActive());
 }
     
-void EntityTests_animateRotations::setActive(bool active){
+void EntityTests_animateScale::setActive(bool active){
     ManualTests::setActive(active);
 
     CIndieLib *iLib = CIndieLib::instance();
@@ -134,7 +135,7 @@ void EntityTests_animateRotations::setActive(bool active){
 
 //-----------------------------------PRIVATE METHODS----------------------------
 
-void EntityTests_animateRotations::init() {
+void EntityTests_animateScale::init() {
 	_testedEntities = 4;
 	_animations = new IND_Animation*[_testedEntities];
 	_entities = new IND_Entity2d*[_testedEntities];
@@ -150,7 +151,7 @@ void EntityTests_animateRotations::init() {
 	}
 }
 
-void EntityTests_animateRotations::release() {
+void EntityTests_animateScale::release() {
     CIndieLib* iLib = CIndieLib::instance();
     //Release all variables from indieLib before exiting
 	for (int i = 0; i < _testedEntities; ++i) {

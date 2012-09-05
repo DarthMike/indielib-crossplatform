@@ -351,6 +351,18 @@
 				>
 			</File>
 		</Filter>
+		<Filter
+			Name="Entities"
+			>
+			<File
+				RelativePath="..\tests\manual\entities\EntityTests_animateRotations.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\tests\manual\entities\EntityTests_animateRotations.h"
+				>
+			</File>
+		</Filter>
 	</Files>
 	<Globals>
 	</Globals>

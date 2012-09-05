@@ -362,6 +362,14 @@
 				RelativePath="..\tests\manual\entities\EntityTests_animateRotations.h"
 				>
 			</File>
+			<File
+				RelativePath="..\tests\manual\entities\EntityTests_animateScale.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\tests\manual\entities\EntityTests_animateScale.h"
+				>
+			</File>
 		</Filter>
 	</Files>
 	<Globals>

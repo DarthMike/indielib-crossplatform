@@ -53,6 +53,7 @@
 #include "font/FontTests.h"
 #include "font/FontTests_Pretty.h"
 #include "collision/CollisionTests.h"
+#include "entities/EntityTests_animateRotations.h"
 
 /*
 ==================
@@ -110,6 +111,8 @@ void initTests() {
 	g_tests.push_back(font2);
 	CollisionTests *collision1 = new CollisionTests();
 	g_tests.push_back(collision1);
+	EntityTests_animateRotations * entity1 = new EntityTests_animateRotations();
+	g_tests.push_back(entity1);
 }
 
 void releaseTests() {

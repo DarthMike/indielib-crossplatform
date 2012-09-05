@@ -492,6 +492,7 @@ void IND_Entity2dManager::renderEntities2d(int pLayer) {
 					//Restores transform for camera after applying and rendering entity
 					_render->endTransform2d();
 		} //Has show
+		
 	}//LOOP END
 }
 
@@ -542,7 +543,11 @@ void IND_Entity2dManager::renderCollisionAreas(int pLayer, BYTE pR, BYTE pG, BYT
 						case 0: {
 							_render->beginTransform2d();
 							_render->blitCollisionLine((*_listIter)->_ax, (*_listIter)->_ay, (*_listIter)->_bx, (*_listIter)->_by, pR, pG, pB, pA, (*mIter)->_mat);
-							_render->blitCollisionLine((*_listIter)->_bx, (*_listIter)->_by, (*_listIter)->_cx, (*_listIter)->_cy, pR, pG, pB, pA, (*mIter)->_mat);
+							_render->endTransform2d();
+							_render->beginTransform2d();
+							_render->blitCollisionLine((*_listIter)->_bx, (*_listIter)->_by, (*_listIter)->_cx, (*_listIter)->_cy, pR, pG, pB, pA, (*mIter)->_mat);\
+							_render->endTransform2d();
+							_render->beginTransform2d();
 							_render->blitCollisionLine((*_listIter)->_cx, (*_listIter)->_cy, (*_listIter)->_ax, (*_listIter)->_ay, pR, pG, pB, pA, (*mIter)->_mat);
 							_render->endTransform2d();
 							break;

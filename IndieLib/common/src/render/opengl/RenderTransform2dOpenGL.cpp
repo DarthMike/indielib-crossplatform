@@ -191,7 +191,7 @@ you could consider that the 'stack' has only one position. No overflow occurs.
 set by IND_Render::setCamera2d
 */
 void OpenGLRender::beginTransform2d() {
-	if (_pushedMatrixes > 1) {
+	if (_pushedMatrixes >= 1) {
 		mvTransformResetState();
 		_pushedMatrixes--;
 	}

@@ -130,7 +130,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E796D45D15F88AE700724FBD /* entity */ = {
+		E796D45D15F88AE700724FBD /* entities */ = {
 			isa = PBXGroup;
 			children = (
 				E796D45615F88AD900724FBD /* EntityTests_animateRotations.cpp */,
@@ -138,7 +138,7 @@
 				E796D45815F88AD900724FBD /* EntityTests_animateScale.cpp */,
 				E796D45915F88AD900724FBD /* EntityTests_animateScale.h */,
 			);
-			name = entity;
+			name = entities;
 			sourceTree = "<group>";
 		};
 		E7DBCAAE159C432500C8B2D9 = {
@@ -205,7 +205,7 @@
 		E7DBCB7A159C7A8D00C8B2D9 /* manual */ = {
 			isa = PBXGroup;
 			children = (
-				E796D45D15F88AE700724FBD /* entity */,
+				E796D45D15F88AE700724FBD /* entities */,
 				E744863315E8E48700DDE3BF /* collision */,
 				E7DBCB7B159C7A8D00C8B2D9 /* animation */,
 				E7DBCB7E159C7A8D00C8B2D9 /* camera2d */,

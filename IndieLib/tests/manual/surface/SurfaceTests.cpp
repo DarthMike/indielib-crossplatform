@@ -99,19 +99,19 @@ void SurfaceTests::setActive(bool active){
 	    // an orange tint
 	    _entities[3]->setPosition (330, 0, 0);					// Set the position of the entity
 	    _entities[3]->setScale	(2, 2);							// Set the scale of the entity
-	    _entities[3]->setTint	(240, 160, 230);					// Set tint to color RGB = (240, 160, 230)
-	    _entities[3]->setTransparency (200);						// Level of transparency 200 (255 will be opaque)
+	    _entities[3]->setTint	(255, 0, 0);					// Set tint to color R
 	    _entities[3]->setAngleXYZ	(0, 0, 45);						// Rotation in Z angle = 45º
 
-	    // A bigger star than the original, faded to pink. We only draw a region of 50x50 pixels
+	    // A bigger star than the original, faded to green. We only draw a region of 50x50 pixels
 	    _entities[4]->setHotSpot (0.5f, 0.5f);					// We change the reference point of the entity
 	    _entities[4]->setPosition (170, 60, 0);					// Set the position of the entity
 	    _entities[4]->setScale	(1.5f, 1.5f);					// Set the scale of the entity
-	    _entities[4]->setFade	(230, 0, 230, 128);					// Set fade to pink color, the amout of fade is 128 (255 will be complety pink)
+	    _entities[4]->setFade	(0, 255, 0, 128);					// Set fade to green color, the amout of fade is 128 (255 will be complety gree)
 	    _entities[4]->setRegion (20, 20, 50, 50);					// Region we want to draw
 
-		//Original rabbit image
+		//Original rabbit image with transparency
 		_entities[5]->setPosition(0,230,0);
+        _entities[5]->setTransparency(200);
 		//Rabbit mirrored in X
 		_entities[6]->setPosition(70,230,0);
 		_entities[6]->setMirrorX(true);

@@ -530,79 +530,90 @@ void OpenGLRender::setRainbow2d(IND_Type pType,
 
 	// ----- Blending -----
 	switch (pType) {
-	case IND_OPAQUE: {
-		// Alphablending and alpha test = OFF
-		glDisable(GL_ALPHA_TEST);
-		glEnable(GL_BLEND);
-        glBlendFunc(GL_ONE, GL_ZERO);
-
-		// Tinting
-		if (pR != 255 || pG != 255 || pB != 255) {
+        case IND_OPAQUE: {
+            // Alphablending and alpha test = OFF
+            glDisable(GL_ALPHA_TEST);
+            glEnable(GL_BLEND);
+            glBlendFunc(GL_ONE, GL_ZERO);
+            
+            // Tinting
+            if (pR != 255 || pG != 255 || pB != 255) {
 				blendR = static_cast<float>(pR) / 255.0f;
 				blendG = static_cast<float>(pG) / 255.0f;
 				blendB = static_cast<float>(pB) / 255.0f;
-		}
-
-		// Alpha
-		if (pA != 255) {
+                glColor4f(blendR, blendG, blendB, blendA);
+            }
+            
+            // Alpha
+            if (pA != 255) {
 				glDisable(GL_ALPHA_TEST);
 				glEnable(GL_BLEND);
 				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 				blendA = static_cast<float>(pA) / 255.0f;
-		}
-
-		// Fade to color
-		if (pFadeA != 255) {
-				//TODO
-				blendR = blendG = blendB = 1.0f;
-		}
-
-		if (pSo && pDs) {
-			//Alpha blending
-		}
-	}
-	break;
-
-	case IND_ALPHA: {
-		// Alpha test = OFF
-		glDisable(GL_ALPHA_TEST);
-		glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-		// Tinting
-		if (pR != 255 || pG != 255 || pB != 255) {
+                glColor4f(blendR, blendG, blendB, blendA);
+            }
+            
+            // Fade to color
+            if (pFadeA != 255) {
+                glDisable(GL_ALPHA_TEST);
+				glEnable(GL_BLEND);
+				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+				blendA = static_cast<float>(pFadeA) / 255.0f;
+                blendR = static_cast<float>(pFadeR) / 255.0f;
+                blendG = static_cast<float>(pFadeG) / 255.0f;
+                blendB = static_cast<float>(pFadeB) / 255.0f;
+                glColor4f(blendR, blendG, blendB, blendA);
+            }
+            
+            if (pSo && pDs) {
+                //Alpha blending
+            }
+        }
+            break;
+            
+        case IND_ALPHA: {
+            // Alpha test = OFF
+            glDisable(GL_ALPHA_TEST);
+            glEnable(GL_BLEND);
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+            glColor4f(blendR, blendG, blendB, blendA);
+            
+            // Tinting
+            if (pR != 255 || pG != 255 || pB != 255) {
 				blendR = static_cast<float>(pR) / 255.0f;
 				blendG = static_cast<float>(pG) / 255.0f;
 				blendB = static_cast<float>(pB) / 255.0f;
-		}
-
-		// Alpha
-		if (pA != 255) {
+                glColor4f(blendR, blendG, blendB, blendA);
+            }
+            
+            // Alpha
+            if (pA != 255) {
 				glDisable(GL_ALPHA_TEST);
 				glEnable(GL_BLEND);
 				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 				blendA = static_cast<float>(pA) / 255.0f;
-		}
-
-		// Fade to color
-		if (pFadeA != 255) {
-				//TODO
-				blendR = blendG = blendB = 1.0f;
-		}
-
-		if (!pSo || !pDs) {
-			//Alpha blending
-		} else {
-
-		}
+                glColor4f(blendR, blendG, blendB, blendA);
+            }
+            
+            // Fade to color
+            if (pFadeA != 255) {
+                blendR = static_cast<float>(pR) / 255.0f;
+                blendG = static_cast<float>(pG) / 255.0f;
+                blendB = static_cast<float>(pB) / 255.0f;
+                glColor4f(blendR, blendG, blendB, blendA);
+            }
+            
+            if (!pSo || !pDs) {
+                //Alpha blending
+            } else {
+                
+            }
 
 	}
 	break;
 	default: {
 	}
 	}
-
-	glColor4f(blendR, blendG, blendB, blendA);
 }
 
 

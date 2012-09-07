@@ -597,9 +597,10 @@ void OpenGLRender::setRainbow2d(IND_Type pType,
             
             // Fade to color
             if (pFadeA != 255) {
-                blendR = static_cast<float>(pR) / 255.0f;
-                blendG = static_cast<float>(pG) / 255.0f;
-                blendB = static_cast<float>(pB) / 255.0f;
+                blendA = static_cast<float>(pFadeA) / 255.0f;
+                blendR = static_cast<float>(pFadeR) / 255.0f;
+                blendG = static_cast<float>(pFadeG) / 255.0f;
+                blendB = static_cast<float>(pFadeB) / 255.0f;
                 glColor4f(blendR, blendG, blendB, blendA);
             }
             
@@ -614,6 +615,8 @@ void OpenGLRender::setRainbow2d(IND_Type pType,
 	default: {
 	}
 	}
+
+
 }
 
 

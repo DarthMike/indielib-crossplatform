@@ -237,15 +237,11 @@ void IND_Entity2dManager::renderEntities2d(int pLayer) {
 	_render->calculeFrustumPlanes();
 	// Iterates the list
 	vector <IND_Entity2d *>::iterator mIter;
-	//LOOP - All entities
 	for (mIter  = _listEntities2d[pLayer]->begin();
 	        mIter != _listEntities2d[pLayer]->end();
 	        mIter++) {
 		// Only render it if "show" flag is true
 		if ((*mIter)->_show) {
-			//Keeps transform of camera before applying transform of entity 
-			_render->beginTransform2d();
-
 			// If it has an animation or a surface assigned
 			if ((*mIter)->_su || (*mIter)->_an) {
 				// Set transformations ONLY if the entity space attributes has been modified
@@ -268,7 +264,7 @@ void IND_Entity2dManager::renderEntities2d(int pLayer) {
 					}
 
 					// ----- Transformations -----
-					
+
 					_render->setTransform2d((int)(*mIter)->_x,
 					                        (int)(*mIter)->_y,
 					                        (*mIter)->_angleX,
@@ -284,7 +280,6 @@ void IND_Entity2dManager::renderEntities2d(int pLayer) {
 					                        mHeightTemp,
 					                        &(*mIter)->_mat);
 				} else {
-					
 					_render->setTransform2d((*mIter)->_mat);
 				}
 
@@ -489,10 +484,8 @@ void IND_Entity2dManager::renderEntities2d(int pLayer) {
 						                  (*mIter)->_ds,
 						                  (*mIter)->_align);
 					}
-					//Restores transform for camera after applying and rendering entity
-					_render->endTransform2d();
-		} //Has show
-	}//LOOP END
+		}
+	}
 }
 
 /**
@@ -540,19 +533,15 @@ void IND_Entity2dManager::renderCollisionAreas(int pLayer, BYTE pR, BYTE pG, BYT
 						switch ((*_listIter)->_type) {
 							// Triangle
 						case 0: {
-							_render->beginTransform2d();
 							_render->blitCollisionLine((*_listIter)->_ax, (*_listIter)->_ay, (*_listIter)->_bx, (*_listIter)->_by, pR, pG, pB, pA, (*mIter)->_mat);
 							_render->blitCollisionLine((*_listIter)->_bx, (*_listIter)->_by, (*_listIter)->_cx, (*_listIter)->_cy, pR, pG, pB, pA, (*mIter)->_mat);
 							_render->blitCollisionLine((*_listIter)->_cx, (*_listIter)->_cy, (*_listIter)->_ax, (*_listIter)->_ay, pR, pG, pB, pA, (*mIter)->_mat);
-							_render->endTransform2d();
 							break;
 						}
 
 						// Circle
 						case 1: {
-							_render->beginTransform2d();
 							_render->blitCollisionCircle((*_listIter)->_posX, (*_listIter)->_posY, (*_listIter)->_radius, (*mIter)->_scaleX, pR, pG, pB, pA, (*mIter)->_mat);
-							_render->endTransform2d();
 							break;
 						}
 						}
@@ -594,7 +583,7 @@ void IND_Entity2dManager::renderGridAreas(int pLayer, BYTE pR, BYTE pG, BYTE pB,
 				if (surface) {
 					int mWidthTemp  = surface->getWidth();
 					int mHeightTemp = surface->getHeight();
-					_render->beginTransform2d();
+
 					_render->setTransform2d((int)(*mIter)->_x,
 											(int)(*mIter)->_y,
 											(*mIter)->_angleX,
@@ -611,7 +600,6 @@ void IND_Entity2dManager::renderGridAreas(int pLayer, BYTE pR, BYTE pG, BYTE pB,
 											&(*mIter)->_mat);
 
 					_render->blitGrid(surface, pR, pG, pB, pA);
-					_render->endTransform2d();
 				}
 			}
 		}

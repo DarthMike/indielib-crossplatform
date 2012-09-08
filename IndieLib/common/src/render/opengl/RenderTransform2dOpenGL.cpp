@@ -274,6 +274,8 @@ void OpenGLRender::setTransform2d(int pX,
                                   int pWidth,
                                   int pHeight,
                                   IND_Matrix *pMatrix) {
+	// ----- World matrix initialization -----
+	mvTransformPresetState();
 
 	//Temporal holders for all accumulated transforms
 	IND_Matrix totalTrans;
@@ -377,11 +379,13 @@ void OpenGLRender::setTransform2d(int pX,
 
 void OpenGLRender::setTransform2d(IND_Matrix &pMatrix) {
 	// ----- Applies the transformation -----
+	mvTransformPresetState();
 	glMultMatrixf(reinterpret_cast<GLfloat *>(&pMatrix));
 }
 
 void OpenGLRender::setIdentityTransform2d ()  {
 	// ----- Applies the transformation -----
+	mvTransformPresetState();
     glLoadIdentity();	
 }
 

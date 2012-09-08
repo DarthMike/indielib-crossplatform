@@ -194,7 +194,6 @@ public:
 	                     BYTE pB,
 	                     BYTE pA);
 
-	void beginTransform2d();
 	void setTransform2d(int pX,
 	                    int  pY,
 	                    float pAngleX,
@@ -211,22 +210,19 @@ public:
 	                    IND_Matrix *pMatrix);
 
 	void setTransform2d(IND_Matrix &pTransformMatrix);
-		
-	void setIdentityTransform2d ();
-	void endTransform2d();
 
-	void beginTransform3d();
+	void setIdentityTransform2d ();
+
 	void setTransform3d(float pX,
-	                           float  pY,
-	                           float  pZ,
-	                           float pAngleX,
-	                           float pAngleY,
-	                           float pAngleZ,
-	                           float pScaleX,
-	                           float pScaleY,
-	                           float pScaleZ,
-	                           IND_Matrix *pMatrix);
-	void endTransform3d();
+	                    float  pY,
+	                    float  pZ,
+	                    float pAngleX,
+	                    float pAngleY,
+	                    float pAngleZ,
+	                    float pScaleX,
+	                    float pScaleY,
+	                    float pScaleZ,
+	                    IND_Matrix *pMatrix);
 
 	void setRainbow2d(IND_Type pType,
 	                  bool pCull,

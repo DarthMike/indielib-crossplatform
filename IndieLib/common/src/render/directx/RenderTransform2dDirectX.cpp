@@ -170,10 +170,6 @@ void DirectXRender::setCamera2d(IND_Camera2d *pCamera2d) {
 */
 /*@{*/
 
-void DirectXRender::beginTransform2d() {
-	//Does nothing
-}
-
 /*!
 \b Parameters:
 
@@ -334,11 +330,6 @@ void DirectXRender::setIdentityTransform2d ()  {
 	// ----- Applies the transformation -----
 	D3DXMATRIX mMatWorld;
 	_info.mDevice->SetTransform(D3DTS_WORLD, D3DXMatrixIdentity(&mMatWorld));
-}
-
-
-void DirectXRender::endTransform2d() {
-	//Does nothing
 }
 
 

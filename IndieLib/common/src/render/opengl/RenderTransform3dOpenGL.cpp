@@ -77,25 +77,6 @@ void OpenGLRender::setCamera3d(IND_Camera3d *pCamera3d) {
 	//TODO
 }
 
-/**
-@brief Pushes camera transformation to recover it later on
-
-Will capture the current matrix transform for the camera set by IND_Render::setCamera3d.
-
-Call this if you manually will call later on IND_Render::setTransform3d and you want to 
-preserve the camera transform all along.
-
-If you call this sequentially without ending the transform, the transforms are overwritten, so 
-you could consider that the 'stack' has only one position. No overflow occurs.
-
-@see IND_Render::endTransform3d()
-
-@discussion As in OpenGL, it works similar as glPushMatrix(..), but only with the 'camera' transformation
-set by IND_Render::setCamera3d
-*/
-void OpenGLRender::beginTransform3d() {
-	//TODO: (should be the same as beginTransform2d() ?)
-}
 
 
 /*!
@@ -148,27 +129,6 @@ void OpenGLRender::setTransform3d(float pX,
 
 {
 	//TODO
-}
-
-/**
-@brief Pops camera transformation previously pushed
-
-Will restore the matrix transform for the camera set by IND_Render::setCamera3d to the value
-previously set. If no value was set before, this has no effect.
-
-Call this if you manually called  IND_Render::setTransform3d and you want to 
-restored the camera transform all along.
-
-If you call this sequentially without ending the transform, the transforms are overwritten, so 
-you could consider that the 'stack' has only one position. No overflow occurs.
-
-@see IND_Render::beginTransform3d()
-
-@discussion As in OpenGL, it works similar as glPopMatrix(..), but only with the 'camera' transformation
-set by IND_Render::setCamera3d
-*/
-void OpenGLRender::endTransform3d() {
-	//TODO: Should it be the same as endTransform2d() ?
 }
 
 

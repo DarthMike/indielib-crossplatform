@@ -157,7 +157,7 @@ This function sets a perspective matrix through the definition of a position and
 
 Using this method is equivalent to using a combination of methods of the class ::setCamera3d().
 */
-  void IND_Render::lookAt(float pEyeX, float pEyeY, float pEyeZ,
+inline void IND_Render::lookAt(float pEyeX, float pEyeY, float pEyeZ,
                                float pLookAtX, float pLookAtY, float pLookAtZ,
                                float pUpX, float pUpY, float pUpZ) {
 	_wrappedRenderer->lookAt(pEyeX, pEyeY, pEyeZ,
@@ -180,7 +180,7 @@ This function sets a fov projection matrix.
 
 This method is equivalent to use a combination of methods of the class ::setCamera3d().
 */
-  void IND_Render::perspectiveFov(float pFov, float pAspect, float pNearClippingPlane, float pFarClippingPlane) {
+inline void IND_Render::perspectiveFov(float pFov, float pAspect, float pNearClippingPlane, float pFarClippingPlane) {
 	_wrappedRenderer->perspectiveFov(pFov, pAspect, pNearClippingPlane, pFarClippingPlane);
 }
 
@@ -199,7 +199,7 @@ This function sets a orthographic projection matrix.
 
 Using this method is equivalent to using a combination of the methods of the class ::setCamera3d().
 */
-  void IND_Render::perspectiveOrtho(float pWidth, float pHeight, float pNearClippingPlane, float pFarClippingPlane) {
+inline void IND_Render::perspectiveOrtho(float pWidth, float pHeight, float pNearClippingPlane, float pFarClippingPlane) {
 	_wrappedRenderer->perspectiveOrtho(pWidth, pHeight, pNearClippingPlane, pFarClippingPlane);
 }
 
@@ -527,7 +527,7 @@ This function will return 1 if the antialiasing is activated or deactivated corr
 graphic card of the user doesn't support this feature.
 ==================
 */
-  bool IND_Render::setAntialiasing(bool pSwitch) {
+inline bool IND_Render::setAntialiasing(bool pSwitch) {
 	return (_wrappedRenderer->setAntialiasing(pSwitch));
 }
 
@@ -848,26 +848,6 @@ void IND_Render::setCamera2d(IND_Camera2d *pCamera2d) {
 */
 /*@{*/
 
-/**
-@brief Pushes camera transformation to recover it later on
-
-Will capture the current matrix transform for the camera set by IND_Render::setCamera2d.
-
-Call this if you manually will call later on IND_Render::setTransform2d and you want to 
-preserve the camera transform all along.
-
-If you call this sequentially without ending the transform, the transforms are overwritten, so 
-you could consider that the 'stack' has only one position. No overflow occurs.
-
-@see IND_Render::endTransform2d()
-
-@discussion As in OpenGL, it works similar as glPushMatrix(..), but only with the 'camera' transformation
-set by IND_Render::setCamera2d
-*/
-  void IND_Render::beginTransform2d() {
-	_wrappedRenderer->beginTransform2d();
-}
-
 /*!
 \b Parameters:
 
@@ -924,7 +904,7 @@ Using this method is equivalent to using a combination of these methods:
 - IND_Entity2d::setRegion()
 - IND_Entity2d::toggleWrap()
 */
-  void IND_Render::setTransform2d(int pX,
+void IND_Render::setTransform2d(int pX,
                                        int pY,
                                        float pAngleX,
                                        float pAngleY,
@@ -980,7 +960,7 @@ Using this method is equivalent to using a combination of these methods:
 - IND_Entity2d::setRegion()
 - IND_Entity2d::toggleWrap()
 */
-  void IND_Render::setTransform2d(IND_Matrix &pTransformMatrix) {
+void IND_Render::setTransform2d(IND_Matrix &pTransformMatrix) {
 	_wrappedRenderer->setTransform2d(pTransformMatrix);
 }
 
@@ -1015,31 +995,9 @@ Using this method is equivalent to using a combination of these methods:
 - IND_Entity2d::setRegion()
 - IND_Entity2d::toggleWrap()
 */
-  void IND_Render::setIdentityTransform2d () {
+void IND_Render::setIdentityTransform2d () {
 	_wrappedRenderer->setIdentityTransform2d();
 }
-
-/**
-@brief Pops camera transformation previously pushed
-
-Will restore the matrix transform for the camera set by IND_Render::setCamera2d to the value
-previously set. If no value was set before, this has no effect.
-
-Call this if you manually called  IND_Render::setTransform2d and you want to 
-restored the camera transform all along.
-
-If you call this sequentially without ending the transform, the transforms are overwritten, so 
-you could consider that the 'stack' has only one position. No overflow occurs.
-
-@see IND_Render::beginTransform2d()
-
-@discussion As in OpenGL, it works similar as glPopMatrix(..), but only with the 'camera' transformation
-set by IND_Render::setCamera2d
-*/
-  void IND_Render::endTransform2d() {
-	_wrappedRenderer->endTransform2d();
-}
-
 
 /*!
 \b Parameters:
@@ -1101,7 +1059,7 @@ Using this method is equivalent to using a combination of these methods:
 - IND_Entity2d::setBlendSource()
 - IND_Entity2d::setBlendDest()
 */
-  void IND_Render::setRainbow2d(IND_Type pType,
+void IND_Render::setRainbow2d(IND_Type pType,
                               bool pCull,
                               bool pMirrorX,
                               bool pMirrorY,
@@ -1157,7 +1115,7 @@ with really concrete purposes.
 Using this method is equivalent to using:
 - IND_Entity3d::set3dMesh()
 */
-  void IND_Render::blit3dMesh(IND_3dMesh *p3dMesh) {
+inline void IND_Render::blit3dMesh(IND_3dMesh *p3dMesh) {
 	_wrappedRenderer->blit3dMesh(p3dMesh);
 }
 
@@ -1174,7 +1132,7 @@ This function sets the animation sequence that will be rendered. When you use th
 current animation and the following will not be abrubt. IndieLib will fade out the effect of the first animation
 and fade in the second. Use IND_3dMesh::setTransitionSpeed() in order set the speed of that transition.
 */
-  void IND_Render::set3dMeshSequence(IND_3dMesh *p3dMesh, unsigned int pIndex) {
+void IND_Render::set3dMeshSequence(IND_3dMesh *p3dMesh, unsigned int pIndex) {
 	_wrappedRenderer->set3dMeshSequence(p3dMesh, pIndex);
 }
 /*@}*/
@@ -1198,7 +1156,7 @@ After using this method, all the 3d bliting methods will render the graphical ob
 
 This method returns 0 (false) if the user tries to create a Viewport outside the window area.
 */
-  bool IND_Render::setViewPort3d(int pX,
+inline bool IND_Render::setViewPort3d(int pX,
                                       int pY,
                                       int pWidth,
                                       int pHeight) {
@@ -1215,28 +1173,8 @@ This method returns 0 (false) if the user tries to create a Viewport outside the
 
 This function sets a 3d camera. See the methods of ::IND_Camera3d for information on how you can manipulate the camera.
 */
-  void IND_Render::setCamera3d(IND_Camera3d *pCamera3d) {
+inline void IND_Render::setCamera3d(IND_Camera3d *pCamera3d) {
 	_wrappedRenderer->setCamera3d(pCamera3d);
-}
-
-/**
-@brief Pushes camera transformation to recover it later on
-
-Will capture the current matrix transform for the camera set by IND_Render::setCamera3d.
-
-Call this if you manually will call later on IND_Render::setTransform3d and you want to 
-preserve the camera transform all along.
-
-If you call this sequentially without ending the transform, the transforms are overwritten, so 
-you could consider that the 'stack' has only one position. No overflow occurs.
-
-@see IND_Render::endTransform3d()
-
-@discussion As in OpenGL, it works similar as glPushMatrix(..), but only with the 'camera' transformation
-set by IND_Render::setCamera3d
-*/
-  void IND_Render::beginTransform3d() {
-	_wrappedRenderer->beginTransform3d();
 }
 
 /*!
@@ -1275,7 +1213,7 @@ This method is equivalent to use a combination of this methods:
 - IND_Entity2d::setBackCull()
 - IND_Entity2d::setFilter()
 */
-  void IND_Render::setTransform3d(float pX,
+inline void IND_Render::setTransform3d(float pX,
                                        float  pY,
                                        float  pZ,
                                        float pAngleX,
@@ -1289,27 +1227,6 @@ This method is equivalent to use a combination of this methods:
 
 {
 	_wrappedRenderer->setTransform3d(pX, pY, pZ, pAngleX, pAngleY, pAngleZ, pScaleX, pScaleY, pScaleZ, pMatrix);
-}
-
-/**
-@brief Pops camera transformation previously pushed
-
-Will restore the matrix transform for the camera set by IND_Render::setCamera3d to the value
-previously set. If no value was set before, this has no effect.
-
-Call this if you manually called  IND_Render::setTransform3d and you want to 
-restored the camera transform all along.
-
-If you call this sequentially without ending the transform, the transforms are overwritten, so 
-you could consider that the 'stack' has only one position. No overflow occurs.
-
-@see IND_Render::beginTransform3d()
-
-@discussion As in OpenGL, it works similar as glPopMatrix(..), but only with the 'camera' transformation
-set by IND_Render::setCamera3d
-*/
-  void IND_Render::endTransform3d() {
-	_wrappedRenderer->endTransform3d();
 }
 
 
@@ -1369,7 +1286,7 @@ Using this method is equivalent to using a combination of these methods:
 - IND_Entity2d::setBlendSource()
 - IND_Entity2d::setBlendDest()
 */
-  void IND_Render::setRainbow3d(bool pCull,
+inline void IND_Render::setRainbow3d(bool pCull,
                                      bool pFlipNormals,
                                      IND_Filter pFilter,
                                      BYTE pR,
@@ -1406,7 +1323,7 @@ NOTE: The updating of the window title is quite time-consuming, so this is not t
 checking the FPS. It's better to use the methods IND_Render::getFpsInt() or IND_Render::getFpsString() and drawing
 the result using an ::IND_Font object.
 */
-  void IND_Render::showFpsInWindowTitle() {
+inline void IND_Render::showFpsInWindowTitle() {
 	char fpsstring [MAX_CHARS_IN_INT32_STR];
 	getFpsString(fpsstring);
 	_wrappedRenderer->showFpsInWindowTitle(fpsstring);

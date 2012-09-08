@@ -106,7 +106,7 @@ public:
 
 	void beginScene();
 	void endScene();
-	 void showFpsInWindowTitle();
+	inline void showFpsInWindowTitle();
 
 	// ----- Viewports and cameras -----
 
@@ -135,17 +135,17 @@ public:
 	*
 	*/
 	//@{
-	 bool setViewPort3d(int pX,
+	inline bool setViewPort3d(int pX,
 	                          int pY,
 	                          int pWidth,
 	                          int pHeight);
 
-	 void setCamera3d(IND_Camera3d *pCamera3d);
+	inline void setCamera3d(IND_Camera3d *pCamera3d);
 	//@}
 
 	// ----- Render Primitive 2d -----
 
-	 bool setAntialiasing(bool pSwitch);
+	inline bool setAntialiasing(bool pSwitch);
 
 	/** @name Bliting primitives (you can also use IND_Entity2d instead this methods)
 	*
@@ -229,8 +229,7 @@ public:
 	*
 	*/
 	//@{
-	 void beginTransform2d();
-	 void setTransform2d(int pX,
+	void setTransform2d(int pX,
 	                    int  pY,
 	                    float pAngleX,
 	                    float pAngleY,
@@ -245,13 +244,11 @@ public:
 	                    int pHeight,
 	                    IND_Matrix *pMatrix);
 
-	 void setTransform2d(IND_Matrix &pTransformMatrix);
-		
-	 void setIdentityTransform2d ();
-	 void endTransform2d();
+	void setTransform2d(IND_Matrix &pTransformMatrix);
+	
+	void setIdentityTransform2d ();
 
-	 void beginTransform3d();
-	 void setTransform3d(float pX,
+	inline void setTransform3d(float pX,
 	                           float  pY,
 	                           float  pZ,
 	                           float pAngleX,
@@ -261,9 +258,8 @@ public:
 	                           float pScaleY,
 	                           float pScaleZ,
 	                           IND_Matrix *pMatrix);
-	 void endTransform3d();
 
-	 void setRainbow2d(IND_Type pType,
+	void setRainbow2d(IND_Type pType,
 	                  bool pCull,
 	                  bool pMirrorX,
 	                  bool pMirrorY,
@@ -279,7 +275,7 @@ public:
 	                  IND_BlendingType pSo,
 	                  IND_BlendingType pDs);
 
-	 void setRainbow3d(bool pCull,
+	inline void setRainbow3d(bool pCull,
 	                         bool pFlipNormals,
 	                         IND_Filter pFilter,
 	                         BYTE pR,
@@ -293,13 +289,13 @@ public:
 	                         IND_BlendingType pSo,
 	                         IND_BlendingType pDs);
 
-	 void lookAt(float pEyeX, float pEyeY, float pEyeZ,
+	inline void lookAt(float pEyeX, float pEyeY, float pEyeZ,
 	                   float pLookAtX, float pLookAtY, float pLookAtZ,
 	                   float pUpX, float pUpY, float pUpZ);
 
-	 void perspectiveFov(float pFov, float pAspect, float pNearClippingPlane, float pFarClippingPlane);
+	inline void perspectiveFov(float pFov, float pAspect, float pNearClippingPlane, float pFarClippingPlane);
 
-	 void perspectiveOrtho(float pWidth, float pHeight, float pNearClippingPlane, float pFarClippingPlane);
+	inline void perspectiveOrtho(float pWidth, float pHeight, float pNearClippingPlane, float pFarClippingPlane);
 	//@}
 
 
@@ -367,8 +363,8 @@ public:
 	*
 	*/
 	//@{
-	 void blit3dMesh(IND_3dMesh *p3dMesh);
-	 void set3dMeshSequence(IND_3dMesh *p3dMesh, unsigned int pIndex);
+	inline void blit3dMesh(IND_3dMesh *p3dMesh);
+	inline void set3dMeshSequence(IND_3dMesh *p3dMesh, unsigned int pIndex);
 	//@}
 
 	// ----- Attributes -----

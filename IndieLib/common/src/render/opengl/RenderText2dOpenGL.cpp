@@ -182,7 +182,8 @@ void OpenGLRender::blitText(IND_Font *pFo,
 
 				mCont2--;
 				if (!mErrorChar) {
-					mvTransformPresetState();  //Need to preset transform state, as the blit operation will reset the state!!!!
+//#warning lookout
+					//mvTransformPresetState();  //Need to preset transform state, as the blit operation will reset the state!!!!
 					blitRegionSurface(pFo->getSurface(),
 									  pFo->getLetters() [mCont2]._offsetX + 1,
 									  pFo->getLetters() [mCont2]._offsetY + 1,
@@ -200,7 +201,6 @@ void OpenGLRender::blitText(IND_Font *pFo,
 			mChar1 = pText [mCont1++];
 		}//LOOP END - Blit character by character
 
-		mvTransformResetState();//needed not to modify next rendering call transforms! (mvTransformPresetState()) is called inside the transform setting methods
 	}
 }
 /*@}*/

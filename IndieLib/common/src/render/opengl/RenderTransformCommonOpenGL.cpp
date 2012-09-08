@@ -153,34 +153,6 @@ void OpenGLRender::perspectiveOrtho(float pWidth, float pHeight, float pNearClip
 	glMatrixMode(GL_MODELVIEW);
 }
 
-//Helper to perform pre-transform settings (pushmatrix)
-void OpenGLRender::mvTransformPresetState(){
-#ifdef _DEBUG
-	int mmode;
-	glGetIntegerv(GL_MATRIX_MODE,&mmode);
-	assert( mmode == GL_MODELVIEW);
-#endif
-	glPushMatrix();	
-#ifdef _DEBUG
-	GLenum error = glGetError();
-	assert (error == GL_NO_ERROR);
-#endif
-}
-	
-//Helper to perform post-transform settings (popmatrix)
-void OpenGLRender::mvTransformResetState(){
-#ifdef _DEBUG
-	int mmode;
-	glGetIntegerv(GL_MATRIX_MODE,&mmode);
-	assert( mmode == GL_MODELVIEW);
-#endif
-	glPopMatrix();
-#ifdef _DEBUG
-	GLenum error = glGetError();
-	assert (error == GL_NO_ERROR);
-#endif
-}
-
 // --------------------------------------------------------------------------------
 //							         Private methods
 // --------------------------------------------------------------------------------

@@ -153,6 +153,11 @@ void OpenGLRender::setCamera2d(IND_Camera2d *pCamera2d) {
 	//------ Set the transformation -----
 	glMultMatrixf(reinterpret_cast<GLfloat *>(&lookatmatrix));
     
+    //Store result from GL matrix back to our local matrix
+    float m[16];
+	glGetFloatv(GL_MODELVIEW_MATRIX, m);
+    _cameraMatrix.readFromArray(m);
+    
 	// ----- Projection Matrix -----
 	//Setup a 2d projection (orthogonal)
 	perspectiveOrtho(static_cast<float>(_info._viewPortWidth), static_cast<float>(_info._viewPortHeight), 2048.0f, -2048.0f);
@@ -249,8 +254,6 @@ void OpenGLRender::setTransform2d(int pX,
                                   int pWidth,
                                   int pHeight,
                                   IND_Matrix *pMatrix) {
-	// ----- World matrix initialization -----
-	mvTransformPresetState();
 
 	//Temporal holders for all accumulated transforms
 	IND_Matrix totalTrans;
@@ -343,7 +346,12 @@ void OpenGLRender::setTransform2d(int pX,
 	}
 
 	//Apply the changes to the GL matrix stack (model view)
-	glMultMatrixf(reinterpret_cast<GLfloat *>(&totalTrans));
+    float camMatrixArray [16];
+    _cameraMatrix.arrayRepresentation(camMatrixArray);
+    glLoadMatrixf(camMatrixArray);
+    float matrixArray [16];
+    totalTrans.arrayRepresentation(matrixArray);
+	glMultMatrixf(matrixArray);
 
 	// ----- Return World Matrix (in IndieLib format) ----
 	//Transformations have been applied where needed
@@ -354,14 +362,19 @@ void OpenGLRender::setTransform2d(int pX,
 
 void OpenGLRender::setTransform2d(IND_Matrix &pMatrix) {
 	// ----- Applies the transformation -----
-	mvTransformPresetState();
-	glMultMatrixf(reinterpret_cast<GLfloat *>(&pMatrix));
+    float camMatrixArray [16];
+    _cameraMatrix.arrayRepresentation(camMatrixArray);
+    glLoadMatrixf(camMatrixArray);
+    float matrixArray [16];
+    pMatrix.arrayRepresentation(matrixArray);
+	glMultMatrixf(matrixArray);
 }
 
 void OpenGLRender::setIdentityTransform2d ()  {
 	// ----- Applies the transformation -----
-	mvTransformPresetState();
-    glLoadIdentity();	
+	float camMatrixArray [16];
+    _cameraMatrix.arrayRepresentation(camMatrixArray);
+    glLoadMatrixf(camMatrixArray);
 }
 
 /*!

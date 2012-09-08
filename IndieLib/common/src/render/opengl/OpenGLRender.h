@@ -398,8 +398,6 @@ private:
 	void fillPixel(PIXEL *pPixel, float pX, float pY,  float pR, float pG, float pB, float pA);
 	void fillVertex2d(CUSTOMVERTEX2D *pVertex2d, float pX, float pY, float pU, float pV);
 	void setForPrimitive(BYTE pA, bool pResetTransform);
-	void mvTransformPresetState();   //Helper to perform pre-transform settings (pushmatrix)
-	void mvTransformResetState();    //Helper to perform post-transform settings (popmatrix)
 
 	void BlitGridQuad    (int pAx, int pAy,
                           int pBx, int pBy,
@@ -471,6 +469,9 @@ private:
 	};
 	struct infoStruct _info;
 
+    //Current 'camera' matrix
+    IND_Matrix _cameraMatrix;
+    
 	// ----- Primitives vertices -----
 
 	// Temporal buffer of pixels for drawing primitives

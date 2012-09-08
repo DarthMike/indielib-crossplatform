@@ -55,6 +55,8 @@
 #include "collision/CollisionTests.h"
 #include "entities/EntityTests_animateRotations.h"
 #include "entities/EntityTests_animateScale.h"
+#include "entities/EntityTests_interactions.h"
+
 /*
 ==================
 Main
@@ -115,6 +117,8 @@ void initTests() {
 	g_tests.push_back(entity1);
 	EntityTests_animateScale * entity2 = new EntityTests_animateScale();
 	g_tests.push_back(entity2);
+    EntityTests_interactions* entity3 = new EntityTests_interactions();
+    g_tests.push_back(entity3);
 
 }
 

@@ -370,6 +370,14 @@
 				RelativePath="..\tests\manual\entities\EntityTests_animateScale.h"
 				>
 			</File>
+			<File
+				RelativePath="..\tests\manual\entities\EntityTests_interactions.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\tests\manual\entities\EntityTests_interactions.h"
+				>
+			</File>
 		</Filter>
 	</Files>
 	<Globals>

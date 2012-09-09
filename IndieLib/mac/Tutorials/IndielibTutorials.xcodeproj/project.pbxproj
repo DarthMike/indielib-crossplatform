@@ -351,7 +351,6 @@
 		E74485F015E7EB1800DDE3BF /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIndieLib_vc2008.h; sourceTree = "<group>"; };
 		E74485F115E7EB1800DDE3BF /* Tutorial05.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial05.cpp; sourceTree = "<group>"; };
 		E744860515E7EBF900DDE3BF /* Benchmark01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Benchmark01.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E744860715E7EBF900DDE3BF /* TutorialAdvanced05 copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "TutorialAdvanced05 copy-Info.plist"; path = "/Users/mquinones/Desktop/SOFTWARE DEV/PROJECTS/indielib-gitrepo/IndieLib/mac/Tutorials/TutorialAdvanced05 copy-Info.plist"; sourceTree = "<absolute>"; };
 		E744860915E7EC2000DDE3BF /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
 		E744860A15E7EC2000DDE3BF /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIndieLib_vc2008.h; sourceTree = "<group>"; };
 		E744860B15E7EC2000DDE3BF /* CTerrain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CTerrain.cpp; sourceTree = "<group>"; };
@@ -360,7 +359,6 @@
 		E744860E15E7EC2000DDE3BF /* CUfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUfo.h; sourceTree = "<group>"; };
 		E744860F15E7EC2000DDE3BF /* Tutorial01.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial01.cpp; sourceTree = "<group>"; };
 		E744862615E7EC2900DDE3BF /* Benchmark02.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Benchmark02.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E744862815E7EC2900DDE3BF /* Benchmark01 copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Benchmark01 copy-Info.plist"; path = "/Users/mquinones/Desktop/SOFTWARE DEV/PROJECTS/indielib-gitrepo/IndieLib/mac/Tutorials/Benchmark01 copy-Info.plist"; sourceTree = "<absolute>"; };
 		E744862A15E7EC5100DDE3BF /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
 		E744862B15E7EC5100DDE3BF /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIndieLib_vc2008.h; sourceTree = "<group>"; };
 		E744862C15E7EC5100DDE3BF /* CRabbit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CRabbit.cpp; sourceTree = "<group>"; };
@@ -810,8 +808,6 @@
 				E744863215E7EC5900DDE3BF /* Benchmark */,
 				E7DBCB1B159C78F600C8B2D9 /* Frameworks */,
 				E7DBCB19159C78F600C8B2D9 /* Products */,
-				E744860715E7EBF900DDE3BF /* TutorialAdvanced05 copy-Info.plist */,
-				E744862815E7EC2900DDE3BF /* Benchmark01 copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};

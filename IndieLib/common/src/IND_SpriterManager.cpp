@@ -1,5 +1,5 @@
 /*****************************************************************************************
- * File: IND_SpriterAnimationManager.cpp
+ * File: IND_SpriterManager.cpp
  * Desc: This class is used for managing Spriter animations.
  *****************************************************************************************/
 
@@ -12,7 +12,7 @@ Something about license goes here ;)
 #include "Global.h"
 #include "Defines.h"
 #include "dependencies/tinyxml/tinyxml.h"
-#include "IND_AnimationManager.h"
+#include "IND_SpriterManager.h"
 
 
 // ----- Defines -----
@@ -28,15 +28,15 @@ Something about license goes here ;)
  * Init the manager. returns 1 (true) if successfully initialized.
  * Must be called before using any method.
  */
-bool IND_AnimationManager::init() {
+bool IND_SpriterManager::init() {
 	end();
 	initVars();
 
-	g_debug->header("Initializing SpriterAnimationManager", 5);
+	g_debug->header("Initializing SpriterManager", 5);
 
 	_ok = true;
 
-	g_debug->header("SpriterAnimationManager OK", 6);
+	g_debug->header("SpriterManager OK", 6);
 
 	return _ok;
 }
@@ -45,11 +45,11 @@ bool IND_AnimationManager::init() {
 /**
  * Frees the manager and all the objects that it contains.
  */
-void IND_AnimationManager::end() {
+void IND_SpriterManager::end() {
 	if (_ok) {
-		g_debug->header("Finalizing SpriterAnimationManager", 5);
+		g_debug->header("Finalizing SpriterManager", 5);
 		freeVars();
-		g_debug->header("SpriterAnimationManager finalized", 6);
+		g_debug->header("SpriterManager finalized", 6);
 
 		_ok = false;
 	}
@@ -67,12 +67,21 @@ void IND_AnimationManager::end() {
  * exists and it is successfully eliminated.
  * @param pAn				Pointer to a Spriter animation object.
  */
-bool IND_SpriterAnimationManager::remove(IND_SPriterAnimation *pAn) {
-	if (remove(pAn, 0))
-		return 1;
+bool IND_SpriterManager::remove(IND_Animation *pAn) {
+//	if (remove(pAn, 0))
+//		return 1;
 
 	return 0;
 }
+
+bool IND_SpriterManager::addSpriterFile(list<IND_Animation*> *pNewSpriterAnimationList,char *pSCMLFileName){
+	if (parseSpriterData(pNewSpriterAnimationList,pSCMLFileName)){
+		return 1;
+	}
+	
+	return 0;
+}
+
 
 
 // --------------------------------------------------------------------------------
@@ -86,11 +95,15 @@ bool IND_SpriterAnimationManager::remove(IND_SPriterAnimation *pAn) {
  * @param pNewSpriterAnimations		TODO describtion.
  * @param pSCMLFileName				TODO describtion.
  */
-bool IND_AnimationManager::parseSpriterAnimations(list<IND_Animation*> *pNewSpriterAnimationList,char *pSCMLFileName) {
+bool IND_SpriterManager::parseSpriterData(list<IND_Animation*> *pNewSpriterAnimationList,char *pSCMLFileName) {
 	TiXmlDocument *eXmlDoc = new TiXmlDocument(pSCMLFileName);
 
 	// Fatal error, cannot load
-	if (!eXmlDoc->LoadFile()) return 0;
+	if (!eXmlDoc->LoadFile()){
+		g_debug->header("Not able to load the Spriter SGML file", 2);
+		return 0;
+	}
+
 
 	// Document root
 	TiXmlElement *eSpriter_data = 0;
@@ -111,8 +124,8 @@ bool IND_AnimationManager::parseSpriterAnimations(list<IND_Animation*> *pNewSpri
 
 	if (!eFolder) {
 		g_debug->header("There are no folders to parse", 2);
-		mXmlDoc->Clear();
-		delete mXmlDoc;
+		eXmlDoc->Clear();
+		delete eXmlDoc;
 		return 0;
 	}
 
@@ -134,6 +147,7 @@ for (int j = 0; j < 20; j++) {
 	while (eFolder) {
 
 		// TODO loop over files, and parse each
+		printf("Folder: %s\n", eFolder->Attribute("name"));
 
 		eFolder = eFolder->NextSiblingElement("folder");
 	}
@@ -146,24 +160,25 @@ for (int j = 0; j < 20; j++) {
 
 	if (!eEntity) {
 		g_debug->header("There are no entities to parse", 2);
-		mXmlDoc->Clear();
-		delete mXmlDoc;
+		eXmlDoc->Clear();
+		delete eXmlDoc;
 		return 0;
 	}
 
 
 	// Parse all the entities
-	while (eFolder) {
+	while (eEntity) {
 
 		// TODO loop over animation etc. and parse each
+		printf("Entity id: %s\n", eEntity->Attribute("id"));
 
-		eFolder = eFolder->NextSiblingElement("entity");
+		eEntity = eEntity->NextSiblingElement("entity");
 	}
 
 
 	// Delete our allocated document and return success.
-	mXmlDoc->Clear();
-	delete mXmlDoc;
+	eXmlDoc->Clear();
+	delete eXmlDoc;
 
 	return 1;
 }
@@ -173,8 +188,8 @@ for (int j = 0; j < 20; j++) {
  * Inserts an animation into the manager.
  * @param pNewAnimation				The animation that is to be inserted into manager.
  */
-void IND_SpriterAnimationManager::addToList(IND_SpriterAnimation *pNewSpriterAnimation) {
-	_listSpriterAnimations->push_back(pNewSpriterAnimation);
+void IND_SpriterManager::addToList(IND_Animation *pNewAnimation) {
+	_listSpriterAnimations->push_back(pNewAnimation);
 }
 
 
@@ -182,7 +197,7 @@ void IND_SpriterAnimationManager::addToList(IND_SpriterAnimation *pNewSpriterAni
  * Removes a Spriter animation from the manager.
  * @param pAn					The animation that is to be removed from the manager.
  */
-void IND_SpriterAnimationManager::delFromlist(IND_SpriterAnimation *pAn) {
+void IND_SpriterManager::delFromlist(IND_Animation *pAn) {
 	_listSpriterAnimations->remove(pAn);
 	pAn = NULL;
 }
@@ -191,7 +206,7 @@ void IND_SpriterAnimationManager::delFromlist(IND_SpriterAnimation *pAn) {
 /**
  * Initialization error message.
  */
-void IND_SpriterAnimationManager::writeMessage() {
+void IND_SpriterManager::writeMessage() {
 	g_debug->header("This operation can not be done", 3);
 	g_debug->dataChar("", 1);
 	g_debug->header("Invalid Id or not correctly initialized SpriterAnimationManager", 2);
@@ -201,7 +216,7 @@ void IND_SpriterAnimationManager::writeMessage() {
 /**
  * Init manager variables.
  */
-void IND_SpriterAnimationManager::initVars() {
+void IND_SpriterManager::initVars() {
 //	_listAnimations = new list <IND_Animation *>;
 }
 
@@ -209,10 +224,10 @@ void IND_SpriterAnimationManager::initVars() {
 /**
  * Free manager variables.
  */
-/*
-void IND_AnimationManager::freeVars() {
+
+void IND_SpriterManager::freeVars() {
 	// Releases everything in the anim
-	list <IND_Animation *>::iterator mAnimationListIter;
+/*	list <IND_Animation *>::iterator mAnimationListIter;
 	for (mAnimationListIter  = _listAnimations->begin();
 	        mAnimationListIter != _listAnimations->end();
 	        mAnimationListIter++) {
@@ -227,5 +242,6 @@ void IND_AnimationManager::freeVars() {
 
 	// Free list
 	DISPOSE(_listAnimations);
-}
 */
+}
+

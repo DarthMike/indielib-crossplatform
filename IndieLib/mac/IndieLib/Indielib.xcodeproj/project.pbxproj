@@ -660,7 +660,7 @@
 				"OTHER_LDFLAGS[arch=*]" = (
 					"\"$(SRCROOT)/../../common/dependencies/SDL 2.0/lib/OSX_debug/libSDL2.a\"",
 					"\"$(SRCROOT)/../../common/dependencies/FreeImage/Dist/libfreeImage.a\"",
-					"\"$(SRCROOT)/../../common/dependencies/glew-1.7.0/lib/OSX/libGLEW.a\"",
+					"\"$(SRCROOT)/../../common/dependencies/glew-1.9.0/lib/OSX/libGLEW.a\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -686,7 +686,7 @@
 				"OTHER_LDFLAGS[arch=*]" = (
 					"\"$(SRCROOT)/../../common/dependencies/SDL 2.0/lib/OSX_release/libSDL2.a\"",
 					"\"$(SRCROOT)/../../common/dependencies/FreeImage/Dist/libfreeImage.a\"",
-					"\"$(SRCROOT)/../../common/dependencies/glew-1.7.0/lib/OSX/libGLEW.a\"",
+					"\"$(SRCROOT)/../../common/dependencies/glew-1.9.0/lib/OSX/libGLEW.a\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

@@ -78,7 +78,7 @@ bool FunctionalityTests::resetParameters() {
 	static int resind = 0;
 	CIndieLib *mI = CIndieLib::instance();
 	if (mI->_input->onKeyPress(IND_R)) {
-		if (resind >= g_numTestedRes) {
+		if (resind >= (g_numTestedRes - 1)) {
 			resind = 0;
 		} else {
 			resind++;

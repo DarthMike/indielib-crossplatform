@@ -421,7 +421,7 @@ private:
 	int getLongInPixels(IND_Font *pFo, char *pText, int pPos, int pOffset);
 
 	//Setup helper
-	bool resetViewport();
+	bool resetViewport(int pWitdh, int pHeight);
 
 		// ----- Collisions -----
 	void blitCollisionCircle(int pPosX, int pPosY, int pRadius, float pScale, BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pWorldMatrix);
@@ -448,6 +448,7 @@ private:
 			_viewPortY(0),
 			_viewPortWidth(0),
 			_viewPortHeight(0),
+            _viewPortApectRatio(0.0f),
 			_antialiasing(0),
 			_maxTextureSize(0) {
 			strcpy(_version, "NO DATA");
@@ -460,6 +461,7 @@ private:
 		int _viewPortY;
 		int _viewPortWidth;
 		int _viewPortHeight;
+        float _viewPortApectRatio;
 		bool _antialiasing;
 		char _version [1024] ;
 		char _vendor [1024];

@@ -74,7 +74,7 @@ bool OpenGLRender::setViewPort2d(int pX,
 	_info._viewPortY      = pY;
 	_info._viewPortWidth  = pWidth;
 	_info._viewPortHeight = pHeight;
-
+    _info._viewPortApectRatio = pWidth/pHeight;
 
 	//Clear projection matrix
 	glMatrixMode(GL_PROJECTION);

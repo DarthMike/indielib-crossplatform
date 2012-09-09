@@ -95,7 +95,16 @@ is useful when you want to change the application window on runtime, 0 (false) i
 the new window.
 */
 bool IND_Render::reset(IND_WindowProperties& props) {
-	//TODO (DIRECTX AND OPENGL RENDERS): When resetting, window position should be put to middle if windowed
+#ifdef DEBUG
+    std::cout<<"Resetting window parameters"<<std::endl;
+    std::cout<<"Title: "<<props._title<<std::endl;
+    std::cout<<"Width: "<<props._width<<std::endl;
+    std::cout<<"Height: "<<props._height<<std::endl;
+    std::cout<<"Bpp: "<<props._bpp<<std::endl;
+    std::cout<<"Vsync: "<<props._vsync<<std::endl;
+    std::cout<<"Full screen: "<<props._fullscreen<<std::endl;
+#endif
+    
 	return (_wrappedRenderer->reset(props));
 }
 

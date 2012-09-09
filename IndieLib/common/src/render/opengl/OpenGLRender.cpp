@@ -141,12 +141,22 @@ bool OpenGLRender::reset(IND_WindowProperties& props) {
 		return 0;
 	}
 
+    bool viewPortWasFullWindow = (_window->getWidth() == _info._viewPortWidth) && (_window->getHeight() == _info._viewPortHeight);
+    
 	if (!_window->reset(props)) {
 		g_debug->header("Error resetting SDL window", 2);
 		return 0;
 	}
-
-	return resetViewport();
+    
+    _info._fbWidth = _window->getWidth();
+    _info._fbHeight = _window->getHeight();
+    
+    bool ok = 1;
+    if (viewPortWasFullWindow) {
+        ok = resetViewport(_window->getWidth(),_window->getHeight());
+    }
+	
+    return ok;
 }
 
 
@@ -281,9 +291,13 @@ bool OpenGLRender::initializeOpenGLRender() {
 
 	//Get all graphics device information
 	getInfo();
+    
+    //Window params
+    _info._fbWidth = _window->getWidth();
+	_info._fbHeight = _window->getHeight();
 
 	// ViewPort initialization
-	return resetViewport();
+	return resetViewport(_window->getWidth(),_window->getHeight());
 }
 
 /*
@@ -405,17 +419,14 @@ void OpenGLRender::writeInfo() {
 Resets the viewport to all window width/height
 ==================
 */
-bool OpenGLRender::resetViewport() {
-	int defaultwidth(_window->getWidth());
-	int defaultheight(_window->getHeight());
-	_info._fbWidth = defaultwidth;
-	_info._fbHeight = defaultheight;
-
-	if (!setViewPort2d(0, 0, defaultwidth, defaultheight))
+bool OpenGLRender::resetViewport(int pWitdh, int pHeight) {
+    if (pHeight == 0 || pWitdh == 0) return false;
+    
+	if (!setViewPort2d(0, 0, pWitdh, pHeight))
 		return false;
 
-	IND_Camera2d mCamera2d(static_cast<float>(_window->getWidth() / 2), 
-						   static_cast<float>(_window->getHeight() / 2));   //Default 2D camera in center of viewport
+	IND_Camera2d mCamera2d(static_cast<float>(_info._viewPortWidth/2),
+						   static_cast<float>(_info._viewPortHeight/2));   //Default 2D camera in center of viewport
 	setCamera2d(&mCamera2d);
 	clearViewPort(0, 0, 0);
 

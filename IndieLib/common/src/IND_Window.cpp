@@ -183,19 +183,37 @@ bool IND_Window::reset(IND_WindowProperties& props) {
 		return 0;
 	}
 
-	//FIXME: Support other pixel formats
+    //When in fullscreen, window size can't be changed.
+    //Need to switch not to fullscreen, change size and go back to fullscreen
+    bool wasFullScreen (isFullScreen());
+    if (wasFullScreen) {
+        toggleFullScreen();
+    }
+    
+    //The actual size change
+    SDL_SetWindowSize(getSDLWindow(),props._width,props._height);
+    
+	//TODO: Support other pixel formats
 	//SDL_DisplayMode closestMode;
 	//SDL_GetClosestDisplayMode(0,&dMode,&closestMode);
 	dMode.format = static_cast<Uint32>(SDL_PIXELFORMAT_RGBA4444);
 
+    //Set window display mode as requested... don't know what's the exact use of this
 	if (SDL_SetWindowDisplayMode(getSDLWindow(),&dMode)) {
 		return false;
 	}
-
+    
 	_attributes._width = props._width;
 	_attributes._height = props._height;
-
-
+    
+    //When in fullscreen, window size can't be changed.
+    //Need to switch not to fullscreen, change size and go back to fullscreen
+    if (wasFullScreen) {
+        toggleFullScreen();
+    }
+    
+    //Change title and leave window in correct position
+    SDL_SetWindowTitle(getSDLWindow(),props._title);
 	SDL_RaiseWindow(getSDLWindow());
 	SDL_SetWindowPosition(getSDLWindow(),SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED);
 

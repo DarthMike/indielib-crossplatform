@@ -213,12 +213,6 @@ void DirectXRender::beginScene() {
 	_info.mDevice->BeginScene();
 }
 
-
-/*!
-\b Operation:
-
-Finish the scene. This function must be called after drawing all the graphical objects.
-*/
 void DirectXRender::endScene() {
 	if (!_ok)
 		return;
@@ -227,20 +221,14 @@ void DirectXRender::endScene() {
 	_info.mDevice->Present(NULL, NULL, NULL, NULL);
 }
 
-
-/*!
-\b Operation:
-
-This function shows the fps (frames per second) as the title of the window.
-
-NOTE: The updating of the window title is quite time-consuming, so this is not the correct method for
-checking the FPS. It's better to use the methods IND_Render::getFpsInt() or IND_Render::getFpsString() and drawing
-the result using an ::IND_Font object.
-*/
 void DirectXRender::showFpsInWindowTitle(char *pFPSString) {
 	if (!_ok)   return;
 
 	_window->setTitle(pFPSString);
+}
+
+void DirectXRender::setPointPixelScale (float pNewScale) {
+    //TODO
 }
 
 void DirectXRender::getNumrenderedObjectsString(char* pBuffer)      {

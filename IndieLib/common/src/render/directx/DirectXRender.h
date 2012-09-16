@@ -98,7 +98,7 @@ public:
 	void beginScene();
 	void endScene();
 	void showFpsInWindowTitle(char *pFPSString);
-
+    void setPointPixelScale (float pNewScale);
 	// ----- Viewports and cameras -----
 
 
@@ -451,12 +451,13 @@ private:
 		char _renderer [1024];
 		int _maxTextureSize;
 		int _textureUnits;
+        float _pointPixelScale;
 		DWORD mVertexShaderVersion;
 		DWORD mPixelShaderVersion;
 		bool mSoftwareVertexProcessing;
 		LPDIRECT3D9 mDirect3d;
 		IDirect3DDevice9 *mDevice;
-
+        
 		infoStruct() : mDevice(NULL) {
 		}
 	};

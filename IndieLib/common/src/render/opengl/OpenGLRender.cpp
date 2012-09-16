@@ -209,20 +209,14 @@ void OpenGLRender::endScene() {
 #endif	
 }
 
-
-/*!
-\b Operation:
-
-This function shows the fps (frames per second) as the title of the window.
-
-NOTE: The updating of the window title is quite time-consuming, so this is not the correct method for
-checking the FPS. It's better to use the methods IND_Render::getFpsInt() or IND_Render::getFpsString() and drawing
-the result using an ::IND_Font object.
-*/
 void OpenGLRender::showFpsInWindowTitle(char *pFPSString) {
 	if (!_ok)   return;
 
 	_window->setTitle(pFPSString);
+}
+
+void OpenGLRender::setPointPixelScale (float pNewScale) {
+    _info._pointPixelScale = pNewScale;
 }
 
 void OpenGLRender::getNumrenderedObjectsString(char *pBuffer)      {

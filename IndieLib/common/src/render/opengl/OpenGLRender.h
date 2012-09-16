@@ -104,7 +104,7 @@ public:
 	void beginScene();
 	void endScene();
 	void showFpsInWindowTitle(char *pFPSString);
-
+    void setPointPixelScale (float pNewScale);
 	// ----- Viewports and cameras -----
 
 
@@ -450,7 +450,9 @@ private:
 			_viewPortHeight(0),
             _viewPortApectRatio(0.0f),
 			_antialiasing(0),
-			_maxTextureSize(0) {
+			_maxTextureSize(0),
+            _textureUnits(0),
+            _pointPixelScale(1.0f){
 			strcpy(_version, "NO DATA");
 			strcpy(_vendor, "NO DATA");
 			strcpy(_renderer, "NO DATA");
@@ -468,6 +470,7 @@ private:
 		char _renderer [1024];
 		int _maxTextureSize;
 		int _textureUnits;
+        float _pointPixelScale;
 	};
 	struct infoStruct _info;
 

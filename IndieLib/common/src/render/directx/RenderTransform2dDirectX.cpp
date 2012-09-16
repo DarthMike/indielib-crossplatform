@@ -76,24 +76,24 @@ bool DirectXRender::setViewPort2d(int pX,
 	// ----- World matrix -----
 
 	D3DXMATRIX mMatWorld;
-	_info.mDevice->SetTransform(D3DTS_WORLD, D3DXMatrixIdentity(&mMatWorld));
+	_info._device->SetTransform(D3DTS_WORLD, D3DXMatrixIdentity(&mMatWorld));
 
 	// ----- View region  -----
 
 	D3DVIEWPORT9 mViewData = { pX, pY, pWidth, pHeight, -2048.0f, 2048.0f };
-	_info.mDevice->SetViewport(&mViewData);
+	_info._device->SetViewport(&mViewData);
 
 	// ----- 2d Sets -----
 
-	_info.mDevice->SetRenderState(D3DRS_NORMALIZENORMALS, false);
-	_info.mDevice->SetRenderState(D3DRS_ZENABLE, D3DZB_FALSE);
-	_info.mDevice->SetRenderState(D3DRS_ZWRITEENABLE, false);
-	_info.mDevice->SetRenderState(D3DRS_LIGHTING, false);
+	_info._device->SetRenderState(D3DRS_NORMALIZENORMALS, false);
+	_info._device->SetRenderState(D3DRS_ZENABLE, D3DZB_FALSE);
+	_info._device->SetRenderState(D3DRS_ZWRITEENABLE, false);
+	_info._device->SetRenderState(D3DRS_LIGHTING, false);
 
 	// ----- Texture clamp on -----
 
-	_info.mDevice->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_CLAMP);
-	_info.mDevice->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_CLAMP);
+	_info._device->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_CLAMP);
+	_info._device->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_CLAMP);
 
 	return 1;
 }
@@ -154,13 +154,13 @@ void DirectXRender::setCamera2d(IND_Camera2d *pCamera2d) {
 	}
 
 	// ----- Set transformation -----
-	_info.mDevice->SetTransform(D3DTS_VIEW, &mMatView);
+	_info._device->SetTransform(D3DTS_VIEW, &mMatView);
 
 	// ----- Projection matrix -----
 
 	D3DXMatrixOrthoLH(&mMatProjection, static_cast<float>( _info._viewPortWidth), static_cast<float>( _info._viewPortHeight), -2048.0f, 2048.0f);
 
-	_info.mDevice->SetTransform(D3DTS_PROJECTION, &mMatProjection);
+	_info._device->SetTransform(D3DTS_PROJECTION, &mMatProjection);
 }
 
 
@@ -243,8 +243,8 @@ void DirectXRender::setTransform2d(int pX,
 	// ----- World matrix initialization -----
 
 	D3DXMATRIX mMatWorld, mMatZ, mMatX, mMatY, mMatTraslation, mMatScale;
-
-	_info.mDevice->SetTransform(D3DTS_WORLD, D3DXMatrixIdentity(&mMatWorld));
+	//Initializes every object transform with pixel to point scale transform
+	_info._device->SetTransform(D3DTS_WORLD, D3DXMatrixScaling(&mMatWorld,_info._pointPixelScale,_info._pointPixelScale,1.0f));
 
 	// ----- Transformation matrix creation -----
 
@@ -313,7 +313,7 @@ void DirectXRender::setTransform2d(int pX,
 	}
 
 	// ----- Applies the transformation -----
-	_info.mDevice->SetTransform(D3DTS_WORLD, &mMatWorld);
+	_info._device->SetTransform(D3DTS_WORLD, &mMatWorld);
 }
 
 void DirectXRender::setTransform2d(IND_Matrix &pMatrix) {
@@ -322,14 +322,20 @@ void DirectXRender::setTransform2d(IND_Matrix &pMatrix) {
 	pMatrix.arrayRepresentation(matArray);
 	D3DXMATRIX mMatWorld (matArray);
 
+	//Apply pixel to point scale to each object transform
+	D3DXMATRIX mMatScale;
+	D3DXMatrixScaling(&mMatScale,_info._pointPixelScale,_info._pointPixelScale,1.0f);
+	D3DXMatrixMultiply(&mMatWorld,&mMatWorld,&mMatScale);
+
 	// ----- Applies the transformation -----
-	_info.mDevice->SetTransform(D3DTS_WORLD, &mMatWorld);
+	_info._device->SetTransform(D3DTS_WORLD, &mMatWorld);
 }
 
 void DirectXRender::setIdentityTransform2d ()  {
 	// ----- Applies the transformation -----
 	D3DXMATRIX mMatWorld;
-	_info.mDevice->SetTransform(D3DTS_WORLD, D3DXMatrixIdentity(&mMatWorld));
+	//Initializes every object transform with pixel to point scale transform
+	_info._device->SetTransform(D3DTS_WORLD, D3DXMatrixScaling(&mMatWorld,_info._pointPixelScale,_info._pointPixelScale,1.0f));
 }
 
 
@@ -410,16 +416,16 @@ void DirectXRender::setRainbow2d(IND_Type pType,
                                  IND_BlendingType pDs) {
 	// ----- Filters -----
 
-	_info.mDevice->SetSamplerState(0, D3DSAMP_MIPFILTER, GetD3DFilter(pFilter));
-	_info.mDevice->SetSamplerState(0, D3DSAMP_MINFILTER, GetD3DFilter(pFilter));
-	_info.mDevice->SetSamplerState(0, D3DSAMP_MAGFILTER, GetD3DFilter(pFilter));
+	_info._device->SetSamplerState(0, D3DSAMP_MIPFILTER, GetD3DFilter(pFilter));
+	_info._device->SetSamplerState(0, D3DSAMP_MINFILTER, GetD3DFilter(pFilter));
+	_info._device->SetSamplerState(0, D3DSAMP_MAGFILTER, GetD3DFilter(pFilter));
 
 	// ----- Back face culling -----
 
 	if (pCull)
-		_info.mDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
+		_info._device->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
 	else
-		_info.mDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
+		_info._device->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
 
 	// Mirroring (180º rotations)
 	//Only when rotated in one axis, x or y
@@ -429,9 +435,9 @@ void DirectXRender::setRainbow2d(IND_Type pType,
 	
 			// Back face culling
 			if (pCull)
-				_info.mDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_CW);
+				_info._device->SetRenderState(D3DRS_CULLMODE, D3DCULL_CW);
 			else
-				_info.mDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
+				_info._device->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
 	
 		}
 
@@ -440,62 +446,62 @@ void DirectXRender::setRainbow2d(IND_Type pType,
 	switch (pType) {
 	case IND_OPAQUE: {
 		// Alphablending and alpha test = OFF
-		_info.mDevice->SetRenderState(D3DRS_ALPHABLENDENABLE,  FALSE);
-		_info.mDevice->SetRenderState(D3DRS_ALPHATESTENABLE,   FALSE);
+		_info._device->SetRenderState(D3DRS_ALPHABLENDENABLE,  FALSE);
+		_info._device->SetRenderState(D3DRS_ALPHATESTENABLE,   FALSE);
 
 		// Initializes the tinting and alpha values of previous iterations
-		_info.mDevice->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_MODULATE);
-		_info.mDevice->SetTextureStageState(0, D3DTSS_COLORARG1,  D3DTA_TEXTURE);
-		_info.mDevice->SetTextureStageState(0, D3DTSS_COLORARG2,  D3DTA_CURRENT);
-		_info.mDevice->SetTextureStageState(0, D3DTSS_ALPHAOP, D3DTOP_SELECTARG1);
-		_info.mDevice->SetTextureStageState(0, D3DTSS_ALPHAARG1, D3DTA_TEXTURE);
-		_info.mDevice->SetTextureStageState(0, D3DTSS_ALPHAARG2, D3DTA_CURRENT);
+		_info._device->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_MODULATE);
+		_info._device->SetTextureStageState(0, D3DTSS_COLORARG1,  D3DTA_TEXTURE);
+		_info._device->SetTextureStageState(0, D3DTSS_COLORARG2,  D3DTA_CURRENT);
+		_info._device->SetTextureStageState(0, D3DTSS_ALPHAOP, D3DTOP_SELECTARG1);
+		_info._device->SetTextureStageState(0, D3DTSS_ALPHAARG1, D3DTA_TEXTURE);
+		_info._device->SetTextureStageState(0, D3DTSS_ALPHAARG2, D3DTA_CURRENT);
 
 		// Tinting
 		if (pR != 255 || pG != 255 || pB != 255) {
 			// Tinting color
-			_info.mDevice->SetRenderState(D3DRS_TEXTUREFACTOR, D3DCOLOR_RGBA(pR, pG, pB, pA));
+			_info._device->SetRenderState(D3DRS_TEXTUREFACTOR, D3DCOLOR_RGBA(pR, pG, pB, pA));
 
 			// Tinting
-			_info.mDevice->SetTextureStageState(0, D3DTSS_COLOROP,   D3DTOP_MODULATE);
-			_info.mDevice->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
-			_info.mDevice->SetTextureStageState(0, D3DTSS_COLORARG2, D3DTA_TFACTOR);
+			_info._device->SetTextureStageState(0, D3DTSS_COLOROP,   D3DTOP_MODULATE);
+			_info._device->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
+			_info._device->SetTextureStageState(0, D3DTSS_COLORARG2, D3DTA_TFACTOR);
 		}
 
 		// Alpha
 		if (pA != 255) {
 			// Alpha color
-			_info.mDevice->SetRenderState(D3DRS_TEXTUREFACTOR, D3DCOLOR_RGBA(pR, pG, pB, pA));
+			_info._device->SetRenderState(D3DRS_TEXTUREFACTOR, D3DCOLOR_RGBA(pR, pG, pB, pA));
 
 			// Alpha-blending = ON
-			_info.mDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
+			_info._device->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
 
 			// Set source alpha and destination alpha
-			_info.mDevice->SetRenderState(D3DRS_SRCBLEND,  D3DBLEND_SRCALPHA);
-			_info.mDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
+			_info._device->SetRenderState(D3DRS_SRCBLEND,  D3DBLEND_SRCALPHA);
+			_info._device->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 
 			// Alpha
-			_info.mDevice->SetTextureStageState(0, D3DTSS_ALPHAOP, D3DTOP_SELECTARG1);
-			_info.mDevice->SetTextureStageState(0, D3DTSS_ALPHAARG1,  D3DTA_TFACTOR);
+			_info._device->SetTextureStageState(0, D3DTSS_ALPHAOP, D3DTOP_SELECTARG1);
+			_info._device->SetTextureStageState(0, D3DTSS_ALPHAARG1,  D3DTA_TFACTOR);
 		}
 
 		// Fade to color
 		if (pFadeA != 255) {
 			// Color fade
-			_info.mDevice->SetRenderState(D3DRS_TEXTUREFACTOR, D3DCOLOR_RGBA(pFadeR, pFadeG, pFadeB, pFadeA));
+			_info._device->SetRenderState(D3DRS_TEXTUREFACTOR, D3DCOLOR_RGBA(pFadeR, pFadeG, pFadeB, pFadeA));
 
 			// Fade
-			_info.mDevice->SetTextureStageState(0, D3DTSS_COLOROP,   D3DTOP_BLENDFACTORALPHA);
-			_info.mDevice->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
-			_info.mDevice->SetTextureStageState(0, D3DTSS_COLORARG2, D3DTA_TFACTOR);
+			_info._device->SetTextureStageState(0, D3DTSS_COLOROP,   D3DTOP_BLENDFACTORALPHA);
+			_info._device->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
+			_info._device->SetTextureStageState(0, D3DTSS_COLORARG2, D3DTA_TFACTOR);
 		}
 
 		if (pSo && pDs) {
 			// Alpha-blending = ON
-			_info.mDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
+			_info._device->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
 
-			_info.mDevice->SetRenderState(D3DRS_SRCBLEND,  GetD3DBlendingType(pSo));
-			_info.mDevice->SetRenderState(D3DRS_DESTBLEND, GetD3DBlendingType(pDs));
+			_info._device->SetRenderState(D3DRS_SRCBLEND,  GetD3DBlendingType(pSo));
+			_info._device->SetRenderState(D3DRS_DESTBLEND, GetD3DBlendingType(pDs));
 		}
 
 		break;
@@ -503,58 +509,58 @@ void DirectXRender::setRainbow2d(IND_Type pType,
 
 	case IND_ALPHA: {
 		// Alpha-testing = OFF
-		_info.mDevice->SetRenderState(D3DRS_ALPHATESTENABLE, FALSE);
+		_info._device->SetRenderState(D3DRS_ALPHATESTENABLE, FALSE);
 
 		// Initializes the tinting and alpha values of previous iterations
-		_info.mDevice->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_MODULATE);
-		_info.mDevice->SetTextureStageState(0, D3DTSS_COLORARG1,  D3DTA_TEXTURE);
-		_info.mDevice->SetTextureStageState(0, D3DTSS_COLORARG2,  D3DTA_CURRENT);
-		_info.mDevice->SetTextureStageState(0, D3DTSS_ALPHAOP, D3DTOP_SELECTARG1);
-		_info.mDevice->SetTextureStageState(0, D3DTSS_ALPHAARG1, D3DTA_TEXTURE);
-		_info.mDevice->SetTextureStageState(0, D3DTSS_ALPHAARG2, D3DTA_CURRENT);
+		_info._device->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_MODULATE);
+		_info._device->SetTextureStageState(0, D3DTSS_COLORARG1,  D3DTA_TEXTURE);
+		_info._device->SetTextureStageState(0, D3DTSS_COLORARG2,  D3DTA_CURRENT);
+		_info._device->SetTextureStageState(0, D3DTSS_ALPHAOP, D3DTOP_SELECTARG1);
+		_info._device->SetTextureStageState(0, D3DTSS_ALPHAARG1, D3DTA_TEXTURE);
+		_info._device->SetTextureStageState(0, D3DTSS_ALPHAARG2, D3DTA_CURRENT);
 
 		// Tinting
 		if (pR != 255 || pG != 255 || pB != 255) {
 			// Tinting color
-			_info.mDevice->SetRenderState(D3DRS_TEXTUREFACTOR, D3DCOLOR_RGBA(pR, pG, pB, pA));
+			_info._device->SetRenderState(D3DRS_TEXTUREFACTOR, D3DCOLOR_RGBA(pR, pG, pB, pA));
 
 			// Tinting
-			_info.mDevice->SetTextureStageState(0, D3DTSS_COLOROP,   D3DTOP_MODULATE);
-			_info.mDevice->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
-			_info.mDevice->SetTextureStageState(0, D3DTSS_COLORARG2, D3DTA_TFACTOR);
+			_info._device->SetTextureStageState(0, D3DTSS_COLOROP,   D3DTOP_MODULATE);
+			_info._device->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
+			_info._device->SetTextureStageState(0, D3DTSS_COLORARG2, D3DTA_TFACTOR);
 		}
 
 		// Alpha
 		if (pA != 255) {
 			// Color alpha
-			_info.mDevice->SetRenderState(D3DRS_TEXTUREFACTOR, D3DCOLOR_RGBA(pR, pG, pB, pA));
+			_info._device->SetRenderState(D3DRS_TEXTUREFACTOR, D3DCOLOR_RGBA(pR, pG, pB, pA));
 
-			_info.mDevice->SetTextureStageState(0, D3DTSS_ALPHAOP, D3DTOP_MODULATE);
-			_info.mDevice->SetTextureStageState(0, D3DTSS_ALPHAARG1, D3DTA_TEXTURE);
-			_info.mDevice->SetTextureStageState(0, D3DTSS_ALPHAARG2, D3DTA_TFACTOR);
+			_info._device->SetTextureStageState(0, D3DTSS_ALPHAOP, D3DTOP_MODULATE);
+			_info._device->SetTextureStageState(0, D3DTSS_ALPHAARG1, D3DTA_TEXTURE);
+			_info._device->SetTextureStageState(0, D3DTSS_ALPHAARG2, D3DTA_TFACTOR);
 		}
 
 		// Fade to color
 		if (pFadeA != 255) {
 			// Color fade
-			_info.mDevice->SetRenderState(D3DRS_TEXTUREFACTOR, D3DCOLOR_RGBA(pFadeR, pFadeG, pFadeB, pFadeA));
+			_info._device->SetRenderState(D3DRS_TEXTUREFACTOR, D3DCOLOR_RGBA(pFadeR, pFadeG, pFadeB, pFadeA));
 
 			// Fade
-			_info.mDevice->SetTextureStageState(0, D3DTSS_COLOROP,   D3DTOP_BLENDFACTORALPHA);
-			_info.mDevice->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
-			_info.mDevice->SetTextureStageState(0, D3DTSS_COLORARG2, D3DTA_TFACTOR);
+			_info._device->SetTextureStageState(0, D3DTSS_COLOROP,   D3DTOP_BLENDFACTORALPHA);
+			_info._device->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
+			_info._device->SetTextureStageState(0, D3DTSS_COLORARG2, D3DTA_TFACTOR);
 		}
 
 		// Alpha-blending = ON
-		_info.mDevice->SetRenderState(D3DRS_ALPHABLENDENABLE,  TRUE);
+		_info._device->SetRenderState(D3DRS_ALPHABLENDENABLE,  TRUE);
 
 		// Set source alpha and destination alpha
 		if (!pSo || !pDs) {
-			_info.mDevice->SetRenderState(D3DRS_SRCBLEND,  D3DBLEND_SRCALPHA);
-			_info.mDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
+			_info._device->SetRenderState(D3DRS_SRCBLEND,  D3DBLEND_SRCALPHA);
+			_info._device->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 		} else {
-			_info.mDevice->SetRenderState(D3DRS_SRCBLEND,  GetD3DBlendingType(pSo));
-			_info.mDevice->SetRenderState(D3DRS_DESTBLEND, GetD3DBlendingType(pDs));
+			_info._device->SetRenderState(D3DRS_SRCBLEND,  GetD3DBlendingType(pSo));
+			_info._device->SetRenderState(D3DRS_DESTBLEND, GetD3DBlendingType(pDs));
 		}
 	}
 

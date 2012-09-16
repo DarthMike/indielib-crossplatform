@@ -61,7 +61,7 @@ Using this method is equivalent to using:
 */
 void DirectXRender::blit3dMesh(IND_3dMesh *p3dMesh) {
 	D3DXMATRIX mMatrix;
-	_info.mDevice->GetTransform(D3DTS_WORLD, &mMatrix);
+	_info._device->GetTransform(D3DTS_WORLD, &mMatrix);
 
 	//FrameMove (p3dMesh, getFrameTime() * 0.001f , &mMatrix);
 

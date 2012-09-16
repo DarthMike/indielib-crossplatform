@@ -45,7 +45,7 @@ Clean the viewport with a color expressed in RGB
 void   DirectXRender::clearViewPort(BYTE pR,
                                     BYTE pG,
                                     BYTE pB) {
-	_info.mDevice->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(pR, pG, pB), 1.0f, 0);
+	_info._device->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(pR, pG, pB), 1.0f, 0);
 }
 
 
@@ -73,7 +73,7 @@ void DirectXRender::lookAt(float pEyeX, float pEyeY, float pEyeZ,
 	D3DXVECTOR3 mUpVec(pUpX, pUpY, pUpZ);
 	D3DXMatrixLookAtLH(&mMatView, &mEyePt, &mLookatPt, &mUpVec);
 
-	_info.mDevice->SetTransform(D3DTS_VIEW, &mMatView);
+	_info._device->SetTransform(D3DTS_VIEW, &mMatView);
 }
 
 
@@ -103,7 +103,7 @@ void DirectXRender::perspectiveFov(float pFov, float pAspect, float pNearClippin
 	                           pFarClippingPlane);      // Far clipping  plane z
 
 
-	_info.mDevice->SetTransform(D3DTS_PROJECTION, &mMatProj);
+	_info._device->SetTransform(D3DTS_PROJECTION, &mMatProj);
 }
 
 
@@ -124,7 +124,7 @@ Using this method is equivalent to using a combination of the methods of the cla
 void DirectXRender::perspectiveOrtho(float pWidth, float pHeight, float pNearClippingPlane, float pFarClippingPlane) {
 	D3DXMATRIX mMatProj;
 	D3DXMatrixOrthoLH(&mMatProj, pWidth, pHeight, pNearClippingPlane, pFarClippingPlane);
-	_info.mDevice->SetTransform(D3DTS_PROJECTION, &mMatProj);
+	_info._device->SetTransform(D3DTS_PROJECTION, &mMatProj);
 }
 
 

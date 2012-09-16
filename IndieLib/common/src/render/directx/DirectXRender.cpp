@@ -110,13 +110,13 @@ bool DirectXRender::init(LPDIRECT3D9 pDirect3d, IDirect3DDevice9 *pD3dDevice) {
 	g_debug->header("Initializing Direct3D", 5);
 
 	// Fill Info
-	_info.mDirect3d = pDirect3d;
-	_info.mDevice   = pD3dDevice;
+	_info._direct3d = pDirect3d;
+	_info._device   = pD3dDevice;
 
 	// Witdh and Height of the backbuffer
 	D3DSURFACE_DESC mSurfaceBackBuffer;
 	LPDIRECT3DSURFACE9 mBackBuffer;
-	_info.mDevice->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &mBackBuffer);
+	_info._device->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &mBackBuffer);
 	mBackBuffer->GetDesc(&mSurfaceBackBuffer);
 	mBackBuffer->Release();
 	_info._fbWidth  = mSurfaceBackBuffer.Width;
@@ -210,15 +210,15 @@ void DirectXRender::beginScene() {
 		//ResetTimer    ();
 	}
 
-	_info.mDevice->BeginScene();
+	_info._device->BeginScene();
 }
 
 void DirectXRender::endScene() {
 	if (!_ok)
 		return;
 
-	_info.mDevice->EndScene();
-	_info.mDevice->Present(NULL, NULL, NULL, NULL);
+	_info._device->EndScene();
+	_info._device->Present(NULL, NULL, NULL, NULL);
 }
 
 void DirectXRender::showFpsInWindowTitle(char *pFPSString) {
@@ -228,7 +228,7 @@ void DirectXRender::showFpsInWindowTitle(char *pFPSString) {
 }
 
 void DirectXRender::setPointPixelScale (float pNewScale) {
-    //TODO
+	_info._pointPixelScale = pNewScale;
 }
 
 void DirectXRender::getNumrenderedObjectsString(char* pBuffer)      {
@@ -274,7 +274,7 @@ bool DirectXRender::Direct3Dinit(int pWidth,
 		return 0;
 	} else {
 		g_debug->header("Creating D3D object", 1);
-		_info.mDirect3d = direct3d;
+		_info._direct3d = direct3d;
 	}
 
 	if (!fillPresentParameters(pWidth,pHeight,pBpp,pVsync,pFullscreen)) return 0;
@@ -283,28 +283,28 @@ bool DirectXRender::Direct3Dinit(int pWidth,
 	// we use software vertex processing
 	g_debug->header("Creating the device (D3DCREATE_HARDWARE_VERTEXPROCESSING)", 1);
 
-	if ((_info.mDirect3d->CreateDevice(D3DADAPTER_DEFAULT,
+	if ((_info._direct3d->CreateDevice(D3DADAPTER_DEFAULT,
 	                                   D3DDEVTYPE_HAL,
 	                                   _wnd,
 	                                   D3DCREATE_HARDWARE_VERTEXPROCESSING,
 	                                   &mPresentParameters,
-	                                   &_info.mDevice)) != D3D_OK) {
+	                                   &_info._device)) != D3D_OK) {
 		g_debug->header("Not possible to create the device (D3DCREATE_HARDWARE_VERTEXPROCESSING)", 1);
 		g_debug->header("Creating the device (D3DCREATE_SOFTWARE_VERTEXPROCESSING) instead", 1);
 
-		if ((_info.mDirect3d->CreateDevice(D3DADAPTER_DEFAULT,
+		if ((_info._direct3d->CreateDevice(D3DADAPTER_DEFAULT,
 		                                   D3DDEVTYPE_HAL,
 		                                   _wnd,
 		                                   D3DCREATE_SOFTWARE_VERTEXPROCESSING,
 		                                   &mPresentParameters,
-		                                   &_info.mDevice)) != D3D_OK) {
+		                                   &_info._device)) != D3D_OK) {
 			g_debug->header("Error creating the Device (D3DCREATE_SOFTWARE_VERTEXPROCESSING)", 2);
 			return 0;
 		} else {
-			_info.mSoftwareVertexProcessing = 1;
+			_info._softwareVertexProcessing = 1;
 		}
 	} else {
-		_info.mSoftwareVertexProcessing = 0;
+		_info._softwareVertexProcessing = 0;
 	}
 
 	// System info
@@ -446,7 +446,7 @@ Graphics card information
 void DirectXRender::getInfo() {
 	// Adapter
 	D3DADAPTER_IDENTIFIER9 *mAdapter = new D3DADAPTER_IDENTIFIER9;
-	_info.mDirect3d->GetAdapterIdentifier(0, 0, mAdapter);
+	_info._direct3d->GetAdapterIdentifier(0, 0, mAdapter);
 
 	// ----- d3d Version -----
 
@@ -481,7 +481,7 @@ void DirectXRender::getInfo() {
 
 	// Caps
 	D3DCAPS9 mD3dcap;
-	_info.mDevice->GetDeviceCaps(&mD3dcap);
+	_info._device->GetDeviceCaps(&mD3dcap);
 
 	// Antialiasing D3DRS_ANTIALIASEDLINEENABLE
 	if (mD3dcap.LineCaps & D3DLINECAPS_ANTIALIAS) _info._antialiasing = 1;
@@ -493,10 +493,10 @@ void DirectXRender::getInfo() {
 	_info._textureUnits = mD3dcap.MaxTextureBlendStages;
 
 	// Vertex Shader version
-	_info.mVertexShaderVersion = mD3dcap.VertexShaderVersion;
+	_info._vertexShaderVersion = mD3dcap.VertexShaderVersion;
 
 	// Pixel Shader version
-	_info.mPixelShaderVersion = mD3dcap.PixelShaderVersion;
+	_info._pixelShaderVersion = mD3dcap.PixelShaderVersion;
 }
 
 
@@ -541,11 +541,11 @@ void DirectXRender::writeInfo() {
 	// ----- Vertex Shader version  -----
 
 	g_debug->header("Vertex Shader:" , 3);
-	g_debug->dataInt(D3DSHADER_VERSION_MAJOR(_info.mVertexShaderVersion), 0);
+	g_debug->dataInt(D3DSHADER_VERSION_MAJOR(_info._vertexShaderVersion), 0);
 	g_debug->dataChar(".", 0);
-	g_debug->dataInt(D3DSHADER_VERSION_MINOR(_info.mVertexShaderVersion), 0);
+	g_debug->dataInt(D3DSHADER_VERSION_MINOR(_info._vertexShaderVersion), 0);
 
-	if (_info.mSoftwareVertexProcessing)
+	if (_info._softwareVertexProcessing)
 		g_debug->dataChar("(Software)", 1);
 	else
 		g_debug->dataChar("", 1);
@@ -553,9 +553,9 @@ void DirectXRender::writeInfo() {
 	// ----- Pixel Shader version -----
 
 	g_debug->header("Pixel Shader:" , 3);
-	g_debug->dataInt(D3DSHADER_VERSION_MAJOR(_info.mPixelShaderVersion), 0);
+	g_debug->dataInt(D3DSHADER_VERSION_MAJOR(_info._pixelShaderVersion), 0);
 	g_debug->dataChar(".", 0);
-	g_debug->dataInt(D3DSHADER_VERSION_MINOR(_info.mPixelShaderVersion), 1);
+	g_debug->dataInt(D3DSHADER_VERSION_MINOR(_info._pixelShaderVersion), 1);
 
 	g_debug->header("Hardware Ok" , 6);
 }
@@ -573,7 +573,7 @@ int DirectXRender::fillPresentParameters(int pWidth,
                                   bool pFullscreen) {
 	// Windowed
 	if (!pFullscreen) {
-		if ((_info.mDirect3d->GetAdapterDisplayMode(D3DADAPTER_DEFAULT, &mDisplayMode)) != D3D_OK) {
+		if ((_info._direct3d->GetAdapterDisplayMode(D3DADAPTER_DEFAULT, &mDisplayMode)) != D3D_OK) {
 			g_debug->header("Error obtaining the adapter", 2);
 			return 0;
 		} else
@@ -620,9 +620,9 @@ int DirectXRender::fillPresentParameters(int pWidth,
 	DWORD mQualityLevels;
 
 	D3DCAPS9 pCaps;
-	_info.mDirect3d->GetDeviceCaps (D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, &pCaps);
+	_info._direct3d->GetDeviceCaps (D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, &pCaps);
 
-	if  (SUCCEEDED (_info.mDirect3d->CheckDeviceMultiSampleType (pCaps.AdapterOrdinal,
+	if  (SUCCEEDED (_info._direct3d->CheckDeviceMultiSampleType (pCaps.AdapterOrdinal,
 	                                                            pCaps.DeviceType,
 	                                                            mDisplayMode.Format,
 	                                                            mPresentParameters.Windowed,
@@ -648,15 +648,15 @@ Destroys the renderer
 */
 void DirectXRender::DestroyD3DWindow() {
 	// Free device
-	if (_info.mDevice)
-		_info.mDevice->Release();
-	_info.mDevice = NULL;
+	if (_info._device)
+		_info._device->Release();
+	_info._device = NULL;
 	g_debug ->header("Finalizing the Device", 1);
 
 	// Free D3D object
-	if (_info.mDirect3d)
-		_info.mDirect3d->Release();
-	_info.mDirect3d = NULL;
+	if (_info._direct3d)
+		_info._direct3d->Release();
+	_info._direct3d = NULL;
 	g_debug ->header("Finalizing D3D object", 1);
 }
 

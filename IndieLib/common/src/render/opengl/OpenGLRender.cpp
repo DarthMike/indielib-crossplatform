@@ -389,11 +389,11 @@ void OpenGLRender::writeInfo() {
 	// ----- Vertex Shader version  -----
 
 	/*g_debug->Header ("Vertex Shader:" , 3);
-	g_debug->DataInt (D3DSHADER_VERSION_MAJOR (_info.mVertexShaderVersion), 0);
+	g_debug->DataInt (D3DSHADER_VERSION_MAJOR (_info._vertexShaderVersion), 0);
 	g_debug->DataChar (".", 0);
-	g_debug->DataInt (D3DSHADER_VERSION_MINOR (_info.mVertexShaderVersion), 0);
+	g_debug->DataInt (D3DSHADER_VERSION_MINOR (_info._vertexShaderVersion), 0);
 
-	if (_info.mSoftwareVertexProcessing)
+	if (_info._softwareVertexProcessing)
 	    g_debug->DataChar ("(Software)", 1);
 	else
 	    g_debug->DataChar ("", 1);*/
@@ -401,9 +401,9 @@ void OpenGLRender::writeInfo() {
 	// ----- Pixel Shader version -----
 
 	/*g_debug->Header ("Pixel Shader:" , 3);
-	g_debug->DataInt (D3DSHADER_VERSION_MAJOR (_info.mPixelShaderVersion), 0);
+	g_debug->DataInt (D3DSHADER_VERSION_MAJOR (_info._pixelShaderVersion), 0);
 	g_debug->DataChar (".", 0);
-	g_debug->DataInt (D3DSHADER_VERSION_MINOR (_info.mPixelShaderVersion), 1);*/
+	g_debug->DataInt (D3DSHADER_VERSION_MINOR (_info._pixelShaderVersion), 1);*/
 
 	g_debug->header("Hardware Ok" , 6);
 }

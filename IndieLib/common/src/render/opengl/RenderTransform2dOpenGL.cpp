@@ -352,7 +352,7 @@ void OpenGLRender::setTransform2d(int pX,
     glLoadMatrixf(camMatrixArray);
     
     //Global point to pixel ratio
-    glScalef(_info._pointPixelScale, _info._pointPixelScale, _info._pointPixelScale);
+    glScalef(_info._pointPixelScale, _info._pointPixelScale, 1.0f);
     
     //Actual object transform
     float matrixArray [16];
@@ -373,7 +373,7 @@ void OpenGLRender::setTransform2d(IND_Matrix &pMatrix) {
     glLoadMatrixf(camMatrixArray);
     
     //Global point to pixel ratio
-    glScalef(_info._pointPixelScale, _info._pointPixelScale, _info._pointPixelScale);
+    glScalef(_info._pointPixelScale, _info._pointPixelScale, 1.0f);
     
     //Object transform
     float matrixArray [16];
@@ -388,7 +388,7 @@ void OpenGLRender::setIdentityTransform2d ()  {
     glLoadMatrixf(camMatrixArray);
     
     //Global point to pixel ratio
-    glScalef(_info._pointPixelScale, _info._pointPixelScale, _info._pointPixelScale);
+    glScalef(_info._pointPixelScale, _info._pointPixelScale, 1.0f);
 }
 
 /*!

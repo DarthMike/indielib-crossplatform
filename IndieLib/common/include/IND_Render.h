@@ -125,7 +125,7 @@ public:
 
     inline bool setAntialiasing(bool pSwitch);
     
-    void setPixelPointScale (float pNewScale);
+    void setPointPixelScale (float pNewScale);
     
     //@}
     

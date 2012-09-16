@@ -1351,7 +1351,7 @@ inline void IND_Render::showFpsInWindowTitle() {
  
  @param pNewScale Non-negative, non-zero value to apply scale globally.
  */
-void IND_Render::setPixelPointScale (float pNewScale) {
+void IND_Render::setPointPixelScale (float pNewScale) {
     //TODO
 }
 

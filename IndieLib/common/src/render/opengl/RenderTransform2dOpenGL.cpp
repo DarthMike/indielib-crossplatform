@@ -150,9 +150,12 @@ void OpenGLRender::setCamera2d(IND_Camera2d *pCamera2d) {
         glScalef(pCamera2d->_zoom, pCamera2d->_zoom,0);
 	}   
 
-	//------ Set the transformation -----
+	//------ Lookat transform -----
 	glMultMatrixf(reinterpret_cast<GLfloat *>(&lookatmatrix));
     
+	//------ Global point to pixel ratio -----
+    glScalef(_info._pointPixelScale, _info._pointPixelScale, 1.0f);
+
     //Store result from GL matrix back to our local matrix
     float m[16];
 	glGetFloatv(GL_MODELVIEW_MATRIX, m);
@@ -351,9 +354,6 @@ void OpenGLRender::setTransform2d(int pX,
     _cameraMatrix.arrayRepresentation(camMatrixArray);
     glLoadMatrixf(camMatrixArray);
     
-    //Global point to pixel ratio
-    glScalef(_info._pointPixelScale, _info._pointPixelScale, 1.0f);
-    
     //Actual object transform
     float matrixArray [16];
     totalTrans.arrayRepresentation(matrixArray);
@@ -372,9 +372,6 @@ void OpenGLRender::setTransform2d(IND_Matrix &pMatrix) {
     _cameraMatrix.arrayRepresentation(camMatrixArray);
     glLoadMatrixf(camMatrixArray);
     
-    //Global point to pixel ratio
-    glScalef(_info._pointPixelScale, _info._pointPixelScale, 1.0f);
-    
     //Object transform
     float matrixArray [16];
     pMatrix.arrayRepresentation(matrixArray);
@@ -386,9 +383,6 @@ void OpenGLRender::setIdentityTransform2d ()  {
 	float camMatrixArray [16];
     _cameraMatrix.arrayRepresentation(camMatrixArray);
     glLoadMatrixf(camMatrixArray);
-    
-    //Global point to pixel ratio
-    glScalef(_info._pointPixelScale, _info._pointPixelScale, 1.0f);
 }
 
 /*!

@@ -244,7 +244,7 @@ void DirectXRender::setTransform2d(int pX,
 
 	D3DXMATRIX mMatWorld, mMatZ, mMatX, mMatY, mMatTraslation, mMatScale;
 	//Initializes every object transform with pixel to point scale transform
-	_info._device->SetTransform(D3DTS_WORLD, D3DXMatrixScaling(&mMatWorld,_info._pointPixelScale,_info._pointPixelScale,1.0f));
+	_info._device->SetTransform(D3DTS_WORLD, D3DXMatrixIdentity(&mMatWorld));
 
 	// ----- Transformation matrix creation -----
 
@@ -307,6 +307,10 @@ void DirectXRender::setTransform2d(int pX,
 		D3DXMatrixMultiply(&mMatWorld, &mMatWorld, &mMatTraslation);
 	}
 
+	D3DXMATRIX mMatPointPixel;
+	D3DXMatrixScaling(&mMatPointPixel,_info._pointPixelScale,_info._pointPixelScale,1.0f);
+	D3DXMatrixMultiply(&mMatWorld,&mMatWorld,&mMatPointPixel);
+
 	// ----- Return World Matrix (in IndieLib format) -----
 	if (pMatrix) {
 		pMatrix->readFromArray(&mMatWorld.m[0][0]);
@@ -323,9 +327,9 @@ void DirectXRender::setTransform2d(IND_Matrix &pMatrix) {
 	D3DXMATRIX mMatWorld (matArray);
 
 	//Apply pixel to point scale to each object transform
-	D3DXMATRIX mMatScale;
-	D3DXMatrixScaling(&mMatScale,_info._pointPixelScale,_info._pointPixelScale,1.0f);
-	D3DXMatrixMultiply(&mMatWorld,&mMatWorld,&mMatScale);
+	D3DXMATRIX mMatPointPixel;
+	D3DXMatrixScaling(&mMatPointPixel,_info._pointPixelScale,_info._pointPixelScale,1.0f);
+	D3DXMatrixMultiply(&mMatWorld,&mMatWorld,&mMatPointPixel);
 
 	// ----- Applies the transformation -----
 	_info._device->SetTransform(D3DTS_WORLD, &mMatWorld);

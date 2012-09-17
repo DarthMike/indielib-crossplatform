@@ -117,6 +117,11 @@ void DirectXRender::setCamera2d(IND_Camera2d *pCamera2d) {
 	D3DXMatrixIdentity (&mMatView);
 	D3DXMatrixIdentity (&mMatProjection);
 
+	//Setup point-to-pixel scale ratio on camera transform
+	D3DXMATRIX mMatPointPixel;
+	D3DXMatrixScaling(&mMatPointPixel,_info._pointPixelScale,_info._pointPixelScale,1.0f);
+	D3DXMatrixMultiply(&mMatView,&mMatView,&mMatPointPixel);
+
     //Buffer D3DVec3 structs from our camera 3d vectors
     D3DXVECTOR3 d3dpos (pCamera2d->_pos._x,pCamera2d->_pos._y,pCamera2d->_pos._z);
     D3DXVECTOR3 d3dlook (pCamera2d->_look._x,pCamera2d->_look._y, pCamera2d->_look._z);
@@ -146,7 +151,6 @@ void DirectXRender::setCamera2d(IND_Camera2d *pCamera2d) {
 	D3DXMatrixMultiply(&mMatView, &mMatView, &mMatLookAt);
 
 	// ---- Zoom ----
-
 	if (pCamera2d->_zoom != 1.0f)
 	{
 		D3DXMatrixScaling (&mScale, pCamera2d->_zoom, pCamera2d->_zoom, pCamera2d->_zoom);
@@ -157,9 +161,7 @@ void DirectXRender::setCamera2d(IND_Camera2d *pCamera2d) {
 	_info._device->SetTransform(D3DTS_VIEW, &mMatView);
 
 	// ----- Projection matrix -----
-
 	D3DXMatrixOrthoLH(&mMatProjection, static_cast<float>( _info._viewPortWidth), static_cast<float>( _info._viewPortHeight), -2048.0f, 2048.0f);
-
 	_info._device->SetTransform(D3DTS_PROJECTION, &mMatProjection);
 }
 
@@ -307,10 +309,6 @@ void DirectXRender::setTransform2d(int pX,
 		D3DXMatrixMultiply(&mMatWorld, &mMatWorld, &mMatTraslation);
 	}
 
-	D3DXMATRIX mMatPointPixel;
-	D3DXMatrixScaling(&mMatPointPixel,_info._pointPixelScale,_info._pointPixelScale,1.0f);
-	D3DXMatrixMultiply(&mMatWorld,&mMatWorld,&mMatPointPixel);
-
 	// ----- Return World Matrix (in IndieLib format) -----
 	if (pMatrix) {
 		pMatrix->readFromArray(&mMatWorld.m[0][0]);
@@ -326,11 +324,6 @@ void DirectXRender::setTransform2d(IND_Matrix &pMatrix) {
 	pMatrix.arrayRepresentation(matArray);
 	D3DXMATRIX mMatWorld (matArray);
 
-	//Apply pixel to point scale to each object transform
-	D3DXMATRIX mMatPointPixel;
-	D3DXMatrixScaling(&mMatPointPixel,_info._pointPixelScale,_info._pointPixelScale,1.0f);
-	D3DXMatrixMultiply(&mMatWorld,&mMatWorld,&mMatPointPixel);
-
 	// ----- Applies the transformation -----
 	_info._device->SetTransform(D3DTS_WORLD, &mMatWorld);
 }
@@ -339,7 +332,7 @@ void DirectXRender::setIdentityTransform2d ()  {
 	// ----- Applies the transformation -----
 	D3DXMATRIX mMatWorld;
 	//Initializes every object transform with pixel to point scale transform
-	_info._device->SetTransform(D3DTS_WORLD, D3DXMatrixScaling(&mMatWorld,_info._pointPixelScale,_info._pointPixelScale,1.0f));
+	_info._device->SetTransform(D3DTS_WORLD, D3DXMatrixIdentity(&mMatWorld));
 }
 
 

@@ -84,6 +84,10 @@ void OpenGLRender::blitSurface(IND_Surface *pSu) {
 			//is rendered all the time. In other words, different pieces of same texture are rendered
 			glBindTexture(GL_TEXTURE_2D,pSu->_surface->_texturesArray[0]);
 		}
+        //Set CLAMP for texture
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+        
 	    glVertexPointer(3, GL_FLOAT, sizeof(CUSTOMVERTEX2D), &pSu->_surface->_vertexArray[mCont]._x);
 	    glTexCoordPointer(2, GL_FLOAT, sizeof(CUSTOMVERTEX2D), &pSu->_surface->_vertexArray[mCont]._u);
 	    glDrawArrays(GL_TRIANGLE_STRIP, 0,4);	
@@ -206,6 +210,10 @@ void OpenGLRender::blitRegionSurface(IND_Surface *pSu,
 			glEnableClientState(GL_VERTEX_ARRAY);
 			glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 			glBindTexture(GL_TEXTURE_2D,pSu->_surface->_texturesArray[0]);
+            //Set CLAMP for texture
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+            
 			glVertexPointer(3, GL_FLOAT, sizeof(CUSTOMVERTEX2D), &_vertices2d[0]._x);
 			glTexCoordPointer(2, GL_FLOAT, sizeof(CUSTOMVERTEX2D), &_vertices2d[0]._u);
 			glDrawArrays(GL_TRIANGLE_STRIP, 0,4);	
@@ -290,21 +298,18 @@ bool OpenGLRender::blitWrapSurface(IND_Surface *pSu,
 		//Lower-left
 		fillVertex2d(&_vertices2d [3], 0.0f, height,-pUDisplace, -v + pVDisplace);
 
-		//Set wrap for this texture
-		glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
-		glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_REPEAT);
-
 		//Surface drawing
 		glEnableClientState(GL_VERTEX_ARRAY);
 		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 		glBindTexture(GL_TEXTURE_2D,pSu->_surface->_texturesArray[0]);
+        //Set wrap for this texture
+        glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
+        glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_REPEAT);
+       
 		glVertexPointer(3, GL_FLOAT, sizeof(CUSTOMVERTEX2D), &_vertices2d[0]._x);
 		glTexCoordPointer(2, GL_FLOAT, sizeof(CUSTOMVERTEX2D), &_vertices2d[0]._u);
 		glDrawArrays(GL_TRIANGLE_STRIP, 0,4);
-		
-		//Set back clamp ON
-		glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
-		glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);	
+
    }
 
 	return correctParams;

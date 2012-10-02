@@ -98,7 +98,7 @@ public:
 	void beginScene();
 	void endScene();
 	void showFpsInWindowTitle(char *pFPSString);
-
+    void setPointPixelScale (float pNewScale);
 	// ----- Viewports and cameras -----
 
 
@@ -356,11 +356,11 @@ public:
 
 	//This function returns the pointer to Direct3d.
 	LPDIRECT3D9 GetDirect3d()      {
-		return _info.mDirect3d;
+		return _info._direct3d;
 	}
 	//This function returns the pointer to the Direct3d device.
 	IDirect3DDevice9 *GetDevice()      {
-		return _info.mDevice;
+		return _info._device;
 	}
 
 	//This function returns a pointer to the IND_Window object where the render has been created
@@ -451,13 +451,31 @@ private:
 		char _renderer [1024];
 		int _maxTextureSize;
 		int _textureUnits;
-		DWORD mVertexShaderVersion;
-		DWORD mPixelShaderVersion;
-		bool mSoftwareVertexProcessing;
-		LPDIRECT3D9 mDirect3d;
-		IDirect3DDevice9 *mDevice;
-
-		infoStruct() : mDevice(NULL) {
+        float _pointPixelScale;
+		DWORD _vertexShaderVersion;
+		DWORD _pixelShaderVersion;
+		bool _softwareVertexProcessing;
+		LPDIRECT3D9 _direct3d;
+		IDirect3DDevice9 *_device;
+        
+		infoStruct() : _fbWidth(0),
+					   _fbHeight(0),
+					   _viewPortX(0),
+					   _viewPortY(0),
+					   _viewPortWidth(0),
+					   _viewPortHeight(0),
+					   _antialiasing(false),
+					   _maxTextureSize(0),
+					   _textureUnits(0),
+					   _pointPixelScale(1.0f),
+					   _vertexShaderVersion(0),
+					   _pixelShaderVersion(0),
+					   _softwareVertexProcessing(false),
+					   _direct3d(NULL),
+					   _device(NULL) {
+						   strcpy(_version,"");
+						   strcpy(_vendor,"");
+						   strcpy(_renderer,"");
 		}
 	};
 	struct infoStruct _info;

@@ -120,8 +120,8 @@ void DirectXRender::blitText(IND_Font *pFo,
 		int mLongActualSentence;
 
 		D3DXMATRIX mMatTraslation, mMatWorld, mMatWorldOriginal;
-		_info.mDevice->GetTransform(D3DTS_WORLD, &mMatWorld);
-		_info.mDevice->GetTransform(D3DTS_WORLD, &mMatWorldOriginal);
+		_info._device->GetTransform(D3DTS_WORLD, &mMatWorld);
+		_info._device->GetTransform(D3DTS_WORLD, &mMatWorldOriginal);
 
 		mCont1 = 0;
 		mChar1 = pText [mCont1++];
@@ -161,7 +161,7 @@ void DirectXRender::blitText(IND_Font *pFo,
 				//mTranslationY += (pLineSpacing);
 				mTranslationY += static_cast<int>((pLineSpacing * pScaleY));
 				D3DXMatrixMultiply(&mMatWorld, &mMatWorldOriginal, &mMatTraslation);
-				_info.mDevice->SetTransform(D3DTS_WORLD, &mMatWorld);
+				_info._device->SetTransform(D3DTS_WORLD, &mMatWorld);
 			}
 
 			// It's a normal character
@@ -246,7 +246,7 @@ Set translation (used for translating the chars)
 void DirectXRender::SetTranslation(int pX, int pY, D3DXMATRIX *pMatWorld, D3DXMATRIX *pMatTraslation) {
 	D3DXMatrixTranslation(pMatTraslation, (float) pX, (float) pY, 0);
 	D3DXMatrixMultiply(pMatWorld, pMatWorld, pMatTraslation);
-	_info.mDevice->SetTransform(D3DTS_WORLD, pMatWorld);
+	_info._device->SetTransform(D3DTS_WORLD, pMatWorld);
 }
 
 #endif //INDIERENDER_DIRECTX

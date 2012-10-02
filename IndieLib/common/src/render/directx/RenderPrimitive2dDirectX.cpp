@@ -58,9 +58,9 @@ bool DirectXRender::setAntialiasing(bool pSwitch) {
 	if (!_info._antialiasing) return 0;
 
 	if (pSwitch) {
-		_info.mDevice->SetRenderState(D3DRS_ANTIALIASEDLINEENABLE, TRUE);
+		_info._device->SetRenderState(D3DRS_ANTIALIASEDLINEENABLE, TRUE);
 	} else {
-		_info.mDevice->SetRenderState(D3DRS_ANTIALIASEDLINEENABLE, FALSE);
+		_info._device->SetRenderState(D3DRS_ANTIALIASEDLINEENABLE, FALSE);
 	}
 
 	return 1;
@@ -106,7 +106,7 @@ void DirectXRender::blitPixel(int pX,
 	setForPrimitive(pA);
 
 	// Pixel drawing
-	_info.mDevice->DrawPrimitiveUP(D3DPT_POINTLIST, 1, &_pixels, sizeof(PIXEL));
+	_info._device->DrawPrimitiveUP(D3DPT_POINTLIST, 1, &_pixels, sizeof(PIXEL));
 }
 
 
@@ -144,7 +144,7 @@ void DirectXRender::blitLine(int pX1,
 	setForPrimitive(pA);
 
 	// Line blitting
-	_info.mDevice->DrawPrimitiveUP(D3DPT_LINESTRIP, 1, &_pixels, sizeof(PIXEL));
+	_info._device->DrawPrimitiveUP(D3DPT_LINESTRIP, 1, &_pixels, sizeof(PIXEL));
 }
 
 
@@ -185,7 +185,7 @@ void DirectXRender::blitRectangle(int pX1,
 	setForPrimitive(pA);
 
 	// Rectangle blitting
-	_info.mDevice->DrawPrimitiveUP(D3DPT_LINESTRIP, 4, &_pixels, sizeof(PIXEL));
+	_info._device->DrawPrimitiveUP(D3DPT_LINESTRIP, 4, &_pixels, sizeof(PIXEL));
 }
 
 
@@ -229,7 +229,7 @@ void DirectXRender::blitFillRectangle(int pX1,
 	setForPrimitive(pA);
 
 	// Rectangle blitting
-	_info.mDevice->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, &_pixels, sizeof(PIXEL));
+	_info._device->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, &_pixels, sizeof(PIXEL));
 }
 
 /*!
@@ -265,7 +265,7 @@ void DirectXRender::blitTriangleList(IND_Point *pTrianglePoints,
 	setForPrimitive(pA);
 
 	//Blitting
-	_info.mDevice->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, pNumPoints - 2, &_pixels, sizeof(PIXEL));
+	_info._device->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, pNumPoints - 2, &_pixels, sizeof(PIXEL));
 }
 
 /********************************************************************************/
@@ -310,7 +310,7 @@ void DirectXRender::blitColoredTriangle(int pX1,
 	setForPrimitive(pA);
 
 	// Rectangle blitting
-	_info.mDevice->DrawPrimitiveUP(D3DPT_TRIANGLELIST, 1, &_pixels, sizeof(PIXEL));
+	_info._device->DrawPrimitiveUP(D3DPT_TRIANGLELIST, 1, &_pixels, sizeof(PIXEL));
 }
 
 
@@ -350,7 +350,7 @@ bool DirectXRender::blitPoly2d(IND_Point *pPolyPoints,
 	setForPrimitive(pA);
 
 	// Polygon blitting
-	_info.mDevice->DrawPrimitiveUP(D3DPT_LINESTRIP, pNumLines, &_pixels, sizeof(PIXEL));
+	_info._device->DrawPrimitiveUP(D3DPT_LINESTRIP, pNumLines, &_pixels, sizeof(PIXEL));
 
 	return 1;
 }
@@ -404,7 +404,7 @@ bool DirectXRender::blitRegularPoly(int pX,
 	setForPrimitive(pA);
 
 	// Polygon blitting
-	_info.mDevice->DrawPrimitiveUP(D3DPT_LINESTRIP, i, &_pixels, sizeof(PIXEL));
+	_info._device->DrawPrimitiveUP(D3DPT_LINESTRIP, i, &_pixels, sizeof(PIXEL));
 
 	return 1;
 }
@@ -429,10 +429,10 @@ void DirectXRender::blitCollisionCircle(int pPosX, int pPosY, int pRadius, float
 	setRainbow2d(IND_OPAQUE, 1, 0, 0, IND_FILTER_POINT, pR, pG, pB, pA, 0, 0, 0, 255, 0, 0);
 
 	// Color
-	_info.mDevice->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_DIFFUSE);
+	_info._device->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_DIFFUSE);
 
 	// Pixel format
-	_info.mDevice->SetFVF(D3DFVF_PIXEL);
+	_info._device->SetFVF(D3DFVF_PIXEL);
 
 	// Blitting
 	int x, y, i;
@@ -450,7 +450,7 @@ void DirectXRender::blitCollisionCircle(int pPosX, int pPosY, int pRadius, float
 	fillPixel(&_pixels [i], (int) mP1._x + (int)(pRadius * cos(D3DXToRadian(0))), (int) mP1._y + (int)(pRadius * sin(D3DXToRadian(0))), pR, pG, pB);
 
 	// Blitting circle
-	_info.mDevice->DrawPrimitiveUP(D3DPT_LINESTRIP, points, &_pixels, sizeof(PIXEL));
+	_info._device->DrawPrimitiveUP(D3DPT_LINESTRIP, points, &_pixels, sizeof(PIXEL));
 }
 
 
@@ -471,17 +471,17 @@ void DirectXRender::blitCollisionLine(int pPosX1, int pPosY1, int pPosX2, int pP
 	setRainbow2d(IND_OPAQUE, 1, 0, 0, IND_FILTER_POINT, pR, pG, pB, pA, 0, 0, 0, 255, 0, 0);
 
 	// Color
-	_info.mDevice->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_DIFFUSE);
+	_info._device->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_DIFFUSE);
 
 	// Pixel format
-	_info.mDevice->SetFVF(D3DFVF_PIXEL);
+	_info._device->SetFVF(D3DFVF_PIXEL);
 
 	// Filling pixels
 	fillPixel(&_pixels [0], (int) mP1._x, (int) mP1._y, pR, pG, pB);
 	fillPixel(&_pixels [1], (int) mP2._x, (int) mP2._y, pR, pG, pB);
 
 	// Blitting line
-	_info.mDevice->DrawPrimitiveUP(D3DPT_LINESTRIP, 1, &_pixels, sizeof(PIXEL));
+	_info._device->DrawPrimitiveUP(D3DPT_LINESTRIP, 1, &_pixels, sizeof(PIXEL));
 }
 
 
@@ -505,17 +505,17 @@ void DirectXRender::BlitGridLine(int pPosX1, int pPosY1, int pPosX2, int pPosY2,
 	setRainbow2d(IND_OPAQUE, 1, 0, 0, IND_FILTER_POINT, pR, pG, pB, pA, 0, 0, 0, 255, 0, 0);
 
 	// Color
-	_info.mDevice->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_DIFFUSE);
+	_info._device->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_DIFFUSE);
 
 	// Pixel format
-	_info.mDevice->SetFVF(D3DFVF_PIXEL);
+	_info._device->SetFVF(D3DFVF_PIXEL);
 
 	// Filling pixels
 	fillPixel(&_pixels [0], (int) mP1.x, (int) mP1.y, pR, pG, pB);
 	fillPixel(&_pixels [1], (int) mP2.x, (int) mP2.y, pR, pG, pB);
 
 	// Blitting line
-	_info.mDevice->DrawPrimitiveUP(D3DPT_LINESTRIP, 1, &_pixels, sizeof(PIXEL));
+	_info._device->DrawPrimitiveUP(D3DPT_LINESTRIP, 1, &_pixels, sizeof(PIXEL));
 }
 
 
@@ -587,10 +587,10 @@ void DirectXRender::setForPrimitive(BYTE pA) {
 	//}
 
 	// Disable color OP
-	_info.mDevice->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_DISABLE);
+	_info._device->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_DISABLE);
 
 	// Pixel format
-	_info.mDevice->SetFVF(D3DFVF_PIXEL);
+	_info._device->SetFVF(D3DFVF_PIXEL);
 }
 
 #endif //INDIERENDER_DIRECTX

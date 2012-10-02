@@ -101,13 +101,34 @@ public:
 	bool    toggleFullScreen();
 	//@}
 	
+    /** @name Object lifecycle
+    *
+    */
+    //@{
 	void    end();
 	bool    isOK();
+     //@}
 
+    /** @name Rendering frame lifecycle
+     *
+     */
+    //@{
 	void beginScene();
 	void endScene();
+    //@}
+    
+    /** @name Render settings
+     *
+     */
+    //@{
 	inline void showFpsInWindowTitle();
 
+    inline bool setAntialiasing(bool pSwitch);
+    
+    void setPointPixelScale (float pNewScale);
+    
+    //@}
+    
 	// ----- Viewports and cameras -----
 
 	/** @name Viewport clearing (both for 2d and 3d viewports)
@@ -144,8 +165,6 @@ public:
 	//@}
 
 	// ----- Render Primitive 2d -----
-
-	inline bool setAntialiasing(bool pSwitch);
 
 	/** @name Bliting primitives (you can also use IND_Entity2d instead this methods)
 	*

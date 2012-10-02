@@ -1338,6 +1338,26 @@ inline void IND_Render::showFpsInWindowTitle() {
 	_wrappedRenderer->showFpsInWindowTitle(fpsstring);
 }
 
+
+/*!
+ @brief Sets the pixel to point scaling performed by rendering with vertex and position data
+ 
+ Default value is 1.0f. Takes effect after the next setCamera2d call.
+ 
+ By default pixel-to-point scaling is 1, so position of objects and vertex coordinates submitted
+ to the renderer are 1 to 1 related to pixels in the backed framebuffer screen. You can change that if
+ you want to maintain same 'logical' coordinates of your objects in your scene, independent of the device
+ resolution that you actually render on.
+ 
+ @param pNewScale Non-negative, non-zero value to apply scale globally.
+ */
+void IND_Render::setPointPixelScale (float pNewScale) {
+	if (pNewScale > 0.0f) {
+		_wrappedRenderer->setPointPixelScale(pNewScale);
+	}
+}
+
+
 //! This function returns the x position of the actual viewport
 int IND_Render::getViewPortX()      {
 	return _wrappedRenderer->getViewPortX();

@@ -209,20 +209,14 @@ void OpenGLRender::endScene() {
 #endif	
 }
 
-
-/*!
-\b Operation:
-
-This function shows the fps (frames per second) as the title of the window.
-
-NOTE: The updating of the window title is quite time-consuming, so this is not the correct method for
-checking the FPS. It's better to use the methods IND_Render::getFpsInt() or IND_Render::getFpsString() and drawing
-the result using an ::IND_Font object.
-*/
 void OpenGLRender::showFpsInWindowTitle(char *pFPSString) {
 	if (!_ok)   return;
 
 	_window->setTitle(pFPSString);
+}
+
+void OpenGLRender::setPointPixelScale (float pNewScale) {
+    _info._pointPixelScale = pNewScale;
 }
 
 void OpenGLRender::getNumrenderedObjectsString(char *pBuffer)      {
@@ -395,11 +389,11 @@ void OpenGLRender::writeInfo() {
 	// ----- Vertex Shader version  -----
 
 	/*g_debug->Header ("Vertex Shader:" , 3);
-	g_debug->DataInt (D3DSHADER_VERSION_MAJOR (_info.mVertexShaderVersion), 0);
+	g_debug->DataInt (D3DSHADER_VERSION_MAJOR (_info._vertexShaderVersion), 0);
 	g_debug->DataChar (".", 0);
-	g_debug->DataInt (D3DSHADER_VERSION_MINOR (_info.mVertexShaderVersion), 0);
+	g_debug->DataInt (D3DSHADER_VERSION_MINOR (_info._vertexShaderVersion), 0);
 
-	if (_info.mSoftwareVertexProcessing)
+	if (_info._softwareVertexProcessing)
 	    g_debug->DataChar ("(Software)", 1);
 	else
 	    g_debug->DataChar ("", 1);*/
@@ -407,9 +401,9 @@ void OpenGLRender::writeInfo() {
 	// ----- Pixel Shader version -----
 
 	/*g_debug->Header ("Pixel Shader:" , 3);
-	g_debug->DataInt (D3DSHADER_VERSION_MAJOR (_info.mPixelShaderVersion), 0);
+	g_debug->DataInt (D3DSHADER_VERSION_MAJOR (_info._pixelShaderVersion), 0);
 	g_debug->DataChar (".", 0);
-	g_debug->DataInt (D3DSHADER_VERSION_MINOR (_info.mPixelShaderVersion), 1);*/
+	g_debug->DataInt (D3DSHADER_VERSION_MINOR (_info._pixelShaderVersion), 1);*/
 
 	g_debug->header("Hardware Ok" , 6);
 }

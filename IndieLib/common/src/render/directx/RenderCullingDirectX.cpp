@@ -41,8 +41,8 @@ Calculates 6 planes defining the frustum
 */
 void DirectXRender::calculeFrustumPlanes() {
 	D3DXMATRIX mMatView, mMatProj;
-	_info.mDevice->GetTransform(D3DTS_VIEW, &mMatView);
-	_info.mDevice->GetTransform(D3DTS_PROJECTION, &mMatProj);
+	_info._device->GetTransform(D3DTS_VIEW, &mMatView);
+	_info._device->GetTransform(D3DTS_PROJECTION, &mMatProj);
 
 	// Get combined matrix
 	D3DXMATRIXA16 matComb;
@@ -181,7 +181,7 @@ void DirectXRender::Transform4Vertices(float pX1, float pY1,
 	// ----- Transform 4 vertices of the quad into world space coordinates -----
 
 	D3DXMATRIX mMatWorld;
-	_info.mDevice->GetTransform(D3DTS_WORLD, &mMatWorld);
+	_info._device->GetTransform(D3DTS_WORLD, &mMatWorld);
 
 	D3DXVECTOR2 mP1(pX1, pY1);
 	D3DXVECTOR2 mP2(pX2, pY2);

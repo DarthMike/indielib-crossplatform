@@ -82,19 +82,19 @@ void DirectXRender::blitSurface(IND_Surface *pSu) {
 		// ---- Discard bounding rectangle using frustum culling if possible ----
 
 		if (CullFrustumBox(mP1_f3, mP2_f3)) {
-			_info.mDevice->SetFVF(D3DFVF_CUSTOMVERTEX2D);
+			_info._device->SetFVF(D3DFVF_CUSTOMVERTEX2D);
 
 			if (!pSu->isHaveGrid()) {
 				//Texture ID - If it doesn't have a grid, every other block must be blit by 
 				//a different texture in texture array ID. 
-                _info.mDevice->SetTexture(0, pSu->_surface->_texturesArray[i]._texture);
+                _info._device->SetTexture(0, pSu->_surface->_texturesArray[i]._texture);
 			} else {
 				//In a case of rendering a grid. Same texture (but different vertex position)
 				//is rendered all the time. In other words, different pieces of same texture are rendered
-				_info.mDevice->SetTexture(0, pSu->_surface->_texturesArray[0]._texture);
+				_info._device->SetTexture(0, pSu->_surface->_texturesArray[0]._texture);
 			}
 
-			_info.mDevice->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, pSu->_surface->_vertexArray + mCont, sizeof(CUSTOMVERTEX2D));
+			_info._device->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, pSu->_surface->_vertexArray + mCont, sizeof(CUSTOMVERTEX2D));
 
 			_numrenderedObjects++;
 		} else
@@ -121,7 +121,7 @@ Using this method is equivalent to using both of these methods:
 */
 void DirectXRender::blitGrid(IND_Surface *pSu, BYTE pR, BYTE pG, BYTE pB, BYTE pA) {
 	D3DXMATRIX mMatWorld;
-	_info.mDevice->GetTransform(D3DTS_WORLD, &mMatWorld);
+	_info._device->GetTransform(D3DTS_WORLD, &mMatWorld);
 
 	for (int i = 0; i < pSu->getNumBlocks() * 4; i += 4) {
 		// ----- Transform 4 vertices of the quad into world space coordinates -----
@@ -236,9 +236,9 @@ void DirectXRender::blitRegionSurface(IND_Surface *pSu,
 			fillVertex2d(&_vertices2d [3], 0.0f, static_cast<float>(pHeight), (static_cast<float>(pX)/ pSu->getWidthBlock()), (1.0f - (static_cast<float>(pY + pHeight + pSu->getSpareY()) / pSu->getHeightBlock())));
 
 			// Quad blitting
-			_info.mDevice->SetFVF(D3DFVF_CUSTOMVERTEX2D);
-			_info.mDevice->SetTexture(0, pSu->_surface->_texturesArray [0]._texture);
-			_info.mDevice->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, &_vertices2d, sizeof(CUSTOMVERTEX2D));
+			_info._device->SetFVF(D3DFVF_CUSTOMVERTEX2D);
+			_info._device->SetTexture(0, pSu->_surface->_texturesArray [0]._texture);
+			_info._device->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, &_vertices2d, sizeof(CUSTOMVERTEX2D));
 		}
 	}
 }
@@ -327,17 +327,17 @@ bool DirectXRender::blitWrapSurface(IND_Surface *pSu,
 		fillVertex2d(&_vertices2d [3], 0.0f,      static_cast<float>(pHeight),     -pUDisplace,       -_v + pVDisplace);
 
 		// Quad blitting
-		_info.mDevice->SetFVF(D3DFVF_CUSTOMVERTEX2D);
-		_info.mDevice->SetTexture(0, pSu->_surface->_texturesArray [0]._texture);
+		_info._device->SetFVF(D3DFVF_CUSTOMVERTEX2D);
+		_info._device->SetTexture(0, pSu->_surface->_texturesArray [0]._texture);
 
 
-		_info.mDevice->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_WRAP);
-		_info.mDevice->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_WRAP);
+		_info._device->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_WRAP);
+		_info._device->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_WRAP);
 
-		_info.mDevice->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, &_vertices2d, sizeof(CUSTOMVERTEX2D));
+		_info._device->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, &_vertices2d, sizeof(CUSTOMVERTEX2D));
 
-		_info.mDevice->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_CLAMP);
-		_info.mDevice->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_CLAMP);
+		_info._device->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_CLAMP);
+		_info._device->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_CLAMP);
 	}
 	return correctParams;
 }
@@ -402,7 +402,7 @@ int DirectXRender::blitAnimation(IND_Animation *pAn, int pSequence,
 
 		// Current world matrix
 		D3DXMATRIX mMatWorld, mTrans;
-		_info.mDevice->GetTransform(D3DTS_WORLD, &mMatWorld);
+		_info._device->GetTransform(D3DTS_WORLD, &mMatWorld);
 
 		// If the time of a frame have passed, go to the next frame
 		if (pAn->getSequenceTimer(pSequence)->getTicks() > (unsigned long) pAn->getActualFrameTime(pSequence)) {
@@ -428,7 +428,7 @@ int DirectXRender::blitAnimation(IND_Animation *pAn, int pSequence,
 							  static_cast<float>(pAn->getActualOffsetY(pSequence)),
 							  0);
 		D3DXMatrixMultiply(&mMatWorld, &mMatWorld, &mTrans);
-		_info.mDevice->SetTransform(D3DTS_WORLD, &mMatWorld);
+		_info._device->SetTransform(D3DTS_WORLD, &mMatWorld);
 
 		// ----- Blitting -----
 

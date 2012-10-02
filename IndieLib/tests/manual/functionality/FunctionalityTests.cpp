@@ -24,7 +24,7 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "FunctionalityTests.h"
 
 static const float g_testingInterval = 500.f;
-
+static const float g_maxPointPixelRatio = 3.0f;
 
 struct RESOLUTION {
 public:
@@ -59,6 +59,10 @@ void FunctionalityTests::performTests(float dt) {
 
 		if (changeViewPortColor())
 			return;
+    
+        if (pixelPointScaleChange()) {
+            return;
+        }
 	//} else {
 	//	_timer += dt;
 	//}
@@ -82,6 +86,23 @@ bool FunctionalityTests::fullScreenToggle() {
 		return true;
 	}
 
+	return false;
+}
+
+bool FunctionalityTests::pixelPointScaleChange() {
+    static float pointPixelRatio = 1.0f;
+    CIndieLib *mI = CIndieLib::instance();
+	if (mI->_input->onKeyPress(IND_P)) {
+        pointPixelRatio += 0.25f;
+        
+        if (g_maxPointPixelRatio < pointPixelRatio) {
+            pointPixelRatio = 0.25f;
+        }
+        
+		mI->_render->setPointPixelScale(pointPixelRatio);
+		return true;
+	}
+    
 	return false;
 }
 

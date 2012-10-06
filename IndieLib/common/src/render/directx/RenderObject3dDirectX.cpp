@@ -35,30 +35,6 @@ Suite 330, Boston, MA 02111-1307 USA
 //							         Public methods
 // --------------------------------------------------------------------------------
 
-/*!
-\defgroup Graphical_3d_Objects Bliting 3d Animated 3d Models and setting the transformations directly
-\ingroup Advances
-*/
-/*@{*/
-
-/*!
-\b Parameters:
-
-\arg \b p3dMesh                     Pointer to a ::IND_3dMesh object
-
-\b Operation:
-
-This function blits directly to the screen a ::IND_3dMesh object.
-
-In order to change the transformations
-and color attributes of the 3d mesh you have to use the DirectXRender::setTransform3d() and DirectXRender::SetRainbow()
-methods before calling to this function. Remember that you can use IND_Entity3d object for drawing 3d meshes to
-the screen without having to use this advanced methods directly. This method is only useful for advanced users
-with really concrete purposes.
-
-Using this method is equivalent to using:
-- IND_Entity3d::set3dMesh()
-*/
 void DirectXRender::blit3dMesh(IND_3dMesh *p3dMesh) {
 	D3DXMATRIX mMatrix;
 	_info._device->GetTransform(D3DTS_WORLD, &mMatrix);
@@ -69,19 +45,6 @@ void DirectXRender::blit3dMesh(IND_3dMesh *p3dMesh) {
 		DrawFrame(p3dMesh->_3dMesh._frameRoot);
 }
 
-
-/*!
-\b Parameters:
-
-\arg \b p3dMesh                     Pointer to a ::IND_3dMesh object
-\arg \b pIndex                      Index of the animation
-
-\b Operation:
-
-This function sets the animation sequence that will be rendered. When you use this method, the transition between the
-current animation and the following will not be abrubt. IndieLib will fade out the effect of the first animation
-and fade in the second. Use IND_3dMesh::setTransitionSpeed() in order set the speed of that transition.
-*/
 void DirectXRender::set3dMeshSequence(IND_3dMesh *p3dMesh, unsigned int pIndex) {
 	if (pIndex == p3dMesh->_3dMesh._currentAnimationSet)
 		return;
@@ -130,7 +93,6 @@ void DirectXRender::set3dMeshSequence(IND_3dMesh *p3dMesh, unsigned int pIndex) 
 	// Remember current track
 	p3dMesh->_3dMesh._currentTrack = newTrack;
 }
-/*@}*/
 
 // --------------------------------------------------------------------------------
 //							         Private methods

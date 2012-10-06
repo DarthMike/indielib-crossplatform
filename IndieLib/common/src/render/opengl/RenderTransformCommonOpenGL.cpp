@@ -32,18 +32,6 @@ Suite 330, Boston, MA 02111-1307 USA
 // --------------------------------------------------------------------------------
 //							         Public methods
 // --------------------------------------------------------------------------------
-
-/*!
-\b Parameters:
-
-\arg \b pR                  Byte R (Red)
-\arg \b pG                  Byte G (Green)
-\arg \b pB                  Byte B (Blue)
-
-\b Operation:
-
-Clean the viewport with a color expressed in RGB
-*/
 void   OpenGLRender::clearViewPort(BYTE pR,
                                    BYTE pG,
                                    BYTE pB) {
@@ -66,20 +54,6 @@ void   OpenGLRender::clearViewPort(BYTE pR,
     //}
 }
 
-
-/*!
-\b Parameters:
-
-\arg \b pEyeX, pEyeY, pEyeZ                         Position of the camera
-\arg \b pLookAtX, pLookAtY, pLookAtZ                Vector defining the direction of the camera
-\arg \b pUpX, pUpY, pUpZ                            Vector "up" of the camera.
-
-Operation:
-
-This function sets a perspective matrix through the definition of a position and two vectors (lookat and up).
-
-Using this method is equivalent to using a combination of methods of the class ::setCamera3d().
-*/
 void OpenGLRender::lookAt(float pEyeX, float pEyeY, float pEyeZ,
                           float pLookAtX, float pLookAtY, float pLookAtZ,
                           float pUpX, float pUpY, float pUpZ) {
@@ -101,40 +75,10 @@ void OpenGLRender::lookAt(float pEyeX, float pEyeY, float pEyeZ,
     glMultMatrixf(reinterpret_cast<GLfloat *>(&lookatmatrix));
 }
 
-
-/*!
-\b Parameters:
-
-\arg \b pFov                                        Vertical fov
-\arg \b pAspect                                     Aspect ratio (usually the width of the viewport divided by the height)
-\arg \b pNearClippingPlane                          Near clipping plane
-\arg \b pFarClippingPlane                           Far clipping plane
-
-Operation:
-
-This function sets a fov projection matrix.
-
-This method is equivalent to use a combination of methods of the class ::setCamera3d().
-*/
 void OpenGLRender::perspectiveFov(float pFov, float pAspect, float pNearClippingPlane, float pFarClippingPlane) {
 	//TODO
 }
 
-
-/*!
-\b Parameters:
-
-\arg \b pWidth                                      Width
-\arg \b pHeight                                     Height
-\arg \b pNearClippingPlane                          Near clipping plane
-\arg \b pFarClippingPlane                           Far clipping plane
-
-Operation:
-
-This function sets a orthographic projection matrix.
-
-Using this method is equivalent to using a combination of the methods of the class ::setCamera3d().
-*/
 void OpenGLRender::perspectiveOrtho(float pWidth, float pHeight, float pNearClippingPlane, float pFarClippingPlane) {
 	//Projection matrix modification
 	glMatrixMode(GL_PROJECTION);
@@ -152,9 +96,5 @@ void OpenGLRender::perspectiveOrtho(float pWidth, float pHeight, float pNearClip
 	//}
 	glMatrixMode(GL_MODELVIEW);
 }
-
-// --------------------------------------------------------------------------------
-//							         Private methods
-// --------------------------------------------------------------------------------
 
 #endif //INDIERENDER_OPENGL

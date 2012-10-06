@@ -35,55 +35,12 @@ Suite 330, Boston, MA 02111-1307 USA
 //							         Public methods
 // --------------------------------------------------------------------------------
 
-/*
-==================
-TODO: CHECK THE USE OF THIS METHOD IN THE FUTURE, CURRENTLY IS DEPRECATED. ¿LET IT BE UNTIL HAVING PIXEL SHADER SUPPORT?
-
-\b Parameters:
-
-\b pSwitch       Activates or deactivates the antialiasing. (true = antialiasing on, false = antialiasing of)
-
-Operation:
-
-This method activates or deativates the antialiasing when drawing primitives. It doesn't affect
-to other graphical objects, only to primitives.
-
-This function will return 1 if the antialiasing is activated or deactivated correctly and 0 if the
-graphic card of the user doesn't support this feature.
-==================
-*/
 bool OpenGLRender::setAntialiasing(bool pSwitch) {
 //TODO
 
 	return 1;
 }
 
-/*!
-\defgroup Primitives Bliting Primitives
-\ingroup Advances
-With these methods you can directly blit to the screen primitives using OpenGLRender class. Remember that you can also use IND_Entity2d with primitives joined to this object, in order to
-draw primitives.
-*/
-/*@{*/
-
-/*!
-\b Parameters:
-
-\arg \b pX, \b pY               Position in the screen
-\arg \b pR, \b pG, \b pB        R, G, B components of the color
-\arg \b pA                      Level of transparency. (255 = completly opaque)
-
-\b Operation:
-
-This function draws a pixel into the screen. This is a really slow method when the number of pixels is
-big.
-
-This method is equivalent to use a combination of these methods:
-- IND_Entity2d::setPrimitive2d()
-- IND_Entity2d::setLine()
-- IND_Entity2d::setTint()
-- IND_Entity2d::setTransparency()
-*/
 void OpenGLRender::blitPixel(int pX,
                              int pY,
                              BYTE pR,
@@ -120,25 +77,6 @@ void OpenGLRender::blitPixel(int pX,
 	glDisableClientState(GL_COLOR_ARRAY);
 }
 
-
-/*!
-\b Parameters:
-
-\arg \b pX1, \b pY1             Origin point
-\arg \b pX2, pY2                Destiny point
-\arg \b pR, \b pG, \b pB        R, G, B components of the color
-\arg \b pA                      Level of transparency. (255 = completly opaque)
-
-\b Operation:
-
-This function draws a line into the screen
-
-Using this method is equivalent to using all of these methods:
-- IND_Entity2d::setPrimitive2d()
-- IND_Entity2d::setLine()
-- IND_Entity2d::setTint()
-- IND_Entity2d::setTransparency()
-*/
 void OpenGLRender::blitLine(int pX1,
                             int pY1,
                             int pX2,
@@ -178,25 +116,6 @@ void OpenGLRender::blitLine(int pX1,
 
 }
 
-
-/*!
-\b Parameters:
-
-\arg \b pX1, \b pY1             Upper left corner of the rectangle
-\arg \b pX2, \b pY2             Lower right corner of the rectangle
-\arg \b pR, \b pG, \b pB        R, G, B components of the color
-\arg \b pA                      Level of transparency. (255 = completly opaque)
-
-\b Operation:
-
-This function draws a rectangle into the screen
-
-Using this method is equivalent to using all of these methods:
-- IND_Entity2d::setPrimitive2d()
-- IND_Entity2d::setRectangle()
-- IND_Entity2d::setTint()
-- IND_Entity2d::setTransparency()
-*/
 void OpenGLRender::blitRectangle(int pX1,
                                  int pY1,
                                  int pX2,
@@ -239,26 +158,6 @@ void OpenGLRender::blitRectangle(int pX1,
 
 }
 
-
-/*!
-\b Parameters:
-
-\arg \b pX1, \b pY1                 Upper left corner of the rectangle
-\arg \b pX2, \b pY2                 Lower right corner of the rectangle
-\arg \b pR, \b pG, \b pB            R, G, B components of the color
-\arg \b pA                          Level of transparency. (255 = completly opaque)
-
-\b Operation:
-
-This function draws a rectangle filled with a color into the screen. The A component is the
-transparency level (255 = complety opaque).
-
-Using this method is equivalent to using all of these methods:
-- IND_Entity2d::setPrimitive2d()
-- IND_Entity2d::setRectangle()
-- IND_Entity2d::setTint()
-- IND_Entity2d::setTransparency()
-*/
 void OpenGLRender::blitFillRectangle(int pX1,
                                      int pY1,
                                      int pX2,
@@ -300,20 +199,6 @@ void OpenGLRender::blitFillRectangle(int pX1,
 
 }
 
-/*!
-\b Parameters:
-
-\arg \b pTrianglePoints             Triangle Points allocated array
-\arg \b pNumPoints                  Number of points passed (numtriangles =  pNumPoints - 2)
-\arg \b pR, \b pG, \b pB            R, G, B components of the color in outer vertexs
-\arg \b pA                          Level of transparency. (255 = completly opaque)
-
-\b Operation:
-This function draws a triangle list in the form of a Triangle strip (most efficient)
-Triangle strip are a set of triangles which share two vertexes each, thus reducing the 
-number of vertexs you send to the graphics card per call (common vertexes are sent one time only)
-The A parameter is transparency (255 = complety opaque).
-*/
 void OpenGLRender::blitTriangleList(IND_Point *pTrianglePoints,
                                     int pNumPoints,
                                     BYTE pR,
@@ -357,25 +242,6 @@ void OpenGLRender::blitTriangleList(IND_Point *pTrianglePoints,
 
 }
 
-/********************************************************************************/
-
-/*!
-\b Parameters:
-
-\arg \b pX1, \b pY1                     Triangle corner #1
-\arg \b pX2, \b pY2                     Triangle corner #2
-\arg \b pX3, \b pY3                     Triangle corner #3
-\arg \b pR1, \b pG1, \b pB1             R, G, B components of the color for corner #1
-\arg \b pR2, \b pG2, \b pB2             R, G, B components of the color for corner #2
-\arg \b pR3, \b pG3, \b pB3             R, G, B components of the color for corner #3
-\arg \b pZ                              Z depth of coords in all triangle
-\arg \b pA                              Level of transparency. (255 = completly opaque)
-
-\b Operation:
-
-This function draws a triangle filled with a color given in three corners. The A component is the
-transparency level (255 = complety opaque).
-*/
 
 void OpenGLRender::blitColoredTriangle(int pX1,
                                        int pY1,
@@ -424,25 +290,6 @@ void OpenGLRender::blitColoredTriangle(int pX1,
 }
 
 
-/*!
-\b Parameters:
-
-\arg \b pPixel                      Pointer to a points array ::IND_Point. Example: ::IND_Point mPoly3 [ ] = { {60, 10},  {20, 15},  {50, 90},  {170, 190} } => Sets 3 points (each one with x and y coordinates).
-\arg \b pNumLines                   Number of edges to draw
-\arg \b pR, \b pG, \b pB            R, G, B components of the color
-\arg \b pA                          Level of transparency. (255 = completly opaque)
-
-\b Operation:
-
-This function draws a 2d poly
-
-Using this method is equivalent to using all of these methods:
-- IND_Entity2d::setPrimitive2d()
-- IND_Entity2d::setPolyPoints()
-- IND_Entity2d::setNumSides()
-- IND_Entity2d::setTint()
-- IND_Entity2d::setTransparency()
-*/
 bool OpenGLRender::blitPoly2d(IND_Point *pPolyPoints,
                               int pNumLines,
                               BYTE pR,
@@ -487,29 +334,6 @@ bool OpenGLRender::blitPoly2d(IND_Point *pPolyPoints,
 }
 
 
-/*!
-\b Parameters:
-
-\arg \b pX, \b pY                   Position in the screen
-\arg \b pRadius                     Radius
-\arg \b pN                          Number of sides
-\arg \b pAngle                      Angle in degrees (if you change this parameter the polygon
-                                    will rotate)
-\arg \b pR, \b pG, \b pB            R, G, B components of the color
-\arg \b pA                          Level of transparency. (255 = completly opaque)
-
-\b Operation:
-
-This function draws 2d regunr poly of n sides. If you need to draw circles you can use this method
-using 30 or more sides.
-
-This method is equivalent to use a combination of these methods:
-- IND_Entity2d::setPrimitive2d()
-- IND_Entity2d::setRadius()
-- IND_Entity2d::setPosition()
-- IND_Entity2d::setTint()
-- IND_Entity2d::setTransparency()
-*/
 bool OpenGLRender::blitRegularPoly(int pX,
                                    int pY,
                                    int pRadius,
@@ -559,7 +383,6 @@ bool OpenGLRender::blitRegularPoly(int pX,
 
 	return 1;
 }
-/*@}*/
 
 // --------------------------------------------------------------------------------
 //							         Private methods

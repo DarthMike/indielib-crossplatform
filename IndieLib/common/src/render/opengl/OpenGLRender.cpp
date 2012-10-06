@@ -50,16 +50,6 @@ Suite 330, Boston, MA 02111-1307 USA
 //							  Initialization / Destruction
 // --------------------------------------------------------------------------------
 
-/*!
-\b Parameters:
-
-\arg \b pWindow                 Pointer to an object initializing IND_Window
-
-\b Operation:
-
-This function returns 1 (true) if the render is initialized sucessfully,
-0 (false) otherwise.
-*/
 IND_Window* OpenGLRender::initRenderAndWindow(IND_WindowProperties& props) {
 	if(props._bpp <= 0 || props._height <= 0 || props._width <= 0) {
 		g_debug->header("Error initializing window: Invalid parameters provided", 2);
@@ -124,17 +114,6 @@ IND_Window* OpenGLRender::initRenderAndWindow(IND_WindowProperties& props) {
 	return _window;
 }
 
-/*!
-\b Parameters:
-
-\arg \b IND_WindowProperties new properties of window after reset
-
-\b Operation:
-
-This function returns 1 (true) if the application window resets to the attributes passed as parameters. This method
-is useful when you want to change the application window on runtime, 0 (false) if it is not possible to create
-the new window.
-*/
 bool OpenGLRender::reset(IND_WindowProperties& props) {
 	if(props._bpp <= 0 || props._height <= 0 || props._width <= 0) {
 		g_debug->header("Error resetting window: Invalid parameters provided", 2);
@@ -159,13 +138,6 @@ bool OpenGLRender::reset(IND_WindowProperties& props) {
     return ok;
 }
 
-
-/*!
-\b Operation:
-
-This function returns 1 (true) if the application window toggles to fullscreen or windowed, 0 (false) if it is not possible
-to create the new window.
-*/
 bool OpenGLRender::toggleFullScreen() {
 
 	g_debug->header("Changing To/From Full Screen", 5);
@@ -187,12 +159,6 @@ void OpenGLRender::beginScene() {
 	glClear(GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 }
 
-
-/*!
-\b Operation:
-
-Finish the scene. This function must be called after drawing all the graphical objects.
-*/
 void OpenGLRender::endScene() {
 	if (!_ok)
 		return;
@@ -226,11 +192,7 @@ void OpenGLRender::getNumrenderedObjectsString(char *pBuffer)      {
 void OpenGLRender::getNumDiscardedObjectsString(char *pBuffer)      {
 	IND_Math::itoa(_numDiscardedObjects, pBuffer);
 }
-/*!
-\b Operation:
 
-This function frees the manager and all the objects that it contains.
-*/
 void OpenGLRender::end() {
 	if (_ok) {
 		g_debug->header("Finalizing OpenGL", 5);

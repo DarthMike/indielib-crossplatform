@@ -35,29 +35,6 @@ Suite 330, Boston, MA 02111-1307 USA
 //							         Public methods
 // --------------------------------------------------------------------------------
 
-/*!
-\defgroup Graphical_Objects Bliting Surfaces, Animations and Fonts and setting the transformations directly
-\ingroup Advances
-*/
-/*@{*/
-
-/*!
-\b Parameters:
-
-\arg \b pSu                     Pointer to a ::IND_Surface object
-
-\b Operation:
-
-This function blits directly to the screen a ::IND_Surface object.
-
-In order to change the transformations
-and color attributes of the surface you have to use the DirectXRender::setTransform2d() and DirectXRender::setRainbow2d() methods before
-calling this function. Remember that you can use IND_Entity2d object for drawing surfaces to the screen without having to use these
-advanced methods directly. This method is only useful for advanced users with really concrete purposes.
-
-Using this method is equivalent to using:
-- IND_Entity2d::setSurface()
-*/
 void DirectXRender::blitSurface(IND_Surface *pSu) {
 	// ----- Blitting -----
 	int mCont = 0;
@@ -105,20 +82,6 @@ void DirectXRender::blitSurface(IND_Surface *pSu) {
 	}
 }
 
-
-/*!
-\b Parameters:
-
-\arg \b pSu                     Pointer to a ::IND_Surface object
-
-\b Operation:
-
-This function blits directly to the screen the grid of an ::IND_Surface object.
-
-Using this method is equivalent to using both of these methods:
-- IND_Entity2dManager::renderGridAreas()
-- IND_Entity2d::showGridAreas()
-*/
 void DirectXRender::blitGrid(IND_Surface *pSu, BYTE pR, BYTE pG, BYTE pB, BYTE pA) {
 	D3DXMATRIX mMatWorld;
 	_info._device->GetTransform(D3DTS_WORLD, &mMatWorld);
@@ -154,35 +117,6 @@ void DirectXRender::blitGrid(IND_Surface *pSu, BYTE pR, BYTE pG, BYTE pB, BYTE p
 	}
 }
 
-
-/*!
-\b Parameters:
-
-\arg \b pSu                     Pointer to a ::IND_Surface object
-\arg \b pX, \b pY               Upper left coordinate of the region
-\arg \b pWidth, \b pHeight      Width and Height of the region
-
-\b Operation:
-
-This method is useful when we want to render only a certain region of a ::IND_Surface.
-
-If the region that we chose is out of the range of the sprite, the function will return false and no
-region will be rendered.
-
-Special remark: this function only works with ::IND_Surface objects that only have ONE texture
-assigned (you can check this using::IND_Surface::getNumTextures() method). So, it will work only
-with images that are power of two and lower than the maximum texture size allowed by your card
-(you can check this parameter using ::DirectXRender::getMaxTextureSize()). The method will return 0
-otherwise.
-
-In order to change the transformations and color attributes of the surface you have to use the DirectXRender::setTransform2d() and DirectXRender::setRainbow2d() methods before
-calling to this function. Remember that you can use IND_Entity2d object for drawing surfaces to the screen without having to use this
-advanced methods directly. This method is only useful for advanced users with really concrete purposes.
-
-Using this method is equivalent to using both of these methods:
-- IND_Entity2d::setSurface()
-- IND_Entity2d::setRegion()
-*/
 void DirectXRender::blitRegionSurface(IND_Surface *pSu,
                                       int pX,
                                       int pY,
@@ -243,38 +177,6 @@ void DirectXRender::blitRegionSurface(IND_Surface *pSu,
 	}
 }
 
-
-/*!
-\b Parameters:
-
-\arg \b pSu                         Pointer to a ::IND_Surface object
-\arg \b pX, \b pY                   Upper left coordinate of the region
-\arg \b pWidth, \b pHeight          Width and Height of the region
-\arg \b pUDisplace, \b pVDisplace   Horizontal and vertical displacement of the image
-
-\b Operation:
-
-This function returns 1 (true) if it blits directly to the screen a ::IND_Surface object tiling it both
-in X and Y coordinates.
-
-This method is useful when we want to render a tiled texture or background.
-
-Special remark: this function only works with ::IND_Surface objects that only have ONE texture
-assigned (you can check this using::IND_Surface::getNumTextures() method). So, it will work only
-with images that are power of two and lower than the maximum texture size allowed by your card
-(you can check this parameter using ::DirectXRender::getMaxTextureSize()). The method will return 0
-otherwise.
-
-In order to change the transformations and color attributes of the surface you have to use the DirectXRender::setTransform2d() and DirectXRender::setRainbow2d() methods before
-calling to this function. Remember that you can use IND_Entity2d object for drawing surfaces to the screen without having to use this
-advanced methods directly. This method is only useful for advanced users with really concrete purposes.
-
-Using this method is equivalent to using all of these methods:
-- IND_Entity2d::setSurface()
-- IND_Entity2d::setRegion()
-- IND_Entity2d::toggleWrap()
-- IND_Entity2d::setWrapDisplacement()
-*/
 bool DirectXRender::blitWrapSurface(IND_Surface *pSu,
                                     int pWidth,
                                     int pHeight,
@@ -342,46 +244,6 @@ bool DirectXRender::blitWrapSurface(IND_Surface *pSu,
 	return correctParams;
 }
 
-
-/*!
-\b Parameters:
-
-\arg \b pAn                         Pointer to a ::IND_Animation object
-\arg \b pSequence                   Number of the sequence to blit (the first sequence is 0)
-\arg \b pX, \b pY                   Upper left coordinate of the region
-\arg \b pWidth, \b pHeight          Width and Height of the region
-\arg \b pToggleWrap                 Wraping on (1) / off (0)
-\arg \b pUDisplace, \b pVDisplace   Horizontal and vertical displacement of the image
-
-\b Operation:
-
-This function blits directly to the screen a certain sequence of a ::IND_Animation object.
-
-Each frame of the animation will be blited to the screen the number of milliseconds that are
-defined in the animation script file. The sequecen starts in the frame 0 and finishes in the last frame
-specefied in the animation script. The animation will be displayed only one time, after that
-it will stop in the last frame (bliting it permanently).
-
-This functions returns -1 when the animation finishes, 0 if there is any error (for example trying to
-blit an invalid IND_Animation pointer) and 1 if is in the middle of the animation and there are no errors.
-
-In order to change the transformations
-and color attributes of the animation you have to use the DirectXRender::setTransform2d() and DirectXRender::setRainbow2d() methods before
-calling to this function. Remember that you can use IND_Entity2d object for drawing animations to the screen without having to use this
-advanced methods directly. This method is only useful for advanced users with really concrete purposes.
-
-Special remark: if you specify a region this function only works with ::IND_Surface objects that only have ONE texture
-assigned (you can check this using::IND_Surface::getNumTextures() method). So, it will work only
-with images that are power of two and lower than the maximum texture size allowed by your card
-(you can check this parameter using ::DirectXRender::getMaxTextureSize()). The method will return 0
-otherwise.
-
-Using this method is equivalent to using all of these methods:
-- IND_Entity2d::setAnimation()
-- IND_Entity2d::setRegion()
-- IND_Entity2d::toggleWrap()
-- IND_Entity2d::setWrapDisplacement()
-*/
 int DirectXRender::blitAnimation(IND_Animation *pAn, int pSequence,
                                  int pX, int pY,
                                  int pWidth, int pHeight,
@@ -449,8 +311,6 @@ int DirectXRender::blitAnimation(IND_Animation *pAn, int pSequence,
 	}
 	return mFinish;
 }
-/*@}*/
-
 
 // --------------------------------------------------------------------------------
 //							       Private methods

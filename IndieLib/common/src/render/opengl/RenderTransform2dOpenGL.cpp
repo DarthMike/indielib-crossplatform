@@ -35,28 +35,6 @@ Suite 330, Boston, MA 02111-1307 USA
 //							         Public methods
 // --------------------------------------------------------------------------------
 
-
-/*!
-\b Parameters:
-
-\arg \b pX              Upper left X coordinate of the Viewport
-\arg \b pY              Upper left Y coordinate of the Viewport
-\arg \b pWidth          Viewport width
-\arg \b pHeight         Viewport height
-
-\b Operation:
-
-This function returns 1 (true) if a 2d ViewPort is created in the specified area.
-
-The ViewPort is the drawing region. By default, IndieLib is initialized with a Viewport
-that has the same area as the window. Using this method you can define different viewports before
-calling to IND_Entity2dManager::renderEntities2d().
-
-After using this method, all the bliting methods will render the graphical objects inside the Viewport.
-Objects or blocks drawn outside the viewport will be discarded.
-
-This method returns 0 (false) if the user tries to create a Viewport outside the window area.
-*/
 bool OpenGLRender::setViewPort2d(int pX,
                                  int pY,
                                  int pWidth,
@@ -109,15 +87,6 @@ bool OpenGLRender::setViewPort2d(int pX,
 }
 
 
-/*!
-\b Parameters:
-
-\arg \b pCamera2d               ::IND_Camera2d object that defines a camera.
-
-\b Operation:
-
-This function sets a 2d camera. See the methods of ::IND_Camera2d for information on how you can manipulate the camera.
-*/
 void OpenGLRender::setCamera2d(IND_Camera2d *pCamera2d) {
 	// ----- Lookat matrix -----
 	//Rotate that axes in Z by the camera angle
@@ -177,72 +146,6 @@ void OpenGLRender::setCamera2d(IND_Camera2d *pCamera2d) {
 }
 
 
-/*!
-\defgroup Graphical_Objects Bliting Surfaces, Animations, Fonts and setting transformations directly
-\ingroup Advances
-*/
-/*@{*/
-
-/*!
-\b Parameters:
-
-\arg \b pX                          Translation in the X coordinate. The (0, 0) position is the
-                                    upper-left corner of the Viewport
-\arg \b pY                          Translation in the Y coordinate. The (0, 0) position is the
-                                    upper-left corner of the Viewport
-\arg \b pAngleX                     Rotation in the angle x in degrees
-\arg \b pAngleY                     Rotation in the angle y in degrees
-\arg \b pAngleZ                     Rotation in the angle z in degrees
-\arg \b pScaleX                     Scaling in the x coordinate. 1 for maintaining the original size
-\arg \b pScaleY                     Scaling in the y coordinate. 1 for maintaining the original size
-\arg \b pAxisCalX, \b pAxisCalY     Parameters that indicates the displacement that the graphical
-                                    object undergoes due to the HotSpot. If the HotSpot is not specified,
-                                    the value should be 0 for both of them. All the transformation
-                                    will be aplied from the upper-left corner of the object.
-\arg \b pMirrorX                    Horizontal mirroring. (true / false) = (activated / deactivated).
-\arg \b pMirrorY                    Vertical mirroring. (true / false) = (activated / deactivated).
-\arg \b pWidth                      Width of the graphical object that we are going to blit just after
-                                    applying the transformation. You shoud use the getWidth() method
-                                    of the object.
-\arg \b pHeight                     Height of the graphical object that we are going to blit just after
-                                    applying the transformation. You shoud use the getHeight() method
-                                    on the object.
-\arg \b pMatrix                     Pointer to a ::IND_Matrix matrix. In this parameter will be
-                                    returned by reference the world matrix transformation that
-                                    will be aplied to the graphical object. This matrix can be useful
-                                    for advanced programmers that need the algebraic description
-                                    of the transformation. It is possible to use the value 0
-                                    if it not necessary to have this matrix information.
-\b Operation:
-
-This function sets the 2d transformation (translation, rotation, scaling, mirroring and hotspot)
-of the following 2d graphical objects that will be rendered
-by the engine. You should use this method before calling to any of the Bliting methods.
-
-This method will apply transformations in a cummulative form to the already present transformations before calling it.
-In other words, it doesn't RESET transformations but cumulates on them. If you want to completely REPLACE transformations
-you should use the setTransform2d(IND_Matrix &pMatrix) method.
-
-Remember that you can use IND_Entity2d object for applying 2d transformations to the graphical
-objects without having to use this advanced method directly. This method is only useful for advanced
-users with really concrete purposes.
-
-Using this method is equivalent to using a combination of these methods:
-- IND_Entity2d::setAnimation()
-- IND_Entity2d::setSurface()
-- IND_Entity2d::setPrimitive2d()
-- IND_Entity2d::setFont()
-- IND_Entity2d::setPosition()
-- IND_Entity2d::setAngleXYZ()
-- IND_Entity2d::setScale()
-- IND_Entity2d::setBackCull()
-- IND_Entity2d::setMirrorX()
-- IND_Entity2d::setMirrorY()
-- IND_Entity2d::setFilter()
-- IND_Entity2d::setHotSpot()
-- IND_Entity2d::setRegion()
-- IND_Entity2d::toggleWrap()
-*/
 void OpenGLRender::setTransform2d(int pX,
                                   int pY,
                                   float pAngleX,
@@ -385,67 +288,6 @@ void OpenGLRender::setIdentityTransform2d ()  {
     glLoadMatrixf(camMatrixArray);
 }
 
-/*!
-\b Parameters:
-
-\arg \b pType                                       ::IND_Type type of the following graphical object.
-\arg \b pCull                                       Backface culling. (true / false) = (on / off). This feature can
-                                                    be deactivated when we are going to rotate the graphical object
-                                                    in the x or y coordinates. This way it is possible to draw for
-                                                    example the leaf of a tree that falls down rotating and shows
-                                                    both faces. In cases that you don't want to draw back faces
-                                                    deactivate this for faster render times.
-\arg \b pMirrorX                                    Horizontal mirroring. (true / false) = (activated / deactivated).
-\arg \b pMirrorY                                    Vertical mirroring. (true / false) = (activated / deactivated).
-\arg \b pFilter                                     Type of filter ::IND_Filter. There are two types of filters that
-                                                    can be applied to the graphical object when it suffers a rotation
-                                                    or scaling:
-                                                    - ::IND_FILTER_POINT (Nearest point filter). Less quality, but
-                                                    bigger performance. It is possible to use this one without
-                                                    quality loss in graphical objects that don't rotate or are
-                                                    affected by scaling.
-                                                    - ::IND_FILTER_LINEAR (Bilinear filter). More quality, but less
-
-                                                    performance. Used in graphical objects that be rotated or
-                                                    affected by scaling.
-\arg \b pR, pG, pB                                  Color bytes FadeR, FadeG, FadeB
-                                                    Used for fading the image to a certain color.
-                                                    For example, if we use RGB = (255, 0, 0),
-                                                    the image will progressively become red.
-\arg \b pA                                          The A byte indicates the level of transparency.
-                                                    If a value of 0 is used, the following graphical
-                                                    object will be completely transparent, as opposed
-                                                    to the value 255 that will cause the object
-                                                    to be drawn completely opaque. It is possible to use all the
-                                                    intermediate values for different levels of
-                                                    transparency.
-\arg \b pFadeR, \b pFadeG, \b pFadeB, \b pFadeA     Bytes FadeR, FadeG, FadeB
-                                                    Used for fading the image to a certain color.
-                                                    For example, if we use RGB = (255, 0, 0),
-                                                    the image will progressively become red.
-\arg \b pSo                                         Indicates the blending source,
-                                                    see (::IND_BlendingType).
-\arg \b pDs                                         Indicates the blending destiny,
-                                                    see (::IND_BlendingType).
-
-Operation:
-
-This functions sets the color and blending attributes of a graphical object. It should
-be used before any calling to the Blit methods.
-
-Important: It is not possible to use tinting and fading at the same time, the fading will overide the tinting.
-
-Remember that you can use IND_Entity2d objects for applying color
-transformations to the graphical objects without having to use this advanced method directly.
-This method is only useful for advanced users with really concrete purposes.
-
-Using this method is equivalent to using a combination of these methods:
-- IND_Entity2d::setTransparency()
-- IND_Entity2d::setFade()
-- IND_Entity2d::setTint()
-- IND_Entity2d::setBlendSource()
-- IND_Entity2d::setBlendDest()
-*/
 void OpenGLRender::setRainbow2d(IND_Type pType,
                                 bool pCull,
                                 bool pMirrorX,

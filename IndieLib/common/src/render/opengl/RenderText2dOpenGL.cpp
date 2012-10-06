@@ -35,46 +35,6 @@ Suite 330, Boston, MA 02111-1307 USA
 //							         Public methods
 // --------------------------------------------------------------------------------
 
-
-/*!
-\defgroup Graphical_Objects Bliting Surfaces, Animations, Fonts and setting transformations directly
-\ingroup Advances
-*/
-/*@{*/
-
-/*!
-\b Parameters:
-
-\arg \b pFo                                         Pointer to a ::IND_Font object
-\arg \b pText                                       Text to write to the screen
-\arg \b pX, \b pY                                   Position
-\arg \b pOffset                                     Char spacing
-\arg \b pLineSpacing                                Line spacing
-\arg \b pR, \b pG, \b pB                            R, G, B components of the tinting color
-\arg \b pA                                          Transparency level. (255 = complety opaque)
-\arg \b pFadeR, \b pFadeG, \b pFadeB, \b pFadeA     Fade to a color.
-\arg \b pFilter                                     ::IND_Filter type
-\arg \b pSo                                         Source blending, see (::IND_BlendingType).
-\arg \b pDs                                         Destiny blending, see (::IND_BlendingType).
-\arg \b pAlign                                      Text alignment, see::IND_Align.
-
-\b Operation:
-
-This function blits text directly to the screen using the ::IND_Font object.
-
-Important: you cannot change the transformation or color attributes of a font using OpenGLRender::setTransform2d() or OpenGLRender::SetRainbow().
-
-Remember that you can use IND_Entity2d object for drawing fonts to the screen without having to use this
-advanced method directly. This method is only useful for advanced users with really concrete purposes.
-
-Using this method is equivalent to using a combination of these methods:
-- IND_Entity2d::setFont()
-- IND_Entity2d::setPosition()
-- IND_Entity2d::setText()
-- IND_Entity2d::setCharSpacing()
-- IND_Entity2d::setLineSpacing()
-- IND_Entity2d::setAlign()
-*/
 void OpenGLRender::blitText(IND_Font *pFo,
                             char *pText,
                             int pX,
@@ -203,7 +163,6 @@ void OpenGLRender::blitText(IND_Font *pFo,
 
 	}
 }
-/*@}*/
 
 
 // --------------------------------------------------------------------------------

@@ -55,16 +55,6 @@ Suite 330, Boston, MA 02111-1307 USA
 //							  Initialization / Destruction
 // --------------------------------------------------------------------------------
 
-/*!
-\b Parameters:
-
-\arg \b pWindow                 Pointer to an object initializing IND_Window
-
-\b Operation:
-
-This function returns 1 (true) if the render is initialized sucessfully,
-0 (false) otherwise.
-*/
 IND_Window* DirectXRender::initRenderAndWindow(IND_WindowProperties& props) {
 	if(props._bpp <= 0 || props._height <= 0 || props._width <= 0) {
 		g_debug->header("Error resetting window: Invalid parameters provided", 2);
@@ -94,18 +84,6 @@ IND_Window* DirectXRender::initRenderAndWindow(IND_WindowProperties& props) {
 	return _window;
 }
 
-
-/*!
-\b Parameters:
-
-\arg \b pDirect3d             Pointer to a Direct3d render
-\arg \b pD3dDevice            Pointer to  the Direct3d Device
-
-\b Operation:
-
-This function returns 1 (true) if the render is initialized sucessfully,
-0 (false) otherwise.
-*/
 bool DirectXRender::init(LPDIRECT3D9 pDirect3d, IDirect3DDevice9 *pD3dDevice) {
 	g_debug->header("Initializing Direct3D", 5);
 
@@ -141,23 +119,6 @@ bool DirectXRender::init(LPDIRECT3D9 pDirect3d, IDirect3DDevice9 *pD3dDevice) {
 	return _ok;
 }
 
-
-/*!
-\b Parameters:
-
-\arg \b pTitle                  Title of the window
-\arg \b pWidth                  Width of the window
-\arg \b pHeight                 Height of the window
-\arg \b pBpp                    Quality of color (32 o 16 bits). 32 bits offers better quality. 16 bits offers better speed.
-\arg \b pVsync                  Wait for vertical sync. (1 / 0) = (on / off).
-\arg \b pFullscreen             Full screen. (1 / 0) = (on / off).
-
-\b Operation:
-
-This function returns 1 (true) if the application window resets to the attributes passed as parameters. This method
-is useful when you want to change the application window on runtime, 0 (false) if it is not possible to create
-the new window.
-*/
 bool DirectXRender::reset(IND_WindowProperties& props) {
 	if(props._bpp <= 0 || props._height <= 0 || props._width <= 0) {
 		g_debug->header("Error resetting window: Invalid parameters provided", 2);
@@ -173,13 +134,6 @@ bool DirectXRender::reset(IND_WindowProperties& props) {
 	return 1;
 }
 
-
-/*!
-\b Operation:
-
-This function returns 1 (true) if the application window toggles to fullscreen or windowed, 0 (false) if it is not possible
-to create the new window.
-*/
 bool DirectXRender::toggleFullScreen() {
 	bool wasFullScreen = _window->isFullScreen();
 	
@@ -239,11 +193,6 @@ void DirectXRender::getNumDiscardedObjectsString(char* pBuffer)      {
 		IND_Math::itoa(_numDiscardedObjects, pBuffer);
 }
 
-/*!
-\b Operation:
-
-This function frees the manager and all the objects that it contains.
-*/
 void DirectXRender::end() {
 	if (_ok) {
 		g_debug->header("Finalizing Direct3D", 5);

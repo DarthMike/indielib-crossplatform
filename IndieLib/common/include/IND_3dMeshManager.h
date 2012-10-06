@@ -36,14 +36,14 @@ class IND_Render;
 //									IND_3dMeshManager
 // --------------------------------------------------------------------------------
 
-/*!
-\defgroup IND_3dMeshManager IND_3dMeshManager
-\ingroup Managers
+/**
+@defgroup IND_3dMeshManager IND_3dMeshManager
+@ingroup Managers
 Manager of IND_3dMesh objects. Click in ::IND_3dMeshManager to see all the methods of this class.
 */
 /*@{*/
 
-/*!
+/**
 This class stores 3d meshes (IND_3dMesh) that can be inserted into a IND_Entity3d and rendered to the screen using
 IND_Entity3dManager::renderEntities3d().
 */

@@ -37,14 +37,14 @@ class IND_Surface;
 //									IND_Animation
 // --------------------------------------------------------------------------------
 
-/*!
-\defgroup IND_Animation IND_Animation
-\ingroup Objects
+/**
+@defgroup IND_Animation IND_Animation
+@ingroup Objects
 Class for storing sequences of frames (animations). Click in ::IND_Animation to see all the methods of this class.
 */
 /*@{*/
 
-/*!
+/**
 IND_Animation objects are loaded trough the methods of IND_AnimationManager. In order to load
 an animation it is necessary to create an animation script in xml format. The structure of the script is quite
 easy to understand.
@@ -73,24 +73,24 @@ Animation
 }
 \endcode
 
-The  \b tokens or <b>keywords</b> of a \b IndieLib animation file are:
+The  @b tokens or <b>keywords</b> of a @b IndieLib animation file are:
 
 <b><< Relative to frames >></b>
 
-\arg <b><frames></b>                    Frame section
-\arg <b><name></b>                      Name assigned to the frames (later it will be used in the sequences).
-\arg <b><file></b>                      Path to the image file.
-\arg <b><offset_x></b>                  X offset of the frame.    (Optional, 0 by default).
-\arg <b><offset_y></b>                  Y offset of the frame.    (Optional, 0 by default).
+@arg <b><frames></b>                    Frame section
+@arg <b><name></b>                      Name assigned to the frames (later it will be used in the sequences).
+@arg <b><file></b>                      Path to the image file.
+@arg <b><offset_x></b>                  X offset of the frame.    (Optional, 0 by default).
+@arg <b><offset_y></b>                  Y offset of the frame.    (Optional, 0 by default).
 
 <b><< Relative to sequences >></b>
 
-\arg <b><sequences></b>             Indicates that the sequences are going to be defined in the section between brackets.
-\arg <b><name></b>                  Name assigned to the sequence.
-\arg <b><frame name></b>            Name of the frame that we are refering to. Here we have to use one of the names we assigned to the loaded frames.
-\arg <b><time></b>                  Time, in milliseconds, that the frame will be displayed. (Optional, 150 by default).
+@arg <b><sequences></b>             Indicates that the sequences are going to be defined in the section between brackets.
+@arg <b><name></b>                  Name assigned to the sequence.
+@arg <b><frame name></b>            Name of the frame that we are refering to. Here we have to use one of the names we assigned to the loaded frames.
+@arg <b><time></b>                  Time, in milliseconds, that the frame will be displayed. (Optional, 150 by default).
 
-\b Note: "//"  can be used before a phrase for writing comments.
+@b Note: "//"  can be used before a phrase for writing comments.
 
 \image html surfa1.jpg Animations example in IndieLib.
 */

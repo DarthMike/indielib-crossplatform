@@ -40,14 +40,14 @@ class IND_Render;
 //									IND_LightManager
 // --------------------------------------------------------------------------------
 
-/*!
-\defgroup IND_LightManager IND_LightManager
-\ingroup Managers
+/**
+@defgroup IND_LightManager IND_LightManager
+@ingroup Managers
 Manager of IND_Light objects. Click in ::IND_LightManager to see all the methods of this class.
 */
 /*@{*/
 
-/*!
+/**
 This class manages the lights used in 3d scenes. These light don't affect IND_Surface objects
 or other 2d graphical objects.
 

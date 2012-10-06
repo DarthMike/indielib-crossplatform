@@ -40,14 +40,14 @@ class IND_Animation;
 //									IND_AnimationManager
 // --------------------------------------------------------------------------------
 
-/*!
-\defgroup IND_AnimationManager IND_AnimationManager
-\ingroup Managers
+/**
+@defgroup IND_AnimationManager IND_AnimationManager
+@ingroup Managers
 Manager of ::IND_Animation objects. Click in ::IND_AnimationManager to see all the methods of this class.
 */
 /*@{*/
 
-/*!
+/**
 Manager of ::IND_Animation objects. Used for storing these type of objects.
 */
 class LIB_EXP IND_AnimationManager {

@@ -32,15 +32,15 @@ struct SDL_Window;
 //									  IND_Window
 // --------------------------------------------------------------------------------
 
-/*!
-\defgroup IND_Window IND_Window
-\ingroup Main
+/**
+@defgroup IND_Window IND_Window
+@ingroup Main
 Class for creating the window, click in ::IND_Window to see all the methods of this class.
 */
 
 /*@{*/
 
-/*!
+/**
 This structure defines definition parameters when creating a window or modyfing it's properties
 */
 typedef struct IND_WindowProperties {
@@ -61,7 +61,7 @@ typedef struct IND_WindowProperties {
 }IND_WindowProperties;
 
 
-/*!
+/**
 This class manages the window where the render will be initialized.
 */
 class LIB_EXP IND_Window {
@@ -75,7 +75,7 @@ public:
 	}
 
 	//! IsOk
-	/*!
+	/**
 	This function returns 1 (true) if the manager is correctly initialized.
 	*/
 	bool    isOK()           const {

@@ -47,14 +47,14 @@ class IND_Math;
 //									IND_Entity2dManager
 // --------------------------------------------------------------------------------
 
-/*!
-\defgroup IND_Entity2dManager IND_Entity2dManager
-\ingroup EntityManagers
+/**
+@defgroup IND_Entity2dManager IND_Entity2dManager
+@ingroup EntityManagers
 Manager of ::IND_Entity2d objects. Click in ::IND_Entity2dManager to see all the methods of this class.
 */
 /*@{*/
 
-/*!
+/**
 Manager of ::IND_Entity2d objects. Used for storing these type of objects.
 
 Other uses of this class:
@@ -83,8 +83,8 @@ public:
 	bool            add(int pLayer, IND_Entity2d *pNewEntity2d);
 	bool            remove(IND_Entity2d *pEn);
 
-	/*!
-	\b Operation:
+	/**
+	@b Operation:
 	
 	This function renders (draws on the screen) all the entities of the manager.
 	
@@ -96,8 +96,8 @@ public:
 	void     renderEntities2d(int pLayer);
 	void     renderCollisionAreas(BYTE pR, BYTE pG, BYTE pB, BYTE pA);
 	void     renderCollisionAreas(int pLayer, BYTE pR, BYTE pG, BYTE pB, BYTE pA);
-	/*!
-	\b Operation:
+	/**
+	@b Operation:
 	
 	This function renders (blits on the screen) all the grid areas of the entities.
 	

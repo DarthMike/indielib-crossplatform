@@ -47,13 +47,13 @@ Suite 330, Boston, MA 02111-1307 USA
 //							  Initialization / Destruction
 // --------------------------------------------------------------------------------
 
-/*!
-\b parameters:
+/**
+@b parameters:
 
-\arg \b pImageManager           Pointer to IND_ImageManager correctly initialized
-\arg \b pRender                 Pointer to IND_Render correctly initialized
+@arg @b pImageManager           Pointer to IND_ImageManager correctly initialized
+@arg @b pRender                 Pointer to IND_Render correctly initialized
 
-\b Operation:
+@b Operation:
 
 This function returns 1 (true) when the manager is correctly initialized.
 It should be called before using any method.
@@ -103,8 +103,8 @@ bool IND_SurfaceManager::init(IND_ImageManager *pImageManager, IND_Render *pRend
 }
 
 
-/*!
-\b Operation:
+/**
+@b Operation:
 
 This function frees the manager and all the objects that it contains.
 */
@@ -125,15 +125,15 @@ void IND_SurfaceManager::end() {
 //									 Public methods
 // --------------------------------------------------------------------------------
 
-/*!
-\b parameters:
+/**
+@b parameters:
 
-\arg \b pNewSurface             Pointer to a new surface object
-\arg \b pName                   Name of the file that contains the image
-\arg \b pType                   Type of surface (see ::IND_Type)
-\arg \b pQuality                Quality of the surface (see ::IND_Quality)
+@arg @b pNewSurface             Pointer to a new surface object
+@arg @b pName                   Name of the file that contains the image
+@arg @b pType                   Type of surface (see ::IND_Type)
+@arg @b pQuality                Quality of the surface (see ::IND_Quality)
 
-\b Operation:
+@b Operation:
 
 This function returns 1 (true) if the parameter surface object exists and it is added
 by loading the image directly from the file.
@@ -163,15 +163,15 @@ bool IND_SurfaceManager::add(IND_Surface    *pNewSurface,
 }
 
 
-/*!
-\b parameters:
+/**
+@b parameters:
 
-\arg \b pNewSurface             Pointer to a new surface object
-\arg \b pImage                  Pointer to a ::IND_Image object
-\arg \b pType                   Type of surface (see ::IND_Type)
-\arg \b pQuality                Quality of surface (see ::IND_Quality)
+@arg @b pNewSurface             Pointer to a new surface object
+@arg @b pImage                  Pointer to a ::IND_Image object
+@arg @b pType                   Type of surface (see ::IND_Type)
+@arg @b pQuality                Quality of surface (see ::IND_Quality)
 
-\b Operation:
+@b Operation:
 
 This function returns 1 (true) if the parameter surface object exists and it is added
 to the manager, loading the image directly from a ::IND_Image object.
@@ -188,17 +188,17 @@ bool IND_SurfaceManager::add(IND_Surface    *pNewSurface,
 }
 
 
-/*!
-\b parameters:
+/**
+@b parameters:
 
-\arg \b pNewSurface             Pointer to a new surface object
-\arg \b pName                   Name of the file that contains the image
-\arg \b pType                   Type of surface (see ::IND_Type)
-\arg \b pQuality                Quality of the surface (see ::IND_Quality)
-\arg <b>pR, pG, pB</b>          Color from which the colorkey will be applied, this areas will become transparent.
+@arg @b pNewSurface             Pointer to a new surface object
+@arg @b pName                   Name of the file that contains the image
+@arg @b pType                   Type of surface (see ::IND_Type)
+@arg @b pQuality                Quality of the surface (see ::IND_Quality)
+@arg <b>pR, pG, pB</b>          Color from which the colorkey will be applied, this areas will become transparent.
 
 
-\b Operation:
+@b Operation:
 
 This function returns 1 (true) if the parameter surface object exists and it is added
 satisfactory loading the image directly from the file and all the colors equal to RGB=(pR, pG, pB), will
@@ -235,16 +235,16 @@ bool IND_SurfaceManager::add(IND_Surface    *pNewSurface,
 }
 
 
-/*!
-\b parameters:
+/**
+@b parameters:
 
-\arg \b pNewSurface             Pointer to a new surface object
-\arg \b pName                   Name of the file that contains the image
-\arg \b pBlockSize              Width of the blocks
-\arg \b pType                   Type of surface (see ::IND_Type)
-\arg \b pQuality                Quality of surface (see ::IND_Quality)
+@arg @b pNewSurface             Pointer to a new surface object
+@arg @b pName                   Name of the file that contains the image
+@arg @b pBlockSize              Width of the blocks
+@arg @b pType                   Type of surface (see ::IND_Type)
+@arg @b pQuality                Quality of surface (see ::IND_Quality)
 
-\b Operation:
+@b Operation:
 
 This function returns 1 (true) if the parameter surface object exists and it is added satisfactory
 to the manager loading the image directly from a file. This method is useful for creating scrolls because we
@@ -271,16 +271,16 @@ bool IND_SurfaceManager::add(IND_Surface    *pNewSurface,
 }
 
 
-/*!
-\b parameters:
+/**
+@b parameters:
 
-\arg \b pNewSurface             Pointer to a new surface object
-\arg \b pImage                  Pointer to a  ::IND_Image object
-\arg \b pBlockSize              Width of the blocks.
-\arg \b pType                   Type of surface (see ::IND_Type)
-\arg \b pQuality                Quality of surface (see ::IND_Quality)
+@arg @b pNewSurface             Pointer to a new surface object
+@arg @b pImage                  Pointer to a  ::IND_Image object
+@arg @b pBlockSize              Width of the blocks.
+@arg @b pType                   Type of surface (see ::IND_Type)
+@arg @b pQuality                Quality of surface (see ::IND_Quality)
 
-\b Operation:
+@b Operation:
 
 This function returns 1 (true) if the parameter surface object exists and it is added
 to the manager loading the image directly from a file. This method is useful for creating scrolls because we
@@ -298,17 +298,17 @@ bool IND_SurfaceManager::add(IND_Surface    *pNewSurface,
 }
 
 
-/*!
-\b parameters:
+/**
+@b parameters:
 
-\arg \b pNewSurface             Pointer to a new surface object
-\arg \b pName                   Name of the file that contains the image
-\arg \b pBlockSize              Width of the blocks
-\arg \b pType                   Type of surface (see ::IND_Type)
-\arg \b pQuality                Quality of surface (see ::IND_Quality)
-\arg <b>pR, pG, pB</b>          Color from which the colorkey will be applied, this areas will become transparent.
+@arg @b pNewSurface             Pointer to a new surface object
+@arg @b pName                   Name of the file that contains the image
+@arg @b pBlockSize              Width of the blocks
+@arg @b pType                   Type of surface (see ::IND_Type)
+@arg @b pQuality                Quality of surface (see ::IND_Quality)
+@arg <b>pR, pG, pB</b>          Color from which the colorkey will be applied, this areas will become transparent.
 
-\b Operation:
+@b Operation:
 
 This function returns 1 (true) if the parameter surface object exists and it is added satisfactory
 to the manager loading the image directly from a file. This method is useful for creating scrolls because we
@@ -345,13 +345,13 @@ bool IND_SurfaceManager::add(IND_Surface    *pNewSurface,
 	return 1;
 }
 
-/*!
-\b parameters:
+/**
+@b parameters:
 
-\arg \b pNewSurface             Pointer to a new surface object
-\arg \b pSurfaceToClone         Surface we want to clone
+@arg @b pNewSurface             Pointer to a new surface object
+@arg @b pSurfaceToClone         Surface we want to clone
 
-\b Operation:
+@b Operation:
 
 This function returns 1 (true) if the parameter surface object exists and a new surface is created
 cloned from a previous existing one. The new surface will share the texture data from the "father"
@@ -394,12 +394,12 @@ bool IND_SurfaceManager::clone(IND_Surface *pNewSurface, IND_Surface *pSurfaceTo
 }
 
 
-/*!
-\b parameters:
+/**
+@b parameters:
 
-\arg \b pSu             Pointer to a new surface object
+@arg @b pSu             Pointer to a new surface object
 
-\b Operation:
+@b Operation:
 
 This function returns 1 (true) if the parameter surface object exists and it is satisfactory deleted from the manager.
 */
@@ -519,7 +519,7 @@ bool IND_SurfaceManager::addMain(IND_Surface    *pNewSurface,
 /*
 ==================
 This function returns 1 (true) if the parameter surface object exists and it returns in
- \b pAxisCalX and \b pAxisCalY the values necessary to specify the hotspot when we
+ @b pAxisCalX and @b pAxisCalY the values necessary to specify the hotspot when we
  want to call the function IND_Render::SetTransform() (before drawing the surface).
 
 This function is used to change the point of reference of the image. The point of reference
@@ -527,7 +527,7 @@ This function is used to change the point of reference of the image. The point o
  are applied. This way we can originate the rotation of asurface over its center, over
  one of its vertexes or over any intermediate location.
 
-To seat the hotspot we \b usepAxisX and \b pAxisY that have a range from 0 to 1, and refer
+To seat the hotspot we @b usepAxisX and @b pAxisY that have a range from 0 to 1, and refer
 respectively to the horizontal position and vertical position of the surface. So, (0.5f, 0.5f)
 is the center of the image and  (1.0f, 0.0f) is the top right corner, etc.
 

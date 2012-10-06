@@ -160,15 +160,15 @@ public:
 //									 IND_Input
 // --------------------------------------------------------------------------------
 
-/*!
-\defgroup IND_Input IND_Input
-\ingroup Input
+/**
+@defgroup IND_Input IND_Input
+@ingroup Input
 IND_Input class for having input from keyboard and mouse. Click in IND_Input to see all the methods of this class.
 */
 /*@{*/
 
-/*!
-\b IND_Input is a wrapper class of SDL input functions for giving IndieLib the possibility of
+/**
+@b IND_Input is a wrapper class of SDL input functions for giving IndieLib the possibility of
 keyboard and mouse Input.
 */
 class LIB_EXP IND_Input {

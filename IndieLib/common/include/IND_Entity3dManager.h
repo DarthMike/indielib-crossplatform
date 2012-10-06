@@ -38,14 +38,14 @@ class IND_3dMeshManager;
 //									IND_Entity3dManager
 // --------------------------------------------------------------------------------
 
-/*!
-\defgroup IND_Entity3dManager IND_Entity3dManager
-\ingroup EntityManagers
+/**
+@defgroup IND_Entity3dManager IND_Entity3dManager
+@ingroup EntityManagers
 Manager of ::IND_Entity3d objects. Click in ::IND_Entity3dManager to see all the methods of this class.
 */
 /*@{*/
 
-/*!
+/**
 Manager of ::IND_Entity3d objects. Used for storing these type of objects.
 
 Other uses of this class:

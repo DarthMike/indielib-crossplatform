@@ -35,9 +35,9 @@ Suite 330, Boston, MA 02111-1307 USA
 //									   IND_Camera
 // --------------------------------------------------------------------------------
 
-/*!
-\defgroup Camera2d Camera2d
-\ingroup Cameras
+/**
+@defgroup Camera2d Camera2d
+@ingroup Cameras
 This is the camera for 2d scenarios. Using this class you can control all the parameters of a 2d camera. You
 can have as many cameras as you want. Use ::IND_Render::SetCamera2d() method before drawing in order
 to choose the camera you want to use.

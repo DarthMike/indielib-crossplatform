@@ -591,7 +591,7 @@ bool IND_Input::quit() {
 }
 
 /**
- * Returns true if the key passed as \b pKey parameter is pressed.
+ * Returns true if the key passed as @b pKey parameter is pressed.
  * @param pKey						Key that we want to check. See ::IND_Key.
  */
 bool IND_Input::onKeyPress(IND_Key pKey) {
@@ -599,7 +599,7 @@ bool IND_Input::onKeyPress(IND_Key pKey) {
 }
 
 /**
- * Returns true if the key passed as \b pKey parameter is released.
+ * Returns true if the key passed as @b pKey parameter is released.
  * @param pKey						Key that we want to check. See ::IND_Key.
  */
 bool IND_Input::onKeyRelease(IND_Key pKey) {
@@ -607,7 +607,7 @@ bool IND_Input::onKeyRelease(IND_Key pKey) {
 }
 
 /**
- * Returns true if the key passed as \b pKey parameter is being pressed.
+ * Returns true if the key passed as @b pKey parameter is being pressed.
  * @param pKey						Key that we want to check. See ::IND_Key.
  */
 bool IND_Input::isKeyPressed(IND_Key pKey) {
@@ -709,7 +709,7 @@ bool IND_Input::isMouseButtonPressed(IND_MouseButton pMouseButton) {
 }
 
 /**
- * Returns true if the mouse button passed as \b pMouseButton parameter has been pressed \b pTime milliseconds.
+ * Returns true if the mouse button passed as @b pMouseButton parameter has been pressed @b pTime milliseconds.
  * @param pMouseButton					Mouse button that we want to check. See ::IND_MouseButton.
  * @param pTime						Time that has to pass in milliseconds.
  */

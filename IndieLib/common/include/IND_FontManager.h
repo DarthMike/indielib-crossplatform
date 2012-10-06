@@ -35,27 +35,27 @@ class IND_Font;
 //									 IND_FontManager
 // --------------------------------------------------------------------------------
 
-/*!
-\defgroup IND_FontManager IND_FontManager
-\ingroup Managers
+/**
+@defgroup IND_FontManager IND_FontManager
+@ingroup Managers
 Manager of IND_Font objects. Click in ::IND_FontManager to see all the methods of this class.
 */
 /*@{*/
 
-/*!
+/**
 This class manages the fonts objects ::IND_Font. Fonts are used to write texts on the screen.
 
 (::IND_Font) manages the fonts
-created with the \b MudFont program. In order to use these fonts, you will need to create a font
-using the special modified MudFont editor for \b IndieLib (see tools section in
+created with the @b MudFont program. In order to use these fonts, you will need to create a font
+using the special modified MudFont editor for @b IndieLib (see tools section in
 http://www.indielib.com). Once the font has been created,
 it can be added to the manager using IND_FontManager::add().
 
-\b Note: The version of \b MudFont that uses \b IndieLib is a modification of the original
-source code. You can find it in the \b tools section in the website. <i>(actually, only the
-output has been modified in order that \b IndieLib can read it) </i>
+@b Note: The version of @b MudFont that uses @b IndieLib is a modification of the original
+source code. You can find it in the @b tools section in the website. <i>(actually, only the
+output has been modified in order that @b IndieLib can read it) </i>
 
-The \b original MudFont program can be found in http://www.midwinter.com/~lch/programming/mudgefont/
+The @b original MudFont program can be found in http://www.midwinter.com/~lch/programming/mudgefont/
 
 \image html mudge.png Generate your own fonts quickly with MudFont and use them directly in IndieLib (IND_Font)
 */

@@ -38,15 +38,15 @@ class IND_Font;
 //									 IND_Entity2d
 // --------------------------------------------------------------------------------
 
-/*!
-\defgroup IND_Entity2d IND_Entity2d
-\ingroup EntityManagers
+/**
+@defgroup IND_Entity2d IND_Entity2d
+@ingroup EntityManagers
 2d entity class managed by IND_Entity2dManager for drawing graphical objects into the screen and manipulating their attributes, click in ::IND_Entity2d to see all the methods of this class.
 */
 /*@{*/
 
-/*!
-\b IND_Entity2d is an 2d entity object of the class ::IND_Entity2dManager. This class, together with ::IND_Entity3d (object
+/**
+@b IND_Entity2d is an 2d entity object of the class ::IND_Entity2dManager. This class, together with ::IND_Entity3d (object
 of ::IND_Entity3dManager), are the most important classes of IndieLib.
 
 An entity is an object that can have a graphical object associated to it. Using the methods of this class you will be able to change

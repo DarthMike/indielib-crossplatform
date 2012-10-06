@@ -34,15 +34,15 @@ class IND_SurfaceManager;
 //									 IND_Entity3d
 // --------------------------------------------------------------------------------
 
-/*!
-\defgroup IND_Entity3d IND_Entity3d
-\ingroup EntityManagers
+/**
+@defgroup IND_Entity3d IND_Entity3d
+@ingroup EntityManagers
 3d entity class for drawing graphical objects into the screen and manipulating their attributes, click in ::IND_Entity3d to see all the methods of this class.
 */
 /*@{*/
 
-/*!
-\b ::IND_Entity3d is an 3d entity object of the class ::IND_Entity3dManager. This class, together with ::IND_Entity2d (object
+/**
+@b ::IND_Entity3d is an 3d entity object of the class ::IND_Entity3dManager. This class, together with ::IND_Entity2d (object
 of ::IND_Entity2dManager), are the most important classes of IndieLib.
 
 An entity is an object that can have a graphical object associated to it. In this case this graphical objects

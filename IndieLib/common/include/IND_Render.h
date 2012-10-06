@@ -67,14 +67,14 @@ class IND_Camera3d;
 //									  IND_Render
 // --------------------------------------------------------------------------------
 
-/*!
-\defgroup IND_Render IND_Render
-\ingroup Main
+/**
+@defgroup IND_Render IND_Render
+@ingroup Main
 Render class for setting up the render area, click in ::IND_Render to see all the methods of this class.
 */
 /*@{*/
 
-/*!
+/**
 The methods of this class are used for preparing the render area, viewport, etc.
 It wraps the actual rendering code used (DirectX, OpenGL...)
 */
@@ -420,7 +420,7 @@ public:
 	//! This function returns a pointer to the IND_Window object where the render has been created
 	IND_Window *getWindow();
 	//! This function returns in miliseconds the time that took the previous frame.
-	/*!
+	/**
 	It is very useful to indicate transformations along the timeline.
 
 	For example, making Position_X += Speed * Render.getFrameTime() / 1000.0f we would get

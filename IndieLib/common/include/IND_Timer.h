@@ -31,15 +31,15 @@ class PrecissionTimer;
 //									   IND_Timer
 // --------------------------------------------------------------------------------
 
-/*!
-\defgroup IND_Timer IND_Timer
-\ingroup Timer
+/**
+@defgroup IND_Timer IND_Timer
+@ingroup Timer
 IND_Timer class for measuring the time. Click in IND_Timer to see all the methods of this class.
 */
 /*@{*/
 
-/*!
-\b IND_Timer is an object that will help you to measure the passing of time. Click in IND_Timer to see all the methods of this class.
+/**
+@b IND_Timer is an object that will help you to measure the passing of time. Click in IND_Timer to see all the methods of this class.
 */
 class LIB_EXP IND_Timer {
 public:

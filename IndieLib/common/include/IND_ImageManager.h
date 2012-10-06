@@ -40,14 +40,14 @@ struct FIBITMAP;
 //									IND_ImageManager
 // --------------------------------------------------------------------------------
 
-/*!
-\defgroup IND_ImageManager IND_ImageManager
-\ingroup Managers
+/**
+@defgroup IND_ImageManager IND_ImageManager
+@ingroup Managers
 Manager of IND_Image objects. Click in ::IND_ImageManager to see all the methods of this class.
 */
 /*@{*/
 
-/*!
+/**
 This manager that stores IND_Image objects works as a mediator between the image (bitmap) loaded
 in memory and the IND_Surface object which finally appears in the screen. The IND_Image objects
 which are stored in this class can not be rendered directly to the screen.

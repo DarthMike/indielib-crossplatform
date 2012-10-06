@@ -27,15 +27,15 @@ Suite 330, Boston, MA 02111-1307 USA
 //									  IndieLib
 // --------------------------------------------------------------------------------
 
-/*!
-\defgroup IndieLib_Init_End Init / End
-\ingroup Init_End
+/**
+@defgroup IndieLib_Init_End Init / End
+@ingroup Init_End
 IndieLib class for initializing and ending the engine.
 */
 /*@{*/
 
-/*!
-\b IndieLib initialization and destruction.
+/**
+@b IndieLib initialization and destruction.
 */
 class LIB_EXP IndieLib {
 public:

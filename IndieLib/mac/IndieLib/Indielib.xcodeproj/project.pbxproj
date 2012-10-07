@@ -9,75 +9,25 @@
 /* Begin PBXBuildFile section */
 		E72BA060158CC7BB0003C431 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E72BA05F158CC7BB0003C431 /* OpenGL.framework */; };
 		E75EB0D5159CADF800693F41 /* tinystr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAA49159CADEF00693F41 /* tinystr.cpp */; };
-		E75EB0D6159CADF800693F41 /* tinystr.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAA4A159CADEF00693F41 /* tinystr.h */; };
 		E75EB0D7159CADF800693F41 /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAA4B159CADEF00693F41 /* tinyxml.cpp */; };
-		E75EB0D8159CADF800693F41 /* tinyxml.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAA4C159CADEF00693F41 /* tinyxml.h */; };
 		E75EB0D9159CADF800693F41 /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAA4D159CADEF00693F41 /* tinyxmlerror.cpp */; };
 		E75EB0DA159CADF800693F41 /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAA4E159CADEF00693F41 /* tinyxmlparser.cpp */; };
 		E75EB0DB159CADF800693F41 /* base64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAA51159CADEF00693F41 /* base64.cpp */; };
-		E75EB0DC159CADF800693F41 /* base64.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAA52159CADEF00693F41 /* base64.h */; };
-		E75EB0DD159CADF800693F41 /* Tmx.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAA53159CADEF00693F41 /* Tmx.h */; };
 		E75EB0DE159CADF800693F41 /* TmxImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAA54159CADEF00693F41 /* TmxImage.cpp */; };
-		E75EB0DF159CADF800693F41 /* TmxImage.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAA55159CADEF00693F41 /* TmxImage.h */; };
 		E75EB0E0159CADF800693F41 /* TmxLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAA56159CADEF00693F41 /* TmxLayer.cpp */; };
-		E75EB0E1159CADF800693F41 /* TmxLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAA57159CADEF00693F41 /* TmxLayer.h */; };
 		E75EB0E2159CADF800693F41 /* TmxMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAA58159CADEF00693F41 /* TmxMap.cpp */; };
-		E75EB0E3159CADF800693F41 /* TmxMap.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAA59159CADEF00693F41 /* TmxMap.h */; };
-		E75EB0E4159CADF800693F41 /* TmxMapTile.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAA5A159CADEF00693F41 /* TmxMapTile.h */; };
 		E75EB0E5159CADF800693F41 /* TmxObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAA5B159CADEF00693F41 /* TmxObject.cpp */; };
-		E75EB0E6159CADF900693F41 /* TmxObject.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAA5C159CADEF00693F41 /* TmxObject.h */; };
 		E75EB0E7159CADF900693F41 /* TmxObjectGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAA5D159CADEF00693F41 /* TmxObjectGroup.cpp */; };
-		E75EB0E8159CADF900693F41 /* TmxObjectGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAA5E159CADEF00693F41 /* TmxObjectGroup.h */; };
-		E75EB0E9159CADF900693F41 /* TmxPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAA60159CADEF00693F41 /* TmxPoint.h */; };
 		E75EB0EA159CADF900693F41 /* TmxPolygon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAA61159CADEF00693F41 /* TmxPolygon.cpp */; };
-		E75EB0EB159CADF900693F41 /* TmxPolygon.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAA62159CADEF00693F41 /* TmxPolygon.h */; };
 		E75EB0EC159CADF900693F41 /* TmxPolyline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAA63159CADEF00693F41 /* TmxPolyline.cpp */; };
-		E75EB0ED159CADF900693F41 /* TmxPolyline.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAA64159CADEF00693F41 /* TmxPolyline.h */; };
 		E75EB0EE159CADF900693F41 /* TmxPropertySet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAA65159CADEF00693F41 /* TmxPropertySet.cpp */; };
-		E75EB0EF159CADF900693F41 /* TmxPropertySet.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAA66159CADEF00693F41 /* TmxPropertySet.h */; };
 		E75EB0F0159CADF900693F41 /* TmxTile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAA67159CADEF00693F41 /* TmxTile.cpp */; };
-		E75EB0F1159CADF900693F41 /* TmxTile.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAA68159CADEF00693F41 /* TmxTile.h */; };
 		E75EB0F2159CADF900693F41 /* TmxTileset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAA69159CADEF00693F41 /* TmxTileset.cpp */; };
-		E75EB0F3159CADF900693F41 /* TmxTileset.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAA6A159CADEF00693F41 /* TmxTileset.h */; };
 		E75EB0F4159CADF900693F41 /* TmxUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAA6B159CADEF00693F41 /* TmxUtil.cpp */; };
-		E75EB0F5159CADF900693F41 /* TmxUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAA6C159CADEF00693F41 /* TmxUtil.h */; };
-		E75EB123159CADF900693F41 /* CollisionParser.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAA9F159CADEF00693F41 /* CollisionParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E75EB124159CADF900693F41 /* Defines.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAAA0159CADEF00693F41 /* Defines.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E75EB125159CADF900693F41 /* ImageCutter.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAAA1159CADEF00693F41 /* ImageCutter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E75EB126159CADF900693F41 /* IND_3dMesh.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAAA2159CADEF00693F41 /* IND_3dMesh.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E75EB127159CADF900693F41 /* IND_3dMeshManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAAA3159CADEF00693F41 /* IND_3dMeshManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E75EB128159CADF900693F41 /* IND_Animation.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAAA4159CADEF00693F41 /* IND_Animation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E75EB129159CADF900693F41 /* IND_AnimationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAAA5159CADEF00693F41 /* IND_AnimationManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E75EB12A159CADF900693F41 /* IND_Camera2d.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAAA6159CADEF00693F41 /* IND_Camera2d.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E75EB12C159CADF900693F41 /* IND_Entity2d.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAAA8159CADEF00693F41 /* IND_Entity2d.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E75EB12D159CADF900693F41 /* IND_Entity2dManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAAA9159CADEF00693F41 /* IND_Entity2dManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E75EB130159CADF900693F41 /* IND_Font.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAAAC159CADEF00693F41 /* IND_Font.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E75EB131159CADF900693F41 /* IND_FontManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAAAD159CADEF00693F41 /* IND_FontManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E75EB132159CADF900693F41 /* IND_Frame.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAAAE159CADEF00693F41 /* IND_Frame.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E75EB133159CADF900693F41 /* IND_Image.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAAAF159CADEF00693F41 /* IND_Image.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E75EB134159CADF900693F41 /* IND_ImageManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAAB0159CADEF00693F41 /* IND_ImageManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E75EB135159CADF900693F41 /* IND_Input.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAAB1159CADEF00693F41 /* IND_Input.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E75EB138159CADF900693F41 /* IND_Math.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAAB4159CADEF00693F41 /* IND_Math.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E75EB139159CADF900693F41 /* IND_Render.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAAB5159CADEF00693F41 /* IND_Render.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E75EB13A159CADF900693F41 /* IND_Sequence.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAAB6159CADEF00693F41 /* IND_Sequence.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E75EB13B159CADF900693F41 /* IND_Surface.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAAB7159CADEF00693F41 /* IND_Surface.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E75EB13C159CADF900693F41 /* IND_SurfaceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAAB8159CADEF00693F41 /* IND_SurfaceManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E75EB13D159CADF900693F41 /* IND_Timer.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAAB9159CADEF00693F41 /* IND_Timer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E75EB13E159CADF900693F41 /* IND_TmxMap.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAABA159CADEF00693F41 /* IND_TmxMap.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E75EB13F159CADF900693F41 /* IND_TmxMapManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAABB159CADEF00693F41 /* IND_TmxMapManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E75EB140159CADF900693F41 /* IND_Vector3.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAABC159CADEF00693F41 /* IND_Vector3.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E75EB141159CADF900693F41 /* IND_Window.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAABD159CADEF00693F41 /* IND_Window.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E75EB142159CADF900693F41 /* Indie.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAABE159CADEF00693F41 /* Indie.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E75EB143159CADF900693F41 /* IndieLib.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAABF159CADEF00693F41 /* IndieLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E75EB144159CADF900693F41 /* IndiePlatforms.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAAC0159CADEF00693F41 /* IndiePlatforms.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E75EB145159CADF900693F41 /* XMeshStructures.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAAC1159CADEF00693F41 /* XMeshStructures.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E75EB146159CADF900693F41 /* CollisionParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAAC3159CADEF00693F41 /* CollisionParser.cpp */; };
 		E75EB147159CADF900693F41 /* DebugApi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAAC4159CADEF00693F41 /* DebugApi.cpp */; };
-		E75EB148159CADF900693F41 /* DebugApi.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAAC5159CADEF00693F41 /* DebugApi.h */; };
 		E75EB149159CADF900693F41 /* FreeImageHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAAC6159CADEF00693F41 /* FreeImageHelper.cpp */; };
-		E75EB14A159CADF900693F41 /* FreeImageHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAAC7159CADEF00693F41 /* FreeImageHelper.h */; };
 		E75EB14B159CADF900693F41 /* Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAAC8159CADEF00693F41 /* Global.cpp */; };
-		E75EB14C159CADF900693F41 /* Global.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAAC9159CADEF00693F41 /* Global.h */; };
 		E75EB14D159CADF900693F41 /* ImageCutter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAACA159CADEF00693F41 /* ImageCutter.cpp */; };
 		E75EB150159CADF900693F41 /* IND_Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAACD159CADEF00693F41 /* IND_Animation.cpp */; };
 		E75EB151159CADF900693F41 /* IND_AnimationManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAACE159CADEF00693F41 /* IND_AnimationManager.cpp */; };
@@ -98,17 +48,10 @@
 		E75EB165159CADF900693F41 /* IND_Window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAAE2159CADEF00693F41 /* IND_Window.cpp */; };
 		E75EB166159CADF900693F41 /* IndieLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAAE3159CADEF00693F41 /* IndieLib.cpp */; };
 		E75EB167159CADF900693F41 /* OSOpenGLManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAAE5159CADEF00693F41 /* OSOpenGLManager.cpp */; };
-		E75EB168159CADF900693F41 /* OSOpenGLManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAAE6159CADEF00693F41 /* OSOpenGLManager.h */; };
 		E75EB169159CADF900693F41 /* guicon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAAE8159CADEF00693F41 /* guicon.cpp */; };
-		E75EB16A159CADF900693F41 /* guicon.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAAE9159CADEF00693F41 /* guicon.h */; };
-		E75EB16B159CADF900693F41 /* LeaksVisualC.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAAEA159CADEF00693F41 /* LeaksVisualC.h */; };
 		E75EB16C159CADF900693F41 /* PrecissionTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAAEB159CADEF00693F41 /* PrecissionTimer.cpp */; };
-		E75EB16D159CADF900693F41 /* PrecissionTimer.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAAEC159CADEF00693F41 /* PrecissionTimer.h */; };
 		E75EB17D159CADF900693F41 /* OpenGLRender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAAFF159CADEF00693F41 /* OpenGLRender.cpp */; };
-		E75EB17E159CADF900693F41 /* OpenGLRender.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAB00159CADEF00693F41 /* OpenGLRender.h */; };
 		E75EB17F159CADF900693F41 /* OpenGLTextureBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAB01159CADEF00693F41 /* OpenGLTextureBuilder.cpp */; };
-		E75EB180159CADF900693F41 /* OpenGLTextureBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAB02159CADEF00693F41 /* OpenGLTextureBuilder.h */; };
-		E75EB181159CADF900693F41 /* RenderCollision2dOpenGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAB03159CADEF00693F41 /* RenderCollision2dOpenGL.cpp */; };
 		E75EB182159CADF900693F41 /* RenderCullingOpenGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAB04159CADEF00693F41 /* RenderCullingOpenGL.cpp */; };
 		E75EB183159CADF900693F41 /* RenderObject2dOpenGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAB05159CADEF00693F41 /* RenderObject2dOpenGL.cpp */; };
 		E75EB184159CADF900693F41 /* RenderObject3dOpenGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAB06159CADEF00693F41 /* RenderObject3dOpenGL.cpp */; };
@@ -117,11 +60,6 @@
 		E75EB187159CADF900693F41 /* RenderTransform2dOpenGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAB09159CADEF00693F41 /* RenderTransform2dOpenGL.cpp */; };
 		E75EB188159CADF900693F41 /* RenderTransform3dOpenGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAB0A159CADEF00693F41 /* RenderTransform3dOpenGL.cpp */; };
 		E75EB189159CADF900693F41 /* RenderTransformCommonOpenGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAB0B159CADEF00693F41 /* RenderTransformCommonOpenGL.cpp */; };
-		E75EB18A159CADF900693F41 /* TextureBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAB0C159CADEF00693F41 /* TextureBuilder.h */; };
-		E75EB18B159CADF900693F41 /* TextureDefinitions.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAB0D159CADEF00693F41 /* TextureDefinitions.h */; };
-		E75EB18C159CADF900693F41 /* Tools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAB0E159CADEF00693F41 /* Tools.cpp */; };
-		E75EB18D159CADF900693F41 /* Tools.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EAB0F159CADEF00693F41 /* Tools.h */; };
-		E75EB2A9159CAEFF00693F41 /* IND_Camera3d.h in Headers */ = {isa = PBXBuildFile; fileRef = E75EB2A8159CAEFF00693F41 /* IND_Camera3d.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E75EB2AB159CAF1100693F41 /* IND_Camera3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EB2AA159CAF1100693F41 /* IND_Camera3d.cpp */; };
 		E7DBCA5C159B10E900C8B2D9 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCA5B159B10E900C8B2D9 /* CoreFoundation.framework */; };
 		E7DBCA60159B117500C8B2D9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCA5F159B117500C8B2D9 /* AudioToolbox.framework */; };
@@ -135,6 +73,7 @@
 
 /* Begin PBXFileReference section */
 		E72BA05F158CC7BB0003C431 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		E744863815E952D100DDE3BF /* IND_Vector2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IND_Vector2.h; sourceTree = "<group>"; };
 		E75EAA49159CADEF00693F41 /* tinystr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinystr.cpp; sourceTree = "<group>"; };
 		E75EAA4A159CADEF00693F41 /* tinystr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinystr.h; sourceTree = "<group>"; };
 		E75EAA4B159CADEF00693F41 /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
@@ -236,7 +175,6 @@
 		E75EAB00159CADEF00693F41 /* OpenGLRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLRender.h; sourceTree = "<group>"; };
 		E75EAB01159CADEF00693F41 /* OpenGLTextureBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenGLTextureBuilder.cpp; sourceTree = "<group>"; };
 		E75EAB02159CADEF00693F41 /* OpenGLTextureBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLTextureBuilder.h; sourceTree = "<group>"; };
-		E75EAB03159CADEF00693F41 /* RenderCollision2dOpenGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderCollision2dOpenGL.cpp; sourceTree = "<group>"; };
 		E75EAB04159CADEF00693F41 /* RenderCullingOpenGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderCullingOpenGL.cpp; sourceTree = "<group>"; };
 		E75EAB05159CADEF00693F41 /* RenderObject2dOpenGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderObject2dOpenGL.cpp; sourceTree = "<group>"; };
 		E75EAB06159CADEF00693F41 /* RenderObject3dOpenGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderObject3dOpenGL.cpp; sourceTree = "<group>"; };
@@ -247,8 +185,6 @@
 		E75EAB0B159CADEF00693F41 /* RenderTransformCommonOpenGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderTransformCommonOpenGL.cpp; sourceTree = "<group>"; };
 		E75EAB0C159CADEF00693F41 /* TextureBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureBuilder.h; sourceTree = "<group>"; };
 		E75EAB0D159CADEF00693F41 /* TextureDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureDefinitions.h; sourceTree = "<group>"; };
-		E75EAB0E159CADEF00693F41 /* Tools.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tools.cpp; sourceTree = "<group>"; };
-		E75EAB0F159CADEF00693F41 /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
 		E75EB2A8159CAEFF00693F41 /* IND_Camera3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IND_Camera3d.h; sourceTree = "<group>"; };
 		E75EB2AA159CAF1100693F41 /* IND_Camera3d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IND_Camera3d.cpp; sourceTree = "<group>"; };
 		E75EB2B4159CB02400693F41 /* libIndielib.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libIndielib.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -399,6 +335,7 @@
 				E75EAABA159CADEF00693F41 /* IND_TmxMap.h */,
 				E75EAABB159CADEF00693F41 /* IND_TmxMapManager.h */,
 				E75EAABC159CADEF00693F41 /* IND_Vector3.h */,
+				E744863815E952D100DDE3BF /* IND_Vector2.h */,
 				E75EAABD159CADEF00693F41 /* IND_Window.h */,
 				E75EAABE159CADEF00693F41 /* Indie.h */,
 				E75EAABF159CADEF00693F41 /* IndieLib.h */,
@@ -445,8 +382,6 @@
 				E75EAAED159CADEF00693F41 /* render */,
 				E75EAB0C159CADEF00693F41 /* TextureBuilder.h */,
 				E75EAB0D159CADEF00693F41 /* TextureDefinitions.h */,
-				E75EAB0E159CADEF00693F41 /* Tools.cpp */,
-				E75EAB0F159CADEF00693F41 /* Tools.h */,
 			);
 			name = src;
 			path = ../../common/src;
@@ -487,7 +422,6 @@
 				E75EAB00159CADEF00693F41 /* OpenGLRender.h */,
 				E75EAB01159CADEF00693F41 /* OpenGLTextureBuilder.cpp */,
 				E75EAB02159CADEF00693F41 /* OpenGLTextureBuilder.h */,
-				E75EAB03159CADEF00693F41 /* RenderCollision2dOpenGL.cpp */,
 				E75EAB04159CADEF00693F41 /* RenderCullingOpenGL.cpp */,
 				E75EAB05159CADEF00693F41 /* RenderObject2dOpenGL.cpp */,
 				E75EAB06159CADEF00693F41 /* RenderObject3dOpenGL.cpp */,
@@ -514,66 +448,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E75EB123159CADF900693F41 /* CollisionParser.h in Headers */,
-				E75EB124159CADF900693F41 /* Defines.h in Headers */,
-				E75EB125159CADF900693F41 /* ImageCutter.h in Headers */,
-				E75EB126159CADF900693F41 /* IND_3dMesh.h in Headers */,
-				E75EB127159CADF900693F41 /* IND_3dMeshManager.h in Headers */,
-				E75EB128159CADF900693F41 /* IND_Animation.h in Headers */,
-				E75EB129159CADF900693F41 /* IND_AnimationManager.h in Headers */,
-				E75EB12A159CADF900693F41 /* IND_Camera2d.h in Headers */,
-				E75EB2A9159CAEFF00693F41 /* IND_Camera3d.h in Headers */,
-				E75EB12C159CADF900693F41 /* IND_Entity2d.h in Headers */,
-				E75EB12D159CADF900693F41 /* IND_Entity2dManager.h in Headers */,
-				E75EB130159CADF900693F41 /* IND_Font.h in Headers */,
-				E75EB131159CADF900693F41 /* IND_FontManager.h in Headers */,
-				E75EB132159CADF900693F41 /* IND_Frame.h in Headers */,
-				E75EB133159CADF900693F41 /* IND_Image.h in Headers */,
-				E75EB134159CADF900693F41 /* IND_ImageManager.h in Headers */,
-				E75EB135159CADF900693F41 /* IND_Input.h in Headers */,
-				E75EB138159CADF900693F41 /* IND_Math.h in Headers */,
-				E75EB139159CADF900693F41 /* IND_Render.h in Headers */,
-				E75EB13A159CADF900693F41 /* IND_Sequence.h in Headers */,
-				E75EB13B159CADF900693F41 /* IND_Surface.h in Headers */,
-				E75EB13C159CADF900693F41 /* IND_SurfaceManager.h in Headers */,
-				E75EB13D159CADF900693F41 /* IND_Timer.h in Headers */,
-				E75EB13E159CADF900693F41 /* IND_TmxMap.h in Headers */,
-				E75EB13F159CADF900693F41 /* IND_TmxMapManager.h in Headers */,
-				E75EB140159CADF900693F41 /* IND_Vector3.h in Headers */,
-				E75EB141159CADF900693F41 /* IND_Window.h in Headers */,
-				E75EB142159CADF900693F41 /* Indie.h in Headers */,
-				E75EB143159CADF900693F41 /* IndieLib.h in Headers */,
-				E75EB144159CADF900693F41 /* IndiePlatforms.h in Headers */,
-				E75EB145159CADF900693F41 /* XMeshStructures.h in Headers */,
-				E75EB0D6159CADF800693F41 /* tinystr.h in Headers */,
-				E75EB0D8159CADF800693F41 /* tinyxml.h in Headers */,
-				E75EB0DC159CADF800693F41 /* base64.h in Headers */,
-				E75EB0DD159CADF800693F41 /* Tmx.h in Headers */,
-				E75EB0DF159CADF800693F41 /* TmxImage.h in Headers */,
-				E75EB0E1159CADF800693F41 /* TmxLayer.h in Headers */,
-				E75EB0E3159CADF800693F41 /* TmxMap.h in Headers */,
-				E75EB0E4159CADF800693F41 /* TmxMapTile.h in Headers */,
-				E75EB0E6159CADF900693F41 /* TmxObject.h in Headers */,
-				E75EB0E8159CADF900693F41 /* TmxObjectGroup.h in Headers */,
-				E75EB0E9159CADF900693F41 /* TmxPoint.h in Headers */,
-				E75EB0EB159CADF900693F41 /* TmxPolygon.h in Headers */,
-				E75EB0ED159CADF900693F41 /* TmxPolyline.h in Headers */,
-				E75EB0EF159CADF900693F41 /* TmxPropertySet.h in Headers */,
-				E75EB0F1159CADF900693F41 /* TmxTile.h in Headers */,
-				E75EB0F3159CADF900693F41 /* TmxTileset.h in Headers */,
-				E75EB0F5159CADF900693F41 /* TmxUtil.h in Headers */,
-				E75EB148159CADF900693F41 /* DebugApi.h in Headers */,
-				E75EB14A159CADF900693F41 /* FreeImageHelper.h in Headers */,
-				E75EB14C159CADF900693F41 /* Global.h in Headers */,
-				E75EB168159CADF900693F41 /* OSOpenGLManager.h in Headers */,
-				E75EB16A159CADF900693F41 /* guicon.h in Headers */,
-				E75EB16B159CADF900693F41 /* LeaksVisualC.h in Headers */,
-				E75EB16D159CADF900693F41 /* PrecissionTimer.h in Headers */,
-				E75EB17E159CADF900693F41 /* OpenGLRender.h in Headers */,
-				E75EB180159CADF900693F41 /* OpenGLTextureBuilder.h in Headers */,
-				E75EB18A159CADF900693F41 /* TextureBuilder.h in Headers */,
-				E75EB18B159CADF900693F41 /* TextureDefinitions.h in Headers */,
-				E75EB18D159CADF900693F41 /* Tools.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -672,7 +546,6 @@
 				E75EB16C159CADF900693F41 /* PrecissionTimer.cpp in Sources */,
 				E75EB17D159CADF900693F41 /* OpenGLRender.cpp in Sources */,
 				E75EB17F159CADF900693F41 /* OpenGLTextureBuilder.cpp in Sources */,
-				E75EB181159CADF900693F41 /* RenderCollision2dOpenGL.cpp in Sources */,
 				E75EB182159CADF900693F41 /* RenderCullingOpenGL.cpp in Sources */,
 				E75EB183159CADF900693F41 /* RenderObject2dOpenGL.cpp in Sources */,
 				E75EB184159CADF900693F41 /* RenderObject3dOpenGL.cpp in Sources */,
@@ -681,7 +554,6 @@
 				E75EB187159CADF900693F41 /* RenderTransform2dOpenGL.cpp in Sources */,
 				E75EB188159CADF900693F41 /* RenderTransform3dOpenGL.cpp in Sources */,
 				E75EB189159CADF900693F41 /* RenderTransformCommonOpenGL.cpp in Sources */,
-				E75EB18C159CADF900693F41 /* Tools.cpp in Sources */,
 				E75EB2AB159CAF1100693F41 /* IND_Camera3d.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -707,9 +579,16 @@
 					"_DEBUG=1",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
@@ -738,9 +617,16 @@
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
@@ -761,18 +647,22 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
 				EXECUTABLE_PREFIX = lib;
+				INSTALL_PATH = /mac;
+				LD_DYLIB_INSTALL_NAME = $DSTROOT$INSTALL_PATH/$EXECUTABLE_PATH;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../common/dependencies/FreeImage/Dist\"",
 					"\"$(SRCROOT)/../../common/dependencies/FreeImage\"",
-					"\"$(SRCROOT)/../../common/dependencies/glew-1.7.0/lib/OSX\"",
+					"\"$(SRCROOT)/../../common/dependencies/glew-1.9.0/lib/OSX\"",
 					"\"$(SRCROOT)/../../common/dependencies/SDL 2.0/lib/OSX_debug\"",
 				);
 				"OTHER_LDFLAGS[arch=*]" = (
 					"\"$(SRCROOT)/../../common/dependencies/SDL 2.0/lib/OSX_debug/libSDL2.a\"",
 					"\"$(SRCROOT)/../../common/dependencies/FreeImage/Dist/libfreeImage.a\"",
-					"\"$(SRCROOT)/../../common/dependencies/glew-1.7.0/lib/OSX/libGLEW.a\"",
+					"\"$(SRCROOT)/../../common/dependencies/glew-1.9.0/lib/OSX/libGLEW.a\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -783,18 +673,22 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
 				EXECUTABLE_PREFIX = lib;
+				INSTALL_PATH = /mac;
+				LD_DYLIB_INSTALL_NAME = $DSTROOT$INSTALL_PATH/$EXECUTABLE_PATH;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../common/dependencies/FreeImage/Dist\"",
 					"\"$(SRCROOT)/../../common/dependencies/FreeImage\"",
-					"\"$(SRCROOT)/../../common/dependencies/glew-1.7.0/lib/OSX\"",
+					"\"$(SRCROOT)/../../common/dependencies/glew-1.9.0/lib/OSX\"",
 					"\"$(SRCROOT)/../../common/dependencies/SDL 2.0/lib/OSX_release\"",
 				);
 				"OTHER_LDFLAGS[arch=*]" = (
 					"\"$(SRCROOT)/../../common/dependencies/SDL 2.0/lib/OSX_release/libSDL2.a\"",
 					"\"$(SRCROOT)/../../common/dependencies/FreeImage/Dist/libfreeImage.a\"",
-					"\"$(SRCROOT)/../../common/dependencies/glew-1.7.0/lib/OSX/libGLEW.a\"",
+					"\"$(SRCROOT)/../../common/dependencies/glew-1.9.0/lib/OSX/libGLEW.a\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

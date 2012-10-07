@@ -47,12 +47,12 @@ void PrimitiveTests::performTests(float dt) {
 	CIndieLib *iLib = CIndieLib::instance();
 	// Direct bliting of primitives
 	for (int i = 0; i < 400; i += 5) {
-		iLib->_render->blitLine(70, 150, i * 2, 500, i, 255 - i, 255, 255);
-		iLib->_render->blitRegularPoly(600, 600, i, 70, 0, 255 - i, i, i * 4, 255);
+		iLib->_render->blitLine(70, 150, i * 2, 500, static_cast<BYTE>(i), static_cast<BYTE>(255 - i), static_cast<BYTE>(255), static_cast<BYTE>(255));
+		iLib->_render->blitRegularPoly(600, 600, i, 70, static_cast<BYTE>(0), static_cast<BYTE>(255 - i), static_cast<BYTE>(i), static_cast<BYTE>(i * 4), static_cast<BYTE>(255));
 	}
 
-	iLib->_render->blitTriangleList(trianglePoints, 3, 255, 0, 0, 255);
-    iLib->_render->blitColoredTriangle(500,500,400,200,600,200,255,0,0,0,255,0,0,0,255,255);
+	iLib->_render->blitTriangleList(trianglePoints, 3, static_cast<BYTE>(255), static_cast<BYTE>(0), static_cast<BYTE>(0), static_cast<BYTE>(255));
+    iLib->_render->blitColoredTriangle(500,500,400,200,600,200,static_cast<BYTE>(255),static_cast<BYTE>(0),static_cast<BYTE>(0),static_cast<BYTE>(0),static_cast<BYTE>(255),static_cast<BYTE>(0),static_cast<BYTE>(0),static_cast<BYTE>(0),static_cast<BYTE>(255),static_cast<BYTE>(255));
 }
 
 //Default implementation

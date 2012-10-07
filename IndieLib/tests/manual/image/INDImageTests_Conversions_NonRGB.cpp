@@ -85,9 +85,13 @@ void INDImageTests_Conversions_NonRGB::setActive(bool active){
 			iLib->_entity2dManager->add(_entities[i]);
 		}
 	    // ----- Changing the attributes of the 2d entities -----
-		_entities[0]->setPosition(0.0f,0.0f,0.0f);
-		_entities[1]->setPosition(_entities[0]->getSurface()->getWidth(),_entities[0]->getPosY(),0.0f);
-		_entities[2]->setPosition(_entities[1]->getPosX() + _entities[1]->getSurface()->getWidth(),_entities[0]->getPosY(),0.0f);
+		_entities[0]->setPosition(0.0f,0.0f,0);
+		_entities[1]->setPosition(static_cast<float>(_entities[0]->getSurface()->getWidth()),
+								  _entities[0]->getPosY(),
+								  0);
+		_entities[2]->setPosition(static_cast<float>(_entities[1]->getPosX() + _entities[1]->getSurface()->getWidth()),
+								  _entities[0]->getPosY(),
+								  0);
 		/*_entities[3]->setPosition(_entities[2]->getPosX() + _entities[2]->getSurface()->getWidth() ,_entities[2]->getPosY(),0);
 
 		_entities[4]->setPosition(0.0f,_entities[2]->getPosY() + _entities[2]->getSurface()->getHeight() , 0.0f);

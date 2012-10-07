@@ -1,5 +1,5 @@
 /*****************************************************************************************
- * File: IND_Math.h
+ * File: INDh
  * Dess: Math methods
  *****************************************************************************************/
 
@@ -35,11 +35,12 @@ Suite 330, Boston, MA 02111-1307 USA
 #ifndef _IND_MATH_
 #define _IND_MATH_
 
-#ifdef PLATFORM_LINUX
+
 #include <stdlib.h>
-#endif
+#include <math.h>
 
 #include "Defines.h"
+#include "IND_Vector2.h"
 
 // --------------------------------------------------------------------------------
 //									   IND_Math
@@ -113,9 +114,360 @@ public:
 		return radians;
 	}
 
-	// ----- Matrix utilities -----
-#if defined (INDIERENDER_OPENGL) || defined (INDIERENDER_GLES_IOS)
+	/**
+	 * Cross-Platform version of itoa. support only 10 radix for easy use and better performance
+	 * taken from http://code.google.com/p/my-itoa/  (LGPL)
+	 *
+	 * @param val             The int that needs to be converted
+	 * @param buf             The char buffer that is going to held the result
+	 * @return                The length of the result String.
+	 */
+	static inline int itoa(int val, char* buf) {
+		const unsigned int radix = 10;
 
+		char* p;
+		unsigned int a;        //every digit
+		int len;
+		char* b;               //start of the digit char
+		char temp;
+		unsigned int u;
+
+		p = buf;
+
+		if (val < 0) {
+		    *p++ = '-';
+		    val = 0 - val;
+		}
+		
+		u = (unsigned int)val;
+		b = p;
+
+		do {
+		    a = u % radix;
+		    u /= radix;
+		    *p++ = (char)a + '0';
+		} while (u > 0);
+
+		len = (int)(p - buf);
+		*p-- = 0;
+
+		//swap
+		do {
+		    temp = *p;
+		    *p = *b;
+		    *b = temp;
+		    --p;
+		    ++b;
+		} while (b < p);
+
+		return len;
+	}
+    
+    // ----- Collision utilities -----
+	/*
+	==================
+	Check collision between two circles that are not transformed
+	==================
+	*/
+	bool isCircleToCircleCollision(BOUNDING_COLLISION *pB1, 
+												   IND_Matrix pMat1, 
+												   float pScale1,
+												   BOUNDING_COLLISION *pB2, 
+												   IND_Matrix pMat2, 
+												   float pScale2) {
+		// Untransformed points
+
+		// Circle 1
+		IND_Vector2 mCenter1((float) pB1->_posX, (float) pB1->_posY);
+		int mRadius1 = (int)(pB1->_radius * pScale1);
+
+		// Circle 1
+		IND_Vector2 mCenter2((float) pB2->_posX, (float) pB2->_posY);
+		int mRadius2 = (int)(pB2->_radius * pScale2);
+
+		// Transform the points to it's position in world coordinates by using supplied transform
+		transformVector2DbyMatrix4D(mCenter1,pMat1);
+		transformVector2DbyMatrix4D(mCenter2,pMat2);
+
+		if (isCircleToCircleCollision(mCenter1, mRadius1, mCenter2, mRadius2))
+			return 1;
+
+		return 0;
+	}
+
+
+	/*
+	==================
+	Check collision between two triangles that are not transformed
+	==================
+	*/
+	bool isTriangleToTriangleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1,
+													   BOUNDING_COLLISION *pB2, IND_Matrix pMat2) {
+		// Untransformed points
+
+		// Triangle 1
+		IND_Vector2 mA1((float) pB1->_ax, (float) pB1->_ay);
+		IND_Vector2 mB1((float) pB1->_bx, (float) pB1->_by);
+		IND_Vector2 mC1((float) pB1->_cx, (float) pB1->_cy);
+
+		// Triangle 2
+		IND_Vector2 mA2((float) pB2->_ax, (float) pB2->_ay);
+		IND_Vector2 mB2((float) pB2->_bx, (float) pB2->_by);
+		IND_Vector2 mC2((float) pB2->_cx, (float) pB2->_cy);
+
+		// Transform the points to it's position in world coordinates by using supplied transform
+		transformVector2DbyMatrix4D(mA1,pMat1);
+		transformVector2DbyMatrix4D(mB1,pMat1);
+		transformVector2DbyMatrix4D(mC1,pMat1);
+
+		transformVector2DbyMatrix4D(mA2,pMat2);
+		transformVector2DbyMatrix4D(mB2,pMat2);
+		transformVector2DbyMatrix4D(mC2,pMat2);
+
+
+		if (isTriangleToTriangleCollision(mA1, mB1, mC1, mA2, mB2, mC2))
+			return 1;
+
+		return 0;
+	}
+
+
+	/*
+	==================
+	Check collision between a circle an a triangle that are not transformed
+	==================
+	*/
+	bool isCircleToTriangleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1, float pScale,
+			BOUNDING_COLLISION *pB2, IND_Matrix pMat2) {
+
+		// ----- Circle -----
+
+		// Circle 1
+		IND_Vector2 mCenter((float) pB1->_posX, (float) pB1->_posY);
+		int _radius = (int)(pB1->_radius * pScale);
+		
+		transformVector2DbyMatrix4D(mCenter,pMat1);
+
+		// ----- Triangle -----
+
+		// Triangle
+		IND_Vector2 mA((float) pB2->_ax, (float) pB2->_ay);
+		IND_Vector2 mB((float) pB2->_bx, (float) pB2->_by);
+		IND_Vector2 mC((float) pB2->_cx, (float) pB2->_cy);
+
+		// Transformations
+		transformVector2DbyMatrix4D(mA,pMat2);
+		transformVector2DbyMatrix4D(mB,pMat2);
+		transformVector2DbyMatrix4D(mC,pMat2);
+
+		if (isCircleToTriangleCollision(mCenter, _radius, mA, mB, mC))
+			return 1;
+
+		return 0;
+	}
+
+
+	/*
+	==================
+	Check collision between two triangles (a1, b1, c1) and (a2, b2, c2)
+	- First checks if each of the vertices of either triange is within inside the other triangle->
+	- After that it checks for intersections between the triangle segments->
+	==================
+	*/
+	bool isTriangleToTriangleCollision(IND_Vector2 &a1,
+			IND_Vector2 &b1,
+			IND_Vector2 &c1,
+			IND_Vector2 &a2,
+			IND_Vector2 &b2,
+			IND_Vector2 &c2) {
+		// Check if any vertex of triange 1 is inside triange 2
+		if (isPointInsideTriangle(a1, a2, b2, c2)) return 1;
+		if (isPointInsideTriangle(b1, a2, b2, c2)) return 1;
+		if (isPointInsideTriangle(c1, a2, b2, c2)) return 1;
+
+		// Check if any vertex of triange 2 is inside triange 1
+		if (isPointInsideTriangle(a2, a1, b1, c1)) return 1;
+		if (isPointInsideTriangle(c2, a1, b1, c1)) return 1;
+		if (isPointInsideTriangle(c2, a1, b1, c1)) return 1;
+
+		// Checks if any segment of triange 1 intersects with any segment of triange 2
+		// Segment (a1 - b1)
+		if (isSegmentIntersection(a1, b1, a2, b2)) return 1;
+		if (isSegmentIntersection(a1, b1, b2, c2)) return 1;
+		if (isSegmentIntersection(a1, b1, c2, a2)) return 1;
+
+		// Segment (b1 - c1)
+		if (isSegmentIntersection(b1, c1, a2, b2)) return 1;
+		if (isSegmentIntersection(b1, c1, b2, c2)) return 1;
+		if (isSegmentIntersection(b1, c1, c2, a2)) return 1;
+
+		// Segment (c1 - a1)
+		if (isSegmentIntersection(c1, a1, a2, b2)) return 1;
+		if (isSegmentIntersection(c1, a1, b2, c2)) return 1;
+		if (isSegmentIntersection(c1, a1, c2, a2)) return 1;
+
+		return 0;
+	}
+
+
+	/*
+	==================
+	Check collision between two circles
+	==================
+	*/
+	bool isCircleToCircleCollision(IND_Vector2 &pP1, int pRadius1,
+			IND_Vector2 &pP2, int pRadius2) {
+		// h^2 = x^2 + y^2 Pythagoras :D
+
+		// x^2
+		double mDeltaXSquared = pP1._x - pP2._x;
+		mDeltaXSquared *= mDeltaXSquared;
+
+		// y^2
+		double mDeltaYSquared = pP1._y - pP2._y;
+		mDeltaYSquared *= mDeltaYSquared;
+
+		// Adding radius^2
+		double mSumRadiiSquared = pRadius1 + pRadius2;
+		mSumRadiiSquared *= mSumRadiiSquared;
+
+		// If that result is greater than  h^2, so less than x^2 + y^2
+		// then there is a collision
+		if (mDeltaXSquared + mDeltaYSquared <= mSumRadiiSquared)
+			return 1;
+		else
+			return 0;
+	}
+
+
+	/*
+	==================
+	Check collision between a circle and a triangle
+	==================
+	*/
+	bool isCircleToTriangleCollision(IND_Vector2 &pPCenter, int pRadius,
+			IND_Vector2 &pA2, IND_Vector2 &pB2, IND_Vector2 &pC2) {
+		// Check if circle center inside the triangle
+		if (isPointInsideTriangle(pPCenter, pA2, pB2, pC2)) return 1;
+
+		// Check the distance of the circle center to the 3 triangle segments
+		if (pointToLineDistance(pA2, pB2, pPCenter, 1) < pRadius) return 1;
+		if (pointToLineDistance(pB2, pC2, pPCenter, 1) < pRadius) return 1;
+		if (pointToLineDistance(pC2, pA2, pPCenter, 1) < pRadius) return 1;
+
+		return 0;
+	}
+	/*
+	==================
+	Check if point p is inside the triangle with vertex a, b, c
+	Technique from: http://www.blackpawn.com/texts/pointinpoly/default.html
+	==================
+	*/
+	static bool isPointInsideTriangle(IND_Vector2 &p,
+			IND_Vector2 &a,
+			IND_Vector2 &b,
+			IND_Vector2 &c) {
+		// Compute vectors
+		IND_Vector2 v0 = c - a;
+		IND_Vector2 v1 = b - a;
+		IND_Vector2 v2 = p - a;
+
+		// Compute dot products
+		float dot00 = v0.dotProduct(v0);
+		float dot01 = v0.dotProduct(v1);
+		float dot02 = v0.dotProduct(v2);
+		float dot11 = v1.dotProduct(v1);
+		float dot12 = v1.dotProduct(v2);
+
+		// Compute barycentric coordinates
+		float invDenom = 1 / (dot00 * dot11 - dot01 * dot01);
+		float u = (dot11 * dot02 - dot01 * dot12) * invDenom;
+		float v = (dot00 * dot12 - dot01 * dot02) * invDenom;
+
+		// Check if point is in triangle
+		return (u > 0) && (v > 0) && (u + v < 1);
+	}
+
+	/*
+	==================
+	Compute the distance from AB to C
+	if isSegment is true, AB is a segment, not a line.
+	==================
+	*/
+	double pointToLineDistance(IND_Vector2 &pA, IND_Vector2 &pB, IND_Vector2 &pC, bool pIsSegment) {
+		IND_Vector2 ab (pB._x - pA._x, pB._y - pA._y);
+		IND_Vector2 ac (pC._x - pA._x, pC._y - pA._y);
+		
+		double mDist (ab.crossProduct(ac) / pA.distance(pB));
+
+		if (pIsSegment) {
+			IND_Vector2 bc (pC._x - pB._x, pC._y - pB._y);
+			IND_Vector2 ba (pA._x - pB._x, pA._y - pB._y);
+
+			float mDot1 (ab.dotProduct(bc));
+			if (mDot1 > 0.0f) { 
+				return pB.distance(pC);
+			}
+			float mDot2 (ba.dotProduct(ac));
+			if (mDot2 > 0.0f) {
+				return pA.distance(pC);
+			}
+		}
+
+		return fabs(mDist);
+	}
+
+	/*
+	==================
+	Check if there is an intersection between two segments
+	Segment 1 => (pAx, pAy) - (pBx, pBy)
+	Segment 2 => (pCx, pCy) - (pDx, pDy)
+	==================
+	*/
+	bool isSegmentIntersection(IND_Vector2 &a,
+			IND_Vector2 &b,
+			IND_Vector2 &c,
+			IND_Vector2 &d) {
+		float mGradAB, mGradCD, mYcptAB, mYcptCD, mInterceptX, mInterceptY;
+
+		// In order to avoid divisions by zero
+		if (a._y == b._y)
+			b._y += 0.0001f;
+
+		if (a._x == b._x)
+			b._x += 0.0001f;
+
+		if (c._y == d._y)
+			d._y += 0.0001f;
+
+		if (c._x == d._x)
+			d._x += 0.0001f;
+
+		// Calculates the intersection between the two lines
+		mGradAB = (a._y - b._y) / (a._x - b._x);
+		mGradCD = (c._y - d._y) / (c._x - d._x);
+
+		mYcptAB = a._y - a._x * mGradAB;
+		mYcptCD = c._y - c._x * mGradCD;
+		mInterceptX = (mYcptAB - mYcptCD) / (mGradCD - mGradAB);
+		mInterceptY = (mYcptAB - (mGradAB * mYcptCD) / mGradCD) / (1 - mGradAB / mGradCD);
+
+		// Checking in the intersection is inside the segment
+		if (!((mInterceptX >= a._x && mInterceptX <= b._x) || (mInterceptX >= b._x && mInterceptX <= a._x)))
+			return 0;
+
+		if (!((mInterceptY >= a._y && mInterceptY <= b._y) || (mInterceptY >= b._y && mInterceptY <= a._y)))
+			return 0;
+
+		if (!((mInterceptX >= c._x && mInterceptX <= d._x) || (mInterceptX >= d._x && mInterceptX <= c._x)))
+			return 0;
+
+		if (!((mInterceptY >= c._y && mInterceptY <= d._y) || (mInterceptY >= d._y && mInterceptY <= c._y)))
+			return 0;
+
+		return 1;
+	}
+	// ----- Matrix utilities -----
 	 /*
 	==================
 	Multiplies 2 matrices (needs allocated result)
@@ -149,7 +501,7 @@ public:
 	  result._42 = m1._41 * m2._12 + m1._42 * m2._22 + m1._43 * m2._32 + m1._44 * m2._42;
 	  result._43 = m1._41 * m2._13 + m1._42 * m2._23 + m1._43 * m2._33 + m1._44 * m2._43;
 	  result._44 = m1._41 * m2._14 + m1._42 * m2._24 + m1._43 * m2._34 + m1._44 * m2._44;
-	};
+	}
 
 	/*
 	==================
@@ -173,7 +525,7 @@ public:
 	  m._42 = 0.0f;
 	  m._43 = 0.0f;
 	  m._44 = 1.0f;
-	};
+	}
 	
 	/*
 	==================
@@ -197,7 +549,7 @@ public:
 	  m._42 = 0.0f;
 	  m._43 = 0.0f;
 	  m._44 = 1.0f;
-	};
+	}
 	
 	/*
 	==================
@@ -209,56 +561,56 @@ public:
 	==================
 	*/
 	inline void matrix4DSetRotationAroundAxis(IND_Matrix &m, float angledegrees, const IND_Vector3 &axis) const  {
-	  float angle = angleToRadians(angledegrees);
-	  float x(axis._x);
-	  float y(axis._y);
-	  float z(axis._z);
-	  float mag = sqrtf((x * x) + (y * y) + (z * z));
-	  
-	  //Normalize input vector (Don't call normalize and perform here)
-	  if (mag < 1e-08) {
-	    x = 1.0;
-	    y = 0.0;
-	    z = 0.0;
-	  } else if (mag != 1.0f) {
-	    x /= mag;
-	    y /= mag;
-	    z /= mag;
-	  }
-	  
-	  float c = cosf(angle);
-	  float s = sinf(angle);
-	  float t = 1 - c;
-	  //Left-handed coord system
-	  /*m._11 = (x * x) * t + c;
-	    m._21 = t * x * y - s * z;
-	    m._31 = t * x * y + s * y;
-	    
-	    m._12 = t * x * y + s * z;
-	    m._22 = t * y * y + c;
-	    m._32 = t * y * z - s * x;
-	    
-	    m._13 = t * x * z - s * y;
-	    m._23 = t * y * z + s * x;
-	    m._33 = t * z * z + c;*/
-	  
-	  //Right-handed coord system
-	  m._11 = 1 + t * (x * x - 1);
-	  m._21 = z * s + t * x * y;
-	  m._31 = -y * s + c * x *z;
-	  
-	  m._12 = -z * s + t * x * y;
-	  m._22 = 1 + t * (y * y - 1);
-	  m._32 = x * s + t * y * z;
-	  
-	  m._13 = y * s + t * x* z;
-	  m._23 = -x * s + t * y * z;
-	  m._33 = 1 + t * (z * z - 1);
+		  float angle = angleToRadians(angledegrees);
+		  float x(axis._x);
+		  float y(axis._y);
+		  float z(axis._z);
+		  float mag = sqrtf((x * x) + (y * y) + (z * z));
+		  
+		  //Normalize input vector (Don't call normalize and perform here)
+		  if (mag < 1e-08) {
+			x = 1.0;
+			y = 0.0;
+			z = 0.0;
+		  } else if (mag != 1.0f) {
+			x /= mag;
+			y /= mag;
+			z /= mag;
+		  }
+		  
+		  float c = cosf(angle);
+		  float s = sinf(angle);
+		  float t = 1 - c;
+		  //Left-handed coord system
+		  /*m._11 = (x * x) * t + c;
+			m._21 = t * x * y - s * z;
+			m._31 = t * x * y + s * y;
+		    
+			m._12 = t * x * y + s * z;
+			m._22 = t * y * y + c;
+			m._32 = t * y * z - s * x;
+		    
+			m._13 = t * x * z - s * y;
+			m._23 = t * y * z + s * x;
+			m._33 = t * z * z + c;*/
+		  
+		  //Right-handed coord system
+		  m._11 = 1 + t * (x * x - 1);
+		  m._21 = z * s + t * x * y;
+		  m._31 = -y * s + c * x *z;
+		  
+		  m._12 = -z * s + t * x * y;
+		  m._22 = 1 + t * (y * y - 1);
+		  m._32 = x * s + t * y * z;
+		  
+		  m._13 = y * s + t * x* z;
+		  m._23 = -x * s + t * y * z;
+		  m._33 = 1 + t * (z * z - 1);
 
-	  m._14 = m._24 = m._34 = 0.0f;
-	  m._41 = m._42 = m._43 = 0.0f;
-	  m._44 = 1.0f;
-	};
+		  m._14 = m._24 = m._34 = 0.0f;
+		  m._41 = m._42 = m._43 = 0.0f;
+		  m._44 = 1.0f;
+	}
         
 	/*
 	==================
@@ -266,23 +618,23 @@ public:
 	==================
 	*/
 	inline void matrix4DSetScale(IND_Matrix &m, float scalex, float scaley, float scalez)const {
-	  m._11 = scalex;
-	  m._12 = 0.0f;
-	  m._13 = 0.0f;
-	  m._14 = 0.0f;
-	  m._21 = 0.0f;
-	  m._22 = scaley;
-	  m._23 = 0.0f;
-	  m._24 = 0.0f;
-	  m._31 = 0.0f;
-	  m._32 = 0.0f;
-	  m._33 = scalez;
-	  m._34 = 0.0f;
-	  m._41 = 0.0f;
-	  m._42 = 0.0f;
-	  m._43 = 0.0f;
-	  m._44 = 1.0f;
-	};
+		  m._11 = scalex;
+		  m._12 = 0.0f;
+		  m._13 = 0.0f;
+		  m._14 = 0.0f;
+		  m._21 = 0.0f;
+		  m._22 = scaley;
+		  m._23 = 0.0f;
+		  m._24 = 0.0f;
+		  m._31 = 0.0f;
+		  m._32 = 0.0f;
+		  m._33 = scalez;
+		  m._34 = 0.0f;
+		  m._41 = 0.0f;
+		  m._42 = 0.0f;
+		  m._43 = 0.0f;
+		  m._44 = 1.0f;
+	}
 	
 
 	/*
@@ -302,34 +654,34 @@ public:
 	==================
 	*/
 	inline void matrix4DLookAtMatrixLH(const IND_Vector3 &r, const IND_Vector3 &u, const IND_Vector3 &l, const IND_Vector3 &p, IND_Matrix &result)const {
-	IND_Matrix rot;
-	IND_Matrix trans;
+		IND_Matrix rot;
+		IND_Matrix trans;
 
-	//Compute axes matrix manually
-	rot._11 = r._x;
-	rot._12 = u._x;
-	rot._13 = l._x;
-	rot._14 = 0.0f;
-	rot._21 = r._y;
-	rot._22 = u._y;
-	rot._23 = l._y;
-	rot._24 = 0.0f;
-	rot._31 = r._z;
-	rot._32 = u._z;
-	rot._33 = l._z;
-	rot._34 = 0.0f;
-	rot._41 = 0.0f;
-	rot._42 = 0.0f;
-	rot._43 = 0.0f;
-	rot._44 = 1.0f;
+		//Compute axes matrix manually
+		rot._11 = r._x;
+		rot._12 = u._x;
+		rot._13 = l._x;
+		rot._14 = 0.0f;
+		rot._21 = r._y;
+		rot._22 = u._y;
+		rot._23 = l._y;
+		rot._24 = 0.0f;
+		rot._31 = r._z;
+		rot._32 = u._z;
+		rot._33 = l._z;
+		rot._34 = 0.0f;
+		rot._41 = 0.0f;
+		rot._42 = 0.0f;
+		rot._43 = 0.0f;
+		rot._44 = 1.0f;
 
 
-	//Compute tranlation matrix
-	matrix4DSetTranslation(trans, -p._x, -p._y, -p._z);
+		//Compute tranlation matrix
+		matrix4DSetTranslation(trans, -p._x, -p._y, -p._z);
 
-	//Compute result matrix
-	matrix4DMultiply(rot,trans, result);
-	};
+		//Compute result matrix
+		matrix4DMultiply(rot,trans, result);
+	}
 
 /*
 	==================
@@ -348,34 +700,34 @@ public:
 	==================
 	*/
 	inline void matrix4DLookAtMatrixRH(const IND_Vector3 &r, const IND_Vector3 &u, const IND_Vector3 &l, const IND_Vector3 &p, IND_Matrix &result)const {
-	IND_Matrix rot;
-	IND_Matrix trans;
+		IND_Matrix rot;
+		IND_Matrix trans;
 
-	//Compute axes matrix manually
-	rot._11 = -r._x;
-	rot._12 = u._x;
-	rot._13 = -l._x;
-	rot._14 = 0.0f;
-	rot._21 = -r._y;
-	rot._22 = u._y;
-	rot._23 = -l._y;
-	rot._24 = 0.0f;
-	rot._31 = -r._z;
-	rot._32 = u._z;
-	rot._33 = -l._z;
-	rot._34 = 0.0f;
-	rot._41 = 0.0f;
-	rot._42 = 0.0f;
-	rot._43 = 0.0f;
-	rot._44 = 1.0f;
+		//Compute axes matrix manually
+		rot._11 = -r._x;
+		rot._12 = u._x;
+		rot._13 = -l._x;
+		rot._14 = 0.0f;
+		rot._21 = -r._y;
+		rot._22 = u._y;
+		rot._23 = -l._y;
+		rot._24 = 0.0f;
+		rot._31 = -r._z;
+		rot._32 = u._z;
+		rot._33 = -l._z;
+		rot._34 = 0.0f;
+		rot._41 = 0.0f;
+		rot._42 = 0.0f;
+		rot._43 = 0.0f;
+		rot._44 = 1.0f;
 
 
-	//Compute tranlation matrix
-	matrix4DSetTranslation(trans, p._x, -p._y, -p._z);
+		//Compute tranlation matrix
+		matrix4DSetTranslation(trans, p._x, -p._y, -p._z);
 
-	//Compute result matrix
-	matrix4DMultiply(rot,trans, result);
-	};
+		//Compute result matrix
+		matrix4DMultiply(rot,trans, result);
+	}
 
 
 	/*
@@ -395,7 +747,7 @@ public:
 
     	//Use other class method to finally construct matrix
     	matrix4DLookAtMatrixRH(x,y,z,eye,result);
-	};
+	}
 
 	/*
 	==================
@@ -414,7 +766,7 @@ public:
 
     	//Use other class method to finally construct matrix
     	matrix4DLookAtMatrixLH(x,y,z,eye,result);
-	};
+	}
 
 	/*
 	==================
@@ -488,15 +840,30 @@ public:
 	==================
 	*/
 	inline void transformVector3DbyMatrix4D(IND_Vector3 &vector, const IND_Matrix &mat)const {
-	float x = vector._x;
-	float y = vector._y;
-	float z = vector._z;
+		float x = vector._x;
+		float y = vector._y;
+		float z = vector._z;
 
-	vector._x = mat._11 * x + mat._12 * y + mat._13 * z + mat._14;
-	vector._y = mat._21 * x + mat._22 * y + mat._23 * z + mat._24;
-	vector._z = mat._31 * x + mat._32 * y + mat._33 * z + mat._34;
-};
-#endif
+		vector._x = mat._11 * x + mat._12 * y + mat._13 * z + mat._14;
+		vector._y = mat._21 * x + mat._22 * y + mat._23 * z + mat._24;
+		vector._z = mat._31 * x + mat._32 * y + mat._33 * z + mat._34;
+	}
+
+	/*
+	==================
+	Multiplies the column vector to the matrix (from the right side)
+	As 2d vector can't be multiplied, a 3D vector is created with z = 0
+	==================
+	*/
+	inline void transformVector2DbyMatrix4D(IND_Vector2 &vector, const IND_Matrix &mat)const {
+		IND_Vector3 fake (vector._x,vector._y,0.0f);
+
+		transformVector3DbyMatrix4D(fake,mat);
+
+		vector._x = fake._x;
+		vector._y = fake._y;
+	}
+
 private:
 
 	// ----- Private -----

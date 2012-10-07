@@ -27,19 +27,19 @@ int IndieLib()
 
 	// Loading cave
 	IND_Surface *mSurfaceCave = new IND_Surface();
-	if (!mI->_surfaceManager->add(mSurfaceCave, "..\\..\\resources\\cave.png", IND_ALPHA, IND_32)) return 0;
+	if (!mI->_surfaceManager->add(mSurfaceCave, "../../resources/cave.png", IND_ALPHA, IND_32)) return 0;
 
 	// Loading cave (first plane)
 	IND_Surface *mSurfaceCaveFirstPlane = new IND_Surface();
-	if (!mI->_surfaceManager->add(mSurfaceCaveFirstPlane, "..\\..\\resources\\cave_near.png", IND_ALPHA, IND_32)) return 0;
+	if (!mI->_surfaceManager->add(mSurfaceCaveFirstPlane, "../../resources/cave_near.png", IND_ALPHA, IND_32)) return 0;
 
 	// Loading sky
 	IND_Surface *mSurfaceSky = new IND_Surface();
-	if (!mI->_surfaceManager->add(mSurfaceSky, "..\\..\\resources\\sky.jpg", IND_OPAQUE, IND_32)) return 0;
+	if (!mI->_surfaceManager->add(mSurfaceSky, "../../resources/sky.jpg", IND_OPAQUE, IND_32)) return 0;
 
 	// Font
 	IND_Font *mFontSmall = new IND_Font();
-	if (!mI->_fontManager->add(mFontSmall, "..\\..\\resources\\font_small.png", "..\\..\\resources\\font_small.xml", IND_ALPHA, IND_32)) return 0;
+	if (!mI->_fontManager->add(mFontSmall, "../../resources/font_small.png", "../../resources/font_small.xml", IND_ALPHA, IND_32)) return 0;
 
 	// ----- Font creation -----
 

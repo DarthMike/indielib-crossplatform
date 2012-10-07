@@ -29,7 +29,7 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "dependencies/SDL 2.0/include/SDL_syswm.h"
 
 #include "Global.h"
-#include "Tools.h"
+#include "IND_Math.h"
 #include "IND_SurfaceManager.h"
 #include "DirectXRender.h"
 #include "IND_Window.h"
@@ -55,16 +55,6 @@ Suite 330, Boston, MA 02111-1307 USA
 //							  Initialization / Destruction
 // --------------------------------------------------------------------------------
 
-/*!
-\b Parameters:
-
-\arg \b pWindow                 Pointer to an object initializing IND_Window
-
-\b Operation:
-
-This function returns 1 (true) if the render is initialized sucessfully,
-0 (false) otherwise.
-*/
 IND_Window* DirectXRender::initRenderAndWindow(IND_WindowProperties& props) {
 	if(props._bpp <= 0 || props._height <= 0 || props._width <= 0) {
 		g_debug->header("Error resetting window: Invalid parameters provided", 2);
@@ -89,32 +79,22 @@ IND_Window* DirectXRender::initRenderAndWindow(IND_WindowProperties& props) {
 	else
 		_ok = true;
 
+	_math = new IND_Math();
+
 	return _window;
 }
 
-
-/*!
-\b Parameters:
-
-\arg \b pDirect3d             Pointer to a Direct3d render
-\arg \b pD3dDevice            Pointer to  the Direct3d Device
-
-\b Operation:
-
-This function returns 1 (true) if the render is initialized sucessfully,
-0 (false) otherwise.
-*/
 bool DirectXRender::init(LPDIRECT3D9 pDirect3d, IDirect3DDevice9 *pD3dDevice) {
 	g_debug->header("Initializing Direct3D", 5);
 
 	// Fill Info
-	_info.mDirect3d = pDirect3d;
-	_info.mDevice   = pD3dDevice;
+	_info._direct3d = pDirect3d;
+	_info._device   = pD3dDevice;
 
 	// Witdh and Height of the backbuffer
 	D3DSURFACE_DESC mSurfaceBackBuffer;
 	LPDIRECT3DSURFACE9 mBackBuffer;
-	_info.mDevice->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &mBackBuffer);
+	_info._device->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &mBackBuffer);
 	mBackBuffer->GetDesc(&mSurfaceBackBuffer);
 	mBackBuffer->Release();
 	_info._fbWidth  = mSurfaceBackBuffer.Width;
@@ -139,23 +119,6 @@ bool DirectXRender::init(LPDIRECT3D9 pDirect3d, IDirect3DDevice9 *pD3dDevice) {
 	return _ok;
 }
 
-
-/*!
-\b Parameters:
-
-\arg \b pTitle                  Title of the window
-\arg \b pWidth                  Width of the window
-\arg \b pHeight                 Height of the window
-\arg \b pBpp                    Quality of color (32 o 16 bits). 32 bits offers better quality. 16 bits offers better speed.
-\arg \b pVsync                  Wait for vertical sync. (1 / 0) = (on / off).
-\arg \b pFullscreen             Full screen. (1 / 0) = (on / off).
-
-\b Operation:
-
-This function returns 1 (true) if the application window resets to the attributes passed as parameters. This method
-is useful when you want to change the application window on runtime, 0 (false) if it is not possible to create
-the new window.
-*/
 bool DirectXRender::reset(IND_WindowProperties& props) {
 	if(props._bpp <= 0 || props._height <= 0 || props._width <= 0) {
 		g_debug->header("Error resetting window: Invalid parameters provided", 2);
@@ -171,13 +134,6 @@ bool DirectXRender::reset(IND_WindowProperties& props) {
 	return 1;
 }
 
-
-/*!
-\b Operation:
-
-This function returns 1 (true) if the application window toggles to fullscreen or windowed, 0 (false) if it is not possible
-to create the new window.
-*/
 bool DirectXRender::toggleFullScreen() {
 	bool wasFullScreen = _window->isFullScreen();
 	
@@ -208,52 +164,35 @@ void DirectXRender::beginScene() {
 		//ResetTimer    ();
 	}
 
-	_info.mDevice->BeginScene();
+	_info._device->BeginScene();
 }
 
-
-/*!
-\b Operation:
-
-Finish the scene. This function must be called after drawing all the graphical objects.
-*/
 void DirectXRender::endScene() {
 	if (!_ok)
 		return;
 
-	_info.mDevice->EndScene();
-	_info.mDevice->Present(NULL, NULL, NULL, NULL);
+	_info._device->EndScene();
+	_info._device->Present(NULL, NULL, NULL, NULL);
 }
 
-
-/*!
-\b Operation:
-
-This function shows the fps (frames per second) as the title of the window.
-
-NOTE: The updating of the window title is quite time-consuming, so this is not the correct method for
-checking the FPS. It's better to use the methods IND_Render::getFpsInt() or IND_Render::getFpsString() and drawing
-the result using an ::IND_Font object.
-*/
 void DirectXRender::showFpsInWindowTitle(char *pFPSString) {
 	if (!_ok)   return;
 
 	_window->setTitle(pFPSString);
 }
 
+void DirectXRender::setPointPixelScale (float pNewScale) {
+	_info._pointPixelScale = pNewScale;
+}
+
 void DirectXRender::getNumrenderedObjectsString(char* pBuffer)      {
-		Tools::itoa(_numrenderedObjects, pBuffer);
+		IND_Math::itoa(_numrenderedObjects, pBuffer);
 }
 
 void DirectXRender::getNumDiscardedObjectsString(char* pBuffer)      {
-		Tools::itoa(_numDiscardedObjects, pBuffer);
+		IND_Math::itoa(_numDiscardedObjects, pBuffer);
 }
 
-/*!
-\b Operation:
-
-This function frees the manager and all the objects that it contains.
-*/
 void DirectXRender::end() {
 	if (_ok) {
 		g_debug->header("Finalizing Direct3D", 5);
@@ -278,11 +217,14 @@ bool DirectXRender::Direct3Dinit(int pWidth,
                                  bool pVsync,
                                  bool pFullscreen) {
 	// Direct3D creation
-	if (!(_info.mDirect3d = Direct3DCreate9(D3D_SDK_VERSION))) {
+	LPDIRECT3D9 direct3d = Direct3DCreate9(D3D_SDK_VERSION);
+	if (!direct3d) {
 		g_debug->header("Error creating D3D object", 2);
 		return 0;
-	} else
+	} else {
 		g_debug->header("Creating D3D object", 1);
+		_info._direct3d = direct3d;
+	}
 
 	if (!fillPresentParameters(pWidth,pHeight,pBpp,pVsync,pFullscreen)) return 0;
 
@@ -290,28 +232,28 @@ bool DirectXRender::Direct3Dinit(int pWidth,
 	// we use software vertex processing
 	g_debug->header("Creating the device (D3DCREATE_HARDWARE_VERTEXPROCESSING)", 1);
 
-	if ((_info.mDirect3d->CreateDevice(D3DADAPTER_DEFAULT,
+	if ((_info._direct3d->CreateDevice(D3DADAPTER_DEFAULT,
 	                                   D3DDEVTYPE_HAL,
 	                                   _wnd,
 	                                   D3DCREATE_HARDWARE_VERTEXPROCESSING,
 	                                   &mPresentParameters,
-	                                   &_info.mDevice)) != D3D_OK) {
+	                                   &_info._device)) != D3D_OK) {
 		g_debug->header("Not possible to create the device (D3DCREATE_HARDWARE_VERTEXPROCESSING)", 1);
 		g_debug->header("Creating the device (D3DCREATE_SOFTWARE_VERTEXPROCESSING) instead", 1);
 
-		if ((_info.mDirect3d->CreateDevice(D3DADAPTER_DEFAULT,
+		if ((_info._direct3d->CreateDevice(D3DADAPTER_DEFAULT,
 		                                   D3DDEVTYPE_HAL,
 		                                   _wnd,
 		                                   D3DCREATE_SOFTWARE_VERTEXPROCESSING,
 		                                   &mPresentParameters,
-		                                   &_info.mDevice)) != D3D_OK) {
+		                                   &_info._device)) != D3D_OK) {
 			g_debug->header("Error creating the Device (D3DCREATE_SOFTWARE_VERTEXPROCESSING)", 2);
 			return 0;
 		} else {
-			_info.mSoftwareVertexProcessing = 1;
+			_info._softwareVertexProcessing = 1;
 		}
 	} else {
-		_info.mSoftwareVertexProcessing = 0;
+		_info._softwareVertexProcessing = 0;
 	}
 
 	// System info
@@ -453,7 +395,7 @@ Graphics card information
 void DirectXRender::getInfo() {
 	// Adapter
 	D3DADAPTER_IDENTIFIER9 *mAdapter = new D3DADAPTER_IDENTIFIER9;
-	_info.mDirect3d->GetAdapterIdentifier(0, 0, mAdapter);
+	_info._direct3d->GetAdapterIdentifier(0, 0, mAdapter);
 
 	// ----- d3d Version -----
 
@@ -488,7 +430,7 @@ void DirectXRender::getInfo() {
 
 	// Caps
 	D3DCAPS9 mD3dcap;
-	_info.mDevice->GetDeviceCaps(&mD3dcap);
+	_info._device->GetDeviceCaps(&mD3dcap);
 
 	// Antialiasing D3DRS_ANTIALIASEDLINEENABLE
 	if (mD3dcap.LineCaps & D3DLINECAPS_ANTIALIAS) _info._antialiasing = 1;
@@ -500,10 +442,10 @@ void DirectXRender::getInfo() {
 	_info._textureUnits = mD3dcap.MaxTextureBlendStages;
 
 	// Vertex Shader version
-	_info.mVertexShaderVersion = mD3dcap.VertexShaderVersion;
+	_info._vertexShaderVersion = mD3dcap.VertexShaderVersion;
 
 	// Pixel Shader version
-	_info.mPixelShaderVersion = mD3dcap.PixelShaderVersion;
+	_info._pixelShaderVersion = mD3dcap.PixelShaderVersion;
 }
 
 
@@ -548,11 +490,11 @@ void DirectXRender::writeInfo() {
 	// ----- Vertex Shader version  -----
 
 	g_debug->header("Vertex Shader:" , 3);
-	g_debug->dataInt(D3DSHADER_VERSION_MAJOR(_info.mVertexShaderVersion), 0);
+	g_debug->dataInt(D3DSHADER_VERSION_MAJOR(_info._vertexShaderVersion), 0);
 	g_debug->dataChar(".", 0);
-	g_debug->dataInt(D3DSHADER_VERSION_MINOR(_info.mVertexShaderVersion), 0);
+	g_debug->dataInt(D3DSHADER_VERSION_MINOR(_info._vertexShaderVersion), 0);
 
-	if (_info.mSoftwareVertexProcessing)
+	if (_info._softwareVertexProcessing)
 		g_debug->dataChar("(Software)", 1);
 	else
 		g_debug->dataChar("", 1);
@@ -560,9 +502,9 @@ void DirectXRender::writeInfo() {
 	// ----- Pixel Shader version -----
 
 	g_debug->header("Pixel Shader:" , 3);
-	g_debug->dataInt(D3DSHADER_VERSION_MAJOR(_info.mPixelShaderVersion), 0);
+	g_debug->dataInt(D3DSHADER_VERSION_MAJOR(_info._pixelShaderVersion), 0);
 	g_debug->dataChar(".", 0);
-	g_debug->dataInt(D3DSHADER_VERSION_MINOR(_info.mPixelShaderVersion), 1);
+	g_debug->dataInt(D3DSHADER_VERSION_MINOR(_info._pixelShaderVersion), 1);
 
 	g_debug->header("Hardware Ok" , 6);
 }
@@ -580,7 +522,7 @@ int DirectXRender::fillPresentParameters(int pWidth,
                                   bool pFullscreen) {
 	// Windowed
 	if (!pFullscreen) {
-		if ((_info.mDirect3d->GetAdapterDisplayMode(D3DADAPTER_DEFAULT, &mDisplayMode)) != D3D_OK) {
+		if ((_info._direct3d->GetAdapterDisplayMode(D3DADAPTER_DEFAULT, &mDisplayMode)) != D3D_OK) {
 			g_debug->header("Error obtaining the adapter", 2);
 			return 0;
 		} else
@@ -627,9 +569,9 @@ int DirectXRender::fillPresentParameters(int pWidth,
 	DWORD mQualityLevels;
 
 	D3DCAPS9 pCaps;
-	_info.mDirect3d->GetDeviceCaps (D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, &pCaps);
+	_info._direct3d->GetDeviceCaps (D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, &pCaps);
 
-	if  (SUCCEEDED (_info.mDirect3d->CheckDeviceMultiSampleType (pCaps.AdapterOrdinal,
+	if  (SUCCEEDED (_info._direct3d->CheckDeviceMultiSampleType (pCaps.AdapterOrdinal,
 	                                                            pCaps.DeviceType,
 	                                                            mDisplayMode.Format,
 	                                                            mPresentParameters.Windowed,
@@ -645,6 +587,8 @@ int DirectXRender::fillPresentParameters(int pWidth,
 	// Vsync
 	if (!pVsync)
 		mPresentParameters.PresentationInterval = D3DPRESENT_INTERVAL_IMMEDIATE;
+
+	return 1;
 }
 /*
 ==================
@@ -653,15 +597,15 @@ Destroys the renderer
 */
 void DirectXRender::DestroyD3DWindow() {
 	// Free device
-	if (_info.mDevice)
-		_info.mDevice->Release();
-	_info.mDevice = NULL;
+	if (_info._device)
+		_info._device->Release();
+	_info._device = NULL;
 	g_debug ->header("Finalizing the Device", 1);
 
 	// Free D3D object
-	if (_info.mDirect3d)
-		_info.mDirect3d->Release();
-	_info.mDirect3d = NULL;
+	if (_info._direct3d)
+		_info._direct3d->Release();
+	_info._direct3d = NULL;
 	g_debug ->header("Finalizing D3D object", 1);
 }
 
@@ -698,6 +642,7 @@ void DirectXRender::freeVars() {
 	// Destroy the render
 	DestroyD3DWindow();
 	DISPOSE(_window);
+	DISPOSE(_math);
 }
 
 #endif //INDIERENDER_DIRECTX

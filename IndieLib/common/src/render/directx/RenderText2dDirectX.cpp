@@ -35,46 +35,6 @@ Suite 330, Boston, MA 02111-1307 USA
 //							         Public methods
 // --------------------------------------------------------------------------------
 
-
-/*!
-\defgroup Graphical_Objects Bliting Surfaces, Animations, Fonts and setting transformations directly
-\ingroup Advances
-*/
-/*@{*/
-
-/*!
-\b Parameters:
-
-\arg \b pFo                                         Pointer to a ::IND_Font object
-\arg \b pText                                       Text to write to the screen
-\arg \b pX, \b pY                                   Position
-\arg \b pOffset                                     Char spacing
-\arg \b pLineSpacing                                Line spacing
-\arg \b pR, \b pG, \b pB                            R, G, B components of the tinting color
-\arg \b pA                                          Transparency level. (255 = complety opaque)
-\arg \b pFadeR, \b pFadeG, \b pFadeB, \b pFadeA     Fade to a color.
-\arg \b pFilter                                     ::IND_Filter type
-\arg \b pSo                                         Source blending, see (::IND_BlendingType).
-\arg \b pDs                                         Destiny blending, see (::IND_BlendingType).
-\arg \b pAlign                                      Text alignment, see::IND_Align.
-
-\b Operation:
-
-This function blits text directly to the screen using the ::IND_Font object.
-
-Important: you cannot change the transformation or color attributes of a font using DirectXRender::setTransform2d() or DirectXRender::SetRainbow().
-
-Remember that you can use IND_Entity2d object for drawing fonts to the screen without having to use this
-advanced method directly. This method is only useful for advanced users with really concrete purposes.
-
-Using this method is equivalent to using a combination of these methods:
-- IND_Entity2d::setFont()
-- IND_Entity2d::setPosition()
-- IND_Entity2d::setText()
-- IND_Entity2d::setCharSpacing()
-- IND_Entity2d::setLineSpacing()
-- IND_Entity2d::setAlign()
-*/
 void DirectXRender::blitText(IND_Font *pFo,
                              char *pText,
                              int pX,
@@ -120,8 +80,8 @@ void DirectXRender::blitText(IND_Font *pFo,
 		int mLongActualSentence;
 
 		D3DXMATRIX mMatTraslation, mMatWorld, mMatWorldOriginal;
-		_info.mDevice->GetTransform(D3DTS_WORLD, &mMatWorld);
-		_info.mDevice->GetTransform(D3DTS_WORLD, &mMatWorldOriginal);
+		_info._device->GetTransform(D3DTS_WORLD, &mMatWorld);
+		_info._device->GetTransform(D3DTS_WORLD, &mMatWorldOriginal);
 
 		mCont1 = 0;
 		mChar1 = pText [mCont1++];
@@ -161,7 +121,7 @@ void DirectXRender::blitText(IND_Font *pFo,
 				//mTranslationY += (pLineSpacing);
 				mTranslationY += static_cast<int>((pLineSpacing * pScaleY));
 				D3DXMatrixMultiply(&mMatWorld, &mMatWorldOriginal, &mMatTraslation);
-				_info.mDevice->SetTransform(D3DTS_WORLD, &mMatWorld);
+				_info._device->SetTransform(D3DTS_WORLD, &mMatWorld);
 			}
 
 			// It's a normal character
@@ -196,8 +156,6 @@ void DirectXRender::blitText(IND_Font *pFo,
 		}
 	}
 }
-/*@}*/
-
 
 // --------------------------------------------------------------------------------
 //							         Private methods
@@ -246,7 +204,7 @@ Set translation (used for translating the chars)
 void DirectXRender::SetTranslation(int pX, int pY, D3DXMATRIX *pMatWorld, D3DXMATRIX *pMatTraslation) {
 	D3DXMatrixTranslation(pMatTraslation, (float) pX, (float) pY, 0);
 	D3DXMatrixMultiply(pMatWorld, pMatWorld, pMatTraslation);
-	_info.mDevice->SetTransform(D3DTS_WORLD, pMatWorld);
+	_info._device->SetTransform(D3DTS_WORLD, pMatWorld);
 }
 
 #endif //INDIERENDER_DIRECTX

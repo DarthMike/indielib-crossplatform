@@ -284,6 +284,8 @@ void IND_Input::update() {
 			case SDLK_HASH:
 				_keys [IND_HASH].setState(mEvent.key.state);
 				break;
+            case SDLK_PERCENT:
+                _keys [IND_HASH].setState(mEvent.key.state);
 			case SDLK_DOLLAR:
 				_keys [IND_DOLLAR].setState(mEvent.key.state);
 				break;
@@ -544,20 +546,12 @@ void IND_Input::update() {
 			case SDLK_LALT:
 				_keys [IND_LALT].setState(mEvent.key.state);
 				break;
-                /*	FIXME:	case SDLK_RMETA:
+            case SDLK_RGUI:
                  _keys [IND_RMETA].setState(mEvent.key.state);
                  break;
-                 case SDLK_LMETA:
+            case SDLK_LGUI:
                  _keys [IND_LMETA].setState(mEvent.key.state);
                  break;
-                 
-                 case SDLK_LSUPER:
-                 _keys [IND_LSUPER].setState(mEvent.type);
-                 break;
-                 case SDLK_RSUPER:
-                 _keys [IND_RSUPER].setState(mEvent.type);
-                 break;
-                 */
 			case SDLK_MODE:
 				_keys [IND_MODE].setState(mEvent.key.state);
 				break;
@@ -570,19 +564,17 @@ void IND_Input::update() {
 			case SDLK_SYSREQ:
 				_keys [IND_SYSREQ].setState(mEvent.key.state);
 				break;
-                /*	FIXME:	case SDLK_BREAK:
+            case SDLK_RETURN2:
                  _keys [IND_BREAK].setState(mEvent.key.state);
                  break;
-                 */			case SDLK_MENU:
+			case SDLK_MENU:
 				_keys [IND_MENU].setState(mEvent.key.state);
 				break;
 			case SDLK_POWER:
 				_keys [IND_POWER].setState(mEvent.key.state);
 				break;
-                //FIXME:SDL 2.0
-                //case SDLK_EURO:
-                //	_keys [IND_EURO].setState(mEvent.type);
-                //	break;
+            case SDLK_CURRENCYUNIT:
+                _keys [IND_CURRENCYUNIT].setState(mEvent.type);
                 break;  //KEYDOWN OR KEYUP
                 
             default:
@@ -599,7 +591,7 @@ bool IND_Input::quit() {
 }
 
 /**
- * Returns true if the key passed as \b pKey parameter is pressed.
+ * Returns true if the key passed as @b pKey parameter is pressed.
  * @param pKey						Key that we want to check. See ::IND_Key.
  */
 bool IND_Input::onKeyPress(IND_Key pKey) {
@@ -607,7 +599,7 @@ bool IND_Input::onKeyPress(IND_Key pKey) {
 }
 
 /**
- * Returns true if the key passed as \b pKey parameter is released.
+ * Returns true if the key passed as @b pKey parameter is released.
  * @param pKey						Key that we want to check. See ::IND_Key.
  */
 bool IND_Input::onKeyRelease(IND_Key pKey) {
@@ -615,7 +607,7 @@ bool IND_Input::onKeyRelease(IND_Key pKey) {
 }
 
 /**
- * Returns true if the key passed as \b pKey parameter is being pressed.
+ * Returns true if the key passed as @b pKey parameter is being pressed.
  * @param pKey						Key that we want to check. See ::IND_Key.
  */
 bool IND_Input::isKeyPressed(IND_Key pKey) {
@@ -717,7 +709,7 @@ bool IND_Input::isMouseButtonPressed(IND_MouseButton pMouseButton) {
 }
 
 /**
- * Returns true if the mouse button passed as \b pMouseButton parameter has been pressed \b pTime milliseconds.
+ * Returns true if the mouse button passed as @b pMouseButton parameter has been pressed @b pTime milliseconds.
  * @param pMouseButton					Mouse button that we want to check. See ::IND_MouseButton.
  * @param pTime						Time that has to pass in milliseconds.
  */

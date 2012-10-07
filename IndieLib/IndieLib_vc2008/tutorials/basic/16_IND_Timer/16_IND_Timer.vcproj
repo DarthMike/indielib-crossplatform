@@ -209,14 +209,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\tutorials\basic\16_IND_Timer\Tools.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\tutorials\basic\16_IND_Timer\Tools.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\..\..\tutorials\basic\16_IND_Timer\Tutorial16.cpp"
 				>
 			</File>

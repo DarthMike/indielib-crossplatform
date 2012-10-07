@@ -33,15 +33,15 @@ Suite 330, Boston, MA 02111-1307 USA
 //									 IND_3dMesh
 // --------------------------------------------------------------------------------
 
-/*!
-\defgroup IND_3dMesh IND_3dMesh
-\ingroup Objects
+/**
+@defgroup IND_3dMesh IND_3dMesh
+@ingroup Objects
 IND_3dMesh class managed by IND_3dMeshManager for rendering 3d meshes. Click in IND_3dMesh to see all the methods of this class.
 */
 /*@{*/
 
-/*!
-\b IND_3dMesh is an 3d mesh object from the class ::IND_3dMeshManager. Read the explanation in ::IND_3dMeshManager for having more details.
+/**
+@b IND_3dMesh is an 3d mesh object from the class ::IND_3dMeshManager. Read the explanation in ::IND_3dMeshManager for having more details.
 */
 class LIB_EXP IND_3dMesh {
 public:

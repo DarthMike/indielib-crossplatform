@@ -1,0 +1,2604 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E72ECCA615E6B5FF00250CEE /* IndielibTutorials-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA415E6B5FF00250CEE /* IndielibTutorials-Info.plist */; };
+		E72ECCAD15E6B67800250CEE /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA915E6B67800250CEE /* Credits.rtf */; };
+		E72ECCAE15E6B67800250CEE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCAB15E6B67800250CEE /* InfoPlist.strings */; };
+		E72ECCC015E6BBC300250CEE /* CIndieLib_vc2008.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E72ECCBB15E6BBC300250CEE /* CIndieLib_vc2008.cpp */; };
+		E72ECCC115E6BBC300250CEE /* Tutorial01.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E72ECCBD15E6BBC300250CEE /* Tutorial01.cpp */; };
+		E73EAF1E15E6BF7E00B95FE4 /* libIndielib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E73EAF1F15E6BF7E00B95FE4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */; };
+		E73EAF2315E6BF7E00B95FE4 /* IndielibTutorials-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA415E6B5FF00250CEE /* IndielibTutorials-Info.plist */; };
+		E73EAF2415E6BF7E00B95FE4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA915E6B67800250CEE /* Credits.rtf */; };
+		E73EAF2515E6BF7E00B95FE4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCAB15E6B67800250CEE /* InfoPlist.strings */; };
+		E73EAF3215E6C1AE00B95FE4 /* CIndieLib_vc2008.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E73EAF2F15E6C1AE00B95FE4 /* CIndieLib_vc2008.cpp */; };
+		E73EAF3315E6C1AE00B95FE4 /* Tutorial02.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E73EAF3115E6C1AE00B95FE4 /* Tutorial02.cpp */; };
+		E73EAF3F15E6C7B400B95FE4 /* libIndielib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E73EAF4015E6C7B400B95FE4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */; };
+		E73EAF4215E6C7B400B95FE4 /* IndielibTutorials-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA415E6B5FF00250CEE /* IndielibTutorials-Info.plist */; };
+		E73EAF4315E6C7B400B95FE4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA915E6B67800250CEE /* Credits.rtf */; };
+		E73EAF4415E6C7B400B95FE4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCAB15E6B67800250CEE /* InfoPlist.strings */; };
+		E73EAF4F15E6C81600B95FE4 /* CIndieLib_vc2008.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E73EAF4C15E6C81600B95FE4 /* CIndieLib_vc2008.cpp */; };
+		E73EAF5015E6C81600B95FE4 /* Tutorial03.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E73EAF4E15E6C81600B95FE4 /* Tutorial03.cpp */; };
+		E73EAF5A15E6C9DA00B95FE4 /* libIndielib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E73EAF5B15E6C9DA00B95FE4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */; };
+		E73EAF5D15E6C9DA00B95FE4 /* IndielibTutorials-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA415E6B5FF00250CEE /* IndielibTutorials-Info.plist */; };
+		E73EAF5E15E6C9DA00B95FE4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA915E6B67800250CEE /* Credits.rtf */; };
+		E73EAF5F15E6C9DA00B95FE4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCAB15E6B67800250CEE /* InfoPlist.strings */; };
+		E73EAF6A15E6CA2C00B95FE4 /* CIndieLib_vc2008.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E73EAF6715E6CA2C00B95FE4 /* CIndieLib_vc2008.cpp */; };
+		E73EAF6B15E6CA2C00B95FE4 /* Tutorial04.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E73EAF6915E6CA2C00B95FE4 /* Tutorial04.cpp */; };
+		E73EAF7415E6CB3900B95FE4 /* libIndielib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E73EAF7515E6CB3900B95FE4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */; };
+		E73EAF7715E6CB3900B95FE4 /* IndielibTutorials-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA415E6B5FF00250CEE /* IndielibTutorials-Info.plist */; };
+		E73EAF7815E6CB3900B95FE4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA915E6B67800250CEE /* Credits.rtf */; };
+		E73EAF7915E6CB3900B95FE4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCAB15E6B67800250CEE /* InfoPlist.strings */; };
+		E73EAF8415E6CC2700B95FE4 /* CIndieLib_vc2008.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E73EAF8115E6CC2700B95FE4 /* CIndieLib_vc2008.cpp */; };
+		E73EAF8515E6CC2700B95FE4 /* Tutorial05.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E73EAF8315E6CC2700B95FE4 /* Tutorial05.cpp */; };
+		E73EAF8E15E6CE5D00B95FE4 /* libIndielib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E73EAF8F15E6CE5D00B95FE4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */; };
+		E73EAF9115E6CE5D00B95FE4 /* IndielibTutorials-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA415E6B5FF00250CEE /* IndielibTutorials-Info.plist */; };
+		E73EAF9215E6CE5D00B95FE4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA915E6B67800250CEE /* Credits.rtf */; };
+		E73EAF9315E6CE5D00B95FE4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCAB15E6B67800250CEE /* InfoPlist.strings */; };
+		E73EAF9E15E6CED700B95FE4 /* CIndieLib_vc2008.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E73EAF9B15E6CED700B95FE4 /* CIndieLib_vc2008.cpp */; };
+		E73EAF9F15E6CED700B95FE4 /* Tutorial07.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E73EAF9D15E6CED700B95FE4 /* Tutorial07.cpp */; };
+		E73EAFA815E6D07000B95FE4 /* libIndielib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E73EAFA915E6D07000B95FE4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */; };
+		E73EAFAB15E6D07000B95FE4 /* IndielibTutorials-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA415E6B5FF00250CEE /* IndielibTutorials-Info.plist */; };
+		E73EAFAC15E6D07000B95FE4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA915E6B67800250CEE /* Credits.rtf */; };
+		E73EAFAD15E6D07000B95FE4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCAB15E6B67800250CEE /* InfoPlist.strings */; };
+		E73EAFB815E6D09F00B95FE4 /* CIndieLib_vc2008.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E73EAFB515E6D09F00B95FE4 /* CIndieLib_vc2008.cpp */; };
+		E73EAFB915E6D09F00B95FE4 /* Tutorial06.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E73EAFB715E6D09F00B95FE4 /* Tutorial06.cpp */; };
+		E73EAFC215E6D1F100B95FE4 /* libIndielib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E73EAFC315E6D1F100B95FE4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */; };
+		E73EAFC515E6D1F100B95FE4 /* IndielibTutorials-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA415E6B5FF00250CEE /* IndielibTutorials-Info.plist */; };
+		E73EAFC615E6D1F100B95FE4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA915E6B67800250CEE /* Credits.rtf */; };
+		E73EAFC715E6D1F100B95FE4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCAB15E6B67800250CEE /* InfoPlist.strings */; };
+		E73EAFD215E6D28A00B95FE4 /* CIndieLib_vc2008.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E73EAFCF15E6D28A00B95FE4 /* CIndieLib_vc2008.cpp */; };
+		E73EAFD315E6D28A00B95FE4 /* Tutorial08.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E73EAFD115E6D28A00B95FE4 /* Tutorial08.cpp */; };
+		E73EAFDC15E6D35300B95FE4 /* libIndielib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E73EAFDD15E6D35300B95FE4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */; };
+		E73EAFDF15E6D35300B95FE4 /* IndielibTutorials-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA415E6B5FF00250CEE /* IndielibTutorials-Info.plist */; };
+		E73EAFE015E6D35300B95FE4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA915E6B67800250CEE /* Credits.rtf */; };
+		E73EAFE115E6D35300B95FE4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCAB15E6B67800250CEE /* InfoPlist.strings */; };
+		E73EAFEC15E6D3DF00B95FE4 /* CIndieLib_vc2008.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E73EAFE915E6D3DF00B95FE4 /* CIndieLib_vc2008.cpp */; };
+		E73EAFED15E6D3DF00B95FE4 /* Tutorial11.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E73EAFEB15E6D3DF00B95FE4 /* Tutorial11.cpp */; };
+		E73EAFF615E6D46A00B95FE4 /* libIndielib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E73EAFF715E6D46A00B95FE4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */; };
+		E73EAFF915E6D46A00B95FE4 /* IndielibTutorials-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA415E6B5FF00250CEE /* IndielibTutorials-Info.plist */; };
+		E73EAFFA15E6D46A00B95FE4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA915E6B67800250CEE /* Credits.rtf */; };
+		E73EAFFB15E6D46A00B95FE4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCAB15E6B67800250CEE /* InfoPlist.strings */; };
+		E73EB00615E6D4A300B95FE4 /* CIndieLib_vc2008.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E73EB00315E6D4A300B95FE4 /* CIndieLib_vc2008.cpp */; };
+		E73EB00715E6D4A300B95FE4 /* Tutorial13.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E73EB00515E6D4A300B95FE4 /* Tutorial13.cpp */; };
+		E73EB01015E6D51800B95FE4 /* libIndielib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E73EB01115E6D51800B95FE4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */; };
+		E73EB01315E6D51800B95FE4 /* IndielibTutorials-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA415E6B5FF00250CEE /* IndielibTutorials-Info.plist */; };
+		E73EB01415E6D51800B95FE4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA915E6B67800250CEE /* Credits.rtf */; };
+		E73EB01515E6D51800B95FE4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCAB15E6B67800250CEE /* InfoPlist.strings */; };
+		E73EB02015E6D54D00B95FE4 /* CIndieLib_vc2008.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E73EB01D15E6D54D00B95FE4 /* CIndieLib_vc2008.cpp */; };
+		E73EB02115E6D54D00B95FE4 /* Tutorial15.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E73EB01F15E6D54D00B95FE4 /* Tutorial15.cpp */; };
+		E73EB02A15E6D66300B95FE4 /* libIndielib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E73EB02B15E6D66300B95FE4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */; };
+		E73EB02D15E6D66300B95FE4 /* IndielibTutorials-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA415E6B5FF00250CEE /* IndielibTutorials-Info.plist */; };
+		E73EB02E15E6D66300B95FE4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA915E6B67800250CEE /* Credits.rtf */; };
+		E73EB02F15E6D66300B95FE4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCAB15E6B67800250CEE /* InfoPlist.strings */; };
+		E73EB03C15E6D6D000B95FE4 /* CIndieLib_vc2008.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E73EB03715E6D6D000B95FE4 /* CIndieLib_vc2008.cpp */; };
+		E73EB03E15E6D6D000B95FE4 /* Tutorial16.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E73EB03B15E6D6D000B95FE4 /* Tutorial16.cpp */; };
+		E744859415E7E9B600DDE3BF /* libIndielib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E744859515E7E9B600DDE3BF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */; };
+		E744859715E7E9B600DDE3BF /* IndielibTutorials-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA415E6B5FF00250CEE /* IndielibTutorials-Info.plist */; };
+		E744859815E7E9B600DDE3BF /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA915E6B67800250CEE /* Credits.rtf */; };
+		E744859915E7E9B600DDE3BF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCAB15E6B67800250CEE /* InfoPlist.strings */; };
+		E74485A615E7E9EC00DDE3BF /* CIndieLib_vc2008.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E74485A315E7E9EC00DDE3BF /* CIndieLib_vc2008.cpp */; };
+		E74485A715E7E9EC00DDE3BF /* Tutorial01.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E74485A515E7E9EC00DDE3BF /* Tutorial01.cpp */; };
+		E74485B015E7EA2400DDE3BF /* libIndielib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E74485B115E7EA2400DDE3BF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */; };
+		E74485B315E7EA2400DDE3BF /* IndielibTutorials-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA415E6B5FF00250CEE /* IndielibTutorials-Info.plist */; };
+		E74485B415E7EA2400DDE3BF /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA915E6B67800250CEE /* Credits.rtf */; };
+		E74485B515E7EA2400DDE3BF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCAB15E6B67800250CEE /* InfoPlist.strings */; };
+		E74485C015E7EA4F00DDE3BF /* CIndieLib_vc2008.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E74485BD15E7EA4F00DDE3BF /* CIndieLib_vc2008.cpp */; };
+		E74485C115E7EA4F00DDE3BF /* Tutorial02.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E74485BF15E7EA4F00DDE3BF /* Tutorial02.cpp */; };
+		E74485C915E7EA5900DDE3BF /* libIndielib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E74485CA15E7EA5900DDE3BF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */; };
+		E74485CC15E7EA5900DDE3BF /* IndielibTutorials-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA415E6B5FF00250CEE /* IndielibTutorials-Info.plist */; };
+		E74485CD15E7EA5900DDE3BF /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA915E6B67800250CEE /* Credits.rtf */; };
+		E74485CE15E7EA5900DDE3BF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCAB15E6B67800250CEE /* InfoPlist.strings */; };
+		E74485D915E7EAE500DDE3BF /* CIndieLib_vc2008.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E74485D615E7EAE500DDE3BF /* CIndieLib_vc2008.cpp */; };
+		E74485DA15E7EAE500DDE3BF /* Tutorial04.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E74485D815E7EAE500DDE3BF /* Tutorial04.cpp */; };
+		E74485E215E7EAF100DDE3BF /* libIndielib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E74485E315E7EAF100DDE3BF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */; };
+		E74485E515E7EAF100DDE3BF /* IndielibTutorials-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA415E6B5FF00250CEE /* IndielibTutorials-Info.plist */; };
+		E74485E615E7EAF100DDE3BF /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA915E6B67800250CEE /* Credits.rtf */; };
+		E74485E715E7EAF100DDE3BF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCAB15E6B67800250CEE /* InfoPlist.strings */; };
+		E74485F215E7EB1800DDE3BF /* CIndieLib_vc2008.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E74485EF15E7EB1800DDE3BF /* CIndieLib_vc2008.cpp */; };
+		E74485F315E7EB1800DDE3BF /* Tutorial05.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E74485F115E7EB1800DDE3BF /* Tutorial05.cpp */; };
+		E74485FC15E7EBF900DDE3BF /* libIndielib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E74485FD15E7EBF900DDE3BF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */; };
+		E74485FF15E7EBF900DDE3BF /* IndielibTutorials-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA415E6B5FF00250CEE /* IndielibTutorials-Info.plist */; };
+		E744860015E7EBF900DDE3BF /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA915E6B67800250CEE /* Credits.rtf */; };
+		E744860115E7EBF900DDE3BF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCAB15E6B67800250CEE /* InfoPlist.strings */; };
+		E744861015E7EC2000DDE3BF /* CIndieLib_vc2008.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E744860915E7EC2000DDE3BF /* CIndieLib_vc2008.cpp */; };
+		E744861115E7EC2000DDE3BF /* CTerrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E744860B15E7EC2000DDE3BF /* CTerrain.cpp */; };
+		E744861215E7EC2000DDE3BF /* CUfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E744860D15E7EC2000DDE3BF /* CUfo.cpp */; };
+		E744861315E7EC2000DDE3BF /* Tutorial01.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E744860F15E7EC2000DDE3BF /* Tutorial01.cpp */; };
+		E744861D15E7EC2900DDE3BF /* libIndielib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E744861E15E7EC2900DDE3BF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */; };
+		E744862015E7EC2900DDE3BF /* IndielibTutorials-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA415E6B5FF00250CEE /* IndielibTutorials-Info.plist */; };
+		E744862115E7EC2900DDE3BF /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA915E6B67800250CEE /* Credits.rtf */; };
+		E744862215E7EC2900DDE3BF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCAB15E6B67800250CEE /* InfoPlist.strings */; };
+		E744862F15E7EC5100DDE3BF /* CIndieLib_vc2008.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E744862A15E7EC5100DDE3BF /* CIndieLib_vc2008.cpp */; };
+		E744863015E7EC5100DDE3BF /* CRabbit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E744862C15E7EC5100DDE3BF /* CRabbit.cpp */; };
+		E744863115E7EC5100DDE3BF /* Tutorial02.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E744862E15E7EC5100DDE3BF /* Tutorial02.cpp */; };
+		E75EB2B6159CB25100693F41 /* libIndielib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E7DBCB1D159C78F600C8B2D9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E73EAF1915E6BF7E00B95FE4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E72B9F41158CBEF60003C431;
+			remoteInfo = Indielib;
+		};
+		E73EAF3915E6C7B400B95FE4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E72B9F41158CBEF60003C431;
+			remoteInfo = Indielib;
+		};
+		E73EAF5415E6C9DA00B95FE4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E72B9F41158CBEF60003C431;
+			remoteInfo = Indielib;
+		};
+		E73EAF6E15E6CB3900B95FE4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E72B9F41158CBEF60003C431;
+			remoteInfo = Indielib;
+		};
+		E73EAF8815E6CE5D00B95FE4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E72B9F41158CBEF60003C431;
+			remoteInfo = Indielib;
+		};
+		E73EAFA215E6D07000B95FE4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E72B9F41158CBEF60003C431;
+			remoteInfo = Indielib;
+		};
+		E73EAFBC15E6D1F100B95FE4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E72B9F41158CBEF60003C431;
+			remoteInfo = Indielib;
+		};
+		E73EAFD615E6D35300B95FE4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E72B9F41158CBEF60003C431;
+			remoteInfo = Indielib;
+		};
+		E73EAFF015E6D46A00B95FE4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E72B9F41158CBEF60003C431;
+			remoteInfo = Indielib;
+		};
+		E73EB00A15E6D51800B95FE4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E72B9F41158CBEF60003C431;
+			remoteInfo = Indielib;
+		};
+		E73EB02415E6D66300B95FE4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E72B9F41158CBEF60003C431;
+			remoteInfo = Indielib;
+		};
+		E744858E15E7E9B600DDE3BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E72B9F41158CBEF60003C431;
+			remoteInfo = Indielib;
+		};
+		E74485AB15E7EA2400DDE3BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E72B9F41158CBEF60003C431;
+			remoteInfo = Indielib;
+		};
+		E74485C415E7EA5900DDE3BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E72B9F41158CBEF60003C431;
+			remoteInfo = Indielib;
+		};
+		E74485DD15E7EAF100DDE3BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E72B9F41158CBEF60003C431;
+			remoteInfo = Indielib;
+		};
+		E74485F715E7EBF900DDE3BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E72B9F41158CBEF60003C431;
+			remoteInfo = Indielib;
+		};
+		E744861615E7EC2900DDE3BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E72B9F41158CBEF60003C431;
+			remoteInfo = Indielib;
+		};
+		E74486FB15F25E1300DDE3BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E70712AF15A09C4700BF34D9 /* UnitTests.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E744868A15EA478800DDE3BF;
+			remoteInfo = UnitTests;
+		};
+		E75EB2B0159CAFEA00693F41 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E75EAB9A159CADF400693F41;
+			remoteInfo = Indielib;
+		};
+		E75EB2B2159CAFF500693F41 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E72B9F41158CBEF60003C431;
+			remoteInfo = Indielib;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E70712AF15A09C4700BF34D9 /* UnitTests.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = UnitTests.xcodeproj; path = ../UnitTests/UnitTests.xcodeproj; sourceTree = "<group>"; };
+		E72ECCA415E6B5FF00250CEE /* IndielibTutorials-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "IndielibTutorials-Info.plist"; path = "IndielibTutorials/IndielibTutorials-Info.plist"; sourceTree = SOURCE_ROOT; };
+		E72ECCA515E6B5FF00250CEE /* IndielibTutorials-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "IndielibTutorials-Prefix.pch"; path = "IndielibTutorials/IndielibTutorials-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		E72ECCAA15E6B67800250CEE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = IndielibTutorials/en.lproj/Credits.rtf; sourceTree = SOURCE_ROOT; };
+		E72ECCAC15E6B67800250CEE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = IndielibTutorials/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
+		E72ECCBB15E6BBC300250CEE /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
+		E72ECCBC15E6BBC300250CEE /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIndieLib_vc2008.h; sourceTree = "<group>"; };
+		E72ECCBD15E6BBC300250CEE /* Tutorial01.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial01.cpp; sourceTree = "<group>"; };
+		E73EAF2915E6BF7E00B95FE4 /* Tutorial 02.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tutorial 02.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E73EAF2F15E6C1AE00B95FE4 /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
+		E73EAF3015E6C1AE00B95FE4 /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIndieLib_vc2008.h; sourceTree = "<group>"; };
+		E73EAF3115E6C1AE00B95FE4 /* Tutorial02.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial02.cpp; sourceTree = "<group>"; };
+		E73EAF4815E6C7B400B95FE4 /* Tutorial03.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial03.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E73EAF4C15E6C81600B95FE4 /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
+		E73EAF4D15E6C81600B95FE4 /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIndieLib_vc2008.h; sourceTree = "<group>"; };
+		E73EAF4E15E6C81600B95FE4 /* Tutorial03.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial03.cpp; sourceTree = "<group>"; };
+		E73EAF6315E6C9DA00B95FE4 /* Tutorial04.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial04.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E73EAF6715E6CA2C00B95FE4 /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
+		E73EAF6815E6CA2C00B95FE4 /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIndieLib_vc2008.h; sourceTree = "<group>"; };
+		E73EAF6915E6CA2C00B95FE4 /* Tutorial04.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial04.cpp; sourceTree = "<group>"; };
+		E73EAF7D15E6CB3900B95FE4 /* Tutorial05.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial05.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E73EAF8115E6CC2700B95FE4 /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
+		E73EAF8215E6CC2700B95FE4 /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIndieLib_vc2008.h; sourceTree = "<group>"; };
+		E73EAF8315E6CC2700B95FE4 /* Tutorial05.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial05.cpp; sourceTree = "<group>"; };
+		E73EAF9715E6CE5D00B95FE4 /* Tutorial07.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial07.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E73EAF9B15E6CED700B95FE4 /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
+		E73EAF9C15E6CED700B95FE4 /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIndieLib_vc2008.h; sourceTree = "<group>"; };
+		E73EAF9D15E6CED700B95FE4 /* Tutorial07.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial07.cpp; sourceTree = "<group>"; };
+		E73EAFB115E6D07000B95FE4 /* Tutorial06.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial06.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E73EAFB515E6D09F00B95FE4 /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
+		E73EAFB615E6D09F00B95FE4 /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIndieLib_vc2008.h; sourceTree = "<group>"; };
+		E73EAFB715E6D09F00B95FE4 /* Tutorial06.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial06.cpp; sourceTree = "<group>"; };
+		E73EAFCB15E6D1F100B95FE4 /* Tutorial08.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial08.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E73EAFCF15E6D28A00B95FE4 /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
+		E73EAFD015E6D28A00B95FE4 /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIndieLib_vc2008.h; sourceTree = "<group>"; };
+		E73EAFD115E6D28A00B95FE4 /* Tutorial08.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial08.cpp; sourceTree = "<group>"; };
+		E73EAFE515E6D35300B95FE4 /* Tutorial11.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial11.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E73EAFE915E6D3DF00B95FE4 /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
+		E73EAFEA15E6D3DF00B95FE4 /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIndieLib_vc2008.h; sourceTree = "<group>"; };
+		E73EAFEB15E6D3DF00B95FE4 /* Tutorial11.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial11.cpp; sourceTree = "<group>"; };
+		E73EAFFF15E6D46A00B95FE4 /* Tutorial13.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial13.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E73EB00315E6D4A300B95FE4 /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
+		E73EB00415E6D4A300B95FE4 /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIndieLib_vc2008.h; sourceTree = "<group>"; };
+		E73EB00515E6D4A300B95FE4 /* Tutorial13.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial13.cpp; sourceTree = "<group>"; };
+		E73EB01915E6D51800B95FE4 /* Tutorial15.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial15.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E73EB01D15E6D54D00B95FE4 /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
+		E73EB01E15E6D54D00B95FE4 /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIndieLib_vc2008.h; sourceTree = "<group>"; };
+		E73EB01F15E6D54D00B95FE4 /* Tutorial15.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial15.cpp; sourceTree = "<group>"; };
+		E73EB03315E6D66300B95FE4 /* Tutorial16.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial16.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E73EB03715E6D6D000B95FE4 /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
+		E73EB03815E6D6D000B95FE4 /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIndieLib_vc2008.h; sourceTree = "<group>"; };
+		E73EB03B15E6D6D000B95FE4 /* Tutorial16.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial16.cpp; sourceTree = "<group>"; };
+		E744859D15E7E9B600DDE3BF /* TutorialAdvanced01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TutorialAdvanced01.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E74485A315E7E9EC00DDE3BF /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
+		E74485A415E7E9EC00DDE3BF /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIndieLib_vc2008.h; sourceTree = "<group>"; };
+		E74485A515E7E9EC00DDE3BF /* Tutorial01.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial01.cpp; sourceTree = "<group>"; };
+		E74485B915E7EA2400DDE3BF /* TutorialAdvanced02.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TutorialAdvanced02.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E74485BD15E7EA4F00DDE3BF /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
+		E74485BE15E7EA4F00DDE3BF /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIndieLib_vc2008.h; sourceTree = "<group>"; };
+		E74485BF15E7EA4F00DDE3BF /* Tutorial02.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial02.cpp; sourceTree = "<group>"; };
+		E74485D215E7EA5900DDE3BF /* TutorialAdvanced04.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TutorialAdvanced04.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E74485D615E7EAE500DDE3BF /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
+		E74485D715E7EAE500DDE3BF /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIndieLib_vc2008.h; sourceTree = "<group>"; };
+		E74485D815E7EAE500DDE3BF /* Tutorial04.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial04.cpp; sourceTree = "<group>"; };
+		E74485EB15E7EAF100DDE3BF /* TutorialAdvanced05.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TutorialAdvanced05.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E74485EF15E7EB1800DDE3BF /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
+		E74485F015E7EB1800DDE3BF /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIndieLib_vc2008.h; sourceTree = "<group>"; };
+		E74485F115E7EB1800DDE3BF /* Tutorial05.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial05.cpp; sourceTree = "<group>"; };
+		E744860515E7EBF900DDE3BF /* Benchmark01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Benchmark01.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E744860915E7EC2000DDE3BF /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
+		E744860A15E7EC2000DDE3BF /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIndieLib_vc2008.h; sourceTree = "<group>"; };
+		E744860B15E7EC2000DDE3BF /* CTerrain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CTerrain.cpp; sourceTree = "<group>"; };
+		E744860C15E7EC2000DDE3BF /* CTerrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTerrain.h; sourceTree = "<group>"; };
+		E744860D15E7EC2000DDE3BF /* CUfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CUfo.cpp; sourceTree = "<group>"; };
+		E744860E15E7EC2000DDE3BF /* CUfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUfo.h; sourceTree = "<group>"; };
+		E744860F15E7EC2000DDE3BF /* Tutorial01.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial01.cpp; sourceTree = "<group>"; };
+		E744862615E7EC2900DDE3BF /* Benchmark02.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Benchmark02.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E744862A15E7EC5100DDE3BF /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
+		E744862B15E7EC5100DDE3BF /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIndieLib_vc2008.h; sourceTree = "<group>"; };
+		E744862C15E7EC5100DDE3BF /* CRabbit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CRabbit.cpp; sourceTree = "<group>"; };
+		E744862D15E7EC5100DDE3BF /* CRabbit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRabbit.h; sourceTree = "<group>"; };
+		E744862E15E7EC5100DDE3BF /* Tutorial02.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial02.cpp; sourceTree = "<group>"; };
+		E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Indielib.xcodeproj; path = ../IndieLib/Indielib.xcodeproj; sourceTree = "<group>"; };
+		E7DBCB18159C78F600C8B2D9 /* Tutorial01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial01.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		E7DBCB1F159C78F600C8B2D9 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		E7DBCB20159C78F600C8B2D9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		E7DBCB21159C78F600C8B2D9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E73EAF1D15E6BF7E00B95FE4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73EAF1E15E6BF7E00B95FE4 /* libIndielib.dylib in Frameworks */,
+				E73EAF1F15E6BF7E00B95FE4 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73EAF3E15E6C7B400B95FE4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73EAF3F15E6C7B400B95FE4 /* libIndielib.dylib in Frameworks */,
+				E73EAF4015E6C7B400B95FE4 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73EAF5915E6C9DA00B95FE4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73EAF5A15E6C9DA00B95FE4 /* libIndielib.dylib in Frameworks */,
+				E73EAF5B15E6C9DA00B95FE4 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73EAF7315E6CB3900B95FE4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73EAF7415E6CB3900B95FE4 /* libIndielib.dylib in Frameworks */,
+				E73EAF7515E6CB3900B95FE4 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73EAF8D15E6CE5D00B95FE4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73EAF8E15E6CE5D00B95FE4 /* libIndielib.dylib in Frameworks */,
+				E73EAF8F15E6CE5D00B95FE4 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73EAFA715E6D07000B95FE4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73EAFA815E6D07000B95FE4 /* libIndielib.dylib in Frameworks */,
+				E73EAFA915E6D07000B95FE4 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73EAFC115E6D1F100B95FE4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73EAFC215E6D1F100B95FE4 /* libIndielib.dylib in Frameworks */,
+				E73EAFC315E6D1F100B95FE4 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73EAFDB15E6D35300B95FE4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73EAFDC15E6D35300B95FE4 /* libIndielib.dylib in Frameworks */,
+				E73EAFDD15E6D35300B95FE4 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73EAFF515E6D46A00B95FE4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73EAFF615E6D46A00B95FE4 /* libIndielib.dylib in Frameworks */,
+				E73EAFF715E6D46A00B95FE4 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73EB00F15E6D51800B95FE4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73EB01015E6D51800B95FE4 /* libIndielib.dylib in Frameworks */,
+				E73EB01115E6D51800B95FE4 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73EB02915E6D66300B95FE4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73EB02A15E6D66300B95FE4 /* libIndielib.dylib in Frameworks */,
+				E73EB02B15E6D66300B95FE4 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E744859315E7E9B600DDE3BF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E744859415E7E9B600DDE3BF /* libIndielib.dylib in Frameworks */,
+				E744859515E7E9B600DDE3BF /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E74485AF15E7EA2400DDE3BF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E74485B015E7EA2400DDE3BF /* libIndielib.dylib in Frameworks */,
+				E74485B115E7EA2400DDE3BF /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E74485C815E7EA5900DDE3BF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E74485C915E7EA5900DDE3BF /* libIndielib.dylib in Frameworks */,
+				E74485CA15E7EA5900DDE3BF /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E74485E115E7EAF100DDE3BF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E74485E215E7EAF100DDE3BF /* libIndielib.dylib in Frameworks */,
+				E74485E315E7EAF100DDE3BF /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E74485FB15E7EBF900DDE3BF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E74485FC15E7EBF900DDE3BF /* libIndielib.dylib in Frameworks */,
+				E74485FD15E7EBF900DDE3BF /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E744861C15E7EC2900DDE3BF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E744861D15E7EC2900DDE3BF /* libIndielib.dylib in Frameworks */,
+				E744861E15E7EC2900DDE3BF /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E7DBCB15159C78F600C8B2D9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E75EB2B6159CB25100693F41 /* libIndielib.dylib in Frameworks */,
+				E7DBCB1D159C78F600C8B2D9 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E70712B015A09C4700BF34D9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E74486FC15F25E1300DDE3BF /* UnitTests */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E72ECCB715E6BBC300250CEE /* 01_Installing */ = {
+			isa = PBXGroup;
+			children = (
+				E72ECCBB15E6BBC300250CEE /* CIndieLib_vc2008.cpp */,
+				E72ECCBC15E6BBC300250CEE /* CIndieLib_vc2008.h */,
+				E72ECCBD15E6BBC300250CEE /* Tutorial01.cpp */,
+			);
+			name = 01_Installing;
+			path = ../../tutorials/basic/01_Installing;
+			sourceTree = "<group>";
+		};
+		E73EAF2E15E6C1AE00B95FE4 /* 02_IND_Surface */ = {
+			isa = PBXGroup;
+			children = (
+				E73EAF2F15E6C1AE00B95FE4 /* CIndieLib_vc2008.cpp */,
+				E73EAF3015E6C1AE00B95FE4 /* CIndieLib_vc2008.h */,
+				E73EAF3115E6C1AE00B95FE4 /* Tutorial02.cpp */,
+			);
+			name = 02_IND_Surface;
+			path = ../../tutorials/basic/02_IND_Surface;
+			sourceTree = "<group>";
+		};
+		E73EAF4B15E6C81600B95FE4 /* 03_IND_Image */ = {
+			isa = PBXGroup;
+			children = (
+				E73EAF4C15E6C81600B95FE4 /* CIndieLib_vc2008.cpp */,
+				E73EAF4D15E6C81600B95FE4 /* CIndieLib_vc2008.h */,
+				E73EAF4E15E6C81600B95FE4 /* Tutorial03.cpp */,
+			);
+			name = 03_IND_Image;
+			path = ../../tutorials/basic/03_IND_Image;
+			sourceTree = "<group>";
+		};
+		E73EAF6615E6CA2C00B95FE4 /* 04_IND_Animation */ = {
+			isa = PBXGroup;
+			children = (
+				E73EAF6715E6CA2C00B95FE4 /* CIndieLib_vc2008.cpp */,
+				E73EAF6815E6CA2C00B95FE4 /* CIndieLib_vc2008.h */,
+				E73EAF6915E6CA2C00B95FE4 /* Tutorial04.cpp */,
+			);
+			name = 04_IND_Animation;
+			path = ../../tutorials/basic/04_IND_Animation;
+			sourceTree = "<group>";
+		};
+		E73EAF8015E6CC2700B95FE4 /* 05_IND_Font */ = {
+			isa = PBXGroup;
+			children = (
+				E73EAF8115E6CC2700B95FE4 /* CIndieLib_vc2008.cpp */,
+				E73EAF8215E6CC2700B95FE4 /* CIndieLib_vc2008.h */,
+				E73EAF8315E6CC2700B95FE4 /* Tutorial05.cpp */,
+			);
+			name = 05_IND_Font;
+			path = ../../tutorials/basic/05_IND_Font;
+			sourceTree = "<group>";
+		};
+		E73EAF9A15E6CED700B95FE4 /* 07_IND_Input */ = {
+			isa = PBXGroup;
+			children = (
+				E73EAF9B15E6CED700B95FE4 /* CIndieLib_vc2008.cpp */,
+				E73EAF9C15E6CED700B95FE4 /* CIndieLib_vc2008.h */,
+				E73EAF9D15E6CED700B95FE4 /* Tutorial07.cpp */,
+			);
+			name = 07_IND_Input;
+			path = ../../tutorials/basic/07_IND_Input;
+			sourceTree = "<group>";
+		};
+		E73EAFB415E6D09F00B95FE4 /* 06_Primitives */ = {
+			isa = PBXGroup;
+			children = (
+				E73EAFB515E6D09F00B95FE4 /* CIndieLib_vc2008.cpp */,
+				E73EAFB615E6D09F00B95FE4 /* CIndieLib_vc2008.h */,
+				E73EAFB715E6D09F00B95FE4 /* Tutorial06.cpp */,
+			);
+			name = 06_Primitives;
+			path = ../../tutorials/basic/06_Primitives;
+			sourceTree = "<group>";
+		};
+		E73EAFCE15E6D28A00B95FE4 /* 08_Collisions */ = {
+			isa = PBXGroup;
+			children = (
+				E73EAFCF15E6D28A00B95FE4 /* CIndieLib_vc2008.cpp */,
+				E73EAFD015E6D28A00B95FE4 /* CIndieLib_vc2008.h */,
+				E73EAFD115E6D28A00B95FE4 /* Tutorial08.cpp */,
+			);
+			name = 08_Collisions;
+			path = ../../tutorials/basic/08_Collisions;
+			sourceTree = "<group>";
+		};
+		E73EAFE815E6D3DF00B95FE4 /* 11_Animated_Tile_Scrolling */ = {
+			isa = PBXGroup;
+			children = (
+				E73EAFE915E6D3DF00B95FE4 /* CIndieLib_vc2008.cpp */,
+				E73EAFEA15E6D3DF00B95FE4 /* CIndieLib_vc2008.h */,
+				E73EAFEB15E6D3DF00B95FE4 /* Tutorial11.cpp */,
+			);
+			name = 11_Animated_Tile_Scrolling;
+			path = ../../tutorials/basic/11_Animated_Tile_Scrolling;
+			sourceTree = "<group>";
+		};
+		E73EB00215E6D4A300B95FE4 /* 13_2d_Camera */ = {
+			isa = PBXGroup;
+			children = (
+				E73EB00315E6D4A300B95FE4 /* CIndieLib_vc2008.cpp */,
+				E73EB00415E6D4A300B95FE4 /* CIndieLib_vc2008.h */,
+				E73EB00515E6D4A300B95FE4 /* Tutorial13.cpp */,
+			);
+			name = 13_2d_Camera;
+			path = ../../tutorials/basic/13_2d_Camera;
+			sourceTree = "<group>";
+		};
+		E73EB01C15E6D54D00B95FE4 /* 15_Parallax_Scrolling */ = {
+			isa = PBXGroup;
+			children = (
+				E73EB01D15E6D54D00B95FE4 /* CIndieLib_vc2008.cpp */,
+				E73EB01E15E6D54D00B95FE4 /* CIndieLib_vc2008.h */,
+				E73EB01F15E6D54D00B95FE4 /* Tutorial15.cpp */,
+			);
+			name = 15_Parallax_Scrolling;
+			path = ../../tutorials/basic/15_Parallax_Scrolling;
+			sourceTree = "<group>";
+		};
+		E73EB03615E6D6D000B95FE4 /* 16_IND_Timer */ = {
+			isa = PBXGroup;
+			children = (
+				E73EB03715E6D6D000B95FE4 /* CIndieLib_vc2008.cpp */,
+				E73EB03815E6D6D000B95FE4 /* CIndieLib_vc2008.h */,
+				E73EB03B15E6D6D000B95FE4 /* Tutorial16.cpp */,
+			);
+			name = 16_IND_Timer;
+			path = ../../tutorials/basic/16_IND_Timer;
+			sourceTree = "<group>";
+		};
+		E74485A215E7E9EC00DDE3BF /* 01_IND_Surface_Grids */ = {
+			isa = PBXGroup;
+			children = (
+				E74485A315E7E9EC00DDE3BF /* CIndieLib_vc2008.cpp */,
+				E74485A415E7E9EC00DDE3BF /* CIndieLib_vc2008.h */,
+				E74485A515E7E9EC00DDE3BF /* Tutorial01.cpp */,
+			);
+			name = 01_IND_Surface_Grids;
+			path = ../../tutorials/advanced/01_IND_Surface_Grids;
+			sourceTree = "<group>";
+		};
+		E74485A815E7EA0000DDE3BF /* Basic */ = {
+			isa = PBXGroup;
+			children = (
+				E72ECCB715E6BBC300250CEE /* 01_Installing */,
+				E73EAF2E15E6C1AE00B95FE4 /* 02_IND_Surface */,
+				E73EAF4B15E6C81600B95FE4 /* 03_IND_Image */,
+				E73EAF6615E6CA2C00B95FE4 /* 04_IND_Animation */,
+				E73EAF8015E6CC2700B95FE4 /* 05_IND_Font */,
+				E73EAFB415E6D09F00B95FE4 /* 06_Primitives */,
+				E73EAF9A15E6CED700B95FE4 /* 07_IND_Input */,
+				E73EAFCE15E6D28A00B95FE4 /* 08_Collisions */,
+				E73EAFE815E6D3DF00B95FE4 /* 11_Animated_Tile_Scrolling */,
+				E73EB00215E6D4A300B95FE4 /* 13_2d_Camera */,
+				E73EB01C15E6D54D00B95FE4 /* 15_Parallax_Scrolling */,
+				E73EB03615E6D6D000B95FE4 /* 16_IND_Timer */,
+			);
+			name = Basic;
+			sourceTree = "<group>";
+		};
+		E74485BC15E7EA4F00DDE3BF /* 02_Blitting_2d_Directly */ = {
+			isa = PBXGroup;
+			children = (
+				E74485BD15E7EA4F00DDE3BF /* CIndieLib_vc2008.cpp */,
+				E74485BE15E7EA4F00DDE3BF /* CIndieLib_vc2008.h */,
+				E74485BF15E7EA4F00DDE3BF /* Tutorial02.cpp */,
+			);
+			name = 02_Blitting_2d_Directly;
+			path = ../../tutorials/advanced/02_Blitting_2d_Directly;
+			sourceTree = "<group>";
+		};
+		E74485D515E7EAE500DDE3BF /* 04_Several_ViewPorts */ = {
+			isa = PBXGroup;
+			children = (
+				E74485D615E7EAE500DDE3BF /* CIndieLib_vc2008.cpp */,
+				E74485D715E7EAE500DDE3BF /* CIndieLib_vc2008.h */,
+				E74485D815E7EAE500DDE3BF /* Tutorial04.cpp */,
+			);
+			name = 04_Several_ViewPorts;
+			path = ../../tutorials/advanced/04_Several_ViewPorts;
+			sourceTree = "<group>";
+		};
+		E74485EE15E7EB1800DDE3BF /* 05_IND_TmxMap */ = {
+			isa = PBXGroup;
+			children = (
+				E74485EF15E7EB1800DDE3BF /* CIndieLib_vc2008.cpp */,
+				E74485F015E7EB1800DDE3BF /* CIndieLib_vc2008.h */,
+				E74485F115E7EB1800DDE3BF /* Tutorial05.cpp */,
+			);
+			name = 05_IND_TmxMap;
+			path = ../../tutorials/advanced/05_IND_TmxMap;
+			sourceTree = "<group>";
+		};
+		E74485F415E7EB2300DDE3BF /* Advanced */ = {
+			isa = PBXGroup;
+			children = (
+				E74485A215E7E9EC00DDE3BF /* 01_IND_Surface_Grids */,
+				E74485BC15E7EA4F00DDE3BF /* 02_Blitting_2d_Directly */,
+				E74485D515E7EAE500DDE3BF /* 04_Several_ViewPorts */,
+				E74485EE15E7EB1800DDE3BF /* 05_IND_TmxMap */,
+			);
+			name = Advanced;
+			sourceTree = "<group>";
+		};
+		E744860815E7EC2000DDE3BF /* 01_Alien_BenchMark */ = {
+			isa = PBXGroup;
+			children = (
+				E744860915E7EC2000DDE3BF /* CIndieLib_vc2008.cpp */,
+				E744860A15E7EC2000DDE3BF /* CIndieLib_vc2008.h */,
+				E744860B15E7EC2000DDE3BF /* CTerrain.cpp */,
+				E744860C15E7EC2000DDE3BF /* CTerrain.h */,
+				E744860D15E7EC2000DDE3BF /* CUfo.cpp */,
+				E744860E15E7EC2000DDE3BF /* CUfo.h */,
+				E744860F15E7EC2000DDE3BF /* Tutorial01.cpp */,
+			);
+			name = 01_Alien_BenchMark;
+			path = ../../tutorials/benchmark/01_Alien_BenchMark;
+			sourceTree = "<group>";
+		};
+		E744862915E7EC5100DDE3BF /* 02_Rabbits_BenchMark */ = {
+			isa = PBXGroup;
+			children = (
+				E744862A15E7EC5100DDE3BF /* CIndieLib_vc2008.cpp */,
+				E744862B15E7EC5100DDE3BF /* CIndieLib_vc2008.h */,
+				E744862C15E7EC5100DDE3BF /* CRabbit.cpp */,
+				E744862D15E7EC5100DDE3BF /* CRabbit.h */,
+				E744862E15E7EC5100DDE3BF /* Tutorial02.cpp */,
+			);
+			name = 02_Rabbits_BenchMark;
+			path = ../../tutorials/benchmark/02_Rabbits_BenchMark;
+			sourceTree = "<group>";
+		};
+		E744863215E7EC5900DDE3BF /* Benchmark */ = {
+			isa = PBXGroup;
+			children = (
+				E744860815E7EC2000DDE3BF /* 01_Alien_BenchMark */,
+				E744862915E7EC5100DDE3BF /* 02_Rabbits_BenchMark */,
+			);
+			name = Benchmark;
+			sourceTree = "<group>";
+		};
+		E75EB2AD159CAFEA00693F41 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E7DBCAAE159C432500C8B2D9 = {
+			isa = PBXGroup;
+			children = (
+				E70712AF15A09C4700BF34D9 /* UnitTests.xcodeproj */,
+				E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */,
+				E7DBCB22159C78F600C8B2D9 /* IndielibTutorials */,
+				E74485A815E7EA0000DDE3BF /* Basic */,
+				E74485F415E7EB2300DDE3BF /* Advanced */,
+				E744863215E7EC5900DDE3BF /* Benchmark */,
+				E7DBCB1B159C78F600C8B2D9 /* Frameworks */,
+				E7DBCB19159C78F600C8B2D9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E7DBCB19159C78F600C8B2D9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E7DBCB18159C78F600C8B2D9 /* Tutorial01.app */,
+				E73EAF2915E6BF7E00B95FE4 /* Tutorial 02.app */,
+				E73EAF4815E6C7B400B95FE4 /* Tutorial03.app */,
+				E73EAF6315E6C9DA00B95FE4 /* Tutorial04.app */,
+				E73EAF7D15E6CB3900B95FE4 /* Tutorial05.app */,
+				E73EAF9715E6CE5D00B95FE4 /* Tutorial07.app */,
+				E73EAFB115E6D07000B95FE4 /* Tutorial06.app */,
+				E73EAFCB15E6D1F100B95FE4 /* Tutorial08.app */,
+				E73EAFE515E6D35300B95FE4 /* Tutorial11.app */,
+				E73EAFFF15E6D46A00B95FE4 /* Tutorial13.app */,
+				E73EB01915E6D51800B95FE4 /* Tutorial15.app */,
+				E73EB03315E6D66300B95FE4 /* Tutorial16.app */,
+				E744859D15E7E9B600DDE3BF /* TutorialAdvanced01.app */,
+				E74485B915E7EA2400DDE3BF /* TutorialAdvanced02.app */,
+				E74485D215E7EA5900DDE3BF /* TutorialAdvanced04.app */,
+				E74485EB15E7EAF100DDE3BF /* TutorialAdvanced05.app */,
+				E744860515E7EBF900DDE3BF /* Benchmark01.app */,
+				E744862615E7EC2900DDE3BF /* Benchmark02.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E7DBCB1B159C78F600C8B2D9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */,
+				E7DBCB1E159C78F600C8B2D9 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E7DBCB1E159C78F600C8B2D9 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E7DBCB1F159C78F600C8B2D9 /* AppKit.framework */,
+				E7DBCB20159C78F600C8B2D9 /* CoreData.framework */,
+				E7DBCB21159C78F600C8B2D9 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		E7DBCB22159C78F600C8B2D9 /* IndielibTutorials */ = {
+			isa = PBXGroup;
+			children = (
+				E7DBCB23159C78F600C8B2D9 /* Supporting Files */,
+			);
+			name = IndielibTutorials;
+			path = IndielibTests;
+			sourceTree = "<group>";
+		};
+		E7DBCB23159C78F600C8B2D9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E72ECCA415E6B5FF00250CEE /* IndielibTutorials-Info.plist */,
+				E72ECCA515E6B5FF00250CEE /* IndielibTutorials-Prefix.pch */,
+				E72ECCA915E6B67800250CEE /* Credits.rtf */,
+				E72ECCAB15E6B67800250CEE /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E73EAF1715E6BF7E00B95FE4 /* Tutorial02 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E73EAF2615E6BF7E00B95FE4 /* Build configuration list for PBXNativeTarget "Tutorial02" */;
+			buildPhases = (
+				E73EAF1A15E6BF7E00B95FE4 /* Sources */,
+				E73EAF1D15E6BF7E00B95FE4 /* Frameworks */,
+				E73EAF2015E6BF7E00B95FE4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E73EAF1815E6BF7E00B95FE4 /* PBXTargetDependency */,
+			);
+			name = Tutorial02;
+			productName = IndielibTests;
+			productReference = E73EAF2915E6BF7E00B95FE4 /* Tutorial 02.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E73EAF3715E6C7B400B95FE4 /* Tutorial03 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E73EAF4515E6C7B400B95FE4 /* Build configuration list for PBXNativeTarget "Tutorial03" */;
+			buildPhases = (
+				E73EAF3A15E6C7B400B95FE4 /* Sources */,
+				E73EAF3E15E6C7B400B95FE4 /* Frameworks */,
+				E73EAF4115E6C7B400B95FE4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E73EAF3815E6C7B400B95FE4 /* PBXTargetDependency */,
+			);
+			name = Tutorial03;
+			productName = IndielibTests;
+			productReference = E73EAF4815E6C7B400B95FE4 /* Tutorial03.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E73EAF5215E6C9DA00B95FE4 /* Tutorial04 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E73EAF6015E6C9DA00B95FE4 /* Build configuration list for PBXNativeTarget "Tutorial04" */;
+			buildPhases = (
+				E73EAF5515E6C9DA00B95FE4 /* Sources */,
+				E73EAF5915E6C9DA00B95FE4 /* Frameworks */,
+				E73EAF5C15E6C9DA00B95FE4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E73EAF5315E6C9DA00B95FE4 /* PBXTargetDependency */,
+			);
+			name = Tutorial04;
+			productName = IndielibTests;
+			productReference = E73EAF6315E6C9DA00B95FE4 /* Tutorial04.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E73EAF6C15E6CB3900B95FE4 /* Tutorial05 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E73EAF7A15E6CB3900B95FE4 /* Build configuration list for PBXNativeTarget "Tutorial05" */;
+			buildPhases = (
+				E73EAF6F15E6CB3900B95FE4 /* Sources */,
+				E73EAF7315E6CB3900B95FE4 /* Frameworks */,
+				E73EAF7615E6CB3900B95FE4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E73EAF6D15E6CB3900B95FE4 /* PBXTargetDependency */,
+			);
+			name = Tutorial05;
+			productName = IndielibTests;
+			productReference = E73EAF7D15E6CB3900B95FE4 /* Tutorial05.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E73EAF8615E6CE5D00B95FE4 /* Tutorial07 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E73EAF9415E6CE5D00B95FE4 /* Build configuration list for PBXNativeTarget "Tutorial07" */;
+			buildPhases = (
+				E73EAF8915E6CE5D00B95FE4 /* Sources */,
+				E73EAF8D15E6CE5D00B95FE4 /* Frameworks */,
+				E73EAF9015E6CE5D00B95FE4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E73EAF8715E6CE5D00B95FE4 /* PBXTargetDependency */,
+			);
+			name = Tutorial07;
+			productName = IndielibTests;
+			productReference = E73EAF9715E6CE5D00B95FE4 /* Tutorial07.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E73EAFA015E6D07000B95FE4 /* Tutorial06 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E73EAFAE15E6D07000B95FE4 /* Build configuration list for PBXNativeTarget "Tutorial06" */;
+			buildPhases = (
+				E73EAFA315E6D07000B95FE4 /* Sources */,
+				E73EAFA715E6D07000B95FE4 /* Frameworks */,
+				E73EAFAA15E6D07000B95FE4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E73EAFA115E6D07000B95FE4 /* PBXTargetDependency */,
+			);
+			name = Tutorial06;
+			productName = IndielibTests;
+			productReference = E73EAFB115E6D07000B95FE4 /* Tutorial06.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E73EAFBA15E6D1F100B95FE4 /* Tutorial08 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E73EAFC815E6D1F100B95FE4 /* Build configuration list for PBXNativeTarget "Tutorial08" */;
+			buildPhases = (
+				E73EAFBD15E6D1F100B95FE4 /* Sources */,
+				E73EAFC115E6D1F100B95FE4 /* Frameworks */,
+				E73EAFC415E6D1F100B95FE4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E73EAFBB15E6D1F100B95FE4 /* PBXTargetDependency */,
+			);
+			name = Tutorial08;
+			productName = IndielibTests;
+			productReference = E73EAFCB15E6D1F100B95FE4 /* Tutorial08.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E73EAFD415E6D35300B95FE4 /* Tutorial11 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E73EAFE215E6D35300B95FE4 /* Build configuration list for PBXNativeTarget "Tutorial11" */;
+			buildPhases = (
+				E73EAFD715E6D35300B95FE4 /* Sources */,
+				E73EAFDB15E6D35300B95FE4 /* Frameworks */,
+				E73EAFDE15E6D35300B95FE4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E73EAFD515E6D35300B95FE4 /* PBXTargetDependency */,
+			);
+			name = Tutorial11;
+			productName = IndielibTests;
+			productReference = E73EAFE515E6D35300B95FE4 /* Tutorial11.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E73EAFEE15E6D46A00B95FE4 /* Tutorial13 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E73EAFFC15E6D46A00B95FE4 /* Build configuration list for PBXNativeTarget "Tutorial13" */;
+			buildPhases = (
+				E73EAFF115E6D46A00B95FE4 /* Sources */,
+				E73EAFF515E6D46A00B95FE4 /* Frameworks */,
+				E73EAFF815E6D46A00B95FE4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E73EAFEF15E6D46A00B95FE4 /* PBXTargetDependency */,
+			);
+			name = Tutorial13;
+			productName = IndielibTests;
+			productReference = E73EAFFF15E6D46A00B95FE4 /* Tutorial13.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E73EB00815E6D51800B95FE4 /* Tutorial15 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E73EB01615E6D51800B95FE4 /* Build configuration list for PBXNativeTarget "Tutorial15" */;
+			buildPhases = (
+				E73EB00B15E6D51800B95FE4 /* Sources */,
+				E73EB00F15E6D51800B95FE4 /* Frameworks */,
+				E73EB01215E6D51800B95FE4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E73EB00915E6D51800B95FE4 /* PBXTargetDependency */,
+			);
+			name = Tutorial15;
+			productName = IndielibTests;
+			productReference = E73EB01915E6D51800B95FE4 /* Tutorial15.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E73EB02215E6D66300B95FE4 /* Tutorial16 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E73EB03015E6D66300B95FE4 /* Build configuration list for PBXNativeTarget "Tutorial16" */;
+			buildPhases = (
+				E73EB02515E6D66300B95FE4 /* Sources */,
+				E73EB02915E6D66300B95FE4 /* Frameworks */,
+				E73EB02C15E6D66300B95FE4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E73EB02315E6D66300B95FE4 /* PBXTargetDependency */,
+			);
+			name = Tutorial16;
+			productName = IndielibTests;
+			productReference = E73EB03315E6D66300B95FE4 /* Tutorial16.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E744858C15E7E9B600DDE3BF /* TutorialAdvanced01 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E744859A15E7E9B600DDE3BF /* Build configuration list for PBXNativeTarget "TutorialAdvanced01" */;
+			buildPhases = (
+				E744858F15E7E9B600DDE3BF /* Sources */,
+				E744859315E7E9B600DDE3BF /* Frameworks */,
+				E744859615E7E9B600DDE3BF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E744858D15E7E9B600DDE3BF /* PBXTargetDependency */,
+			);
+			name = TutorialAdvanced01;
+			productName = IndielibTests;
+			productReference = E744859D15E7E9B600DDE3BF /* TutorialAdvanced01.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E74485A915E7EA2400DDE3BF /* TutorialAdvanced02 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E74485B615E7EA2400DDE3BF /* Build configuration list for PBXNativeTarget "TutorialAdvanced02" */;
+			buildPhases = (
+				E74485AC15E7EA2400DDE3BF /* Sources */,
+				E74485AF15E7EA2400DDE3BF /* Frameworks */,
+				E74485B215E7EA2400DDE3BF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E74485AA15E7EA2400DDE3BF /* PBXTargetDependency */,
+			);
+			name = TutorialAdvanced02;
+			productName = IndielibTests;
+			productReference = E74485B915E7EA2400DDE3BF /* TutorialAdvanced02.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E74485C215E7EA5900DDE3BF /* TutorialAdvanced04 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E74485CF15E7EA5900DDE3BF /* Build configuration list for PBXNativeTarget "TutorialAdvanced04" */;
+			buildPhases = (
+				E74485C515E7EA5900DDE3BF /* Sources */,
+				E74485C815E7EA5900DDE3BF /* Frameworks */,
+				E74485CB15E7EA5900DDE3BF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E74485C315E7EA5900DDE3BF /* PBXTargetDependency */,
+			);
+			name = TutorialAdvanced04;
+			productName = IndielibTests;
+			productReference = E74485D215E7EA5900DDE3BF /* TutorialAdvanced04.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E74485DB15E7EAF100DDE3BF /* TutorialAdvanced05 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E74485E815E7EAF100DDE3BF /* Build configuration list for PBXNativeTarget "TutorialAdvanced05" */;
+			buildPhases = (
+				E74485DE15E7EAF100DDE3BF /* Sources */,
+				E74485E115E7EAF100DDE3BF /* Frameworks */,
+				E74485E415E7EAF100DDE3BF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E74485DC15E7EAF100DDE3BF /* PBXTargetDependency */,
+			);
+			name = TutorialAdvanced05;
+			productName = IndielibTests;
+			productReference = E74485EB15E7EAF100DDE3BF /* TutorialAdvanced05.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E74485F515E7EBF900DDE3BF /* Benchmark01 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E744860215E7EBF900DDE3BF /* Build configuration list for PBXNativeTarget "Benchmark01" */;
+			buildPhases = (
+				E74485F815E7EBF900DDE3BF /* Sources */,
+				E74485FB15E7EBF900DDE3BF /* Frameworks */,
+				E74485FE15E7EBF900DDE3BF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E74485F615E7EBF900DDE3BF /* PBXTargetDependency */,
+			);
+			name = Benchmark01;
+			productName = IndielibTests;
+			productReference = E744860515E7EBF900DDE3BF /* Benchmark01.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E744861415E7EC2900DDE3BF /* Benchmark02 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E744862315E7EC2900DDE3BF /* Build configuration list for PBXNativeTarget "Benchmark02" */;
+			buildPhases = (
+				E744861715E7EC2900DDE3BF /* Sources */,
+				E744861C15E7EC2900DDE3BF /* Frameworks */,
+				E744861F15E7EC2900DDE3BF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E744861515E7EC2900DDE3BF /* PBXTargetDependency */,
+			);
+			name = Benchmark02;
+			productName = IndielibTests;
+			productReference = E744862615E7EC2900DDE3BF /* Benchmark02.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E7DBCB17159C78F600C8B2D9 /* Tutorial01 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E7DBCB36159C78F600C8B2D9 /* Build configuration list for PBXNativeTarget "Tutorial01" */;
+			buildPhases = (
+				E7DBCB14159C78F600C8B2D9 /* Sources */,
+				E7DBCB15159C78F600C8B2D9 /* Frameworks */,
+				E7DBCB16159C78F600C8B2D9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E75EB2B3159CAFF500693F41 /* PBXTargetDependency */,
+			);
+			name = Tutorial01;
+			productName = IndielibTests;
+			productReference = E7DBCB18159C78F600C8B2D9 /* Tutorial01.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E7DBCAB0159C432500C8B2D9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = E7DBCAB3159C432500C8B2D9 /* Build configuration list for PBXProject "IndielibTutorials" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E7DBCAAE159C432500C8B2D9;
+			productRefGroup = E7DBCB19159C78F600C8B2D9 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = E75EB2AD159CAFEA00693F41 /* Products */;
+					ProjectRef = E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */;
+				},
+				{
+					ProductGroup = E70712B015A09C4700BF34D9 /* Products */;
+					ProjectRef = E70712AF15A09C4700BF34D9 /* UnitTests.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				E7DBCB17159C78F600C8B2D9 /* Tutorial01 */,
+				E73EAF1715E6BF7E00B95FE4 /* Tutorial02 */,
+				E73EAF3715E6C7B400B95FE4 /* Tutorial03 */,
+				E73EAF5215E6C9DA00B95FE4 /* Tutorial04 */,
+				E73EAF6C15E6CB3900B95FE4 /* Tutorial05 */,
+				E73EAFA015E6D07000B95FE4 /* Tutorial06 */,
+				E73EAF8615E6CE5D00B95FE4 /* Tutorial07 */,
+				E73EAFBA15E6D1F100B95FE4 /* Tutorial08 */,
+				E73EAFD415E6D35300B95FE4 /* Tutorial11 */,
+				E73EAFEE15E6D46A00B95FE4 /* Tutorial13 */,
+				E73EB00815E6D51800B95FE4 /* Tutorial15 */,
+				E73EB02215E6D66300B95FE4 /* Tutorial16 */,
+				E744858C15E7E9B600DDE3BF /* TutorialAdvanced01 */,
+				E74485A915E7EA2400DDE3BF /* TutorialAdvanced02 */,
+				E74485C215E7EA5900DDE3BF /* TutorialAdvanced04 */,
+				E74485DB15E7EAF100DDE3BF /* TutorialAdvanced05 */,
+				E74485F515E7EBF900DDE3BF /* Benchmark01 */,
+				E744861415E7EC2900DDE3BF /* Benchmark02 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		E74486FC15F25E1300DDE3BF /* UnitTests */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = UnitTests;
+			remoteRef = E74486FB15F25E1300DDE3BF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libIndielib.dylib;
+			remoteRef = E75EB2B0159CAFEA00693F41 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E73EAF2015E6BF7E00B95FE4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73EAF2315E6BF7E00B95FE4 /* IndielibTutorials-Info.plist in Resources */,
+				E73EAF2415E6BF7E00B95FE4 /* Credits.rtf in Resources */,
+				E73EAF2515E6BF7E00B95FE4 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73EAF4115E6C7B400B95FE4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73EAF4215E6C7B400B95FE4 /* IndielibTutorials-Info.plist in Resources */,
+				E73EAF4315E6C7B400B95FE4 /* Credits.rtf in Resources */,
+				E73EAF4415E6C7B400B95FE4 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73EAF5C15E6C9DA00B95FE4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73EAF5D15E6C9DA00B95FE4 /* IndielibTutorials-Info.plist in Resources */,
+				E73EAF5E15E6C9DA00B95FE4 /* Credits.rtf in Resources */,
+				E73EAF5F15E6C9DA00B95FE4 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73EAF7615E6CB3900B95FE4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73EAF7715E6CB3900B95FE4 /* IndielibTutorials-Info.plist in Resources */,
+				E73EAF7815E6CB3900B95FE4 /* Credits.rtf in Resources */,
+				E73EAF7915E6CB3900B95FE4 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73EAF9015E6CE5D00B95FE4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73EAF9115E6CE5D00B95FE4 /* IndielibTutorials-Info.plist in Resources */,
+				E73EAF9215E6CE5D00B95FE4 /* Credits.rtf in Resources */,
+				E73EAF9315E6CE5D00B95FE4 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73EAFAA15E6D07000B95FE4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73EAFAB15E6D07000B95FE4 /* IndielibTutorials-Info.plist in Resources */,
+				E73EAFAC15E6D07000B95FE4 /* Credits.rtf in Resources */,
+				E73EAFAD15E6D07000B95FE4 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73EAFC415E6D1F100B95FE4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73EAFC515E6D1F100B95FE4 /* IndielibTutorials-Info.plist in Resources */,
+				E73EAFC615E6D1F100B95FE4 /* Credits.rtf in Resources */,
+				E73EAFC715E6D1F100B95FE4 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73EAFDE15E6D35300B95FE4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73EAFDF15E6D35300B95FE4 /* IndielibTutorials-Info.plist in Resources */,
+				E73EAFE015E6D35300B95FE4 /* Credits.rtf in Resources */,
+				E73EAFE115E6D35300B95FE4 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73EAFF815E6D46A00B95FE4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73EAFF915E6D46A00B95FE4 /* IndielibTutorials-Info.plist in Resources */,
+				E73EAFFA15E6D46A00B95FE4 /* Credits.rtf in Resources */,
+				E73EAFFB15E6D46A00B95FE4 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73EB01215E6D51800B95FE4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73EB01315E6D51800B95FE4 /* IndielibTutorials-Info.plist in Resources */,
+				E73EB01415E6D51800B95FE4 /* Credits.rtf in Resources */,
+				E73EB01515E6D51800B95FE4 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73EB02C15E6D66300B95FE4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73EB02D15E6D66300B95FE4 /* IndielibTutorials-Info.plist in Resources */,
+				E73EB02E15E6D66300B95FE4 /* Credits.rtf in Resources */,
+				E73EB02F15E6D66300B95FE4 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E744859615E7E9B600DDE3BF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E744859715E7E9B600DDE3BF /* IndielibTutorials-Info.plist in Resources */,
+				E744859815E7E9B600DDE3BF /* Credits.rtf in Resources */,
+				E744859915E7E9B600DDE3BF /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E74485B215E7EA2400DDE3BF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E74485B315E7EA2400DDE3BF /* IndielibTutorials-Info.plist in Resources */,
+				E74485B415E7EA2400DDE3BF /* Credits.rtf in Resources */,
+				E74485B515E7EA2400DDE3BF /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E74485CB15E7EA5900DDE3BF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E74485CC15E7EA5900DDE3BF /* IndielibTutorials-Info.plist in Resources */,
+				E74485CD15E7EA5900DDE3BF /* Credits.rtf in Resources */,
+				E74485CE15E7EA5900DDE3BF /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E74485E415E7EAF100DDE3BF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E74485E515E7EAF100DDE3BF /* IndielibTutorials-Info.plist in Resources */,
+				E74485E615E7EAF100DDE3BF /* Credits.rtf in Resources */,
+				E74485E715E7EAF100DDE3BF /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E74485FE15E7EBF900DDE3BF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E74485FF15E7EBF900DDE3BF /* IndielibTutorials-Info.plist in Resources */,
+				E744860015E7EBF900DDE3BF /* Credits.rtf in Resources */,
+				E744860115E7EBF900DDE3BF /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E744861F15E7EC2900DDE3BF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E744862015E7EC2900DDE3BF /* IndielibTutorials-Info.plist in Resources */,
+				E744862115E7EC2900DDE3BF /* Credits.rtf in Resources */,
+				E744862215E7EC2900DDE3BF /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E7DBCB16159C78F600C8B2D9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E72ECCA615E6B5FF00250CEE /* IndielibTutorials-Info.plist in Resources */,
+				E72ECCAD15E6B67800250CEE /* Credits.rtf in Resources */,
+				E72ECCAE15E6B67800250CEE /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E73EAF1A15E6BF7E00B95FE4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73EAF3215E6C1AE00B95FE4 /* CIndieLib_vc2008.cpp in Sources */,
+				E73EAF3315E6C1AE00B95FE4 /* Tutorial02.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73EAF3A15E6C7B400B95FE4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73EAF4F15E6C81600B95FE4 /* CIndieLib_vc2008.cpp in Sources */,
+				E73EAF5015E6C81600B95FE4 /* Tutorial03.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73EAF5515E6C9DA00B95FE4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73EAF6A15E6CA2C00B95FE4 /* CIndieLib_vc2008.cpp in Sources */,
+				E73EAF6B15E6CA2C00B95FE4 /* Tutorial04.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73EAF6F15E6CB3900B95FE4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73EAF8415E6CC2700B95FE4 /* CIndieLib_vc2008.cpp in Sources */,
+				E73EAF8515E6CC2700B95FE4 /* Tutorial05.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73EAF8915E6CE5D00B95FE4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73EAF9E15E6CED700B95FE4 /* CIndieLib_vc2008.cpp in Sources */,
+				E73EAF9F15E6CED700B95FE4 /* Tutorial07.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73EAFA315E6D07000B95FE4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73EAFB815E6D09F00B95FE4 /* CIndieLib_vc2008.cpp in Sources */,
+				E73EAFB915E6D09F00B95FE4 /* Tutorial06.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73EAFBD15E6D1F100B95FE4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73EAFD215E6D28A00B95FE4 /* CIndieLib_vc2008.cpp in Sources */,
+				E73EAFD315E6D28A00B95FE4 /* Tutorial08.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73EAFD715E6D35300B95FE4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73EAFEC15E6D3DF00B95FE4 /* CIndieLib_vc2008.cpp in Sources */,
+				E73EAFED15E6D3DF00B95FE4 /* Tutorial11.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73EAFF115E6D46A00B95FE4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73EB00615E6D4A300B95FE4 /* CIndieLib_vc2008.cpp in Sources */,
+				E73EB00715E6D4A300B95FE4 /* Tutorial13.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73EB00B15E6D51800B95FE4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73EB02015E6D54D00B95FE4 /* CIndieLib_vc2008.cpp in Sources */,
+				E73EB02115E6D54D00B95FE4 /* Tutorial15.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73EB02515E6D66300B95FE4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73EB03C15E6D6D000B95FE4 /* CIndieLib_vc2008.cpp in Sources */,
+				E73EB03E15E6D6D000B95FE4 /* Tutorial16.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E744858F15E7E9B600DDE3BF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E74485A615E7E9EC00DDE3BF /* CIndieLib_vc2008.cpp in Sources */,
+				E74485A715E7E9EC00DDE3BF /* Tutorial01.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E74485AC15E7EA2400DDE3BF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E74485C015E7EA4F00DDE3BF /* CIndieLib_vc2008.cpp in Sources */,
+				E74485C115E7EA4F00DDE3BF /* Tutorial02.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E74485C515E7EA5900DDE3BF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E74485D915E7EAE500DDE3BF /* CIndieLib_vc2008.cpp in Sources */,
+				E74485DA15E7EAE500DDE3BF /* Tutorial04.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E74485DE15E7EAF100DDE3BF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E74485F215E7EB1800DDE3BF /* CIndieLib_vc2008.cpp in Sources */,
+				E74485F315E7EB1800DDE3BF /* Tutorial05.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E74485F815E7EBF900DDE3BF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E744861015E7EC2000DDE3BF /* CIndieLib_vc2008.cpp in Sources */,
+				E744861115E7EC2000DDE3BF /* CTerrain.cpp in Sources */,
+				E744861215E7EC2000DDE3BF /* CUfo.cpp in Sources */,
+				E744861315E7EC2000DDE3BF /* Tutorial01.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E744861715E7EC2900DDE3BF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E744862F15E7EC5100DDE3BF /* CIndieLib_vc2008.cpp in Sources */,
+				E744863015E7EC5100DDE3BF /* CRabbit.cpp in Sources */,
+				E744863115E7EC5100DDE3BF /* Tutorial02.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E7DBCB14159C78F600C8B2D9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E72ECCC015E6BBC300250CEE /* CIndieLib_vc2008.cpp in Sources */,
+				E72ECCC115E6BBC300250CEE /* Tutorial01.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E73EAF1815E6BF7E00B95FE4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Indielib;
+			targetProxy = E73EAF1915E6BF7E00B95FE4 /* PBXContainerItemProxy */;
+		};
+		E73EAF3815E6C7B400B95FE4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Indielib;
+			targetProxy = E73EAF3915E6C7B400B95FE4 /* PBXContainerItemProxy */;
+		};
+		E73EAF5315E6C9DA00B95FE4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Indielib;
+			targetProxy = E73EAF5415E6C9DA00B95FE4 /* PBXContainerItemProxy */;
+		};
+		E73EAF6D15E6CB3900B95FE4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Indielib;
+			targetProxy = E73EAF6E15E6CB3900B95FE4 /* PBXContainerItemProxy */;
+		};
+		E73EAF8715E6CE5D00B95FE4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Indielib;
+			targetProxy = E73EAF8815E6CE5D00B95FE4 /* PBXContainerItemProxy */;
+		};
+		E73EAFA115E6D07000B95FE4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Indielib;
+			targetProxy = E73EAFA215E6D07000B95FE4 /* PBXContainerItemProxy */;
+		};
+		E73EAFBB15E6D1F100B95FE4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Indielib;
+			targetProxy = E73EAFBC15E6D1F100B95FE4 /* PBXContainerItemProxy */;
+		};
+		E73EAFD515E6D35300B95FE4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Indielib;
+			targetProxy = E73EAFD615E6D35300B95FE4 /* PBXContainerItemProxy */;
+		};
+		E73EAFEF15E6D46A00B95FE4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Indielib;
+			targetProxy = E73EAFF015E6D46A00B95FE4 /* PBXContainerItemProxy */;
+		};
+		E73EB00915E6D51800B95FE4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Indielib;
+			targetProxy = E73EB00A15E6D51800B95FE4 /* PBXContainerItemProxy */;
+		};
+		E73EB02315E6D66300B95FE4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Indielib;
+			targetProxy = E73EB02415E6D66300B95FE4 /* PBXContainerItemProxy */;
+		};
+		E744858D15E7E9B600DDE3BF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Indielib;
+			targetProxy = E744858E15E7E9B600DDE3BF /* PBXContainerItemProxy */;
+		};
+		E74485AA15E7EA2400DDE3BF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Indielib;
+			targetProxy = E74485AB15E7EA2400DDE3BF /* PBXContainerItemProxy */;
+		};
+		E74485C315E7EA5900DDE3BF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Indielib;
+			targetProxy = E74485C415E7EA5900DDE3BF /* PBXContainerItemProxy */;
+		};
+		E74485DC15E7EAF100DDE3BF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Indielib;
+			targetProxy = E74485DD15E7EAF100DDE3BF /* PBXContainerItemProxy */;
+		};
+		E74485F615E7EBF900DDE3BF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Indielib;
+			targetProxy = E74485F715E7EBF900DDE3BF /* PBXContainerItemProxy */;
+		};
+		E744861515E7EC2900DDE3BF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Indielib;
+			targetProxy = E744861615E7EC2900DDE3BF /* PBXContainerItemProxy */;
+		};
+		E75EB2B3159CAFF500693F41 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Indielib;
+			targetProxy = E75EB2B2159CAFF500693F41 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E72ECCA915E6B67800250CEE /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E72ECCAA15E6B67800250CEE /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		E72ECCAB15E6B67800250CEE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E72ECCAC15E6B67800250CEE /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E73EAF2715E6BF7E00B95FE4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "Tutorial 02";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E73EAF2815E6BF7E00B95FE4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "Tutorial 02";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E73EAF4615E6C7B400B95FE4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = Tutorial03;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E73EAF4715E6C7B400B95FE4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = Tutorial03;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E73EAF6115E6C9DA00B95FE4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = Tutorial04;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E73EAF6215E6C9DA00B95FE4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = Tutorial04;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E73EAF7B15E6CB3900B95FE4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = Tutorial05;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E73EAF7C15E6CB3900B95FE4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = Tutorial05;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E73EAF9515E6CE5D00B95FE4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = Tutorial07;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E73EAF9615E6CE5D00B95FE4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = Tutorial07;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E73EAFAF15E6D07000B95FE4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = Tutorial06;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E73EAFB015E6D07000B95FE4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = Tutorial06;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E73EAFC915E6D1F100B95FE4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = Tutorial08;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E73EAFCA15E6D1F100B95FE4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = Tutorial08;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E73EAFE315E6D35300B95FE4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = Tutorial11;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E73EAFE415E6D35300B95FE4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = Tutorial11;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E73EAFFD15E6D46A00B95FE4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = Tutorial13;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E73EAFFE15E6D46A00B95FE4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = Tutorial13;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E73EB01715E6D51800B95FE4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = Tutorial15;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E73EB01815E6D51800B95FE4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = Tutorial15;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E73EB03115E6D66300B95FE4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = Tutorial16;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E73EB03215E6D66300B95FE4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = Tutorial16;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E744859B15E7E9B600DDE3BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = TutorialAdvanced01;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E744859C15E7E9B600DDE3BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = TutorialAdvanced01;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E74485B715E7EA2400DDE3BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = TutorialAdvanced02;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E74485B815E7EA2400DDE3BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = TutorialAdvanced02;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E74485D015E7EA5900DDE3BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = TutorialAdvanced04;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E74485D115E7EA5900DDE3BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = TutorialAdvanced04;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E74485E915E7EAF100DDE3BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = TutorialAdvanced05;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E74485EA15E7EAF100DDE3BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = TutorialAdvanced05;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E744860315E7EBF900DDE3BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = Benchmark01;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E744860415E7EBF900DDE3BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = Benchmark01;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E744862415E7EC2900DDE3BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = Benchmark02;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E744862515E7EC2900DDE3BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = Benchmark02;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E7DBCAB5159C432500C8B2D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "IndielibTutorials/IndielibTutorials-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../common/include\"",
+					"\"$(SRCROOT)/../../tests\"",
+					"\"$(SRCROOT)/../../common\"",
+				);
+				INFOPLIST_FILE = "IndielibTutorials/IndielibTutorials-Info.plist";
+				PRODUCT_NAME = "";
+			};
+			name = Debug;
+		};
+		E7DBCAB6159C432500C8B2D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "IndielibTutorials/IndielibTutorials-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../common/include\"",
+					"\"$(SRCROOT)/../../tests\"",
+					"\"$(SRCROOT)/../../common\"",
+				);
+				INFOPLIST_FILE = "IndielibTutorials/IndielibTutorials-Info.plist";
+				PRODUCT_NAME = "";
+			};
+			name = Release;
+		};
+		E7DBCB34159C78F600C8B2D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_PREFIX_HEADER = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E7DBCB35159C78F600C8B2D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_PREFIX_HEADER = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /mac;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E73EAF2615E6BF7E00B95FE4 /* Build configuration list for PBXNativeTarget "Tutorial02" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E73EAF2715E6BF7E00B95FE4 /* Debug */,
+				E73EAF2815E6BF7E00B95FE4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E73EAF4515E6C7B400B95FE4 /* Build configuration list for PBXNativeTarget "Tutorial03" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E73EAF4615E6C7B400B95FE4 /* Debug */,
+				E73EAF4715E6C7B400B95FE4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E73EAF6015E6C9DA00B95FE4 /* Build configuration list for PBXNativeTarget "Tutorial04" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E73EAF6115E6C9DA00B95FE4 /* Debug */,
+				E73EAF6215E6C9DA00B95FE4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E73EAF7A15E6CB3900B95FE4 /* Build configuration list for PBXNativeTarget "Tutorial05" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E73EAF7B15E6CB3900B95FE4 /* Debug */,
+				E73EAF7C15E6CB3900B95FE4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E73EAF9415E6CE5D00B95FE4 /* Build configuration list for PBXNativeTarget "Tutorial07" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E73EAF9515E6CE5D00B95FE4 /* Debug */,
+				E73EAF9615E6CE5D00B95FE4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E73EAFAE15E6D07000B95FE4 /* Build configuration list for PBXNativeTarget "Tutorial06" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E73EAFAF15E6D07000B95FE4 /* Debug */,
+				E73EAFB015E6D07000B95FE4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E73EAFC815E6D1F100B95FE4 /* Build configuration list for PBXNativeTarget "Tutorial08" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E73EAFC915E6D1F100B95FE4 /* Debug */,
+				E73EAFCA15E6D1F100B95FE4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E73EAFE215E6D35300B95FE4 /* Build configuration list for PBXNativeTarget "Tutorial11" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E73EAFE315E6D35300B95FE4 /* Debug */,
+				E73EAFE415E6D35300B95FE4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E73EAFFC15E6D46A00B95FE4 /* Build configuration list for PBXNativeTarget "Tutorial13" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E73EAFFD15E6D46A00B95FE4 /* Debug */,
+				E73EAFFE15E6D46A00B95FE4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E73EB01615E6D51800B95FE4 /* Build configuration list for PBXNativeTarget "Tutorial15" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E73EB01715E6D51800B95FE4 /* Debug */,
+				E73EB01815E6D51800B95FE4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E73EB03015E6D66300B95FE4 /* Build configuration list for PBXNativeTarget "Tutorial16" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E73EB03115E6D66300B95FE4 /* Debug */,
+				E73EB03215E6D66300B95FE4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E744859A15E7E9B600DDE3BF /* Build configuration list for PBXNativeTarget "TutorialAdvanced01" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E744859B15E7E9B600DDE3BF /* Debug */,
+				E744859C15E7E9B600DDE3BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E74485B615E7EA2400DDE3BF /* Build configuration list for PBXNativeTarget "TutorialAdvanced02" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E74485B715E7EA2400DDE3BF /* Debug */,
+				E74485B815E7EA2400DDE3BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E74485CF15E7EA5900DDE3BF /* Build configuration list for PBXNativeTarget "TutorialAdvanced04" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E74485D015E7EA5900DDE3BF /* Debug */,
+				E74485D115E7EA5900DDE3BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E74485E815E7EAF100DDE3BF /* Build configuration list for PBXNativeTarget "TutorialAdvanced05" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E74485E915E7EAF100DDE3BF /* Debug */,
+				E74485EA15E7EAF100DDE3BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E744860215E7EBF900DDE3BF /* Build configuration list for PBXNativeTarget "Benchmark01" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E744860315E7EBF900DDE3BF /* Debug */,
+				E744860415E7EBF900DDE3BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E744862315E7EC2900DDE3BF /* Build configuration list for PBXNativeTarget "Benchmark02" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E744862415E7EC2900DDE3BF /* Debug */,
+				E744862515E7EC2900DDE3BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E7DBCAB3159C432500C8B2D9 /* Build configuration list for PBXProject "IndielibTutorials" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E7DBCAB5159C432500C8B2D9 /* Debug */,
+				E7DBCAB6159C432500C8B2D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E7DBCB36159C78F600C8B2D9 /* Build configuration list for PBXNativeTarget "Tutorial01" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E7DBCB34159C78F600C8B2D9 /* Debug */,
+				E7DBCB35159C78F600C8B2D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E7DBCAB0159C432500C8B2D9 /* Project object */;
+}

@@ -29,6 +29,12 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "IND_Surface.h"
 #include "IND_Font.h"
 
+#if defined (PLATFORM_LINUX)
+#include <stdlib.h>
+#include <string.h>
+#endif
+
+
 // --------------------------------------------------------------------------------
 //							  Initialization / Destruction
 // --------------------------------------------------------------------------------
@@ -295,7 +301,7 @@ void IND_Entity2d::setText(const char *pText) {
 
 		size_t textSize = strlen(pText);
 		//Reallocate text on heap memory. Characters in string +1 (line ending)
-		_text = static_cast<char*>(malloc((textSize+1) * sizeof(char)));
+		_text = static_cast<char*>(malloc((textSize+1) * sizeof(char)));  // TODO check for NULL value ( see point 2 http://cplus.about.com/od/learningc/ss/pointers_7.htm )
 		//Cooy string contents
 		strcpy(_text,pText);
 	}
@@ -831,6 +837,8 @@ Attributes initialization
 ==================
 */
 void IND_Entity2d::initAttrib() {
+    //Id
+    _id = 0;
 	// Assigned object
 	_su = 0;
 	_an = 0;
@@ -904,7 +912,7 @@ void IND_Entity2d::initAttrib() {
 	_lineSpacing = 20;
 
 	_text = NULL;
-	char* defText = "";
+	const char* defText = "";
 	setText(defText);
 
 	// Collision attributes
@@ -914,20 +922,4 @@ void IND_Entity2d::initAttrib() {
 
 	// Show grid areas
 	_showGridAreas = 1;
-}
-
-
-/*
-==================
-Checks if the matrix has all its member equal to zero
-==================
-*/
-bool IND_Entity2d::isNullMatrix() {
-	if (!_mat._11 && !_mat._12  && !_mat._13 && !_mat._14 &&
-	        !_mat._21 && !_mat._22  && !_mat._23 && !_mat._24 &&
-	        !_mat._31 && !_mat._32  && !_mat._33 && !_mat._34 &&
-	        !_mat._41 && !_mat._42  && !_mat._43 && !_mat._44)
-		return 1;
-
-	return 0;
 }

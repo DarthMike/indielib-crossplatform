@@ -33,6 +33,7 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "IND_Render.h"
 #include "CollisionParser.h"
 #include "IND_Entity2d.h"
+#include "IND_Math.h"
 
 
 /**
@@ -45,6 +46,8 @@ bool zIsLess(IND_Entity2d *pLhs, IND_Entity2d *pRhs) { //TODO: Move this method 
 		return 0;
 }
 
+
+unsigned int IND_Entity2dManager::_idTrack = 0;
 
 // --------------------------------------------------------------------------------
 //							  Initialization / Destruction
@@ -74,6 +77,8 @@ bool IND_Entity2dManager::init(IND_Render *pRender) {
 		return _ok;
 	}
 
+	_math = new IND_Math();
+	_math->init();
 	g_debug->header("Entity2dManager OK", 6);
 
 	return _ok;
@@ -86,6 +91,7 @@ bool IND_Entity2dManager::init(IND_Render *pRender) {
 void IND_Entity2dManager::end() {
 	if (_ok) {
 		g_debug->header("Finalizing Entity2dManager", 5);
+		DISPOSE (_math);
 		g_debug->header("Freeing 2d entities" , 5);
 		freeVars();
 		g_debug->header("Entities freed", 6);
@@ -109,8 +115,8 @@ void IND_Entity2dManager::end() {
 bool IND_Entity2dManager::add(IND_Entity2d *pNewEntity2d) {
 	g_debug->header("Adding 2d entity", 5);
 	g_debug->header("Name:", 3);
-    //FIXME: This breaks on LLVM compiler (OSX, XCode)
-	//g_debug->dataInt((int) pNewEntity2d, 1);
+    pNewEntity2d->_id = _idTrack++;
+	g_debug->dataInt(pNewEntity2d->getId(), 1);
 
 	if (!_ok) {
 		writeMessage();
@@ -147,10 +153,10 @@ bool IND_Entity2dManager::add(IND_Entity2d *pNewEntity2d) {
 bool IND_Entity2dManager::add(int pLayer, IND_Entity2d *pNewEntity2d) {
 	g_debug->header("Adding 2d entity", 5);
 	g_debug->header("Name:", 3);
-    //FIXME: This breaks on LLVM compiler (OSX, XCode)
-	//g_debug->dataInt((int) pNewEntity2d, 1);
+    pNewEntity2d->_id = _idTrack++;
+	g_debug->dataInt(pNewEntity2d->getId(), 1);
 	g_debug->header("Layer:", 3);
-	g_debug->dataInt((int) pLayer, 1);
+	g_debug->dataInt(pLayer, 1);
 
 	if (!_ok) {
 		writeMessage();
@@ -180,8 +186,7 @@ bool IND_Entity2dManager::add(int pLayer, IND_Entity2d *pNewEntity2d) {
 bool IND_Entity2dManager::remove(IND_Entity2d *pEn) {
 	g_debug->header("Freeing 2d entity", 5);
 	g_debug->header("Name:", 3);
-    //FIXME: This breaks on LLVM compiler (OSX, XCode)
-	//g_debug->dataInt((int) pEn, 1);
+	g_debug->dataInt(pEn->getId(), 1);
 
 	if (!_ok || !pEn) {
 		writeMessage();
@@ -627,61 +632,6 @@ bool IND_Entity2dManager::isCollision(IND_Entity2d *pEn1, char *pId1, IND_Entity
 	if (!pEn1->_su && !pEn1->_an) return 0;
 	if (!pEn2->_su && !pEn2->_an) return 0;
 
-	// Apply transformation if the entities dont have a world matrix
-	if (pEn1->isNullMatrix() || pEn2->isNullMatrix()) {
-		int mWidthTemp, mHeightTemp;
-		if (pEn1->_su) {
-			mWidthTemp  = pEn1->_su->getWidth();
-			mHeightTemp = pEn1->_su->getHeight();
-		} else {
-			mWidthTemp  = pEn1->_an->getActualSurface(pEn1->getSequence())->getWidth();
-			mHeightTemp = pEn1->_an->getActualSurface(pEn1->getSequence())->getHeight();
-		}
-
-		IND_Matrix mMat1;
-		_render->setTransform2d((int) pEn1->_x,
-		                        (int) pEn1->_y,
-		                        pEn1->_angleX,
-		                        pEn1->_angleY,
-		                        pEn1->_angleZ,
-		                        pEn1->_scaleX,
-		                        pEn1->_scaleY,
-		                        pEn1->_axisCalX,
-		                        pEn1->_axisCalY,
-		                        pEn1->_mirrorX,
-		                        pEn1->_mirrorY,
-		                        mWidthTemp,
-		                        mHeightTemp,
-		                        &mMat1);
-		pEn1->_mat = mMat1;
-
-
-		if (pEn2->_su) {
-			mWidthTemp  = pEn2->_su->getWidth();
-			mHeightTemp = pEn2->_su->getHeight();
-		} else {
-			mWidthTemp  = pEn2->_an->getActualSurface(pEn2->getSequence())->getWidth();
-			mHeightTemp = pEn2->_an->getActualSurface(pEn2->getSequence())->getHeight();
-		}
-
-		IND_Matrix mMat2;
-		_render->setTransform2d((int) pEn2->_x,
-		                        (int) pEn2->_y,
-		                        pEn2->_angleX,
-		                        pEn2->_angleY,
-		                        pEn2->_angleZ,
-		                        pEn2->_scaleX,
-		                        pEn2->_scaleY,
-		                        pEn2->_axisCalX,
-		                        pEn2->_axisCalY,
-		                        pEn2->_mirrorX,
-		                        pEn2->_mirrorY,
-		                        mWidthTemp,
-		                        mHeightTemp,
-		                        &mMat2);
-		pEn2->_mat = mMat2;
-	}
-
 	list <BOUNDING_COLLISION *> *mBoundingList1;
 	list <BOUNDING_COLLISION *> *mBoundingList2;
 
@@ -746,25 +696,25 @@ inline bool IND_Entity2dManager::isCollision(list <BOUNDING_COLLISION *> *pBound
 				
 				// Triangle to triangle
 				if ((*i)->_type == 0 && (*j)->_type == 0) {
-					if (_render->isTriangleToTriangleCollision((*i), pMat1, (*j), pMat2))
+					if (_math->isTriangleToTriangleCollision((*i), pMat1, (*j), pMat2))
 						mCollision = 1;
 				}
 
 				// Circle to triangle
 				if ((*i)->_type == 1 && (*j)->_type == 0) {
-					if (_render->isCircleToTriangleCollision((*i), pMat1, pScale1, (*j), pMat2))
+					if (_math->isCircleToTriangleCollision((*i), pMat1, pScale1, (*j), pMat2))
 						mCollision = 1;
 				}
 
 				// Triangle to circle
 				if ((*i)->_type == 0 && (*j)->_type == 1) {
-					if (_render->isCircleToTriangleCollision((*j), pMat2, pScale2, (*i), pMat1))
+					if (_math->isCircleToTriangleCollision((*j), pMat2, pScale2, (*i), pMat1))
 						mCollision = 1;
 				}
 
 				// Circle to circle
 				if ((*i)->_type == 1 && (*j)->_type == 1) {
-					if (_render->isCircleToCircleCollision((*i), pMat1, pScale1, (*j), pMat2, pScale2))
+					if (_math->isCircleToCircleCollision((*i), pMat1, pScale1, (*j), pMat2, pScale2))
 						mCollision = 1;
 				}
 			}
@@ -841,8 +791,7 @@ void IND_Entity2dManager::freeVars() {
 
 			// Delete all the bounding areas
 			(*mEntityListIter)->deleteBoundingAreas((char*)"*");
-			//FIXME: This breaks on LLVM compiler (OSX, XCode)
-			//g_debug->dataInt((int)(*mEntityListIter), 1);
+            g_debug->dataInt((*mEntityListIter)->getId(), 1);
 		}
 
 		// Clear list

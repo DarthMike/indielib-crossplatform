@@ -71,7 +71,7 @@ bool WorkingPathSetup::setWorkingPathFromExe(const char* relpathFromExe) {
 #endif
     
     if (success) {
-        printf("Working path changed to: %s",totalPath);
+        printf("Working path changed to: %s\n",totalPath);
     }
     
     return success;
@@ -121,7 +121,13 @@ bool WorkingPathSetup::readExeDirectory() {
         //Note that in OSX, bundle is in the place of 'exe' for other platforms
         //Exe file will be inside the bundle.
     	NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
-        NSString *exeDir = [bundlePath stringByDeletingLastPathComponent];
+        NSString *exeDir = bundlePath;
+        
+        //Handle case when app is not bundled. In this case bundle path is the same as executable directory
+        if (NSNotFound != [bundlePath rangeOfString:@".app"].location) {
+            exeDir = [bundlePath stringByDeletingLastPathComponent];
+        }
+        
     	if (exeDir && [exeDir length]) {
         	strcpy(g_appDir, [exeDir cStringUsingEncoding:NSUTF8StringEncoding]);
         	success = true;

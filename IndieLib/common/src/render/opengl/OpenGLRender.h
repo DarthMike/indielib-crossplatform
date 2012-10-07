@@ -42,6 +42,7 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "Defines.h"
 #include "IND_Math.h"
 #include "IND_Render.h"
+#include "IND_Vector2.h"
 
 // ----- Forward Declarations -----
 class IND_Window;
@@ -103,7 +104,7 @@ public:
 	void beginScene();
 	void endScene();
 	void showFpsInWindowTitle(char *pFPSString);
-
+    void setPointPixelScale (float pNewScale);
 	// ----- Viewports and cameras -----
 
 
@@ -273,14 +274,6 @@ public:
 
 	void blitGrid(IND_Surface *pSu, BYTE pR, BYTE pG, BYTE pB, BYTE pA);
 
-	void BlitGridQuad    (int pAx, int pAy,
-                          int pBx, int pBy,
-                          int pCx, int pCy,
-                          int pDx, int pDy,
-						  BYTE pR, BYTE pG, BYTE pB, BYTE pA);
-
-	void BlitGridLine (int pPosX1, int pPosY1, int pPosX2, int pPosY2,  BYTE pR, BYTE pG, BYTE pB, BYTE pA);
-
 	void blitRegionSurface(IND_Surface *pSu,
 	                       int pX,
 	                       int pY,
@@ -330,15 +323,8 @@ public:
 
 	// ----- Rendering steps -----
 	void calculeFrustumPlanes();
-
-	// ----- Collisions -----
-	void blitCollisionCircle(int pPosX, int pPosY, int pRadius, float pScale, BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pWorldMatrix);
-	void blitCollisionLine(int pPosX1, int pPosY1, int pPosX2, int pPosY2,  BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pIndWorldMatrix);
-
-	bool   isTriangleToTriangleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1, BOUNDING_COLLISION *pB2, IND_Matrix pMat2);
-	bool   isCircleToCircleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1, float pScale1, BOUNDING_COLLISION *pB2, IND_Matrix pMat2, float pScale2);
-	bool   isCircleToTriangleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1, float pScale1, BOUNDING_COLLISION *pB2, IND_Matrix pMat2);
-	// ----- Atributos -----
+	
+	// ----- Atributtes -----
 
 	//This function returns the x position of the actual viewport
 	int getViewPortX()      {
@@ -412,8 +398,14 @@ private:
 	void fillPixel(PIXEL *pPixel, float pX, float pY,  float pR, float pG, float pB, float pA);
 	void fillVertex2d(CUSTOMVERTEX2D *pVertex2d, float pX, float pY, float pU, float pV);
 	void setForPrimitive(BYTE pA, bool pResetTransform);
-	void mvTransformPresetState();   //Helper to perform pre-transform settings (pushmatrix)
-	void mvTransformResetState();    //Helper to perform post-transform settings (popmatrix)
+
+	void BlitGridQuad    (int pAx, int pAy,
+                          int pBx, int pBy,
+                          int pCx, int pCy,
+                          int pDx, int pDy,
+						  BYTE pR, BYTE pG, BYTE pB, BYTE pA);
+
+	void BlitGridLine (int pPosX1, int pPosY1, int pPosX2, int pPosY2,  BYTE pR, BYTE pG, BYTE pB, BYTE pA);
 
 	//Culling helpers
 	unsigned short CullFrustumBox(const IND_Vector3 &pAABBMin, const IND_Vector3 &pAABBMax);
@@ -429,7 +421,11 @@ private:
 	int getLongInPixels(IND_Font *pFo, char *pText, int pPos, int pOffset);
 
 	//Setup helper
-	bool resetViewport();
+	bool resetViewport(int pWitdh, int pHeight);
+
+		// ----- Collisions -----
+	void blitCollisionCircle(int pPosX, int pPosY, int pRadius, float pScale, BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pWorldMatrix);
+	void blitCollisionLine(int pPosX1, int pPosY1, int pPosX2, int pPosY2,  BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pIndWorldMatrix);
 
 	// ----- Objects -----
 	IND_Math _math;
@@ -452,8 +448,11 @@ private:
 			_viewPortY(0),
 			_viewPortWidth(0),
 			_viewPortHeight(0),
+            _viewPortApectRatio(0.0f),
 			_antialiasing(0),
-			_maxTextureSize(0) {
+			_maxTextureSize(0),
+            _textureUnits(0),
+            _pointPixelScale(1.0f){
 			strcpy(_version, "NO DATA");
 			strcpy(_vendor, "NO DATA");
 			strcpy(_renderer, "NO DATA");
@@ -464,15 +463,20 @@ private:
 		int _viewPortY;
 		int _viewPortWidth;
 		int _viewPortHeight;
+        float _viewPortApectRatio;
 		bool _antialiasing;
 		char _version [1024] ;
 		char _vendor [1024];
 		char _renderer [1024];
 		int _maxTextureSize;
 		int _textureUnits;
+        float _pointPixelScale;
 	};
 	struct infoStruct _info;
 
+    //Current 'camera' matrix
+    IND_Matrix _cameraMatrix;
+    
 	// ----- Primitives vertices -----
 
 	// Temporal buffer of pixels for drawing primitives
@@ -491,6 +495,7 @@ private:
 
 	// ----- Friends ------
 	friend class OpenGLTextureBuilder;
+	friend class IND_Render;
 };
 
 #endif // _OPENGLRENDER_H_

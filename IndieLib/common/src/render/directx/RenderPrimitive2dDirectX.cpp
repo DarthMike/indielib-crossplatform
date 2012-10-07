@@ -28,68 +28,27 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "IND_SurfaceManager.h"
 #include "IND_Surface.h"
 #include "DirectXRender.h"
-
+#include "IND_Vector2.h"
+#include "IND_Vector3.h"
+#include "IND_Math.h"
 
 
 // --------------------------------------------------------------------------------
 //							         Public methods
 // --------------------------------------------------------------------------------
 
-/*
-==================
-TODO: CHECK THE USE OF THIS METHOD IN THE FUTURE, CURRENTLY IS DEPRECATED. ¿LET IT BE UNTIL HAVING PIXEL SHADER SUPPORT?
-
-\b Parameters:
-
-\b pSwitch       Activates or deactivates the antialiasing. (true = antialiasing on, false = antialiasing of)
-
-Operation:
-
-This method activates or deativates the antialiasing when drawing primitives. It doesn't affect
-to other graphical objects, only to primitives.
-
-This function will return 1 if the antialiasing is activated or deactivated correctly and 0 if the
-graphic card of the user doesn't support this feature.
-==================
-*/
 bool DirectXRender::setAntialiasing(bool pSwitch) {
 	if (!_info._antialiasing) return 0;
 
 	if (pSwitch) {
-		_info.mDevice->SetRenderState(D3DRS_ANTIALIASEDLINEENABLE, TRUE);
+		_info._device->SetRenderState(D3DRS_ANTIALIASEDLINEENABLE, TRUE);
 	} else {
-		_info.mDevice->SetRenderState(D3DRS_ANTIALIASEDLINEENABLE, FALSE);
+		_info._device->SetRenderState(D3DRS_ANTIALIASEDLINEENABLE, FALSE);
 	}
 
 	return 1;
 }
 
-/*!
-\defgroup Primitives Bliting Primitives
-\ingroup Advances
-With these methods you can directly blit to the screen primitives using DirectXRender class. Remember that you can also use IND_Entity2d with primitives joined to this object, in order to
-draw primitives.
-*/
-/*@{*/
-
-/*!
-\b Parameters:
-
-\arg \b pX, \b pY               Position in the screen
-\arg \b pR, \b pG, \b pB        R, G, B components of the color
-\arg \b pA                      Level of transparency. (255 = completly opaque)
-
-\b Operation:
-
-This function draws a pixel into the screen. This is a really slow method when the number of pixels is
-big.
-
-This method is equivalent to use a combination of these methods:
-- IND_Entity2d::setPrimitive2d()
-- IND_Entity2d::setLine()
-- IND_Entity2d::setTint()
-- IND_Entity2d::setTransparency()
-*/
 void DirectXRender::blitPixel(int pX,
                               int pY,
                               BYTE pR,
@@ -104,28 +63,9 @@ void DirectXRender::blitPixel(int pX,
 	setForPrimitive(pA);
 
 	// Pixel drawing
-	_info.mDevice->DrawPrimitiveUP(D3DPT_POINTLIST, 1, &_pixels, sizeof(PIXEL));
+	_info._device->DrawPrimitiveUP(D3DPT_POINTLIST, 1, &_pixels, sizeof(PIXEL));
 }
 
-
-/*!
-\b Parameters:
-
-\arg \b pX1, \b pY1             Origin point
-\arg \b pX2, pY2                Destiny point
-\arg \b pR, \b pG, \b pB        R, G, B components of the color
-\arg \b pA                      Level of transparency. (255 = completly opaque)
-
-\b Operation:
-
-This function draws a line into the screen
-
-Using this method is equivalent to using all of these methods:
-- IND_Entity2d::setPrimitive2d()
-- IND_Entity2d::setLine()
-- IND_Entity2d::setTint()
-- IND_Entity2d::setTransparency()
-*/
 void DirectXRender::blitLine(int pX1,
                              int pY1,
                              int pX2,
@@ -142,28 +82,9 @@ void DirectXRender::blitLine(int pX1,
 	setForPrimitive(pA);
 
 	// Line blitting
-	_info.mDevice->DrawPrimitiveUP(D3DPT_LINESTRIP, 1, &_pixels, sizeof(PIXEL));
+	_info._device->DrawPrimitiveUP(D3DPT_LINESTRIP, 1, &_pixels, sizeof(PIXEL));
 }
 
-
-/*!
-\b Parameters:
-
-\arg \b pX1, \b pY1             Upper left corner of the rectangle
-\arg \b pX2, \b pY2             Lower right corner of the rectangle
-\arg \b pR, \b pG, \b pB        R, G, B components of the color
-\arg \b pA                      Level of transparency. (255 = completly opaque)
-
-\b Operation:
-
-This function draws a rectangle into the screen
-
-Using this method is equivalent to using all of these methods:
-- IND_Entity2d::setPrimitive2d()
-- IND_Entity2d::setRectangle()
-- IND_Entity2d::setTint()
-- IND_Entity2d::setTransparency()
-*/
 void DirectXRender::blitRectangle(int pX1,
                                   int pY1,
                                   int pX2,
@@ -183,29 +104,9 @@ void DirectXRender::blitRectangle(int pX1,
 	setForPrimitive(pA);
 
 	// Rectangle blitting
-	_info.mDevice->DrawPrimitiveUP(D3DPT_LINESTRIP, 4, &_pixels, sizeof(PIXEL));
+	_info._device->DrawPrimitiveUP(D3DPT_LINESTRIP, 4, &_pixels, sizeof(PIXEL));
 }
 
-
-/*!
-\b Parameters:
-
-\arg \b pX1, \b pY1                 Upper left corner of the rectangle
-\arg \b pX2, \b pY2                 Lower right corner of the rectangle
-\arg \b pR, \b pG, \b pB            R, G, B components of the color
-\arg \b pA                          Level of transparency. (255 = completly opaque)
-
-\b Operation:
-
-This function draws a rectangle filled with a color into the screen. The A component is the
-transparency level (255 = complety opaque).
-
-Using this method is equivalent to using all of these methods:
-- IND_Entity2d::setPrimitive2d()
-- IND_Entity2d::setRectangle()
-- IND_Entity2d::setTint()
-- IND_Entity2d::setTransparency()
-*/
 void DirectXRender::blitFillRectangle(int pX1,
                                       int pY1,
                                       int pX2,
@@ -227,23 +128,9 @@ void DirectXRender::blitFillRectangle(int pX1,
 	setForPrimitive(pA);
 
 	// Rectangle blitting
-	_info.mDevice->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, &_pixels, sizeof(PIXEL));
+	_info._device->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, &_pixels, sizeof(PIXEL));
 }
 
-/*!
-\b Parameters:
-
-\arg \b pTrianglePoints             Triangle Points allocated array
-\arg \b pNumPoints                  Number of points passed (numtriangles =  pNumPoints - 2)
-\arg \b pR, \b pG, \b pB            R, G, B components of the color in outer vertexs
-\arg \b pA                          Level of transparency. (255 = completly opaque)
-
-\b Operation:
-
-This function draws a complete triangle fan. The triangle fan is a set of triangles which
-share a central vertex (http://msdn.microsoft.com/en-us/library/ee422512(VS.85).aspx)
-The A parameter is transparency (255 = complety opaque).
-*/
 void DirectXRender::blitTriangleList(IND_Point *pTrianglePoints,
                                      int pNumPoints,
                                      BYTE pR,
@@ -263,28 +150,8 @@ void DirectXRender::blitTriangleList(IND_Point *pTrianglePoints,
 	setForPrimitive(pA);
 
 	//Blitting
-	_info.mDevice->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, pNumPoints - 2, &_pixels, sizeof(PIXEL));
+	_info._device->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, pNumPoints - 2, &_pixels, sizeof(PIXEL));
 }
-
-/********************************************************************************/
-
-/*!
-\b Parameters:
-
-\arg \b pX1, \b pY1                     Triangle corner #1
-\arg \b pX2, \b pY2                     Triangle corner #2
-\arg \b pX3, \b pY3                     Triangle corner #3
-\arg \b pR1, \b pG1, \b pB1             R, G, B components of the color for corner #1
-\arg \b pR2, \b pG2, \b pB2             R, G, B components of the color for corner #2
-\arg \b pR3, \b pG3, \b pB3             R, G, B components of the color for corner #3
-\arg \b pZ                              Z depth of coords in all triangle
-\arg \b pA                              Level of transparency. (255 = completly opaque)
-
-\b Operation:
-
-This function draws a triangle filled with a color given in three corners. The A component is the
-transparency level (255 = complety opaque).
-*/
 
 void DirectXRender::blitColoredTriangle(int pX1,
                                         int pY1,
@@ -308,29 +175,9 @@ void DirectXRender::blitColoredTriangle(int pX1,
 	setForPrimitive(pA);
 
 	// Rectangle blitting
-	_info.mDevice->DrawPrimitiveUP(D3DPT_TRIANGLELIST, 1, &_pixels, sizeof(PIXEL));
+	_info._device->DrawPrimitiveUP(D3DPT_TRIANGLELIST, 1, &_pixels, sizeof(PIXEL));
 }
 
-
-/*!
-\b Parameters:
-
-\arg \b pPixel                      Pointer to a points array ::IND_Point. Example: ::IND_Point mPoly3 [ ] = { {60, 10},  {20, 15},  {50, 90},  {170, 190} } => Sets 3 points (each one with x and y coordinates).
-\arg \b pNumLines                   Number of edges to draw
-\arg \b pR, \b pG, \b pB            R, G, B components of the color
-\arg \b pA                          Level of transparency. (255 = completly opaque)
-
-\b Operation:
-
-This function draws a 2d poly
-
-Using this method is equivalent to using all of these methods:
-- IND_Entity2d::setPrimitive2d()
-- IND_Entity2d::setPolyPoints()
-- IND_Entity2d::setNumSides()
-- IND_Entity2d::setTint()
-- IND_Entity2d::setTransparency()
-*/
 bool DirectXRender::blitPoly2d(IND_Point *pPolyPoints,
                                int pNumLines,
                                BYTE pR,
@@ -348,35 +195,11 @@ bool DirectXRender::blitPoly2d(IND_Point *pPolyPoints,
 	setForPrimitive(pA);
 
 	// Polygon blitting
-	_info.mDevice->DrawPrimitiveUP(D3DPT_LINESTRIP, pNumLines, &_pixels, sizeof(PIXEL));
+	_info._device->DrawPrimitiveUP(D3DPT_LINESTRIP, pNumLines, &_pixels, sizeof(PIXEL));
 
 	return 1;
 }
 
-
-/*!
-\b Parameters:
-
-\arg \b pX, \b pY                   Position in the screen
-\arg \b pRadius                     Radius
-\arg \b pN                          Number of sides
-\arg \b pAngle                      Angle in degrees (if you change this parameter the polygon
-                                    will rotate)
-\arg \b pR, \b pG, \b pB            R, G, B components of the color
-\arg \b pA                          Level of transparency. (255 = completly opaque)
-
-\b Operation:
-
-This function draws 2d regunr poly of n sides. If you need to draw circles you can use this method
-using 30 or more sides.
-
-This method is equivalent to use a combination of these methods:
-- IND_Entity2d::setPrimitive2d()
-- IND_Entity2d::setRadius()
-- IND_Entity2d::setPosition()
-- IND_Entity2d::setTint()
-- IND_Entity2d::setTransparency()
-*/
 bool DirectXRender::blitRegularPoly(int pX,
                                     int pY,
                                     int pRadius,
@@ -402,12 +225,10 @@ bool DirectXRender::blitRegularPoly(int pX,
 	setForPrimitive(pA);
 
 	// Polygon blitting
-	_info.mDevice->DrawPrimitiveUP(D3DPT_LINESTRIP, i, &_pixels, sizeof(PIXEL));
+	_info._device->DrawPrimitiveUP(D3DPT_LINESTRIP, i, &_pixels, sizeof(PIXEL));
 
 	return 1;
 }
-/*@}*/
-
 
 /*
 ==================
@@ -419,39 +240,36 @@ void DirectXRender::blitCollisionCircle(int pPosX, int pPosY, int pRadius, float
 
 	setTransform2d(0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0);
 
-	D3DXMATRIX mWorldMatrix;
-	GetD3DMatrix(pIndWorldMatrix, &mWorldMatrix);
 
-	// Untransformed points
-	D3DXVECTOR2 mP1Untransformed((float) pPosX, (float) pPosY);
-
-	D3DXVECTOR4 mP1;
-	D3DXVec2Transform(&mP1, &mP1Untransformed, &mWorldMatrix);
+	IND_Vector3 mP1 (static_cast<float>(pPosX),static_cast<float>(pPosY),0.0f);
+	_math->transformVector3DbyMatrix4D(mP1,pIndWorldMatrix);
 
 	// Color
 	setRainbow2d(IND_OPAQUE, 1, 0, 0, IND_FILTER_POINT, pR, pG, pB, pA, 0, 0, 0, 255, 0, 0);
 
 	// Color
-	_info.mDevice->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_DIFFUSE);
+	_info._device->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_DIFFUSE);
 
 	// Pixel format
-	_info.mDevice->SetFVF(D3DFVF_PIXEL);
+	_info._device->SetFVF(D3DFVF_PIXEL);
 
 	// Blitting
 	int x, y, i;
-
-	for (i = 0; i < 30; i++) {
-		float c = i * 2 * (float)(PI / 30);
-		x = (int)(mP1.x + (pRadius * cos(c + D3DXToRadian(0))));
-		y = (int)(mP1.y + (pRadius * sin(c + D3DXToRadian(0))));
+	float c = 2 * (float)(PI / SIDES_PER_CIRCLE);
+	int points (SIDES_PER_CIRCLE + 1);
+	assert (0 != points);
+	for (i = 0; i <= points; i++) {
+		
+		x = (int)(mP1._x + (pRadius * cos((i * c) + D3DXToRadian(0))));
+		y = (int)(mP1._y + (pRadius * sin((i* c) + D3DXToRadian(0))));
 
 		fillPixel(&_pixels [i], x, y, pR, pG, pB);
 	}
 
-	fillPixel(&_pixels [i], (int) mP1.x + (int)(pRadius * cos(D3DXToRadian(0))), (int) mP1.y + (int)(pRadius * sin(D3DXToRadian(0))), pR, pG, pB);
+	fillPixel(&_pixels [i], (int) mP1._x + (int)(pRadius * cos(D3DXToRadian(0))), (int) mP1._y + (int)(pRadius * sin(D3DXToRadian(0))), pR, pG, pB);
 
 	// Blitting circle
-	_info.mDevice->DrawPrimitiveUP(D3DPT_LINESTRIP, i, &_pixels, sizeof(PIXEL));
+	_info._device->DrawPrimitiveUP(D3DPT_LINESTRIP, points, &_pixels, sizeof(PIXEL));
 }
 
 
@@ -463,32 +281,26 @@ Blits a bounding line
 void DirectXRender::blitCollisionLine(int pPosX1, int pPosY1, int pPosX2, int pPosY2,  BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pIndWorldMatrix) {
 	setTransform2d(0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0);
 
-	D3DXMATRIX mWorldMatrix;
-	GetD3DMatrix(pIndWorldMatrix, &mWorldMatrix);
-
-	// Untransformed points
-	D3DXVECTOR2 mP1Untransformed((float) pPosX1, (float) pPosY1);
-	D3DXVECTOR2 mP2Untransformed((float) pPosX2, (float) pPosY2);
-
-	D3DXVECTOR4 mP1, mP2;
-	D3DXVec2Transform(&mP1, &mP1Untransformed, &mWorldMatrix);
-	D3DXVec2Transform(&mP2, &mP2Untransformed, &mWorldMatrix);
+	IND_Vector3 mP1 (static_cast<float>(pPosX1),static_cast<float>(pPosY1),0.0f);
+	IND_Vector3 mP2 (static_cast<float>(pPosX2),static_cast<float>(pPosY2),0.0f);
+	_math->transformVector3DbyMatrix4D(mP1,pIndWorldMatrix);
+	_math->transformVector3DbyMatrix4D(mP2,pIndWorldMatrix);
 
 	// Color
 	setRainbow2d(IND_OPAQUE, 1, 0, 0, IND_FILTER_POINT, pR, pG, pB, pA, 0, 0, 0, 255, 0, 0);
 
 	// Color
-	_info.mDevice->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_DIFFUSE);
+	_info._device->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_DIFFUSE);
 
 	// Pixel format
-	_info.mDevice->SetFVF(D3DFVF_PIXEL);
+	_info._device->SetFVF(D3DFVF_PIXEL);
 
 	// Filling pixels
-	fillPixel(&_pixels [0], (int) mP1.x, (int) mP1.y, pR, pG, pB);
-	fillPixel(&_pixels [1], (int) mP2.x, (int) mP2.y, pR, pG, pB);
+	fillPixel(&_pixels [0], (int) mP1._x, (int) mP1._y, pR, pG, pB);
+	fillPixel(&_pixels [1], (int) mP2._x, (int) mP2._y, pR, pG, pB);
 
 	// Blitting line
-	_info.mDevice->DrawPrimitiveUP(D3DPT_LINESTRIP, 1, &_pixels, sizeof(PIXEL));
+	_info._device->DrawPrimitiveUP(D3DPT_LINESTRIP, 1, &_pixels, sizeof(PIXEL));
 }
 
 
@@ -512,17 +324,17 @@ void DirectXRender::BlitGridLine(int pPosX1, int pPosY1, int pPosX2, int pPosY2,
 	setRainbow2d(IND_OPAQUE, 1, 0, 0, IND_FILTER_POINT, pR, pG, pB, pA, 0, 0, 0, 255, 0, 0);
 
 	// Color
-	_info.mDevice->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_DIFFUSE);
+	_info._device->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_DIFFUSE);
 
 	// Pixel format
-	_info.mDevice->SetFVF(D3DFVF_PIXEL);
+	_info._device->SetFVF(D3DFVF_PIXEL);
 
 	// Filling pixels
 	fillPixel(&_pixels [0], (int) mP1.x, (int) mP1.y, pR, pG, pB);
 	fillPixel(&_pixels [1], (int) mP2.x, (int) mP2.y, pR, pG, pB);
 
 	// Blitting line
-	_info.mDevice->DrawPrimitiveUP(D3DPT_LINESTRIP, 1, &_pixels, sizeof(PIXEL));
+	_info._device->DrawPrimitiveUP(D3DPT_LINESTRIP, 1, &_pixels, sizeof(PIXEL));
 }
 
 
@@ -594,10 +406,10 @@ void DirectXRender::setForPrimitive(BYTE pA) {
 	//}
 
 	// Disable color OP
-	_info.mDevice->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_DISABLE);
+	_info._device->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_DISABLE);
 
 	// Pixel format
-	_info.mDevice->SetFVF(D3DFVF_PIXEL);
+	_info._device->SetFVF(D3DFVF_PIXEL);
 }
 
 #endif //INDIERENDER_DIRECTX

@@ -52,10 +52,11 @@ am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_manual_OBJECTS = CIndieLib_vc2008.$(OBJEXT) WorkingPath.$(OBJEXT) \
 	ManualTestsMain.$(OBJEXT) AnimationTests.$(OBJEXT) \
-	Camera2dTests.$(OBJEXT) FontTests.$(OBJEXT) \
-	FontTests_Pretty.$(OBJEXT) FunctionalityTests.$(OBJEXT) \
-	PrimitiveTests.$(OBJEXT) SurfaceTests.$(OBJEXT) \
-	SurfaceTests_textBlock.$(OBJEXT) SurfaceTests_wrap.$(OBJEXT) \
+	Camera2dTests.$(OBJEXT) CollisionTests.$(OBJEXT) \
+	FontTests.$(OBJEXT) FontTests_Pretty.$(OBJEXT) \
+	FunctionalityTests.$(OBJEXT) PrimitiveTests.$(OBJEXT) \
+	SurfaceTests.$(OBJEXT) SurfaceTests_textBlock.$(OBJEXT) \
+	SurfaceTests_wrap.$(OBJEXT) \
 	INDImageTests_Conversions.$(OBJEXT) \
 	INDImageTests_Conversions_NonRGB.$(OBJEXT) \
 	INDImageTests_nonPOTLoad.$(OBJEXT) \
@@ -80,13 +81,13 @@ DIST_SOURCES = $(manual_SOURCES)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /home/michael/indielib/linux/build-aux/missing --run aclocal-1.11
+ACLOCAL = ${SHELL} /home/michael/indielib/IndieLib/linux/build-aux/missing --run aclocal-1.11
 AMTAR = $${TAR-tar}
 AR = ar
-AUTOCONF = ${SHELL} /home/michael/indielib/linux/build-aux/missing --run autoconf
-AUTOHEADER = ${SHELL} /home/michael/indielib/linux/build-aux/missing --run autoheader
-AUTOMAKE = ${SHELL} /home/michael/indielib/linux/build-aux/missing --run automake-1.11
-AWK = mawk
+AUTOCONF = ${SHELL} /home/michael/indielib/IndieLib/linux/build-aux/missing --run autoconf
+AUTOHEADER = ${SHELL} /home/michael/indielib/IndieLib/linux/build-aux/missing --run autoheader
+AUTOMAKE = ${SHELL} /home/michael/indielib/IndieLib/linux/build-aux/missing --run automake-1.11
+AWK = gawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2
@@ -122,7 +123,7 @@ LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LIPO = 
 LN_S = ln -s
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /home/michael/indielib/linux/build-aux/missing --run makeinfo
+MAKEINFO = ${SHELL} /home/michael/indielib/IndieLib/linux/build-aux/missing --run makeinfo
 MANIFEST_TOOL = :
 MKDIR_P = /bin/mkdir -p
 NM = /usr/bin/nm -B
@@ -145,10 +146,10 @@ SET_MAKE =
 SHELL = /bin/bash
 STRIP = strip
 VERSION = 0.001
-abs_builddir = /home/michael/indielib/linux/tests/manual
-abs_srcdir = /home/michael/indielib/linux/tests/manual
-abs_top_builddir = /home/michael/indielib/linux
-abs_top_srcdir = /home/michael/indielib/linux
+abs_builddir = /home/michael/indielib/IndieLib/linux/tests/manual
+abs_srcdir = /home/michael/indielib/IndieLib/linux/tests/manual
+abs_top_builddir = /home/michael/indielib/IndieLib/linux
+abs_top_srcdir = /home/michael/indielib/IndieLib/linux
 ac_ct_AR = ar
 ac_ct_CC = gcc
 ac_ct_CXX = g++
@@ -178,7 +179,7 @@ host_vendor = pc
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/michael/indielib/linux/build-aux/install-sh
+install_sh = ${SHELL} /home/michael/indielib/IndieLib/linux/build-aux/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -187,7 +188,7 @@ mandir = ${datarootdir}/man
 mkdir_p = /bin/mkdir -p
 oldincludedir = /usr/include
 pdfdir = ${docdir}
-prefix = /home/michael/freeimage
+prefix = /home/michael/indielib/IndieLib
 program_transform_name = s,x,x,
 psdir = ${docdir}
 sbindir = ${exec_prefix}/sbin
@@ -199,8 +200,8 @@ top_build_prefix = ../../
 top_builddir = ../..
 top_srcdir = ../..
 AM_CXXFLAGS = $(INTI_CFLAGS) -I ../../../common/include -I ../../../tests 
-manual_SOURCES = ../../../tests/CIndieLib_vc2008.cpp ../../../tests/WorkingPath.cpp ../../../tests/manual/ManualTestsMain.cpp ../../../tests/manual/animation/AnimationTests.cpp ../../../tests/manual/camera2d/Camera2dTests.cpp ../../../tests/manual/font/FontTests.cpp ../../../tests/manual/font/FontTests_Pretty.cpp ../../../tests/manual/functionality/FunctionalityTests.cpp ../../../tests/manual/primitives/PrimitiveTests.cpp ../../../tests/manual/surface/SurfaceTests.cpp ../../../tests/manual/surface/SurfaceTests_textBlock.cpp ../../../tests/manual/surface/SurfaceTests_wrap.cpp ../../../tests/manual/image/INDImageTests_Conversions.cpp ../../../tests/manual/image/INDImageTests_Conversions_NonRGB.cpp ../../../tests/manual/image/INDImageTests_nonPOTLoad.cpp ../../../tests/manual/image/INDImageTests_POTLoad.cpp
-manual_LDADD = -L../../.libs $(INTI_LIBS) -lIndieLib -lSDL -lGLEW -lGLU -lGL -lILU -lILUT
+manual_SOURCES = ../../../tests/CIndieLib_vc2008.cpp ../../../tests/WorkingPath.cpp ../../../tests/manual/ManualTestsMain.cpp ../../../tests/manual/animation/AnimationTests.cpp ../../../tests/manual/camera2d/Camera2dTests.cpp ../../../tests/manual/collision/CollisionTests.cpp ../../../tests/manual/font/FontTests.cpp ../../../tests/manual/font/FontTests_Pretty.cpp ../../../tests/manual/functionality/FunctionalityTests.cpp ../../../tests/manual/primitives/PrimitiveTests.cpp ../../../tests/manual/surface/SurfaceTests.cpp ../../../tests/manual/surface/SurfaceTests_textBlock.cpp ../../../tests/manual/surface/SurfaceTests_wrap.cpp ../../../tests/manual/image/INDImageTests_Conversions.cpp ../../../tests/manual/image/INDImageTests_Conversions_NonRGB.cpp ../../../tests/manual/image/INDImageTests_nonPOTLoad.cpp ../../../tests/manual/image/INDImageTests_POTLoad.cpp
+manual_LDADD = -L../../.libs $(INTI_LIBS) -lIndieLib -lSDL2 -lGLEW -lGLU -lGL
 all: all-am
 
 .SUFFIXES:
@@ -291,6 +292,7 @@ distclean-compile:
 include ./$(DEPDIR)/AnimationTests.Po
 include ./$(DEPDIR)/CIndieLib_vc2008.Po
 include ./$(DEPDIR)/Camera2dTests.Po
+include ./$(DEPDIR)/CollisionTests.Po
 include ./$(DEPDIR)/FontTests.Po
 include ./$(DEPDIR)/FontTests_Pretty.Po
 include ./$(DEPDIR)/FunctionalityTests.Po
@@ -395,6 +397,20 @@ Camera2dTests.obj: ../../../tests/manual/camera2d/Camera2dTests.cpp
 #	source='../../../tests/manual/camera2d/Camera2dTests.cpp' object='Camera2dTests.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o Camera2dTests.obj `if test -f '../../../tests/manual/camera2d/Camera2dTests.cpp'; then $(CYGPATH_W) '../../../tests/manual/camera2d/Camera2dTests.cpp'; else $(CYGPATH_W) '$(srcdir)/../../../tests/manual/camera2d/Camera2dTests.cpp'; fi`
+
+CollisionTests.o: ../../../tests/manual/collision/CollisionTests.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT CollisionTests.o -MD -MP -MF $(DEPDIR)/CollisionTests.Tpo -c -o CollisionTests.o `test -f '../../../tests/manual/collision/CollisionTests.cpp' || echo '$(srcdir)/'`../../../tests/manual/collision/CollisionTests.cpp
+	$(am__mv) $(DEPDIR)/CollisionTests.Tpo $(DEPDIR)/CollisionTests.Po
+#	source='../../../tests/manual/collision/CollisionTests.cpp' object='CollisionTests.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o CollisionTests.o `test -f '../../../tests/manual/collision/CollisionTests.cpp' || echo '$(srcdir)/'`../../../tests/manual/collision/CollisionTests.cpp
+
+CollisionTests.obj: ../../../tests/manual/collision/CollisionTests.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT CollisionTests.obj -MD -MP -MF $(DEPDIR)/CollisionTests.Tpo -c -o CollisionTests.obj `if test -f '../../../tests/manual/collision/CollisionTests.cpp'; then $(CYGPATH_W) '../../../tests/manual/collision/CollisionTests.cpp'; else $(CYGPATH_W) '$(srcdir)/../../../tests/manual/collision/CollisionTests.cpp'; fi`
+	$(am__mv) $(DEPDIR)/CollisionTests.Tpo $(DEPDIR)/CollisionTests.Po
+#	source='../../../tests/manual/collision/CollisionTests.cpp' object='CollisionTests.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o CollisionTests.obj `if test -f '../../../tests/manual/collision/CollisionTests.cpp'; then $(CYGPATH_W) '../../../tests/manual/collision/CollisionTests.cpp'; else $(CYGPATH_W) '$(srcdir)/../../../tests/manual/collision/CollisionTests.cpp'; fi`
 
 FontTests.o: ../../../tests/manual/font/FontTests.cpp
 	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT FontTests.o -MD -MP -MF $(DEPDIR)/FontTests.Tpo -c -o FontTests.o `test -f '../../../tests/manual/font/FontTests.cpp' || echo '$(srcdir)/'`../../../tests/manual/font/FontTests.cpp

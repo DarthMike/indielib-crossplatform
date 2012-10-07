@@ -67,14 +67,14 @@ class IND_Camera3d;
 //									  IND_Render
 // --------------------------------------------------------------------------------
 
-/*!
-\defgroup IND_Render IND_Render
-\ingroup Main
+/**
+@defgroup IND_Render IND_Render
+@ingroup Main
 Render class for setting up the render area, click in ::IND_Render to see all the methods of this class.
 */
 /*@{*/
 
-/*!
+/**
 The methods of this class are used for preparing the render area, viewport, etc.
 It wraps the actual rendering code used (DirectX, OpenGL...)
 */
@@ -101,13 +101,34 @@ public:
 	bool    toggleFullScreen();
 	//@}
 	
+    /** @name Object lifecycle
+    *
+    */
+    //@{
 	void    end();
 	bool    isOK();
+     //@}
 
+    /** @name Rendering frame lifecycle
+     *
+     */
+    //@{
 	void beginScene();
 	void endScene();
+    //@}
+    
+    /** @name Render settings
+     *
+     */
+    //@{
 	inline void showFpsInWindowTitle();
 
+    inline bool setAntialiasing(bool pSwitch);
+    
+    void setPointPixelScale (float pNewScale);
+    
+    //@}
+    
 	// ----- Viewports and cameras -----
 
 	/** @name Viewport clearing (both for 2d and 3d viewports)
@@ -144,8 +165,6 @@ public:
 	//@}
 
 	// ----- Render Primitive 2d -----
-
-	inline bool setAntialiasing(bool pSwitch);
 
 	/** @name Bliting primitives (you can also use IND_Entity2d instead this methods)
 	*
@@ -401,7 +420,7 @@ public:
 	//! This function returns a pointer to the IND_Window object where the render has been created
 	IND_Window *getWindow();
 	//! This function returns in miliseconds the time that took the previous frame.
-	/*!
+	/**
 	It is very useful to indicate transformations along the timeline.
 
 	For example, making Position_X += Speed * Render.getFrameTime() / 1000.0f we would get
@@ -469,9 +488,6 @@ private:
 	void blitCollisionCircle(int pPosX, int pPosY, int pRadius, float pScale, BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pWorldMatrix);
 	void blitCollisionLine(int pPosX1, int pPosY1, int pPosX2, int pPosY2,  BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pIndWorldMatrix);
 
-	bool isTriangleToTriangleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1, BOUNDING_COLLISION *pB2, IND_Matrix pMat2);
-	bool isCircleToCircleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1, float pScale1, BOUNDING_COLLISION *pB2, IND_Matrix pMat2, float pScale2);
-	bool isCircleToTriangleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1, float pScale1, BOUNDING_COLLISION *pB2, IND_Matrix pMat2);
 	// ----- Friends -----
 	friend class IND_Entity2dManager;
 	friend class IND_Input;

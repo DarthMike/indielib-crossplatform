@@ -52,7 +52,10 @@
 #include "animation/AnimationTests.h"
 #include "font/FontTests.h"
 #include "font/FontTests_Pretty.h"
-
+#include "collision/CollisionTests.h"
+#include "entities/EntityTests_animateRotations.h"
+#include "entities/EntityTests_animateScale.h"
+#include "entities/EntityTests_interactions.h"
 
 /*
 ==================
@@ -71,6 +74,10 @@ const unsigned char g_gridcolorR = 0;
 const unsigned char g_gridcolorG = 0;
 const unsigned char g_gridcolorB = 255;
 const unsigned char g_gridcolorA = 200;
+const unsigned char g_collisionColorR = 255;
+const unsigned char g_collisionColorG = 0;
+const unsigned char g_collisionColorB = 0;
+const unsigned char g_collisionColorA = 255;
 
 void initTests() {
     //Permanent tests
@@ -104,6 +111,15 @@ void initTests() {
 	g_tests.push_back(font1);
 	FontTests_Pretty *font2 = new FontTests_Pretty();
 	g_tests.push_back(font2);
+	CollisionTests *collision1 = new CollisionTests();
+	g_tests.push_back(collision1);
+	EntityTests_animateRotations * entity1 = new EntityTests_animateRotations();
+	g_tests.push_back(entity1);
+	EntityTests_animateScale * entity2 = new EntityTests_animateScale();
+	g_tests.push_back(entity2);
+    EntityTests_interactions* entity3 = new EntityTests_interactions();
+    g_tests.push_back(entity3);
+
 }
 
 void releaseTests() {
@@ -180,7 +196,8 @@ int IndieLib() {
 		}//LOOP END
 
 		mI->_entity2dManager->renderEntities2d();   //Entities rendering
-		mI->_entity2dManager->renderGridAreas(g_gridcolorR,g_gridcolorG,g_gridcolorB,g_gridcolorA);    //Grid areas rendering (on top of it) can be disabled per entity
+		mI->_entity2dManager->renderGridAreas(g_gridcolorR,g_gridcolorG,g_gridcolorB,g_gridcolorA); //Grid areas rendering (on top of it) can be disabled per entity
+		mI->_entity2dManager->renderCollisionAreas(g_collisionColorR,g_collisionColorG,g_collisionColorB,g_collisionColorA);  //Collision areas rendering (on top of it) can be disabled per entity
 		mI->_render->endScene();
 		//mI->_render->showFpsInWindowTitle();
 

@@ -42,9 +42,9 @@ Suite 330, Boston, MA 02111-1307 USA
 //									   IND_Camera
 // --------------------------------------------------------------------------------
 
-/*!
-\defgroup Camera3d Camera3d
-\ingroup Cameras
+/**
+@defgroup Camera3d Camera3d
+@ingroup Cameras
 Camera for 3d scenarios. Using this class you can control all the parameters of a 3d camera. You
 can have as many cameras as you want. Use ::IND_Render::SetCamera3d() method before drawing in order
 to choose the camera you want to use.

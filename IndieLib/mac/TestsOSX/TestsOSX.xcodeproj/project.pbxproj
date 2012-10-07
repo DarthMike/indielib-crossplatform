@@ -8,7 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		E7071233159EFEC500BF34D9 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7071232159EFEC500BF34D9 /* WorkingPath.cpp */; };
+		E744863615E8E48700DDE3BF /* CollisionTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E744863415E8E48700DDE3BF /* CollisionTests.cpp */; };
+		E74EAAD715FBD0AC009E948F /* EntityTests_interactions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E74EAAD515FBD0AC009E948F /* EntityTests_interactions.cpp */; };
 		E75EB2B6159CB25100693F41 /* libIndielib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E796D45A15F88AD900724FBD /* EntityTests_animateRotations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E796D45615F88AD900724FBD /* EntityTests_animateRotations.cpp */; };
+		E796D45B15F88AD900724FBD /* EntityTests_animateScale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E796D45815F88AD900724FBD /* EntityTests_animateScale.cpp */; };
 		E7DBCB1D159C78F600C8B2D9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */; };
 		E7DBCB27159C78F600C8B2D9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E7DBCB25159C78F600C8B2D9 /* InfoPlist.strings */; };
 		E7DBCB2D159C78F600C8B2D9 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E7DBCB2B159C78F600C8B2D9 /* Credits.rtf */; };
@@ -30,13 +34,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		E72ECC2215DBB00200250CEE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E70712AF15A09C4700BF34D9 /* UnitTests.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E70712C515A0A21000BF34D9;
-			remoteInfo = UnitTestsApp;
-		};
 		E75EB2B0159CAFEA00693F41 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */;
@@ -56,8 +53,15 @@
 /* Begin PBXFileReference section */
 		E7071232159EFEC500BF34D9 /* WorkingPath.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = WorkingPath.cpp; path = ../../../tests/WorkingPath.cpp; sourceTree = "<group>"; };
 		E7071234159F057900BF34D9 /* WorkingPath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = WorkingPath.h; path = ../../../tests/WorkingPath.h; sourceTree = "<group>"; };
-		E70712AF15A09C4700BF34D9 /* UnitTests.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = UnitTests.xcodeproj; path = ../UnitTests/UnitTests.xcodeproj; sourceTree = "<group>"; };
+		E744863415E8E48700DDE3BF /* CollisionTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CollisionTests.cpp; sourceTree = "<group>"; };
+		E744863515E8E48700DDE3BF /* CollisionTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionTests.h; sourceTree = "<group>"; };
+		E74EAAD515FBD0AC009E948F /* EntityTests_interactions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EntityTests_interactions.cpp; path = entities/EntityTests_interactions.cpp; sourceTree = "<group>"; };
+		E74EAAD615FBD0AC009E948F /* EntityTests_interactions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntityTests_interactions.h; path = entities/EntityTests_interactions.h; sourceTree = "<group>"; };
 		E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Indielib.xcodeproj; path = ../IndieLib/Indielib.xcodeproj; sourceTree = "<group>"; };
+		E796D45615F88AD900724FBD /* EntityTests_animateRotations.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EntityTests_animateRotations.cpp; path = entities/EntityTests_animateRotations.cpp; sourceTree = "<group>"; };
+		E796D45715F88AD900724FBD /* EntityTests_animateRotations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntityTests_animateRotations.h; path = entities/EntityTests_animateRotations.h; sourceTree = "<group>"; };
+		E796D45815F88AD900724FBD /* EntityTests_animateScale.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EntityTests_animateScale.cpp; path = entities/EntityTests_animateScale.cpp; sourceTree = "<group>"; };
+		E796D45915F88AD900724FBD /* EntityTests_animateScale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntityTests_animateScale.h; path = entities/EntityTests_animateScale.h; sourceTree = "<group>"; };
 		E7DBCB18159C78F600C8B2D9 /* IndielibTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IndielibTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		E7DBCB1F159C78F600C8B2D9 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -112,12 +116,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E70712B015A09C4700BF34D9 /* Products */ = {
+		E744863315E8E48700DDE3BF /* collision */ = {
 			isa = PBXGroup;
 			children = (
-				E72ECC2315DBB00200250CEE /* UnitTestsApp.app */,
+				E744863415E8E48700DDE3BF /* CollisionTests.cpp */,
+				E744863515E8E48700DDE3BF /* CollisionTests.h */,
 			);
-			name = Products;
+			path = collision;
 			sourceTree = "<group>";
 		};
 		E75EB2AD159CAFEA00693F41 /* Products */ = {
@@ -128,10 +133,22 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		E796D45D15F88AE700724FBD /* entities */ = {
+			isa = PBXGroup;
+			children = (
+				E796D45615F88AD900724FBD /* EntityTests_animateRotations.cpp */,
+				E796D45715F88AD900724FBD /* EntityTests_animateRotations.h */,
+				E796D45815F88AD900724FBD /* EntityTests_animateScale.cpp */,
+				E796D45915F88AD900724FBD /* EntityTests_animateScale.h */,
+				E74EAAD515FBD0AC009E948F /* EntityTests_interactions.cpp */,
+				E74EAAD615FBD0AC009E948F /* EntityTests_interactions.h */,
+			);
+			name = entities;
+			sourceTree = "<group>";
+		};
 		E7DBCAAE159C432500C8B2D9 = {
 			isa = PBXGroup;
 			children = (
-				E70712AF15A09C4700BF34D9 /* UnitTests.xcodeproj */,
 				E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */,
 				E7DBCB22159C78F600C8B2D9 /* IndielibTests */,
 				E7DBCB1B159C78F600C8B2D9 /* Frameworks */,
@@ -193,6 +210,8 @@
 		E7DBCB7A159C7A8D00C8B2D9 /* manual */ = {
 			isa = PBXGroup;
 			children = (
+				E796D45D15F88AE700724FBD /* entities */,
+				E744863315E8E48700DDE3BF /* collision */,
 				E7DBCB7B159C7A8D00C8B2D9 /* animation */,
 				E7DBCB7E159C7A8D00C8B2D9 /* camera2d */,
 				E7DBCB81159C7A8D00C8B2D9 /* font */,
@@ -326,10 +345,6 @@
 					ProductGroup = E75EB2AD159CAFEA00693F41 /* Products */;
 					ProjectRef = E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */;
 				},
-				{
-					ProductGroup = E70712B015A09C4700BF34D9 /* Products */;
-					ProjectRef = E70712AF15A09C4700BF34D9 /* UnitTests.xcodeproj */;
-				},
 			);
 			projectRoot = "";
 			targets = (
@@ -339,13 +354,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		E72ECC2315DBB00200250CEE /* UnitTestsApp.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = UnitTestsApp.app;
-			remoteRef = E72ECC2215DBB00200250CEE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
@@ -388,6 +396,10 @@
 				E7DBCBB0159C7A8D00C8B2D9 /* SurfaceTests_textBlock.cpp in Sources */,
 				E7DBCBB1159C7A8D00C8B2D9 /* SurfaceTests_wrap.cpp in Sources */,
 				E7071233159EFEC500BF34D9 /* WorkingPath.cpp in Sources */,
+				E744863615E8E48700DDE3BF /* CollisionTests.cpp in Sources */,
+				E796D45A15F88AD900724FBD /* EntityTests_animateRotations.cpp in Sources */,
+				E796D45B15F88AD900724FBD /* EntityTests_animateScale.cpp in Sources */,
+				E74EAAD715FBD0AC009E948F /* EntityTests_interactions.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,6 +474,7 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -490,6 +503,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IndielibTests/IndielibTests-Prefix.pch";
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;

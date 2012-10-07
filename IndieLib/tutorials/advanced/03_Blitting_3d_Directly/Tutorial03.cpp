@@ -20,7 +20,7 @@ int IndieLib()
 
 	// Bones loading
 	IND_3dMesh mMeshBones;
-	if (!mI->MeshManager->Add (&mMeshBones, "..\\resources\\skeleton\\skeleton.x", "..\\resources\\skeleton")) return 0;
+	if (!mI->MeshManager->Add (&mMeshBones, "../resources/skeleton/skeleton.x", "../resources/skeleton")) return 0;
 
 	// ----- Cameras ------
 

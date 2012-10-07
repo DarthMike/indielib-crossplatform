@@ -24,7 +24,7 @@ Suite 330, Boston, MA 02111-1307 USA
 // ----- Includes -----
 
 #include "Global.h"
-#include "Tools.h"
+#include "IND_Math.h"
 #include "IND_SurfaceManager.h"
 #include "IND_Timer.h"
 #include "IND_Render.h"
@@ -47,12 +47,12 @@ Suite 330, Boston, MA 02111-1307 USA
 //							  Initialization / Destruction
 // --------------------------------------------------------------------------------
 
-/*!
-\b Parameters:
+/**
+@b Parameters:
 
-\arg \b windowproperties         Properties of window to be created
+@arg @b windowproperties         Properties of window to be created
 
-\b Operation:
+@b Operation:
 
 This function returns a pointer to correctly created window if success. NULL if failed
 */
@@ -66,10 +66,10 @@ IND_Window* IND_Render::initRenderAndWindow(IND_WindowProperties& windowproperti
 	//Actually create real render object
 	return(createRender(windowproperties));
 }
-/*!
-\b Parameters:
+/**
+@b Parameters:
 
-\b Operation:
+@b Operation:
 
 This function returns 1 (true) if the render is initialized sucessfully,
 0 (false) otherwise.
@@ -78,30 +78,39 @@ bool IND_Render::isOK() {
 	return (_wrappedRenderer->isOK());
 }
 
-/*!
-\b Parameters:
+/**
+@b Parameters:
 
-\arg \b pTitle                  Title of the window
-\arg \b pWidth                  Width of the window
-\arg \b pHeight                 Height of the window
-\arg \b pBpp                    Quality of color (32 o 16 bits). 32 bits offers better quality. 16 bits offers better speed.
-\arg \b pVsync                  Wait for vertical sync. (1 / 0) = (on / off).
-\arg \b pFullscreen             Full screen. (1 / 0) = (on / off).
+@arg @b pTitle                  Title of the window
+@arg @b pWidth                  Width of the window
+@arg @b pHeight                 Height of the window
+@arg @b pBpp                    Quality of color (32 o 16 bits). 32 bits offers better quality. 16 bits offers better speed.
+@arg @b pVsync                  Wait for vertical sync. (1 / 0) = (on / off).
+@arg @b pFullscreen             Full screen. (1 / 0) = (on / off).
 
-\b Operation:
+@b Operation:
 
 This function returns 1 (true) if the application window resets to the attributes passed as parameters. This method
 is useful when you want to change the application window on runtime, 0 (false) if it is not possible to create
 the new window.
 */
 bool IND_Render::reset(IND_WindowProperties& props) {
-	//TODO (DIRECTX AND OPENGL RENDERS): When resetting, window position should be put to middle if windowed
+#ifdef DEBUG
+    std::cout<<"Resetting window parameters"<<std::endl;
+    std::cout<<"Title: "<<props._title<<std::endl;
+    std::cout<<"Width: "<<props._width<<std::endl;
+    std::cout<<"Height: "<<props._height<<std::endl;
+    std::cout<<"Bpp: "<<props._bpp<<std::endl;
+    std::cout<<"Vsync: "<<props._vsync<<std::endl;
+    std::cout<<"Full screen: "<<props._fullscreen<<std::endl;
+#endif
+    
 	return (_wrappedRenderer->reset(props));
 }
 
 
-/*!
-\b Operation:
+/**
+@b Operation:
 
 This function returns 1 (true) if the application window toggles to fullscreen or windowed, 0 (false) if it is not possible
 to create the new window.
@@ -111,8 +120,8 @@ bool IND_Render::toggleFullScreen() {
 }
 
 
-/*!
-\b Operation:
+/**
+@b Operation:
 
 This function frees the manager and all the objects that it contains.
 */
@@ -128,14 +137,14 @@ void IND_Render::end() {
 //							        Public methods
 // --------------------------------------------------------------------------------
 
-/*!
-\b Parameters:
+/**
+@b Parameters:
 
-\arg \b pR                  Byte R (Red)
-\arg \b pG                  Byte G (Green)
-\arg \b pB                  Byte B (Blue)
+@arg @b pR                  Byte R (Red)
+@arg @b pG                  Byte G (Green)
+@arg @b pB                  Byte B (Blue)
 
-\b Operation:
+@b Operation:
 
 Clean the viewport with a color expressed in RGB
 */
@@ -144,12 +153,12 @@ void IND_Render::clearViewPort(BYTE pR,
                                BYTE pB) {
 	_wrappedRenderer->clearViewPort(pR, pG, pB);
 }
-/*!
-\b Parameters:
+/**
+@b Parameters:
 
-\arg \b pEyeX, pEyeY, pEyeZ                         Position of the camera
-\arg \b pLookAtX, pLookAtY, pLookAtZ                Vector defining the direction of the camera
-\arg \b pUpX, pUpY, pUpZ                            Vector "up" of the camera.
+@arg @b pEyeX, pEyeY, pEyeZ                         Position of the camera
+@arg @b pLookAtX, pLookAtY, pLookAtZ                Vector defining the direction of the camera
+@arg @b pUpX, pUpY, pUpZ                            Vector "up" of the camera.
 
 Operation:
 
@@ -166,13 +175,13 @@ inline void IND_Render::lookAt(float pEyeX, float pEyeY, float pEyeZ,
 }
 
 
-/*!
-\b Parameters:
+/**
+@b Parameters:
 
-\arg \b pFov                                        Vertical fov
-\arg \b pAspect                                     Aspect ratio (usually the width of the viewport divided by the height)
-\arg \b pNearClippingPlane                          Near clipping plane
-\arg \b pFarClippingPlane                           Far clipping plane
+@arg @b pFov                                        Vertical fov
+@arg @b pAspect                                     Aspect ratio (usually the width of the viewport divided by the height)
+@arg @b pNearClippingPlane                          Near clipping plane
+@arg @b pFarClippingPlane                           Far clipping plane
 
 Operation:
 
@@ -185,13 +194,13 @@ inline void IND_Render::perspectiveFov(float pFov, float pAspect, float pNearCli
 }
 
 
-/*!
-\b Parameters:
+/**
+@b Parameters:
 
-\arg \b pWidth                                      Width
-\arg \b pHeight                                     Height
-\arg \b pNearClippingPlane                          Near clipping plane
-\arg \b pFarClippingPlane                           Far clipping plane
+@arg @b pWidth                                      Width
+@arg @b pHeight                                     Height
+@arg @b pNearClippingPlane                          Near clipping plane
+@arg @b pFarClippingPlane                           Far clipping plane
 
 Operation:
 
@@ -203,8 +212,8 @@ inline void IND_Render::perspectiveOrtho(float pWidth, float pHeight, float pNea
 	_wrappedRenderer->perspectiveOrtho(pWidth, pHeight, pNearClippingPlane, pFarClippingPlane);
 }
 
-/*!
-\b Operation:
+/**
+@b Operation:
 
 Preparing for render. This function must be called before drawing any graphical object.
 */
@@ -231,37 +240,37 @@ void IND_Render::beginScene() {
 }
 
 
-/*!
-\b Operation:
+/**
+@b Operation:
 
 Finish the scene. This function must be called after drawing all the graphical objects.
 */
 void IND_Render::endScene() {
 	_wrappedRenderer->endScene();
 }
-/*!
-\defgroup Graphical_Objects Bliting Surfaces, Animations, Fonts and setting transformations directly
-\ingroup Advances
+/**
+@defgroup Graphical_Objects Bliting Surfaces, Animations, Fonts and setting transformations directly
+@ingroup Advances
 */
 /*@{*/
 
-/*!
-\b Parameters:
+/**
+@b Parameters:
 
-\arg \b pFo                                         Pointer to a ::IND_Font object
-\arg \b pText                                       Text to write to the screen
-\arg \b pX, \b pY                                   Position
-\arg \b pOffset                                     Char spacing
-\arg \b pLineSpacing                                Line spacing
-\arg \b pR, \b pG, \b pB                            R, G, B components of the tinting color
-\arg \b pA                                          Transparency level. (255 = complety opaque)
-\arg \b pFadeR, \b pFadeG, \b pFadeB, \b pFadeA     Fade to a color.
-\arg \b pFilter                                     ::IND_Filter type
-\arg \b pSo                                         Source blending, see (::IND_BlendingType).
-\arg \b pDs                                         Destiny blending, see (::IND_BlendingType).
-\arg \b pAlign                                      Text alignment, see::IND_Align.
+@arg @b pFo                                         Pointer to a ::IND_Font object
+@arg @b pText                                       Text to write to the screen
+@arg @b pX, @b pY                                   Position
+@arg @b pOffset                                     Char spacing
+@arg @b pLineSpacing                                Line spacing
+@arg @b pR, @b pG, @b pB                            R, G, B components of the tinting color
+@arg @b pA                                          Transparency level. (255 = complety opaque)
+@arg @b pFadeR, @b pFadeG, @b pFadeB, @b pFadeA     Fade to a color.
+@arg @b pFilter                                     ::IND_Filter type
+@arg @b pSo                                         Source blending, see (::IND_BlendingType).
+@arg @b pDs                                         Destiny blending, see (::IND_BlendingType).
+@arg @b pAlign                                      Text alignment, see::IND_Align.
 
-\b Operation:
+@b Operation:
 
 This function blits text directly to the screen using the ::IND_Font object.
 
@@ -320,17 +329,17 @@ void IND_Render::blitText(IND_Font *pFo,
 	                           pAlign);
 }
 
-/*!
-\b Parameters:
+/**
+@b Parameters:
 
-\arg \b pAn                         Pointer to a ::IND_Animation object
-\arg \b pSequence                   Number of the sequence to blit (the first sequence is 0)
-\arg \b pX, \b pY                   Upper left coordinate of the region
-\arg \b pWidth, \b pHeight          Width and Height of the region
-\arg \b pToggleWrap                 Wraping on (1) / off (0)
-\arg \b pUDisplace, \b pVDisplace   Horizontal and vertical displacement of the image
+@arg @b pAn                         Pointer to a ::IND_Animation object
+@arg @b pSequence                   Number of the sequence to blit (the first sequence is 0)
+@arg @b pX, @b pY                   Upper left coordinate of the region
+@arg @b pWidth, @b pHeight          Width and Height of the region
+@arg @b pToggleWrap                 Wraping on (1) / off (0)
+@arg @b pUDisplace, @b pVDisplace   Horizontal and vertical displacement of the image
 
-\b Operation:
+@b Operation:
 
 This function blits directly to the screen a certain sequence of a ::IND_Animation object.
 
@@ -380,15 +389,15 @@ int IND_Render::blitAnimation(IND_Animation *pAn,
 }
 /*@}*/
 
-/*!
-\b Parameters:
+/**
+@b Parameters:
 
-\arg \b pSu                         Pointer to a ::IND_Surface object
-\arg \b pX, \b pY                   Upper left coordinate of the region
-\arg \b pWidth, \b pHeight          Width and Height of the region
-\arg \b pUDisplace, \b pVDisplace   Horizontal and vertical displacement of the image
+@arg @b pSu                         Pointer to a ::IND_Surface object
+@arg @b pX, @b pY                   Upper left coordinate of the region
+@arg @b pWidth, @b pHeight          Width and Height of the region
+@arg @b pUDisplace, @b pVDisplace   Horizontal and vertical displacement of the image
 
-\b Operation:
+@b Operation:
 
 This function returns 1 (true) if it blits directly to the screen a ::IND_Surface object tiling it both
 in X and Y coordinates.
@@ -424,18 +433,18 @@ bool IND_Render::blitWrapSurface(IND_Surface *pSu,
 }
 /*@}*/
 
-/*!
-\defgroup Graphical_Objects Bliting Surfaces, Animations and Fonts and setting the transformations directly
-\ingroup Advances
+/**
+@defgroup Graphical_Objects Bliting Surfaces, Animations and Fonts and setting the transformations directly
+@ingroup Advances
 */
 /*@{*/
 
-/*!
-\b Parameters:
+/**
+@b Parameters:
 
-\arg \b pSu                     Pointer to a ::IND_Surface object
+@arg @b pSu                     Pointer to a ::IND_Surface object
 
-\b Operation:
+@b Operation:
 
 This function blits directly to the screen a ::IND_Surface object.
 
@@ -452,12 +461,12 @@ void IND_Render::blitSurface(IND_Surface *pSu) {
 }
 
 
-/*!
-\b Parameters:
+/**
+@b Parameters:
 
-\arg \b pSu                     Pointer to a ::IND_Surface object
+@arg @b pSu                     Pointer to a ::IND_Surface object
 
-\b Operation:
+@b Operation:
 
 This function blits directly to the screen the grid of an ::IND_Surface object.
 
@@ -474,14 +483,14 @@ void IND_Render::blitGrid(IND_Surface *pSu,
 }
 
 
-/*!
-\b Parameters:
+/**
+@b Parameters:
 
-\arg \b pSu                     Pointer to a ::IND_Surface object
-\arg \b pX, \b pY               Upper left coordinate of the region
-\arg \b pWidth, \b pHeight      Width and Height of the region
+@arg @b pSu                     Pointer to a ::IND_Surface object
+@arg @b pX, @b pY               Upper left coordinate of the region
+@arg @b pWidth, @b pHeight      Width and Height of the region
 
-\b Operation:
+@b Operation:
 
 This method is useful when we want to render only a certain region of a ::IND_Surface.
 
@@ -514,9 +523,9 @@ void IND_Render::blitRegionSurface(IND_Surface *pSu,
 ==================
 TODO: CHECK THE USE OF THIS METHOD IN THE FUTURE, CURRENTLY IS DEPRECATED. ¿LET IT BE UNTIL HAVING PIXEL SHADER SUPPORT?
 
-\b Parameters:
+@b Parameters:
 
-\b pSwitch       Activates or deactivates the antialiasing. (true = antialiasing on, false = antialiasing of)
+@b pSwitch       Activates or deactivates the antialiasing. (true = antialiasing on, false = antialiasing of)
 
 Operation:
 
@@ -531,22 +540,22 @@ inline bool IND_Render::setAntialiasing(bool pSwitch) {
 	return (_wrappedRenderer->setAntialiasing(pSwitch));
 }
 
-/*!
-\defgroup Primitives Bliting Primitives
-\ingroup Advances
+/**
+@defgroup Primitives Bliting Primitives
+@ingroup Advances
 With these methods you can directly blit to the screen primitives using DirectXRender class. Remember that you can also use IND_Entity2d with primitives joined to this object, in order to
 draw primitives.
 */
 /*@{*/
 
-/*!
-\b Parameters:
+/**
+@b Parameters:
 
-\arg \b pX, \b pY               Position in the screen
-\arg \b pR, \b pG, \b pB        R, G, B components of the color
-\arg \b pA                      Level of transparency. (255 = completly opaque)
+@arg @b pX, @b pY               Position in the screen
+@arg @b pR, @b pG, @b pB        R, G, B components of the color
+@arg @b pA                      Level of transparency. (255 = completly opaque)
 
-\b Operation:
+@b Operation:
 
 This function draws a pixel into the screen. This is a really slow method when the number of pixels is
 big.
@@ -567,15 +576,15 @@ void IND_Render::blitPixel(int pX,
 }
 
 
-/*!
-\b Parameters:
+/**
+@b Parameters:
 
-\arg \b pX1, \b pY1             Origin point
-\arg \b pX2, pY2                Destiny point
-\arg \b pR, \b pG, \b pB        R, G, B components of the color
-\arg \b pA                      Level of transparency. (255 = completly opaque)
+@arg @b pX1, @b pY1             Origin point
+@arg @b pX2, pY2                Destiny point
+@arg @b pR, @b pG, @b pB        R, G, B components of the color
+@arg @b pA                      Level of transparency. (255 = completly opaque)
 
-\b Operation:
+@b Operation:
 
 This function draws a line into the screen
 
@@ -597,15 +606,15 @@ void IND_Render::blitLine(int pX1,
 }
 
 
-/*!
-\b Parameters:
+/**
+@b Parameters:
 
-\arg \b pX1, \b pY1             Upper left corner of the rectangle
-\arg \b pX2, \b pY2             Lower right corner of the rectangle
-\arg \b pR, \b pG, \b pB        R, G, B components of the color
-\arg \b pA                      Level of transparency. (255 = completly opaque)
+@arg @b pX1, @b pY1             Upper left corner of the rectangle
+@arg @b pX2, @b pY2             Lower right corner of the rectangle
+@arg @b pR, @b pG, @b pB        R, G, B components of the color
+@arg @b pA                      Level of transparency. (255 = completly opaque)
 
-\b Operation:
+@b Operation:
 
 This function draws a rectangle into the screen
 
@@ -627,15 +636,15 @@ void IND_Render::blitRectangle(int pX1,
 }
 
 
-/*!
-\b Parameters:
+/**
+@b Parameters:
 
-\arg \b pX1, \b pY1                 Upper left corner of the rectangle
-\arg \b pX2, \b pY2                 Lower right corner of the rectangle
-\arg \b pR, \b pG, \b pB            R, G, B components of the color
-\arg \b pA                          Level of transparency. (255 = completly opaque)
+@arg @b pX1, @b pY1                 Upper left corner of the rectangle
+@arg @b pX2, @b pY2                 Lower right corner of the rectangle
+@arg @b pR, @b pG, @b pB            R, G, B components of the color
+@arg @b pA                          Level of transparency. (255 = completly opaque)
 
-\b Operation:
+@b Operation:
 
 This function draws a rectangle filled with a color into the screen. The A component is the
 transparency level (255 = complety opaque).
@@ -657,15 +666,15 @@ void IND_Render::blitFillRectangle(int pX1,
 	_wrappedRenderer->blitFillRectangle(pX1, pY1, pX2, pY2, pR, pG, pB, pA);
 }
 
-/*!
-\b Parameters:
+/**
+@b Parameters:
 
-\arg \b pTrianglePoints             Triangle Points allocated array
-\arg \b pNumPoints                  Number of points passed (numtriangles =  pNumPoints - 2)
-\arg \b pR, \b pG, \b pB            R, G, B components of the color in outer vertexs
-\arg \b pA                          Level of transparency. (255 = completly opaque)
+@arg @b pTrianglePoints             Triangle Points allocated array
+@arg @b pNumPoints                  Number of points passed (numtriangles =  pNumPoints - 2)
+@arg @b pR, @b pG, @b pB            R, G, B components of the color in outer vertexs
+@arg @b pA                          Level of transparency. (255 = completly opaque)
 
-\b Operation:
+@b Operation:
 
 This function draws a complete triangle fan. The triangle fan is a set of triangles which
 share a central vertex (http://msdn.microsoft.com/en-us/library/ee422512(VS.85).aspx)
@@ -682,19 +691,19 @@ void IND_Render::blitTriangleList(IND_Point *pTrianglePoints,
 
 /********************************************************************************/
 
-/*!
-\b Parameters:
+/**
+@b Parameters:
 
-\arg \b pX1, \b pY1                     Triangle corner #1
-\arg \b pX2, \b pY2                     Triangle corner #2
-\arg \b pX3, \b pY3                     Triangle corner #3
-\arg \b pR1, \b pG1, \b pB1             R, G, B components of the color for corner #1
-\arg \b pR2, \b pG2, \b pB2             R, G, B components of the color for corner #2
-\arg \b pR3, \b pG3, \b pB3             R, G, B components of the color for corner #3
-\arg \b pZ                              Z depth of coords in all triangle
-\arg \b pA                              Level of transparency. (255 = completly opaque)
+@arg @b pX1, @b pY1                     Triangle corner #1
+@arg @b pX2, @b pY2                     Triangle corner #2
+@arg @b pX3, @b pY3                     Triangle corner #3
+@arg @b pR1, @b pG1, @b pB1             R, G, B components of the color for corner #1
+@arg @b pR2, @b pG2, @b pB2             R, G, B components of the color for corner #2
+@arg @b pR3, @b pG3, @b pB3             R, G, B components of the color for corner #3
+@arg @b pZ                              Z depth of coords in all triangle
+@arg @b pA                              Level of transparency. (255 = completly opaque)
 
-\b Operation:
+@b Operation:
 
 This function draws a triangle filled with a color given in three corners. The A component is the
 transparency level (255 = complety opaque).
@@ -714,15 +723,15 @@ void IND_Render::blitColoredTriangle(int pX1,
 }
 
 
-/*!
-\b Parameters:
+/**
+@b Parameters:
 
-\arg \b pPixel                      Pointer to a points array ::IND_Point. Example: ::IND_Point mPoly3 [ ] = { {60, 10},  {20, 15},  {50, 90},  {170, 190} } => Sets 3 points (each one with x and y coordinates).
-\arg \b pNumLines                   Number of edges to draw
-\arg \b pR, \b pG, \b pB            R, G, B components of the color
-\arg \b pA                          Level of transparency. (255 = completly opaque)
+@arg @b pPixel                      Pointer to a points array ::IND_Point. Example: ::IND_Point mPoly3 [ ] = { {60, 10},  {20, 15},  {50, 90},  {170, 190} } => Sets 3 points (each one with x and y coordinates).
+@arg @b pNumLines                   Number of edges to draw
+@arg @b pR, @b pG, @b pB            R, G, B components of the color
+@arg @b pA                          Level of transparency. (255 = completly opaque)
 
-\b Operation:
+@b Operation:
 
 This function draws a 2d poly
 
@@ -743,18 +752,18 @@ bool IND_Render::blitPoly2d(IND_Point *pPolyPoints,
 }
 
 
-/*!
-\b Parameters:
+/**
+@b Parameters:
 
-\arg \b pX, \b pY                   Position in the screen
-\arg \b pRadius                     Radius
-\arg \b pN                          Number of sides
-\arg \b pAngle                      Angle in degrees (if you change this parameter the polygon
+@arg @b pX, @b pY                   Position in the screen
+@arg @b pRadius                     Radius
+@arg @b pN                          Number of sides
+@arg @b pAngle                      Angle in degrees (if you change this parameter the polygon
                                     will rotate)
-\arg \b pR, \b pG, \b pB            R, G, B components of the color
-\arg \b pA                          Level of transparency. (255 = completly opaque)
+@arg @b pR, @b pG, @b pB            R, G, B components of the color
+@arg @b pA                          Level of transparency. (255 = completly opaque)
 
-\b Operation:
+@b Operation:
 
 This function draws 2d regunr poly of n sides. If you need to draw circles you can use this method
 using 30 or more sides.
@@ -799,15 +808,15 @@ void IND_Render::blitCollisionLine(int pPosX1, int pPosY1, int pPosX2, int pPosY
 	_wrappedRenderer->blitCollisionLine(pPosX1, pPosY1, pPosX2, pPosY2, pR, pG, pB, pA, pIndWorldMatrix);
 }
 
-/*!
-\b Parameters:
+/**
+@b Parameters:
 
-\arg \b pX              Upper left X coordinate of the Viewport
-\arg \b pY              Upper left Y coordinate of the Viewport
-\arg \b pWidth          Viewport width
-\arg \b pHeight         Viewport height
+@arg @b pX              Upper left X coordinate of the Viewport
+@arg @b pY              Upper left Y coordinate of the Viewport
+@arg @b pWidth          Viewport width
+@arg @b pHeight         Viewport height
 
-\b Operation:
+@b Operation:
 
 This function returns 1 (true) if a 2d ViewPort is created in the specified area.
 
@@ -828,12 +837,12 @@ bool IND_Render::setViewPort2d(int pX,
 }
 
 
-/*!
-\b Parameters:
+/**
+@b Parameters:
 
-\arg \b pCamera2d               ::IND_Camera2d object that defines a camera.
+@arg @b pCamera2d               ::IND_Camera2d object that defines a camera.
 
-\b Operation:
+@b Operation:
 
 This function sets a 2d camera. See the methods of ::IND_Camera2d for information on how you can manipulate the camera.
 */
@@ -842,43 +851,43 @@ void IND_Render::setCamera2d(IND_Camera2d *pCamera2d) {
 }
 
 
-/*!
-\defgroup Graphical_Objects Bliting Surfaces, Animations, Fonts and setting transformations directly
-\ingroup Advances
+/**
+@defgroup Graphical_Objects Bliting Surfaces, Animations, Fonts and setting transformations directly
+@ingroup Advances
 */
 /*@{*/
 
-/*!
-\b Parameters:
+/**
+@b Parameters:
 
-\arg \b pX                          Translation in the X coordinate. The (0, 0) position is the
+@arg @b pX                          Translation in the X coordinate. The (0, 0) position is the
                                     upper-left corner of the Viewport
-\arg \b pY                          Translation in the Y coordinate. The (0, 0) position is the
+@arg @b pY                          Translation in the Y coordinate. The (0, 0) position is the
                                     upper-left corner of the Viewport
-\arg \b pAngleX                     Rotation in the angle x in degrees
-\arg \b pAngleY                     Rotation in the angle y in degrees
-\arg \b pAngleZ                     Rotation in the angle z in degrees
-\arg \b pScaleX                     Scaling in the x coordinate. 1 for maintaining the original size
-\arg \b pScaleY                     Scaling in the y coordinate. 1 for maintaining the original size
-\arg \b pAxisCalX, \b pAxisCalY     Parameters that indicates the displacement that the graphical
+@arg @b pAngleX                     Rotation in the angle x in degrees
+@arg @b pAngleY                     Rotation in the angle y in degrees
+@arg @b pAngleZ                     Rotation in the angle z in degrees
+@arg @b pScaleX                     Scaling in the x coordinate. 1 for maintaining the original size
+@arg @b pScaleY                     Scaling in the y coordinate. 1 for maintaining the original size
+@arg @b pAxisCalX, @b pAxisCalY     Parameters that indicates the displacement that the graphical
                                     object undergoes due to the HotSpot. If the HotSpot is not specified,
                                     the value should be 0 for both of them. All the transformation
                                     will be aplied from the upper-left corner of the object.
-\arg \b pMirrorX                    Horizontal mirroring. (true / false) = (activated / deactivated).
-\arg \b pMirrorY                    Vertical mirroring. (true / false) = (activated / deactivated).
-\arg \b pWidth                      Width of the graphical object that we are going to blit just after
+@arg @b pMirrorX                    Horizontal mirroring. (true / false) = (activated / deactivated).
+@arg @b pMirrorY                    Vertical mirroring. (true / false) = (activated / deactivated).
+@arg @b pWidth                      Width of the graphical object that we are going to blit just after
                                     applying the transformation. You shoud use the getWidth() method
                                     of the object.
-\arg \b pHeight                     Height of the graphical object that we are going to blit just after
+@arg @b pHeight                     Height of the graphical object that we are going to blit just after
                                     applying the transformation. You shoud use the getHeight() method
                                     on the object.
-\arg \b pMatrix                     Pointer to a ::IND_Matrix matrix. In this parameter will be
+@arg @b pMatrix                     Pointer to a ::IND_Matrix matrix. In this parameter will be
                                     returned by reference the world matrix transformation that
                                     will be aplied to the graphical object. This matrix can be useful
                                     for advanced programmers that need the algebraic description
                                     of the transformation. It is possible to use the value 0
                                     if it not necessary to have this matrix information.
-\b Operation:
+@b Operation:
 
 This function sets the 2d transformation (translation, rotation, scaling, mirroring and hotspot)
 of the following 2d graphical objects that will be rendered
@@ -922,18 +931,18 @@ void IND_Render::setTransform2d(int pX,
 }
 
 
-/*!
-\defgroup Graphical_Objects Bliting Surfaces, Animations, Fonts and setting transformations directly
-\ingroup Advances
+/**
+@defgroup Graphical_Objects Bliting Surfaces, Animations, Fonts and setting transformations directly
+@ingroup Advances
 */
 /*@{*/
 
-/*!
-\b Parameters:
+/**
+@b Parameters:
 
-\arg \b pTransformMatrix                            Translation Matrix (IND_Matrix) to apply to render
+@arg @b pTransformMatrix                            Translation Matrix (IND_Matrix) to apply to render
 
-\b Operation:
+@b Operation:
 
 This function sets the 2d transformation (via transformation Matrix)
 of the following 2d graphical objects that will be rendered
@@ -964,14 +973,14 @@ void IND_Render::setTransform2d(IND_Matrix &pTransformMatrix) {
 	_wrappedRenderer->setTransform2d(pTransformMatrix);
 }
 
-/*!
-\defgroup Graphical_Objects Bliting Surfaces, Animations, Fonts and setting transformations directly
-\ingroup Advances
+/**
+@defgroup Graphical_Objects Bliting Surfaces, Animations, Fonts and setting transformations directly
+@ingroup Advances
 */
 /*@{*/
 
-/*!
-\b Operation:
+/**
+@b Operation:
 
 This function sets the 2d transformation to identity. That is no transformation.
 
@@ -999,19 +1008,19 @@ void IND_Render::setIdentityTransform2d () {
 	_wrappedRenderer->setIdentityTransform2d();
 }
 
-/*!
-\b Parameters:
+/**
+@b Parameters:
 
-\arg \b pType                                       ::IND_Type type of the following graphical object.
-\arg \b pCull                                       Backface culling. (true / false) = (on / off). This feature can
+@arg @b pType                                       ::IND_Type type of the following graphical object.
+@arg @b pCull                                       Backface culling. (true / false) = (on / off). This feature can
                                                     be deactivated when we are going to rotate the graphical object
                                                     in the x or y coordinates. This way it is possible to draw for
                                                     example the leaf of a tree that falls down rotating and shows
                                                     both faces. In cases that you don't want to draw back faces
                                                     deactivate this for faster render times.
-\arg \b pMirrorX                                    Horizontal mirroring. (true / false) = (activated / deactivated).
-\arg \b pMirrorY                                    Vertical mirroring. (true / false) = (activated / deactivated).
-\arg \b pFilter                                     Type of filter ::IND_Filter. There are two types of filters that
+@arg @b pMirrorX                                    Horizontal mirroring. (true / false) = (activated / deactivated).
+@arg @b pMirrorY                                    Vertical mirroring. (true / false) = (activated / deactivated).
+@arg @b pFilter                                     Type of filter ::IND_Filter. There are two types of filters that
                                                     can be applied to the graphical object when it suffers a rotation
                                                     or scaling:
                                                     - ::IND_FILTER_POINT (Nearest point filter). Less quality, but
@@ -1021,24 +1030,24 @@ void IND_Render::setIdentityTransform2d () {
                                                     - ::IND_FILTER_LINEAR (Bilinear filter). More quality, but less
                                                     performance. Used in graphical objects that be rotated or
                                                     affected by scaling.
-\arg \b pR, pG, pB                                  Color BYTEs FadeR, FadeG, FadeB
+@arg @b pR, pG, pB                                  Color BYTEs FadeR, FadeG, FadeB
                                                     Used for fading the image to a certain color.
                                                     For example, if we use RGB = (255, 0, 0),
                                                     the image will progressively become red.
-\arg \b pA                                          The A BYTE indicates the level of transparency.
+@arg @b pA                                          The A BYTE indicates the level of transparency.
                                                     If a value of 0 is used, the following graphical
                                                     object will be completely transparent, as opposed
                                                     to the value 255 that will cause the object
                                                     to be drawn completely opaque. It is possible to use all the
                                                     intermediate values for different levels of
                                                     transparency.
-\arg \b pFadeR, \b pFadeG, \b pFadeB, \b pFadeA     Bytes FadeR, FadeG, FadeB
+@arg @b pFadeR, @b pFadeG, @b pFadeB, @b pFadeA     Bytes FadeR, FadeG, FadeB
                                                     Used for fading the image to a certain color.
                                                     For example, if we use RGB = (255, 0, 0),
                                                     the image will progressively become red.
-\arg \b pSo                                         Indicates the blending source,
+@arg @b pSo                                         Indicates the blending source,
                                                     see (::IND_BlendingType).
-\arg \b pDs                                         Indicates the blending destiny,
+@arg @b pDs                                         Indicates the blending destiny,
                                                     see (::IND_BlendingType).
 
 Operation:
@@ -1091,18 +1100,18 @@ void IND_Render::setRainbow2d(IND_Type pType,
 	                               pDs);
 }
 
-/*!
-\defgroup Graphical_3d_Objects Bliting 3d Animated 3d Models and setting the transformations directly
-\ingroup Advances
+/**
+@defgroup Graphical_3d_Objects Bliting 3d Animated 3d Models and setting the transformations directly
+@ingroup Advances
 */
 /*@{*/
 
-/*!
-\b Parameters:
+/**
+@b Parameters:
 
-\arg \b p3dMesh                     Pointer to a ::IND_3dMesh object
+@arg @b p3dMesh                     Pointer to a ::IND_3dMesh object
 
-\b Operation:
+@b Operation:
 
 This function blits directly to the screen a ::IND_3dMesh object.
 
@@ -1120,13 +1129,13 @@ inline void IND_Render::blit3dMesh(IND_3dMesh *p3dMesh) {
 }
 
 
-/*!
-\b Parameters:
+/**
+@b Parameters:
 
-\arg \b p3dMesh                     Pointer to a ::IND_3dMesh object
-\arg \b pIndex                      Index of the animation
+@arg @b p3dMesh                     Pointer to a ::IND_3dMesh object
+@arg @b pIndex                      Index of the animation
 
-\b Operation:
+@b Operation:
 
 This function sets the animation sequence that will be rendered. When you use this method, the transition between the
 current animation and the following will not be abrubt. IndieLib will fade out the effect of the first animation
@@ -1137,15 +1146,15 @@ void IND_Render::set3dMeshSequence(IND_3dMesh *p3dMesh, unsigned int pIndex) {
 }
 /*@}*/
 
-/*!
-\b Parameters:
+/**
+@b Parameters:
 
-\arg \b pX              Upper left X coordinate of the Viewport
-\arg \b pY              Upper left Y coordinate of the Viewport
-\arg \b pWidth          Viewport width
-\arg \b pHeight         Viewport height
+@arg @b pX              Upper left X coordinate of the Viewport
+@arg @b pY              Upper left Y coordinate of the Viewport
+@arg @b pWidth          Viewport width
+@arg @b pHeight         Viewport height
 
-\b Operation:
+@b Operation:
 
 This function returns 1 (true) if a 3d ViewPort is created in the specified area.
 
@@ -1164,12 +1173,12 @@ inline bool IND_Render::setViewPort3d(int pX,
 }
 
 
-/*!
-\b Parameters:
+/**
+@b Parameters:
 
-\arg \b pCamera3d               ::IND_Camera3d object that defines a camera.
+@arg @b pCamera3d               ::IND_Camera3d object that defines a camera.
 
-\b Operation:
+@b Operation:
 
 This function sets a 3d camera. See the methods of ::IND_Camera3d for information on how you can manipulate the camera.
 */
@@ -1177,25 +1186,25 @@ inline void IND_Render::setCamera3d(IND_Camera3d *pCamera3d) {
 	_wrappedRenderer->setCamera3d(pCamera3d);
 }
 
-/*!
-\b Parameters:
+/**
+@b Parameters:
 
-\arg \b pX                          Translation in the X coordinate.
-\arg \b pY                          Translation in the Y coordinate.
-\arg \b pZ                          Translation in the Z coordinate.
-\arg \b pAngleX                     Rotation in the angle x in degrees
-\arg \b pAngleY                     Rotation in the angle y in degrees
-\arg \b pAngleZ                     Rotation in the angle z in degrees
-\arg \b pScaleX                     Scaling in the x coordinate. 1 to maintain the original size
-\arg \b pScaleY                     Scaling in the y coordinate. 1 to maintain the original size
-\arg \b pScaleZ                     Scaling in the z coordinate. 1 to maintain the original size
-\arg \b pMatrix                     Pointer to a ::IND_Matrix matrix. In this parameter will be
+@arg @b pX                          Translation in the X coordinate.
+@arg @b pY                          Translation in the Y coordinate.
+@arg @b pZ                          Translation in the Z coordinate.
+@arg @b pAngleX                     Rotation in the angle x in degrees
+@arg @b pAngleY                     Rotation in the angle y in degrees
+@arg @b pAngleZ                     Rotation in the angle z in degrees
+@arg @b pScaleX                     Scaling in the x coordinate. 1 to maintain the original size
+@arg @b pScaleY                     Scaling in the y coordinate. 1 to maintain the original size
+@arg @b pScaleZ                     Scaling in the z coordinate. 1 to maintain the original size
+@arg @b pMatrix                     Pointer to a ::IND_Matrix matrix. In this parameter will be
                                     returned by reference the world matrix transformation that
                                     will be aplied to the graphical object. This matrix can be useful
                                     for advanced programmers that need the algebraic description
                                     of the transformation done. It is possible to use the value 0
                                     if it not necessary to have this matrix information.
-\b Operation:
+@b Operation:
 
 This function sets the 3d transformation (translation, rotation, scaling and mirroring)
 of the following 3d graphical objects that will be rendered
@@ -1230,15 +1239,15 @@ inline void IND_Render::setTransform3d(float pX,
 }
 
 
-/*!
-\b Parameters:
+/**
+@b Parameters:
 
-\arg \b pCull                                       Backface culling. (true / false) = (on / off). This parameter can
+@arg @b pCull                                       Backface culling. (true / false) = (on / off). This parameter can
                                                     be deactivated when we are going to go inside a 3dMesh and we want
                                                     to render both faces of the polygons.In any
                                                     other case this parameter must be activated for faster rendering
                                                     times preventing the hardware from drawing back faces.
-\arg \b pFilter                                     Type of filter ::IND_Filter. There are two types of filters that
+@arg @b pFilter                                     Type of filter ::IND_Filter. There are two types of filters that
                                                     can be applied to the graphical object when it suffers a rotation
                                                     or scaling:
                                                     - ::IND_FILTER_POINT (Nearest point filter). Less quality, but
@@ -1248,24 +1257,24 @@ inline void IND_Render::setTransform3d(float pX,
                                                     - ::IND_FILTER_LINEAR (Bilinear filter). More quality, but less
                                                     performance. Used in graphical objects that be rotated or
                                                     affected by scaling.
-\arg \b pR, pG, pB                                  Color bytes FadeR, FadeG, FadeB
+@arg @b pR, pG, pB                                  Color bytes FadeR, FadeG, FadeB
                                                     Used for fading the image to a certain color.
                                                     For example, if we use RGB = (255, 0, 0),
                                                     the image will progressively become red.
-\arg \b pA                                          The A byte indicates the level of transparency.
+@arg @b pA                                          The A byte indicates the level of transparency.
                                                     If a value of 0 is used, the following graphical
                                                     object will be completely transparent, as opposed
                                                     to the value 255 that will cause the object
                                                     to be drawn completely opaque. It is possible to use all the
                                                     intermediate values for different levels of
                                                     transparency.
-\arg \b pFadeR, \b pFadeG, \b pFadeB, \b pFadeA     Bytes FadeR, FadeG, FadeB
+@arg @b pFadeR, @b pFadeG, @b pFadeB, @b pFadeA     Bytes FadeR, FadeG, FadeB
                                                     Used for fading the image to a certain color.
                                                     For example, if we use RGB = (255, 0, 0),
                                                     the image will progressively become red.
-\arg \b pSo                                         Indicates the blending source,
+@arg @b pSo                                         Indicates the blending source,
                                                     see (::IND_BlendingType).
-\arg \b pDs                                         Indicates the blending destiny,
+@arg @b pDs                                         Indicates the blending destiny,
                                                     see (::IND_BlendingType).
 
 Operation:
@@ -1314,8 +1323,8 @@ inline void IND_Render::setRainbow3d(bool pCull,
 	                               pDs);
 }
 
-/*!
-\b Operation:
+/**
+@b Operation:
 
 This function shows the fps (frames per second) as the title of the window.
 
@@ -1328,6 +1337,26 @@ inline void IND_Render::showFpsInWindowTitle() {
 	getFpsString(fpsstring);
 	_wrappedRenderer->showFpsInWindowTitle(fpsstring);
 }
+
+
+/**
+ @brief Sets the pixel to point scaling performed by rendering with vertex and position data
+ 
+ Default value is 1.0f. Takes effect after the next setCamera2d call.
+ 
+ By default pixel-to-point scaling is 1, so position of objects and vertex coordinates submitted
+ to the renderer are 1 to 1 related to pixels in the backed framebuffer screen. You can change that if
+ you want to maintain same 'logical' coordinates of your objects in your scene, independent of the device
+ resolution that you actually render on.
+ 
+ @param pNewScale Non-negative, non-zero value to apply scale globally.
+ */
+void IND_Render::setPointPixelScale (float pNewScale) {
+	if (pNewScale > 0.0f) {
+		_wrappedRenderer->setPointPixelScale(pNewScale);
+	}
+}
+
 
 //! This function returns the x position of the actual viewport
 int IND_Render::getViewPortX()      {
@@ -1370,7 +1399,7 @@ int  IND_Render::getMaxTextureSize()      {
 }
 
 void IND_Render::getFpsString(char *pBuffer)     {
-	Tools::itoa(_lastFps, pBuffer);
+	IND_Math::itoa(_lastFps, pBuffer);
 }
 
 //! This function returns a pointer to the IND_Window object where the render has been created
@@ -1454,21 +1483,4 @@ Perform frustum planes calculation in underlying renderer
 */
 void IND_Render::calculeFrustumPlanes() {
 	_wrappedRenderer->calculeFrustumPlanes();
-}
-
-
-/*
-==================
-Collision calculation methods (render-specific) data used for performance
-==================
-*/
-
-bool IND_Render::isTriangleToTriangleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1, BOUNDING_COLLISION *pB2, IND_Matrix pMat2) {
-	return(_wrappedRenderer->isTriangleToTriangleCollision(pB1, pMat1, pB2, pMat2));
-}
-bool IND_Render::isCircleToCircleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1, float pScale1, BOUNDING_COLLISION *pB2, IND_Matrix pMat2, float pScale2) {
-	return(_wrappedRenderer->isCircleToCircleCollision(pB1, pMat1, pScale1, pB2, pMat2, pScale2));
-}
-bool IND_Render::isCircleToTriangleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1, float pScale1, BOUNDING_COLLISION *pB2, IND_Matrix pMat2) {
-	return(_wrappedRenderer->isCircleToTriangleCollision(pB1, pMat1, pScale1, pB2, pMat2));
 }

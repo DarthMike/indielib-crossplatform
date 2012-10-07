@@ -18,7 +18,7 @@
 	<Configurations>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(ProjectDir)/../bin"
+			OutputDirectory="$(ProjectDir)/../bin/win"
 			IntermediateDirectory="$(SolutionDir)/../build/$(ConfigurationName)/$(ProjectName)"
 			ConfigurationType="1"
 			CharacterSet="0"
@@ -53,6 +53,7 @@
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
 				WarningLevel="4"
+				WarnAsError="true"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -97,7 +98,7 @@
 		</Configuration>
 		<Configuration
 			Name="Development_Debug|Win32"
-			OutputDirectory="$(ProjectDir)/../bin"
+			OutputDirectory="$(ProjectDir)/../bin/win"
 			IntermediateDirectory="$(SolutionDir)/../build/$(ConfigurationName)/$(ProjectName)"
 			ConfigurationType="1"
 			CharacterSet="0"
@@ -130,6 +131,7 @@
 				UsePrecompiledHeader="0"
 				ProgramDataBaseFileName="$(TargetDir)$(TargetName).pdb"
 				WarningLevel="4"
+				WarnAsError="true"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -207,7 +209,15 @@
 			Name="Math"
 			>
 			<File
+				RelativePath="..\tests\unittests\Collisions.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\Tests\UnitTests\Math.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\tests\unittests\Vector2.cpp"
 				>
 			</File>
 		</Filter>

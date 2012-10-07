@@ -52,6 +52,7 @@
 				EnableFunctionLevelLinking="false"
 				UsePrecompiledHeader="0"
 				WarningLevel="4"
+				WarnAsError="true"
 				DebugInformationFormat="0"
 			/>
 			<Tool
@@ -134,6 +135,7 @@
 				EnableFunctionLevelLinking="true"
 				ProgramDataBaseFileName="$(TargetDir)$(TargetName).pdb"
 				WarningLevel="4"
+				WarnAsError="true"
 				DebugInformationFormat="4"
 			/>
 			<Tool
@@ -223,14 +225,6 @@
 					RelativePath="..\Common\src\Global.h"
 					>
 				</File>
-				<File
-					RelativePath="..\common\src\Tools.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\common\src\Tools.h"
-					>
-				</File>
 			</Filter>
 			<Filter
 				Name="Init / End"
@@ -286,10 +280,6 @@
 							>
 						</File>
 						<File
-							RelativePath="..\Common\src\Render\DirectX\RenderCollision2dDirectX.cpp"
-							>
-						</File>
-						<File
 							RelativePath="..\Common\src\Render\DirectX\RenderCullingDirectX.cpp"
 							>
 						</File>
@@ -335,10 +325,6 @@
 						</File>
 						<File
 							RelativePath="..\Common\src\Render\OpenGL\OpenGLRender.h"
-							>
-						</File>
-						<File
-							RelativePath="..\Common\src\Render\OpenGL\RenderCollision2dOpenGL.cpp"
 							>
 						</File>
 						<File
@@ -701,6 +687,10 @@
 				</File>
 				<File
 					RelativePath="..\Common\include\IND_Math.h"
+					>
+				</File>
+				<File
+					RelativePath="..\common\include\IND_Vector2.h"
 					>
 				</File>
 				<File

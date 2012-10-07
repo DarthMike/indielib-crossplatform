@@ -24,14 +24,26 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "FunctionalityTests.h"
 
 static const float g_testingInterval = 500.f;
-static const int g_numTestedRes = 3;
+static const float g_maxPointPixelRatio = 3.0f;
 
 struct RESOLUTION {
 public:
 	int x, y;
 	RESOLUTION(int newx, int newy): x(newx), y(newy) {}
 };
-static RESOLUTION g_possibleRes[g_numTestedRes] = {RESOLUTION(800, 600), RESOLUTION(1024, 768), RESOLUTION(2048, 1024)};
+
+//Desktop/laptop platforms
+#if defined (PLATFORM_WIN32) || defined (PLATFORM_LINUX) || defined (PLATFORM_OSX)
+static const int g_numTestedRes = 8;
+static RESOLUTION g_possibleRes[g_numTestedRes] = {RESOLUTION(480, 320),
+												   RESOLUTION(640, 480), 
+												   RESOLUTION(800, 600), 
+												   RESOLUTION(960, 640), 
+												   RESOLUTION(1024, 768), 
+												   RESOLUTION(1440, 900),
+												   RESOLUTION(1280,960),
+												   RESOLUTION(1920, 1200)};
+#endif
 
 void FunctionalityTests::performTests(float dt) {
 
@@ -47,6 +59,10 @@ void FunctionalityTests::performTests(float dt) {
 
 		if (changeViewPortColor())
 			return;
+    
+        if (pixelPointScaleChange()) {
+            return;
+        }
 	//} else {
 	//	_timer += dt;
 	//}
@@ -73,12 +89,29 @@ bool FunctionalityTests::fullScreenToggle() {
 	return false;
 }
 
+bool FunctionalityTests::pixelPointScaleChange() {
+    static float pointPixelRatio = 1.0f;
+    CIndieLib *mI = CIndieLib::instance();
+	if (mI->_input->onKeyPress(IND_P)) {
+        pointPixelRatio += 0.25f;
+        
+        if (g_maxPointPixelRatio < pointPixelRatio) {
+            pointPixelRatio = 0.25f;
+        }
+        
+		mI->_render->setPointPixelScale(pointPixelRatio);
+		return true;
+	}
+    
+	return false;
+}
+
 //Tests window parameters change
 bool FunctionalityTests::resetParameters() {
 	static int resind = 0;
 	CIndieLib *mI = CIndieLib::instance();
 	if (mI->_input->onKeyPress(IND_R)) {
-		if (resind >= g_numTestedRes) {
+		if (resind >= (g_numTestedRes - 1)) {
 			resind = 0;
 		} else {
 			resind++;

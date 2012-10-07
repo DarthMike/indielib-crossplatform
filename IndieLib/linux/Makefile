@@ -90,7 +90,6 @@ am_libIndieLib_la_OBJECTS =  \
 	../common/src/libIndieLib_la-CollisionParser.lo \
 	../common/src/libIndieLib_la-DebugApi.lo \
 	../common/src/libIndieLib_la-Global.lo \
-	../common/src/libIndieLib_la-Tools.lo \
 	../common/src/libIndieLib_la-ImageCutter.lo \
 	../common/src/libIndieLib_la-IND_Animation.lo \
 	../common/src/libIndieLib_la-IND_AnimationManager.lo \
@@ -117,7 +116,6 @@ am_libIndieLib_la_OBJECTS =  \
 	../common/src/render/opengl/libIndieLib_la-OpenGLRender.lo \
 	../common/src/platform/libIndieLib_la-OSOpenGLManager.lo \
 	../common/src/render/opengl/libIndieLib_la-OpenGLTextureBuilder.lo \
-	../common/src/render/opengl/libIndieLib_la-RenderCollision2dOpenGL.lo \
 	../common/src/render/opengl/libIndieLib_la-RenderCullingOpenGL.lo \
 	../common/src/render/opengl/libIndieLib_la-RenderObject2dOpenGL.lo \
 	../common/src/render/opengl/libIndieLib_la-RenderObject3dOpenGL.lo \
@@ -197,13 +195,13 @@ distuninstallcheck_listfiles = find . -type f -print
 am__distuninstallcheck_listfiles = $(distuninstallcheck_listfiles) \
   | sed 's|^\./|$(prefix)/|' | grep -v '$(infodir)/dir$$'
 distcleancheck_listfiles = find . -type f -print
-ACLOCAL = ${SHELL} /home/michael/indielib/linux/build-aux/missing --run aclocal-1.11
+ACLOCAL = ${SHELL} /home/michael/indielib/IndieLib/linux/build-aux/missing --run aclocal-1.11
 AMTAR = $${TAR-tar}
 AR = ar
-AUTOCONF = ${SHELL} /home/michael/indielib/linux/build-aux/missing --run autoconf
-AUTOHEADER = ${SHELL} /home/michael/indielib/linux/build-aux/missing --run autoheader
-AUTOMAKE = ${SHELL} /home/michael/indielib/linux/build-aux/missing --run automake-1.11
-AWK = mawk
+AUTOCONF = ${SHELL} /home/michael/indielib/IndieLib/linux/build-aux/missing --run autoconf
+AUTOHEADER = ${SHELL} /home/michael/indielib/IndieLib/linux/build-aux/missing --run autoheader
+AUTOMAKE = ${SHELL} /home/michael/indielib/IndieLib/linux/build-aux/missing --run automake-1.11
+AWK = gawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2
@@ -239,7 +237,7 @@ LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LIPO = 
 LN_S = ln -s
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /home/michael/indielib/linux/build-aux/missing --run makeinfo
+MAKEINFO = ${SHELL} /home/michael/indielib/IndieLib/linux/build-aux/missing --run makeinfo
 MANIFEST_TOOL = :
 MKDIR_P = /bin/mkdir -p
 NM = /usr/bin/nm -B
@@ -262,10 +260,10 @@ SET_MAKE =
 SHELL = /bin/bash
 STRIP = strip
 VERSION = 0.001
-abs_builddir = /home/michael/indielib/linux
-abs_srcdir = /home/michael/indielib/linux
-abs_top_builddir = /home/michael/indielib/linux
-abs_top_srcdir = /home/michael/indielib/linux
+abs_builddir = /home/michael/indielib/IndieLib/linux
+abs_srcdir = /home/michael/indielib/IndieLib/linux
+abs_top_builddir = /home/michael/indielib/IndieLib/linux
+abs_top_srcdir = /home/michael/indielib/IndieLib/linux
 ac_ct_AR = ar
 ac_ct_CC = gcc
 ac_ct_CXX = g++
@@ -295,7 +293,7 @@ host_vendor = pc
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/michael/indielib/linux/build-aux/install-sh
+install_sh = ${SHELL} /home/michael/indielib/IndieLib/linux/build-aux/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -304,7 +302,7 @@ mandir = ${datarootdir}/man
 mkdir_p = /bin/mkdir -p
 oldincludedir = /usr/include
 pdfdir = ${docdir}
-prefix = /home/michael/indielib
+prefix = /home/michael/indielib/IndieLib
 program_transform_name = s,x,x,
 psdir = ${docdir}
 sbindir = ${exec_prefix}/sbin
@@ -320,8 +318,7 @@ ACLOCAL_AMFLAGS = ${ACLOCAL_FLAGS} -I m4 --install
 lib_LTLIBRARIES = libIndieLib.la
 libIndieLib_la_SOURCES = ../common/src/CollisionParser.cpp \
 	../common/src/DebugApi.cpp ../common/src/Global.cpp \
-	../common/src/Tools.cpp ../common/src/ImageCutter.cpp \
-	../common/src/IND_Animation.cpp \
+	../common/src/ImageCutter.cpp ../common/src/IND_Animation.cpp \
 	../common/src/IND_AnimationManager.cpp \
 	../common/src/IND_Camera2d.cpp ../common/src/IND_Entity2d.cpp \
 	../common/src/IND_Entity2dManager.cpp \
@@ -340,7 +337,6 @@ libIndieLib_la_SOURCES = ../common/src/CollisionParser.cpp \
 	../common/src/render/opengl/OpenGLRender.cpp \
 	../common/src/platform/OSOpenGLManager.cpp \
 	../common/src/render/opengl/OpenGLTextureBuilder.cpp \
-	../common/src/render/opengl/RenderCollision2dOpenGL.cpp \
 	../common/src/render/opengl/RenderCullingOpenGL.cpp \
 	../common/src/render/opengl/RenderObject2dOpenGL.cpp \
 	../common/src/render/opengl/RenderObject3dOpenGL.cpp \
@@ -375,7 +371,7 @@ libIndieLib_la_SOURCES = ../common/src/CollisionParser.cpp \
 	../common/dependencies/FreeImage/Source/ZLib/trees.c \
 	../common/dependencies/FreeImage/Source/ZLib/gzlib.c
 libIndieLib_la_LDFLAGS = -static -version-info 1:0:0 -lfreeimage
-libIndieLib_la_CPPFLAGS = -fPIC -Wall -DNDEBUG -O2 -s -I../common/ -I../common/src/ -I../common/include/
+libIndieLib_la_CPPFLAGS = -fPIC -Wall -Wno-implicit-function-declaration -Wno-error=unused-result -Werror -DNDEBUG -O2 -s -I../common/ -I../common/src/ -I../common/include/
 # libIndieLib_la_CPPFLAGS =-fPIC -Wall -DNDEBUG -O2 -s -I../common/ -I../common/src/ -I../common/include/ -I../common/dependencies/DevIL-SDK-x86-1.7.8/include/
 dist_noinst_SCRIPTS = autogen.sh
 all: config.h
@@ -477,8 +473,6 @@ clean-libLTLIBRARIES:
 	../common/src/$(DEPDIR)/$(am__dirstamp)
 ../common/src/libIndieLib_la-Global.lo: ../common/src/$(am__dirstamp) \
 	../common/src/$(DEPDIR)/$(am__dirstamp)
-../common/src/libIndieLib_la-Tools.lo: ../common/src/$(am__dirstamp) \
-	../common/src/$(DEPDIR)/$(am__dirstamp)
 ../common/src/libIndieLib_la-ImageCutter.lo:  \
 	../common/src/$(am__dirstamp) \
 	../common/src/$(DEPDIR)/$(am__dirstamp)
@@ -573,9 +567,6 @@ clean-libLTLIBRARIES:
 	../common/src/platform/$(am__dirstamp) \
 	../common/src/platform/$(DEPDIR)/$(am__dirstamp)
 ../common/src/render/opengl/libIndieLib_la-OpenGLTextureBuilder.lo:  \
-	../common/src/render/opengl/$(am__dirstamp) \
-	../common/src/render/opengl/$(DEPDIR)/$(am__dirstamp)
-../common/src/render/opengl/libIndieLib_la-RenderCollision2dOpenGL.lo:  \
 	../common/src/render/opengl/$(am__dirstamp) \
 	../common/src/render/opengl/$(DEPDIR)/$(am__dirstamp)
 ../common/src/render/opengl/libIndieLib_la-RenderCullingOpenGL.lo:  \
@@ -802,16 +793,12 @@ mostlyclean-compile:
 	-rm -f ../common/src/libIndieLib_la-IndieLib.lo
 	-rm -f ../common/src/libIndieLib_la-PrecissionTimer.$(OBJEXT)
 	-rm -f ../common/src/libIndieLib_la-PrecissionTimer.lo
-	-rm -f ../common/src/libIndieLib_la-Tools.$(OBJEXT)
-	-rm -f ../common/src/libIndieLib_la-Tools.lo
 	-rm -f ../common/src/platform/libIndieLib_la-OSOpenGLManager.$(OBJEXT)
 	-rm -f ../common/src/platform/libIndieLib_la-OSOpenGLManager.lo
 	-rm -f ../common/src/render/opengl/libIndieLib_la-OpenGLRender.$(OBJEXT)
 	-rm -f ../common/src/render/opengl/libIndieLib_la-OpenGLRender.lo
 	-rm -f ../common/src/render/opengl/libIndieLib_la-OpenGLTextureBuilder.$(OBJEXT)
 	-rm -f ../common/src/render/opengl/libIndieLib_la-OpenGLTextureBuilder.lo
-	-rm -f ../common/src/render/opengl/libIndieLib_la-RenderCollision2dOpenGL.$(OBJEXT)
-	-rm -f ../common/src/render/opengl/libIndieLib_la-RenderCollision2dOpenGL.lo
 	-rm -f ../common/src/render/opengl/libIndieLib_la-RenderCullingOpenGL.$(OBJEXT)
 	-rm -f ../common/src/render/opengl/libIndieLib_la-RenderCullingOpenGL.lo
 	-rm -f ../common/src/render/opengl/libIndieLib_la-RenderObject2dOpenGL.$(OBJEXT)
@@ -883,11 +870,9 @@ include ../common/src/$(DEPDIR)/libIndieLib_la-IND_Window.Plo
 include ../common/src/$(DEPDIR)/libIndieLib_la-ImageCutter.Plo
 include ../common/src/$(DEPDIR)/libIndieLib_la-IndieLib.Plo
 include ../common/src/$(DEPDIR)/libIndieLib_la-PrecissionTimer.Plo
-include ../common/src/$(DEPDIR)/libIndieLib_la-Tools.Plo
 include ../common/src/platform/$(DEPDIR)/libIndieLib_la-OSOpenGLManager.Plo
 include ../common/src/render/opengl/$(DEPDIR)/libIndieLib_la-OpenGLRender.Plo
 include ../common/src/render/opengl/$(DEPDIR)/libIndieLib_la-OpenGLTextureBuilder.Plo
-include ../common/src/render/opengl/$(DEPDIR)/libIndieLib_la-RenderCollision2dOpenGL.Plo
 include ../common/src/render/opengl/$(DEPDIR)/libIndieLib_la-RenderCullingOpenGL.Plo
 include ../common/src/render/opengl/$(DEPDIR)/libIndieLib_la-RenderObject2dOpenGL.Plo
 include ../common/src/render/opengl/$(DEPDIR)/libIndieLib_la-RenderObject3dOpenGL.Plo
@@ -1042,13 +1027,6 @@ include ../common/src/render/opengl/$(DEPDIR)/libIndieLib_la-RenderTransformComm
 #	source='../common/src/Global.cpp' object='../common/src/libIndieLib_la-Global.lo' libtool=yes \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libIndieLib_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o ../common/src/libIndieLib_la-Global.lo `test -f '../common/src/Global.cpp' || echo '$(srcdir)/'`../common/src/Global.cpp
-
-../common/src/libIndieLib_la-Tools.lo: ../common/src/Tools.cpp
-	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libIndieLib_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT ../common/src/libIndieLib_la-Tools.lo -MD -MP -MF ../common/src/$(DEPDIR)/libIndieLib_la-Tools.Tpo -c -o ../common/src/libIndieLib_la-Tools.lo `test -f '../common/src/Tools.cpp' || echo '$(srcdir)/'`../common/src/Tools.cpp
-	$(am__mv) ../common/src/$(DEPDIR)/libIndieLib_la-Tools.Tpo ../common/src/$(DEPDIR)/libIndieLib_la-Tools.Plo
-#	source='../common/src/Tools.cpp' object='../common/src/libIndieLib_la-Tools.lo' libtool=yes \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libIndieLib_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o ../common/src/libIndieLib_la-Tools.lo `test -f '../common/src/Tools.cpp' || echo '$(srcdir)/'`../common/src/Tools.cpp
 
 ../common/src/libIndieLib_la-ImageCutter.lo: ../common/src/ImageCutter.cpp
 	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libIndieLib_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT ../common/src/libIndieLib_la-ImageCutter.lo -MD -MP -MF ../common/src/$(DEPDIR)/libIndieLib_la-ImageCutter.Tpo -c -o ../common/src/libIndieLib_la-ImageCutter.lo `test -f '../common/src/ImageCutter.cpp' || echo '$(srcdir)/'`../common/src/ImageCutter.cpp
@@ -1231,13 +1209,6 @@ include ../common/src/render/opengl/$(DEPDIR)/libIndieLib_la-RenderTransformComm
 #	source='../common/src/render/opengl/OpenGLTextureBuilder.cpp' object='../common/src/render/opengl/libIndieLib_la-OpenGLTextureBuilder.lo' libtool=yes \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libIndieLib_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o ../common/src/render/opengl/libIndieLib_la-OpenGLTextureBuilder.lo `test -f '../common/src/render/opengl/OpenGLTextureBuilder.cpp' || echo '$(srcdir)/'`../common/src/render/opengl/OpenGLTextureBuilder.cpp
-
-../common/src/render/opengl/libIndieLib_la-RenderCollision2dOpenGL.lo: ../common/src/render/opengl/RenderCollision2dOpenGL.cpp
-	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libIndieLib_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT ../common/src/render/opengl/libIndieLib_la-RenderCollision2dOpenGL.lo -MD -MP -MF ../common/src/render/opengl/$(DEPDIR)/libIndieLib_la-RenderCollision2dOpenGL.Tpo -c -o ../common/src/render/opengl/libIndieLib_la-RenderCollision2dOpenGL.lo `test -f '../common/src/render/opengl/RenderCollision2dOpenGL.cpp' || echo '$(srcdir)/'`../common/src/render/opengl/RenderCollision2dOpenGL.cpp
-	$(am__mv) ../common/src/render/opengl/$(DEPDIR)/libIndieLib_la-RenderCollision2dOpenGL.Tpo ../common/src/render/opengl/$(DEPDIR)/libIndieLib_la-RenderCollision2dOpenGL.Plo
-#	source='../common/src/render/opengl/RenderCollision2dOpenGL.cpp' object='../common/src/render/opengl/libIndieLib_la-RenderCollision2dOpenGL.lo' libtool=yes \
-#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libIndieLib_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o ../common/src/render/opengl/libIndieLib_la-RenderCollision2dOpenGL.lo `test -f '../common/src/render/opengl/RenderCollision2dOpenGL.cpp' || echo '$(srcdir)/'`../common/src/render/opengl/RenderCollision2dOpenGL.cpp
 
 ../common/src/render/opengl/libIndieLib_la-RenderCullingOpenGL.lo: ../common/src/render/opengl/RenderCullingOpenGL.cpp
 	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libIndieLib_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT ../common/src/render/opengl/libIndieLib_la-RenderCullingOpenGL.lo -MD -MP -MF ../common/src/render/opengl/$(DEPDIR)/libIndieLib_la-RenderCullingOpenGL.Tpo -c -o ../common/src/render/opengl/libIndieLib_la-RenderCullingOpenGL.lo `test -f '../common/src/render/opengl/RenderCullingOpenGL.cpp' || echo '$(srcdir)/'`../common/src/render/opengl/RenderCullingOpenGL.cpp

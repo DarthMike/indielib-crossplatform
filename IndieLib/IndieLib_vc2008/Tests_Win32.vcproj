@@ -53,6 +53,7 @@
 				UsePrecompiledHeader="0"
 				ProgramDataBaseFileName="$(TargetDir)$(TargetName).pdb"
 				WarningLevel="4"
+				WarnAsError="true"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -129,6 +130,7 @@
 				UsePrecompiledHeader="0"
 				ProgramDataBaseFileName="$(TargetDir)$(TargetName).pdb"
 				WarningLevel="4"
+				WarnAsError="true"
 				DebugInformationFormat="4"
 			/>
 			<Tool
@@ -334,6 +336,46 @@
 			</File>
 			<File
 				RelativePath="..\tests\manual\font\FontTests_Pretty.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Collision"
+			>
+			<File
+				RelativePath="..\tests\manual\collision\CollisionTests.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\tests\manual\collision\CollisionTests.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Entities"
+			>
+			<File
+				RelativePath="..\tests\manual\entities\EntityTests_animateRotations.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\tests\manual\entities\EntityTests_animateRotations.h"
+				>
+			</File>
+			<File
+				RelativePath="..\tests\manual\entities\EntityTests_animateScale.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\tests\manual\entities\EntityTests_animateScale.h"
+				>
+			</File>
+			<File
+				RelativePath="..\tests\manual\entities\EntityTests_interactions.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\tests\manual\entities\EntityTests_interactions.h"
 				>
 			</File>
 		</Filter>

@@ -89,7 +89,6 @@ int IndieLib()
 	mRocket->setHotSpot(0.5f, 0.5f);
 	mRocket->setPosition(200, 450, 1);
 	mRocket->setBoundingAreas("../../resources/rocket_collisions.xml");
-	//mRocket->deleteBoundingAreas("engines");
 
 	// Sword Master Animation
 	mSwordMaster->setHotSpot(0.5f, 0.5f);
@@ -165,7 +164,6 @@ int IndieLib()
 		mI->_render->clearViewPort(0, 0, 0);
 		mI->_entity2dManager->renderEntities2d();
 		mI->_entity2dManager->renderCollisionAreas(255, 0, 0, 255);
-		//mI->_entity2dManager->renderGridAreas(255, 255, 0, 255);
 		mI->_render->endScene();	
 	}
 

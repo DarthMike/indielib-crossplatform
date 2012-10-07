@@ -40,28 +40,28 @@ class IND_Image;
 //							     IND_SurfaceManager
 // --------------------------------------------------------------------------------
 
-/*!
-\defgroup IND_SurfaceManager IND_SurfaceManager
-\ingroup Managers
+/**
+@defgroup IND_SurfaceManager IND_SurfaceManager
+@ingroup Managers
 Manager of IND_Surface objects. Click in ::IND_SurfaceManager to see all the methods of this class.
 */
 /*@{*/
 
-/*!
+/**
 This class stores 2d surfaces (IND_Surface) that can be inserted into a IND_Entity2d and rendered to
 the screen using IND_Entity2dManager::renderEntities2d().
 
 IND_Surface is the most used object
-in the library due to its versatility. Suppose that we use \b IndieLib to develop a game.
+in the library due to its versatility. Suppose that we use @b IndieLib to develop a game.
 The IND_Surface object will be the sprite of the main character or enemies, the background scroll,
 the tiles of the map, the markups of life, etc.
 
-All graphic entities in \b IndieLib that are drawn in the screen as a surface, including
+All graphic entities in @b IndieLib that are drawn in the screen as a surface, including
 text and animations, are internally managed by IND_Surface class.
 
 One of the main characteristics of a IND_Surface is that it can have any desired size
 (it doesn't matter the maximum texture of the graphic card and they don't need to be power of two).
-And you can use a big IND_Surface as s a  \b scroll, without worrying about the areas that are out of
+And you can use a big IND_Surface as s a  @b scroll, without worrying about the areas that are out of
 the screen (because blocks outside the viewport will be automatically discarded). Furthermore,
 to make scroll creation easier, <b>the size of blocks</b>, in which the surface is
 divided when it is created from a ::IND_Image object or directly from a graphic file <b>can be

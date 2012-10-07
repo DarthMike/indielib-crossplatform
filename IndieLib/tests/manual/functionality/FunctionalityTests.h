@@ -43,6 +43,7 @@ private:
 	bool fullScreenToggle();
 	bool resetParameters();
 	bool changeViewPortColor();
+    bool pixelPointScaleChange();
 
 };
 

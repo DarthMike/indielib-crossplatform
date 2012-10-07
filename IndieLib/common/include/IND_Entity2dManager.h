@@ -37,6 +37,7 @@ class IND_AnimationManager;
 class IND_Render;
 class CollisionParser;
 class IND_Entity2d;
+class IND_Math;
 
 // ----- Defines -----
 
@@ -46,14 +47,14 @@ class IND_Entity2d;
 //									IND_Entity2dManager
 // --------------------------------------------------------------------------------
 
-/*!
-\defgroup IND_Entity2dManager IND_Entity2dManager
-\ingroup EntityManagers
+/**
+@defgroup IND_Entity2dManager IND_Entity2dManager
+@ingroup EntityManagers
 Manager of ::IND_Entity2d objects. Click in ::IND_Entity2dManager to see all the methods of this class.
 */
 /*@{*/
 
-/*!
+/**
 Manager of ::IND_Entity2d objects. Used for storing these type of objects.
 
 Other uses of this class:
@@ -65,7 +66,7 @@ public:
 
 	// ----- Init/End -----
 
-	IND_Entity2dManager(): _ok(false)  { }
+	IND_Entity2dManager(): _ok(false),_render(NULL),_math(NULL)  { }
 	~IND_Entity2dManager()              {
 		end();
 	}
@@ -82,8 +83,8 @@ public:
 	bool            add(int pLayer, IND_Entity2d *pNewEntity2d);
 	bool            remove(IND_Entity2d *pEn);
 
-	/*!
-	\b Operation:
+	/**
+	@b Operation:
 	
 	This function renders (draws on the screen) all the entities of the manager.
 	
@@ -95,8 +96,8 @@ public:
 	void     renderEntities2d(int pLayer);
 	void     renderCollisionAreas(BYTE pR, BYTE pG, BYTE pB, BYTE pA);
 	void     renderCollisionAreas(int pLayer, BYTE pR, BYTE pG, BYTE pB, BYTE pA);
-	/*!
-	\b Operation:
+	/**
+	@b Operation:
 	
 	This function renders (blits on the screen) all the grid areas of the entities.
 	
@@ -115,7 +116,10 @@ private:
 
 	bool _ok;
 
+    static unsigned int _idTrack;
+    
 	IND_Render *_render;
+	IND_Math *_math;
 
 	// ----- Containers -----
 

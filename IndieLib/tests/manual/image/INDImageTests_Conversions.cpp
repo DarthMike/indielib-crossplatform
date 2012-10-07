@@ -77,10 +77,10 @@ void INDImageTests_Conversions::prepareTests() {
 	//No conversion
 	iLib->_surfaceManager->add(_surfaces[10], _images[10], IND_ALPHA, IND_32);
 	//Convert image - Scale (bigger)
-	_images[11]->scale(_images[11]->getWidth() * 1.2, _images[11]->getHeight() * 1.2);
+	_images[11]->scale(150, 150);
 	iLib->_surfaceManager->add(_surfaces[11], _images[11], IND_ALPHA, IND_32);
 	//Convert image - Scale (smaller)
-	_images[12]->scale(_images[12]->getWidth() * 0.8, _images[12]->getHeight() * 0.8);
+	_images[12]->scale(50, 50);
 	iLib->_surfaceManager->add(_surfaces[12], _images[12], IND_ALPHA, IND_32);
 }
 
@@ -118,23 +118,23 @@ void INDImageTests_Conversions::setActive(bool active){
 			iLib->_entity2dManager->add(_entities[i]);
 		}
 	    // ----- Changing the attributes of the 2d entities -----
-		_entities[0]->setPosition(0.0f,0.0f,0.0f);
-		_entities[1]->setPosition(_entities[0]->getSurface()->getWidth(),_entities[0]->getPosY(),0.0f);
+		_entities[0]->setPosition(0.0f,0.0f,0);
+		_entities[1]->setPosition(static_cast<float>(_entities[0]->getSurface()->getWidth()),static_cast<float>(_entities[0]->getPosY()),0);
 
-		_entities[2]->setPosition(0.0f,_entities[0]->getPosY() + _entities[0]->getSurface()->getHeight(),0.0f);
-		_entities[3]->setPosition(_entities[2]->getPosX() + _entities[2]->getSurface()->getWidth() ,_entities[2]->getPosY(),0);
+		_entities[2]->setPosition(0.0f,static_cast<float>(_entities[0]->getPosY() + _entities[0]->getSurface()->getHeight()),0);
+		_entities[3]->setPosition(static_cast<float>(_entities[2]->getPosX() + _entities[2]->getSurface()->getWidth()) ,static_cast<float>(_entities[2]->getPosY()),0);
 
-		_entities[4]->setPosition(0.0f,_entities[2]->getPosY() + _entities[2]->getSurface()->getHeight() , 0.0f);
-		_entities[5]->setPosition(_entities[4]->getPosX() + _entities[4]->getSurface()->getWidth(),_entities[4]->getPosY() , 0.0f);
+		_entities[4]->setPosition(0.0f,static_cast<float>(_entities[2]->getPosY() + _entities[2]->getSurface()->getHeight()) , 0);
+		_entities[5]->setPosition(static_cast<float>(_entities[4]->getPosX() + _entities[4]->getSurface()->getWidth()),static_cast<float>(_entities[4]->getPosY()) , 0);
 
-		_entities[6]->setPosition(0.0f,_entities[4]->getPosY() + _entities[4]->getSurface()->getHeight() , 0.0f);
-		_entities[7]->setPosition(_entities[6]->getPosX() + _entities[6]->getSurface()->getWidth(),_entities[6]->getPosY() , 0.0f);
-		_entities[8]->setPosition(_entities[7]->getPosX() + _entities[7]->getSurface()->getWidth(),_entities[7]->getPosY() , 0.0f);
-		_entities[9]->setPosition(_entities[8]->getPosX() + _entities[8]->getSurface()->getWidth(),_entities[8]->getPosY() , 0.0f);
+		_entities[6]->setPosition(0.0f,static_cast<float>(_entities[4]->getPosY() + _entities[4]->getSurface()->getHeight()) , 0);
+		_entities[7]->setPosition(static_cast<float>(_entities[6]->getPosX() + _entities[6]->getSurface()->getWidth()),static_cast<float>(_entities[6]->getPosY()) , 0);
+		_entities[8]->setPosition(static_cast<float>(_entities[7]->getPosX() + _entities[7]->getSurface()->getWidth()),static_cast<float>(_entities[7]->getPosY()) , 0);
+		_entities[9]->setPosition(static_cast<float>(_entities[8]->getPosX() + _entities[8]->getSurface()->getWidth()),static_cast<float>(_entities[8]->getPosY()) , 0);
 
-		_entities[10]->setPosition(0.0f,_entities[6]->getPosY() + _entities[6]->getSurface()->getHeight()*1.5 , 0.0f);
-		_entities[11]->setPosition(_entities[10]->getPosX() + _entities[10]->getSurface()->getWidth(),_entities[10]->getPosY() , 0.0f);
-		_entities[12]->setPosition(_entities[11]->getPosX() + _entities[11]->getSurface()->getWidth(),_entities[11]->getPosY() , 0.0f);
+		_entities[10]->setPosition(0.0f,static_cast<float>(_entities[6]->getPosY() + _entities[6]->getSurface()->getHeight()*1.5) , 0);
+		_entities[11]->setPosition(static_cast<float>(_entities[10]->getPosX() + _entities[10]->getSurface()->getWidth()),static_cast<float>(_entities[10]->getPosY()) , 0);
+		_entities[12]->setPosition(static_cast<float>(_entities[11]->getPosX() + _entities[11]->getSurface()->getWidth()),static_cast<float>(_entities[11]->getPosY()) , 0);
     } else { //Inactive
 		//Release all variables from indieLib before exiting
 		for (int i = 0; i < _testedEntities; ++i) {

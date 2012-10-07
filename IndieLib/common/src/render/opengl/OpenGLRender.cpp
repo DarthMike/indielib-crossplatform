@@ -27,7 +27,7 @@ Suite 330, Boston, MA 02111-1307 USA
 // ----- Includes -----
 
 #include "Global.h"
-#include "Tools.h"
+#include "IND_Math.h"
 #include "OpenGLRender.h"
 #include "IND_Window.h"
 #include "IND_FontManager.h"
@@ -50,16 +50,6 @@ Suite 330, Boston, MA 02111-1307 USA
 //							  Initialization / Destruction
 // --------------------------------------------------------------------------------
 
-/*!
-\b Parameters:
-
-\arg \b pWindow                 Pointer to an object initializing IND_Window
-
-\b Operation:
-
-This function returns 1 (true) if the render is initialized sucessfully,
-0 (false) otherwise.
-*/
 IND_Window* OpenGLRender::initRenderAndWindow(IND_WindowProperties& props) {
 	if(props._bpp <= 0 || props._height <= 0 || props._width <= 0) {
 		g_debug->header("Error initializing window: Invalid parameters provided", 2);
@@ -124,38 +114,30 @@ IND_Window* OpenGLRender::initRenderAndWindow(IND_WindowProperties& props) {
 	return _window;
 }
 
-/*!
-\b Parameters:
-
-\arg \b IND_WindowProperties new properties of window after reset
-
-\b Operation:
-
-This function returns 1 (true) if the application window resets to the attributes passed as parameters. This method
-is useful when you want to change the application window on runtime, 0 (false) if it is not possible to create
-the new window.
-*/
 bool OpenGLRender::reset(IND_WindowProperties& props) {
 	if(props._bpp <= 0 || props._height <= 0 || props._width <= 0) {
 		g_debug->header("Error resetting window: Invalid parameters provided", 2);
 		return 0;
 	}
 
+    bool viewPortWasFullWindow = (_window->getWidth() == _info._viewPortWidth) && (_window->getHeight() == _info._viewPortHeight);
+    
 	if (!_window->reset(props)) {
 		g_debug->header("Error resetting SDL window", 2);
 		return 0;
 	}
-
-	return resetViewport();
+    
+    _info._fbWidth = _window->getWidth();
+    _info._fbHeight = _window->getHeight();
+    
+    bool ok = 1;
+    if (viewPortWasFullWindow) {
+        ok = resetViewport(_window->getWidth(),_window->getHeight());
+    }
+	
+    return ok;
 }
 
-
-/*!
-\b Operation:
-
-This function returns 1 (true) if the application window toggles to fullscreen or windowed, 0 (false) if it is not possible
-to create the new window.
-*/
 bool OpenGLRender::toggleFullScreen() {
 
 	g_debug->header("Changing To/From Full Screen", 5);
@@ -177,12 +159,6 @@ void OpenGLRender::beginScene() {
 	glClear(GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 }
 
-
-/*!
-\b Operation:
-
-Finish the scene. This function must be called after drawing all the graphical objects.
-*/
 void OpenGLRender::endScene() {
 	if (!_ok)
 		return;
@@ -199,34 +175,24 @@ void OpenGLRender::endScene() {
 #endif	
 }
 
-
-/*!
-\b Operation:
-
-This function shows the fps (frames per second) as the title of the window.
-
-NOTE: The updating of the window title is quite time-consuming, so this is not the correct method for
-checking the FPS. It's better to use the methods IND_Render::getFpsInt() or IND_Render::getFpsString() and drawing
-the result using an ::IND_Font object.
-*/
 void OpenGLRender::showFpsInWindowTitle(char *pFPSString) {
 	if (!_ok)   return;
 
 	_window->setTitle(pFPSString);
 }
 
+void OpenGLRender::setPointPixelScale (float pNewScale) {
+    _info._pointPixelScale = pNewScale;
+}
+
 void OpenGLRender::getNumrenderedObjectsString(char *pBuffer)      {
-	Tools::itoa(_numrenderedObjects, pBuffer);
+	IND_Math::itoa(_numrenderedObjects, pBuffer);
 }
 
 void OpenGLRender::getNumDiscardedObjectsString(char *pBuffer)      {
-	Tools::itoa(_numDiscardedObjects, pBuffer);
+	IND_Math::itoa(_numDiscardedObjects, pBuffer);
 }
-/*!
-\b Operation:
 
-This function frees the manager and all the objects that it contains.
-*/
 void OpenGLRender::end() {
 	if (_ok) {
 		g_debug->header("Finalizing OpenGL", 5);
@@ -281,9 +247,13 @@ bool OpenGLRender::initializeOpenGLRender() {
 
 	//Get all graphics device information
 	getInfo();
+    
+    //Window params
+    _info._fbWidth = _window->getWidth();
+	_info._fbHeight = _window->getHeight();
 
 	// ViewPort initialization
-	return resetViewport();
+	return resetViewport(_window->getWidth(),_window->getHeight());
 }
 
 /*
@@ -381,11 +351,11 @@ void OpenGLRender::writeInfo() {
 	// ----- Vertex Shader version  -----
 
 	/*g_debug->Header ("Vertex Shader:" , 3);
-	g_debug->DataInt (D3DSHADER_VERSION_MAJOR (_info.mVertexShaderVersion), 0);
+	g_debug->DataInt (D3DSHADER_VERSION_MAJOR (_info._vertexShaderVersion), 0);
 	g_debug->DataChar (".", 0);
-	g_debug->DataInt (D3DSHADER_VERSION_MINOR (_info.mVertexShaderVersion), 0);
+	g_debug->DataInt (D3DSHADER_VERSION_MINOR (_info._vertexShaderVersion), 0);
 
-	if (_info.mSoftwareVertexProcessing)
+	if (_info._softwareVertexProcessing)
 	    g_debug->DataChar ("(Software)", 1);
 	else
 	    g_debug->DataChar ("", 1);*/
@@ -393,9 +363,9 @@ void OpenGLRender::writeInfo() {
 	// ----- Pixel Shader version -----
 
 	/*g_debug->Header ("Pixel Shader:" , 3);
-	g_debug->DataInt (D3DSHADER_VERSION_MAJOR (_info.mPixelShaderVersion), 0);
+	g_debug->DataInt (D3DSHADER_VERSION_MAJOR (_info._pixelShaderVersion), 0);
 	g_debug->DataChar (".", 0);
-	g_debug->DataInt (D3DSHADER_VERSION_MINOR (_info.mPixelShaderVersion), 1);*/
+	g_debug->DataInt (D3DSHADER_VERSION_MINOR (_info._pixelShaderVersion), 1);*/
 
 	g_debug->header("Hardware Ok" , 6);
 }
@@ -405,17 +375,14 @@ void OpenGLRender::writeInfo() {
 Resets the viewport to all window width/height
 ==================
 */
-bool OpenGLRender::resetViewport() {
-	int defaultwidth(_window->getWidth());
-	int defaultheight(_window->getHeight());
-	_info._fbWidth = defaultwidth;
-	_info._fbHeight = defaultheight;
-
-	if (!setViewPort2d(0, 0, defaultwidth, defaultheight))
+bool OpenGLRender::resetViewport(int pWitdh, int pHeight) {
+    if (pHeight == 0 || pWitdh == 0) return false;
+    
+	if (!setViewPort2d(0, 0, pWitdh, pHeight))
 		return false;
 
-	IND_Camera2d mCamera2d(static_cast<float>(_window->getWidth() / 2), 
-						   static_cast<float>(_window->getHeight() / 2));   //Default 2D camera in center of viewport
+	IND_Camera2d mCamera2d(static_cast<float>(_info._viewPortWidth/2),
+						   static_cast<float>(_info._viewPortHeight/2));   //Default 2D camera in center of viewport
 	setCamera2d(&mCamera2d);
 	clearViewPort(0, 0, 0);
 

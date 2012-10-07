@@ -55,6 +55,8 @@ class IND_3dMesh;
 class IND_Animation;
 class IND_Camera2d;
 class IND_Camera3d;
+class IND_Math;
+
 // ----- Libs -----
 
 #include <d3d9.h>
@@ -76,7 +78,7 @@ public:
 
 	// ----- Init/End -----
 
-	DirectXRender(): _ok(false),_window(NULL)  { }
+	DirectXRender(): _ok(false),_window(NULL),_math(NULL)  { }
 	~DirectXRender()              {
 		end();
 	}
@@ -96,7 +98,7 @@ public:
 	void beginScene();
 	void endScene();
 	void showFpsInWindowTitle(char *pFPSString);
-
+    void setPointPixelScale (float pNewScale);
 	// ----- Viewports and cameras -----
 
 
@@ -317,14 +319,7 @@ public:
 	// ----- Rendering steps -----
 	void calculeFrustumPlanes();
 
-	// ----- Collisions -----
-	void blitCollisionCircle(int pPosX, int pPosY, int pRadius, float pScale, BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pWorldMatrix);
-	void blitCollisionLine(int pPosX1, int pPosY1, int pPosX2, int pPosY2,  BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pIndWorldMatrix);
-
-	bool   isTriangleToTriangleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1, BOUNDING_COLLISION *pB2, IND_Matrix pMat2);
-	bool   isCircleToCircleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1, float pScale1, BOUNDING_COLLISION *pB2, IND_Matrix pMat2, float pScale2);
-	bool   isCircleToTriangleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1, float pScale1, BOUNDING_COLLISION *pB2, IND_Matrix pMat2);
-	// ----- Atributos -----
+	// ----- Atributtes -----
 
 	//This function returns the x position of the actual viewport
 	int getViewPortX()      {
@@ -361,11 +356,11 @@ public:
 
 	//This function returns the pointer to Direct3d.
 	LPDIRECT3D9 GetDirect3d()      {
-		return _info.mDirect3d;
+		return _info._direct3d;
 	}
 	//This function returns the pointer to the Direct3d device.
 	IDirect3DDevice9 *GetDevice()      {
-		return _info.mDevice;
+		return _info._device;
 	}
 
 	//This function returns a pointer to the IND_Window object where the render has been created
@@ -400,6 +395,7 @@ private:
 	// ----- Objects -----
 
 	IND_Window *_window;
+	IND_Math *_math;
 	HWND _wnd;
 
 	// ----- Vars -----
@@ -455,13 +451,31 @@ private:
 		char _renderer [1024];
 		int _maxTextureSize;
 		int _textureUnits;
-		DWORD mVertexShaderVersion;
-		DWORD mPixelShaderVersion;
-		bool mSoftwareVertexProcessing;
-		LPDIRECT3D9 mDirect3d;
-		IDirect3DDevice9 *mDevice;
-
-		infoStruct() : mDevice(NULL) {
+        float _pointPixelScale;
+		DWORD _vertexShaderVersion;
+		DWORD _pixelShaderVersion;
+		bool _softwareVertexProcessing;
+		LPDIRECT3D9 _direct3d;
+		IDirect3DDevice9 *_device;
+        
+		infoStruct() : _fbWidth(0),
+					   _fbHeight(0),
+					   _viewPortX(0),
+					   _viewPortY(0),
+					   _viewPortWidth(0),
+					   _viewPortHeight(0),
+					   _antialiasing(false),
+					   _maxTextureSize(0),
+					   _textureUnits(0),
+					   _pointPixelScale(1.0f),
+					   _vertexShaderVersion(0),
+					   _pixelShaderVersion(0),
+					   _softwareVertexProcessing(false),
+					   _direct3d(NULL),
+					   _device(NULL) {
+						   strcpy(_version,"");
+						   strcpy(_vendor,"");
+						   strcpy(_renderer,"");
 		}
 	};
 	struct infoStruct _info;
@@ -531,40 +545,10 @@ private:
 	                  int pDx, int pDy,
 	                  BYTE pR, BYTE pG, BYTE pB, BYTE pA,
 	                  D3DXMATRIX pWorldMatrix);
-
+	
 	// ----- Collisions  -----
-
-	bool isTriangleToTriangleCollision(D3DXVECTOR2 pA1,
-	                                   D3DXVECTOR2 pB1,
-	                                   D3DXVECTOR2 pC1,
-	                                   D3DXVECTOR2 pA2,
-	                                   D3DXVECTOR2 pB2,
-	                                   D3DXVECTOR2 pC2);
-
-	bool isCircleToCircleCollision(D3DXVECTOR2 pP1, int pRadius1,
-	                               D3DXVECTOR2 pP2, int pRadius2);
-
-	bool isCircleToTriangleCollision(D3DXVECTOR2 pPCenter, int pRadius1,
-	                                 D3DXVECTOR2 a2,
-	                                 D3DXVECTOR2 b2,
-	                                 D3DXVECTOR2 c2);
-
-	double PointToLineDistance(D3DXVECTOR2 pA, D3DXVECTOR2 pB, D3DXVECTOR2 pC, bool pIsSegment);
-	double Distance(D3DXVECTOR2 pA, D3DXVECTOR2 pB);
-	int    Cross3(D3DXVECTOR2 pA, D3DXVECTOR2 pB, D3DXVECTOR2 pC);
-	int    Dot3(D3DXVECTOR2 pA, D3DXVECTOR2 pB, D3DXVECTOR2 pC);
-
-	bool IsPointInsideTriangle(D3DXVECTOR2 p,
-	                           D3DXVECTOR2 a,
-	                           D3DXVECTOR2 b,
-	                           D3DXVECTOR2 c);
-
-	bool IsSegmentIntersection(D3DXVECTOR2 a,
-	                           D3DXVECTOR2 b,
-	                           D3DXVECTOR2 c,
-	                           D3DXVECTOR2 d);
-
-	void GetD3DMatrix(IND_Matrix pMatrix, D3DXMATRIX *pD3DMatrix);
+	void blitCollisionCircle(int pPosX, int pPosY, int pRadius, float pScale, BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pWorldMatrix);
+	void blitCollisionLine(int pPosX1, int pPosY1, int pPosX2, int pPosY2,  BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pIndWorldMatrix);
 
 	// ----- Culling -----
 
@@ -597,6 +581,7 @@ private:
 
 	// ----- Friends ------
 	friend class DirectXTextureBuilder;
+	friend class IND_Render;
 };
 
 #endif // _DIRECTXRENDER_H_

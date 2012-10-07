@@ -20,92 +20,92 @@ this library; if not, write to the Free Software Foundation, Inc., 59 Temple Pla
 Suite 330, Boston, MA 02111-1307 USA
 */
 
-/*!
+/**
 \mainpage
 \section main_general Menu
 <A HREF="modules.html">Click here to access the Menu</A>
 */
 
 /**
- * \defgroup Classes
+ * @defgroup Classes
  *
  */
 
 
 /**
- * \defgroup Init_End Initialization / Destruction
- * \ingroup Classes
+ * @defgroup Init_End Initialization / Destruction
+ * @ingroup Classes
  */
 
 /**
- * \defgroup IndieLib_Init_End Init / End
- * \ingroup Init_End
- */
-
-
-/**
- * \defgroup Main Main
- * \ingroup Classes
- */
-
-/**
- * \defgroup Main Main
- * \ingroup Classes
- */
-
-/**
- * \defgroup IND_Window IND_Window
- * \ingroup Main
- */
-
-/**
- * \defgroup IND_Render IND_Render
- * \ingroup Main
+ * @defgroup IndieLib_Init_End Init / End
+ * @ingroup Init_End
  */
 
 
 /**
- * \defgroup EntityManagers Entity Objects and Entity Managers (the most important concept of IndieLib)
- * \ingroup Classes
+ * @defgroup Main Main
+ * @ingroup Classes
  */
 
 /**
- * \defgroup Managers Managers
- * \ingroup Classes
+ * @defgroup Main Main
+ * @ingroup Classes
  */
 
 /**
- * \defgroup Objects Graphical Objects (that can be inserted into the entities)
- * \ingroup Classes
+ * @defgroup IND_Window IND_Window
+ * @ingroup Main
  */
 
 /**
- * \defgroup Cameras Cameras
- * \ingroup Classes
+ * @defgroup IND_Render IND_Render
+ * @ingroup Main
+ */
+
+
+/**
+ * @defgroup EntityManagers Entity Objects and Entity Managers (the most important concept of IndieLib)
+ * @ingroup Classes
  */
 
 /**
- * \defgroup Input Input from keyboard and mouse
- * \ingroup Classes
+ * @defgroup Managers Managers
+ * @ingroup Classes
  */
 
 /**
- * \defgroup Timer Timer
- * \ingroup Classes
+ * @defgroup Objects Graphical Objects (that can be inserted into the entities)
+ * @ingroup Classes
  */
 
 /**
- * \defgroup Advances Advances methods for bliting directly to the screen without using entities. It uses IND_Render methods (recommended only for advanced IndieLib users)
+ * @defgroup Cameras Cameras
+ * @ingroup Classes
  */
 
 /**
- * \defgroup Primitives Bliting Primitives
- * \ingroup Advances
+ * @defgroup Input Input from keyboard and mouse
+ * @ingroup Classes
  */
 
 /**
- * \defgroup Graphical_Objects Bliting Surfaces, Animations and Fonts and setting the transformations directly
- * \ingroup Advances
+ * @defgroup Timer Timer
+ * @ingroup Classes
+ */
+
+/**
+ * @defgroup Advances Advances methods for bliting directly to the screen without using entities. It uses IND_Render methods (recommended only for advanced IndieLib users)
+ */
+
+/**
+ * @defgroup Primitives Bliting Primitives
+ * @ingroup Advances
+ */
+
+/**
+ * @defgroup Graphical_Objects Bliting Surfaces, Animations and Fonts and setting the transformations directly
+ * @ingroup Advances
 With these methods you can set the 2d transformations (using IND_Render::Set2dTransform) and color
 attributes (using IND_Render::SetRainbow()) and blit directly
 to the screen surfaces, animations, and fonts using IND_Render class.
@@ -117,8 +117,8 @@ users for really concrete purposes.
 
 
 /**
- * \defgroup Graphical_3d_Objects Bliting 3d Animated 3d Models and setting the transformations directly
- * \ingroup Advances
+ * @defgroup Graphical_3d_Objects Bliting 3d Animated 3d Models and setting the transformations directly
+ * @ingroup Advances
 With these methods you can set the 3d transformations (using IND_Render::Set3dTransform) and color
 attributes (using IND_Render::SetRainbow()) and to blit directly
 to the screen 3d animated meshes using IND_Render class.
@@ -130,7 +130,7 @@ users for really concrete purposes.
 
 
 /**
- * \defgroup Types
+ * @defgroup Types
  */
 
 
@@ -254,6 +254,8 @@ typedef unsigned char BYTE;    // HACK: Fixes some code regarding surfaces, BYTE
 #pragma warning (disable : 4089)
 // 'sprintf': This function or variable may be unsafe.
 #pragma warning (disable : 4996)
+//Disables 'unreferenced formal parameter'
+#pragma warning( disable : 4100 )  
 #endif
 
 //---------------------------------------------------------------------------------
@@ -349,29 +351,15 @@ typedef struct structVertex2d CUSTOMVERTEX2D;
 // --------------------------------------------------------------------------------
 
 /**
- * \defgroup Additional structures
- * \ingroup Types
+ * @defgroup Additional structures
+ * @ingroup Types
  */
 /*@{*/
 
-// Matrix (Directx ROW-MAJOR ORDER!) (Note indices are the same, just store order in memory is different)
-#ifdef INDIERENDER_DIRECTX
 struct structMatrix {
-	float _11, _12, _13, _14;
-	float _21, _22, _23, _24;
-	float _31, _32, _33, _34;
-	float _41, _42, _43, _44;
-
-	structMatrix() {
-		_11 = _12 = _13 = _14 = _21 = _22 = _23 = _24 = _31 = _32 = _33 = _34 = _41 = _42 = _43 = _44 = 0;
-	}
-};
-//! Matrix 4x4\n (_11, _12, _13, _14,\n _21, _22, _23, _24,\n _31, _32, _33, _34\n _41, _42, _43, _44)
-#endif
-
-//Matrix (OpenGL COLUM-MAJOR ORDER!) (Note indices are the same, just store order in memory is different)
-#if defined (INDIERENDER_OPENGL) || defined (INDIERENDER_GLES_IOS)
-struct structMatrix {
+	//Matrix (OpenGL COLUM-MAJOR ORDER!) (Note indices are the same, just store order in memory is different)
+	//Be aware that DirectX matrixes are stored in memory using ROW-MAJOR ORDER!. Use methods here to convert
+	//between them safely.
 	float _11, _21, _31, _41;
 	float _12, _22, _32, _42;
 	float _13, _23, _33, _43;
@@ -388,22 +376,7 @@ struct structMatrix {
 			_11 = _12 = _13 = _14 = _21 = _22 = _23 = _24 = _31 = _32 = _33 = _34 = _41 = _42 = _43 = _44 = 0;
             return;
 		}
-		_11 = matrixArray[0];
-		_21 = matrixArray[1];
-		_31 = matrixArray[2];
-		_41 = matrixArray[3];
-		_12 = matrixArray[4];
-		_22 = matrixArray[5];
-		_32 = matrixArray[6];
-		_42 = matrixArray[7];
-		_13 = matrixArray[8];
-		_23 = matrixArray[9];
-		_33 = matrixArray[10];
-		_43 = matrixArray[11];
-		_14 = matrixArray[12];
-		_24 = matrixArray[13];
-		_34 = matrixArray[14];
-		_44 = matrixArray[15];
+		readFromArray(matrixArray);
 	}
 
 	//Writes to passed matrixArray the values inside the IND_Matrix structure
@@ -452,9 +425,55 @@ struct structMatrix {
 		}
 		return *this;
 	}
+    
+	//Writes to passed matrixArray the values inside the IND_Matrix structure
+	//Elements are interpreted this way:
+	//Matrix 4x4\n (_11, _12, _13, _14,\n _21, _22, _23, _24,\n _31, _32, _33, _34\n _41, _42, _43, _44)
+	void readFromArray(float* matrixArray) {
+		_11 = matrixArray[0];
+		_21 = matrixArray[1];
+		_31 = matrixArray[2];
+		_41 = matrixArray[3];
+		_12 = matrixArray[4];
+		_22 = matrixArray[5];
+		_32 = matrixArray[6];
+		_42 = matrixArray[7];
+		_13 = matrixArray[8];
+		_23 = matrixArray[9];
+		_33 = matrixArray[10];
+		_43 = matrixArray[11];
+		_14 = matrixArray[12];
+		_24 = matrixArray[13];
+		_34 = matrixArray[14];
+		_44 = matrixArray[15];
+	}
+
+    //Logs itself to console
+    void description () const {
+        std::cout << "\nMATRIX :\n";
+        std::cout << _11 << " ";
+        std::cout << _21 << " ";
+        std::cout << _31 << " ";
+        std::cout << _41 << " ";
+        std::cout << std::endl;
+        std::cout << _12 << " ";
+        std::cout << _22 << " ";
+        std::cout << _32 << " ";
+        std::cout << _42 << " ";
+        std::cout << std::endl;
+        std::cout << _13 << " ";
+        std::cout << _23 << " ";
+        std::cout << _33 << " ";
+        std::cout << _43 << " ";
+        std::cout << std::endl;
+        std::cout << _14 << " ";
+        std::cout << _24 << " ";
+        std::cout << _34 << " ";
+        std::cout << _44 << " ";
+        std::cout << std::endl;
+    }
 };
-//! Matrix 4x4\n (_11, _12, _13, _14,\n _21, _22, _23, _24,\n _31, _32, _33, _34\n _41, _42, _43, _44)
-#endif
+//! Matrix 4x4\n (_11, _21, _31, _41,\n _12, _22, _32, _42,\n _13, _23, _33, _43\n _14, _24, _34, _44)
 typedef struct structMatrix IND_Matrix;
 
 
@@ -480,17 +499,17 @@ typedef struct structPoint IND_Point;
 // --------------------------------------------------------------------------------
 
 /**
- * \defgroup IND_ColorFormat
- * \ingroup Types
+ * @defgroup IND_ColorFormat
+ * @ingroup Types
  */
 /*@{*/
 
 //! Color formats
 
-/*!
-IND_Image objects can have different formats depending on the number of colors. To have \b truecolor, the range of colors
-that the human eye can perceive,  3 bytes per pixel are necessary. These are   \b R (Red), \b G (Green)
-and \b B (Blue) bytes.
+/**
+IND_Image objects can have different formats depending on the number of colors. To have @b truecolor, the range of colors
+that the human eye can perceive,  3 bytes per pixel are necessary. These are   @b R (Red), @b G (Green)
+and @b B (Blue) bytes.
 
 When we want images to have per pixel transparency, it is necessary an extra
 byte. The A byte, also called alpha chanel. This byte doesn't show a color, but a level of transparency
@@ -501,12 +520,12 @@ For example using gray range (they only use one byte per pixel).
 
 <b>Types IND_ColorFormat</b>
 
-\arg ::IND_RGB
-\arg ::IND_RGBA
-\arg ::IND_BGR
-\arg ::IND_BGRA
-\arg ::IND_LUMINANCE
-\arg ::IND_COLOUR_INDEX
+@arg ::IND_RGB
+@arg ::IND_RGBA
+@arg ::IND_BGR
+@arg ::IND_BGRA
+@arg ::IND_LUMINANCE
+@arg ::IND_COLOUR_INDEX
 */
 //TODO: MIGUEL - REVIEW THAT ALL DEFINED TYPES ARE USED. I MISS WHY THERE IS IND_BGR AND IND_BGRA
 typedef int IND_ColorFormat;
@@ -534,15 +553,15 @@ typedef int IND_ColorFormat;
 // --------------------------------------------------------------------------------
 
 /**
- * \defgroup IND_Quality
- * \ingroup Types
+ * @defgroup IND_Quality
+ * @ingroup Types
  */
 /*@{*/
 
 //! Colour quality
 
-/*!
-\b IND_Quality shows the quality of the entity that it references.
+/**
+@b IND_Quality shows the quality of the entity that it references.
 
 You can consume less memory by adjusting this parameter, and as a result losing some quality in the colors.
 
@@ -566,21 +585,21 @@ typedef int IND_Quality;
 // --------------------------------------------------------------------------------
 
 /**
- * \defgroup IND_LightType
- * \ingroup Types
+ * @defgroup IND_LightType
+ * @ingroup Types
  */
 /*@{*/
 
 //! Light types
 
-/*!
-\b IND_LightType is the type of the light
+/**
+@b IND_LightType is the type of the light
 
 You can define different type of lights using this type.
 */
 typedef int IND_LightType;
 
-/*!
+/**
 Ambient light represents the background light in a scene. In the real world light bounces off many objects and creates
 a low light level so even geometry facing away from any directional light is still partially lit. Ambient light is very
 inexpensive in terms of frame rate - almost free. It is applied to all surfaces irrespective of the direction they are
@@ -588,7 +607,7 @@ facing. There can be only one ambient light enabled at a time.
 */
 #define IND_AMBIENT_LIGHT                           100
 
-/*!
+/**
 Directional light is used to simulate distant light sources like the sun. It has a direction but no position. e.g.
 you could set it to point downward (0,-1,0) which would simulate the sun being directly overhead. Directional light is
 relatively inexpensive although if you add lots of them you may find your frame rate dropping somewhat. The lighting
@@ -604,7 +623,7 @@ Methods you can use for changing the attributes of these type of lights:
 */
 #define IND_DIRECTIONAL_LIGHT                       101
 
-/*!
+/**
 A point light represents a point source. It has a position in the world and radiates light in all directions. A bare
 bulb on a stand would be an example of this. It radiates light in every direction and has a position in the world. This
 is a more expensive type of light in terms of frame rate than a directional light.
@@ -621,7 +640,7 @@ Methods you can use for changing the attributes of these type of lights:
 */
 #define IND_POINT_LIGHT                             102
 
-/*!
+/**
 Spot light is is the most complex light and is the most expensive type in
 terms of frame rate so use sparingly. A spot light has a position in space and a direction. It emits a cone of light
 with two degrees of intensity. It has a central brightly lit section and a surrounding dimly lit section that merges
@@ -652,15 +671,15 @@ Methods you can use for changing the attributes of these type of lights:
 // --------------------------------------------------------------------------------
 
 /**
- * \defgroup IND_Type
- * \ingroup Types
+ * @defgroup IND_Type
+ * @ingroup Types
  */
 /*@{*/
 
 //! Surface types
 
-/*!
-\b IND_Type (type of surface).
+/**
+@b IND_Type (type of surface).
 
 Specifying the type  (opaque or transparent), you can consume less memory. For example,
 when drawing the background of a game, that background usually doesn't
@@ -674,8 +693,8 @@ when rendering.
 
 <b>Types IND_Type</b>
 
-\arg ::IND_OPAQUE
-\arg ::IND_ALPHA
+@arg ::IND_OPAQUE
+@arg ::IND_ALPHA
 */
 typedef int IND_Type;
 
@@ -691,14 +710,14 @@ typedef int IND_Type;
 // --------------------------------------------------------------------------------
 
 /**
- * \defgroup IND_Align
- * \ingroup Types
+ * @defgroup IND_Align
+ * @ingroup Types
  */
 /*@{*/
 
 //! Text alignment
 
-/*!
+/**
 Used for the alignment of the fonts.
 */
 typedef int IND_Align;
@@ -717,14 +736,14 @@ typedef int IND_Align;
 // --------------------------------------------------------------------------------
 
 /**
- * \defgroup IND_Primitive2d
- * \ingroup Types
+ * @defgroup IND_Primitive2d
+ * @ingroup Types
  */
 /*@{*/
 
 //! Type of primitives
 
-/*!
+/**
 IND_Primitive2d defines a primitive (lines, circles, rectangles, etc).
 */
 typedef int IND_Primitive2d;
@@ -749,21 +768,21 @@ typedef int IND_Primitive2d;
 // --------------------------------------------------------------------------------
 
 /**
- * \defgroup IND_BlendingType
- * \ingroup Types
+ * @defgroup IND_BlendingType
+ * @ingroup Types
  */
 /*@{*/
 
 //! Blending type
 
-/*!
-Type \b IND_BlendigType define the type of blend (to do alphablending). Alphablending is a powerful tool that can be used
+/**
+Type @b IND_BlendigType define the type of blend (to do alphablending). Alphablending is a powerful tool that can be used
 to create lots of graphical efects ( burst, electricity, speck efects, rain, etc).
 
 The more usual factors of  blending are:
 
-\arg (source, destination) = (::IND_SRCALPHA, ::IND_INVSRCALPHA) => This is the usual method of  blending to draw picture with alpha channel. It regards the alpha channel to draw pictures that have variable transparency.
-\arg (source, destination) = (::IND_SRCALPHA, ::IND_ONE) => It is used to speck effects. In the source picture it has black areas than later will be transparent in the screen.
+@arg (source, destination) = (::IND_SRCALPHA, ::IND_INVSRCALPHA) => This is the usual method of  blending to draw picture with alpha channel. It regards the alpha channel to draw pictures that have variable transparency.
+@arg (source, destination) = (::IND_SRCALPHA, ::IND_ONE) => It is used to speck effects. In the source picture it has black areas than later will be transparent in the screen.
 
 You can try diferents values to the source and to the destination and you can get a big amount of
 diverse efects as much additive as subtractive (relative to RGBA values) and a great visual impact.
@@ -808,22 +827,22 @@ typedef int IND_BlendingType;
 // --------------------------------------------------------------------------------
 
 /**
- * \defgroup IND_Filter
- * \ingroup Types
+ * @defgroup IND_Filter
+ * @ingroup Types
  */
 /*@{*/
 
 //! Texture filters
 
-/*!
+/**
 These filters affects the surfaces when they are rendered on the screen. When we rotate or
 we resize a surface, the quality of the image will be better or worse depending on the filter used.
 
 <b>Types IND_Filter</b>
 
-\arg ::IND_FILTER_NONE
-\arg ::IND_FILTER_POINT
-\arg ::IND_FILTER_LINEAR
+@arg ::IND_FILTER_NONE
+@arg ::IND_FILTER_POINT
+@arg ::IND_FILTER_LINEAR
 */
 typedef int IND_Filter;
 
@@ -841,15 +860,15 @@ typedef int IND_Filter;
 // --------------------------------------------------------------------------------
 
 /**
- * \defgroup IND_Key
- * \ingroup Types
+ * @defgroup IND_Key
+ * @ingroup Types
  */
 /*@{*/
 
 //! Keys
 
 
-/*!
+/**
 Input keys of the keyboard.
 */
 typedef int IND_Key;
@@ -950,6 +969,8 @@ enum {
 	IND_QUOTEDBL,
 	//! hash
 	IND_HASH,
+    //! percent
+    IND_PERCENT,
 	//! Dollar
 	IND_DOLLAR,
 	//! ampersand
@@ -1112,10 +1133,6 @@ enum {
 	IND_RMETA,
 	//! Left Meta
 	IND_LMETA,
-	//! F15
-	IND_LSUPER,
-	//! Right Windows button
-	IND_RSUPER,
 	//! Mode shift
 	IND_MODE,
 	//! Help
@@ -1130,8 +1147,8 @@ enum {
 	IND_MENU,
 	//! Power
 	IND_POWER,
-	//! Euro
-	IND_EURO
+	//! Currency unit in keyboard
+	IND_CURRENCYUNIT
 };
 /*@}*/
 
@@ -1141,14 +1158,14 @@ enum {
 // --------------------------------------------------------------------------------
 
 /**
- * \defgroup IND_KeyState
- * \ingroup Types
+ * @defgroup IND_KeyState
+ * @ingroup Types
  */
 /*@{*/
 
 //! Key state
 
-/*!
+/**
 Key state.
 */
 typedef int IND_KeyState;
@@ -1165,14 +1182,14 @@ typedef int IND_KeyState;
 // --------------------------------------------------------------------------------
 
 /**
- * \defgroup IND_MouseButton
- * \ingroup Types
+ * @defgroup IND_MouseButton
+ * @ingroup Types
  */
 /*@{*/
 
 //! Mouse Buttons
 
-/*!
+/**
 Mouse input buttons.
 */
 typedef int IND_MouseButton;
@@ -1191,14 +1208,14 @@ typedef int IND_MouseButton;
 // --------------------------------------------------------------------------------
 
 /**
- * \defgroup IND_MouseButtonState
- * \ingroup Types
+ * @defgroup IND_MouseButtonState
+ * @ingroup Types
  */
 /*@{*/
 
 //! Mouse button states
 
-/*!
+/**
 States of mouse buttons.
 */
 typedef int IND_MouseButtonState;
@@ -1215,14 +1232,14 @@ typedef int IND_MouseButtonState;
 // --------------------------------------------------------------------------------
 
 /**
- * \defgroup IND_Debug
- * \ingroup Types
+ * @defgroup IND_Debug
+ * @ingroup Types
  */
 /*@{*/
 
 //! g_debug
 
-/*!
+/**
 Using IndieLib::init() method, the library can be initialized with the modes:
 ::IND_DEBUG_MODE (debug mode) , ::IND_RELEASE_MODE (release mode).
 
@@ -1264,5 +1281,7 @@ typedef struct structBoundingCollision BOUNDING_COLLISION;
 // --------------------------------------------------------------------------------
 const int MAX_CHARS_IN_INT32_STR = (10 + 1); // +1 is for '\0' character
 const int MAX_CHARS_IN_INT64_STR = (20 + 1);
+const int SIDES_PER_CIRCLE = 30;   //Number of sides a circle has (will blit as many lines as specified here when blitting a circle primitive)
+
 
 #endif // _DEFINES_

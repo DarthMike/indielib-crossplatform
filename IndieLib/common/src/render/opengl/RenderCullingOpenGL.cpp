@@ -43,8 +43,8 @@ Calculates 6 planes defining the frustum
 void OpenGLRender::calculeFrustumPlanes() {
 	//TODO
 	//D3DXMATRIX mMatView, mMatProj;
-	//_info.mDevice->GetTransform(D3DTS_VIEW, &mMatView);
-	//_info.mDevice->GetTransform(D3DTS_PROJECTION, &mMatProj);
+	//_info._device->GetTransform(D3DTS_VIEW, &mMatView);
+	//_info._device->GetTransform(D3DTS_PROJECTION, &mMatProj);
 
 	//// Get combined matrix
 	//D3DXMATRIXA16 matComb;

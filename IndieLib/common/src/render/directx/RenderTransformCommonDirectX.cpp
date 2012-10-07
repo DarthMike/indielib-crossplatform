@@ -31,37 +31,13 @@ Suite 330, Boston, MA 02111-1307 USA
 //							         Public methods
 // --------------------------------------------------------------------------------
 
-/*!
-\b Parameters:
-
-\arg \b pR                  Byte R (Red)
-\arg \b pG                  Byte G (Green)
-\arg \b pB                  Byte B (Blue)
-
-\b Operation:
-
-Clean the viewport with a color expressed in RGB
-*/
 void   DirectXRender::clearViewPort(BYTE pR,
                                     BYTE pG,
                                     BYTE pB) {
-	_info.mDevice->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(pR, pG, pB), 1.0f, 0);
+	_info._device->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(pR, pG, pB), 1.0f, 0);
 }
 
 
-/*!
-\b Parameters:
-
-\arg \b pEyeX, pEyeY, pEyeZ                         Position of the camera
-\arg \b pLookAtX, pLookAtY, pLookAtZ                Vector defining the direction of the camera
-\arg \b pUpX, pUpY, pUpZ                            Vector "up" of the camera.
-
-Operation:
-
-This function sets a perspective matrix through the definition of a position and two vectors (lookat and up).
-
-Using this method is equivalent to using a combination of methods of the class ::setCamera3d().
-*/
 void DirectXRender::lookAt(float pEyeX, float pEyeY, float pEyeZ,
                            float pLookAtX, float pLookAtY, float pLookAtZ,
                            float pUpX, float pUpY, float pUpZ) {
@@ -73,24 +49,9 @@ void DirectXRender::lookAt(float pEyeX, float pEyeY, float pEyeZ,
 	D3DXVECTOR3 mUpVec(pUpX, pUpY, pUpZ);
 	D3DXMatrixLookAtLH(&mMatView, &mEyePt, &mLookatPt, &mUpVec);
 
-	_info.mDevice->SetTransform(D3DTS_VIEW, &mMatView);
+	_info._device->SetTransform(D3DTS_VIEW, &mMatView);
 }
 
-
-/*!
-\b Parameters:
-
-\arg \b pFov                                        Vertical fov
-\arg \b pAspect                                     Aspect ratio (usually the width of the viewport divided by the height)
-\arg \b pNearClippingPlane                          Near clipping plane
-\arg \b pFarClippingPlane                           Far clipping plane
-
-Operation:
-
-This function sets a fov projection matrix.
-
-This method is equivalent to use a combination of methods of the class ::setCamera3d().
-*/
 void DirectXRender::perspectiveFov(float pFov, float pAspect, float pNearClippingPlane, float pFarClippingPlane) {
 	// ----- Projection matrix -----
 
@@ -103,28 +64,13 @@ void DirectXRender::perspectiveFov(float pFov, float pAspect, float pNearClippin
 	                           pFarClippingPlane);      // Far clipping  plane z
 
 
-	_info.mDevice->SetTransform(D3DTS_PROJECTION, &mMatProj);
+	_info._device->SetTransform(D3DTS_PROJECTION, &mMatProj);
 }
 
-
-/*!
-\b Parameters:
-
-\arg \b pWidth                                      Width
-\arg \b pHeight                                     Height
-\arg \b pNearClippingPlane                          Near clipping plane
-\arg \b pFarClippingPlane                           Far clipping plane
-
-Operation:
-
-This function sets a orthographic projection matrix.
-
-Using this method is equivalent to using a combination of the methods of the class ::setCamera3d().
-*/
 void DirectXRender::perspectiveOrtho(float pWidth, float pHeight, float pNearClippingPlane, float pFarClippingPlane) {
 	D3DXMATRIX mMatProj;
 	D3DXMatrixOrthoLH(&mMatProj, pWidth, pHeight, pNearClippingPlane, pFarClippingPlane);
-	_info.mDevice->SetTransform(D3DTS_PROJECTION, &mMatProj);
+	_info._device->SetTransform(D3DTS_PROJECTION, &mMatProj);
 }
 
 
@@ -195,32 +141,5 @@ D3DTEXTUREFILTERTYPE DirectXRender::GetD3DFilter(IND_Filter pFilter) {
 	}
 }
 
-
-/*
-==================
-Transforms an IndieLib matrix into a D3DXMATRIX
-==================
-*/
-void DirectXRender::GetD3DMatrix(IND_Matrix pMatrix, D3DXMATRIX *pD3DMatrix) {
-	pD3DMatrix->_11 = pMatrix._11;
-	pD3DMatrix->_12 = pMatrix._12;
-	pD3DMatrix->_13 = pMatrix._13;
-	pD3DMatrix->_14 = pMatrix._14;
-
-	pD3DMatrix->_21 = pMatrix._21;
-	pD3DMatrix->_22 = pMatrix._22;
-	pD3DMatrix->_23 = pMatrix._23;
-	pD3DMatrix->_24 = pMatrix._24;
-
-	pD3DMatrix->_31 = pMatrix._31;
-	pD3DMatrix->_32 = pMatrix._32;
-	pD3DMatrix->_33 = pMatrix._33;
-	pD3DMatrix->_34 = pMatrix._34;
-
-	pD3DMatrix->_41 = pMatrix._41;
-	pD3DMatrix->_42 = pMatrix._42;
-	pD3DMatrix->_43 = pMatrix._43;
-	pD3DMatrix->_44 = pMatrix._44;
-}
 
 #endif //INDIERENDER_DIRECTX

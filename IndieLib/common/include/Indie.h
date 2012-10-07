@@ -64,8 +64,13 @@ using namespace std;
 #include "IND_Math.h"
 
 // Tmx Maps
-#ifdef PLATFORM_LINUX  //FIXME: Should add compile settings to all platforms
+#ifdef PLATFORM_LINUX  //FIXME: Should add compile settings to all platforms when support is fully completed
 #include "IND_TmxMapManager.h"
+#endif
+
+// Spriter animations
+#ifdef PLATFORM_LINUX  //FIXME: Should add compile settings to all platforms when support is fully completed
+#include "IND_SpriterManager.h"
 #endif
 
 // Entities

@@ -1,8 +1,8 @@
-# Indielib
+# Indielib cross-platform
 
 ## Overview
 
-**Indielib** is a C++ 2.5d library for game development and fast game prototyping in a really easy way. It was originally written for DirectX 9.0c. This project is the cross platform version fo this library.
+**Indielib** is a C++ 2.5d library for game development and fast game prototyping in a really easy way. It was originally written for DirectX 9.0c. This project is the cross platform version of this library.
 
 ###Platforms
 
@@ -12,9 +12,8 @@
 * iOS
 
 ###Renderers
-* OpenGL 1.5 desktop support
-* OpenGL ES 2.0 iOS support
-* OpenGL 3.2 desktop support (later on) 
+* OpenGL 1.5 desktop support (3.2 later on)
+* OpenGL ES 2.0 iOS  support (3.0 later on)
 
 ### Features
 Simple interface and extreme easiness: really fast game prototyping using entities for each of the graphical objects and changing their attributes. All the methods are as simple as "SetPos", "SetCollisionArea", "SetFade", "SetTransparency", etc.
@@ -58,6 +57,5 @@ This library bases on several others to achieve some of it's functionality:
 * [Unittest++](http://unittest-cpp.sourceforge.net/)
 * [GLEW](http://glew.sourceforge.net/)
 
-
 # Building the library
-Instructions are available on the [wiki](http://www.indielib.com/wiki/index.php?title=Building_IndieLib) page to build the library
+Instructions to build the library are available on the [wiki](http://www.indielib.com/wiki/index.php?title=Building_IndieLib) page.

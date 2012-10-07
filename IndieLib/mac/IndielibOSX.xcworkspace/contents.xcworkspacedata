@@ -20,9 +20,9 @@
       location = "group:../LICENSE">
    </FileRef>
    <FileRef
-      location = "group:../README">
+      location = "group:../TODO">
    </FileRef>
    <FileRef
-      location = "group:../TODO">
+      location = "group:../../README.md">
    </FileRef>
 </Workspace>

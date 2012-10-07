@@ -49,5 +49,15 @@ Simple interface and extreme easiness: really fast game prototyping using entiti
 * Lights
 * 3d-related objects (meshes etc.)
 
-### Building the library
+###Dependencies
+This library bases on several others to achieve some of it's functionality:
+
+* [FreeImage](http://freeimage.sourceforge.net/)
+* [SDL](http://www.libsdl.org/)
+* [TinyXML](http://www.grinninglizard.com/tinyxml/)
+* [Unittest++](http://unittest-cpp.sourceforge.net/)
+* [GLEW](http://glew.sourceforge.net/)
+
+
+# Building the library
 Instructions are available on the [wiki](http://www.indielib.com/wiki/index.php?title=Building_IndieLib) page to build the library

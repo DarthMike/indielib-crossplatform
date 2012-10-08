@@ -29,6 +29,7 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "Defines.h"
 #include "IND_Timer.h"
 #include "IND_Window.h"
+#include "IND_AnimationManager.h"
 
 // ----- Forward Declarations -----
 #ifdef INDIERENDER_DIRECTX

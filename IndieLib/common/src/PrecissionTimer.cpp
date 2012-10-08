@@ -42,8 +42,9 @@ double PrecissionTimer::getTicks() {
 
 #ifdef PLATFORM_LINUX
 	 clock_gettime(CLOCK_MONOTONIC, &linux_end);
-	_elapsedTime = ((linux_start.tv_sec * 1000000000) + linux_start.tv_nsec) - ((linux_end.tv_sec * 1000000000) + linux_end.tv_nsec);
-
+	 uint64_t start_time = ((((uint64_t)linux_start.tv_sec) * 1000000000ULL) + (uint64_t) linux_start.tv_nsec);
+     uint64_t end_time = ((((uint64_t) linux_end.tv_sec) * 1000000000ULL) + (uint64_t) linux_end.tv_nsec); 
+     _elapsedTime = end_time - start_time; 
 #endif
 	return(static_cast<double>(_elapsedTime));
 
@@ -64,7 +65,7 @@ void PrecissionTimer::start() {
 
 #ifdef PLATFORM_LINUX
     clock_gettime(CLOCK_MONOTONIC, &linux_start);
-	mStartTime = static_cast<uint64_t>((linux_start.tv_sec * 1000000000) + linux_start.tv_nsec);
+	mStartTime = (((uint64_t) linux_start.tv_sec) * 1000000000ULL) + (uint64_t) linux_start.tv_nsec;
 #endif
 
 	_started = true;
@@ -107,7 +108,7 @@ void PrecissionTimer::init() {
 
 #ifdef PLATFORM_LINUX
     clock_gettime(CLOCK_MONOTONIC, &linux_start);
-	mStartTime = static_cast<uint64_t>((linux_start.tv_sec * 1000000000) + linux_start.tv_nsec);
+	mStartTime = (((uint64_t) linux_start.tv_sec) * 1000000000ULL) + (uint64_t) linux_start.tv_nsec;
 #endif
 }
 

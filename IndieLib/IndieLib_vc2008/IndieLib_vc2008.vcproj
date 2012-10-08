@@ -776,7 +776,7 @@
 			>
 		</File>
 		<File
-			RelativePath="..\README"
+			RelativePath="..\..\README.md"
 			>
 		</File>
 		<File

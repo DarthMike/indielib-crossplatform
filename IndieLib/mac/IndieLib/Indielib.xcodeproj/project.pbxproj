@@ -657,7 +657,7 @@
 					"\"$(SRCROOT)/../../common/dependencies/FreeImage/Dist\"",
 					"\"$(SRCROOT)/../../common/dependencies/FreeImage\"",
 					"\"$(SRCROOT)/../../common/dependencies/glew-1.9.0/lib/OSX\"",
-					"\"$(SRCROOT)/../../common/dependencies/SDL 2.0/lib/OSX_debug\"",
+					"\"$(SRCROOT)/../../common/dependencies/SDL-2.0/lib/OSX_debug\"",
 				);
 				"OTHER_LDFLAGS[arch=*]" = (
 					"\"$(SRCROOT)/../../common/dependencies/SDL 2.0/lib/OSX_debug/libSDL2.a\"",
@@ -683,7 +683,7 @@
 					"\"$(SRCROOT)/../../common/dependencies/FreeImage/Dist\"",
 					"\"$(SRCROOT)/../../common/dependencies/FreeImage\"",
 					"\"$(SRCROOT)/../../common/dependencies/glew-1.9.0/lib/OSX\"",
-					"\"$(SRCROOT)/../../common/dependencies/SDL 2.0/lib/OSX_release\"",
+					"\"$(SRCROOT)/../../common/dependencies/SDL-2.0/lib/OSX_release\"",
 				);
 				"OTHER_LDFLAGS[arch=*]" = (
 					"\"$(SRCROOT)/../../common/dependencies/SDL 2.0/lib/OSX_release/libSDL2.a\"",

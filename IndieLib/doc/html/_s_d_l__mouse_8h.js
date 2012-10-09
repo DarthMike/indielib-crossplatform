@@ -1,0 +1,27 @@
+var _s_d_l__mouse_8h =
+[
+    [ "SDL_BUTTON", "_s_d_l__mouse_8h.html#af1bb0dead027146b766e4e319e22ea7b", null ],
+    [ "SDL_BUTTON_LEFT", "_s_d_l__mouse_8h.html#a9500bda83bcc0e9afee1438a79019c5f", null ],
+    [ "SDL_BUTTON_LMASK", "_s_d_l__mouse_8h.html#ad9ccef8108b6a1704a49ab93a91d2c47", null ],
+    [ "SDL_BUTTON_MIDDLE", "_s_d_l__mouse_8h.html#a4d7543e668502bbb75d045d8097fb8f3", null ],
+    [ "SDL_BUTTON_MMASK", "_s_d_l__mouse_8h.html#ad90dffab11146e0eb9f2e28267e6fbbd", null ],
+    [ "SDL_BUTTON_RIGHT", "_s_d_l__mouse_8h.html#a63fcfb473ee5e5da3752e1cf75f12286", null ],
+    [ "SDL_BUTTON_RMASK", "_s_d_l__mouse_8h.html#aefa6805c2113f16e659edcde5172b5df", null ],
+    [ "SDL_BUTTON_X1", "_s_d_l__mouse_8h.html#a1422ab75c7388bb5047028103a6df550", null ],
+    [ "SDL_BUTTON_X1MASK", "_s_d_l__mouse_8h.html#aee13129df2cc50d4a16c4fe7652737a0", null ],
+    [ "SDL_BUTTON_X2", "_s_d_l__mouse_8h.html#a2ae4ae2fe944879dc9ef6b16155d52e2", null ],
+    [ "SDL_BUTTON_X2MASK", "_s_d_l__mouse_8h.html#afb0dfebdfec877410feb8800cfd7e443", null ],
+    [ "SDL_Cursor", "_s_d_l__mouse_8h.html#a63b6e9cd23bbe26b8fa00dc8fba7623d", null ],
+    [ "SDL_CreateColorCursor", "_s_d_l__mouse_8h.html#a964bab3503f74f92a5504b4cd166b400", null ],
+    [ "SDL_CreateCursor", "_s_d_l__mouse_8h.html#a4331ebf38e2f75f6cde88ce668e5650f", null ],
+    [ "SDL_FreeCursor", "_s_d_l__mouse_8h.html#ac17a8282f93d9d31e8e087236f0ecdd8", null ],
+    [ "SDL_GetCursor", "_s_d_l__mouse_8h.html#a427ee5473e9ce3f4ad7a58035d7a6ffd", null ],
+    [ "SDL_GetMouseFocus", "_s_d_l__mouse_8h.html#af30def76b002152366831b21e3d95066", null ],
+    [ "SDL_GetMouseState", "_s_d_l__mouse_8h.html#a775d3bd97a3a49800cb07f0b901eaffb", null ],
+    [ "SDL_GetRelativeMouseMode", "_s_d_l__mouse_8h.html#ae97aaf1682b3a6b62214dda1dda9b212", null ],
+    [ "SDL_GetRelativeMouseState", "_s_d_l__mouse_8h.html#ac67f36520421d4b392b74bc9d11eb81a", null ],
+    [ "SDL_SetCursor", "_s_d_l__mouse_8h.html#a7c2971901f9a772be22152420aee275c", null ],
+    [ "SDL_SetRelativeMouseMode", "_s_d_l__mouse_8h.html#ad7b3533784e0aa34cdf1c5f232817206", null ],
+    [ "SDL_ShowCursor", "_s_d_l__mouse_8h.html#a00286ec15cd56dee1fd71ed4e6e7a585", null ],
+    [ "SDL_WarpMouseInWindow", "_s_d_l__mouse_8h.html#a2f2259cdf30272b3c4cc1e3236cb8071", null ]
+];

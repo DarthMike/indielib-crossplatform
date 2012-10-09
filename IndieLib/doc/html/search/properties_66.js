@@ -1,0 +1,21 @@
+var searchData=
+[
+  ['fiformat',['FIFormat',['../class_free_image_a_p_i_1_1_plugins_1_1_free_image_plugin.html#a6ed49abd4d057cfde8b9e0d80f59f98e',1,'FreeImageAPI::Plugins::FreeImagePlugin']]],
+  ['filesource',['FileSource',['../class_free_image_a_p_i_1_1_metadata_1_1_m_d_m___e_x_i_f___e_x_i_f.html#a696bd2d36183b5813d07794d8f117d95',1,'FreeImageAPI::Metadata::MDM_EXIF_EXIF']]],
+  ['fixtureidentifier',['FixtureIdentifier',['../class_free_image_a_p_i_1_1_metadata_1_1_m_d_m___i_p_t_c.html#a5ecd3c7683e99a9e563f792e3aae45e3',1,'FreeImageAPI::Metadata::MDM_IPTC']]],
+  ['flags',['Flags',['../class_free_image_a_p_i_1_1_free_image_bitmap.html#a93970f63d543eafe98d113fdaacaf56e',1,'FreeImageAPI.FreeImageBitmap.Flags()'],['../struct_free_image_a_p_i_1_1_f_i_i_c_c_p_r_o_f_i_l_e.html#ae0135fd90b35d97215dfa480fd548409',1,'FreeImageAPI.FIICCPROFILE.Flags()']]],
+  ['flash',['Flash',['../class_free_image_a_p_i_1_1_metadata_1_1_m_d_m___e_x_i_f___e_x_i_f.html#ae876ff3639c44c1b43daddf6520e1274',1,'FreeImageAPI::Metadata::MDM_EXIF_EXIF']]],
+  ['flashenergy',['FlashEnergy',['../class_free_image_a_p_i_1_1_metadata_1_1_m_d_m___e_x_i_f___e_x_i_f.html#a61ce4d4a6371a11c9477c5a213ab3f0a',1,'FreeImageAPI::Metadata::MDM_EXIF_EXIF']]],
+  ['flashpixversion',['FlashpixVersion',['../class_free_image_a_p_i_1_1_metadata_1_1_m_d_m___e_x_i_f___e_x_i_f.html#a9a71c36a448fd46fe7d44848ab584c82',1,'FreeImageAPI::Metadata::MDM_EXIF_EXIF']]],
+  ['fnumber',['FNumber',['../class_free_image_a_p_i_1_1_metadata_1_1_m_d_m___e_x_i_f___e_x_i_f.html#ab91bde61c161620e7c76e8cde41cd5ca',1,'FreeImageAPI::Metadata::MDM_EXIF_EXIF']]],
+  ['focallength',['FocalLength',['../class_free_image_a_p_i_1_1_metadata_1_1_m_d_m___e_x_i_f___e_x_i_f.html#a8f82369a5f5f6828c5275ab53043cdd1',1,'FreeImageAPI::Metadata::MDM_EXIF_EXIF']]],
+  ['focallengthin35mmfilm',['FocalLengthIn35mmFilm',['../class_free_image_a_p_i_1_1_metadata_1_1_m_d_m___e_x_i_f___e_x_i_f.html#a075dbb81463602d5ce8bbe92c42151f7',1,'FreeImageAPI::Metadata::MDM_EXIF_EXIF']]],
+  ['focalplaneresolutionunit',['FocalPlaneResolutionUnit',['../class_free_image_a_p_i_1_1_metadata_1_1_m_d_m___e_x_i_f___e_x_i_f.html#a1528d88aa194c26f29155ff52cd51158',1,'FreeImageAPI::Metadata::MDM_EXIF_EXIF']]],
+  ['focalplanexresolution',['FocalPlaneXResolution',['../class_free_image_a_p_i_1_1_metadata_1_1_m_d_m___e_x_i_f___e_x_i_f.html#a77b1aa898ab3f1cd6bdad71ff8b0282a',1,'FreeImageAPI::Metadata::MDM_EXIF_EXIF']]],
+  ['focalplaneyresolution',['FocalPlaneYResolution',['../class_free_image_a_p_i_1_1_metadata_1_1_m_d_m___e_x_i_f___e_x_i_f.html#a7aa30b8ee5ba8128eda50a409b03bbb1',1,'FreeImageAPI::Metadata::MDM_EXIF_EXIF']]],
+  ['format',['Format',['../class_free_image_a_p_i_1_1_plugins_1_1_free_image_plugin.html#aad515152dccc1ef0b850693af89390e7',1,'FreeImageAPI.Plugins.FreeImagePlugin.Format()'],['../class_free_image_a_p_i_1_1_plugins_1_1_local_plugin.html#a3c8cd55d2c09deffa791f04045451203',1,'FreeImageAPI.Plugins.LocalPlugin.Format()']]],
+  ['framecount',['FrameCount',['../class_free_image_a_p_i_1_1_free_image_bitmap.html#a4bab87f209b994279adac71ff7516e8f',1,'FreeImageAPI::FreeImageBitmap']]],
+  ['frameleft',['FrameLeft',['../class_free_image_a_p_i_1_1_metadata_1_1_m_d_m___a_n_i_m_a_t_i_o_n.html#a4382f5dfe9fa6eab3a1877a734d07289',1,'FreeImageAPI::Metadata::MDM_ANIMATION']]],
+  ['frametime',['FrameTime',['../class_free_image_a_p_i_1_1_metadata_1_1_m_d_m___a_n_i_m_a_t_i_o_n.html#a4cc76bc90087dd753ae28249f701552d',1,'FreeImageAPI::Metadata::MDM_ANIMATION']]],
+  ['frametop',['FrameTop',['../class_free_image_a_p_i_1_1_metadata_1_1_m_d_m___a_n_i_m_a_t_i_o_n.html#abc82ec0958798f8a78476e3e5839b3e9',1,'FreeImageAPI::Metadata::MDM_ANIMATION']]]
+];

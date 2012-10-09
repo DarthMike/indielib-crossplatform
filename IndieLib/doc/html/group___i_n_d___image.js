@@ -1,0 +1,46 @@
+var group___i_n_d___image =
+[
+    [ "IND_Image", "class_i_n_d___image.html", [
+      [ "adjustColors", "class_i_n_d___image.html#ae6f3be44e490bdd20002d9cb8fc638e8", null ],
+      [ "clear", "class_i_n_d___image.html#acfcb064194bc843e6e0ede39b183bc56", null ],
+      [ "contrast", "class_i_n_d___image.html#a96af158c3331c3bdf12e36e9af02e6d9", null ],
+      [ "convert", "class_i_n_d___image.html#a715750e6ae7731f5b06286c32c6de3f2", null ],
+      [ "edgeDetect1", "class_i_n_d___image.html#a7ce938d1813575cc11bab2554aaa983d", null ],
+      [ "edgeDetect2", "class_i_n_d___image.html#ad1e77d130db0736d612dc8a566a6ec8a", null ],
+      [ "emboss", "class_i_n_d___image.html#ac61bf0df0d9111ad0bc049fc265c5a6d", null ],
+      [ "equalize", "class_i_n_d___image.html#a5cf9face8ad417f544d3f40663ffbb4b", null ],
+      [ "flipHorizontal", "class_i_n_d___image.html#a6b69b0a9c80493ea147f46917de09bdb", null ],
+      [ "flipVertical", "class_i_n_d___image.html#ac65439902d65f8349c333e86cb9c73e9", null ],
+      [ "gaussianBlur", "class_i_n_d___image.html#ae55b1ada1af442018f2c508eb25ea2bf", null ],
+      [ "getBpp", "class_i_n_d___image.html#ab825e786d8854093375668814afe9b6e", null ],
+      [ "getBytespp", "class_i_n_d___image.html#a43f92124c76a1be5d14f36663d50511f", null ],
+      [ "getExtension", "class_i_n_d___image.html#aeabaced470364b4d20f9ac358910ed37", null ],
+      [ "getFormatInt", "class_i_n_d___image.html#a68a49bd899b467296dbe89a1126b000b", null ],
+      [ "getFormatString", "class_i_n_d___image.html#a9a333878dd00b263a38f6eaaab42d852", null ],
+      [ "getFreeImageHandle", "class_i_n_d___image.html#a2e6b868c51b719922c547a4d6128372c", null ],
+      [ "getHeight", "class_i_n_d___image.html#af84d0e3460a434f72ced8aa8b3afb8a2", null ],
+      [ "getName", "class_i_n_d___image.html#aa41c44314680426e280f25723bf64478", null ],
+      [ "getPixel", "class_i_n_d___image.html#a377a9ad7725592fa4b7d34f93ceb653e", null ],
+      [ "getPointer", "class_i_n_d___image.html#a8fd66260e4a953803514e62a7825dcf8", null ],
+      [ "getWidth", "class_i_n_d___image.html#ad539832e961d19f869ea38d44c86b915", null ],
+      [ "invertAlpha", "class_i_n_d___image.html#a3f094f9237ee08cb3691e052ef8443a7", null ],
+      [ "isImageLoaded", "class_i_n_d___image.html#a5a3168d6208f7409e0922cb7f5a51867", null ],
+      [ "negative", "class_i_n_d___image.html#a6c95d67ce83f468d3fa6f990b21c7f5a", null ],
+      [ "noisify", "class_i_n_d___image.html#a32bbccaf314b594b6db8c1fbe8ccd379", null ],
+      [ "pasteImage", "class_i_n_d___image.html#ac3b82997d1704ca6442d978457b810ec", null ],
+      [ "pixelize", "class_i_n_d___image.html#ac3499bf5492a072a6bad96bbdcddafaa", null ],
+      [ "putPixel", "class_i_n_d___image.html#ad7b08b957d7d869c0b65b996db370df5", null ],
+      [ "rotate", "class_i_n_d___image.html#aa05d3a0812bbb8102913c83ec6d0cc50", null ],
+      [ "saturation", "class_i_n_d___image.html#a2f6fd57d5eb03f4ca115e79d3db8b3e5", null ],
+      [ "scale", "class_i_n_d___image.html#af3eb9c2513273d83bfdf74028606aa17", null ],
+      [ "setAlpha", "class_i_n_d___image.html#a1c7b8f88197f589592374d22a123ce5c", null ],
+      [ "setGamma", "class_i_n_d___image.html#a5a801a9cbb07cac8f09cb6588a9c1579", null ],
+      [ "sharpen", "class_i_n_d___image.html#aafc577cf0cca05fa5f73256b1a6cee58", null ],
+      [ "IND_ImageManager", "class_i_n_d___image.html#a7110665ff85329fa02836ae326f6938f", null ]
+    ] ],
+    [ "IND_TmxMap", "class_i_n_d___tmx_map.html", [
+      [ "getName", "class_i_n_d___tmx_map.html#a3a8e0989ce86b07d163ffed8e56f7c35", null ],
+      [ "getTmxMapHandle", "class_i_n_d___tmx_map.html#a4a80abbd1dd866ae4cea4b15db5abcbf", null ],
+      [ "IND_TmxMapManager", "class_i_n_d___tmx_map.html#a9ad58bf75c52dc23d60d4d118d6d804b", null ]
+    ] ]
+];

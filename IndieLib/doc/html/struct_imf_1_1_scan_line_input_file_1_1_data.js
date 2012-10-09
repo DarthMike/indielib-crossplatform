@@ -1,0 +1,27 @@
+var struct_imf_1_1_scan_line_input_file_1_1_data =
+[
+    [ "Data", "struct_imf_1_1_scan_line_input_file_1_1_data.html#a83db521e73f9d792f88e9468ba48658c", null ],
+    [ "~Data", "struct_imf_1_1_scan_line_input_file_1_1_data.html#a6cbf999320202a5d97f8b5c25ea197c6", null ],
+    [ "Data", "struct_imf_1_1_scan_line_input_file_1_1_data.html#a83db521e73f9d792f88e9468ba48658c", null ],
+    [ "~Data", "struct_imf_1_1_scan_line_input_file_1_1_data.html#a6cbf999320202a5d97f8b5c25ea197c6", null ],
+    [ "getLineBuffer", "struct_imf_1_1_scan_line_input_file_1_1_data.html#a8125655842dd90b90f6e4fb01041719f", null ],
+    [ "getLineBuffer", "struct_imf_1_1_scan_line_input_file_1_1_data.html#adb437419e1480a9611f97d582ed558a8", null ],
+    [ "bytesPerLine", "struct_imf_1_1_scan_line_input_file_1_1_data.html#a13418dfbbf3630fd07a7a36dd4cd52b5", null ],
+    [ "fileIsComplete", "struct_imf_1_1_scan_line_input_file_1_1_data.html#a6c09b47c5ffd398c15433bb81e765027", null ],
+    [ "frameBuffer", "struct_imf_1_1_scan_line_input_file_1_1_data.html#ab3820e71fc612d38ca90ac7d3688f274", null ],
+    [ "header", "struct_imf_1_1_scan_line_input_file_1_1_data.html#af380af533bb95d8b21d7c554df5f4b84", null ],
+    [ "is", "struct_imf_1_1_scan_line_input_file_1_1_data.html#acf130df5996ac7d38eaa208cb55983db", null ],
+    [ "lineBuffers", "struct_imf_1_1_scan_line_input_file_1_1_data.html#a3a3ec37dcc06099b9bcd56f2ffc890b2", null ],
+    [ "lineBufferSize", "struct_imf_1_1_scan_line_input_file_1_1_data.html#a53d0418d029e7b6eccb4af7222b3cd41", null ],
+    [ "lineOffsets", "struct_imf_1_1_scan_line_input_file_1_1_data.html#a20480d1fd491657583de221d59b049cb", null ],
+    [ "lineOrder", "struct_imf_1_1_scan_line_input_file_1_1_data.html#a55d4ca4897f6c207e495b7810bdb50de", null ],
+    [ "linesInBuffer", "struct_imf_1_1_scan_line_input_file_1_1_data.html#a687f80b4576ecab47b203b0569ce3612", null ],
+    [ "maxX", "struct_imf_1_1_scan_line_input_file_1_1_data.html#aea348bc102c51d9135e78b4c28c4be69", null ],
+    [ "maxY", "struct_imf_1_1_scan_line_input_file_1_1_data.html#a0c9ed7eacec50dc75423de16a69900fc", null ],
+    [ "minX", "struct_imf_1_1_scan_line_input_file_1_1_data.html#af51463e767ca9724d5f613938e36516d", null ],
+    [ "minY", "struct_imf_1_1_scan_line_input_file_1_1_data.html#a8b04b3c608fc5d13691ac7ecb67ed7d5", null ],
+    [ "nextLineBufferMinY", "struct_imf_1_1_scan_line_input_file_1_1_data.html#adaa0e35288019e8938a4a5024a84da4f", null ],
+    [ "offsetInLineBuffer", "struct_imf_1_1_scan_line_input_file_1_1_data.html#aa43fb0172d935cb286a67df7a964ff8c", null ],
+    [ "slices", "struct_imf_1_1_scan_line_input_file_1_1_data.html#ad1f5af5b9c2cb18f13da8794902ac296", null ],
+    [ "version", "struct_imf_1_1_scan_line_input_file_1_1_data.html#ae2d0cb9cf6b4068236f9b7e62c97e7de", null ]
+];

@@ -1,16 +1,13 @@
-TODO: describe for each advanced tutorial what is the tutorial about + what keys are used.
 
+advanced 01: IND Surface Grids
+In this tutorial, Draco the dragon is placed on blue rotating background.A small blue / white text is located in the left upper corner. Draco is moved by a timespecific wavefunction that manipulates the surface. To display this grid you can toggle it on / off by pressing space. Press escape to exit.
 
-advanced 01:
+advanced 02: Blitting 2d Directly
+TODO: describtion..
 
+advanced 04: Several ViewPorts
+TODO: describtion..
 
-advanced 02:
-
-
-advanced 03:
-
-
-etc.
 
 
 

@@ -28,7 +28,7 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "IND_SurfaceManager.h"
 #include "IND_Timer.h"
 #include "IND_Render.h"
-#include "dependencies/SDL 2.0/include/SDL.h"
+#include "dependencies/SDL-2.0/include/SDL.h"
 
 // ----- Libs -----
 #ifdef INDIERENDER_DIRECTX

@@ -24,7 +24,7 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "Global.h"
 
 // ----- Library Dependencies -----
-#include "dependencies/SDL 2.0/include/SDL.h"
+#include "dependencies/SDL-2.0/include/SDL.h"
 #ifdef PLATFORM_WIN32
 #include "platform/win32/guicon.h"
 #endif

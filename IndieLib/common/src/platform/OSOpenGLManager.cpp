@@ -26,8 +26,8 @@ Suite 330, Boston, MA 02111-1307 USA
 
 #if defined (INDIERENDER_OPENGL)
 // ----- Libs -----
-#include "dependencies/SDL 2.0/include/SDL.h"
-#include "dependencies/SDL 2.0/include/SDL_video.h"
+#include "dependencies/SDL-2.0/include/SDL.h"
+#include "dependencies/SDL-2.0/include/SDL_video.h"
 // ----- Includes -----
 #include "Global.h"
 #include "OSOpenGLManager.h"

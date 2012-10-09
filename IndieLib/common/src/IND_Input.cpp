@@ -23,7 +23,7 @@
 
 #include "Global.h"
 #include "Defines.h"
-#include "dependencies/SDL 2.0/include/SDL.h"
+#include "dependencies/SDL-2.0/include/SDL.h"
 #include "IND_Input.h"
 #include "IND_Render.h"
 

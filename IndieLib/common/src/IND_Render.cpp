@@ -32,7 +32,7 @@ Suite 330, Boston, MA 02111-1307 USA
 
 // ----- Libs -----
 #ifdef INDIERENDER_DIRECTX
-#include "render/directx/DirectXRender.h"
+#include "render/directx/IND_Render.h"
 #endif
 
 #ifdef INDIERENDER_GLES_IOS
@@ -164,7 +164,7 @@ Operation:
 
 This function sets a perspective matrix through the definition of a position and two vectors (lookat and up).
 
-Using this method is equivalent to using a combination of methods of the class ::setCamera3d().
+Using this method is equivalent to using a combination of methods of the class setCamera3d.
 */
 inline void IND_Render::lookAt(float pEyeX, float pEyeY, float pEyeZ,
                                float pLookAtX, float pLookAtY, float pLookAtZ,
@@ -187,7 +187,7 @@ Operation:
 
 This function sets a fov projection matrix.
 
-This method is equivalent to use a combination of methods of the class ::setCamera3d().
+This method is equivalent to use a combination of methods of the class setCamera3d.
 */
 inline void IND_Render::perspectiveFov(float pFov, float pAspect, float pNearClippingPlane, float pFarClippingPlane) {
 	_wrappedRenderer->perspectiveFov(pFov, pAspect, pNearClippingPlane, pFarClippingPlane);
@@ -206,7 +206,7 @@ Operation:
 
 This function sets a orthographic projection matrix.
 
-Using this method is equivalent to using a combination of the methods of the class ::setCamera3d().
+Using this method is equivalent to using a combination of the methods of the class setCamera3d.
 */
 inline void IND_Render::perspectiveOrtho(float pWidth, float pHeight, float pNearClippingPlane, float pFarClippingPlane) {
 	_wrappedRenderer->perspectiveOrtho(pWidth, pHeight, pNearClippingPlane, pFarClippingPlane);
@@ -249,8 +249,8 @@ void IND_Render::endScene() {
 	_wrappedRenderer->endScene();
 }
 /**
-@defgroup Graphical_Objects Bliting Surfaces, Animations, Fonts and setting transformations directly
-@ingroup Advances
+@addtogroup Graphical_Objects
+ @ingroup Advanced
 */
 /*@{*/
 
@@ -274,7 +274,7 @@ void IND_Render::endScene() {
 
 This function blits text directly to the screen using the ::IND_Font object.
 
-Important: you cannot change the transformation or color attributes of a font using DirectXRender::setTransform2d() or DirectXRender::SetRainbow().
+Important: you cannot change the transformation or color attributes of a font using IND_Render::setTransform2d() or IND_Render::SetRainbow().
 
 Remember that you can use IND_Entity2d object for drawing fonts to the screen without having to use this
 advanced method directly. This method is only useful for advanced users with really concrete purposes.
@@ -352,14 +352,14 @@ This functions returns -1 when the animation finishes, 0 if there is any error (
 blit an invalid IND_Animation pointer) and 1 if is in the middle of the animation and there are no errors.
 
 In order to change the transformations
-and color attributes of the animation you have to use the DirectXRender::setTransform2d() and DirectXRender::setRainbow2d() methods before
+and color attributes of the animation you have to use the IND_Render::setTransform2d() and IND_Render::setRainbow2d() methods before
 calling to this function. Remember that you can use IND_Entity2d object for drawing animations to the screen without having to use this
 advanced methods directly. This method is only useful for advanced users with really concrete purposes.
 
 Special remark: if you specify a region this function only works with ::IND_Surface objects that only have ONE texture
 assigned (you can check this using::IND_Surface::getNumTextures() method). So, it will work only
 with images that are power of two and lower than the maximum texture size allowed by your card
-(you can check this parameter using ::DirectXRender::getMaxTextureSize()). The method will return 0
+(you can check this parameter using ::IND_Render::getMaxTextureSize()). The method will return 0
 otherwise.
 
 Using this method is equivalent to using all of these methods:
@@ -407,10 +407,10 @@ This method is useful when we want to render a tiled texture or background.
 Special remark: this function only works with ::IND_Surface objects that only have ONE texture
 assigned (you can check this using::IND_Surface::getNumTextures() method). So, it will work only
 with images that are power of two and lower than the maximum texture size allowed by your card
-(you can check this parameter using ::DirectXRender::getMaxTextureSize()). The method will return 0
+(you can check this parameter using ::IND_Render::getMaxTextureSize()). The method will return 0
 otherwise.
 
-In order to change the transformations and color attributes of the surface you have to use the DirectXRender::setTransform2d() and DirectXRender::setRainbow2d() methods before
+In order to change the transformations and color attributes of the surface you have to use the IND_Render::setTransform2d() and IND_Render::setRainbow2d() methods before
 calling to this function. Remember that you can use IND_Entity2d object for drawing surfaces to the screen without having to use this
 advanced methods directly. This method is only useful for advanced users with really concrete purposes.
 
@@ -434,8 +434,8 @@ bool IND_Render::blitWrapSurface(IND_Surface *pSu,
 /*@}*/
 
 /**
-@defgroup Graphical_Objects Bliting Surfaces, Animations and Fonts and setting the transformations directly
-@ingroup Advances
+@addtogroup Graphical_Objects 
+ @ingroup Advanced
 */
 /*@{*/
 
@@ -449,7 +449,7 @@ bool IND_Render::blitWrapSurface(IND_Surface *pSu,
 This function blits directly to the screen a ::IND_Surface object.
 
 In order to change the transformations
-and color attributes of the surface you have to use the DirectXRender::setTransform2d() and DirectXRender::setRainbow2d() methods before
+and color attributes of the surface you have to use the IND_Render::setTransform2d() and IND_Render::setRainbow2d() methods before
 calling this function. Remember that you can use IND_Entity2d object for drawing surfaces to the screen without having to use these
 advanced methods directly. This method is only useful for advanced users with really concrete purposes.
 
@@ -500,10 +500,10 @@ region will be rendered.
 Special remark: this function only works with ::IND_Surface objects that only have ONE texture
 assigned (you can check this using::IND_Surface::getNumTextures() method). So, it will work only
 with images that are power of two and lower than the maximum texture size allowed by your card
-(you can check this parameter using ::DirectXRender::getMaxTextureSize()). The method will return 0
+(you can check this parameter using ::IND_Render::getMaxTextureSize()). The method will return 0
 otherwise.
 
-In order to change the transformations and color attributes of the surface you have to use the DirectXRender::setTransform2d() and DirectXRender::setRainbow2d() methods before
+In order to change the transformations and color attributes of the surface you have to use the IND_Render::setTransform2d() and IND_Render::setRainbow2d() methods before
 calling to this function. Remember that you can use IND_Entity2d object for drawing surfaces to the screen without having to use this
 advanced methods directly. This method is only useful for advanced users with really concrete purposes.
 
@@ -541,9 +541,8 @@ inline bool IND_Render::setAntialiasing(bool pSwitch) {
 }
 
 /**
-@defgroup Primitives Bliting Primitives
-@ingroup Advances
-With these methods you can directly blit to the screen primitives using DirectXRender class. Remember that you can also use IND_Entity2d with primitives joined to this object, in order to
+@addtogroup Primitives 
+With these methods you can directly blit to the screen primitives using IND_Render class. Remember that you can also use IND_Entity2d with primitives joined to this object, in order to
 draw primitives.
 */
 /*@{*/
@@ -852,8 +851,8 @@ void IND_Render::setCamera2d(IND_Camera2d *pCamera2d) {
 
 
 /**
-@defgroup Graphical_Objects Bliting Surfaces, Animations, Fonts and setting transformations directly
-@ingroup Advances
+@addtogroup Graphical_Objects
+ @ingroup Advanced
 */
 /*@{*/
 
@@ -932,8 +931,8 @@ void IND_Render::setTransform2d(int pX,
 
 
 /**
-@defgroup Graphical_Objects Bliting Surfaces, Animations, Fonts and setting transformations directly
-@ingroup Advances
+@addtogroup Graphical_Objects
+ @ingroup Advanced
 */
 /*@{*/
 
@@ -974,8 +973,8 @@ void IND_Render::setTransform2d(IND_Matrix &pTransformMatrix) {
 }
 
 /**
-@defgroup Graphical_Objects Bliting Surfaces, Animations, Fonts and setting transformations directly
-@ingroup Advances
+@addtogroup Graphical_Objects
+ @ingroup Advanced
 */
 /*@{*/
 
@@ -1101,8 +1100,7 @@ void IND_Render::setRainbow2d(IND_Type pType,
 }
 
 /**
-@defgroup Graphical_3d_Objects Bliting 3d Animated 3d Models and setting the transformations directly
-@ingroup Advances
+@addtogroup Graphical_3d_Objects
 */
 /*@{*/
 
@@ -1116,7 +1114,7 @@ void IND_Render::setRainbow2d(IND_Type pType,
 This function blits directly to the screen a ::IND_3dMesh object.
 
 In order to change the transformations
-and color attributes of the 3d mesh you have to use the DirectXRender::setTransform3d() and DirectXRender::SetRainbow()
+and color attributes of the 3d mesh you have to use the IND_Render::setTransform3d() and IND_Render::SetRainbow()
 methods before calling to this function. Remember that you can use IND_Entity3d object for drawing 3d meshes to
 the screen without having to use this advanced methods directly. This method is only useful for advanced users
 with really concrete purposes.
@@ -1445,7 +1443,7 @@ IND_Window* IND_Render::createRender(IND_WindowProperties& windowProperties) {
 
 	// If the window is correctly initialized
 #ifdef INDIERENDER_DIRECTX
-	_wrappedRenderer = new DirectXRender();
+	_wrappedRenderer = new IND_Render();
 #endif
 
 #ifdef INDIERENDER_GLES_IOS

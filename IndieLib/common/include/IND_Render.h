@@ -411,7 +411,7 @@ public:
 	int  getMaxTextureSize();
 
 	//! This function returns the actual fps (frames per second) in a string of chars.
-	//! @param _String IN-OUT buffer capable to hold string representation of integer FPS value
+	//! @param[in,out] pBuffer buffer capable to hold string representation of integer FPS value
 	void getFpsString(char *pBuffer);
 
 	//! This function returns the actual fps (frames per second) in an int
@@ -433,11 +433,11 @@ public:
 	//@}
 
 	//! This function returns the number of renderered objects in one frame
-	//! @param _String IN-OUT buffer capable to hold string representation of integer. Recommended size is 15
+	//! @param[in,out] pBuffer buffer capable to hold string representation of integer. Recommended size is 15
 	void getNumrenderedObjectsString(char* pBuffer);
 
 	//! This function returns the number of discarded objects in one frame
-	//! @param _String IN-OUT buffer capable to hold string representation of integer. Recommended size is 15
+	//! @param[in,out] pBuffer buffer capable to hold string representation of integer. Recommended size is 15
 	void getNumDiscardedObjectsString(char* pBuffer);
 
 	//! This function returns the number of renderered objects in one frame (integer)

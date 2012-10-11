@@ -27,7 +27,7 @@ Suite 330, Boston, MA 02111-1307 USA
 */
 
 /**
- * @defgroup Classes
+ * @defgroup Classes Objects used in library
  *
  */
 
@@ -70,7 +70,7 @@ Suite 330, Boston, MA 02111-1307 USA
  */
 
 /**
- * @defgroup Managers Managers
+ * @defgroup Managers Object Managers
  * @ingroup Classes
  */
 
@@ -95,17 +95,17 @@ Suite 330, Boston, MA 02111-1307 USA
  */
 
 /**
- * @defgroup Advances Advances methods for bliting directly to the screen without using entities. It uses IND_Render methods (recommended only for advanced IndieLib users)
+ * @defgroup Advanced Advanced methods for bliting directly to the screen without using entities. It uses IND_Render methods (recommended only for advanced IndieLib users)
  */
 
 /**
  * @defgroup Primitives Bliting Primitives
- * @ingroup Advances
+ * @ingroup Advanced
  */
 
 /**
  * @defgroup Graphical_Objects Bliting Surfaces, Animations and Fonts and setting the transformations directly
- * @ingroup Advances
+ * @ingroup Advanced
 With these methods you can set the 2d transformations (using IND_Render::Set2dTransform) and color
 attributes (using IND_Render::SetRainbow()) and blit directly
 to the screen surfaces, animations, and fonts using IND_Render class.
@@ -118,7 +118,7 @@ users for really concrete purposes.
 
 /**
  * @defgroup Graphical_3d_Objects Bliting 3d Animated 3d Models and setting the transformations directly
- * @ingroup Advances
+ * @ingroup Advanced
 With these methods you can set the 3d transformations (using IND_Render::Set3dTransform) and color
 attributes (using IND_Render::SetRainbow()) and to blit directly
 to the screen 3d animated meshes using IND_Render class.
@@ -130,7 +130,7 @@ users for really concrete purposes.
 
 
 /**
- * @defgroup Types
+ * @defgroup Types Types used by library
  */
 
 
@@ -269,89 +269,72 @@ typedef unsigned char BYTE;    // HACK: Fixes some code regarding surfaces, BYTE
 // --------------------------------------------------------------------------------
 #define SDL_NO_COMPAT
 
-// --------------------------------------------------------------------------------
-//									Pixel and vertex formats
-// --------------------------------------------------------------------------------
 //Vector3d utility
 #include "IND_Vector3.h"
-
+/**
+ * @defgroup Pixel_Vertex Pixel and vertex formats
+ * @ingroup Types
+ */
+/*@{*/
 //DirectX
 #ifdef INDIERENDER_DIRECTX
-		// Pixel - When not rendering textures
 		struct structPixel {
-			// Position
-			float _x, _y, _z;
-
-			// Color
-			unsigned long _color;
+			float _x; ///< Point position x
+            float _y; ///< Point position y
+            float _z; ///< Point position z
+			unsigned long _color; ///< Point color, contains RGBA value
 		};
+///Pixel - When not rendering textures
 typedef struct structPixel PIXEL;
 #define D3DFVF_PIXEL (D3DFVF_XYZ | D3DFVF_DIFFUSE)
 #endif
 
 //OPENGL
 #ifdef INDIERENDER_OPENGL
-// Pixel - When not rendering textures
 struct structPixelPos {
-	// Position
-	float _x, _y, _z;
+	float _x; ///< Point position x
+    float _y; ///< Point position y
+    float _z; ///< Point position z
 	//Color
-	float _colorR, _colorG, _colorB, _colorA;
+	float _colorR; ///< Point color R
+    float _colorG; ///< Point color G
+    float _colorB; ///< Point color B
+    float _colorA; ///< Point color A
 };
-typedef struct structPixelPos PIXEL;
-#endif
-
-
-//iOS (GL ES)
-#ifdef INDIERENDER_GLES_IOS
-// Pixel - When not rendering textures
-struct structPixelPos {
-	// Position
-	float _x, _y, _z;
-	//Color
-	float _colorR, _colorG, _colorB, _colorA;
-};
+///Pixel - When not rendering textures
 typedef struct structPixelPos PIXEL;
 #endif
 
 //Win32 (DirectX used)
 #ifdef INDIERENDER_DIRECTX
-// Vertex format - When rendering with textures
 struct structVertex2d {
-	float _x, _y, _z;           // Position
-	float _u, _v;               // Mapping coordinates
+	float _x; ///< Point position x
+    float _y; ///< Point position y
+    float _z; ///< Point position z
+	float _u; ///< Texture mapping coordinate u
+    float _v; ///< Texture mapping coordinate v
 };
+///Vertex - When rendering with textures
 typedef struct structVertex2d CUSTOMVERTEX2D;
 
 #define D3DFVF_CUSTOMVERTEX2D (D3DFVF_XYZ | D3DFVF_TEX1)
 #endif
 
-//iOS (GL ES)
 #ifdef INDIERENDER_OPENGL
-// Vertex format - When rendering with textures
 struct structVertex2d {
-	float _x, _y, _z;           // Position
-	float _u, _v;               // Mapping coordinates
+	float _x; ///< Point position x
+    float _y; ///< Point position y
+    float _z; ///< Point position z
+	float _u; ///< Texture mapping coordinate u
+    float _v; ///< Texture mapping coordinate v
 };
+///Vertex - When rendering with textures
 typedef struct structVertex2d CUSTOMVERTEX2D;
 #endif
-
-//iOS (GL ES)
-#ifdef INDIERENDER_GLES_IOS
-// Vertex format - When rendering with textures
-struct structVertex2d {
-	float _x, _y, _z;           // Position
-	float _u, _v;               // Mapping coordinates
-};
-typedef struct structVertex2d CUSTOMVERTEX2D;
-#endif
-
-// --------------------------------------------------------------------------------
-//										Structures
-// --------------------------------------------------------------------------------
+/*@}*/
 
 /**
- * @defgroup Additional structures
+ * @defgroup Math_strucutures Mathematical data structures
  * @ingroup Types
  */
 /*@{*/
@@ -365,12 +348,20 @@ struct structMatrix {
 	float _13, _23, _33, _43;
 	float _14, _24, _34, _44;
 
+    /**
+     @brief Default constructor
+     */
 	structMatrix() {
 		_11 = _12 = _13 = _14 = _21 = _22 = _23 = _24 = _31 = _32 = _33 = _34 = _41 = _42 = _43 = _44 = 0;
 	}
-	//Initializes the structure with a 4x4 matrix in array format. 
-	//Elements are interpreted this way:
-	//Matrix 4x4\n (_11, _12, _13, _14,\n _21, _22, _23, _24,\n _31, _32, _33, _34\n _41, _42, _43, _44)
+	
+    /**
+     @brief Constructor to initialize struct with an array
+     
+     It's useful to get data from matrices in render side
+     
+     @param matrixArray An array containing as many elements as 16 (4x4) to read matrix from.
+     */
 	structMatrix(float* matrixArray){
 		if (!matrixArray) {
 			_11 = _12 = _13 = _14 = _21 = _22 = _23 = _24 = _31 = _32 = _33 = _34 = _41 = _42 = _43 = _44 = 0;
@@ -379,9 +370,13 @@ struct structMatrix {
 		readFromArray(matrixArray);
 	}
 
-	//Writes to passed matrixArray the values inside the IND_Matrix structure
-	//Elements are interpreted this way:
-	//Matrix 4x4\n (_11, _12, _13, _14,\n _21, _22, _23, _24,\n _31, _32, _33, _34\n _41, _42, _43, _44)
+    /**
+     @brief Writes to passed matrixArray the values inside the IND_Matrix structure
+     Elements are interpreted this way:
+     Matrix 4x4\n (_11, _12, _13, _14,\n _21, _22, _23, _24,\n _31, _32, _33, _34\n _41, _42, _43, _44)
+     
+     @param matrixArray An array which will be written with the representation of this matrix.
+     */
 	void arrayRepresentation(float* matrixArray) {
 		if (!matrixArray) {
 			return;
@@ -404,6 +399,12 @@ struct structMatrix {
 		matrixArray[15] = _44;
 	}
 
+    /**
+     @brief Operator override which does the right thing, that is matrix sum
+     
+     @param rhs Other matrix
+     @return Sum matrix
+     */
 	structMatrix & operator=(const structMatrix &rhs) {
 		if (this != &rhs)  {
 			_11 = rhs._11;
@@ -426,9 +427,14 @@ struct structMatrix {
 		return *this;
 	}
     
-	//Writes to passed matrixArray the values inside the IND_Matrix structure
-	//Elements are interpreted this way:
-	//Matrix 4x4\n (_11, _12, _13, _14,\n _21, _22, _23, _24,\n _31, _32, _33, _34\n _41, _42, _43, _44)
+    /**
+     @briefWrites to passed matrixArray the values inside the IND_Matrix structure
+     
+     Elements are interpreted this way:
+     Matrix 4x4\n (_11, _12, _13, _14,\n _21, _22, _23, _24,\n _31, _32, _33, _34\n _41, _42, _43, _44)
+     
+     @param matrixArray An array containing as many elements as 16 (4x4) to read matrix from.
+     */
 	void readFromArray(float* matrixArray) {
 		_11 = matrixArray[0];
 		_21 = matrixArray[1];
@@ -448,7 +454,7 @@ struct structMatrix {
 		_44 = matrixArray[15];
 	}
 
-    //Logs itself to console
+    ///Logs itself to console.
     void description () const {
         std::cout << "\nMATRIX :\n";
         std::cout << _11 << " ";
@@ -473,7 +479,15 @@ struct structMatrix {
         std::cout << std::endl;
     }
 };
-//! Matrix 4x4\n (_11, _21, _31, _41,\n _12, _22, _32, _42,\n _13, _23, _33, _43\n _14, _24, _34, _44)
+    
+    /**
+     @brief Matrix representation used by all Indielib entities.
+     
+     It abstracts coordinate system handedness and how the matrices are stored in memory in the underlying renderer.
+     
+     For example, Matrix in openGL is stored in array using colum-major order
+     A Matrix 4x4\n (_11, _21, _31, _41,\n _12, _22, _32, _42,\n _13, _23, _33, _43\n _14, _24, _34, _44)
+     */
 typedef struct structMatrix IND_Matrix;
 
 

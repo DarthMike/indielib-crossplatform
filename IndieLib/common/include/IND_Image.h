@@ -4,8 +4,8 @@
  *****************************************************************************************/
 
 /*
-IndieLib 2d library Copyright (C) 2005 Javier López López (info@pixelartgames.com)
-MODIFIED BY Miguel Angel Quiñones (2011) (mail:m.quinones.garcia@gmail.com / mikeskywalker007@gmail.com)
+IndieLib 2d library Copyright (C) 2005 Javier Lï¿½pez Lï¿½pez (info@pixelartgames.com)
+MODIFIED BY Miguel Angel Quiï¿½ones (2011) (mail:m.quinones.garcia@gmail.com / mikeskywalker007@gmail.com)
 
 This library is free software; you can redistribute it and/or modify it under the
 terms of the GNU Lesser General Public License as published by the Free Software
@@ -176,13 +176,13 @@ private:
 	void setFormatInt(int pFormat)   {
 		_image._format = pFormat;
 	}
-	void setExtension(char *pExt)    {
+	void setExtension(const char *pExt)    {
 		strcpy(_image._ext,pExt);
 	}
 	void setPointer(BYTE *pPtr)    {
 		_image._pointer = pPtr;
 	}
-	void setName(char *pName)   {
+	void setName(const char *pName)   {
 		strcpy(_image._name, pName);
 	}
 		

@@ -100,7 +100,7 @@ public:
 	// ----- Not specifying block size -----
 
 	bool    add(IND_Surface    *pNewSurface,
-	            char            *pName,
+	            const char    *pName,
 	            IND_Type        pType,
 	            IND_Quality     pQuality);
 
@@ -110,7 +110,7 @@ public:
 	             IND_Quality     pQuality);
 
 	bool     add(IND_Surface    *pNewSurface,
-	             char            *pName,
+	             const char    *pName,
 	             IND_Type        pType,
 	             IND_Quality     pQuality,
 	             BYTE pR,
@@ -123,7 +123,7 @@ public:
 
 
 	bool add(IND_Surface    *pNewSurface,
-	         char            *pName,
+	         const char    *pName,
 	         int             pBlockSize,
 	         IND_Type        pType,
 	         IND_Quality     pQuality);
@@ -135,7 +135,7 @@ public:
 	         IND_Quality     pQuality);
 
 	bool add(IND_Surface    *pNewSurface,
-	         char            *pName,
+	         const char    *pName,
 	         int             pBlockSize,
 	         IND_Type        pType,
 	         IND_Quality     pQuality,

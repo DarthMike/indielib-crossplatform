@@ -91,7 +91,7 @@ void IND_ImageManager::end() {
  * @param pNewImage					Pointer no a new image object.
  * @param pName						Image name.
  */
-bool IND_ImageManager::add(IND_Image *pNewImage, char *pName) {
+bool IND_ImageManager::add(IND_Image *pNewImage, const char *pName) {
 	// TODO: clean up documentation, maybe create and refer to a method in FreeimageHelper that returns
 	//       a stringarray of all Indielib supported types..
 
@@ -175,7 +175,7 @@ bool IND_ImageManager::add(IND_Image *pNewImage, char *pName) {
  * Otherwise null is returned.
  * @param pName						Pointer to name of the image file to load.
  */
-FIBITMAP* IND_ImageManager::load(char *pName) {
+FIBITMAP* IND_ImageManager::load(const char *pName) {
 		g_debug->header("Loading Image", 5);
 	
 	if(!pName) {
@@ -439,7 +439,7 @@ bool IND_ImageManager::clone(IND_Image *pNewImage, IND_Image *pOldImage) {
  * bmp, png, tga, jpg and pcx.
  * @param pName						Image name.
  */
-bool IND_ImageManager::save(IND_Image *pIm, char *pName) {
+bool IND_ImageManager::save(IND_Image *pIm, const char *pName) {
 	g_debug->header("Saving image", 5);
 
 	if (!_ok || !pIm || !pIm->isImageLoaded()) {
@@ -487,7 +487,7 @@ Obtain file extension
 Return "" if the file hasn't got an extension
 ==================
 */
-void IND_ImageManager::getExtensionFromName(char *pName, char* pExtImage) {
+void IND_ImageManager::getExtensionFromName(const char *pName, char* pExtImage) {
 	int length = static_cast<int>(strlen(pName));
     int i;
 	// The search starts at the end of the name

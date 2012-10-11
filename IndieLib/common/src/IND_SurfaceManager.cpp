@@ -142,7 +142,7 @@ Graphic formats supported (Thanks to http://openil.sourceforge.net):
 bmp, png, tga, jpg and pcx.
 */
 bool IND_SurfaceManager::add(IND_Surface    *pNewSurface,
-                             char            *pName,
+                             const char    *pName,
                              IND_Type        pType,
                              IND_Quality     pQuality) {
 	// Loads the image
@@ -208,7 +208,7 @@ Graphic formats supported (Thanks to http://openil.sourceforge.net):
 bmp, png, tga, jpg and pcx.
 */
 bool IND_SurfaceManager::add(IND_Surface    *pNewSurface,
-                             char            *pName,
+                             const char    *pName,
                              IND_Type        pType,
                              IND_Quality     pQuality,
                              BYTE            pR,
@@ -250,11 +250,11 @@ This function returns 1 (true) if the parameter surface object exists and it is 
 to the manager loading the image directly from a file. This method is useful for creating scrolls because we
 can specify the width of the block. Blocks outside the viewport will be automatically discarded.
 
-Graphic formats supported (Thanks to http://openil.sourceforge.net):
+Graphic formats supported:
 bmp, png, tga, jpg and pcx.
 */
 bool IND_SurfaceManager::add(IND_Surface    *pNewSurface,
-                             char            *pName,
+                             const char    *pName,
                              int             pBlockSize,
                              IND_Type        pType,
                              IND_Quality     pQuality) {
@@ -318,7 +318,7 @@ Graphic formats supported (Thanks to http://openil.sourceforge.net):
 bmp, png, tga, jpg and pcx.
 */
 bool IND_SurfaceManager::add(IND_Surface    *pNewSurface,
-                             char            *pName,
+                             const char    *pName,
                              int             pBlockSize,
                              IND_Type        pType,
                              IND_Quality     pQuality,

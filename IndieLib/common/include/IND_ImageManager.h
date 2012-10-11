@@ -81,12 +81,12 @@ public:
 
 	// ----- Public methods -----
 
-	bool add(IND_Image *pNewImage, char *pName);
+	bool add(IND_Image *pNewImage, const char *pName);
 	bool add(IND_Image *pNewImage, int pWidth, int pHeight, IND_ColorFormat pColorFormat);
 	bool remove(IND_Image *pIm);
-	bool save(IND_Image *pIm, char *pName);
+	bool save(IND_Image *pIm, const char *pName);
 	bool clone(IND_Image *pNewImage, IND_Image *pOldImage);
-	FIBITMAP* load(char *pName);
+	FIBITMAP* load(const char *pName);
 	bool add(IND_Image *pNewImage, FIBITMAP *pImageToBeCopied);
 
 
@@ -103,7 +103,7 @@ private:
 
 	// ----- Private Methods -----
 
-	void getExtensionFromName(char *pName,char* pExtImage);
+	void getExtensionFromName(const char *pName, char* pExtImage);
 	bool checkExtImage(char *pExtImage);
 
 	void addToList(IND_Image *pNewImage);

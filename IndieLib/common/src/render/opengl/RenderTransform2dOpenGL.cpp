@@ -31,6 +31,8 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "IND_Camera2d.h"
 #include "IND_Window.h"
 
+/** @cond DOCUMENT_INTERNALRENDERCODE */
+
 // --------------------------------------------------------------------------------
 //							         Public methods
 // --------------------------------------------------------------------------------
@@ -437,5 +439,6 @@ void OpenGLRender::setRainbow2d(IND_Type pType,
 
 }
 
+/** @endcond */
 
 #endif //INDIERENDER_OPENGL

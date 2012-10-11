@@ -33,6 +33,7 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "IND_Animation.h"
 #include "TextureDefinitions.h"
 
+/** @cond DOCUMENT_INTERNALRENDERCODE */
 
 // --------------------------------------------------------------------------------
 //							         Public methods
@@ -304,6 +305,7 @@ void OpenGLRender::fillVertex2d(CUSTOMVERTEX2D *pVertex2d,
 	pVertex2d->_u       = pU;
 	pVertex2d->_v       = pV;
 }
+/** @endcond */
 #endif //INDIERENDER_OPENGL
 
 

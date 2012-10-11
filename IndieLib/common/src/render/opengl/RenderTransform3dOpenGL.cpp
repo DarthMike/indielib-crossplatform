@@ -30,6 +30,7 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "OpenGLRender.h"
 #include "IND_Camera3d.h"
 
+/** @cond DOCUMENT_INTERNALRENDERCODE */
 
 // --------------------------------------------------------------------------------
 //							         Public methods
@@ -83,5 +84,7 @@ void OpenGLRender::setRainbow3d(bool pCull,
                                 IND_BlendingType pDs) {
 	//TODO
 }
+
+/** @endcond */
 
 #endif //INDIERENDER_OPENGL

@@ -69,6 +69,8 @@ class OSOpenGLManager;
 // ----- Defines ------
 #define MAX_PIXELS 2048
 
+/** @cond DOCUMENT_INTERNALRENDERCODE */
+
 // --------------------------------------------------------------------------------
 //									  OpenGLRender
 // --------------------------------------------------------------------------------
@@ -497,5 +499,5 @@ private:
 	friend class OpenGLTextureBuilder;
 	friend class IND_Render;
 };
-
+/** @endcond */
 #endif // _OPENGLRENDER_H_

@@ -270,8 +270,8 @@ bool IND_AnimationManager::addToSurface(IND_Animation *pNewAnimation,
  * to be drawn to the screen directly, but you will be able to modify the IND_Image objects
  * (for applying a filter, for example) accessing them trough the ::getImage() function.
  * 
- * Once they have been modified, they can be converted to ::IND_Surfaces and applied to the animation
- * using ::setSurface() and then the animation will be able to be drawn correctly
+ * Once they have been modified, they can be converted to ::IND_Surface and applied to the animation
+ * using ::IND_Animation::setSurface(int pFrame, IND_Surface *pNewSurface)  and then the animation will be able to be drawn correctly
  *
  * @param pNewAnimation				Pointer to a new animation object.
  * @param pAnimation				Name of the animation XML script.

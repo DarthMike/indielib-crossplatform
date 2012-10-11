@@ -30,6 +30,7 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "IND_SurfaceManager.h"
 #include "OpenGLRender.h"
 
+/** @cond DOCUMENT_INTERNALRENDERCODE */
 
 // --------------------------------------------------------------------------------
 //							         Public methods
@@ -537,5 +538,7 @@ void OpenGLRender::blitCollisionLine(int pPosX1, int pPosY1, int pPosX2, int pPo
 	//Blit the line 
 	BlitGridLine (pPosX1, pPosY1, pPosX2, pPosY2,  pR, pG, pB, pA);
 }
+
+/** @endcond */
 
 #endif //INDIERENDER_OPENGL

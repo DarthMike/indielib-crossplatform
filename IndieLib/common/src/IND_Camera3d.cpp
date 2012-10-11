@@ -158,7 +158,7 @@ float IND_Camera3d::getRightZ()  {
  * Sets the position of the camera.
  * @param pX				X Position of the camera.
  * @param pY				Y Position of the camera.
- * @param PZ				Z Position of the camera.	
+ * @param pZ				Z Position of the camera.	
  */
 void IND_Camera3d::setPosition(float pX, float pY, float pZ) {
 	_pos._x = pX;

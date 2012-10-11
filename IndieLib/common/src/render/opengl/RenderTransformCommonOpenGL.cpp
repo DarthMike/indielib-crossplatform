@@ -29,6 +29,9 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "Defines.h"
 #include "OpenGLRender.h"
 #include <iostream>
+
+/** @cond DOCUMENT_INTERNALRENDERCODE */
+
 // --------------------------------------------------------------------------------
 //							         Public methods
 // --------------------------------------------------------------------------------
@@ -96,5 +99,7 @@ void OpenGLRender::perspectiveOrtho(float pWidth, float pHeight, float pNearClip
 	//}
 	glMatrixMode(GL_MODELVIEW);
 }
+
+/** @endcond */
 
 #endif //INDIERENDER_OPENGL

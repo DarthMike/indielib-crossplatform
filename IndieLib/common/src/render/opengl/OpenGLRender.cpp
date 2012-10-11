@@ -46,6 +46,7 @@ Suite 330, Boston, MA 02111-1307 USA
 //Constants
 #define MINIMUM_OPENGL_VERSION_STRING "GL_VERSION_1_5"  //The minimum GL version supported by this renderer  
 
+/** @cond DOCUMENT_INTERNALRENDERCODE */
 // --------------------------------------------------------------------------------
 //							  Initialization / Destruction
 // --------------------------------------------------------------------------------
@@ -388,5 +389,5 @@ bool OpenGLRender::resetViewport(int pWitdh, int pHeight) {
 
 	return true;
 }
-
+/** @endcond */
 #endif //INDIERENDER_OPENGL

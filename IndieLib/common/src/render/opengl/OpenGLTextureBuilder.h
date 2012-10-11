@@ -29,6 +29,8 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "OpenGLRender.h"
 #include "IND_Render.h"
 
+/** @cond DOCUMENT_INTERNALRENDERCODE */
+
 class IND_Image;
 class IND_Surface;
 class ImageCutter;
@@ -74,5 +76,6 @@ private:
 
 };
 
+/** @endcond */
 
 #endif  //_OPENGLTEXTUREBUILDER_H_

@@ -31,6 +31,8 @@ Suite 330, Boston, MA 02111-1307 USA
 #define MAX(a, b)  (((a) > (b)) ? (a) : (b))
 #define MIN(a, b)  (((a) < (b)) ? (a) : (b))
 
+/** @cond DOCUMENT_INTERNALRENDERCODE */
+
 // --------------------------------------------------------------------------------
 //							         Private methods
 // --------------------------------------------------------------------------------
@@ -186,5 +188,5 @@ void OpenGLRender::MinAndMax4(int p1,
 	*pMin = MIN(*pMin, p4);
 }
 
-
+/** @endcond */
 #endif //INDIERENDER_OPENGL

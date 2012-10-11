@@ -31,6 +31,8 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "IND_Font.h"
 #include "IND_Surface.h"
 
+/** @cond DOCUMENT_INTERNALRENDERCODE */
+
 // --------------------------------------------------------------------------------
 //							         Public methods
 // --------------------------------------------------------------------------------
@@ -202,5 +204,5 @@ int OpenGLRender::getLongInPixels(IND_Font *pFo, char *pText, int pPos, int pOff
 
 	return mWidthSentence;
 }
-
+/** @endcond */
 #endif //INDIERENDER_OPENGL

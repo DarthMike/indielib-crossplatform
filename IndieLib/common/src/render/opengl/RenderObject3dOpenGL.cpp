@@ -29,6 +29,7 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "IND_SurfaceManager.h"
 #include "OpenGLRender.h"
 
+/** @cond DOCUMENT_INTERNALRENDERCODE */
 
 // --------------------------------------------------------------------------------
 //							         Public methods
@@ -48,6 +49,6 @@ void OpenGLRender::set3dMeshSequence(IND_3dMesh *, unsigned int ) {
 //							         Private methods
 // --------------------------------------------------------------------------------
 
-
+/** @endcond */
 
 #endif //INDIERENDER_OPENGL

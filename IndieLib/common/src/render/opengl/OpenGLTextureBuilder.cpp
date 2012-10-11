@@ -32,6 +32,7 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "TextureDefinitions.h"
 #include "IND_Image.h"
 #include "ImageCutter.h"
+/** @cond DOCUMENT_INTERNALRENDERCODE */
 
 OpenGLTextureBuilder::OpenGLTextureBuilder(IND_ImageManager *imagemgr, IND_Render *render):
 	_render(render) {
@@ -443,5 +444,5 @@ void OpenGLTextureBuilder::push4Vertices(CUSTOMVERTEX2D *pVertices,
 	           0.0f,
 	           0.0f);
 }
-
+/** @endcond */
 #endif //INDIERENDER_OPENGL

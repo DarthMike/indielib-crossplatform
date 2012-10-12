@@ -57,8 +57,8 @@ void IND_Window::end() {
  * Changes the title of the actual window.
  * @param pTitle					Title of the window.
  */
-void IND_Window::setTitle(char *pTitle) {
-	_attributes._title = pTitle;
+void IND_Window::setTitle(const char *pTitle) {
+	strcpy(_attributes._title, pTitle);
 	SDL_SetWindowTitle(getSDLWindow(), pTitle);
 }
 
@@ -92,13 +92,15 @@ bool IND_Window::create(IND_WindowProperties& props) {
 		g_debug->header("Error creating window: Invalid parameters provided", 2);
 		return 0;
 	}
+	
+	char stringTemp[128];
 
 	_attributes._width      = props._width;
 	_attributes._height     = props._height;
 	_attributes._bits       = props._bpp;
 	_attributes._vsync      = props._vsync;
 	_attributes._fullscreen = props._fullscreen;
-	_attributes._title      = props._title;
+	_attributes._title      = strcpy(stringTemp, props._title);
 	
 	Uint32 windowFlags = SDL_WINDOW_SHOWN;
 	if (_attributes._fullscreen) {

@@ -45,14 +45,14 @@ This structure defines definition parameters when creating a window or modyfing 
 */
 typedef struct IND_WindowProperties {
 
-	IND_WindowProperties(char* title, int width, int height, int bpp, bool vsync, bool fs) : 
+	IND_WindowProperties(const char* title, int width, int height, int bpp, bool vsync, bool fs) : 
                          _title(title),
 						 _width(width),
 						 _height(height),
 						 _bpp(bpp),
 						 _vsync(vsync),
 						 _fullscreen(fs) {}
-	char *_title;
+	const char *_title;
 	int _width; 
 	int _height;
 	int _bpp;
@@ -82,7 +82,7 @@ public:
 		return _ok;
 	}
 
-	// ----- Atributos -----
+	// ----- Atributes -----
 
 	//! This function returns the title of the window.
 	char  *getTitle()          {
@@ -123,7 +123,7 @@ public:
 	@brief Sets the title shown only for non-fullscreen windows
 	@param pTitle The string to represent title
 	*/
-	void setTitle(char *pTitle);
+	void setTitle(const char *pTitle);
 	void cursor(bool pEnable);
 
 private:

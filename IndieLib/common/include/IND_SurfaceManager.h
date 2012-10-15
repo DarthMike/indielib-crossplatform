@@ -45,7 +45,7 @@ class IND_Image;
 @ingroup Managers
 Manager of IND_Surface objects. Click in ::IND_SurfaceManager to see all the methods of this class.
 */
-/*@{*/
+/**@{*/
 
 /**
 This class stores 2d surfaces (IND_Surface) that can be inserted into a IND_Entity2d and rendered to
@@ -185,6 +185,6 @@ private:
 	void                initVars();
 	void                freeVars();
 };
-/*@}*/
+/**@}*/
 
 #endif // _IND_SURFACEMANAGER_

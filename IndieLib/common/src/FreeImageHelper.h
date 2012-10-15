@@ -21,6 +21,8 @@
 // ----- Includes -----
 #include "Defines.h"
 
+/** @cond DOCUMENT_PRIVATEAPI */
+
 class FreeImageHelper {
 public:
 	//----- CONSTRUCTORS/DESTRUCTORS -----
@@ -46,6 +48,8 @@ private:
 
 	//----- INTERNAL FUNCTIONS -----
 };
+
+/** @endcond */
 
 #endif
 

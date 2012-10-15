@@ -14,6 +14,7 @@
 //									CollisionParser
 // --------------------------------------------------------------------------------
 
+/** @cond DOCUMENT_PRIVATEAPI */
 class CollisionParser {
 public:
 
@@ -37,5 +38,6 @@ private:
 	static CollisionParser *_pinstance;
 };
 
+/** @endcond */
 
 #endif // _COLLISIONPARSER_

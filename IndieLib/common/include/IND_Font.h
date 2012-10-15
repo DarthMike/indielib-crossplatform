@@ -35,7 +35,7 @@ Suite 330, Boston, MA 02111-1307 USA
 @ingroup Objects
 Font class managed by IND_FontManager for drawing texts into the screen, click in IND_Font to see all the methods of this class.
 */
-/*@{*/
+/**@{*/
 
 /**
 @b IND_Font is a bitmap font object from the class ::IND_FontManager. Read the explanation in ::IND_FontManager for having more details.
@@ -128,6 +128,6 @@ private:
 	friend class DirectXRender;
 	friend class OpenGLRender;
 };
-/*@}*/
+/**@}*/
 
 #endif // _IND_FONT_

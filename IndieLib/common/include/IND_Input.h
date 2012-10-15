@@ -33,6 +33,7 @@ class IND_Render;
 //									      CKey
 // --------------------------------------------------------------------------------
 
+/** @cond DOCUMENT_PRIVATEAPI */
 // This class stores information about a keyboard key
 class CKey {
 public:
@@ -103,7 +104,7 @@ public:
 
 	// ----- Methods -----
 
-	// Sets the button state
+	//Sets the button state.
 	void setState(IND_MouseButtonState pButtonState) {
 		// If the button was pressed and is not being pressed anymore we set the flag "released"
 		if (_buttonState == IND_MBUTTON_PRESSED && pButtonState == IND_MBUTTON_NOT_PRESSED)
@@ -128,6 +129,8 @@ public:
 	IND_MouseButtonState _buttonState;
 	IND_Timer _timer;
 };
+
+
 
 
 // Class that stores information about the mouse
@@ -155,6 +158,8 @@ public:
 	CMouseButton _mouseButtons [3];
 };
 
+/** @endcond */
+
 
 // --------------------------------------------------------------------------------
 //									 IND_Input
@@ -165,7 +170,7 @@ public:
 @ingroup Input
 IND_Input class for having input from keyboard and mouse. Click in IND_Input to see all the methods of this class.
 */
-/*@{*/
+/**@{*/
 
 /**
 @b IND_Input is a wrapper class of SDL input functions for giving IndieLib the possibility of
@@ -243,6 +248,6 @@ private:
 	void                initVars();
 	void                freeVars();
 };
-/*@}*/
+/**@}*/
 
 #endif // _IND_INPUT_

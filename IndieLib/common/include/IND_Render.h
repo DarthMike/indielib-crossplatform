@@ -73,7 +73,7 @@ class IND_Camera3d;
 @ingroup Main
 Render class for setting up the render area, click in ::IND_Render to see all the methods of this class.
 */
-/*@{*/
+/**@{*/
 
 /**
 The methods of this class are used for preparing the render area, viewport, etc.
@@ -494,6 +494,6 @@ private:
 	friend class IND_Input;
 	friend class DirectXTextureBuilder;
 };
-/*@}*/
+/**@}*/
 
 #endif // _IND_RENDER_H_

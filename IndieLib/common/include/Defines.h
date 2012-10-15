@@ -275,7 +275,7 @@ typedef unsigned char BYTE;    // HACK: Fixes some code regarding surfaces, BYTE
  * @defgroup Pixel_Vertex Pixel and vertex formats
  * @ingroup Types
  */
-/*@{*/
+/**@{*/
 //DirectX
 #ifdef INDIERENDER_DIRECTX
 		struct structPixel {
@@ -331,13 +331,13 @@ struct structVertex2d {
 ///Vertex - When rendering with textures
 typedef struct structVertex2d CUSTOMVERTEX2D;
 #endif
-/*@}*/
+/**@}*/
 
 /**
  * @defgroup Math_strucutures Mathematical data structures
  * @ingroup Types
  */
-/*@{*/
+/**@{*/
 
 struct structMatrix {
 	//Matrix (OpenGL COLUM-MAJOR ORDER!) (Note indices are the same, just store order in memory is different)
@@ -428,7 +428,7 @@ struct structMatrix {
 	}
     
     /**
-     @briefWrites to passed matrixArray the values inside the IND_Matrix structure
+     @brief Writes to passed matrixArray the values inside the IND_Matrix structure
      
      Elements are interpreted this way:
      Matrix 4x4\n (_11, _12, _13, _14,\n _21, _22, _23, _24,\n _31, _32, _33, _34\n _41, _42, _43, _44)
@@ -498,7 +498,7 @@ struct structPoint {
 //! 2d Point 2d\n (x, y)
 typedef struct structPoint IND_Point;
 
-/*@}*/
+/**@}*/
 
 // --------------------------------------------------------------------------------
 //									Free memory operations
@@ -516,7 +516,7 @@ typedef struct structPoint IND_Point;
  * @defgroup IND_ColorFormat
  * @ingroup Types
  */
-/*@{*/
+/**@{*/
 
 //! Color formats
 
@@ -559,7 +559,7 @@ typedef int IND_ColorFormat;
 #define IND_LUMINANCE                       6
 
 //#define IND_LUMINANCE_ALPHA                   0x190A
-/*@}*/
+/**@}*/
 
 
 // --------------------------------------------------------------------------------
@@ -570,7 +570,7 @@ typedef int IND_ColorFormat;
  * @defgroup IND_Quality
  * @ingroup Types
  */
-/*@{*/
+/**@{*/
 
 //! Colour quality
 
@@ -591,7 +591,7 @@ typedef int IND_Quality;
 #define IND_16                              16
 //! It uses a 32 bits of real colour. This is the maximum colour quality that can be get with this library and consistently the one that wastes more memory.
 #define IND_32                              32
-/*@}*/
+/**@}*/
 
 
 // --------------------------------------------------------------------------------
@@ -602,7 +602,7 @@ typedef int IND_Quality;
  * @defgroup IND_LightType
  * @ingroup Types
  */
-/*@{*/
+/**@{*/
 
 //! Light types
 
@@ -676,7 +676,7 @@ Methods you can use for changing the attributes of these type of lights:
 - IND_Light::SetTheta()
 */
 #define IND_SPOT_LIGHT                              103
-/*@}*/
+/**@}*/
 
 
 
@@ -688,7 +688,7 @@ Methods you can use for changing the attributes of these type of lights:
  * @defgroup IND_Type
  * @ingroup Types
  */
-/*@{*/
+/**@{*/
 
 //! Surface types
 
@@ -716,7 +716,7 @@ typedef int IND_Type;
 #define IND_OPAQUE                          200
 //! It allows per pixel transparency, but consumes more memory that IND_OPAQUE.
 #define IND_ALPHA                           202
-/*@}*/
+/**@}*/
 
 
 // --------------------------------------------------------------------------------
@@ -727,7 +727,7 @@ typedef int IND_Type;
  * @defgroup IND_Align
  * @ingroup Types
  */
-/*@{*/
+/**@{*/
 
 //! Text alignment
 
@@ -742,7 +742,7 @@ typedef int IND_Align;
 #define IND_RIGHT                           301
 //! Left alignment.
 #define IND_LEFT                            302
-/*@}*/
+/**@}*/
 
 
 // --------------------------------------------------------------------------------
@@ -753,7 +753,7 @@ typedef int IND_Align;
  * @defgroup IND_Primitive2d
  * @ingroup Types
  */
-/*@{*/
+/**@{*/
 
 //! Type of primitives
 
@@ -774,7 +774,7 @@ typedef int IND_Primitive2d;
 #define IND_REGULAR_POLY                    404
 //! Filled rectangle.
 #define IND_FILL_RECTANGLE                  405
-/*@}*/
+/**@}*/
 
 
 // --------------------------------------------------------------------------------
@@ -785,7 +785,7 @@ typedef int IND_Primitive2d;
  * @defgroup IND_BlendingType
  * @ingroup Types
  */
-/*@{*/
+/**@{*/
 
 //! Blending type
 
@@ -833,7 +833,7 @@ typedef int IND_BlendingType;
 #define IND_BLENDFACTOR                     513
 //! Blend opposite colour.
 #define IND_INVBLENDFACTOR                  514
-/*@}*/
+/**@}*/
 
 
 // --------------------------------------------------------------------------------
@@ -844,7 +844,7 @@ typedef int IND_BlendingType;
  * @defgroup IND_Filter
  * @ingroup Types
  */
-/*@{*/
+/**@{*/
 
 //! Texture filters
 
@@ -866,7 +866,7 @@ typedef int IND_Filter;
 #define IND_FILTER_POINT                    1
 //! Bilinear interpolation filter. This is quite fast, and has better quality than IND_FILTER_POINT.
 #define IND_FILTER_LINEAR                   2
-/*@}*/
+/**@}*/
 
 #ifndef PLATFORM_IOS   //KEYS FOR DESKTOP OS
 // --------------------------------------------------------------------------------
@@ -877,7 +877,7 @@ typedef int IND_Filter;
  * @defgroup IND_Key
  * @ingroup Types
  */
-/*@{*/
+/**@{*/
 
 //! Keys
 
@@ -1164,7 +1164,7 @@ enum {
 	//! Currency unit in keyboard
 	IND_CURRENCYUNIT
 };
-/*@}*/
+/**@}*/
 
 
 // --------------------------------------------------------------------------------
@@ -1175,7 +1175,7 @@ enum {
  * @defgroup IND_KeyState
  * @ingroup Types
  */
-/*@{*/
+/**@{*/
 
 //! Key state
 
@@ -1188,7 +1188,7 @@ typedef int IND_KeyState;
 #define IND_KEY_PRESSED 1
 //! Not pressed key
 #define IND_KEY_NOT_PRESSED 0
-/*@}*/
+/**@}*/
 
 
 // --------------------------------------------------------------------------------
@@ -1199,7 +1199,7 @@ typedef int IND_KeyState;
  * @defgroup IND_MouseButton
  * @ingroup Types
  */
-/*@{*/
+/**@{*/
 
 //! Mouse Buttons
 
@@ -1214,7 +1214,7 @@ typedef int IND_MouseButton;
 #define IND_MBUTTON_RIGHT 1
 //! Middle mouse button
 #define IND_MBUTTON_MIDDLE 2
-/*@}*/
+/**@}*/
 
 
 // --------------------------------------------------------------------------------
@@ -1225,7 +1225,7 @@ typedef int IND_MouseButton;
  * @defgroup IND_MouseButtonState
  * @ingroup Types
  */
-/*@{*/
+/**@{*/
 
 //! Mouse button states
 
@@ -1238,7 +1238,7 @@ typedef int IND_MouseButtonState;
 #define IND_MBUTTON_PRESSED 1
 //! Button not pressed
 #define IND_MBUTTON_NOT_PRESSED 0
-/*@}*/
+/**@}*/
 
 #endif  //KEYS FOR DESKTOP OS
 // --------------------------------------------------------------------------------
@@ -1249,7 +1249,7 @@ typedef int IND_MouseButtonState;
  * @defgroup IND_Debug
  * @ingroup Types
  */
-/*@{*/
+/**@{*/
 
 //! g_debug
 
@@ -1270,7 +1270,7 @@ typedef int IND_InitializationMode;
 #define IND_DEBUG_MODE                      1
 //! Iniatializes the engine in release mode.
 #define IND_RELEASE_MODE                    0
-/*@}*/
+/**@}*/
 
 
 // --------------------------------------------------------------------------------

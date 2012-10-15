@@ -33,7 +33,7 @@ class IND_TmxMap;
 \ingroup Managers
 Manager of IND_Image objects. Click in ::IND_ImageManager to see all the methods of this class.
 */
-/*@{*/
+/**@{*/
 
 /*!
 This manager that stores IND_Image objects works as a mediator between the image (bitmap) loaded
@@ -99,6 +99,6 @@ private:
 	void initVars();
 	void freeVars();
 };
-/*@}*/
+/**@}*/
 
 #endif // _IND_TMXMAPMANAGER_

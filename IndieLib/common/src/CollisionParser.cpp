@@ -29,17 +29,6 @@ CollisionParser *CollisionParser::instance() {
 //								 Public methods
 // --------------------------------------------------------------------------------
 
-/**
-* Bounding triangle.
-* @param pBList		TODO describtion
-* @param pId		TODO describtion
-* @param pAx		TODO describtion
-* @param pAy		TODO describtion
-* @param pBx		TODO describtion
-* @param pBy		TODO describtion
-* @param pCx		TODO describtion
-* @param pCy		TODO describtion
-*/
 void CollisionParser::setBoundingTriangle(list <BOUNDING_COLLISION *> *pBList, char *pId, int pAx, int pAy, int pBx, int pBy, int pCx, int pCy) {
 	BOUNDING_COLLISION *_b = new BOUNDING_COLLISION;
 
@@ -55,15 +44,6 @@ void CollisionParser::setBoundingTriangle(list <BOUNDING_COLLISION *> *pBList, c
 	pBList->push_back(_b);
 }
 
-
-/**
-* Bounding circle.
-* @param pBList		TODO describtion
-* @param pId		TODO describtion
-* @param pOffsetX	the x position of the center of the circle	
-* @param pOffsetY	the y position of the center of the circle
-* @param pRadius	the radius of the circle
-*/
 void CollisionParser::setBoundingCircle(list <BOUNDING_COLLISION *> *pBList, char *pId, int pOffsetX, int pOffsetY, int pRadius) {
 	BOUNDING_COLLISION *_b = new BOUNDING_COLLISION;
 
@@ -76,16 +56,6 @@ void CollisionParser::setBoundingCircle(list <BOUNDING_COLLISION *> *pBList, cha
 	pBList->push_back(_b);
 }
 
-
-/**
-* Bounding rectangle.
-* @param pBList		TODO describtion 	
-* @param pId		TODO describtion
-* @param pOffsetX	the x position of the right upper corner of the rectangle
-* @param pOffsetY	the y position of the right upper corner of the rectangle
-* @param pWidth		the width of the rectangle
-* @param pHeight	the height of the rectangle
-*/
 void CollisionParser::setBoundingRectangle(list <BOUNDING_COLLISION *> *pBList, char *pId, int pOffsetX, int pOffsetY, int pWidth, int pHeight) {
 	// First triangle
 	BOUNDING_COLLISION *mB1 = new BOUNDING_COLLISION;
@@ -116,13 +86,6 @@ void CollisionParser::setBoundingRectangle(list <BOUNDING_COLLISION *> *pBList, 
 	pBList->push_back(mB2);
 }
 
-
-/**
-* Parses a XML collision file.
-* Uses Tinyxml
-* @param pBList		TODO describtion
-* @param pFile		the filepath of the file
-*/
 bool CollisionParser::parseCollision(list <BOUNDING_COLLISION *> *pBList, char *pFile) {
 	TiXmlDocument   *mXmlDoc = new TiXmlDocument(pFile);
 
@@ -236,12 +199,6 @@ bool CollisionParser::parseCollision(list <BOUNDING_COLLISION *> *pBList, char *
 	return 1;
 }
 
-
-/**
-* Delete all the bounding areas with a certain id.
-* @param pBList		TODO describtion
-* @param pId		id of the the bounding areas, "*" is all areas. 
-*/
 void CollisionParser::deleteBoundingAreas(list <BOUNDING_COLLISION *> *pBList, char *pId) {
 	bool mExit = 0;
 

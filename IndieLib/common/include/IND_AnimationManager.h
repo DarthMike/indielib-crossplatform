@@ -45,7 +45,7 @@ class IND_Animation;
 @ingroup Managers
 Manager of ::IND_Animation objects. Click in ::IND_AnimationManager to see all the methods of this class.
 */
-/*@{*/
+/**@{*/
 
 /**
 Manager of ::IND_Animation objects. Used for storing these type of objects.
@@ -159,6 +159,6 @@ private:
 	void        initVars();
 	void        freeVars();
 };
-/*@}*/
+/**@}*/
 
 #endif // _IND_ANIMATIONMANAGER_

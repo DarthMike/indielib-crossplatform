@@ -40,7 +40,7 @@ class IND_Font;
 @ingroup Managers
 Manager of IND_Font objects. Click in ::IND_FontManager to see all the methods of this class.
 */
-/*@{*/
+/**@{*/
 
 /**
 This class manages the fonts objects ::IND_Font. Fonts are used to write texts on the screen.
@@ -128,6 +128,6 @@ private:
 	void                initVars();
 	void                freeVars();
 };
-/*@}*/
+/**@}*/
 
 #endif // _IND_FONTMANAGER_

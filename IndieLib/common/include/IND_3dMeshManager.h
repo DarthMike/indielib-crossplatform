@@ -41,7 +41,7 @@ class IND_Render;
 @ingroup Managers
 Manager of IND_3dMesh objects. Click in ::IND_3dMeshManager to see all the methods of this class.
 */
-/*@{*/
+/**@{*/
 
 /**
 This class stores 3d meshes (IND_3dMesh) that can be inserted into a IND_Entity3d and rendered to the screen using
@@ -92,7 +92,7 @@ private:
 	void initVars();
 	void freeVars();
 };
-/*@}*/
+/**@}*/
 
 #endif // _IND_3DMESHMANAGER_
 

@@ -43,7 +43,7 @@ class IND_Font;
 @ingroup EntityManagers
 2d entity class managed by IND_Entity2dManager for drawing graphical objects into the screen and manipulating their attributes, click in ::IND_Entity2d to see all the methods of this class.
 */
-/*@{*/
+/**@{*/
 
 /**
 @b IND_Entity2d is an 2d entity object of the class ::IND_Entity2dManager. This class, together with ::IND_Entity3d (object
@@ -485,6 +485,6 @@ private:
 
 	friend class IND_Entity2dManager;
 };
-/*@}*/
+/**@}*/
 
 #endif // _IND_ENTITY2D_

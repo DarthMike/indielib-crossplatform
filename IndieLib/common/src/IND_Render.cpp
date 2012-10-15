@@ -252,7 +252,7 @@ void IND_Render::endScene() {
 @addtogroup Graphical_Objects
  @ingroup Advanced
 */
-/*@{*/
+/**@{*/
 
 /**
 @b Parameters:
@@ -387,7 +387,7 @@ int IND_Render::blitAnimation(IND_Animation *pAn,
 	                                        pUDisplace,
 	                                        pVDisplace));
 }
-/*@}*/
+/**@}*/
 
 /**
 @b Parameters:
@@ -431,13 +431,13 @@ bool IND_Render::blitWrapSurface(IND_Surface *pSu,
 	        pUDisplace,
 	        pVDisplace));
 }
-/*@}*/
+/**@}*/
 
 /**
 @addtogroup Graphical_Objects 
  @ingroup Advanced
 */
-/*@{*/
+/**@{*/
 
 /**
 @b Parameters:
@@ -545,7 +545,7 @@ inline bool IND_Render::setAntialiasing(bool pSwitch) {
 With these methods you can directly blit to the screen primitives using IND_Render class. Remember that you can also use IND_Entity2d with primitives joined to this object, in order to
 draw primitives.
 */
-/*@{*/
+/**@{*/
 
 /**
 @b Parameters:
@@ -785,7 +785,7 @@ bool IND_Render::blitRegularPoly(int pX,
                                  BYTE pA) {
 	return (_wrappedRenderer->blitRegularPoly(pX, pY, pRadius, pN, pAngle, pR, pG, pB, pA));
 }
-/*@}*/
+/**@}*/
 
 
 /*
@@ -854,7 +854,7 @@ void IND_Render::setCamera2d(IND_Camera2d *pCamera2d) {
 @addtogroup Graphical_Objects
  @ingroup Advanced
 */
-/*@{*/
+/**@{*/
 
 /**
 @b Parameters:
@@ -934,7 +934,7 @@ void IND_Render::setTransform2d(int pX,
 @addtogroup Graphical_Objects
  @ingroup Advanced
 */
-/*@{*/
+/**@{*/
 
 /**
 @b Parameters:
@@ -976,7 +976,7 @@ void IND_Render::setTransform2d(IND_Matrix &pTransformMatrix) {
 @addtogroup Graphical_Objects
  @ingroup Advanced
 */
-/*@{*/
+/**@{*/
 
 /**
 @b Operation:
@@ -1102,7 +1102,7 @@ void IND_Render::setRainbow2d(IND_Type pType,
 /**
 @addtogroup Graphical_3d_Objects
 */
-/*@{*/
+/**@{*/
 
 /**
 @b Parameters:
@@ -1142,7 +1142,7 @@ and fade in the second. Use IND_3dMesh::setTransitionSpeed() in order set the sp
 void IND_Render::set3dMeshSequence(IND_3dMesh *p3dMesh, unsigned int pIndex) {
 	_wrappedRenderer->set3dMeshSequence(p3dMesh, pIndex);
 }
-/*@}*/
+/**@}*/
 
 /**
 @b Parameters:

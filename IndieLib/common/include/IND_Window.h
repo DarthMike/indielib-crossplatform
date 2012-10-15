@@ -38,7 +38,7 @@ struct SDL_Window;
 Class for creating the window, click in ::IND_Window to see all the methods of this class.
 */
 
-/*@{*/
+/**@{*/
 
 /**
 This structure defines definition parameters when creating a window or modyfing it's properties
@@ -172,6 +172,6 @@ private:
 	friend class OpenGLRender;
 	friend class DirectXRender;
 };
-/*@}*/
+/**@}*/
 
 #endif // _IND_WINDOW_H_

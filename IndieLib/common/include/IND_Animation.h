@@ -42,7 +42,7 @@ class IND_Surface;
 @ingroup Objects
 Class for storing sequences of frames (animations). Click in ::IND_Animation to see all the methods of this class.
 */
-/*@{*/
+/**@{*/
 
 /**
 IND_Animation objects are loaded trough the methods of IND_AnimationManager. In order to load
@@ -197,6 +197,6 @@ private:
 	friend class OpenGLES_iOS_Render;
 	friend class IND_Entity2dManager;
 };
-/*@}*/
+/**@}*/
 
 #endif // _IND_ANIMATION_

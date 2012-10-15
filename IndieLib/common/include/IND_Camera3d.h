@@ -46,10 +46,10 @@ Suite 330, Boston, MA 02111-1307 USA
 @defgroup Camera3d Camera3d
 @ingroup Cameras
 Camera for 3d scenarios. Using this class you can control all the parameters of a 3d camera. You
-can have as many cameras as you want. Use ::IND_Render::SetCamera3d() method before drawing in order
+can have as many cameras as you want. Use ::IND_Render::setCamera3d(IND_Camera3d *pCamera2d) method before drawing in order
 to choose the camera you want to use.
 */
-/*@{*/
+/**@{*/
 class LIB_EXP IND_Camera3d { //ñ
 public:
 
@@ -81,43 +81,43 @@ public:
 
 	// ----- Public gets -----
 
-	// Returns the x position of the camera
+	//! Returns the x position of the camera
 	float getPosX();
 
-	// Returns the y position of the camera
+	//! Returns the y position of the camera
 	float getPosY();
 
-	// Returns the z position of the camera
+	//! Returns the z position of the camera
 	float getPosZ();
 
-	// Returns the first component of the lookat camera vector
+	//! Returns the first component of the lookat camera vector
 	float GetLookX();
 
-	// Returns the second component of the lookat camera vector
+	//! Returns the second component of the lookat camera vector
 	float GetLookY();
 
-	// Returns the third component of the lookat camera vector
+	//! Returns the third component of the lookat camera vector
 	float GetLookZ();
 
-	// Returns the first component of the up camera vector
+	//! Returns the first component of the up camera vector
 	float getUpX();
 
-	// Returns the second component of the up camera vector
+	//! Returns the second component of the up camera vector
 	float getUpY();
 
-	// Returns the third component of the up camera vector
+	//! Returns the third component of the up camera vector
 	float getUpZ();
 
-	// Returns the first component of the right camera vector
+	//! Returns the first component of the right camera vector
 	float getRightX();
 
-	// Returns the second component of the right camera vector
+	//! Returns the second component of the right camera vector
 	float getRightY();
 
-	// Returns the third component of the right camera vector
+	//! Returns the third component of the right camera vector
 	float getRightZ();
 
-	// Returns the zoom factor  of the camera
+	//! Returns the zoom factor  of the camera
 	float getZoom()  {
 		return _zoom;
 	}

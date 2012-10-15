@@ -52,7 +52,7 @@ class IND_Math;
 @ingroup EntityManagers
 Manager of ::IND_Entity2d objects. Click in ::IND_Entity2dManager to see all the methods of this class.
 */
-/*@{*/
+/**@{*/
 
 /**
 Manager of ::IND_Entity2d objects. Used for storing these type of objects.
@@ -140,6 +140,6 @@ private:
 	void initVars();
 	void freeVars();
 };
-/*@}*/
+/**@}*/
 
 #endif // _IND_ENTITY2DMANAGER_

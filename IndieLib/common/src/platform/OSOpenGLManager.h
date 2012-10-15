@@ -39,6 +39,7 @@ struct SDL_Window;
 //									  OSOpenGLManager
 // --------------------------------------------------------------------------------
 
+/** @cond DOCUMENT_PRIVATEAPI */
 
 /*
 This class manages all OpenGL context creation for OS. Generally, as we use SDL we don't need to subclass this
@@ -99,5 +100,7 @@ protected:
 	IND_ColorFormat _colorBufferFormat;  //Requested color buffer format
 
 };
+
+/** @endcond */
 
 #endif // _OSOPENGLMANAGER_H_

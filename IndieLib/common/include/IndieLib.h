@@ -32,7 +32,7 @@ Suite 330, Boston, MA 02111-1307 USA
 @ingroup Init_End
 IndieLib class for initializing and ending the engine.
 */
-/*@{*/
+/**@{*/
 
 /**
 @b IndieLib initialization and destruction.
@@ -46,6 +46,6 @@ public:
 	static void end();
 
 };
-/*@}*/
+/**@}*/
 
 #endif // _INDIELIB_H_

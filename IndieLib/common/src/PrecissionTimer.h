@@ -39,6 +39,9 @@
 #include <mach/mach.h>
 #include <mach/mach_time.h>
 #endif
+
+/** @cond DOCUMENT_PRIVATEAPI */
+
 class PrecissionTimer {
 public:
 	//----- CONSTRUCTORS/DESTRUCTORS -----
@@ -96,5 +99,7 @@ private:
 	//----- INTERNAL FUNCTIONS -----
 	void init();
 };
+
+/** @endcond */
 
 #endif

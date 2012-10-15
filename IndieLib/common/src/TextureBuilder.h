@@ -30,6 +30,8 @@ Suite 330, Boston, MA 02111-1307 USA
 class IND_Surface;
 class IND_Image;
 
+/** @cond DOCUMENT_PRIVATEAPI */
+
 class TextureBuilder {
 public:
 	TextureBuilder() {}
@@ -42,5 +44,7 @@ public:
 	                              int             pBlockSizeX,
 	                              int             pBlockSizeY) = 0;
 };
+
+///** @endcond *
 
 #endif //_TEXTUREBUILDER_H_

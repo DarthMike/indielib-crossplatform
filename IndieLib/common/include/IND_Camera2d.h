@@ -119,4 +119,6 @@ private:
     /** @endcond */
 };
 
+/**@}*/
+
 #endif // _IND_CAMERA_

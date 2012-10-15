@@ -189,5 +189,6 @@ private:
 	friend class OpenGLRender;
     /** @endcond */
 };
+/**@}*/
 
 #endif // _IND_CAMERA3D_

@@ -30,15 +30,14 @@ Suite 330, Boston, MA 02111-1307 USA
 #include <string.h>
 #endif
 
-
 // --------------------------------------------------------------------------------
 //							  Initialization / Destruction
 // --------------------------------------------------------------------------------
 
-/**
+/*
  * Init.
- * @param pImageManager		TODO: describtion
- * @param pMaxTextureSize	TODO: describtion
+ *  pImageManager		TODO: describtion
+ *  pMaxTextureSize	TODO: describtion
  */
 bool ImageCutter::init(IND_ImageManager *pImageManager, int pMaxTextureSize) {
 	end();
@@ -52,7 +51,7 @@ bool ImageCutter::init(IND_ImageManager *pImageManager, int pMaxTextureSize) {
 }
 
 
-/**
+/*
  * End.
  */
 void ImageCutter::end() {
@@ -67,12 +66,12 @@ void ImageCutter::end() {
 //							        Public methods
 // --------------------------------------------------------------------------------
 
-/**
+/*
  * Get the information necessary in order to cut the image.
- * @param pImage		TODO: describtion
- * @param pI			TODO: describtion
- * @param pBlockSizeX		TODO: describtion
- * @param pBlockSizeY		TODO: describtion
+ *  pImage		TODO: describtion
+ *  pI			TODO: describtion
+ *  pBlockSizeX		TODO: describtion
+ *  pBlockSizeY		TODO: describtion
  */
 void ImageCutter::fillInfoSurface(IND_Image *pImage,
                                   INFO_SURFACE *pI,
@@ -144,16 +143,16 @@ void ImageCutter::fillInfoSurface(IND_Image *pImage,
 }
 
 
-/**
+/*
  * Cuts a block of an image in memory, returns a pointer to the cut block.
- * @param pPtrBlock		TODO: describtion
- * @param pWidthImage		TODO: describtion
- * @param pWidthBlock		TODO: describtion
- * @param pHeightBlock		TODO: describtion
- * @param pSpareX		TODO: describtion
- * @param pSpareY		TODO: describtion
- * @param pBpp			TODO: describtion
- * @param pNewBlock		TODO: describtion
+ *  pPtrBlock		TODO: describtion
+ *  pWidthImage		TODO: describtion
+ *  pWidthBlock		TODO: describtion
+ *  pHeightBlock		TODO: describtion
+ *  pSpareX		TODO: describtion
+ *  pSpareY		TODO: describtion
+ *  pBpp			TODO: describtion
+ *  pNewBlock		TODO: describtion
  */
 void ImageCutter::cutBlock(BYTE *pPtrBlock,
                            int pWidthImage,
@@ -193,9 +192,9 @@ void ImageCutter::cutBlock(BYTE *pPtrBlock,
 //							        Private methods
 // --------------------------------------------------------------------------------
 
-/**
+/*
  * Power of two imediatly higher or equal to the received parameter.
- * @param pNum			the number that we whant the power of two of.
+ * pNum			the number that we whant the power of two of.
  */
 int ImageCutter::powerOfTwo(int pNum) {
 	int mPower;
@@ -203,10 +202,10 @@ int ImageCutter::powerOfTwo(int pNum) {
 	return mPower;
 }
 
-/**
+/*
  * Analyze image to get the quality and type attributes of target surface.
- * @param pImage		the IND_Image that is going to be examined.
- * @param pI			the INFO_SURFACE which attributes is going to be set.
+ * pImage		the IND_Image that is going to be examined.
+ * pI			the INFO_SURFACE which attributes is going to be set.
  */
 void ImageCutter::fillQualityAndType(IND_Image* pImage, INFO_SURFACE *pI) {
 	int colorFormat = pImage->getFormatInt();
@@ -236,7 +235,7 @@ void ImageCutter::fillQualityAndType(IND_Image* pImage, INFO_SURFACE *pI) {
 	}
 }
 
-/**
+/*
  * Init variables.
  */
 void ImageCutter::initVars() {
@@ -244,7 +243,7 @@ void ImageCutter::initVars() {
 }
 
 
-/**
+/*
  * Free variables.
  */
 void ImageCutter::freeVars() {

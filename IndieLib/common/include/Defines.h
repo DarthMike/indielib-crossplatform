@@ -511,7 +511,7 @@ typedef struct structPoint IND_Point;
 // --------------------------------------------------------------------------------
 
 /**
- * @defgroup IND_ColorFormat
+ * @defgroup ColorFormats Color definitions
  * @ingroup Types
  */
 /**@{*/
@@ -557,18 +557,10 @@ typedef int IND_ColorFormat;
 #define IND_LUMINANCE                       6
 
 //#define IND_LUMINANCE_ALPHA                   0x190A
-/**@}*/
-
 
 // --------------------------------------------------------------------------------
 //								     Colour quality
 // --------------------------------------------------------------------------------
-
-/**
- * @defgroup IND_Quality
- * @ingroup Types
- */
-/**@{*/
 
 //! Colour quality
 
@@ -597,7 +589,7 @@ typedef int IND_Quality;
 // --------------------------------------------------------------------------------
 
 /**
- * @defgroup IND_LightType
+ * @defgroup IND_LightType Light types
  * @ingroup Types
  */
 /**@{*/
@@ -676,14 +668,8 @@ Methods you can use for changing the attributes of these type of lights:
 #define IND_SPOT_LIGHT                              103
 /**@}*/
 
-
-
-// --------------------------------------------------------------------------------
-//							          Surface types
-// --------------------------------------------------------------------------------
-
 /**
- * @defgroup IND_Type
+ * @defgroup IND_Type Surface types
  * @ingroup Types
  */
 /**@{*/
@@ -716,13 +702,8 @@ typedef int IND_Type;
 #define IND_ALPHA                           202
 /**@}*/
 
-
-// --------------------------------------------------------------------------------
-//								Font alignment
-// --------------------------------------------------------------------------------
-
 /**
- * @defgroup IND_Align
+ * @defgroup IND_Align Font alignment
  * @ingroup Types
  */
 /**@{*/
@@ -742,13 +723,8 @@ typedef int IND_Align;
 #define IND_LEFT                            302
 /**@}*/
 
-
-// --------------------------------------------------------------------------------
-//									Primitives
-// --------------------------------------------------------------------------------
-
 /**
- * @defgroup IND_Primitive2d
+ * @defgroup IND_Primitive2d 2d Primitives
  * @ingroup Types
  */
 /**@{*/
@@ -774,13 +750,8 @@ typedef int IND_Primitive2d;
 #define IND_FILL_RECTANGLE                  405
 /**@}*/
 
-
-// --------------------------------------------------------------------------------
-//										Blending
-// --------------------------------------------------------------------------------
-
 /**
- * @defgroup IND_BlendingType
+ * @defgroup IND_BlendingType Blending types
  * @ingroup Types
  */
 /**@{*/
@@ -833,13 +804,8 @@ typedef int IND_BlendingType;
 #define IND_INVBLENDFACTOR                  514
 /**@}*/
 
-
-// --------------------------------------------------------------------------------
-//									   Filters
-// --------------------------------------------------------------------------------
-
 /**
- * @defgroup IND_Filter
+ * @defgroup IND_Filter Filtering when rendering
  * @ingroup Types
  */
 /**@{*/
@@ -867,12 +833,9 @@ typedef int IND_Filter;
 /**@}*/
 
 #ifndef PLATFORM_IOS   //KEYS FOR DESKTOP OS
-// --------------------------------------------------------------------------------
-//										  Keys
-// --------------------------------------------------------------------------------
 
 /**
- * @defgroup IND_Key
+ * @defgroup IND_Key Input keys
  * @ingroup Types
  */
 /**@{*/
@@ -1164,13 +1127,8 @@ enum {
 };
 /**@}*/
 
-
-// --------------------------------------------------------------------------------
-//									   Key State
-// --------------------------------------------------------------------------------
-
 /**
- * @defgroup IND_KeyState
+ * @defgroup IND_KeyState Input key states
  * @ingroup Types
  */
 /**@{*/
@@ -1188,13 +1146,8 @@ typedef int IND_KeyState;
 #define IND_KEY_NOT_PRESSED 0
 /**@}*/
 
-
-// --------------------------------------------------------------------------------
-//									   Mouse Button
-// --------------------------------------------------------------------------------
-
 /**
- * @defgroup IND_MouseButton
+ * @defgroup IND_MouseButton Mouse buttons
  * @ingroup Types
  */
 /**@{*/
@@ -1214,13 +1167,8 @@ typedef int IND_MouseButton;
 #define IND_MBUTTON_MIDDLE 2
 /**@}*/
 
-
-// --------------------------------------------------------------------------------
-//									   Mouse Button State
-// --------------------------------------------------------------------------------
-
 /**
- * @defgroup IND_MouseButtonState
+ * @defgroup IND_MouseButtonState Mouse button state
  * @ingroup Types
  */
 /**@{*/
@@ -1239,12 +1187,9 @@ typedef int IND_MouseButtonState;
 /**@}*/
 
 #endif  //KEYS FOR DESKTOP OS
-// --------------------------------------------------------------------------------
-//										 g_debug
-// --------------------------------------------------------------------------------
-
+    
 /**
- * @defgroup IND_Debug
+ * @defgroup IND_Debug Debug mode
  * @ingroup Types
  */
 /**@{*/
@@ -1271,29 +1216,40 @@ typedef int IND_InitializationMode;
 /**@}*/
 
 
-// --------------------------------------------------------------------------------
-//								 Bounding collision
-// --------------------------------------------------------------------------------
-
+/**
+ * @defgroup BoundingCollisions Bounding collisions
+ * @ingroup Types
+ */
+/**@{*/
+//! Encapsulates information about a parsed bounding collision information from xml
 struct structBoundingCollision {
-	int _type;                          // 0 = Triange, 1 = Circle
-	char *_id;                          // Group Id for grouping bounding areas
-	int _posX, _posY;                   // Position
-	int _radius;                        // Radius of the circle
-	int _ax, _ay, _bx, _by, _cx, _cy;   // Vertices of the triangle
+	int _type;                          //!< 0 = Triange, 1 = Circle
+	char *_id;                          //!< Group Id for grouping bounding areas
+	int _posX, _posY;                   //!< Position
+	int _radius;                        //!< Radius of the circle
+	int _ax, _ay, _bx, _by, _cx, _cy;   //!< Vertices of the triangle
 
+    //! Default constructor
 	structBoundingCollision() {
 		_type = _posX = _posY = _radius = _ax = _ay = _bx = _by = _cx = _cy = 0;
 	}
 };
 typedef struct structBoundingCollision BOUNDING_COLLISION;
+/**@}*/
 
-// --------------------------------------------------------------------------------
-//								 Global constants
-// --------------------------------------------------------------------------------
+/**
+ * @defgroup GlobalConstants Global constants
+ * @ingroup Types
+ */
+/**@{*/
+//! Determines the max characters in a string
 const int MAX_CHARS_IN_INT32_STR = (10 + 1); // +1 is for '\0' character
-const int MAX_CHARS_IN_INT64_STR = (20 + 1);
-const int SIDES_PER_CIRCLE = 30;   //Number of sides a circle has (will blit as many lines as specified here when blitting a circle primitive)
 
+//! Determines the max characters in a string
+const int MAX_CHARS_IN_INT64_STR = (20 + 1);
+    
+//! Determines how a circle is renderered
+const int SIDES_PER_CIRCLE = 30;   //Number of sides a circle has (will blit as many lines as specified here when blitting a circle primitive)
+/**@}*/
 
 #endif // _DEFINES_

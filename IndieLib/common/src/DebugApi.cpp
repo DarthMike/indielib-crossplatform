@@ -28,7 +28,7 @@ Suite 330, Boston, MA 02111-1307 USA
 //							  Initialization / Destruction
 // --------------------------------------------------------------------------------
 
-/**
+/*
  * Init
  */
 bool DebugApi::init() {
@@ -80,7 +80,7 @@ bool DebugApi::init() {
 }
 
 
-/**
+/*
  * End
  */
 void DebugApi::end() {
@@ -97,10 +97,10 @@ void DebugApi::end() {
 // --------------------------------------------------------------------------------
 
 
-/**
+/*
  * Header and message
- * @param pTextString		TODO describtion  
- * @param pType			TODO describtion 
+ *  pTextString		TODO describtion  
+ *  pType			TODO describtion 
  */
 void DebugApi::header(string pTextString, int pType) {
 	if (!_ok) return;
@@ -226,10 +226,10 @@ void DebugApi::header(string pTextString, int pType) {
 }
 
 
-/**
+/*
  * Writes a string.
- * @param pTextString		text to add to the debuglog
- * @param pFlag			true if line should break
+ *  pTextString		text to add to the debuglog
+ *  pFlag			true if line should break
  */
 void DebugApi::dataChar(string pTextString, bool pFlag) {
 	if (!_ok) return;
@@ -241,10 +241,10 @@ void DebugApi::dataChar(string pTextString, bool pFlag) {
 }
 
 
-/**
+/*
  * Writes an integer.
- * @param pDataInt		int to add to the debuglog
- * @param pFlag			true if line should break
+ *  pDataInt		int to add to the debuglog
+ *  pFlag			true if line should break
  */
 void DebugApi::dataInt(int pDataInt, bool pFlag) {
 	if (!_ok) return;
@@ -256,10 +256,10 @@ void DebugApi::dataInt(int pDataInt, bool pFlag) {
 }
 
 
-/**
+/*
  * Writes a float.
- * @param pDataFloat		float to add to the debuglog
- * @param pFlag			true if line should break
+ *  pDataFloat		float to add to the debuglog
+ *  pFlag			true if line should break
  */
 void DebugApi::dataFloat(float pDataFloat, bool pFlag) {
 	if (!_ok) return;
@@ -270,7 +270,7 @@ void DebugApi::dataFloat(float pDataFloat, bool pFlag) {
 		*_count << endl;
 }
 
-/**
+/*
  * Writes a signal (for debugging purposes).
  */
 void DebugApi::breakPoint() {
@@ -281,9 +281,9 @@ void DebugApi::breakPoint() {
 }
 
 
-/**
+/*
  * Duplicates an string.
- * @param charString 		charString to duplicate
+ *  charString 		charString to duplicate
  */
 char *DebugApi::duplicateCharString(const char *charString) {
 	if (!charString)
@@ -300,7 +300,7 @@ char *DebugApi::duplicateCharString(const char *charString) {
 //										 Private methods
 // --------------------------------------------------------------------------------
 
-/**
+/*
  * Writes the current time.
  */
 void DebugApi::writeTime() {
@@ -328,7 +328,7 @@ void DebugApi::writeTime() {
 }
 
 
-/**
+/*
  * Advance as many spaces as Depth.
  */
 void DebugApi::advance() {
@@ -337,7 +337,7 @@ void DebugApi::advance() {
 }
 
 
-/**
+/*
  * Start measuring the time.
  */
 void DebugApi::start() {
@@ -345,7 +345,7 @@ void DebugApi::start() {
 }
 
 
-/**
+/*
  * Stop measuring the time.
  */
 void DebugApi::stop() {
@@ -357,7 +357,7 @@ void DebugApi::stop() {
 }
 
 
-/**
+/*
  * Draw all the characteres, including UNICODE.
  */
 void DebugApi::allFont() {
@@ -367,7 +367,7 @@ void DebugApi::allFont() {
 }
 
 
-/**
+/*
  * Init variables.
  */
 void DebugApi::initVars() {
@@ -379,7 +379,7 @@ void DebugApi::initVars() {
 }
 
 
-/**
+/*
  * Free variables.
  */
 void DebugApi::freeVars() {

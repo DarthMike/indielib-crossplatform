@@ -8,14 +8,10 @@
 #include "dependencies/tinyxml/tinyxml.h"
 #include "CollisionParser.h"
 
-
 // --------------------------------------------------------------------------------
 //							   Singleton initialization
 // --------------------------------------------------------------------------------
 
-/**
- * Init singleton.
- */
 CollisionParser *CollisionParser::_pinstance = 0;// initialize pointer
 CollisionParser *CollisionParser::instance() {
 	if (_pinstance == 0) { // is it the first call?

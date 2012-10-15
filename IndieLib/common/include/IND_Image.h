@@ -125,7 +125,7 @@ public:
 	}
 
 private:
-
+	/** @cond DOCUMENT_PRIVATEAPI */
 	// ----- Structures ------
 
 	//TYPE
@@ -198,6 +198,7 @@ private:
 	// ----- Friends -----
 
 	friend class IND_ImageManager;
+    /** @endcond */
 };
 /**@}*/
 

@@ -111,7 +111,7 @@ public:
 	bool     isCollision(IND_Entity2d *pEn1, char *pId1, IND_Entity2d *pEn2, char *pId2);
 
 private:
-
+	/** @cond DOCUMENT_PRIVATEAPI */
 	// ----- Private -----
 
 	bool _ok;
@@ -139,6 +139,7 @@ private:
 	void writeMessage();
 	void initVars();
 	void freeVars();
+    /** @endcond */
 };
 /**@}*/
 

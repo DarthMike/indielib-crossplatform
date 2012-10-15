@@ -99,7 +99,7 @@ public:
 	int         getSpareY();
 
 private:
-
+	/** @cond DOCUMENT_PRIVATEAPI */
 	// ----- Structures ------
 	SURFACE *_surface;
 
@@ -149,6 +149,7 @@ private:
 	friend class OpenGLTextureBuilder;
 	friend class DirectXRender;
 	friend class OpenGLRender;
+    /** @endcond */
 };
 /**@}*/
 

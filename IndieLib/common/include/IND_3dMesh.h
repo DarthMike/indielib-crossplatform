@@ -77,7 +77,7 @@ public:
 private:
 
 	// ----- Private ------
-
+	/** @cond DOCUMENT_PRIVATEAPI */
 	// Attributes
 	struct structAttributes {
 		char *_name;
@@ -124,13 +124,14 @@ private:
 		}
 	};
 	typedef struct struct3dMesh MESH3D;
-
+	
 	MESH3D _3dMesh;
 
 	// ----- Friends -----
 
 	friend class DirectXRender;
 	friend class IND_3dMeshManager;
+    /** @endcond */
 };
 /**@}*/
 

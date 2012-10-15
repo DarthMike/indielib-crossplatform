@@ -55,7 +55,7 @@ public:
 	}
 
 private:
-
+	/** @cond DOCUMENT_PRIVATEAPI */
 	// ----- Structures ------
 
 	// LETTER
@@ -127,6 +127,7 @@ private:
 	friend class IND_FontManager;
 	friend class DirectXRender;
 	friend class OpenGLRender;
+    /** @endcond */
 };
 /**@}*/
 

@@ -69,7 +69,7 @@ public:
 	bool remove(IND_3dMesh *pMe);
 
 private:
-
+	/** @cond DOCUMENT_PRIVATEAPI */
 	// ----- Private Methods -----
 
 	bool _ok;
@@ -91,6 +91,7 @@ private:
 	void writeMessage();
 	void initVars();
 	void freeVars();
+    /** @endcond */
 };
 /**@}*/
 

@@ -152,7 +152,7 @@ public:
 	void                    setSurface(int pFrame, IND_Surface *pNewSurface);
 
 private:
-
+	/** @cond DOCUMENT_PRIVATEAPI */
 	// ----- Structures ------
 
 	vector <IND_Frame *> *_vectorFrames;    // Vector of frames
@@ -196,6 +196,7 @@ private:
 	friend class DirectXRender;
 	friend class OpenGLES_iOS_Render;
 	friend class IND_Entity2dManager;
+    /** @endcond */
 };
 /**@}*/
 

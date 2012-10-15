@@ -67,10 +67,11 @@ public:
 	bool isPaused();
 
 private:
-
+	/** @cond DOCUMENT_PRIVATEAPI */
 	// ----- Private -----
 	//Internal precission timer
 	PrecissionTimer *_precissionTimer;
+    /** @endcond */
 };
 /**@}*/
 

@@ -385,7 +385,7 @@ public:
 	/**@}*/
 
 private:
-
+	/** @cond DOCUMENT_PRIVATEAPI */
 	// ----- Private ------
 
 	// ----- Objects -----
@@ -484,6 +484,7 @@ private:
 	// ----- Friends -----
 
 	friend class IND_Entity2dManager;
+    /** @endcond */
 };
 /**@}*/
 

@@ -45,6 +45,7 @@ This structure defines definition parameters when creating a window or modyfing 
 */
 typedef struct IND_WindowProperties {
 
+    //! Default constructor
 	IND_WindowProperties(const char* title, int width, int height, int bpp, bool vsync, bool fs) : 
                          _title(title),
 						 _width(width),
@@ -52,12 +53,12 @@ typedef struct IND_WindowProperties {
 						 _bpp(bpp),
 						 _vsync(vsync),
 						 _fullscreen(fs) {}
-	const char *_title;
-	int _width; 
-	int _height;
-	int _bpp;
-	bool _vsync;
-	bool _fullscreen;
+	const char *_title;			///< A string containing the window title, when windowed
+	int _width; 				///< Width in pixels
+	int _height;				///< Heigth in pixels
+	int _bpp;					///< Bit depth of the window display buffer
+	bool _vsync;				///< Wether vSync is enabled (true)
+	bool _fullscreen;			///< Wether window is full screen or windowed
 }IND_WindowProperties;
 
 
@@ -127,33 +128,34 @@ public:
 	void cursor(bool pEnable);
 
 private:
-
+	/** @cond DOCUMENT_PRIVATEAPI */
 	// ----- Private -----
 
 	bool _ok;
 
 	// Attributes
-	struct structAttributes {
-		int _width;
-		int _height;
-		int _bits;
-		bool _vsync;
-		bool _fullscreen;
-		char *_title;
-		SDL_SysWMinfo* _windowInfo;
-		SDL_Window *_sdlWindow;
-
-		structAttributes() : 
-			_width(0),
-			_height(0),
-			_bits(0),
-			_vsync(false),
-			_fullscreen(false),
-			_title(NULL),
-			_windowInfo(NULL),
-			_sdlWindow(NULL){
-		}
-	};
+    struct structAttributes {
+        int _width;
+        int _height;
+        int _bits;
+        bool _vsync;
+        bool _fullscreen;
+        char *_title;
+        SDL_SysWMinfo* _windowInfo;
+        SDL_Window *_sdlWindow;
+        
+        
+        structAttributes() :
+        _width(0),
+        _height(0),
+        _bits(0),
+        _vsync(false),
+        _fullscreen(false),
+        _title(NULL),
+        _windowInfo(NULL),
+        _sdlWindow(NULL){
+        }
+    };
 	struct structAttributes _attributes;
 
 	// ----- Private methods -----
@@ -171,6 +173,8 @@ private:
 	//Creation of window by renderer
 	friend class OpenGLRender;
 	friend class DirectXRender;
+    /** @endcond */
+    
 };
 /**@}*/
 

@@ -148,7 +148,7 @@ public:
 	bool remove(IND_Surface *pSu);
 
 private:
-
+	/** @cond DOCUMENT_PRIVATEAPI */
 	// ----- Private -----
 
 	bool _ok;
@@ -184,6 +184,7 @@ private:
 	void				convertImage(IND_Image* pImage ,IND_Type pType, IND_Quality pQuality);
 	void                initVars();
 	void                freeVars();
+    /** @endcond */
 };
 /**@}*/
 

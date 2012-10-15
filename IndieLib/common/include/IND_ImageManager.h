@@ -91,7 +91,7 @@ public:
 
 
 private:
-
+	/** @cond DOCUMENT_PRIVATEAPI */
 	// ----- Private -----
 
 	bool _ok;                               // Manager initialization flag
@@ -111,6 +111,7 @@ private:
 	void writeMessage();
 	void initVars();
 	void freeVars();
+    /** @endcond */
 };
 /**@}*/
 

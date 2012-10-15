@@ -28,6 +28,8 @@ Suite 330, Boston, MA 02111-1307 USA
 
 #include "Defines.h"
 
+/** @cond DOCUMENT_PRIVATEAPI */
+
 #ifdef INDIERENDER_DIRECTX
     #include "render/directx/DirectXRender.h"
 	//Texture handle
@@ -95,5 +97,7 @@ struct SURFACE {
 	TEXTURE *_texturesArray;            // Texture array (one texture per block)
 	ATTRIBUTES _attributes;             // Attributes
 };
+
+/** @endcond */
 
 #endif //_TEXTUREDEFINITIONS_

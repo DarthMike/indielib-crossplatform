@@ -77,32 +77,32 @@ public:
 	/** @name Graphical objects assignation to the 2d entity
 	*
 	*/
-	//@{
+	/**@{*/
 	void    setSurface(IND_Surface *pNewSurface);
 	void    setAnimation(IND_Animation *pNewAnimation);
 	void    setPrimitive2d(IND_Primitive2d pPri2d);
 	void    setFont(IND_Font *pFont);
-	//@}
+	/**@}*/
 
 	/** @name Showing
 	*
 	*/
-	//@{
+	/**@{*/
 	void    setShow(bool pShow);
-	//@}
+	/**@}*/
 
 	/** @name Animations
 	*
 	*/
-	//@{
+	/**@{*/
 	void    setSequence(int pSequence);
 	void    setNumReplays(int pNumReplays);
-	//@}
+	/**@}*/
 
 	/** @name Primitives
 	*
 	*/
-	//@{
+	/**@{*/
 	void    setLine(int pX1, int pY1, int pX2, int pY2);
 	void    setRectangle(int pX1, int pY1, int pX2, int pY2);
 	void    setRadius(int pRadius);
@@ -110,23 +110,23 @@ public:
 	void    setPolyAngle(float pPolyAngle);
 	void    setPolyPoints(IND_Point *pPolyPoints);
 	void    setNumLines(int pNumLines);
-	//@}
+	/**@}*/
 
 	/** @name Fonts
 	*
 	*/
-	//@{
+	/**@{*/
 	void    setAlign(IND_Align pAlign);
 	void    setCharSpacing(int pCharSpacing);
 	void    setLineSpacing(int pLineSpacing);
 	void    setText(const char *pText);
-	//@}
+	/**@}*/
 
 
 	/** @name Space transformations (Some of these methods dont affect the fonts or the primitives)
 	*
 	*/
-	//@{
+	/**@{*/
 	void    setPosition(float pX, float pY, int pZ);
 	void    setAngleXYZ(float pAnX, float pAnY, float pAnZ);
 	void    setScale(float pSx, float pSy);
@@ -138,26 +138,26 @@ public:
 	bool    toggleWrap(bool pWrap);
 	void    setWrapDisplacement(float pUDisplace, float pVDisplace);
 	void    setLayer(int pLayer);
-	//@}
+	/**@}*/
 
 
 	/** @name Color transformations, blending and back face culling (Some of these methods dont affect the fonts or the primitives)
 	*
 	*/
-	//@{
+	/**@{*/
 	void    setBackCull(bool pCull);
 	void    setTint(BYTE pR, BYTE pG, BYTE pB);
 	void    setTransparency(BYTE pA);
 	void    setFade(BYTE pR, BYTE pG, BYTE pB, BYTE pA);
 	void    setBlendSource(IND_BlendingType pSo);
 	void    setBlendDest(IND_BlendingType pDs);
-	//@}
+	/**@}*/
 
 
 	/** @name Collisions
 	*
 	*/
-	//@{
+	/**@{*/
 	bool setBoundingAreas(char *pFile);
 	bool setBoundingTriangle(char *pId, int pAx, int pAy, int pBx, int pBy, int pCx, int pCy);
 	bool setBoundingCircle(char *pId, int pOffsetX, int pOffsetY, int pRadius);
@@ -165,7 +165,7 @@ public:
 	bool deleteBoundingAreas(char *pId);
 	void showCollisionAreas(bool pShowCollisionAreas);
 	void showGridAreas(bool pShowGridAreas);
-	//@}
+	/**@}*/
 
 
 	// ----- Public Gets ------
@@ -173,7 +173,7 @@ public:
 	/** @name Gets
 	*
 	*/
-	//@{
+	/**@{*/
 
 	//! A unique id assigned for this entity instance.
     unsigned int getId() {
@@ -382,7 +382,7 @@ public:
 	bool    isShowGridAreas()              {
 		return _showGridAreas;
 	}
-	//@}
+	/**@}*/
 
 private:
 

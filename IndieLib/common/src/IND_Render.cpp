@@ -136,6 +136,26 @@ void IND_Render::end() {
 // --------------------------------------------------------------------------------
 //							        Public methods
 // --------------------------------------------------------------------------------
+/*
+ ==================
+ TODO: CHECK THE USE OF THIS METHOD IN THE FUTURE, CURRENTLY IS DEPRECATED. ¿LET IT BE UNTIL HAVING PIXEL SHADER SUPPORT?
+ 
+ @b Parameters:
+ 
+ @b pSwitch       Activates or deactivates the antialiasing. (true = antialiasing on, false = antialiasing of)
+ 
+ Operation:
+ 
+ This method activates or deativates the antialiasing when drawing primitives. It doesn't affect
+ to other graphical objects, only to primitives.
+ 
+ This function will return 1 if the antialiasing is activated or deactivated correctly and 0 if the
+ graphic card of the user doesn't support this feature.
+ ==================
+ */
+inline bool IND_Render::setAntialiasing(bool pSwitch) {
+	return (_wrappedRenderer->setAntialiasing(pSwitch));
+}
 
 /**
 @b Parameters:
@@ -249,7 +269,7 @@ void IND_Render::endScene() {
 	_wrappedRenderer->endScene();
 }
 /**
-@addtogroup Graphical_Objects
+@addtogroup Graphical_2d_Objects
  @ingroup Advanced
 */
 /**@{*/
@@ -431,13 +451,6 @@ bool IND_Render::blitWrapSurface(IND_Surface *pSu,
 	        pUDisplace,
 	        pVDisplace));
 }
-/**@}*/
-
-/**
-@addtogroup Graphical_Objects 
- @ingroup Advanced
-*/
-/**@{*/
 
 /**
 @b Parameters:
@@ -519,26 +532,7 @@ void IND_Render::blitRegionSurface(IND_Surface *pSu,
 	_wrappedRenderer->blitRegionSurface(pSu, pX, pY, pWidth, pHeight);
 }
 
-/*
-==================
-TODO: CHECK THE USE OF THIS METHOD IN THE FUTURE, CURRENTLY IS DEPRECATED. ¿LET IT BE UNTIL HAVING PIXEL SHADER SUPPORT?
-
-@b Parameters:
-
-@b pSwitch       Activates or deactivates the antialiasing. (true = antialiasing on, false = antialiasing of)
-
-Operation:
-
-This method activates or deativates the antialiasing when drawing primitives. It doesn't affect
-to other graphical objects, only to primitives.
-
-This function will return 1 if the antialiasing is activated or deactivated correctly and 0 if the
-graphic card of the user doesn't support this feature.
-==================
-*/
-inline bool IND_Render::setAntialiasing(bool pSwitch) {
-	return (_wrappedRenderer->setAntialiasing(pSwitch));
-}
+/**@}*/
 
 /**
 @addtogroup Primitives 
@@ -688,8 +682,6 @@ void IND_Render::blitTriangleList(IND_Point *pTrianglePoints,
 				  _wrappedRenderer->blitTriangleList(pTrianglePoints, pNumPoints, pR, pG, pB, pA);
 }
 
-/********************************************************************************/
-
 /**
 @b Parameters:
 
@@ -787,25 +779,11 @@ bool IND_Render::blitRegularPoly(int pX,
 }
 /**@}*/
 
-
-/*
-==================
-Blits a bounding circle area
-==================
-*/
-void IND_Render::blitCollisionCircle(int pPosX, int pPosY, int pRadius, float pScale,  BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pIndWorldMatrix) {
-	_wrappedRenderer->blitCollisionCircle(pPosX, pPosY, pRadius, pScale, pR, pG, pB, pA, pIndWorldMatrix);
-}
-
-
-/*
-==================
-Blits a bounding line
-==================
-*/
-void IND_Render::blitCollisionLine(int pPosX1, int pPosY1, int pPosX2, int pPosY2,  BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pIndWorldMatrix) {
-	_wrappedRenderer->blitCollisionLine(pPosX1, pPosY1, pPosX2, pPosY2, pR, pG, pB, pA, pIndWorldMatrix);
-}
+/**
+ @addtogroup Graphical_2d_Objects
+ @ingroup Advanced
+ */
+/**@{*/
 
 /**
 @b Parameters:
@@ -848,13 +826,6 @@ This function sets a 2d camera. See the methods of ::IND_Camera2d for informatio
 void IND_Render::setCamera2d(IND_Camera2d *pCamera2d) {
 	_wrappedRenderer->setCamera2d(pCamera2d);
 }
-
-
-/**
-@addtogroup Graphical_Objects
- @ingroup Advanced
-*/
-/**@{*/
 
 /**
 @b Parameters:
@@ -929,13 +900,6 @@ void IND_Render::setTransform2d(int pX,
 	_wrappedRenderer->setTransform2d(pX, pY, pAngleX, pAngleY, pAngleZ, pScaleX, pScaleY, pAxisCalX, pAxisCalY, pMirrorX, pMirrorY, pWidth, pHeight, pMatrix);
 }
 
-
-/**
-@addtogroup Graphical_Objects
- @ingroup Advanced
-*/
-/**@{*/
-
 /**
 @b Parameters:
 
@@ -971,12 +935,6 @@ Using this method is equivalent to using a combination of these methods:
 void IND_Render::setTransform2d(IND_Matrix &pTransformMatrix) {
 	_wrappedRenderer->setTransform2d(pTransformMatrix);
 }
-
-/**
-@addtogroup Graphical_Objects
- @ingroup Advanced
-*/
-/**@{*/
 
 /**
 @b Operation:
@@ -1099,9 +1057,12 @@ void IND_Render::setRainbow2d(IND_Type pType,
 	                               pDs);
 }
 
+/**@}*/
+
 /**
-@addtogroup Graphical_3d_Objects
-*/
+ @addtogroup Graphical_3d_Objects
+ @ingroup Advanced
+ */
 /**@{*/
 
 /**
@@ -1320,6 +1281,7 @@ inline void IND_Render::setRainbow3d(bool pCull,
 	                               pSo,
 	                               pDs);
 }
+/**@}*/
 
 /**
 @b Operation:
@@ -1481,4 +1443,23 @@ Perform frustum planes calculation in underlying renderer
 */
 void IND_Render::calculeFrustumPlanes() {
 	_wrappedRenderer->calculeFrustumPlanes();
+}
+
+/*
+ ==================
+ Blits a bounding circle area
+ ==================
+ */
+void IND_Render::blitCollisionCircle(int pPosX, int pPosY, int pRadius, float pScale,  BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pIndWorldMatrix) {
+	_wrappedRenderer->blitCollisionCircle(pPosX, pPosY, pRadius, pScale, pR, pG, pB, pA, pIndWorldMatrix);
+}
+
+
+/*
+ ==================
+ Blits a bounding line
+ ==================
+ */
+void IND_Render::blitCollisionLine(int pPosX1, int pPosY1, int pPosX2, int pPosY2,  BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pIndWorldMatrix) {
+	_wrappedRenderer->blitCollisionLine(pPosX1, pPosY1, pPosX2, pPosY2, pR, pG, pB, pA, pIndWorldMatrix);
 }

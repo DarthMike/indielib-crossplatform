@@ -96,81 +96,81 @@ public:
 	/** @name Renderer and window initialization and resetting
 	*
 	*/
-	//@{
+	/**@{*/
 	IND_Window* initRenderAndWindow(IND_WindowProperties& props);
 	bool    reset(IND_WindowProperties& props);
 	bool    toggleFullScreen();
-	//@}
+	/**@}*/
 	
     /** @name Object lifecycle
     *
     */
-    //@{
+    /**@{*/
 	void    end();
 	bool    isOK();
-     //@}
+     /**@}*/
 
     /** @name Rendering frame lifecycle
      *
      */
-    //@{
+    /**@{*/
 	void beginScene();
 	void endScene();
-    //@}
+    /**@}*/
     
     /** @name Render settings
      *
      */
-    //@{
+    /**@{*/
 	inline void showFpsInWindowTitle();
 
     inline bool setAntialiasing(bool pSwitch);
     
     void setPointPixelScale (float pNewScale);
     
-    //@}
+    /**@}*/
     
 	// ----- Viewports and cameras -----
 
 	/** @name Viewport clearing (both for 2d and 3d viewports)
 	*
 	*/
-	//@{
+	/**@{*/
 	void clearViewPort(BYTE pR,
 	                   BYTE pG,
 	                   BYTE pB);
-	//@}
+	/**@}*/
 
 	/** @name Viewport and camera 2d
 	*
 	*/
-	//@{
+	/**@{*/
 	bool setViewPort2d(int pX,
 	                   int pY,
 	                   int pWidth,
 	                   int pHeight);
 
 	void setCamera2d(IND_Camera2d *pCamera2d);
-	//@}
+	/**@}*/
 
 	/** @name Viewport and camera 3d
 	*
 	*/
-	//@{
+	/**@{*/
 	inline bool setViewPort3d(int pX,
 	                          int pY,
 	                          int pWidth,
 	                          int pHeight);
 
 	inline void setCamera3d(IND_Camera3d *pCamera3d);
-	//@}
+	/**@}*/
 
 	// ----- Render Primitive 2d -----
 
 	/** @name Bliting primitives (you can also use IND_Entity2d instead this methods)
 	*
 	*/
-	//@{
+	/**@{*/
 	void blitPixel(int pX,
 	               int pY,
 	               BYTE pR,
@@ -240,7 +240,7 @@ public:
 	                     BYTE pB,
 	                     BYTE pA);
 
-	//@}
+	/**@}*/
 
 
 	// ----- Advanced transformations -----
@@ -248,7 +248,7 @@ public:
 	/** @name Advanced transformations methods (it's preferible to use IND_Entity2d and IND_Entity3d instead)
 	*
 	*/
-	//@{
+	/**@{*/
 	void setTransform2d(int pX,
 	                    int  pY,
 	                    float pAngleX,
@@ -316,7 +316,7 @@ public:
 	inline void perspectiveFov(float pFov, float pAspect, float pNearClippingPlane, float pFarClippingPlane);
 
 	inline void perspectiveOrtho(float pWidth, float pHeight, float pNearClippingPlane, float pFarClippingPlane);
-	//@}
+	/**@}*/
 
 
 	// ----- Render Object 2d -----
@@ -324,7 +324,7 @@ public:
 	/** @name Advanced 2d bliting methods (it's preferible to use IND_Entity2d together with IND_Entity2dManager instead)
 	*
 	*/
-	//@{
+	/**@{*/
 	void blitSurface(IND_Surface *pSu);
 
 	void blitGrid(IND_Surface *pSu, BYTE pR, BYTE pG, BYTE pB, BYTE pA);
@@ -374,7 +374,7 @@ public:
 	              IND_BlendingType pDs,
 	              IND_Align pAlign);
 
-	//@}
+	/**@}*/
 
 
 	// ----- Render Object 3d -----
@@ -382,17 +382,17 @@ public:
 	/** @name Advanced 3d bliting methods (it's preferible to use IND_Entity3d together with  IND_Entity3dManager instead)
 	*
 	*/
-	//@{
+	/**@{*/
 	inline void blit3dMesh(IND_3dMesh *p3dMesh);
 	inline void set3dMeshSequence(IND_3dMesh *p3dMesh, unsigned int pIndex);
-	//@}
+	/**@}*/
 
 	// ----- Attributes -----
 
 	/** @name Gets
 	*
 	*/
-	//@{
+	/**@{*/
 	//! This function returns the x position of the actual viewport
 	int getViewPortX();
 	//! This function returns the y position of the actual viewport
@@ -430,7 +430,7 @@ public:
 	float getFrameTime()      {
 		return _last;
 	}
-	//@}
+	/**@}*/
 
 	//! This function returns the number of renderered objects in one frame
 	//! @param[in,out] pBuffer buffer capable to hold string representation of integer. Recommended size is 15
@@ -455,6 +455,7 @@ public:
 	void resetNumDiscardedObjects();
 
 private:
+    /** @cond DOCUMENT_PRIVATEAPI */
 	// ----- Objects -----
 #ifdef INDIERENDER_DIRECTX
 	DirectXRender *_wrappedRenderer;
@@ -493,6 +494,8 @@ private:
 	friend class IND_Entity2dManager;
 	friend class IND_Input;
 	friend class DirectXTextureBuilder;
+    
+    /** @endcond */
 };
 /**@}*/
 

@@ -45,6 +45,6 @@ public:
 	                              int             pBlockSizeY) = 0;
 };
 
-///** @endcond *
+/** @endcond */
 
 #endif //_TEXTUREBUILDER_H_

@@ -21,8 +21,8 @@ Suite 330, Boston, MA 02111-1307 USA
 */
 
 /**
-\mainpage
-\section main_general Menu
+@mainpage
+@section main_general Menu
 <A HREF="modules.html">Click here to access the Menu</A>
 */
 
@@ -104,7 +104,7 @@ Suite 330, Boston, MA 02111-1307 USA
  */
 
 /**
- * @defgroup Graphical_Objects Bliting Surfaces, Animations and Fonts and setting the transformations directly
+ * @defgroup Graphical_2d_Objects Bliting Surfaces, Animations and Fonts and setting the transformations directly
  * @ingroup Advanced
 With these methods you can set the 2d transformations (using IND_Render::Set2dTransform) and color
 attributes (using IND_Render::SetRainbow()) and blit directly
@@ -278,19 +278,20 @@ typedef unsigned char BYTE;    // HACK: Fixes some code regarding surfaces, BYTE
 /**@{*/
 //DirectX
 #ifdef INDIERENDER_DIRECTX
-		struct structPixel {
-			float _x; ///< Point position x
-            float _y; ///< Point position y
-            float _z; ///< Point position z
-			unsigned long _color; ///< Point color, contains RGBA value
-		};
-///Pixel - When not rendering textures
+//!Pixel - When not rendering textures
+struct structPixel {
+    float _x; ///< Point position x
+    float _y; ///< Point position y
+    float _z; ///< Point position z
+    unsigned long _color; ///< Point color, contains RGBA value
+};
 typedef struct structPixel PIXEL;
 #define D3DFVF_PIXEL (D3DFVF_XYZ | D3DFVF_DIFFUSE)
 #endif
 
 //OPENGL
 #ifdef INDIERENDER_OPENGL
+//!Pixel - When not rendering textures
 struct structPixelPos {
 	float _x; ///< Point position x
     float _y; ///< Point position y
@@ -301,12 +302,12 @@ struct structPixelPos {
     float _colorB; ///< Point color B
     float _colorA; ///< Point color A
 };
-///Pixel - When not rendering textures
 typedef struct structPixelPos PIXEL;
 #endif
 
 //Win32 (DirectX used)
 #ifdef INDIERENDER_DIRECTX
+//!Vertex - When rendering with textures
 struct structVertex2d {
 	float _x; ///< Point position x
     float _y; ///< Point position y
@@ -314,13 +315,13 @@ struct structVertex2d {
 	float _u; ///< Texture mapping coordinate u
     float _v; ///< Texture mapping coordinate v
 };
-///Vertex - When rendering with textures
 typedef struct structVertex2d CUSTOMVERTEX2D;
 
 #define D3DFVF_CUSTOMVERTEX2D (D3DFVF_XYZ | D3DFVF_TEX1)
 #endif
 
 #ifdef INDIERENDER_OPENGL
+//!Vertex - When rendering with textures
 struct structVertex2d {
 	float _x; ///< Point position x
     float _y; ///< Point position y
@@ -328,7 +329,6 @@ struct structVertex2d {
 	float _u; ///< Texture mapping coordinate u
     float _v; ///< Texture mapping coordinate v
 };
-///Vertex - When rendering with textures
 typedef struct structVertex2d CUSTOMVERTEX2D;
 #endif
 /**@}*/
@@ -339,6 +339,14 @@ typedef struct structVertex2d CUSTOMVERTEX2D;
  */
 /**@{*/
 
+/**
+ @brief Matrix representation used by all Indielib entities.
+ 
+ It abstracts coordinate system handedness and how the matrices are stored in memory in the underlying renderer.
+ 
+ For example, Matrix in openGL is stored in array using colum-major order
+ A Matrix 4x4\n (_11, _21, _31, _41,\n _12, _22, _32, _42,\n _13, _23, _33, _43\n _14, _24, _34, _44)
+ */
 struct structMatrix {
 	//Matrix (OpenGL COLUM-MAJOR ORDER!) (Note indices are the same, just store order in memory is different)
 	//Be aware that DirectX matrixes are stored in memory using ROW-MAJOR ORDER!. Use methods here to convert
@@ -454,7 +462,7 @@ struct structMatrix {
 		_44 = matrixArray[15];
 	}
 
-    ///Logs itself to console.
+    //!Logs itself to console.
     void description () const {
         std::cout << "\nMATRIX :\n";
         std::cout << _11 << " ";
@@ -479,23 +487,13 @@ struct structMatrix {
         std::cout << std::endl;
     }
 };
-    
-    /**
-     @brief Matrix representation used by all Indielib entities.
-     
-     It abstracts coordinate system handedness and how the matrices are stored in memory in the underlying renderer.
-     
-     For example, Matrix in openGL is stored in array using colum-major order
-     A Matrix 4x4\n (_11, _21, _31, _41,\n _12, _22, _32, _42,\n _13, _23, _33, _43\n _14, _24, _34, _44)
-     */
 typedef struct structMatrix IND_Matrix;
 
 
-// Point
+//! 2d Point 2d\n (x, y)
 struct structPoint {
 	int x, y;
 };
-//! 2d Point 2d\n (x, y)
 typedef struct structPoint IND_Point;
 
 /**@}*/

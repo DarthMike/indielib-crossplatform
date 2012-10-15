@@ -197,25 +197,25 @@ public:
 	/** @name Input common
 	*
 	*/
-	//@{
+	/**@{*/
 	void update();
 	bool quit();
-	//@}
+	/**@}*/
 
 	/** @name Keyboard
 	*
 	*/
-	//@{
+	/**@{*/
 	bool onKeyPress(IND_Key pKey);
 	bool onKeyRelease(IND_Key pKey);
 	bool isKeyPressed(IND_Key pKey);
 	bool isKeyPressed(IND_Key pKey, unsigned long pTime);
-	//@}
+	/**@}*/
 
 	/** @name Mouse
 	*
 	*/
-	//@{
+	/**@{*/
 	bool isMouseMotion();
 	int getMouseX();
 	int getMouseY();
@@ -227,7 +227,7 @@ public:
 	bool onMouseButtonRelease(IND_MouseButton pMouseButton);
 	bool isMouseButtonPressed(IND_MouseButton pMouseButton);
 	bool isMouseButtonPressed(IND_MouseButton pMouseButton, unsigned long pTime);
-	//@}
+	/**@}*/
 
 private:
 

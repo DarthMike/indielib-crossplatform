@@ -75,9 +75,7 @@ public:
 
 	bool    init();
 	void    end();
-	bool    isOK()  const {
-		return _ok;
-	}
+	bool    isOK() const;
 
 	// ----- Public methods -----
 

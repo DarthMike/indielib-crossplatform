@@ -92,7 +92,7 @@ The  @b tokens or <b>keywords</b> of a @b IndieLib animation file are:
 
 @b Note: "//"  can be used before a phrase for writing comments.
 
-\image html surfa1.jpg Animations example in IndieLib.
+@image html surfa1.jpg Animations example in IndieLib.
 */
 class LIB_EXP IND_Animation {
 public:

@@ -102,7 +102,7 @@ public:
 	int getFormatInt()  {
 		return _image._format;
 	}
-	// !This function returns the format from the image in a text string. See ::IND_ColorFormat.
+	//! This function returns the format from the image in a text string. See ::IND_ColorFormat.
 	string getFormatString()  {
 		return formatToString(getFormatInt());
 	}
@@ -110,16 +110,21 @@ public:
 	char *getExtension()  {
 		return _image._ext;
 	}
-	//! This function returns the pointer to the memory bytes which forms the image. It is a function very useful for accessing to the image directy and for modifying it or reading it.
-	//! Be aware that modifying the data via the pointer is not the recommended way. See Freeimage docs (underlying library used by IndieLib) to get more details. 
+    
+	/** 
+     This function returns the pointer to the memory bytes which forms the image. It is a function very useful for accessing to the image directy and for modifying it or reading it.
+	 Be aware that modifying the data via the pointer is not the recommended way. See Freeimage docs (underlying library used by IndieLib) to get more details. 
+     */
 	BYTE *getPointer()  {
 		return _image._pointer;
 	}
+    
 	//! This function returns the name of the image in a string of chars.
 	char *getName()  {
 		return _image._name;
 	}
 
+    //! Gets the underlying system (FreeImage) handle. Only recommended to use if you really need to make some advanced image operations
 	FIBITMAP* getFreeImageHandle() {
 		return _image._handle;
 	}

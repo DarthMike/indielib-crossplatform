@@ -62,9 +62,8 @@ public:
 
 	bool    init(IND_ImageManager *pImageManager, IND_SurfaceManager *pSurfaceManager);
 	void    end();
-	bool    isOK() {
-		return _ok;
-	}
+    
+	bool    isOK();
 
 	// ----- Public methods -----
 

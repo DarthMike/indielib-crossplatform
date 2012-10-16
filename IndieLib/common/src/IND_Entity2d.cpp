@@ -185,7 +185,7 @@ void IND_Entity2d::setNumReplays(int pNumReplays) {
  * Default: (0, 0, 0, 0).
  * @param pX1					X value of the startpoint of the line.
  * @param pY1					Y value of the startpoint of the line.
- * @param PX2					X value of the endpoint of the line.
+ * @param pX2					X value of the endpoint of the line.
  * @param pY2					Y value of the endpoint of the line.
  */
 void IND_Entity2d::setLine(int pX1, int pY1, int pX2, int pY2) {
@@ -200,7 +200,7 @@ void IND_Entity2d::setLine(int pX1, int pY1, int pX2, int pY2) {
  * Default: (0, 0, 0, 0).
  * @param pX1					X value of the top left point of the rectangle.
  * @param pY1					Y value of the top left point of the rectangle.
- * @param PX2					X value of the lower right point of the rectangle.
+ * @param pX2					X value of the lower right point of the rectangle.
  * @param pY2					Y value of the lower right point of the rectangle.
  */
 void IND_Entity2d::setRectangle(int pX1, int pY1, int pX2, int pY2) {
@@ -521,8 +521,8 @@ bool IND_Entity2d::toggleWrap(bool pWrap) {
  * Sets the horizontal and vertical displacement of the an image that is being tiled
  * to the screen using the IND_Entity2d::setRegion() and IND_Entity2d::toggleWrap() methods.
  * Using this method you can, for example, create and effect of an animated tiled background.
- * @param pUDisplacement				Horizontal displacement of the image (U coordinate).
- * @param pVDisplacement				Vertical displacement of the image (V coordinate).
+ * @param pUDisplace				Horizontal displacement of the image (U coordinate).
+ * @param pVDisplace				Vertical displacement of the image (V coordinate).
  */
 void IND_Entity2d::setWrapDisplacement(float pUDisplace, float pVDisplace) {
 	_uDisplace = pUDisplace;
@@ -615,7 +615,7 @@ void IND_Entity2d::setBlendDest(IND_BlendingType pDs) {
  * Return 1 (true) if an xml file that has the definitions of several
  * bounding areas for checking collisions is parsed correctly. This
  * method will return 0 (false) if the entity dosen't have a surface assigned
- * (check ::setSurface(). For animations in which you want that each frame has different
+ * (check setSurface(IND_Surface *pNewSurface). For animations in which you want that each frame has different
  * collision areas don't use this method, define the .xml script directly in the </frame> section.
  *
  * You can define in the xml file all the triangular, rectangular and circular areas that you want.
@@ -624,7 +624,7 @@ void IND_Entity2d::setBlendDest(IND_BlendingType pDs) {
  * 4 rectangles with the id="foot". Later, you can use this id parameter in the IND_Entity2dManager::isCollision()
  * method for checking collision only in that areas.
  *
- * Use ::showCollisionAreas() method in order to show or hide the collision areas of this entity.
+ * Use showCollisionAreas() method in order to show or hide the collision areas of this entity.
  * In order to render all the collision areas you should use the
  * IND_Entity2dManager::renderCollisionAreas() method.
  *
@@ -664,18 +664,18 @@ bool IND_Entity2d::setBoundingAreas(char *pFile) {
 
 /**
  * Return 1 (true) if a bounding triangle for checking collisions is defined. This
- * method will return 0 (false) if the entity dosen't have a surface assigned (check ::setSurface().
+ * method will return 0 (false) if the entity dosen't have a surface assigned (check setSurface(IND_Surface *pNewSurface).
  *
  * You can assign all the triangle areas (and also circular and rectangular areas, using
- * ::setBoundingCircle() and ::setBoundingRectangle()) that you want.
+ * setBoundingCircle() and setBoundingRectangle()) that you want.
  * It is possible to "group" the bounding areas of the 2d entity using the "id" parameter. For
  * example you can add 3 triangles and 2 circles using the same id="head". An having at the same time
  * 4 rectangles with the id="foot". Later, you can use this id parameter in the IND_Entity2dManager::isCollision()
  * method for checking collision only in that areas.
- * You can also use the ::setBoundingAreas() method in order to load all the bounding areas directly
+ * You can also use the setBoundingAreas() method in order to load all the bounding areas directly
  * from an xml file.
  *
- * Use ::showCollisionAreas() method in order to show or hide the collision areas of this entity.
+ * Use showCollisionAreas() method in order to show or hide the collision areas of this entity.
  * In order to render all the collision areas you should use the
  * IND_Entity2dManager::renderCollisionAreas() method.
  *
@@ -707,19 +707,19 @@ bool IND_Entity2d::setBoundingTriangle(char *pId,
 /**
  * Return 1 (true) if a bounding circle for checking collisions is defined. This
  * method will return 0 (false) if the entity dosen't have a surface assigned
- * (check ::setSurface().
+ * (check setSurface(IND_Surface *pNewSurface).
  *
  * You can assign all the circular areas (and also triangle and rectangular areas, using
- * ::setBoundingTriangle() and ::setBoundingRectangle()) that you want.
+ * showCollisionAreas() and setBoundingRectangle()) that you want.
  * It is possible to "group" the bounding areas of the 2d entity using the "id" parameter. For
  * example you can add 3 triangles and 2 circles using the same id="head". An having at the same time
  * 4 rectangles with the id="foot". Later, you can use this id parameter in the IND_Entity2dManager::isCollision()
  * method for checking collision only in that areas.
  *
- * You can also use the ::setBoundingAreas() method in order to load all the bounding areas directly
+ * You can also use the setBoundingAreas() method in order to load all the bounding areas directly
  * from an xml file.
  *
- * Use ::showCollisionAreas() method in order to show or hide the collision areas of this entity.
+ * Use showCollisionAreas() method in order to show or hide the collision areas of this entity.
  * In order to render all the collision areas you should use the
  * IND_Entity2dManager::renderCollisionAreas() method.
  *
@@ -746,19 +746,19 @@ bool IND_Entity2d::setBoundingCircle(char *pId, int pOffsetX, int pOffsetY, int 
 
 /**
  * Return 1 (true) if a bounding rectangle for checking collisions is defined. This
- * method will return 0 (false) if the entity dosen't have a surface assigned (check ::setSurface().
+ * method will return 0 (false) if the entity dosen't have a surface assigned (check setSurface(IND_Surface *pNewSurface).
  *
  * You can assign all the rectangular areas (and also triangle and circular areas, using
- * ::setBoundingTriangle() and ::setBoundingCircle()) that you want.
+ * showCollisionAreas() and setBoundingCircle() that you want.
  * It is possible to "group" the bounding areas of the 2d entity using the "id" parameter. For
  * example you can add 3 triangles and 2 circles using the same id="head". An having at the same time
  * 4 rectangles with the id="foot". Later, you can use this id parameter in the IND_Entity2dManager::isCollision()
  * method for checking collision only in that areas.
  *
- * You can also use the ::setBoundingAreas() method in order to load all the bounding areas directly
+ * You can also use the setBoundingAreas() method in order to load all the bounding areas directly
  * from an xml file.
  *
- * Use ::showCollisionAreas() method in order to show or hide the collision areas of this entity.
+ * Use showCollisionAreas() method in order to show or hide the collision areas of this entity.
  * In order to render all the collision areas you should use the
  * IND_Entity2dManager::renderCollisionAreas() method.
  *
@@ -787,7 +787,7 @@ bool IND_Entity2d::setBoundingRectangle(char *pId, int pOffsetX, int pOffsetY, i
 
 /**
  * Return 1 (true) if a bounding rectangle for checking collisions is deleted. This
- * method will return 0 (false) if the entity dosen't have a surface assigned (check ::setSurface().
+ * method will return 0 (false) if the entity dosen't have a surface assigned (check setSurface(IND_Surface *pNewSurface).
  *
  * Default: no bounding rectangle assigned.
  * @param pId						Id of the collision group to delete, use "*" to delete all groups.

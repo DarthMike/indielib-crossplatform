@@ -65,6 +65,14 @@ void IND_Input::end() {
 	}
 }
 
+/**
+ Returns state of initialization.
+ @return  Will give true if object initialized correctly, false otherwise
+ */
+bool IND_Input::isOK() {
+    return _ok;
+}
+
 // --------------------------------------------------------------------------------
 //									  Public methods
 // --------------------------------------------------------------------------------

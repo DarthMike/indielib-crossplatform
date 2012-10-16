@@ -285,6 +285,7 @@ struct structPixel {
     float _z; ///< Point position z
     unsigned long _color; ///< Point color, contains RGBA value
 };
+//! Alias for the pixel structure
 typedef struct structPixel PIXEL;
 #define D3DFVF_PIXEL (D3DFVF_XYZ | D3DFVF_DIFFUSE)
 #endif
@@ -302,6 +303,7 @@ struct structPixelPos {
     float _colorB; ///< Point color B
     float _colorA; ///< Point color A
 };
+//! Alias for the pixel structure
 typedef struct structPixelPos PIXEL;
 #endif
 
@@ -315,6 +317,7 @@ struct structVertex2d {
 	float _u; ///< Texture mapping coordinate u
     float _v; ///< Texture mapping coordinate v
 };
+//! Alias for the 2d vertex structure
 typedef struct structVertex2d CUSTOMVERTEX2D;
 
 #define D3DFVF_CUSTOMVERTEX2D (D3DFVF_XYZ | D3DFVF_TEX1)
@@ -329,6 +332,7 @@ struct structVertex2d {
 	float _u; ///< Texture mapping coordinate u
     float _v; ///< Texture mapping coordinate v
 };
+//! Alias for the 2d vertex structure
 typedef struct structVertex2d CUSTOMVERTEX2D;
 #endif
 /**@}*/
@@ -487,6 +491,7 @@ struct structMatrix {
         std::cout << std::endl;
     }
 };
+//!Alias for the matrix structure
 typedef struct structMatrix IND_Matrix;
 
 
@@ -494,6 +499,7 @@ typedef struct structMatrix IND_Matrix;
 struct structPoint {
 	int x, y;
 };
+//! Alias for the 2d point structure
 typedef struct structPoint IND_Point;
 
 /**@}*/
@@ -1234,6 +1240,7 @@ struct structBoundingCollision {
 		_type = _posX = _posY = _radius = _ax = _ay = _bx = _by = _cx = _cy = 0;
 	}
 };
+//! Alias for the bounding collision structure
 typedef struct structBoundingCollision BOUNDING_COLLISION;
 /**@}*/
 

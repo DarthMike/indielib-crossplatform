@@ -57,7 +57,7 @@ output has been modified in order that @b IndieLib can read it) </i>
 
 The @b original MudFont program can be found in http://www.midwinter.com/~lch/programming/mudgefont/
 
-\image html mudge.png Generate your own fonts quickly with MudFont and use them directly in IndieLib (IND_Font)
+@image html mudge.png Generate your own fonts quickly with MudFont and use them directly in IndieLib (IND_Font)
 */
 class LIB_EXP IND_FontManager {
 public:
@@ -71,9 +71,7 @@ public:
 
 	bool    init(IND_ImageManager *pImageManager, IND_SurfaceManager *pSurfaceManager);
 	void    end();
-	bool    isOK() {
-		return _ok;
-	}
+	bool    isOK();
 
 	// ----- Public methods -----
 

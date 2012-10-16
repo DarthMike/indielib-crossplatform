@@ -76,7 +76,7 @@ differents surfaces qualities (see ::IND_Quality).
 
 <BR>
 
-\image html surfa2.jpg All the graphics entities in IndieLib are internally represented in surfaces
+@image html surfa2.jpg All the graphics entities in IndieLib are internally represented in surfaces
 */
 
 class LIB_EXP IND_SurfaceManager {

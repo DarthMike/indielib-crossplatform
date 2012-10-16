@@ -749,9 +749,10 @@ EXCLUDE_PATTERNS       = /*IND_Light* \
                          /*IND_Entity3dManager* \
                          /*IND_3dMeshManager* \
                          /*IND_LightManager* \
-                         /*IND_TmxMap.cpp* \
                          /*IND_TmxMapManager* \
-                         /*IND_SpriterManager*
+                         /*IND_SpriterManager* \
+                         /*IND_3dMesh* \
+                         /*IND_TmxMap*
 
 # The EXCLUDE_SYMBOLS tag can be used to specify one or more symbol names 
 # (namespaces, classes, functions, etc.) that should be excluded from the 

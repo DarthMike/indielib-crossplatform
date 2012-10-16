@@ -73,9 +73,7 @@ public:
 
 	bool    init(IND_Render *pRender);
 	void    end();
-	bool    isOK()           const {
-		return _ok;
-	}
+	bool    isOK() const;
 
 	// ----- Methods -----
 

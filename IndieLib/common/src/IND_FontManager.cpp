@@ -86,6 +86,14 @@ void IND_FontManager::end() {
 	}
 }
 
+/**
+ Returns state of initialization.
+ @return  Will give true if object initialized correctly, false otherwise
+ */
+bool IND_FontManager::isOK()            {
+    return _ok;
+}
+
 // --------------------------------------------------------------------------------
 //									Public methods
 // --------------------------------------------------------------------------------

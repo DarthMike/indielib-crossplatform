@@ -36,6 +36,8 @@ class ImageCutter;
 class IND_Render;
 class IND_ImageManager;
 
+/** @cond DOCUMENT_PRIVATEAPI */
+
 class DirectXTextureBuilder : public TextureBuilder {
 public:
 	//------CONSTRUCTOR/DESTRUCTOR------
@@ -83,5 +85,6 @@ private:
 
 };
 
+/** @endcond */
 
 #endif  //_DIRECTXTEXTUREBUILDER_H_

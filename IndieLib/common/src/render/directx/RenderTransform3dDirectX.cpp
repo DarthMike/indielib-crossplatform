@@ -21,6 +21,9 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "Defines.h"
 
 #ifdef INDIERENDER_DIRECTX
+
+/** @cond DOCUMENT_PRIVATEAPI */
+
 // ----- Includes -----
 
 #include "Global.h"
@@ -320,5 +323,7 @@ void DirectXRender::setRainbow3d(bool pCull,
 		_info._device->SetRenderState(D3DRS_DESTBLEND, GetD3DBlendingType(pDs));
 	}
 }
+
+/** @endcond */
 
 #endif //INDIERENDER_DIRECTX

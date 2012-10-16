@@ -17,6 +17,8 @@
 #endif
 #endif
 
+/** @cond DOCUMENT_PRIVATEAPI */
+
 //Get count
 double PrecissionTimer::getTicks() {
 
@@ -111,6 +113,8 @@ void PrecissionTimer::init() {
 	mStartTime = (((uint64_t) linux_start.tv_sec) * 1000000000ULL) + (uint64_t) linux_start.tv_nsec;
 #endif
 }
+
+/** @endcond */
 
 //WARNING FROM __int64 to double
 #if defined (PLATFORM_WIN32)

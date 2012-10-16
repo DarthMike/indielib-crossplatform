@@ -49,7 +49,7 @@ struct LIGHT;
 @ingroup Objects
 IND_Light class managed by IND_LightManager for managing lights, click in IND_Light to see all the methods of this class.
 */
-/*@{*/
+/**@{*/
 
 /**
 @b IND_Image is an image object from the class ::IND_ImageManager. Read the explanation in ::IND_ImageManager for having more details.
@@ -115,6 +115,6 @@ private:
 	friend class IND_LightManager;
 
 };
-/*@}*/
+/**@}*/
 
 #endif // _IND_LIGHT_

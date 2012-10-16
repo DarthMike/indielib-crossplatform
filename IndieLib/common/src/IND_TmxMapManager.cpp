@@ -23,7 +23,7 @@
 //							  Initialization / Destruction
 // --------------------------------------------------------------------------------
 
-/*!
+/**
 This function returns 1 (true) if the adminstrator is successfully initialized.
 Must be called before using any method.
 */
@@ -49,8 +49,8 @@ bool IND_TmxMapManager::init() {
 }
 
 
-/*!
-\b Operation:
+/**
+@b Operation:
 
 This function frees the manager and all the objects that it contains.
 */
@@ -72,13 +72,13 @@ void IND_TmxMapManager::end() {
 //									Public methods
 // --------------------------------------------------------------------------------
 
-/*!
-\b Parameters:
+/**
+@b Parameters:
 
-\arg \b pNewTmxMap            Pointer no a new IND_TmxMap object.
-\arg \b pName                 TmxMap filename
+@arg @b pNewTmxMap            Pointer no a new IND_TmxMap object.
+@arg @b pName                 TmxMap filename
 
-\b Operation:
+@b Operation:
 
 This function returns 1 (true) if the image object passed as a parameter
 exists and is added successfully to the manager.
@@ -154,12 +154,12 @@ bool IND_TmxMapManager::add(IND_TmxMap *pNewTmxMap, char *pName) {
 	return 1;
 }
 
-/*!
-\b Parameters:
+/**
+@b Parameters:
 
-\arg \b pName             Pointer to name of the TmxMap file to load
+@arg @b pName             Pointer to name of the TmxMap file to load
 
-\b Operation:
+@b Operation:
 
 This function returns a pointer to a FIBITMAP if the path to the file is correct and if Indielib support the image format.
 Otherwise null is returned.
@@ -217,12 +217,12 @@ Tmx::Map* IND_TmxMapManager::load(char *pName) {
 
 
 
-/*!
-\b Parameters:
+/**
+@b Parameters:
 
-\arg \b pMap                 Pointer to an IND_TmxMap object.
+@arg @b pMap                 Pointer to an IND_TmxMap object.
 
-\b Operation:
+@b Operation:
 
 This function returns 1(true) if the IND_TmxMap object passed as parameter exists and it is
 deleted from the manager successfully.
@@ -270,13 +270,13 @@ bool IND_TmxMapManager::remove(IND_TmxMap *pMap) {
 }
 
 
-/*!
-\b Parameters:
+/**
+@b Parameters:
 
-\arg \b pNewTmxMap            Pointer to a new IND_TmxMap object
-\arg \b pOldTmxMap            Pointer to the IND_TmxMAp we want to clone
+@arg @b pNewTmxMap            Pointer to a new IND_TmxMap object
+@arg @b pOldTmxMap            Pointer to the IND_TmxMAp we want to clone
 
-\b Operation:
+@b Operation:
 
 This function returns 1 (true) if the image object passed as a parameter
 exists and is added successfully to the manager creating a new image cloning from a previous one.

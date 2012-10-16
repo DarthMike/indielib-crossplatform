@@ -21,6 +21,9 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "Defines.h"
 
 #ifdef INDIERENDER_DIRECTX
+
+/** @cond DOCUMENT_PRIVATEAPI */
+
 // ----- Includes -----
 
 #include "Global.h"
@@ -141,5 +144,6 @@ D3DTEXTUREFILTERTYPE DirectXRender::GetD3DFilter(IND_Filter pFilter) {
 	}
 }
 
+/** @endcond */
 
 #endif //INDIERENDER_DIRECTX

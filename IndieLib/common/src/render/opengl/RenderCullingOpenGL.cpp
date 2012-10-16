@@ -31,7 +31,7 @@ Suite 330, Boston, MA 02111-1307 USA
 #define MAX(a, b)  (((a) > (b)) ? (a) : (b))
 #define MIN(a, b)  (((a) < (b)) ? (a) : (b))
 
-/** @cond DOCUMENT_INTERNALRENDERCODE */
+/** @cond DOCUMENT_PRIVATEAPI */
 
 // --------------------------------------------------------------------------------
 //							         Private methods

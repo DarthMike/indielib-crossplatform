@@ -23,6 +23,8 @@ Suite 330, Boston, MA 02111-1307 USA
 #ifdef INDIERENDER_DIRECTX
 // ----- Includes -----
 
+/** @cond DOCUMENT_PRIVATEAPI */
+
 #include "Global.h"
 #include "IND_SurfaceManager.h"
 #include "IND_Surface.h"
@@ -334,6 +336,8 @@ void DirectXRender::fillVertex2d(CUSTOMVERTEX2D *pVertex2d,
 	pVertex2d->_u       = pU;
 	pVertex2d->_v       = pV;
 }
+
+/** @endcond */
 
 #endif //INDIERENDER_DIRECTX
 

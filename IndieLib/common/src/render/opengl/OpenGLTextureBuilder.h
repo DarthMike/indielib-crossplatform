@@ -29,7 +29,7 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "OpenGLRender.h"
 #include "IND_Render.h"
 
-/** @cond DOCUMENT_INTERNALRENDERCODE */
+/** @cond DOCUMENT_PRIVATEAPI */
 
 class IND_Image;
 class IND_Surface;

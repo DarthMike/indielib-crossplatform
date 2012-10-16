@@ -21,6 +21,8 @@ Suite 330, Boston, MA 02111-1307 USA
 
 // ----- Includes -----
 
+/** @cond DOCUMENT_PRIVATEAPI */
+
 #include "Global.h"
 #include "ImageCutter.h"
 #include "IND_ImageManager.h"
@@ -249,3 +251,5 @@ void ImageCutter::initVars() {
 void ImageCutter::freeVars() {
 
 }
+
+/** @endcond */

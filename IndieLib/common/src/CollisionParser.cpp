@@ -4,6 +4,8 @@
 
 // ----- Includes -----
 
+/** @cond DOCUMENT_PRIVATEAPI */
+
 #include "Global.h"
 #include "dependencies/tinyxml/tinyxml.h"
 #include "CollisionParser.h"
@@ -214,3 +216,5 @@ void CollisionParser::deleteBoundingAreas(list <BOUNDING_COLLISION *> *pBList, c
 		}
 	}
 }
+
+/** @endcond */

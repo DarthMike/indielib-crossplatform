@@ -33,7 +33,7 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "IND_Animation.h"
 #include "TextureDefinitions.h"
 
-/** @cond DOCUMENT_INTERNALRENDERCODE */
+/** @cond DOCUMENT_PRIVATEAPI */
 
 // --------------------------------------------------------------------------------
 //							         Public methods

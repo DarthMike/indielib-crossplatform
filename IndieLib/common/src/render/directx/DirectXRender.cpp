@@ -21,6 +21,8 @@ this library; if not, write to the Free Software Foundation, Inc., 59 Temple Pla
 Suite 330, Boston, MA 02111-1307 USA
 */
 
+/** @cond DOCUMENT_PRIVATEAPI */
+
 #include "Defines.h"
 
 #ifdef INDIERENDER_DIRECTX
@@ -645,4 +647,6 @@ void DirectXRender::freeVars() {
 	DISPOSE(_math);
 }
 
+
+/** @endcond */
 #endif //INDIERENDER_DIRECTX

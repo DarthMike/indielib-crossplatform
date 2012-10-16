@@ -36,6 +36,8 @@ Suite 330, Boston, MA 02111-1307 USA
 #ifndef _DIRECTXRENDER_H_
 #define _DIRECTXRENDER_H_
 
+/** @cond DOCUMENT_PRIVATEAPI */
+
 // ----- Includes -----
 
 #include "Defines.h"
@@ -583,5 +585,7 @@ private:
 	friend class DirectXTextureBuilder;
 	friend class IND_Render;
 };
+
+/** @endcond */
 
 #endif // _DIRECTXRENDER_H_

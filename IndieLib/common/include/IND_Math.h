@@ -57,18 +57,20 @@ public:
 		end();
 	}
 
-	bool    init();
-	void    end();
-	bool    isOK() {
-		return _ok;
-	}
+	bool init();
+	void end();
+	bool isOK();
 
 	// ----- Public methods -----
 
-	void        randSeed(long pNum);
+	void randSeed(long pNum);
 
-	/*
-	Returns a random number between two boundaries
+    bool isPowerOfTwo(long pN);
+	/**
+     Generates a random number, given two boundary values
+     @param pIni Lowest possible value to generate
+     @param pEnd Higher possible value to generate
+	 @return A random number between the two boundaries
 	*/
 	inline long randnum(long pIni, long pEnd){
         if (pIni > pEnd) {
@@ -78,14 +80,14 @@ public:
         }
         
         return rand() % (pEnd - pIni + 1) + pIni;
-        
-        //long mResu = pIni + (rand () % ((pEnd - pIni) + 1));
-        //return mResu;
 	}
 
-	bool        isPowerOfTwo(long pN);
-
-	//Radians to angle (templated)
+	/**
+     Performs conversion from radians to degree units
+     @param rads A value to convert to degrees
+     @param invert Will multiply the result degrees values by -1 if this is true
+     @return Value converted to degrees
+     */
 	template <typename type>
 	inline type radiansToAngle(type rads, bool invert = false)const {
 		type angle; //Angle to return
@@ -99,7 +101,12 @@ public:
 		return angle;
 	}
 
-	//Angle to radians (templated)
+	/**
+     Performs conversion from degrees to radian units
+     @param rads A value to convert to radian
+     @param invert Will multiply the result radian values by -1 if this is true
+     @return Value converted to radian
+     */
 	template <typename type>
 	inline type angleToRadians(type angle, bool invert = false)const {
 		type radians; //Radians to return

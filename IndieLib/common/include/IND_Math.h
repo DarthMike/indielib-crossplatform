@@ -20,18 +20,6 @@ this library; if not, write to the Free Software Foundation, Inc., 59 Temple Pla
 Suite 330, Boston, MA 02111-1307 USA
 */
 
-
-/*
-    BIG NOTE:
-    IN THE COURSE OF THIS PORT TO OPENGL I FOUND BIG USE OF DIRECTX MATH LIBRARY
-    AS OPENGL DOESN'T HAVE MATH LIBRARY, I IMPLEMENTED MY OWN. SO, THE IMPORTANT PART
-    IS THAT HERE SOME ASSUMPTIONS ABOUT THE UNDERLYING SYSTEM ARE WORKING:
-        - RIGHT-HANDED COORDINATE SYSTEM
-        - MATRIX REPRESENTATION BY COLUMN ORDER  (JUST IN THE DEFINITION OF THE MATRIX IT IS CHANGED)
-        - VECTORS AS COLUMNS AND POST-MULTIPLYING
-
-    IF YOU DON'T UNDERSTAND IT: GREAT SITE JUST TO THE POINT OF IT: http://www.mindcontrol.org/~hplus/graphics/matrix-layout.html
-*/
 #ifndef _IND_MATH_
 #define _IND_MATH_
 
@@ -46,6 +34,20 @@ Suite 330, Boston, MA 02111-1307 USA
 //									   IND_Math
 // --------------------------------------------------------------------------------
 
+/**
+ @brief Encapsulates common math operations used through the library
+ 
+ This class is comprised by a set of static methods, and a set of object methds which need 
+ and IND_Math instance created.
+ 
+ @b Note:
+ Math ttransform operations assume:
+ - right-handed coordinate system
+ - matrix representation by column order (changed in matrix definition)
+ - vectors as columns, and post-multiplying
+ 
+ Great site with sense on this math stuff: http://www.mindcontrol.org/~hplus/graphics/matrix-layout.html
+ */
 class LIB_EXP IND_Math {
 public:
 	// ----- Init/End -----
@@ -66,21 +68,19 @@ public:
 	void        randSeed(long pNum);
 
 	/*
-	==================
 	Returns a random number between two boundaries
-	==================
 	*/
 	inline long randnum(long pIni, long pEnd){
-	if (pIni > pEnd) {
-		long pTemp = pEnd;
-		pEnd = pIni;
-		pIni = pTemp;
-	}
-
-	return rand() % (pEnd - pIni + 1) + pIni;
-
-	//long mResu = pIni + (rand () % ((pEnd - pIni) + 1));
-	//return mResu;
+        if (pIni > pEnd) {
+            long pTemp = pEnd;
+            pEnd = pIni;
+            pIni = pTemp;
+        }
+        
+        return rand() % (pEnd - pIni + 1) + pIni;
+        
+        //long mResu = pIni + (rand () % ((pEnd - pIni) + 1));
+        //return mResu;
 	}
 
 	bool        isPowerOfTwo(long pN);

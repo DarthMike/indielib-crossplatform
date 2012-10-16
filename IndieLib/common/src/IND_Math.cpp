@@ -127,6 +127,8 @@ bool IND_Math::isPowerOfTwo(long pN) {
 // --------------------------------------------------------------------------------
 #endif
 
+/** @cond DOCUMENT_PRIVATEAPI */
+
 /*
 ==================
 Init vars
@@ -144,3 +146,5 @@ Free memory
 void IND_Math::freeVars() {
 
 }
+
+/** @endcond */

@@ -336,6 +336,8 @@ bool IND_TmxMapManager::clone(IND_TmxMap *pNewTmxMap, IND_TmxMap *pOldTmxMap) { 
 //									Private methods
 // --------------------------------------------------------------------------------
 
+/** @cond DOCUMENT_PRIVATEAPI */
+
 /*
 ==================
 Obtain file extension
@@ -452,7 +454,7 @@ void IND_TmxMapManager::freeVars() {
 	DISPOSE(_listMaps);
 }
 
-
+/** @endcond */
 
 
 

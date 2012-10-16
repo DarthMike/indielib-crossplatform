@@ -35,19 +35,21 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "IND_Entity2d.h"
 #include "IND_Math.h"
 
+/** @cond DOCUMENT_PRIVATEAPI */
 
 /**
  * For sorting the vector
  */
-bool zIsLess(IND_Entity2d *pLhs, IND_Entity2d *pRhs) { //TODO: Move this method down...
+bool zIsLess(IND_Entity2d *pLhs, IND_Entity2d *pRhs) {
 	if (pLhs->getPosZ() < pRhs->getPosZ())
 		return 1;
 	else
 		return 0;
 }
 
-
 unsigned int IND_Entity2dManager::_idTrack = 0;
+
+/** @endcond */
 
 // --------------------------------------------------------------------------------
 //							  Initialization / Destruction
@@ -667,6 +669,8 @@ bool IND_Entity2dManager::isCollision(IND_Entity2d *pEn1, char *pId1, IND_Entity
 //									 Private methods
 // --------------------------------------------------------------------------------
 
+/** @cond DOCUMENT_PRIVATEAPI */
+
 /*
 ==================
 Check the collision between bounding areas
@@ -802,7 +806,7 @@ void IND_Entity2dManager::freeVars() {
 	}
 }
 
-
+/** @endcond */
 
 
 

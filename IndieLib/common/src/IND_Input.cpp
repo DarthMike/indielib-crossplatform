@@ -726,6 +726,8 @@ bool IND_Input::isMouseButtonPressed(IND_MouseButton pMouseButton, unsigned long
 //									 Private methods
 // --------------------------------------------------------------------------------
 
+/** @cond DOCUMENT_PRIVATEAPI */
+
 /*
 ==================
  Initialize the input flags
@@ -766,3 +768,5 @@ void IND_Input::initVars() {
 void IND_Input::freeVars() {
     
 }
+
+/** @endcond */

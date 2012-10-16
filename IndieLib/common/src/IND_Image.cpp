@@ -633,6 +633,8 @@ bool IND_Image::saturation(float) {
 //									Private methods
 // --------------------------------------------------------------------------------
 
+/** @cond DOCUMENT_PRIVATEAPI */
+
 /*
 ==================
 ColorKey
@@ -698,3 +700,5 @@ string IND_Image::formatToString(IND_ColorFormat pColorFormat) {
 		return "FORMAT_NOT_IDENTIFIED";
 	}
 }
+
+/** @endcond */

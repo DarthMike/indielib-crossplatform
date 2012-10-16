@@ -481,6 +481,8 @@ bool IND_ImageManager::save(IND_Image *pIm, const char *pName) {
 //									Private methods
 // --------------------------------------------------------------------------------
 
+/** @cond DOCUMENT_PRIVATEAPI */
+
 /*
 ==================
 Obtain file extension
@@ -596,3 +598,5 @@ void IND_ImageManager::freeVars() {
 	// Free list
 	DISPOSE(_listImages);
 }
+
+/** @endcond */

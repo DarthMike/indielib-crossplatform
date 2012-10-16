@@ -324,7 +324,7 @@ bool IND_AnimationManager::remove(IND_Animation *pAn) {
 // --------------------------------------------------------------------------------
 //									Private methods
 // --------------------------------------------------------------------------------
-
+/** @cond DOCUMENT_PRIVATEAPI */
 /**
  * Returns 1 (true) if the animation object passed as a parameter exists
  * and returns in pAxisCalX and pAxisCalY two values which will be necessary for the hotspot
@@ -811,3 +811,5 @@ void IND_AnimationManager::freeVars() {
 	// Free list
 	DISPOSE(_listAnimations);
 }
+
+/** @endcond */

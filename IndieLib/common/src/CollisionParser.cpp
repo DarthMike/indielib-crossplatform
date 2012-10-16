@@ -15,10 +15,11 @@
 //							   Singleton initialization
 // --------------------------------------------------------------------------------
 
+CollisionParser *CollisionParser::_pinstance = 0;// initialize pointer
+
 /**
  * Init singleton.
  */
-CollisionParser *CollisionParser::_pinstance = 0;// initialize pointer
 CollisionParser *CollisionParser::instance() {
 	if (_pinstance == 0) { // is it the first call?
 		_pinstance = new CollisionParser; // create sole instance

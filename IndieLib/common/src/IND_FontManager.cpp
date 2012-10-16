@@ -253,6 +253,8 @@ bool IND_FontManager::remove(IND_Font  *pFo) {
 //									Private methods
 // --------------------------------------------------------------------------------
 
+/** @cond DOCUMENT_PRIVATEAPI */
+
 /*
 ==================
 Parses and XML font file
@@ -428,3 +430,5 @@ void IND_FontManager::freeVars() {
 	// Free list
 	DISPOSE(_listFonts);
 }
+
+/** @endcond */

@@ -1395,6 +1395,8 @@ void IND_Render::resetNumDiscardedObjects()      {
 //							        Private methods
 // --------------------------------------------------------------------------------
 
+/** @cond DOCUMENT_PRIVATEAPI */
+
 /*
 ==================
 Creates the render
@@ -1463,3 +1465,5 @@ void IND_Render::blitCollisionCircle(int pPosX, int pPosY, int pRadius, float pS
 void IND_Render::blitCollisionLine(int pPosX1, int pPosY1, int pPosX2, int pPosY2,  BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pIndWorldMatrix) {
 	_wrappedRenderer->blitCollisionLine(pPosX1, pPosY1, pPosX2, pPosY2, pR, pG, pB, pA, pIndWorldMatrix);
 }
+
+/** @endcond */

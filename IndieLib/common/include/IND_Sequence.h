@@ -32,6 +32,9 @@ Suite 330, Boston, MA 02111-1307 USA
 //										IND_Sequence
 // --------------------------------------------------------------------------------
 
+/**
+ Contains a set of IND_Frame objects, contained in IND_Animation. It's mainly used internally by IND_Animation objects.
+ */
 class IND_Sequence {
 private:
 	/** @cond DOCUMENT_PRIVATEAPI */

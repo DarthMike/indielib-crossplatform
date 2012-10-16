@@ -831,6 +831,8 @@ void IND_Entity2d::showGridAreas(bool pShowGridAreas) {
 //									 Private methods
 // --------------------------------------------------------------------------------
 
+/** @cond DOCUMENT_PRIVATEAPI */
+
 /*
 ==================
 Attributes initialization
@@ -923,3 +925,5 @@ void IND_Entity2d::initAttrib() {
 	// Show grid areas
 	_showGridAreas = 1;
 }
+
+/** @endcond */

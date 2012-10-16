@@ -501,6 +501,8 @@ int IND_Surface::getVertexPosY(int pVertexX, int pVertexY) {
 //										Private methods
 // --------------------------------------------------------------------------------
 
+/** @cond DOCUMENT_PRIVATEAPI */
+
 /*
 ==================
 Init at construction time
@@ -702,3 +704,5 @@ string IND_Surface::QualityToString(IND_Quality pQuality) {
 		return "QUALITY_NOT_IDENTIFIED";
 	}
 }
+
+/** @endcond */

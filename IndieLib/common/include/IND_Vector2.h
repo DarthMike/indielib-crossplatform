@@ -35,7 +35,7 @@ Suite 330, Boston, MA 02111-1307 USA
  Encapsulates a 2d vector and it's operations. Makes easier to work with vector types and encapsultes common operations
  like sum, multiplication, dot product...
  */
-class IND_Vector2 {
+class LIB_EXP IND_Vector2 {
 public:
 	//----- CONSTRUCTORS/DESTRUCTORS -----
 	//Default constructor

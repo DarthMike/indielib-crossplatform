@@ -62,6 +62,8 @@ using namespace std;
 
 // Math
 #include "IND_Math.h"
+#include "IND_Vector2.h"
+#include "IND_Vector3.h"
 
 // Tmx Maps
 #ifdef PLATFORM_LINUX  //FIXME: Should add compile settings to all platforms when support is fully completed

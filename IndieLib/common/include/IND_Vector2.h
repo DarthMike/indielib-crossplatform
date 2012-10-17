@@ -32,11 +32,19 @@ Suite 330, Boston, MA 02111-1307 USA
 //Classes dependencies
 
 /**
+ @defgroup IND_Vector2 IND_Vector2
+ @ingroup Math
+ Encapsulates a 2d vector and it's operations
+ */
+
+/**@{*/
+
+/**
  Encapsulates a 2d vector and it's operations. Makes easier to work with vector types and encapsultes common operations
  like sum, multiplication, dot product...
  */
 class LIB_EXP IND_Vector2 {
-public:
+public:    
 	//----- CONSTRUCTORS/DESTRUCTORS -----
 	//Default constructor
 	IND_Vector2(): _x(0), _y(0) {
@@ -46,96 +54,181 @@ public:
 	{}
 	~IND_Vector2()
 	{}
-	//****Operators overloading****
-	//Equaling to other vector
+	
+    /** @name Operators overloading */
+    /**@{*/
+	
+    /**
+     Copies element by element all components to the vector
+     @param newVector Another vector
+     @return Ourselves, modified
+     */
 	IND_Vector2 &operator = (const IND_Vector2 &newvector) {
 		_x = newvector._x;
 		_y = newvector._y;
 
 		return *this;
 	}
-	//Comparison between vectors
+    
+	/**
+     Performs element by element comparison
+     @param newVector Another vector
+     @return true if all components equal, false otherwise
+     */
 	inline bool operator == (const IND_Vector2 &newvector) const {
 		return (_x == newvector._x && _y == newvector._y);
 	}
+    
+    /**
+     Performs element by element comparison
+     @param newVector Another vector
+     @return true if all components equal, false otherwise
+     */
 	inline bool operator != (const IND_Vector2 &newvector) const {
 		return (_x != newvector._x || _y != newvector._y);
 	}
-	//Arithmetic
-	//Sum of coordinates
+    
+	/**
+     Performs sum of element by element.
+     Means x+x, y+y etc
+     @param newVector Another vector
+     @return Ourselves, modified
+     */
 	inline IND_Vector2 operator + (const IND_Vector2 &newvector) const {
 		return IND_Vector2(
 		          _x + newvector._x,
 		           _y + newvector._y);
 	}
-	//Self sum....
+    
+	/**
+     Performs sum to ourselves. Doesn't do anything.
+     @return Ourselves, modified
+     */
 	inline const IND_Vector2 &operator + () const {
 		return *this;
 	}
-	//Sum updating - Point to point
+    
+	/**
+     Performs sum of element by element.
+     Means x+x, y+y etc
+     @param newVector Another vector
+     @return Ourselves, modified
+     */
 	inline IND_Vector2 &operator += (const IND_Vector2 &tosum) {
 		_x += tosum._x;
 		_y += tosum._y;
 
 		return *this;
 	}
-	//Sum updating - Offset to every coordinate
+    
+	/**
+     Sums the same ammount to every element.
+     @param offset The value to add to every coordinate
+     @return Ourselves, modified
+     */
 	inline IND_Vector2 &operator += (const float offset) {
 		_x += offset;
 		_y += offset;
 
 		return *this;
 	}
-	//Rest of coordinates
+    
+	/**
+     Performs a substraction of element by element.
+     Means x+x, y+y etc
+     @param newVector Another vector
+     @return Ourselves, modified
+     */
 	inline IND_Vector2 operator - (const IND_Vector2 &newvector) const {
 		return IND_Vector2(
 		           _x - newvector._x,
 		           _y - newvector._y);
 	}
-	//Rest Update
+    
+	/**
+     Performs a substraction of element by element.
+     Means x+x, y+y etc
+     @param newVector Another vector
+     @return Ourselves, modified
+     */
 	inline IND_Vector2 &operator -= (const IND_Vector2 &torest) {
 		_x -= torest._x;
 		_y -= torest._y;
 
 		return *this;
 	}
-	//Rest updating - Offset to every coordinate
+    
+	/**
+     Subtracts the same ammount to every element.
+     @param offset The value to substract to every coordinate
+     @return Ourselves, modified
+     */
 	inline IND_Vector2 &operator -= (const float offset) {
 		_x -= offset;
 		_y -= offset;
 
 		return *this;
 	}
-	//Rest or negative vector
+    
+	/**
+     Negates the vector, element by element.
+     @return Ourselves, modified
+     */
 	inline IND_Vector2 operator - () const {
 		return IND_Vector2(-_x, -_y);
 	}
-	//Scalar multiply
+    
+	/**
+     Multiply by a scalar every element.
+     @param scalar The value to multiply to every coordinate
+     @return Ourselves, modified
+     */
 	inline IND_Vector2 operator * (const float scalar) const {
 		return IND_Vector2(
 		           _x * scalar,
 		           _y * scalar);
 	}
-	//Point to point multiply
+    
+	/**
+     Multiplies corresponding elements of vectors.
+     @param newVector Another vector
+     @return Ourselves, modified
+     */
 	inline IND_Vector2 operator * (const IND_Vector2 &rhs) const {
 		return IND_Vector2(
 		           _x * rhs._x,
 		           _y * rhs._y);
 	}
-	//Multiply update - Multiply to scalar
+    
+	/**
+     Multiply by a scalar every element.
+     @param scalar The value to multiply to every coordinate
+     @return Ourselves, modified
+     */
 	inline IND_Vector2 &operator *= (const float scalar) {
 		_x *= scalar;
 		_y *= scalar;
 		return *this;
 	}
-	//Multiply update - Point to point multiply
+    
+	/**
+     Multiplies corresponding elements of vectors.
+     @param newVector Another vector
+     @return Ourselves, modified
+     */
 	inline  IND_Vector2 &operator *= (const IND_Vector2 &tomultiply) {
 		_x *= tomultiply._x;
 		_y *= tomultiply._y;
 
 		return *this;
 	}
-	//Scalar divide
+    
+	/**
+     Divices by a scalar every element.
+     If value is 0, will break!
+     @param scalar The value to divide to every coordinate
+     @return Ourselves, modified
+     */
 	inline IND_Vector2 operator / (const float scalar) const {
 		assert(scalar != 0.0f);
 		float inv = 1.0f / scalar;
@@ -143,14 +236,25 @@ public:
 		           _x * inv,
 		           _y * inv);
 	}
-	//Point to point divide
+    
+	/**
+     Divides corresponding elements of vectors.
+     @param newVector Another vector
+     @return Ourselves, modified
+     */
 	inline IND_Vector2 operator / (const IND_Vector2 &divideto) const {
 		assert(divideto._x != 0 && divideto._y != 0);
 		return IND_Vector2(
 		           _x / divideto._x,
 		           _y / divideto._y);
 	}
-	//Divide update - Divide to scalar
+    
+	/**
+     Divices by a scalar every element.
+     If value is 0, will break!
+     @param scalar The value to divide to every coordinate
+     @return Ourselves, modified
+     */
 	inline IND_Vector2 &operator /= (const float scalar) {
 		assert(scalar != 0.0f);
 
@@ -159,7 +263,12 @@ public:
 		_y *= inv;
 		return *this;
 	}
-	//Divide update - Point to point divide
+    
+	/**
+     Divides corresponding elements of vectors.
+     @param newVector Another vector
+     @return Ourselves, modified
+     */
 	inline IND_Vector2 &operator /= (const IND_Vector2 &todivide) {
        assert(todivide._x != 0 && todivide._y != 0);
 		_x /= todivide._x;
@@ -167,25 +276,44 @@ public:
 		return *this;
 	}
 
-	//******************
+	/**@}*/
 
-	//----- GET/SET FUNCTIONS -----
-	//No Get/Set - PUBLIC VARIABLES
-	//----- OTHER FUNCTIONS -----
-	//Length of vector
+    /** @name Vector utilities */
+    
+	/**
+     Computes the length of the vector.
+     
+     Calculation is sqrt((_x * _x) + (_y * _y))
+     
+     @return Length of vector value
+     */
 	inline float length() {
 		return(sqrt((_x * _x) + (_y * _y)));
 	}
 
+    /**
+     Computes dot product of two vectors.
+     @return Value of dot product
+     */
 	inline float dotProduct(const IND_Vector2 &vec) const {
 		return ((_x * vec._x) + (_y * vec._y));
 	}
 
+    /**
+     Computes cross product of two vectors.
+     @param other The vector to make cross product with
+     @return Vector result of cross product
+     */
 	inline float crossProduct(const IND_Vector2 &vec) const {
 		return ((_x * vec._y) - (_y * vec._x));
 	}
 
-	//Normalize of vector
+	/**
+     Normalizes the vector.
+     
+     Operation computes length of vector, and divides every vector component by it.
+     @return Length of vector (before being normalized)
+     */
 	inline float normalise() {
 		float l = length();
 
@@ -198,24 +326,42 @@ public:
 
 		return l;
 	}
-	//Return distance to another vector
+    
+	/**
+     Computes the distance to another vector
+     
+     Calculates difference of components, (x2-x1,y2-y1) and gets the length of it.
+     
+     @param to The vector to where distance is to be computed (that is x2) from (x2-x1,y2-y1)
+     @return Length of vector differenct between this and the other one
+     */
 	inline float distance(const IND_Vector2 &to) const {
 		return (*this - to).length();
 	}
 
-	//Return angle between this and another vector
+	/**
+     Computes the angle between two vectors.
+     Angle between vectors:
+     alpha = arcos((vec1*vec2)/|vec1|*|vec2|) in a general way
+     alpha = arcos(vec1*vec2) in unit vectors
+     
+     @param dest Vector  in
+     @return value of angle. This will be signed angle
+     */
 	inline float angleBetweenUnitVecs(const IND_Vector2 &dest) {
-		//Angle between vectors:
-		//alpha = arcos((vec1*vec2)/|vec1|*|vec2|) in a general way
-		//alpha = arcos(vec1*vec2) in unit vectors
-
 		float dotp = dotProduct(dest);
 
 		return (acos(dotp));
 	}
-
-	//----- PUBLIC VARIABLES -----
-	float _x, _y;          //Values of vector
+    
+    /** @name Public Values */
+    /**@{*/
+	float _x, _y;          ///< Values of vector
+    /**@}*/
+    
+    /**@}*/
 };
+
+/**@}*/
 
 #endif   //_IND_VECTOR2_

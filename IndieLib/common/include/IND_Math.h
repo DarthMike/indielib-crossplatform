@@ -35,6 +35,14 @@ Suite 330, Boston, MA 02111-1307 USA
 // --------------------------------------------------------------------------------
 
 /**
+ @defgroup IND_Math IND_Math
+ @ingroup Math
+ Encapsulates common math operations used through library
+ */
+
+/**@{*/
+
+/**
  @brief Encapsulates common math operations used through the library
  
  This class is comprised by a set of static methods, and a set of object methds which need 
@@ -1006,5 +1014,7 @@ private:
     
     /** @endcond */
 };
+
+/**@}*/
 
 #endif // _IND_MATH_

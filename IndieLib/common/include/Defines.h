@@ -49,11 +49,6 @@ Suite 330, Boston, MA 02111-1307 USA
  */
 
 /**
- * @defgroup Main Main
- * @ingroup Classes
- */
-
-/**
  * @defgroup IND_Window IND_Window
  * @ingroup Main
  */
@@ -63,6 +58,10 @@ Suite 330, Boston, MA 02111-1307 USA
  * @ingroup Main
  */
 
+/**
+ * @defgroup Math Math
+ * @ingroup Classes
+ */
 
 /**
  * @defgroup EntityManagers Entity Objects and Entity Managers (the most important concept of IndieLib)

@@ -91,9 +91,7 @@ public:
 
 	bool    init(IND_ImageManager *pImageManager, IND_Render *pRender);
 	void    end();
-	bool    isOK() {
-		return _ok;
-	}
+	bool    isOK();
 
 	// ----- Public methods -----
 

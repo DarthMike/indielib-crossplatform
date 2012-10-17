@@ -65,6 +65,10 @@ public:
 
 	void randSeed(long pNum);
 
+    /** 
+     @name Miscellaneus utilities
+     */
+	/**@{*/
     bool isPowerOfTwo(long pN);
 	/**
      Generates a random number, given two boundary values
@@ -103,7 +107,7 @@ public:
 
 	/**
      Performs conversion from degrees to radian units
-     @param rads A value to convert to radian
+     @param angle A value to convert to radian
      @param invert Will multiply the result radian values by -1 if this is true
      @return Value converted to radian
      */
@@ -169,47 +173,70 @@ public:
 
 		return len;
 	}
+    /**@}*/
     
-    // ----- Collision utilities -----
-	/*
-	==================
-	Check collision between two circles that are not transformed
-	==================
+    /**
+     @name Collision calculation
+     */
+	/**@{*/
+    
+	/**
+     Check collision between two circles in different coordinate systems.
+     
+     Transforms the circle coordinates using supplied transform matrices, and computes collision
+     
+     @param pB1 Collision data for first circle-type collison
+     @param pMat1 Matrix used to transform from coordinates where circle is, to world coordinates
+     @param pScale1 Scale to apply to circle radius
+     @param pB2 Collision data for second circle-type collison
+     @param pMat2 Matrix used to transform from coordinates where circle is, to world coordinates
+     @param pScale2 Scale to apply to circle radius
+     
+     @return true if collision, false otherwise
 	*/
-	bool isCircleToCircleCollision(BOUNDING_COLLISION *pB1, 
-												   IND_Matrix pMat1, 
-												   float pScale1,
-												   BOUNDING_COLLISION *pB2, 
-												   IND_Matrix pMat2, 
-												   float pScale2) {
+	bool isCircleToCircleCollision(BOUNDING_COLLISION *pB1,
+                                   IND_Matrix pMat1,
+                                   float pScale1,
+                                   BOUNDING_COLLISION *pB2,
+                                   IND_Matrix pMat2,
+                                   float pScale2) {
 		// Untransformed points
-
+        
 		// Circle 1
 		IND_Vector2 mCenter1((float) pB1->_posX, (float) pB1->_posY);
 		int mRadius1 = (int)(pB1->_radius * pScale1);
-
+        
 		// Circle 1
 		IND_Vector2 mCenter2((float) pB2->_posX, (float) pB2->_posY);
 		int mRadius2 = (int)(pB2->_radius * pScale2);
-
+        
 		// Transform the points to it's position in world coordinates by using supplied transform
 		transformVector2DbyMatrix4D(mCenter1,pMat1);
 		transformVector2DbyMatrix4D(mCenter2,pMat2);
-
+        
 		if (isCircleToCircleCollision(mCenter1, mRadius1, mCenter2, mRadius2))
 			return 1;
-
+        
 		return 0;
 	}
 
 
-	/*
-	==================
-	Check collision between two triangles that are not transformed
-	==================
+	/**
+ 	 Check collision between two triangles in different coordinate systems.
+     
+     Transforms the triangle coordinates using supplied transform matrices, and computes collision
+     
+     @param pB1 Collision data for first triangle-type collision
+     @param pMat1 Matrix used to transform from coordinates where triangle is, to world coordinates
+     @param pB2 Collision data for second triangle-type collision
+     @param pMat2 Matrix used to transform from coordinates where triangle is, to world coordinates
+     
+     @return true if collision, false otherwise
 	*/
-	bool isTriangleToTriangleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1,
-													   BOUNDING_COLLISION *pB2, IND_Matrix pMat2) {
+	bool isTriangleToTriangleCollision(BOUNDING_COLLISION *pB1,
+                                       IND_Matrix pMat1,
+                                       BOUNDING_COLLISION *pB2,
+                                       IND_Matrix pMat2) {
 		// Untransformed points
 
 		// Triangle 1
@@ -239,13 +266,24 @@ public:
 	}
 
 
-	/*
-	==================
-	Check collision between a circle an a triangle that are not transformed
-	==================
-	*/
-	bool isCircleToTriangleCollision(BOUNDING_COLLISION *pB1, IND_Matrix pMat1, float pScale,
-			BOUNDING_COLLISION *pB2, IND_Matrix pMat2) {
+    /**
+ 	 Check collision between a circle an a triangle in different coordinate systems.
+     
+     Transforms the triangle and circle coordinates using supplied transform matrices, and computes collision
+     
+     @param pB1 Collision data for circle-type collison
+     @param pMat1 Matrix used to transform from coordinates where circle is, to world coordinates
+     @param pScale Scale to apply to circle radius
+     @param pB2 Collision data for triangle-type collision
+     @param pMat2 Matrix used to transform from coordinates where triangle is, to world coordinates
+     
+     @return true if collision, false otherwise
+     */
+	bool isCircleToTriangleCollision(BOUNDING_COLLISION *pB1,
+                                     IND_Matrix pMat1,
+                                     float pScale,
+                                     BOUNDING_COLLISION *pB2,
+                                     IND_Matrix pMat2) {
 
 		// ----- Circle -----
 
@@ -274,19 +312,24 @@ public:
 	}
 
 
-	/*
-	==================
-	Check collision between two triangles (a1, b1, c1) and (a2, b2, c2)
-	- First checks if each of the vertices of either triange is within inside the other triangle->
-	- After that it checks for intersections between the triangle segments->
-	==================
+	/**
+	 Check collision between two triangles in same coordinate system.
+     Triangles are specified as (a1, b1, c1) and (a2, b2, c2).
+     Triangles must be in same coordinate system for this method to work!
+     
+	 - First checks if each of the vertices of either triange is within inside the other triangle
+	 - After that it checks for intersections between the triangle segments
+     @param a1,b1,c1 First triangle coordinates
+     @param a2,b2,c2 Second triangle coordinates
+     
+     @return true if collision, false otherwise
 	*/
 	bool isTriangleToTriangleCollision(IND_Vector2 &a1,
-			IND_Vector2 &b1,
-			IND_Vector2 &c1,
-			IND_Vector2 &a2,
-			IND_Vector2 &b2,
-			IND_Vector2 &c2) {
+                                       IND_Vector2 &b1,
+                                       IND_Vector2 &c1,
+                                       IND_Vector2 &a2,
+                                       IND_Vector2 &b2,
+                                       IND_Vector2 &c2) {
 		// Check if any vertex of triange 1 is inside triange 2
 		if (isPointInsideTriangle(a1, a2, b2, c2)) return 1;
 		if (isPointInsideTriangle(b1, a2, b2, c2)) return 1;
@@ -317,13 +360,21 @@ public:
 	}
 
 
-	/*
-	==================
-	Check collision between two circles
-	==================
+	/**
+	 Check collision between two circles in same coordinate system.
+     Both circles must be in same coordinate system to work!
+     
+     @param pP1 Center of first circle
+     @param pRadius1 Radius of first circle
+     @param pP2 Center of second circle
+     @param pRadius2 Radius of second circle
+     
+     @return true if collision, false otherwise
 	*/
-	bool isCircleToCircleCollision(IND_Vector2 &pP1, int pRadius1,
-			IND_Vector2 &pP2, int pRadius2) {
+	bool isCircleToCircleCollision(IND_Vector2 &pP1,
+                                   int pRadius1,
+                                   IND_Vector2 &pP2,
+                                   int pRadius2) {
 		// h^2 = x^2 + y^2 Pythagoras :D
 
 		// x^2
@@ -347,13 +398,21 @@ public:
 	}
 
 
-	/*
-	==================
-	Check collision between a circle and a triangle
-	==================
+	/**
+     Check collision between a circle and a triangle in same coordinate system.
+     Both elements must be in same coordinate system to work!
+     
+     @param pPCenter Center of first circle
+     @param pRadius Radius of first circle
+     @param pA2, pB2, pC2 Point of triangle
+     
+     @return true if collision, false otherwise
 	*/
-	bool isCircleToTriangleCollision(IND_Vector2 &pPCenter, int pRadius,
-			IND_Vector2 &pA2, IND_Vector2 &pB2, IND_Vector2 &pC2) {
+	bool isCircleToTriangleCollision(IND_Vector2 &pPCenter,
+                                     int pRadius,
+                                     IND_Vector2 &pA2,
+                                     IND_Vector2 &pB2,
+                                     IND_Vector2 &pC2) {
 		// Check if circle center inside the triangle
 		if (isPointInsideTriangle(pPCenter, pA2, pB2, pC2)) return 1;
 
@@ -364,16 +423,20 @@ public:
 
 		return 0;
 	}
-	/*
-	==================
-	Check if point p is inside the triangle with vertex a, b, c
-	Technique from: http://www.blackpawn.com/texts/pointinpoly/default.html
-	==================
+    
+	/**
+	 Check if point p is inside the triangle with vertex a, b, c
+	 Technique from: http://www.blackpawn.com/texts/pointinpoly/default.html
+     
+     @param p A point
+     @param a,b,c Triangle point
+     
+     @return true if inside, false otherwise
 	*/
 	static bool isPointInsideTriangle(IND_Vector2 &p,
-			IND_Vector2 &a,
-			IND_Vector2 &b,
-			IND_Vector2 &c) {
+                                      IND_Vector2 &a,
+                                      IND_Vector2 &b,
+                                      IND_Vector2 &c) {
 		// Compute vectors
 		IND_Vector2 v0 = c - a;
 		IND_Vector2 v1 = b - a;
@@ -395,13 +458,19 @@ public:
 		return (u > 0) && (v > 0) && (u + v < 1);
 	}
 
-	/*
-	==================
-	Compute the distance from AB to C
-	if isSegment is true, AB is a segment, not a line.
-	==================
+	/**
+	 Compute the distance from AB to C.
+	 
+     @param pA,pB Sement or line point
+     @param pC Point to compute distance from
+     @param pIsSegment If true, AB is a segment, not a line
+     
+     @return Value of distance
 	*/
-	double pointToLineDistance(IND_Vector2 &pA, IND_Vector2 &pB, IND_Vector2 &pC, bool pIsSegment) {
+	double pointToLineDistance(IND_Vector2 &pA,
+                               IND_Vector2 &pB,
+                               IND_Vector2 &pC,
+                               bool pIsSegment) {
 		IND_Vector2 ab (pB._x - pA._x, pB._y - pA._y);
 		IND_Vector2 ac (pC._x - pA._x, pC._y - pA._y);
 		
@@ -424,17 +493,20 @@ public:
 		return fabs(mDist);
 	}
 
-	/*
-	==================
-	Check if there is an intersection between two segments
-	Segment 1 => (pAx, pAy) - (pBx, pBy)
-	Segment 2 => (pCx, pCy) - (pDx, pDy)
-	==================
+	/**
+	 Check if there is an intersection between two segments
+	 Segment 1 => (pAx, pAy) - (pBx, pBy)
+	 Segment 2 => (pCx, pCy) - (pDx, pDy)
+     
+     @param a,b First segment
+     @param c,d Second segment
+     
+     @return true if segments intersect, false otherwise
 	*/
 	bool isSegmentIntersection(IND_Vector2 &a,
-			IND_Vector2 &b,
-			IND_Vector2 &c,
-			IND_Vector2 &d) {
+                               IND_Vector2 &b,
+                               IND_Vector2 &c,
+                               IND_Vector2 &d) {
 		float mGradAB, mGradCD, mYcptAB, mYcptCD, mInterceptX, mInterceptY;
 
 		// In order to avoid divisions by zero
@@ -474,21 +546,30 @@ public:
 
 		return 1;
 	}
-	// ----- Matrix utilities -----
-	 /*
-	==================
-	Multiplies 2 matrices (needs allocated result)
-	In the form of R = M1*M2 (Post multiplication on the right) that means we take the rows from
-	the left, and the columns from the right
-	==================
+    
+    /**@}*/
+    
+	/**
+     @name Matrix utilities
+     */
+	/**@{*/
+    /**
+	 Multiplies 2 matrices.
+     
+	 In the form of R = M1*M2 (Post multiplication on the right) that means we take the rows from
+	 the left, and the columns from the right as:
+     
+      [        ][       ]
+      [   M1   ][   M2  ]
+      [        ][       ]  = R
+      [        ][       ]
+     
+     @param m1 First matrix (left side)
+     @param m2 Second matrix (right side)
+     @param result Result matrix
 	*/
 	inline void matrix4DMultiply(const IND_Matrix &m1, const IND_Matrix &m2, IND_Matrix &result)const {
-	  /*
-	          [        ][       ]
-	          [   M1   ][   M2  ]
-	          [        ][       ]  = R
-	          [        ][       ]
-	  */
+	  
 	  result._11 = m1._11 * m2._11 + m1._12 * m2._21 + m1._13 * m2._31 + m1._14 * m2._41;
 	  result._12 = m1._11 * m2._12 + m1._12 * m2._22 + m1._13 * m2._32 + m1._14 * m2._42;
 	  result._13 = m1._11 * m2._13 + m1._12 * m2._23 + m1._13 * m2._33 + m1._14 * m2._43;
@@ -510,10 +591,10 @@ public:
 	  result._44 = m1._41 * m2._14 + m1._42 * m2._24 + m1._43 * m2._34 + m1._44 * m2._44;
 	}
 
-	/*
-	==================
-	Initializes matrix as Identity
-	==================
+	/**
+	 Initializes matrix as Identity.
+     
+     @param m Matrix to initialize
 	*/
 	inline void matrix4DSetIdentity(IND_Matrix &m)const  {
 	  m._11 = 1.0f;
@@ -534,10 +615,11 @@ public:
 	  m._44 = 1.0f;
 	}
 	
-	/*
-	==================
-	Initializes matrix as Translation Matrix
-	==================
+	/**
+	 Initializes matrix as Translation Matrix
+     
+     @param m Matrix to initialize
+     @param transx,transy,transz Translation values
 	*/
 	inline void matrix4DSetTranslation(IND_Matrix &m, float transx, float transy, float transz) const {
 	  m._11 = 1.0f;
@@ -558,14 +640,15 @@ public:
 	  m._44 = 1.0f;
 	}
 	
-	/*
-	==================
-	Initializes matrix as Rotation Matrix
-	This one is tough (or representation of glRotatef()
-	some kind of quaternion represented as a matrix.
-	Detailed formula can be found in the net
-	Angle is in degrees
-	==================
+	/**
+	 Initializes matrix as Rotation Matrix.
+     
+	 This one is tough (or representation of glRotatef(), some kind of quaternion represented as a matrix. 
+     Detailed formula can be found in the net.
+     
+     @param m Matrix to initialize
+	 @param angledegrees Angle IN DEGREES
+     @param axis Axis to rotate around to, typically, for 2d, is (0,0,1)
 	*/
 	inline void matrix4DSetRotationAroundAxis(IND_Matrix &m, float angledegrees, const IND_Vector3 &axis) const  {
 		  float angle = angleToRadians(angledegrees);
@@ -619,10 +702,11 @@ public:
 		  m._44 = 1.0f;
 	}
         
-	/*
-	==================
-	Initializes matrix as a Scale Matrix
-	==================
+	/**
+	 Initializes matrix as a Scale Matrix.
+     
+     @param m Matrix to initialize
+     @param scalex, scaley, scalez Scale values
 	*/
 	inline void matrix4DSetScale(IND_Matrix &m, float scalex, float scaley, float scalez)const {
 		  m._11 = scalex;
@@ -644,21 +728,26 @@ public:
 	}
 	
 
-	/*
-	==================
-
-	Initializes a matrix to represent a rotation matrix from 3 axes: r (right), u(up), l(look) AND p (pos)
-	In some documentation you will see pos referred as eye (eye position)
-	Form:
+	/**
+	 Initializes a matrix to represent a rotation matrix from 3 axes: r (right), u(up), l(look) AND p (pos).
+     
+     It uses left handed coordinate system conventions.
+	 In some documentation you will see pos referred as eye (eye position)
+	 Form:
 	        AXES      TRANSLATION
 	    [l1  l2  l3  0][ 1         -px]
 	    [u1  u2  u3  0][    1      -py]
 	    [r1  r2  r3  0][        1  -pz]
 	    [0   0   0   1][            1 ]
 	
-	Last column are dot products
-	It is quite similar as the gluLookAt() function from OpenGL, but from 3 axes vectors from camera
-	==================
+	 Last column are dot products
+	 It is quite similar as the gluLookAt() function from OpenGL utility library, but using 3 axes vectors from camera
+     
+     @param r Right camera vector
+     @param u Up camera vector
+     @param l Look camera vector
+     @param p Where the camera is positioned
+     @param result Matrix to initialize
 	*/
 	inline void matrix4DLookAtMatrixLH(const IND_Vector3 &r, const IND_Vector3 &u, const IND_Vector3 &l, const IND_Vector3 &p, IND_Matrix &result)const {
 		IND_Matrix rot;
@@ -690,22 +779,27 @@ public:
 		matrix4DMultiply(rot,trans, result);
 	}
 
-/*
-	==================
-
-	Initializes a matrix to represent a rotation matrix from 3 axes: r (right), u(up), l(look) AND p (pos)
-	In some documentation you will see pos referred as eye (eye position)
-	Form:
-	        AXES      TRANSLATION
-	    [l1  l2  l3  0][ 1         -px]
-	    [u1  u2  u3  0][    1      -py]
-	    [r1  r2  r3  0][        1  -pz]
-	    [0   0   0   1][            1 ]
-	
-	Last column are dot products
-	It is quite similar as the gluLookAt() function from OpenGL, but from 3 axes vectors from camera
-	==================
-	*/
+	/**
+	 Initializes a matrix to represent a rotation matrix from 3 axes: r (right), u(up), l(look) AND p (pos).
+     
+     It uses right handed coordinate system conventions.
+	 In some documentation you will see pos referred as eye (eye position)
+	 Form:
+     AXES      TRANSLATION
+     [l1  l2  l3  0][ 1         -px]
+     [u1  u2  u3  0][    1      -py]
+     [r1  r2  r3  0][        1  -pz]
+     [0   0   0   1][            1 ]
+     
+	 Last column are dot products
+	 It is quite similar as the gluLookAt() function from OpenGL utility library, but using 3 axes vectors from camera
+     
+     @param r Right camera vector
+     @param u Up camera vector
+     @param l Look camera vector
+     @param p Where the camera is positioned
+     @param result Matrix to initialize
+     */
 	inline void matrix4DLookAtMatrixRH(const IND_Vector3 &r, const IND_Vector3 &u, const IND_Vector3 &l, const IND_Vector3 &p, IND_Matrix &result)const {
 		IND_Matrix rot;
 		IND_Matrix trans;
@@ -737,12 +831,16 @@ public:
 	}
 
 
-	/*
-	==================
-	Initializes a matrix to represent a rotation matrix from 3 axes: eye, lookat and up
-	It replaces gluLookAt directly (without multiplying the matrix to GL of course)
-	It uses Right handed coordinate system conventions.
-	==================
+	/**
+	 Initializes a matrix to represent a rotation matrix from 3 axes: eye, lookat and up.
+     
+     It uses right handed coordinate system conventions
+	 It replaces gluLookAt directly (without multiplying the matrix to GL of course)
+ 	 
+     @param eye Where camera is positioned
+     @param lookAt Where camera looks to
+     @param up Up vector from camera
+     @param result Matrix to initialize
 	*/        
 	inline void matrix4DLookAtMatrixEyeLookUpRH(const IND_Vector3 &eye, const IND_Vector3 &lookAt, const IND_Vector3 &up, IND_Matrix &result)const {
 		IND_Vector3 z (lookAt - eye);
@@ -756,13 +854,17 @@ public:
     	matrix4DLookAtMatrixRH(x,y,z,eye,result);
 	}
 
-	/*
-	==================
-	Initializes a matrix to represent a rotation matrix from 3 axes: eye, lookat and up
-	It replaces gluLookAt directly (without multiplying the matrix to GL of course)
-	It uses Left handed coordinate system conventions.
-	==================
-	*/        
+	/**
+	 Initializes a matrix to represent a rotation matrix from 3 axes: eye, lookat and up.
+     
+     It uses left handed coordinate system conventions
+	 It replaces gluLookAt directly (without multiplying the matrix to GL of course)
+ 	 
+     @param eye Where camera is positioned
+     @param lookAt Where camera looks to
+     @param up Up vector from camera
+     @param result Matrix to initialize
+     */
 	inline void matrix4DLookAtMatrixEyeLookUpLH(const IND_Vector3 &eye, const IND_Vector3 &lookAt, const IND_Vector3 &up, IND_Matrix &result)const {
 		IND_Vector3 z (lookAt - eye);
     	z.normalise();
@@ -775,13 +877,19 @@ public:
     	matrix4DLookAtMatrixLH(x,y,z,eye,result);
 	}
 
-	/*
-	==================
-	Initializes a matrix representing an orthonormal transformation
-	Uses Right handed coord system
-	(Just as glOrtho makes)
-	==================
-	*/
+	/**
+	 Initializes a matrix representing an orthonormal transformation.
+	 It uses right handed coordinate system conventions
+	 It replaces glOrtho directly (without multiplying the matrix to GL of course)
+     
+     @param left Left margin of view
+     @param right Right margin of view
+     @param bottom Bottom margin of view
+     @param top Top margin of view
+     @param znear Nearest z to show in view
+     @param zfar Farthest z to show in view
+     @param result Matrix to initialize
+     */
 	inline void matrix4DOrthographicProjectionRH(float left , float right, float bottom, float top, float znear, float zfar, IND_Matrix &result)  {
 		float a = 2.0f / (right - left);
 		float b = 2.0f / (top - bottom);
@@ -807,13 +915,19 @@ public:
 		result._44 = 1.0f;
 	}
 
-	/*
-	==================
-	Initializes a matrix representing an orthonormal transformation
-	Uses Left handed coord system
-	(Just as glOrtho makes)
-	==================
-	*/
+	/**
+	 Initializes a matrix representing an orthonormal transformation.
+	 It uses left handed coordinate system conventions
+	 It replaces glOrtho directly (without multiplying the matrix to GL of course)
+     
+     @param left Left margin of view
+     @param right Right margin of view
+     @param bottom Bottom margin of view
+     @param top Top margin of view
+     @param znear Nearest z to show in view
+     @param zfar Farthest z to show in view
+     @param result Matrix to initialize
+     */
 	inline void matrix4DOrthographicProjectionLH(float left , float right, float bottom, float top, float znear, float zfar, IND_Matrix &result)  {
 		float a = 2.0f / (right - left);
 		float b = 2.0f / (top - bottom);
@@ -838,13 +952,18 @@ public:
 		result._43 = 0.0f;
 		result._44 = 1.0f;
 	}
+    /**@}*/
 
-	// ----- Matrix4/Vector3 utilities -----
+	/**
+     @name Matrix with vector utilities
+     */
+	/**@{*/
 
-	/*
-	==================
-	Multiplies the column vector to the matrix (from the right side)
-	==================
+	/**
+	 Multiplies the column vector to the matrix (from the right side).
+     
+     @param vector The vector to multiply (right side), will be modified directly with transform.
+     @param mat The matrix, left side.
 	*/
 	inline void transformVector3DbyMatrix4D(IND_Vector3 &vector, const IND_Matrix &mat)const {
 		float x = vector._x;
@@ -856,12 +975,12 @@ public:
 		vector._z = mat._31 * x + mat._32 * y + mat._33 * z + mat._34;
 	}
 
-	/*
-	==================
-	Multiplies the column vector to the matrix (from the right side)
-	As 2d vector can't be multiplied, a 3D vector is created with z = 0
-	==================
-	*/
+    /**
+	 Multiplies the column vector to the matrix (from the right side).
+     
+     @param vector The vector to multiply (right side), will be modified directly with transform.
+     @param mat The matrix, left side.
+     */
 	inline void transformVector2DbyMatrix4D(IND_Vector2 &vector, const IND_Matrix &mat)const {
 		IND_Vector3 fake (vector._x,vector._y,0.0f);
 
@@ -871,8 +990,10 @@ public:
 		vector._y = fake._y;
 	}
 
+    /**@}*/
 private:
 
+    /** @cond DOCUMENT_PRIVATEAPI */
 	// ----- Private -----
 
 	bool _ok;
@@ -882,6 +1003,8 @@ private:
 
 	void                initVars();
 	void                freeVars();
+    
+    /** @endcond */
 };
 
 #endif // _IND_MATH_

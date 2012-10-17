@@ -46,10 +46,16 @@ Suite 330, Boston, MA 02111-1307 USA
 class LIB_EXP IND_Vector2 {
 public:    
 	//----- CONSTRUCTORS/DESTRUCTORS -----
-	//Default constructor
+	
+    /**
+     Default constructor, initializes elements to 0
+     */
 	IND_Vector2(): _x(0), _y(0) {
 	}
-	//Must use this constructor to create a vector with data
+	/**
+     Designated constructor
+     @param newx,newy Values of components
+     */
 	explicit IND_Vector2(float newx, float newy): _x(newx), _y(newy)
 	{}
 	~IND_Vector2()
@@ -60,7 +66,7 @@ public:
 	
     /**
      Copies element by element all components to the vector
-     @param newVector Another vector
+     @param newvector Another vector
      @return Ourselves, modified
      */
 	IND_Vector2 &operator = (const IND_Vector2 &newvector) {
@@ -72,7 +78,7 @@ public:
     
 	/**
      Performs element by element comparison
-     @param newVector Another vector
+     @param newvector Another vector
      @return true if all components equal, false otherwise
      */
 	inline bool operator == (const IND_Vector2 &newvector) const {
@@ -81,7 +87,7 @@ public:
     
     /**
      Performs element by element comparison
-     @param newVector Another vector
+     @param newvector Another vector
      @return true if all components equal, false otherwise
      */
 	inline bool operator != (const IND_Vector2 &newvector) const {
@@ -91,7 +97,7 @@ public:
 	/**
      Performs sum of element by element.
      Means x+x, y+y etc
-     @param newVector Another vector
+     @param newvector Another vector
      @return Ourselves, modified
      */
 	inline IND_Vector2 operator + (const IND_Vector2 &newvector) const {
@@ -111,7 +117,7 @@ public:
 	/**
      Performs sum of element by element.
      Means x+x, y+y etc
-     @param newVector Another vector
+     @param tosum Another vector
      @return Ourselves, modified
      */
 	inline IND_Vector2 &operator += (const IND_Vector2 &tosum) {
@@ -136,7 +142,7 @@ public:
 	/**
      Performs a substraction of element by element.
      Means x+x, y+y etc
-     @param newVector Another vector
+     @param newvector Another vector
      @return Ourselves, modified
      */
 	inline IND_Vector2 operator - (const IND_Vector2 &newvector) const {
@@ -148,7 +154,7 @@ public:
 	/**
      Performs a substraction of element by element.
      Means x+x, y+y etc
-     @param newVector Another vector
+     @param torest Another vector
      @return Ourselves, modified
      */
 	inline IND_Vector2 &operator -= (const IND_Vector2 &torest) {
@@ -191,7 +197,7 @@ public:
     
 	/**
      Multiplies corresponding elements of vectors.
-     @param newVector Another vector
+     @param rhs Another vector
      @return Ourselves, modified
      */
 	inline IND_Vector2 operator * (const IND_Vector2 &rhs) const {
@@ -213,7 +219,7 @@ public:
     
 	/**
      Multiplies corresponding elements of vectors.
-     @param newVector Another vector
+     @param tomultiply Another vector
      @return Ourselves, modified
      */
 	inline  IND_Vector2 &operator *= (const IND_Vector2 &tomultiply) {
@@ -239,7 +245,7 @@ public:
     
 	/**
      Divides corresponding elements of vectors.
-     @param newVector Another vector
+     @param divideto Another vector
      @return Ourselves, modified
      */
 	inline IND_Vector2 operator / (const IND_Vector2 &divideto) const {
@@ -266,7 +272,7 @@ public:
     
 	/**
      Divides corresponding elements of vectors.
-     @param newVector Another vector
+     @param todivide Another vector
      @return Ourselves, modified
      */
 	inline IND_Vector2 &operator /= (const IND_Vector2 &todivide) {
@@ -301,7 +307,7 @@ public:
 
     /**
      Computes cross product of two vectors.
-     @param other The vector to make cross product with
+     @param vec The vector to make cross product with
      @return Vector result of cross product
      */
 	inline float crossProduct(const IND_Vector2 &vec) const {

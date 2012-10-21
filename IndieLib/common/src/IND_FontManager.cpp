@@ -109,10 +109,10 @@ bool IND_FontManager::isOK()            {
  * @param pType						Font type (see ::IND_Type).
  * @param pQuality					Font quality (see ::IND_Quality).
  */
-bool IND_FontManager::add(IND_Font	*pNewFont,
-                          char		*pName,
-                          char		*pFile,
-                          IND_Type	pType,
+bool IND_FontManager::add(IND_Font		*pNewFont,
+                          const char	*pName,
+                          const char	*pFile,
+                          IND_Type		pType,
                           IND_Quality	pQuality) {
 	// Image loading
 	IND_Image *mNewImage = new IND_Image;
@@ -147,10 +147,10 @@ bool IND_FontManager::add(IND_Font	*pNewFont,
  * @param pType						Font type (see ::IND_Type).
  * @param pQuality					Font quality (see ::IND_Quality).
  */
-bool IND_FontManager::add(IND_Font	*pNewFont,
-                          IND_Image	*pImage,
-                          char		*pFile,
-                          IND_Type	pType,
+bool IND_FontManager::add(IND_Font		*pNewFont,
+                          IND_Image		*pImage,
+                          const char	*pFile,
+                          IND_Type		pType,
                           IND_Quality	pQuality) {
 	g_debug->header("Parsing and loading font", 5);
 	g_debug->header("File name:", 3);
@@ -160,6 +160,9 @@ bool IND_FontManager::add(IND_Font	*pNewFont,
 		writeMessage();
 		return 0;
 	}
+
+	char stringTemp[128];
+	char *pFileCharTemp = strcpy(stringTemp, pFile);
 
 	// ----- Width and height of the bitmap font MUST be power of two -----
 
@@ -187,14 +190,14 @@ bool IND_FontManager::add(IND_Font	*pNewFont,
 
 	pNewFont->setSurface(mNewSurface);
 
-	// ----- XML font parsing -----
+	// ----- XML font parsing -----	
 
-	if (!parseFont(pNewFont, pFile)) {
+	if (!parseFont(pNewFont, pFileCharTemp)) {
 		g_debug->header("Fatal error, cannot load the font xml file", 2);
 		return 0;
 	}
 
-	pNewFont->setFileName(pFile);
+	pNewFont->setFileName(pFileCharTemp);
 
 	// ----- Puts the object into the manager -----
 

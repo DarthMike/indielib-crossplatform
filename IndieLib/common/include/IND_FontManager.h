@@ -76,14 +76,14 @@ public:
 	// ----- Public methods -----
 
 	bool add(IND_Font       *pNewFont,
-	         char            *pName,
-	         char            *pFile,
+	         const char    *pName,
+	         const char    *pFile,
 	         IND_Type        pType,
 	         IND_Quality     pQuality);
 
 	bool add(IND_Font       *pNewFont,
 	         IND_Image       *pImage,
-	         char            *pFile,
+	         const char    *pFile,
 	         IND_Type        pType,
 	         IND_Quality     pQuality);
 

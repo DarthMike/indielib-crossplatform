@@ -1,6 +1,6 @@
 bin_PROGRAMS = tutorial05
 
-AM_CXXFLAGS = $(INTI_CFLAGS) -I @top_srcdir@/../common/include -I @top_srcdir@/../tutorials/basic/05_IND_Font
+AM_CXXFLAGS = $(INTI_CFLAGS) -Werror -I @top_srcdir@/../common/include -I @top_srcdir@/../tutorials/basic/05_IND_Font
 
 tutorial05_SOURCES = ../../../../tutorials/basic/05_IND_Font/CIndieLib_vc2008.cpp ../../../../tutorials/basic/05_IND_Font/Tutorial05.cpp
 

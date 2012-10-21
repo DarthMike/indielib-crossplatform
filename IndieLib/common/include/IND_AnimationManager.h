@@ -68,17 +68,17 @@ public:
 
 	// ----- Public methods -----
 
-	bool addToImage(IND_Animation *pNewAnimation, char *pAnimation);
+	bool addToImage(IND_Animation *pNewAnimation, const char *pAnimation);
 
 	// ----- Not specifying block size -----
 
 	bool addToSurface(IND_Animation *pNewAnimation,
-	                  char *pAnimation,
+	                  const char *pAnimation,
 	                  IND_Type pType,
 	                  IND_Quality pQuality);
 
 	bool addToSurface(IND_Animation *pNewAnimation,
-	                  char *pAnimation,
+	                  const char *pAnimation,
 	                  IND_Type pType,
 	                  IND_Quality pQuality,
 	                  BYTE pR,
@@ -88,13 +88,13 @@ public:
 	// ----- Specifying block size -----
 
 	bool addToSurface(IND_Animation *pNewAnimation,
-	                  char *pAnimation,
+	                  const char *pAnimation,
 	                  int pBlockSize,
 	                  IND_Type pType,
 	                  IND_Quality pQuality);
 
 	bool addToSurface(IND_Animation *pNewAnimation,
-	                  char *pAnimation,
+	                  const char *pAnimation,
 	                  int pBlockSize,
 	                  IND_Type pType,
 	                  IND_Quality pQuality,

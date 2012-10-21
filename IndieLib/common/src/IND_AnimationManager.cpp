@@ -108,7 +108,7 @@ void IND_AnimationManager::end() {
  * @param pQuality				Surface quality (see ::IND_Quality)
  */
 bool IND_AnimationManager::addToSurface(IND_Animation *pNewAnimation,
-                                        char *pAnimation,
+                                        const char *pAnimation,
                                         IND_Type pType,
                                         IND_Quality pQuality) {
 	if (!addToImage(pNewAnimation, pAnimation))
@@ -145,7 +145,7 @@ bool IND_AnimationManager::addToSurface(IND_Animation *pNewAnimation,
  * @param pFrame pR, pG, pB				Color where the colorkey will be applied, this area will become transparent.
  */
 bool IND_AnimationManager::addToSurface(IND_Animation *pNewAnimation,
-                                        char *pAnimation,
+                                        const char *pAnimation,
                                         IND_Type pType,
                                         IND_Quality pQuality,
                                         BYTE pR,
@@ -193,7 +193,7 @@ bool IND_AnimationManager::addToSurface(IND_Animation *pNewAnimation,
  * @param pQuality				Surface quality (see ::IND_Quality)
  */
 bool IND_AnimationManager:: addToSurface(IND_Animation *pNewAnimation,
-        char *pAnimation,
+        const char *pAnimation,
         int pBlockSize,
         IND_Type pType,
         IND_Quality pQuality) {
@@ -232,7 +232,7 @@ bool IND_AnimationManager:: addToSurface(IND_Animation *pNewAnimation,
  * @param pR, pG, pB				Color where the colorkey will be applied, this areas will become transparent.
  */
 bool IND_AnimationManager::addToSurface(IND_Animation *pNewAnimation,
-                                        char *pAnimation,
+                                        const char *pAnimation,
                                         int pBlockSize,
                                         IND_Type pType,
                                         IND_Quality pQuality,
@@ -276,7 +276,7 @@ bool IND_AnimationManager::addToSurface(IND_Animation *pNewAnimation,
  * @param pNewAnimation				Pointer to a new animation object.
  * @param pAnimation				Name of the animation XML script.
  */
-bool IND_AnimationManager::addToImage(IND_Animation *pNewAnimation, char *pAnimation) {
+bool IND_AnimationManager::addToImage(IND_Animation *pNewAnimation, const char *pAnimation) {
 	g_debug->header("Parsing and loading animation", 5);
 	g_debug->header("File name:", 3);
 	g_debug->dataChar(pAnimation, 1);
@@ -286,14 +286,17 @@ bool IND_AnimationManager::addToImage(IND_Animation *pNewAnimation, char *pAnima
 		return 0;
 	}
 
+	char stringTemp[128];
+	char *pCharTemp = strcpy(stringTemp, pAnimation);
+	
 	// ----- Animation file parsing -----
 
-	if (!parseAnimation(pNewAnimation, pAnimation)) {
+	if (!parseAnimation(pNewAnimation, pCharTemp)) {
 		g_debug->header("Fatal error, cannot load the animation xml file", 2);
 		return 0;
 	}
 
-	pNewAnimation->_animation._name = pAnimation;
+	pNewAnimation->_animation._name = pCharTemp;
 
 
 	// ----- Put the object into the manager  -----

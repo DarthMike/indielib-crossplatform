@@ -35,19 +35,21 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "IND_Entity2d.h"
 #include "IND_Math.h"
 
+/** @cond DOCUMENT_PRIVATEAPI */
 
 /**
  * For sorting the vector
  */
-bool zIsLess(IND_Entity2d *pLhs, IND_Entity2d *pRhs) { //TODO: Move this method down...
+bool zIsLess(IND_Entity2d *pLhs, IND_Entity2d *pRhs) {
 	if (pLhs->getPosZ() < pRhs->getPosZ())
 		return 1;
 	else
 		return 0;
 }
 
-
 unsigned int IND_Entity2dManager::_idTrack = 0;
+
+/** @endcond */
 
 // --------------------------------------------------------------------------------
 //							  Initialization / Destruction
@@ -101,6 +103,14 @@ void IND_Entity2dManager::end() {
 	}
 }
 
+/**
+ Returns state of initialization.
+ @return  Will give true if object initialized correctly, false otherwise
+ */
+bool IND_Entity2dManager::isOK()           const {
+    return _ok;
+}
+
 
 // --------------------------------------------------------------------------------
 //										Public methods
@@ -144,7 +154,7 @@ bool IND_Entity2dManager::add(IND_Entity2d *pNewEntity2d) {
  * upon the terrain. In this case, the terrain an all the objects on it could be in Layer[0]. The buttons and score could be
  * in an higher layer, for example Layer[1].
  *
- * The z values of the objects (see ::setPosition()) will be taken in count only between objects of the same layer.
+ * The z values of the objects (see setPosition()) will be taken in count only between objects of the same layer.
  *
  * There are 64 different layers allowed (0 - 63).
  * @param pLayer				Number of layers (0 - 63 layers allowed).
@@ -181,7 +191,7 @@ bool IND_Entity2dManager::add(int pLayer, IND_Entity2d *pNewEntity2d) {
 /**
  * Returns 1(true) if the entity object passed as parameter exists
  * and is deleted from the manager successfully.
- * @param pNewEntity2d				Pointer to an entity object.
+ * @param pEn				Pointer to an entity object.
  */
 bool IND_Entity2dManager::remove(IND_Entity2d *pEn) {
 	g_debug->header("Freeing 2d entity", 5);
@@ -667,6 +677,8 @@ bool IND_Entity2dManager::isCollision(IND_Entity2d *pEn1, char *pId1, IND_Entity
 //									 Private methods
 // --------------------------------------------------------------------------------
 
+/** @cond DOCUMENT_PRIVATEAPI */
+
 /*
 ==================
 Check the collision between bounding areas
@@ -802,7 +814,7 @@ void IND_Entity2dManager::freeVars() {
 	}
 }
 
-
+/** @endcond */
 
 
 

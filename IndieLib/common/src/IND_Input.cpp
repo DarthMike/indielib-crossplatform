@@ -65,6 +65,14 @@ void IND_Input::end() {
 	}
 }
 
+/**
+ Returns state of initialization.
+ @return  Will give true if object initialized correctly, false otherwise
+ */
+bool IND_Input::isOK() {
+    return _ok;
+}
+
 // --------------------------------------------------------------------------------
 //									  Public methods
 // --------------------------------------------------------------------------------
@@ -726,6 +734,8 @@ bool IND_Input::isMouseButtonPressed(IND_MouseButton pMouseButton, unsigned long
 //									 Private methods
 // --------------------------------------------------------------------------------
 
+/** @cond DOCUMENT_PRIVATEAPI */
+
 /*
 ==================
  Initialize the input flags
@@ -766,3 +776,5 @@ void IND_Input::initVars() {
 void IND_Input::freeVars() {
     
 }
+
+/** @endcond */

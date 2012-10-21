@@ -30,7 +30,7 @@ Suite 330, Boston, MA 02111-1307 USA
 // --------------------------------------------------------------------------------
 
 /**
- * Initializes a 3d camera and sets it in a position.
+ * @brief Initializes a 3d camera and sets it in a position.
  * @param pX				X Position of the camera.
  * @param pY				Y Position of the camera.
  * @param pZ				Z Position of the camera.
@@ -70,92 +70,56 @@ IND_Camera3d::~IND_Camera3d() {
 //										 Public methods
 // --------------------------------------------------------------------------------
 
-/**
- * Returns the x position of the camera.
- */
 float IND_Camera3d::getPosX()  {
 	return _pos._x;
 }
 
-/**
- * Returns the y position of the camera.
- */
 float IND_Camera3d::getPosY()  {
 	return _pos._y;
 }
 
-/**
- * Returns the z position of the camera.
- */
 float IND_Camera3d::getPosZ()  {
 	return _pos._z;
 }
 
-/**
- * Returns the first component of the lookat camera vector.
- */
 float IND_Camera3d::GetLookX()  {
 	return _look._x;
 }
 
-/**
- * Returns the second component of the lookat camera vector.
- */
 float IND_Camera3d::GetLookY()  {
 	return _look._y;
 }
 
-/**
- * Returns the third component of the lookat camera vector.
- */
 float IND_Camera3d::GetLookZ()  {
 	return _look._z;
 }
 
-/**
- * Returns the first component of the up camera vector.
- */
 float IND_Camera3d::getUpX()  {
 	return _up._x;
 }
 
-/**
- * Returns the second component of the up camera vector.
- */
 float IND_Camera3d::getUpY()  {
 	return _up._y;
 }
 
-/**
- * Returns the third component of the up camera vector.
- */
 float IND_Camera3d::getUpZ()  {
 	return _up._z;
 }
 
-/**
- * Returns the first component of the right camera vector.
- */
 float IND_Camera3d::getRightX()  {
 	return _right._x;
 }
 
-/**
- * Returns the second component of the right camera vector.
- */
 float IND_Camera3d::getRightY()  {
 	return _right._y;
 }
 
-/**
- * Returns the third component of the right camera vector.
- */
 float IND_Camera3d::getRightZ()  {
 	return _right._z;
 }
 
 /**
- * Sets the position of the camera.
+ * @brief Sets the position of the camera.
  * @param pX				X Position of the camera.
  * @param pY				Y Position of the camera.
  * @param pZ				Z Position of the camera.	
@@ -167,7 +131,7 @@ void IND_Camera3d::setPosition(float pX, float pY, float pZ) {
 }
 
 /**
- * Zooms the camera. Use this if you want to zoom in or out the scenery.
+ * @brief Zooms the camera. Use this if you want to zoom in or out the scenery.
  * Default: 1.0f
  * @param pZoom				Zoom factor.
  */
@@ -179,7 +143,7 @@ void IND_Camera3d::setZoom(float pZoom) {
 }
 
 /**
- * Sets the angle of camera rotation around the roll axis.
+ * @brief Sets the angle of camera rotation around the roll axis.
  * Default: 0.0f
  * @param pRoll				Roll angle in degrees.
  */
@@ -188,7 +152,7 @@ void IND_Camera3d::setRoll(float pRoll) {
 }
 
 /**
- * Sets the angle of camera rotation around the pitch axis.
+ * @brief Sets the angle of camera rotation around the pitch axis.
  * Default: 0.0f
  * @param pPitch			Pitch angle in degrees.
  */
@@ -197,7 +161,7 @@ void IND_Camera3d::setPitch(float pPitch) {
 }
 
 /**
- * Sets the angle of camera rotation around the yaw axis.
+ * @brief Sets the angle of camera rotation around the yaw axis.
  * Default: 0.0f
  * @param pYaw				Yaw angle in degrees.
  */
@@ -206,7 +170,7 @@ void IND_Camera3d::setYaw(float pYaw) {
 }
 
 /**
- * Moves the camera from it's current position towards the direction it is facing.
+ * @brief Moves the camera from it's current position towards the direction it is facing.
  * @param pValue			Distancy to "walk" the camera.
  */
 void IND_Camera3d::moveWalk(float pValue) {
@@ -217,7 +181,7 @@ void IND_Camera3d::moveWalk(float pValue) {
 }
 
 /**
- * Moves the camera from it's current position in right / left directions.
+ * @brief Moves the camera from it's current position in right / left directions.
  * @param pStrafe			Distancy to "strafe" the camera.
  */
 void IND_Camera3d::moveStrafe(float pStrafe) {
@@ -227,7 +191,7 @@ void IND_Camera3d::moveStrafe(float pStrafe) {
 }
 
 /**
- * Moves the camera from it's current position in up / left right directions.
+ * @brief Moves the camera from it's current position in up / left right directions.
  * @param pFly				Distancy to "fly" the camera.
  */
 void IND_Camera3d::moveFly(float pFly) {
@@ -237,7 +201,7 @@ void IND_Camera3d::moveFly(float pFly) {
 }
 
 /**
- * Sets the field of view of the camera.
+ * @brief Sets the field of view of the camera.
  * Default: ( DirectX : D3DX_PI / 4 ) ( OpenGl : PI / 4 )
  * @param pFov				Fov value.
  */
@@ -246,7 +210,7 @@ void IND_Camera3d::setFov(float pFov) {
 }
 
 /**
- * Sets the aspect of camera.
+ * @brief Sets the aspect of camera.
  * Default: 800 / 600
  * @param pAspect			Aspect value.
  */
@@ -255,7 +219,7 @@ void IND_Camera3d::setAspect(float pAspect) {
 }
 
 /**
- * Sets the distancy to the near plane.
+ * @brief Sets the distancy to the near plane.
  * Default: 0.01f
  * @param pNearPlane			Distancy to the near plane.
  */
@@ -264,7 +228,7 @@ void IND_Camera3d::setNearClippingPlane(float pNearPlane) {
 }
 
 /**
- * Sets the distancy to the far plane.
+ * @brief Sets the distancy to the far plane.
  * Default: 100.0f
  * @param pFarPlane			Distancy to the far plane.
  */
@@ -273,7 +237,7 @@ void IND_Camera3d::setFarClippingPlane(float pFarPlane) {
 }
 
 /**
- * Activates / deactivates the orthonormal projection.
+ * @brief Activates / deactivates the orthonormal projection.
  * Default: 0
  * @param pOrtho			Orhot projection 0 / 1 = off / on.
  */
@@ -282,7 +246,8 @@ void IND_Camera3d::toggleOrthoProjection(bool pOrtho) {
 }
 
 /**
- * Sets the width of the ortho projection. This value should usually be the same
+ * @brief Sets the width of the ortho projection. 
+ * This value should usually be the same
  * as the viewport width, meaning you can set this value to IND_Render::getViewPortWidth()
  * Default: 0
  * @param pOrthoWidth			Width value for the ortho projection.
@@ -292,7 +257,8 @@ void IND_Camera3d::setOrthoWidth(float pOrthoWidth) {
 }
 
 /**
- * Sets the height of the ortho projection. This value should usually be the same
+ * @brief Sets the height of the ortho projection. 
+ * This value should usually be the same
  * as the viewport height, meaning you can set this value to IND_Render::getViewPortHeight()
  * Default: 0
  * @param pOrthoHeight			Hight value for the ortho projection.

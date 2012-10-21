@@ -22,6 +22,9 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "Defines.h"
 
 #ifdef INDIERENDER_DIRECTX
+
+/** @cond DOCUMENT_PRIVATEAPI */
+
 // ----- Includes -----
 
 #include "Global.h"
@@ -411,5 +414,7 @@ void DirectXRender::setForPrimitive(BYTE pA) {
 	// Pixel format
 	_info._device->SetFVF(D3DFVF_PIXEL);
 }
+
+/** @endcond */
 
 #endif //INDIERENDER_DIRECTX

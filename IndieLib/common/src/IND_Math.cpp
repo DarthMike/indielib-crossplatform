@@ -39,11 +39,11 @@ Suite 330, Boston, MA 02111-1307 USA
 //							  Initialization / Destruction
 // --------------------------------------------------------------------------------
 
-/*
-==================
-Init
-==================
-*/
+/**
+ Initializes the object.
+ 
+ @return true if initialized correctly, false otherwise
+ */
 bool IND_Math::init() {
 	end();
 	freeVars();
@@ -79,11 +79,9 @@ bool IND_Math::init() {
 }
 
 
-/*
-==================
-End
-==================
-*/
+/**
+ * Frees the manager and all the objects that it contains.
+ */
 void IND_Math::end() {
 	if (_ok) {
 
@@ -93,6 +91,13 @@ void IND_Math::end() {
 	}
 }
 
+/**
+ Returns state of initialization.
+ @return  Will give true if object initialized correctly, false otherwise
+ */
+bool IND_Math::isOK() {
+    return _ok;
+}
 
 // --------------------------------------------------------------------------------
 //										 Public methods
@@ -100,6 +105,7 @@ void IND_Math::end() {
 
 /**
  * Sets the seed for random numbers
+ * @param pNum a number to initiate random seed with. Should be different always, like a time() value
  */
 void IND_Math::randSeed(long pNum) {
 	srand(static_cast<unsigned>(pNum));
@@ -107,7 +113,9 @@ void IND_Math::randSeed(long pNum) {
 
 
 /**
- * Returns 1 if the number is power of two, 0 otherwise
+ * Compares if a number is power of two
+ * @param pN Number to check
+ * @return true if the number is power of two, false otherwise
  */
 bool IND_Math::isPowerOfTwo(long pN) {
 	while (pN > 1L) {
@@ -127,6 +135,8 @@ bool IND_Math::isPowerOfTwo(long pN) {
 // --------------------------------------------------------------------------------
 #endif
 
+/** @cond DOCUMENT_PRIVATEAPI */
+
 /*
 ==================
 Init vars
@@ -144,3 +154,5 @@ Free memory
 void IND_Math::freeVars() {
 
 }
+
+/** @endcond */

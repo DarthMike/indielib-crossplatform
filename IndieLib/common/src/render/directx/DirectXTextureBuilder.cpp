@@ -35,6 +35,8 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "DirectXRender.h"
 #include "IND_Render.h"
 
+/** @cond DOCUMENT_PRIVATEAPI */
+
 DirectXTextureBuilder::DirectXTextureBuilder(IND_ImageManager *imagemgr, IND_Render *render):
 	_render(render) {
 	// Image cutter
@@ -448,5 +450,6 @@ void DirectXTextureBuilder::push4Vertices(CUSTOMVERTEX2D *pVertices,
 	           0.0f);
 }
 
+/** @endcond */
 
 #endif //INDIERENDER_DIRECTX

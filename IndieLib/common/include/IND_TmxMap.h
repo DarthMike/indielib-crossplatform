@@ -27,7 +27,7 @@ comment goes here
 \ingroup Objects
 IND_Image class managed by IND_ImageManager for loading, saving and applying filters to images, click in IND_Image to see all the methods of this class.
 */
-/*@{*/
+/**@{*/
 
 /*!
 \b IND_Image is an image object from the class ::IND_ImageManager. Read the explanation in ::IND_ImageManager for more details.
@@ -52,7 +52,7 @@ public:
 	}
 
 private:
-
+	/** @cond DOCUMENT_PRIVATEAPI */
 	// ----- Structures ------
 
 	//TYPE
@@ -92,7 +92,8 @@ private:
 	// ----- Friends -----
 
 	friend class IND_TmxMapManager;
+    /** @endcond */
 };
-/*@}*/
+/**@}*/
 
 #endif //  _IND_TMXMAP_

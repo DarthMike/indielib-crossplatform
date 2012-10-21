@@ -93,6 +93,14 @@ void IND_AnimationManager::end() {
 	}
 }
 
+/** 
+ Returns state of initialization.
+ @return  Will give true if object initialized correctly, false otherwise
+ */
+bool  IND_AnimationManager::isOK() {
+    return _ok;
+}
+
 
 // --------------------------------------------------------------------------------
 //									Public methods
@@ -138,11 +146,11 @@ bool IND_AnimationManager::addToSurface(IND_Animation *pNewAnimation,
  * this animation directly. Furthermore, it uses the color passed as a parameter to apply
  * a colorkey to the image. So, the zones coloured with this colour will be
  * transparent.
- * @param pFrame pNewAnimation				Pointer to a new animation object.
- * @param pFrame pAnimation				Name of the animation XML script.
- * @param pFrame pType					Surface type (see ::IND_Type)
- * @param pFrame pQuality                		Surface quality (see ::IND_Quality)
- * @param pFrame pR, pG, pB				Color where the colorkey will be applied, this area will become transparent.
+ * @param pNewAnimation				Pointer to a new animation object.
+ * @param pAnimation				Name of the animation XML script.
+ * @param pType						Surface type (see ::IND_Type)
+ * @param pQuality                	Surface quality (see ::IND_Quality)
+ * @param pR, pG, pB				Color where the colorkey will be applied, this area will become transparent.
  */
 bool IND_AnimationManager::addToSurface(IND_Animation *pNewAnimation,
                                         const char *pAnimation,
@@ -268,7 +276,7 @@ bool IND_AnimationManager::addToSurface(IND_Animation *pNewAnimation,
  * Returns 1 (true) if the animation file exists and is added successfully
  * to the manager, loading the frames as IND_Image objects. So this animation won't be able
  * to be drawn to the screen directly, but you will be able to modify the IND_Image objects
- * (for applying a filter, for example) accessing them trough the ::getImage() function.
+ * (for applying a filter, for example) accessing them trough the ::IND_Animation::getImage(int pFrame) function.
  * 
  * Once they have been modified, they can be converted to ::IND_Surface and applied to the animation
  * using ::IND_Animation::setSurface(int pFrame, IND_Surface *pNewSurface)  and then the animation will be able to be drawn correctly
@@ -327,7 +335,7 @@ bool IND_AnimationManager::remove(IND_Animation *pAn) {
 // --------------------------------------------------------------------------------
 //									Private methods
 // --------------------------------------------------------------------------------
-
+/** @cond DOCUMENT_PRIVATEAPI */
 /**
  * Returns 1 (true) if the animation object passed as a parameter exists
  * and returns in pAxisCalX and pAxisCalY two values which will be necessary for the hotspot
@@ -814,3 +822,5 @@ void IND_AnimationManager::freeVars() {
 	// Free list
 	DISPOSE(_listAnimations);
 }
+
+/** @endcond */

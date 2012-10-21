@@ -27,6 +27,7 @@ Suite 330, Boston, MA 02111-1307 USA
 class IND_ImageManager;
 class IND_Image;
 
+/** @cond DOCUMENT_PRIVATEAPI */
 
 // --------------------------------------------------------------------------------
 //									 INFO_SURFACE
@@ -105,5 +106,7 @@ private:
 	void    initVars();
 	void    freeVars();
 };
+
+/** @endcond */
 
 #endif // _IND_IMAGECUTTER_H_

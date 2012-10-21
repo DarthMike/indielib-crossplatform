@@ -22,6 +22,9 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "Defines.h"
 
 #ifdef INDIERENDER_DIRECTX
+
+/** @cond DOCUMENT_PRIVATEAPI */
+
 // ----- Includes -----
 
 #include "Global.h"
@@ -206,5 +209,7 @@ void DirectXRender::SetTranslation(int pX, int pY, D3DXMATRIX *pMatWorld, D3DXMA
 	D3DXMatrixMultiply(pMatWorld, pMatWorld, pMatTraslation);
 	_info._device->SetTransform(D3DTS_WORLD, pMatWorld);
 }
+
+/** @endcond */
 
 #endif //INDIERENDER_DIRECTX

@@ -22,6 +22,9 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "Defines.h"
 
 #ifdef INDIERENDER_DIRECTX
+
+/** @cond DOCUMENT_PRIVATEAPI */
+
 // ----- Includes -----
 
 #include "Global.h"
@@ -237,5 +240,7 @@ void DirectXRender::UpdateFrameMatrices(const D3DXFRAME *frameBase, const D3DXMA
 	if (currentFrame->pFrameFirstChild != NULL)
 		UpdateFrameMatrices(currentFrame->pFrameFirstChild, &currentFrame->_exCombinedTransformationMatrix);
 }
+
+/** @endcond */
 
 #endif //INDIERENDER_DIRECTX

@@ -31,10 +31,12 @@ Suite 330, Boston, MA 02111-1307 USA
 // --------------------------------------------------------------------------------
 //									 IND_Frame
 // --------------------------------------------------------------------------------
-
+/**
+ Contains data of a frame in an IND_Animation entity. Mainly is for private use in IND_Animation objects.
+ */
 class IND_Frame {
 private:
-
+	/** @cond DOCUMENT_PRIVATEAPI */
 	// ----- Structures ------
 
 	// Frame
@@ -100,6 +102,7 @@ private:
 	friend class IND_Animation;
 	friend class IND_AnimationManager;
 	friend class IND_Entity2dManager;
+    /** @endcond */
 };
 
 #endif // _IND_SEQUENCE_

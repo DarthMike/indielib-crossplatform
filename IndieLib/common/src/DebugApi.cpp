@@ -20,6 +20,8 @@ this library; if not, write to the Free Software Foundation, Inc., 59 Temple Pla
 Suite 330, Boston, MA 02111-1307 USA
 */
 
+/** @cond DOCUMENT_PRIVATEAPI */
+
 #include <string.h>
 #include "DebugApi.h"
 
@@ -99,8 +101,8 @@ void DebugApi::end() {
 
 /**
  * Header and message
- * @param pTextString		TODO describtion  
- * @param pType			TODO describtion 
+ *  @param pTextString		TODO describtion  
+ *  @param pType			TODO describtion 
  */
 void DebugApi::header(string pTextString, int pType) {
 	if (!_ok) return;
@@ -228,8 +230,8 @@ void DebugApi::header(string pTextString, int pType) {
 
 /**
  * Writes a string.
- * @param pTextString		text to add to the debuglog
- * @param pFlag			true if line should break
+ *  @param pTextString		text to add to the debuglog
+ *  @param pFlag			true if line should break
  */
 void DebugApi::dataChar(string pTextString, bool pFlag) {
 	if (!_ok) return;
@@ -243,8 +245,8 @@ void DebugApi::dataChar(string pTextString, bool pFlag) {
 
 /**
  * Writes an integer.
- * @param pDataInt		int to add to the debuglog
- * @param pFlag			true if line should break
+ *  @param pDataInt		int to add to the debuglog
+ *  @param pFlag			true if line should break
  */
 void DebugApi::dataInt(int pDataInt, bool pFlag) {
 	if (!_ok) return;
@@ -258,8 +260,8 @@ void DebugApi::dataInt(int pDataInt, bool pFlag) {
 
 /**
  * Writes a float.
- * @param pDataFloat		float to add to the debuglog
- * @param pFlag			true if line should break
+ *  @param pDataFloat		float to add to the debuglog
+ *  @param pFlag			true if line should break
  */
 void DebugApi::dataFloat(float pDataFloat, bool pFlag) {
 	if (!_ok) return;
@@ -283,7 +285,7 @@ void DebugApi::breakPoint() {
 
 /**
  * Duplicates an string.
- * @param charString 		charString to duplicate
+ *  @param charString 		charString to duplicate
  */
 char *DebugApi::duplicateCharString(const char *charString) {
 	if (!charString)
@@ -385,3 +387,5 @@ void DebugApi::initVars() {
 void DebugApi::freeVars() {
 	DISPOSE(_count);
 }
+
+/*** @endcond */

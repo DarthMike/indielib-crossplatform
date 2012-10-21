@@ -12,7 +12,11 @@
 #ifdef PLATFORM_WIN32
 #ifdef _DEBUG
 #include <stdio.h>
+/** @cond DOCUMENT_PRIVATEAPI */
+
 void RedirectIOToConsole();
+
+/** @endcond */
 
 #endif
 #endif

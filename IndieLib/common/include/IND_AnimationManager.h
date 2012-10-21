@@ -45,7 +45,7 @@ class IND_Animation;
 @ingroup Managers
 Manager of ::IND_Animation objects. Click in ::IND_AnimationManager to see all the methods of this class.
 */
-/*@{*/
+/**@{*/
 
 /**
 Manager of ::IND_Animation objects. Used for storing these type of objects.
@@ -62,9 +62,8 @@ public:
 
 	bool    init(IND_ImageManager *pImageManager, IND_SurfaceManager *pSurfaceManager);
 	void    end();
-	bool    isOK() {
-		return _ok;
-	}
+    
+	bool    isOK();
 
 	// ----- Public methods -----
 
@@ -106,7 +105,7 @@ public:
 
 
 private:
-
+	/** @cond DOCUMENT_PRIVATEAPI */
 	// ----- Private -----
 
 	bool _ok;
@@ -158,7 +157,8 @@ private:
 	void        writeMessage();
 	void        initVars();
 	void        freeVars();
+    /** @endcond */
 };
-/*@}*/
+/**@}*/
 
 #endif // _IND_ANIMATIONMANAGER_

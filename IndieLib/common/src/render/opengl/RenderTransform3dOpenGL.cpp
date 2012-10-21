@@ -30,7 +30,7 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "OpenGLRender.h"
 #include "IND_Camera3d.h"
 
-/** @cond DOCUMENT_INTERNALRENDERCODE */
+/** @cond DOCUMENT_PRIVATEAPI */
 
 // --------------------------------------------------------------------------------
 //							         Public methods

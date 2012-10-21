@@ -16,6 +16,8 @@
 #define _CRTDBG_MAP_ALLOC
 #include <crtdbg.h>
 
+/** @cond DOCUMENT_PRIVATEAPI */
+
 //Static variables are shown as leaked (dont worry with this)
 #ifdef _DEBUG 
 //Memory leak detection
@@ -34,7 +36,10 @@ public:
 		//Dumps memory leaks when destructed (end of program)
 		_CrtDumpMemoryLeaks(); 
 	} 
-}; 
+};
+
 #else 
 #define FINDMEMLEAK(val) 
 #endif
+
+/** @endcond */

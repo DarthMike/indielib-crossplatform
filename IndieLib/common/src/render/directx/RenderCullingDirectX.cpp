@@ -21,6 +21,8 @@ Suite 330, Boston, MA 02111-1307 USA
 */
 #include "Defines.h"
 
+/** @cond DOCUMENT_PRIVATEAPI */
+
 #ifdef INDIERENDER_DIRECTX
 // ----- Includes -----
 
@@ -214,5 +216,7 @@ void DirectXRender::MinAndMax4(int p1,
 	*pMin = MIN(*pMin, p3);
 	*pMin = MIN(*pMin, p4);
 }
+
+/** @endcond */
 
 #endif //INDIERENDER_DIRECTX

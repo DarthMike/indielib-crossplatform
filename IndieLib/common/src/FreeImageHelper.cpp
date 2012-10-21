@@ -12,6 +12,8 @@
 #include "FreeImageHelper.h"
 #include "Global.h"
 
+/** @cond DOCUMENT_PRIVATEAPI */
+
 /**
  * Freeimage format to Indielib format.
  * @param pHandle		the FIBITMAP that is used for calculation
@@ -263,3 +265,4 @@ FIBITMAP* FreeImageHelper::convertColorFormat(FIBITMAP* pHandle, int pNewFormat)
 	return converted;
 }
 
+/** @endcond */

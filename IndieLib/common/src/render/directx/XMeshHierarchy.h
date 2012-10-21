@@ -12,7 +12,7 @@
 #include <d3dx9.h>
 #include "XMeshStructures.h"
 
-
+/** @cond DOCUMENT_PRIVATEAPI */
 // --------------------------------------------------------------------------------
 //									 XMeshHierarchy
 // --------------------------------------------------------------------------------
@@ -45,3 +45,5 @@ public:
 };
 
 #endif // _IND_XMESHHIERARCHY_
+
+/** @endcond */

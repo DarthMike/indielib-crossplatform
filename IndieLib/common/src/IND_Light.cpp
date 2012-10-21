@@ -30,7 +30,7 @@ Suite 330, Boston, MA 02111-1307 USA
 #include <d3dx9.h>
 #endif
 
-
+/** @cond DOCUMENT_PRIVATEAPI */
 // Internal structure definition
 // Attributes
 struct structAttributes {
@@ -69,6 +69,8 @@ struct LIGHT {
 	}
 #endif
 };
+
+/** @endcond */
 
 // --------------------------------------------------------------------------------
 //										Public methods

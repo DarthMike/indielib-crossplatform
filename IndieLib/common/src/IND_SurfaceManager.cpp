@@ -120,6 +120,14 @@ void IND_SurfaceManager::end() {
 	}
 }
 
+/**
+ Returns state of initialization.
+ @return  Will give true if object initialized correctly, false otherwise
+ */
+bool IND_SurfaceManager::isOK() {
+    return _ok;
+}
+
 
 // --------------------------------------------------------------------------------
 //									 Public methods
@@ -443,6 +451,8 @@ bool IND_SurfaceManager::remove(IND_Surface *pSu) {
 //										Private methods
 // --------------------------------------------------------------------------------
 
+/** @cond DOCUMENT_PRIVATEAPI */
+
 /*
 ==================
 Add main (All public Add use this)
@@ -691,3 +701,5 @@ void IND_SurfaceManager::freeVars() {
     //Free Texture builder
     DISPOSE(_textureBuilder);
 }
+
+/** @endcond */

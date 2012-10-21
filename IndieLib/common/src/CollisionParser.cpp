@@ -4,6 +4,8 @@
 
 // ----- Includes -----
 
+/** @cond DOCUMENT_PRIVATEAPI */
+
 #include "Global.h"
 #include "dependencies/tinyxml/tinyxml.h"
 #include "CollisionParser.h"
@@ -13,10 +15,11 @@
 //							   Singleton initialization
 // --------------------------------------------------------------------------------
 
+CollisionParser *CollisionParser::_pinstance = 0;// initialize pointer
+
 /**
  * Init singleton.
  */
-CollisionParser *CollisionParser::_pinstance = 0;// initialize pointer
 CollisionParser *CollisionParser::instance() {
 	if (_pinstance == 0) { // is it the first call?
 		_pinstance = new CollisionParser; // create sole instance
@@ -261,3 +264,5 @@ void CollisionParser::deleteBoundingAreas(list <BOUNDING_COLLISION *> *pBList, c
 		}
 	}
 }
+
+/** @endcond */

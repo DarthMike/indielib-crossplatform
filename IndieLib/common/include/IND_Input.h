@@ -33,6 +33,7 @@ class IND_Render;
 //									      CKey
 // --------------------------------------------------------------------------------
 
+/** @cond DOCUMENT_PRIVATEAPI */
 // This class stores information about a keyboard key
 class CKey {
 public:
@@ -103,7 +104,7 @@ public:
 
 	// ----- Methods -----
 
-	// Sets the button state
+	//Sets the button state.
 	void setState(IND_MouseButtonState pButtonState) {
 		// If the button was pressed and is not being pressed anymore we set the flag "released"
 		if (_buttonState == IND_MBUTTON_PRESSED && pButtonState == IND_MBUTTON_NOT_PRESSED)
@@ -128,6 +129,8 @@ public:
 	IND_MouseButtonState _buttonState;
 	IND_Timer _timer;
 };
+
+
 
 
 // Class that stores information about the mouse
@@ -155,6 +158,8 @@ public:
 	CMouseButton _mouseButtons [3];
 };
 
+/** @endcond */
+
 
 // --------------------------------------------------------------------------------
 //									 IND_Input
@@ -165,7 +170,7 @@ public:
 @ingroup Input
 IND_Input class for having input from keyboard and mouse. Click in IND_Input to see all the methods of this class.
 */
-/*@{*/
+/**@{*/
 
 /**
 @b IND_Input is a wrapper class of SDL input functions for giving IndieLib the possibility of
@@ -183,34 +188,32 @@ public:
 
 	bool    init(IND_Render *pRender);
 	void    end();
-	bool    isOK() {
-		return _ok;
-	}
+	bool    isOK();
 
 	// ----- Public methods -----
 
 	/** @name Input common
 	*
 	*/
-	//@{
+	/**@{*/
 	void update();
 	bool quit();
-	//@}
+	/**@}*/
 
 	/** @name Keyboard
 	*
 	*/
-	//@{
+	/**@{*/
 	bool onKeyPress(IND_Key pKey);
 	bool onKeyRelease(IND_Key pKey);
 	bool isKeyPressed(IND_Key pKey);
 	bool isKeyPressed(IND_Key pKey, unsigned long pTime);
-	//@}
+	/**@}*/
 
 	/** @name Mouse
 	*
 	*/
-	//@{
+	/**@{*/
 	bool isMouseMotion();
 	int getMouseX();
 	int getMouseY();
@@ -222,10 +225,10 @@ public:
 	bool onMouseButtonRelease(IND_MouseButton pMouseButton);
 	bool isMouseButtonPressed(IND_MouseButton pMouseButton);
 	bool isMouseButtonPressed(IND_MouseButton pMouseButton, unsigned long pTime);
-	//@}
+	/**@}*/
 
 private:
-
+	/** @cond DOCUMENT_PRIVATEAPI */
 	// ----- Private -----
 
 	IND_Render *_render;
@@ -242,7 +245,8 @@ private:
 	void                initFlags();
 	void                initVars();
 	void                freeVars();
+    /** @endcond */
 };
-/*@}*/
+/**@}*/
 
 #endif // _IND_INPUT_

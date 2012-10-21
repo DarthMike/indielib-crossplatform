@@ -236,7 +236,7 @@ bool IND_Image::flipVertical() {
  * Converts the image to the specified format. 
  * First convert to requested different color format, then convert to the requested bit depth.
  * Returns false if there is no image loaded or conversion is not possible.
- * @param pFormat					Format of the image. See ::IND_ColorFormat.
+ * @param pColorFormat				Format of the image. See ::IND_ColorFormat.
  * @param pBpp						New bits per pixel of the image.
  */
 bool IND_Image::convert(IND_ColorFormat pColorFormat, int pBpp) {
@@ -304,8 +304,6 @@ bool IND_Image::setAlpha(BYTE pR, BYTE pG, BYTE pB) {
 }
 
 /**
- * TODO: documentation taken from FreeImage docs, please adjust this.
- *
  * Alpha blend or combine a sub part image with the current dib image.
  * For images of type FITBITMAP only: The bit depth of the dst bitmap must be greater than or
  * equal to the bit depth of the src. Upper promotion of src is done internally, without modifying
@@ -316,9 +314,10 @@ bool IND_Image::setAlpha(BYTE pR, BYTE pG, BYTE pB) {
  * destination image.
  *
  * The function returns TRUE if successful, FALSE otherwise (including if the one or both images is not loaded).
- * @param pIm               Pointer to an image object, that is going to be pasted (Alpha blended and/or combinen with the current image)
+ * @param pIm               Pointer to an image object, that is going to be pasted (Alpha blended and/or combined with the current image)
  * @param pX                X Coordenate
  * @param pY                Y Coordenate
+ * @param pAlpha            Alpha value on the destination image
  */
 bool IND_Image::pasteImage(IND_Image *pIm, int pX, int pY, int pAlpha) {
 	// No image loaded
@@ -336,7 +335,7 @@ bool IND_Image::gaussianBlur(int) {
 	// No image loaded
 	if (!isImageLoaded()) return false;
 
-	//TODO: Implement this for release x.x 
+	//TODO: Implement this on later release 
 	//It was previously functionality offered by DevilLib.
 
 	return true;
@@ -365,7 +364,7 @@ bool IND_Image::equalize() {
 	// No image loaded
 	if (!isImageLoaded()) return false;
 
-	//TODO: Implement this for release x.x 
+	//TODO: Implement this on later release 
 	//It was previously functionality offered by DevilLib.
 
 	return true;
@@ -421,7 +420,7 @@ bool IND_Image::noisify(float) {
 	// No image loaded
 	if (!isImageLoaded()) return false;
 
-	//TODO: Implement this for release x.x 
+	//TODO: Implement this on later release 
 	//It was previously functionality offered by DevilLib.
 
 	return true;
@@ -436,7 +435,7 @@ bool IND_Image::pixelize(int) {
 	// No image loaded
 	if (!isImageLoaded()) return false;
 
-	//TODO: Implement this for release x.x 
+	//TODO: Implement this on later release 
 	//It was previously functionality offered by DevilLib.
 
 	return true;
@@ -454,7 +453,7 @@ bool IND_Image::sharpen(float, int) {
 	// No image loaded
 	if (!isImageLoaded()) return false;
 
-	//TODO: Implement this for release x.x 
+	//TODO: Implement this on later release 
 	//It was previously functionality offered by DevilLib.
 
 	return true;
@@ -476,8 +475,8 @@ bool IND_Image::sharpen(float, int) {
  *	FILTER_CATMULLROM Catmull-Rom spline, Overhauser spline
  *	FILTER_LANCZOS3 Lanczos-windowed sinc filter
  *
- * @param pSizeX					Width in píxels.
- * @param pSizeY					Height in píxels.
+ * @param pWidth					Width in píxels.
+ * @param pHeight					Height in píxels.
  */
 bool IND_Image::scale(int pWidth, int pHeight) {
 	// No image loaded
@@ -512,7 +511,7 @@ bool IND_Image::edgeDetect1() {
 	// No image loaded
 	if (!isImageLoaded()) return false;
 
-	//TODO: Implement this for release x.x 
+	//TODO: Implement this on later release 
 	//It was previously functionality offered by DevilLib.
 
 	return true;
@@ -525,7 +524,7 @@ bool IND_Image::edgeDetect2() {
 	// No image loaded
 	if (!isImageLoaded()) return false;
 
-	//TODO: Implement this for release x.x 
+	//TODO: Implement this on later release 
 	//It was previously functionality offered by DevilLib.
 
 	return true;
@@ -538,7 +537,7 @@ bool IND_Image::emboss() {
 	// No image loaded
 	if (!isImageLoaded()) return false;
 
-	//TODO: Implement this for release x.x 
+	//TODO: Implement this on later release 
 	//It was previously functionality offered by DevilLib.
 
 	return true;
@@ -574,7 +573,7 @@ bool IND_Image::rotate(double pAngle) {
 
 /**
  * Inverts the alpha values (transparency) of the image. Returns 0 if there is no image loaded.
- * Note!: if image type is ::IND_LUMINANCE, it does nothing. Use ::Negative() instead.
+ * Note!: if image type is ::IND_LUMINANCE, it does nothing. Use ::IND_Image::negative() instead.
  */
 bool IND_Image::invertAlpha() {
 	// No image loaded
@@ -623,7 +622,7 @@ bool IND_Image::saturation(float) {
 	// No image loaded
 	if (!isImageLoaded()) return false;
 
-	//TODO: Implement this for release x.x 
+	//TODO: Implement this on later release 
 	//It was previously functionality offered by DevilLib.
 
 	return true;
@@ -632,6 +631,8 @@ bool IND_Image::saturation(float) {
 // --------------------------------------------------------------------------------
 //									Private methods
 // --------------------------------------------------------------------------------
+
+/** @cond DOCUMENT_PRIVATEAPI */
 
 /*
 ==================
@@ -698,3 +699,5 @@ string IND_Image::formatToString(IND_ColorFormat pColorFormat) {
 		return "FORMAT_NOT_IDENTIFIED";
 	}
 }
+
+/** @endcond */

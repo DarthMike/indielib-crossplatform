@@ -38,11 +38,14 @@ Suite 330, Boston, MA 02111-1307 USA
 /**
 @defgroup Camera2d Camera2d
 @ingroup Cameras
-This is the camera for 2d scenarios. Using this class you can control all the parameters of a 2d camera. You
-can have as many cameras as you want. Use ::IND_Render::SetCamera2d() method before drawing in order
-to choose the camera you want to use.
 */
-/*@{*/
+/**@{*/
+/**
+ @brief This is the camera for 2d scenarios. 
+ Using this class you can control all the parameters of a 2d camera. You
+ can have as many cameras as you want. Use ::IND_Render::setCamera2d(IND_Camera2d *pCamera2d) method before drawing in order
+ to choose the camera you want to use.
+ */
 class LIB_EXP IND_Camera2d { //ñ
 public:
 
@@ -89,6 +92,7 @@ public:
 
 private:
 
+    /** @cond DOCUMENT_PRIVATEAPI */
 	// ----- Private -----
 
 	bool _ok;
@@ -112,6 +116,9 @@ private:
 
 	friend class DirectXRender;
 	friend class OpenGLRender;
+    /** @endcond */
 };
+
+/**@}*/
 
 #endif // _IND_CAMERA_

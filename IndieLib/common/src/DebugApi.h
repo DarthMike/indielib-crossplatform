@@ -31,6 +31,8 @@ Suite 330, Boston, MA 02111-1307 USA
 #include <fstream>
 using namespace std;
 
+/** @cond DOCUMENT_PRIVATEAPI */
+
 class DebugApi {
 public:
 
@@ -88,6 +90,8 @@ private:
 
 	IND_Timer _timer;
 };
+
+/** @endcond */
 
 #endif // _DEBUGAPI_H_
 

@@ -45,7 +45,7 @@ class IND_Image;
 @ingroup Managers
 Manager of IND_Surface objects. Click in ::IND_SurfaceManager to see all the methods of this class.
 */
-/*@{*/
+/**@{*/
 
 /**
 This class stores 2d surfaces (IND_Surface) that can be inserted into a IND_Entity2d and rendered to
@@ -76,7 +76,7 @@ differents surfaces qualities (see ::IND_Quality).
 
 <BR>
 
-\image html surfa2.jpg All the graphics entities in IndieLib are internally represented in surfaces
+@image html surfa2.jpg All the graphics entities in IndieLib are internally represented in surfaces
 */
 
 class LIB_EXP IND_SurfaceManager {
@@ -91,9 +91,7 @@ public:
 
 	bool    init(IND_ImageManager *pImageManager, IND_Render *pRender);
 	void    end();
-	bool    isOK() {
-		return _ok;
-	}
+	bool    isOK();
 
 	// ----- Public methods -----
 
@@ -148,7 +146,7 @@ public:
 	bool remove(IND_Surface *pSu);
 
 private:
-
+	/** @cond DOCUMENT_PRIVATEAPI */
 	// ----- Private -----
 
 	bool _ok;
@@ -184,7 +182,8 @@ private:
 	void				convertImage(IND_Image* pImage ,IND_Type pType, IND_Quality pQuality);
 	void                initVars();
 	void                freeVars();
+    /** @endcond */
 };
-/*@}*/
+/**@}*/
 
 #endif // _IND_SURFACEMANAGER_

@@ -21,8 +21,8 @@ Suite 330, Boston, MA 02111-1307 USA
 */
 
 /**
-\mainpage
-\section main_general Menu
+@mainpage
+@section main_general Menu
 <A HREF="modules.html">Click here to access the Menu</A>
 */
 
@@ -49,11 +49,6 @@ Suite 330, Boston, MA 02111-1307 USA
  */
 
 /**
- * @defgroup Main Main
- * @ingroup Classes
- */
-
-/**
  * @defgroup IND_Window IND_Window
  * @ingroup Main
  */
@@ -63,6 +58,10 @@ Suite 330, Boston, MA 02111-1307 USA
  * @ingroup Main
  */
 
+/**
+ * @defgroup Math Math
+ * @ingroup Classes
+ */
 
 /**
  * @defgroup EntityManagers Entity Objects and Entity Managers (the most important concept of IndieLib)
@@ -104,7 +103,7 @@ Suite 330, Boston, MA 02111-1307 USA
  */
 
 /**
- * @defgroup Graphical_Objects Bliting Surfaces, Animations and Fonts and setting the transformations directly
+ * @defgroup Graphical_2d_Objects Bliting Surfaces, Animations and Fonts and setting the transformations directly
  * @ingroup Advanced
 With these methods you can set the 2d transformations (using IND_Render::Set2dTransform) and color
 attributes (using IND_Render::SetRainbow()) and blit directly
@@ -275,22 +274,24 @@ typedef unsigned char BYTE;    // HACK: Fixes some code regarding surfaces, BYTE
  * @defgroup Pixel_Vertex Pixel and vertex formats
  * @ingroup Types
  */
-/*@{*/
+/**@{*/
 //DirectX
 #ifdef INDIERENDER_DIRECTX
-		struct structPixel {
-			float _x; ///< Point position x
-            float _y; ///< Point position y
-            float _z; ///< Point position z
-			unsigned long _color; ///< Point color, contains RGBA value
-		};
-///Pixel - When not rendering textures
+//!Pixel - When not rendering textures
+struct structPixel {
+    float _x; ///< Point position x
+    float _y; ///< Point position y
+    float _z; ///< Point position z
+    unsigned long _color; ///< Point color, contains RGBA value
+};
+//! Alias for the pixel structure
 typedef struct structPixel PIXEL;
 #define D3DFVF_PIXEL (D3DFVF_XYZ | D3DFVF_DIFFUSE)
 #endif
 
 //OPENGL
 #ifdef INDIERENDER_OPENGL
+//!Pixel - When not rendering textures
 struct structPixelPos {
 	float _x; ///< Point position x
     float _y; ///< Point position y
@@ -301,12 +302,13 @@ struct structPixelPos {
     float _colorB; ///< Point color B
     float _colorA; ///< Point color A
 };
-///Pixel - When not rendering textures
+//! Alias for the pixel structure
 typedef struct structPixelPos PIXEL;
 #endif
 
 //Win32 (DirectX used)
 #ifdef INDIERENDER_DIRECTX
+//!Vertex - When rendering with textures
 struct structVertex2d {
 	float _x; ///< Point position x
     float _y; ///< Point position y
@@ -314,13 +316,14 @@ struct structVertex2d {
 	float _u; ///< Texture mapping coordinate u
     float _v; ///< Texture mapping coordinate v
 };
-///Vertex - When rendering with textures
+//! Alias for the 2d vertex structure
 typedef struct structVertex2d CUSTOMVERTEX2D;
 
 #define D3DFVF_CUSTOMVERTEX2D (D3DFVF_XYZ | D3DFVF_TEX1)
 #endif
 
 #ifdef INDIERENDER_OPENGL
+//!Vertex - When rendering with textures
 struct structVertex2d {
 	float _x; ///< Point position x
     float _y; ///< Point position y
@@ -328,17 +331,25 @@ struct structVertex2d {
 	float _u; ///< Texture mapping coordinate u
     float _v; ///< Texture mapping coordinate v
 };
-///Vertex - When rendering with textures
+//! Alias for the 2d vertex structure
 typedef struct structVertex2d CUSTOMVERTEX2D;
 #endif
-/*@}*/
+/**@}*/
 
 /**
  * @defgroup Math_strucutures Mathematical data structures
  * @ingroup Types
  */
-/*@{*/
+/**@{*/
 
+/**
+ @brief Matrix representation used by all Indielib entities.
+ 
+ It abstracts coordinate system handedness and how the matrices are stored in memory in the underlying renderer.
+ 
+ For example, Matrix in openGL is stored in array using colum-major order
+ A Matrix 4x4\n (_11, _21, _31, _41,\n _12, _22, _32, _42,\n _13, _23, _33, _43\n _14, _24, _34, _44)
+ */
 struct structMatrix {
 	//Matrix (OpenGL COLUM-MAJOR ORDER!) (Note indices are the same, just store order in memory is different)
 	//Be aware that DirectX matrixes are stored in memory using ROW-MAJOR ORDER!. Use methods here to convert
@@ -428,7 +439,7 @@ struct structMatrix {
 	}
     
     /**
-     @briefWrites to passed matrixArray the values inside the IND_Matrix structure
+     @brief Writes to passed matrixArray the values inside the IND_Matrix structure
      
      Elements are interpreted this way:
      Matrix 4x4\n (_11, _12, _13, _14,\n _21, _22, _23, _24,\n _31, _32, _33, _34\n _41, _42, _43, _44)
@@ -454,7 +465,7 @@ struct structMatrix {
 		_44 = matrixArray[15];
 	}
 
-    ///Logs itself to console.
+    //!Logs itself to console.
     void description () const {
         std::cout << "\nMATRIX :\n";
         std::cout << _11 << " ";
@@ -479,26 +490,18 @@ struct structMatrix {
         std::cout << std::endl;
     }
 };
-    
-    /**
-     @brief Matrix representation used by all Indielib entities.
-     
-     It abstracts coordinate system handedness and how the matrices are stored in memory in the underlying renderer.
-     
-     For example, Matrix in openGL is stored in array using colum-major order
-     A Matrix 4x4\n (_11, _21, _31, _41,\n _12, _22, _32, _42,\n _13, _23, _33, _43\n _14, _24, _34, _44)
-     */
+//!Alias for the matrix structure
 typedef struct structMatrix IND_Matrix;
 
 
-// Point
+//! 2d Point 2d\n (x, y)
 struct structPoint {
 	int x, y;
 };
-//! 2d Point 2d\n (x, y)
+//! Alias for the 2d point structure
 typedef struct structPoint IND_Point;
 
-/*@}*/
+/**@}*/
 
 // --------------------------------------------------------------------------------
 //									Free memory operations
@@ -513,10 +516,10 @@ typedef struct structPoint IND_Point;
 // --------------------------------------------------------------------------------
 
 /**
- * @defgroup IND_ColorFormat
+ * @defgroup ColorFormats Color definitions
  * @ingroup Types
  */
-/*@{*/
+/**@{*/
 
 //! Color formats
 
@@ -559,18 +562,10 @@ typedef int IND_ColorFormat;
 #define IND_LUMINANCE                       6
 
 //#define IND_LUMINANCE_ALPHA                   0x190A
-/*@}*/
-
 
 // --------------------------------------------------------------------------------
 //								     Colour quality
 // --------------------------------------------------------------------------------
-
-/**
- * @defgroup IND_Quality
- * @ingroup Types
- */
-/*@{*/
 
 //! Colour quality
 
@@ -591,7 +586,7 @@ typedef int IND_Quality;
 #define IND_16                              16
 //! It uses a 32 bits of real colour. This is the maximum colour quality that can be get with this library and consistently the one that wastes more memory.
 #define IND_32                              32
-/*@}*/
+/**@}*/
 
 
 // --------------------------------------------------------------------------------
@@ -599,10 +594,10 @@ typedef int IND_Quality;
 // --------------------------------------------------------------------------------
 
 /**
- * @defgroup IND_LightType
+ * @defgroup IND_LightType Light types
  * @ingroup Types
  */
-/*@{*/
+/**@{*/
 
 //! Light types
 
@@ -676,19 +671,13 @@ Methods you can use for changing the attributes of these type of lights:
 - IND_Light::SetTheta()
 */
 #define IND_SPOT_LIGHT                              103
-/*@}*/
-
-
-
-// --------------------------------------------------------------------------------
-//							          Surface types
-// --------------------------------------------------------------------------------
+/**@}*/
 
 /**
- * @defgroup IND_Type
+ * @defgroup IND_Type Surface types
  * @ingroup Types
  */
-/*@{*/
+/**@{*/
 
 //! Surface types
 
@@ -716,18 +705,13 @@ typedef int IND_Type;
 #define IND_OPAQUE                          200
 //! It allows per pixel transparency, but consumes more memory that IND_OPAQUE.
 #define IND_ALPHA                           202
-/*@}*/
-
-
-// --------------------------------------------------------------------------------
-//								Font alignment
-// --------------------------------------------------------------------------------
+/**@}*/
 
 /**
- * @defgroup IND_Align
+ * @defgroup IND_Align Font alignment
  * @ingroup Types
  */
-/*@{*/
+/**@{*/
 
 //! Text alignment
 
@@ -742,18 +726,13 @@ typedef int IND_Align;
 #define IND_RIGHT                           301
 //! Left alignment.
 #define IND_LEFT                            302
-/*@}*/
-
-
-// --------------------------------------------------------------------------------
-//									Primitives
-// --------------------------------------------------------------------------------
+/**@}*/
 
 /**
- * @defgroup IND_Primitive2d
+ * @defgroup IND_Primitive2d 2d Primitives
  * @ingroup Types
  */
-/*@{*/
+/**@{*/
 
 //! Type of primitives
 
@@ -774,18 +753,13 @@ typedef int IND_Primitive2d;
 #define IND_REGULAR_POLY                    404
 //! Filled rectangle.
 #define IND_FILL_RECTANGLE                  405
-/*@}*/
-
-
-// --------------------------------------------------------------------------------
-//										Blending
-// --------------------------------------------------------------------------------
+/**@}*/
 
 /**
- * @defgroup IND_BlendingType
+ * @defgroup IND_BlendingType Blending types
  * @ingroup Types
  */
-/*@{*/
+/**@{*/
 
 //! Blending type
 
@@ -833,18 +807,13 @@ typedef int IND_BlendingType;
 #define IND_BLENDFACTOR                     513
 //! Blend opposite colour.
 #define IND_INVBLENDFACTOR                  514
-/*@}*/
-
-
-// --------------------------------------------------------------------------------
-//									   Filters
-// --------------------------------------------------------------------------------
+/**@}*/
 
 /**
- * @defgroup IND_Filter
+ * @defgroup IND_Filter Filtering when rendering
  * @ingroup Types
  */
-/*@{*/
+/**@{*/
 
 //! Texture filters
 
@@ -866,18 +835,15 @@ typedef int IND_Filter;
 #define IND_FILTER_POINT                    1
 //! Bilinear interpolation filter. This is quite fast, and has better quality than IND_FILTER_POINT.
 #define IND_FILTER_LINEAR                   2
-/*@}*/
+/**@}*/
 
 #ifndef PLATFORM_IOS   //KEYS FOR DESKTOP OS
-// --------------------------------------------------------------------------------
-//										  Keys
-// --------------------------------------------------------------------------------
 
 /**
- * @defgroup IND_Key
+ * @defgroup IND_Key Input keys
  * @ingroup Types
  */
-/*@{*/
+/**@{*/
 
 //! Keys
 
@@ -1164,18 +1130,13 @@ enum {
 	//! Currency unit in keyboard
 	IND_CURRENCYUNIT
 };
-/*@}*/
-
-
-// --------------------------------------------------------------------------------
-//									   Key State
-// --------------------------------------------------------------------------------
+/**@}*/
 
 /**
- * @defgroup IND_KeyState
+ * @defgroup IND_KeyState Input key states
  * @ingroup Types
  */
-/*@{*/
+/**@{*/
 
 //! Key state
 
@@ -1188,18 +1149,13 @@ typedef int IND_KeyState;
 #define IND_KEY_PRESSED 1
 //! Not pressed key
 #define IND_KEY_NOT_PRESSED 0
-/*@}*/
-
-
-// --------------------------------------------------------------------------------
-//									   Mouse Button
-// --------------------------------------------------------------------------------
+/**@}*/
 
 /**
- * @defgroup IND_MouseButton
+ * @defgroup IND_MouseButton Mouse buttons
  * @ingroup Types
  */
-/*@{*/
+/**@{*/
 
 //! Mouse Buttons
 
@@ -1214,18 +1170,13 @@ typedef int IND_MouseButton;
 #define IND_MBUTTON_RIGHT 1
 //! Middle mouse button
 #define IND_MBUTTON_MIDDLE 2
-/*@}*/
-
-
-// --------------------------------------------------------------------------------
-//									   Mouse Button State
-// --------------------------------------------------------------------------------
+/**@}*/
 
 /**
- * @defgroup IND_MouseButtonState
+ * @defgroup IND_MouseButtonState Mouse button state
  * @ingroup Types
  */
-/*@{*/
+/**@{*/
 
 //! Mouse button states
 
@@ -1238,18 +1189,15 @@ typedef int IND_MouseButtonState;
 #define IND_MBUTTON_PRESSED 1
 //! Button not pressed
 #define IND_MBUTTON_NOT_PRESSED 0
-/*@}*/
+/**@}*/
 
 #endif  //KEYS FOR DESKTOP OS
-// --------------------------------------------------------------------------------
-//										 g_debug
-// --------------------------------------------------------------------------------
-
+    
 /**
- * @defgroup IND_Debug
+ * @defgroup IND_Debug Debug mode
  * @ingroup Types
  */
-/*@{*/
+/**@{*/
 
 //! g_debug
 
@@ -1270,32 +1218,44 @@ typedef int IND_InitializationMode;
 #define IND_DEBUG_MODE                      1
 //! Iniatializes the engine in release mode.
 #define IND_RELEASE_MODE                    0
-/*@}*/
+/**@}*/
 
 
-// --------------------------------------------------------------------------------
-//								 Bounding collision
-// --------------------------------------------------------------------------------
-
+/**
+ * @defgroup BoundingCollisions Bounding collisions
+ * @ingroup Types
+ */
+/**@{*/
+//! Encapsulates information about a parsed bounding collision information from xml
 struct structBoundingCollision {
-	int _type;                          // 0 = Triange, 1 = Circle
-	char *_id;                          // Group Id for grouping bounding areas
-	int _posX, _posY;                   // Position
-	int _radius;                        // Radius of the circle
-	int _ax, _ay, _bx, _by, _cx, _cy;   // Vertices of the triangle
+	int _type;                          //!< 0 = Triange, 1 = Circle
+	char *_id;                          //!< Group Id for grouping bounding areas
+	int _posX, _posY;                   //!< Position
+	int _radius;                        //!< Radius of the circle
+	int _ax, _ay, _bx, _by, _cx, _cy;   //!< Vertices of the triangle
 
+    //! Default constructor
 	structBoundingCollision() {
 		_type = _posX = _posY = _radius = _ax = _ay = _bx = _by = _cx = _cy = 0;
 	}
 };
+//! Alias for the bounding collision structure
 typedef struct structBoundingCollision BOUNDING_COLLISION;
+/**@}*/
 
-// --------------------------------------------------------------------------------
-//								 Global constants
-// --------------------------------------------------------------------------------
+/**
+ * @defgroup GlobalConstants Global constants
+ * @ingroup Types
+ */
+/**@{*/
+//! Determines the max characters in a string
 const int MAX_CHARS_IN_INT32_STR = (10 + 1); // +1 is for '\0' character
-const int MAX_CHARS_IN_INT64_STR = (20 + 1);
-const int SIDES_PER_CIRCLE = 30;   //Number of sides a circle has (will blit as many lines as specified here when blitting a circle primitive)
 
+//! Determines the max characters in a string
+const int MAX_CHARS_IN_INT64_STR = (20 + 1);
+    
+//! Determines how a circle is renderered
+const int SIDES_PER_CIRCLE = 30;   //Number of sides a circle has (will blit as many lines as specified here when blitting a circle primitive)
+/**@}*/
 
 #endif // _DEFINES_

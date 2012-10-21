@@ -16,6 +16,8 @@
 //								 XMesh Structures
 // --------------------------------------------------------------------------------
 
+/** @cond DOCUMENT_PRIVATEAPI */
+
 /*
 ==================
 Structure derived from D3DXMESHCONTAINER and extended with some app-specific
@@ -47,5 +49,7 @@ from the base each variable begins with ex
 struct D3DXFRAME_EXTENDED: public D3DXFRAME {
 	D3DXMATRIX _exCombinedTransformationMatrix;
 };
+
+/** @endcond */
 
 #endif // _IND_XMESHSTRUCTURES_

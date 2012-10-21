@@ -29,27 +29,6 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "IND_Window.h"
 
 // --------------------------------------------------------------------------------
-//							  Initialization / Destruction
-// --------------------------------------------------------------------------------
-
-/**
- * Frees the manager and all the objects that it contains.
- */
-void IND_Window::end() {
-	if (_ok) {
-		g_debug ->header("Finalizing the window", 5);
-		if (_attributes._sdlWindow) {
-			SDL_DestroyWindow(getSDLWindow());
-			_attributes._sdlWindow = NULL;
-		}
-		freeVars();
-		g_debug ->header("Window finalized", 6);
-
-		_ok = false;
-	}
-}
-
-// --------------------------------------------------------------------------------
 //									 Public methods
 // --------------------------------------------------------------------------------
 
@@ -76,6 +55,8 @@ void IND_Window::cursor(bool pEnable) {
 // --------------------------------------------------------------------------------
 //									 Private methods
 // --------------------------------------------------------------------------------
+
+/** @cond DOCUMENT_PRIVATEAPI */
 
 /*
 ==================
@@ -156,6 +137,25 @@ bool IND_Window::create(IND_WindowProperties& props) {
 	_ok = true;
 
 	return 1;
+}
+
+/*
+==================
+Frees the manager and all the objects that it contains.
+==================
+*/
+void IND_Window::end() {
+	if (_ok) {
+		g_debug ->header("Finalizing the window", 5);
+		if (_attributes._sdlWindow) {
+			SDL_DestroyWindow(getSDLWindow());
+			_attributes._sdlWindow = NULL;
+		}
+		freeVars();
+		g_debug ->header("Window finalized", 6);
+        
+		_ok = false;
+	}
 }
 
 /*
@@ -270,3 +270,5 @@ Free memory
 void IND_Window::freeVars() {
 	destroyIndieLibWindow();
 }
+
+/** @endcond */

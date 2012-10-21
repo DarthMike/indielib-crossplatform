@@ -9,6 +9,8 @@
 #include "Global.h"
 #include <string>
 
+/** @cond DOCUMENT_PRIVATEAPI */
+
 // --------------------------------------------------------------------------------
 //										Methods
 // --------------------------------------------------------------------------------
@@ -300,3 +302,5 @@ HRESULT XMeshHierarchy::DestroyMeshContainer(LPD3DXMESHCONTAINER meshContainerBa
 
 	return S_OK;
 }
+
+/** @endcond */

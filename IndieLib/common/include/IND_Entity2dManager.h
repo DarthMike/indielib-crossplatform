@@ -52,7 +52,7 @@ class IND_Math;
 @ingroup EntityManagers
 Manager of ::IND_Entity2d objects. Click in ::IND_Entity2dManager to see all the methods of this class.
 */
-/*@{*/
+/**@{*/
 
 /**
 Manager of ::IND_Entity2d objects. Used for storing these type of objects.
@@ -73,9 +73,7 @@ public:
 
 	bool    init(IND_Render *pRender);
 	void    end();
-	bool    isOK()           const {
-		return _ok;
-	}
+	bool    isOK() const;
 
 	// ----- Methods -----
 
@@ -111,7 +109,7 @@ public:
 	bool     isCollision(IND_Entity2d *pEn1, char *pId1, IND_Entity2d *pEn2, char *pId2);
 
 private:
-
+	/** @cond DOCUMENT_PRIVATEAPI */
 	// ----- Private -----
 
 	bool _ok;
@@ -139,7 +137,8 @@ private:
 	void writeMessage();
 	void initVars();
 	void freeVars();
+    /** @endcond */
 };
-/*@}*/
+/**@}*/
 
 #endif // _IND_ENTITY2DMANAGER_

@@ -36,7 +36,7 @@ class PrecissionTimer;
 @ingroup Timer
 IND_Timer class for measuring the time. Click in IND_Timer to see all the methods of this class.
 */
-/*@{*/
+/**@{*/
 
 /**
 @b IND_Timer is an object that will help you to measure the passing of time. Click in IND_Timer to see all the methods of this class.
@@ -67,11 +67,12 @@ public:
 	bool isPaused();
 
 private:
-
+	/** @cond DOCUMENT_PRIVATEAPI */
 	// ----- Private -----
 	//Internal precission timer
 	PrecissionTimer *_precissionTimer;
+    /** @endcond */
 };
-/*@}*/
+/**@}*/
 
 #endif // _IND_TIMER_

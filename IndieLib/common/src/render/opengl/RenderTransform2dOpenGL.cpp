@@ -31,7 +31,7 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "IND_Camera2d.h"
 #include "IND_Window.h"
 
-/** @cond DOCUMENT_INTERNALRENDERCODE */
+/** @cond DOCUMENT_PRIVATEAPI */
 
 // --------------------------------------------------------------------------------
 //							         Public methods

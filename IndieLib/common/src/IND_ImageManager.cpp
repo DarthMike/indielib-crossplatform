@@ -79,6 +79,14 @@ void IND_ImageManager::end() {
 	}
 }
 
+/**
+ Returns state of initialization.
+ @return  Will give true if object initialized correctly, false otherwise
+ */
+bool IND_ImageManager::isOK() const {
+    return _ok;
+}
+
 // --------------------------------------------------------------------------------
 //									Public methods
 // --------------------------------------------------------------------------------
@@ -283,9 +291,9 @@ bool IND_ImageManager::add(IND_Image *pNewImage, FIBITMAP *pImageToBeCopied) {
  * @param pNewImage					Pointer to a new image object.
  * @param pWidth					Width of the new image.
  * @param pHeight					Height of the new image.
- * @param pFormat					New image format. See ::IND_ColorFormat.
+ * @param pColorFormat				New image format. See ::IND_ColorFormat.
  */
-bool IND_ImageManager::add(IND_Image *pNewImage, int pWidht, int pHeight, IND_ColorFormat pColorFormat) {
+bool IND_ImageManager::add(IND_Image *pNewImage, int pWidth, int pHeight, IND_ColorFormat pColorFormat) {
 	g_debug->header("Creating Image", 5);
 
 	if (!_ok) {
@@ -297,7 +305,7 @@ bool IND_ImageManager::add(IND_Image *pNewImage, int pWidht, int pHeight, IND_Co
 
 	int bpp = 2; //FIXME: this is very wrong, somehow we need to use the supplied "pColorFormat" instead.
 
-	FIBITMAP* pImage = FreeImage_Allocate(pWidht, pHeight, bpp);
+	FIBITMAP* pImage = FreeImage_Allocate(pWidth, pHeight, bpp);
 	if (!pImage) {
 		g_debug->header("Image could not be created", 2);
 		return 0;
@@ -437,6 +445,7 @@ bool IND_ImageManager::clone(IND_Image *pNewImage, IND_Image *pOldImage) {
  * is saved in a file with extension and type specified in the name.
  * Supports the following graphics formats:
  * bmp, png, tga, jpg and pcx.
+ * @param pIm						Image to take data from
  * @param pName						Image name.
  */
 bool IND_ImageManager::save(IND_Image *pIm, const char *pName) {
@@ -480,6 +489,8 @@ bool IND_ImageManager::save(IND_Image *pIm, const char *pName) {
 // --------------------------------------------------------------------------------
 //									Private methods
 // --------------------------------------------------------------------------------
+
+/** @cond DOCUMENT_PRIVATEAPI */
 
 /*
 ==================
@@ -596,3 +607,5 @@ void IND_ImageManager::freeVars() {
 	// Free list
 	DISPOSE(_listImages);
 }
+
+/** @endcond */

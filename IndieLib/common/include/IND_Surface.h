@@ -39,7 +39,7 @@ struct SURFACE;
 @ingroup Objects
 IND_Surface class managed by IND_SurfaceManager for displaying surfaces and animations into the screen. Click in IND_Surface to see all the methods of this class.
 */
-/*@{*/
+/**@{*/
 
 /**
 @b IND_Surface is an surface object from the class ::IND_SurfaceManager. Read the explanation in ::IND_SurfaceManager for more details.
@@ -99,7 +99,7 @@ public:
 	int         getSpareY();
 
 private:
-
+	/** @cond DOCUMENT_PRIVATEAPI */
 	// ----- Structures ------
 	SURFACE *_surface;
 
@@ -149,7 +149,8 @@ private:
 	friend class OpenGLTextureBuilder;
 	friend class DirectXRender;
 	friend class OpenGLRender;
+    /** @endcond */
 };
-/*@}*/
+/**@}*/
 
 #endif // _IND_SURFACE_

@@ -69,7 +69,7 @@ class OSOpenGLManager;
 // ----- Defines ------
 #define MAX_PIXELS 2048
 
-/** @cond DOCUMENT_INTERNALRENDERCODE */
+/** @cond DOCUMENT_PRIVATEAPI */
 
 // --------------------------------------------------------------------------------
 //									  OpenGLRender

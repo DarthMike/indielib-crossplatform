@@ -86,6 +86,14 @@ void IND_FontManager::end() {
 	}
 }
 
+/**
+ Returns state of initialization.
+ @return  Will give true if object initialized correctly, false otherwise
+ */
+bool IND_FontManager::isOK()            {
+    return _ok;
+}
+
 // --------------------------------------------------------------------------------
 //									Public methods
 // --------------------------------------------------------------------------------
@@ -252,6 +260,8 @@ bool IND_FontManager::remove(IND_Font  *pFo) {
 // --------------------------------------------------------------------------------
 //									Private methods
 // --------------------------------------------------------------------------------
+
+/** @cond DOCUMENT_PRIVATEAPI */
 
 /*
 ==================
@@ -428,3 +438,5 @@ void IND_FontManager::freeVars() {
 	// Free list
 	DISPOSE(_listFonts);
 }
+
+/** @endcond */

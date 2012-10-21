@@ -40,7 +40,7 @@ class IND_Font;
 @ingroup Managers
 Manager of IND_Font objects. Click in ::IND_FontManager to see all the methods of this class.
 */
-/*@{*/
+/**@{*/
 
 /**
 This class manages the fonts objects ::IND_Font. Fonts are used to write texts on the screen.
@@ -57,7 +57,7 @@ output has been modified in order that @b IndieLib can read it) </i>
 
 The @b original MudFont program can be found in http://www.midwinter.com/~lch/programming/mudgefont/
 
-\image html mudge.png Generate your own fonts quickly with MudFont and use them directly in IndieLib (IND_Font)
+@image html mudge.png Generate your own fonts quickly with MudFont and use them directly in IndieLib (IND_Font)
 */
 class LIB_EXP IND_FontManager {
 public:
@@ -71,9 +71,7 @@ public:
 
 	bool    init(IND_ImageManager *pImageManager, IND_SurfaceManager *pSurfaceManager);
 	void    end();
-	bool    isOK() {
-		return _ok;
-	}
+	bool    isOK();
 
 	// ----- Public methods -----
 
@@ -92,7 +90,7 @@ public:
 	bool remove(IND_Font       *pFo);
 
 private:
-
+	/** @cond DOCUMENT_PRIVATEAPI */
 	// ----- Private -----
 
 	bool _ok;                   // Manager initialization flag
@@ -127,7 +125,8 @@ private:
 	void                writeMessage();
 	void                initVars();
 	void                freeVars();
+    /** @endcond */
 };
-/*@}*/
+/**@}*/
 
 #endif // _IND_FONTMANAGER_

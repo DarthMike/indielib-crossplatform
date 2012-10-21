@@ -21,6 +21,8 @@ Suite 330, Boston, MA 02111-1307 USA
 
 // ----- Includes -----
 
+/** @cond DOCUMENT_PRIVATEAPI */
+
 #include "Global.h"
 #include "ImageCutter.h"
 #include "IND_ImageManager.h"
@@ -30,15 +32,14 @@ Suite 330, Boston, MA 02111-1307 USA
 #include <string.h>
 #endif
 
-
 // --------------------------------------------------------------------------------
 //							  Initialization / Destruction
 // --------------------------------------------------------------------------------
 
 /**
  * Init.
- * @param pImageManager		TODO: describtion
- * @param pMaxTextureSize	TODO: describtion
+ *  pImageManager		TODO: describtion
+ *  pMaxTextureSize	TODO: describtion
  */
 bool ImageCutter::init(IND_ImageManager *pImageManager, int pMaxTextureSize) {
 	end();
@@ -69,10 +70,10 @@ void ImageCutter::end() {
 
 /**
  * Get the information necessary in order to cut the image.
- * @param pImage		TODO: describtion
- * @param pI			TODO: describtion
- * @param pBlockSizeX		TODO: describtion
- * @param pBlockSizeY		TODO: describtion
+ *  @param pImage		TODO: describtion
+ *  @param pI			TODO: describtion
+ *  @param pBlockSizeX		TODO: describtion
+ *  @param pBlockSizeY		TODO: describtion
  */
 void ImageCutter::fillInfoSurface(IND_Image *pImage,
                                   INFO_SURFACE *pI,
@@ -146,14 +147,14 @@ void ImageCutter::fillInfoSurface(IND_Image *pImage,
 
 /**
  * Cuts a block of an image in memory, returns a pointer to the cut block.
- * @param pPtrBlock		TODO: describtion
- * @param pWidthImage		TODO: describtion
- * @param pWidthBlock		TODO: describtion
- * @param pHeightBlock		TODO: describtion
- * @param pSpareX		TODO: describtion
- * @param pSpareY		TODO: describtion
- * @param pBpp			TODO: describtion
- * @param pNewBlock		TODO: describtion
+ *  @param pPtrBlock		TODO: describtion
+ *  @param pWidthImage		TODO: describtion
+ *  @param pWidthBlock		TODO: describtion
+ *  @param pHeightBlock		TODO: describtion
+ *  @param pSpareX		TODO: describtion
+ *  @param pSpareY		TODO: describtion
+ *  @param pBpp			TODO: describtion
+ *  @param pNewBlock		TODO: describtion
  */
 void ImageCutter::cutBlock(BYTE *pPtrBlock,
                            int pWidthImage,
@@ -250,3 +251,5 @@ void ImageCutter::initVars() {
 void ImageCutter::freeVars() {
 
 }
+
+/** @endcond */

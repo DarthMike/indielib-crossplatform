@@ -631,7 +631,7 @@ void IND_Entity2d::setBlendDest(IND_BlendingType pDs) {
  * Default: no bounding areas assigned.
  * @param pFile						Xml file defining the bounding areas.
  */
-bool IND_Entity2d::setBoundingAreas(char *pFile) {
+bool IND_Entity2d::setBoundingAreas(const char *pFile) {
 	g_debug->header("Parsing collision file", 5);
 
 	if(!pFile) {
@@ -648,9 +648,12 @@ bool IND_Entity2d::setBoundingAreas(char *pFile) {
 		return 0;
 	}
 
+	char stringTemp[128];
+	char *pFileCharTemp = strcpy(stringTemp, pFile);
+
 	// ----- Parsing collision file -----
 
-	if (!_collisionParser->parseCollision(_listBoundingCollision, pFile)) {
+	if (!_collisionParser->parseCollision(_listBoundingCollision, pFileCharTemp)) {
 		g_debug->header("Fatal error, cannot load the collision xml file", 2);
 		return 0;
 	}
@@ -690,7 +693,7 @@ bool IND_Entity2d::setBoundingAreas(char *pFile) {
  * @param pBx, pBy					Vertex B of the triangle.
  * @param pCx, pCy					Vertex C of the triangle.
  */
-bool IND_Entity2d::setBoundingTriangle(char *pId,
+bool IND_Entity2d::setBoundingTriangle(const char *pId,
                                        int pAx, int pAy,
                                        int pBx, int pBy,
                                        int pCx, int pCy) {
@@ -699,7 +702,10 @@ bool IND_Entity2d::setBoundingTriangle(char *pId,
 
 	if(!pId) return 0;
 
-	_collisionParser->setBoundingTriangle(_listBoundingCollision, pId, pAx, pAy, pBx, pBy, pCx, pCy);
+	char stringTemp[128];
+	char *pIdCharTemp = strcpy(stringTemp, pId);
+
+	_collisionParser->setBoundingTriangle(_listBoundingCollision, pIdCharTemp, pAx, pAy, pBx, pBy, pCx, pCy);
 
 	return 1;
 }
@@ -734,12 +740,16 @@ bool IND_Entity2d::setBoundingTriangle(char *pId,
  * @param pOffsetY					Vertical displacement.
  * @param pRadius					Radius of the circle area.
  */
-bool IND_Entity2d::setBoundingCircle(char *pId, int pOffsetX, int pOffsetY, int pRadius) {
+bool IND_Entity2d::setBoundingCircle(const char *pId, int pOffsetX, int pOffsetY, int pRadius) {
 	// Only for surfaces
 	if (!_su) return 0;
+	
 	if (pRadius <= 0) return 0;
 
-	_collisionParser->setBoundingCircle(_listBoundingCollision, pId, pOffsetX, pOffsetY, pRadius);
+	char stringTemp[128];
+	char *pIdCharTemp = strcpy(stringTemp, pId);
+
+	_collisionParser->setBoundingCircle(_listBoundingCollision, pIdCharTemp, pOffsetX, pOffsetY, pRadius);
 
 	return 1;
 }
@@ -774,13 +784,18 @@ bool IND_Entity2d::setBoundingCircle(char *pId, int pOffsetX, int pOffsetY, int 
  * @param pWidth					Width of the rectangle.
  * @param pHeight					Height of the rectangle.
  */
-bool IND_Entity2d::setBoundingRectangle(char *pId, int pOffsetX, int pOffsetY, int pWidth, int pHeight) {
+bool IND_Entity2d::setBoundingRectangle(const char *pId, int pOffsetX, int pOffsetY, int pWidth, int pHeight) {
 	// Only for surfaces
 	if (!_su) return 0;
+	
 	if (!pId) return 0;
+
 	if (pWidth <= 0 || pHeight <= 0) return 0;
 
-	_collisionParser->setBoundingRectangle(_listBoundingCollision, pId, pOffsetX, pOffsetY, pWidth, pHeight);
+	char stringTemp[128];
+	char *pIdCharTemp = strcpy(stringTemp, pId);
+
+	_collisionParser->setBoundingRectangle(_listBoundingCollision, pIdCharTemp, pOffsetX, pOffsetY, pWidth, pHeight);
 
 	return 1;
 }
@@ -792,13 +807,16 @@ bool IND_Entity2d::setBoundingRectangle(char *pId, int pOffsetX, int pOffsetY, i
  * Default: no bounding rectangle assigned.
  * @param pId						Id of the collision group to delete, use "*" to delete all groups.
  */
-bool IND_Entity2d::deleteBoundingAreas(char *pId) {
+bool IND_Entity2d::deleteBoundingAreas(const char *pId) {
 	// Only for surfaces
 	if (!_su) return 0;
 
 	if(!pId) return 0;
 
-	_collisionParser->deleteBoundingAreas(_listBoundingCollision, pId);
+	char stringTemp[128];
+	char *pIdCharTemp = strcpy(stringTemp, pId);
+
+	_collisionParser->deleteBoundingAreas(_listBoundingCollision, pIdCharTemp);
 
 	return 1;
 }

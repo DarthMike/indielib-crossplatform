@@ -638,7 +638,7 @@ void IND_Entity2dManager::renderGridAreas(int pLayer, BYTE pR, BYTE pG, BYTE pB,
  * @param pEn2						Pointer to an entity object.
  * @param pId2						Id of a group of collison areas. Use "*" for checking all the groups.
  */
-bool IND_Entity2dManager::isCollision(IND_Entity2d *pEn1, char *pId1, IND_Entity2d *pEn2, char *pId2) {
+bool IND_Entity2dManager::isCollision(IND_Entity2d *pEn1, const char *pId1, IND_Entity2d *pEn2, const char *pId2) {
 	if (!pEn1->_su && !pEn1->_an) return 0;
 	if (!pEn2->_su && !pEn2->_an) return 0;
 
@@ -685,7 +685,7 @@ Check the collision between bounding areas
 ==================
 */
 inline bool IND_Entity2dManager::isCollision(list <BOUNDING_COLLISION *> *pBoundingList1, list <BOUNDING_COLLISION *> *pBoundingList2,
-        char *pId1, char *pId2,
+        const char *pId1, const char *pId2,
         IND_Matrix pMat1, IND_Matrix pMat2,
         float pScale1, float pScale2) {
 	list <BOUNDING_COLLISION *>::iterator i;

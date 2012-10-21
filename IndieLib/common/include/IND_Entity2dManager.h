@@ -106,7 +106,7 @@ public:
 	};
 	void     renderGridAreas(int pLayer, BYTE pR, BYTE pG, BYTE pB, BYTE pA);
 
-	bool     isCollision(IND_Entity2d *pEn1, char *pId1, IND_Entity2d *pEn2, char *pId2);
+	bool     isCollision(IND_Entity2d *pEn1, const char *pId1, IND_Entity2d *pEn2, const char *pId2);
 
 private:
 	/** @cond DOCUMENT_PRIVATEAPI */
@@ -126,7 +126,7 @@ private:
 	// ----- Private methods -----
 
 	bool isCollision(list <BOUNDING_COLLISION *> *pBoundingList1, list <BOUNDING_COLLISION *> *pBoundingList2,
-	                 char *pId1, char *pId2,
+	                 const char *pId1, const char *pId2,
 	                 IND_Matrix pMat1, IND_Matrix pMat2,
 	                 float pScale1, float pScale2);
 

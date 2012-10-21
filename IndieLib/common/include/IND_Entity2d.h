@@ -158,11 +158,11 @@ public:
 	*
 	*/
 	/**@{*/
-	bool setBoundingAreas(char *pFile);
-	bool setBoundingTriangle(char *pId, int pAx, int pAy, int pBx, int pBy, int pCx, int pCy);
-	bool setBoundingCircle(char *pId, int pOffsetX, int pOffsetY, int pRadius);
-	bool setBoundingRectangle(char *pId, int pOffsetX, int pOffsetY, int pWidth, int pHeight);
-	bool deleteBoundingAreas(char *pId);
+	bool setBoundingAreas(const char *pFile);
+	bool setBoundingTriangle(const char *pId, int pAx, int pAy, int pBx, int pBy, int pCx, int pCy);
+	bool setBoundingCircle(const char *pId, int pOffsetX, int pOffsetY, int pRadius);
+	bool setBoundingRectangle(const char *pId, int pOffsetX, int pOffsetY, int pWidth, int pHeight);
+	bool deleteBoundingAreas(const char *pId);
 	void showCollisionAreas(bool pShowCollisionAreas);
 	void showGridAreas(bool pShowGridAreas);
 	/**@}*/

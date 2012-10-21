@@ -1,6 +1,6 @@
 bin_PROGRAMS = tutorial2
 
-AM_CXXFLAGS = $(INTI_CFLAGS) -I @top_srcdir@/../common/include -I @top_srcdir@/../tutorials/advanced/02_Blitting_2d_Directly
+AM_CXXFLAGS = $(INTI_CFLAGS) -Werror -I @top_srcdir@/../common/include -I @top_srcdir@/../tutorials/advanced/02_Blitting_2d_Directly
 
 tutorial2_SOURCES = ../../../../tutorials/advanced/02_Blitting_2d_Directly/CIndieLib_vc2008.cpp ../../../../tutorials/advanced/02_Blitting_2d_Directly/Tutorial02.cpp
 

@@ -69,9 +69,9 @@ totally portable in future (but requires ugly includes I don't want to think abo
 MICHAEL RAMBLINGS (MOSTLY ABOUT THE LINUX PORT)
 
 CODE RELATED
-* Move the code fro the tools class to Ind_Math as suggested by DartMike. If we again get the need, we can recreate the Tools class. 
 * Use Valgrind to squish mem leaks.
-* Check up on SDL's typedef clashes..
+* Consider change buildprocedure from autotools to CMake
+
 
 other thing to look at => http://sourceforge.net/tracker/?func=detail&aid=3357768&group_id=67586&atid=523274
 

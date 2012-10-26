@@ -1,6 +1,6 @@
 ### Global
 debug.log
-
+config.log
 
 ### C++ ignore
 
@@ -17,6 +17,11 @@ debug.log
 *.lai
 *.la
 *.a
+
+
+### SDL specific
+*.d
+
 
 
 ### linux specific

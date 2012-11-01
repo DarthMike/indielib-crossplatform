@@ -21,33 +21,7 @@ CIndieLib *CIndieLib::instance() {
 	return _pinstance; // address of sole instance
 }
 
-/*
-==================
-Sets working path to the directory of exe file (Windows)
-==================
-*/
-/*MIGUEL: DISABLED UNTIL IT IS REALLY NECESSARY. IT IS STANDARD FOR CURRENT DIRECTORY
-TO BE THE APP'S EXECUTABLE LOCATION (FROM WHERE IT WAS LAUNCHED) WE DON'T NEEED
-ANYTHING ELSE
-void CIndieLib::resetCurrentDirectory_W(void) {
-	TCHAR app_path[MAX_PATH] = _T("");
-	DWORD size_in_tchars = sizeof(app_path) / sizeof(TCHAR);
-	// get full app path with the exe filename
-	GetModuleFileName(0, app_path, size_in_tchars - 1);
-	// making app_path to end on dir char ('\\')
-	// _tcsrchr - search for char from the string's end
-	TCHAR *app_dir = _tcsrchr(app_path, _T('\\'));
-	if (app_dir) {
-		app_dir += 1;
-		if (app_dir) {
-			*app_dir = 0;
-			SetCurrentDirectory(app_path);
-			return;
-		}
-	}
-	// TODO. inform somehow that func is failed.
-}
-*/
+
 
 /*
 ==================
@@ -72,7 +46,7 @@ bool CIndieLib::init() {
 	//_entity3dManager       =   new     IND_Entity3dManager;
 	_math                =   new     IND_Math;
 
-	IND_WindowProperties props ("IndieLib", 800, 600, 32, 0, 0);
+	IND_WindowProperties props ("IndieLib", 800, 600, 32, 0, 0, 1);
 	
 	
 	_window = _render        ->initRenderAndWindow(props);                                 

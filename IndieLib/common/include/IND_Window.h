@@ -46,19 +46,21 @@ This structure defines definition parameters when creating a window or modyfing 
 typedef struct IND_WindowProperties {
 
     //! Default constructor
-	IND_WindowProperties(const char* title, int width, int height, int bpp, bool vsync, bool fs) : 
+	IND_WindowProperties(const char* title, int width, int height, int bpp, bool vsync, bool fs, bool dBuffer) :
                          _title(title),
 						 _width(width),
 						 _height(height),
 						 _bpp(bpp),
 						 _vsync(vsync),
-						 _fullscreen(fs) {}
+						 _fullscreen(fs),
+                         _doubleBuffer(dBuffer){}
 	const char *_title;			///< A string containing the window title, when windowed
 	int _width; 				///< Width in pixels
 	int _height;				///< Heigth in pixels
 	int _bpp;					///< Bit depth of the window display buffer
 	bool _vsync;				///< Wether vSync is enabled (true)
 	bool _fullscreen;			///< Wether window is full screen or windowed
+    bool _doubleBuffer;         ///< Wether double buffering should be used. Recommended always to use it.
 }IND_WindowProperties;
 
 

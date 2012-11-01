@@ -41,7 +41,7 @@ bool CIndieLib::init() {
 	_math                =   new     IND_Math;
 
 	char windowPropsText[] = "IndieLib";
-	IND_WindowProperties props (windowPropsText, 800, 600, 32, 0, 0);
+	IND_WindowProperties props (windowPropsText, 800, 600, 32, 0, 0,1);
 	
 	
 	_window = _render        ->initRenderAndWindow(props);                                 

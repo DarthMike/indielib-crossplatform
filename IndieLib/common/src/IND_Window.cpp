@@ -91,6 +91,20 @@ bool IND_Window::create(IND_WindowProperties& props) {
 	windowFlags = windowFlags | SDL_WINDOW_OPENGL;
 #endif
 
+#ifdef _DEBUG
+    printf("\nAVAILABLE WINDOW DISPLAY MODES:");
+    int displayModes = SDL_GetNumDisplayModes(0);
+    for (int i = 0 ; i < displayModes; ++i) {
+        SDL_DisplayMode mode;
+        SDL_GetDisplayMode(0, i, &mode);
+        printf("\nDISPLAY MODE:");
+        printf("\nWith %i Height %i",mode.w,mode.h);
+        printf("\nFormat: %04x",mode.format);
+        printf("\nRate: %i",mode.refresh_rate);
+        
+    }
+#endif
+    
 	_attributes._sdlWindow = SDL_CreateWindow(_attributes._title,
 										  SDL_WINDOWPOS_CENTERED, 
 										  SDL_WINDOWPOS_CENTERED,

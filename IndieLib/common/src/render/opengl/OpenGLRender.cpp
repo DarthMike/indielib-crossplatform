@@ -65,30 +65,33 @@ IND_Window* OpenGLRender::initRenderAndWindow(IND_WindowProperties& props) {
 		freeVars();
 		return NULL;
 	}
+    
+    g_debug->header("Requested Window Height:", 3);
+    g_debug->dataInt(props._height, 1);
+    g_debug->dataChar("Requested Window Width: ", 3);
+    g_debug->dataInt(props._width, 1);
+    g_debug->dataChar("Requested Window Bpp: ", 3);
+    g_debug->dataInt(props._bpp, 1);
+    g_debug->dataChar("Requested Window FullScreen: ", 3);
+    g_debug->dataInt(props._fullscreen, 1);
+    g_debug->dataChar("Requested Window Double buffer: ", 3);
+    g_debug->dataInt(props._doubleBuffer, 1);
 	
 	if(!_osOpenGLMgr) {
 		_osOpenGLMgr = new OSOpenGLManager(_window);  
 	}
-
-	//TODO: Give option to configure double buffer, depth and stencil buffer bits
-	_doubleBuffer = true;  //May be configured in future
-	
+	_doubleBuffer = props._doubleBuffer;
+    
 	//Initialize OpenGL parameters for SDL before creating the window for OpenGL
 	_osOpenGLMgr->setOpenGLContextParams(IND_RGBA, //Color format
 										 props._bpp/4, //Color depth (Bpp) /  num colors
-	                                     8, //Depth Buffer bits
+	                                     2, //Depth Buffer bits
 	                                     1,  //Stencil Buffer bits
-	                                     _doubleBuffer //Double buffering
+	                                     props._doubleBuffer //Double buffering
 	                                    );
 
 	if(!_window->create(props)) {
-		/*TODO: recreate window with different params?
-		_osOpenGLMgr->setOpenGLContextParams(IND_RGBA, //Color format
-										 props._bpp/4, //Color depth (Bpp) /  num colors
-	                                     8, //Depth Buffer bits
-	                                     1,  //Stencil Buffer bits
-	                                     _doubleBuffer //Double buffering
-	                                    );*/
+		g_debug->header("Error creating window: Not supported params provided", 2);
 		freeVars();
 		return NULL;
 	}

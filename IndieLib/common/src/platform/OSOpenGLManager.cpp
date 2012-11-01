@@ -72,8 +72,6 @@ void OSOpenGLManager::setOpenGLContextParams(IND_ColorFormat colorFormat, int nu
 }
 
 bool OSOpenGLManager::checkOpenGLSDLContextProps() {
-
-	//TODO: Try to get new format on failure? Or no handling?
 	int contextRSize;
 	int contextGSize;
 	int contextBSize;
@@ -92,17 +90,17 @@ bool OSOpenGLManager::checkOpenGLSDLContextProps() {
 	SDL_GL_GetAttribute(SDL_GL_DEPTH_SIZE,&contextDepthSize);
     SDL_GL_GetAttribute(SDL_GL_STENCIL_SIZE,&contextSencilSize);
 
-	g_debug->dataChar("Created GL context R size: ",false);
+	g_debug->header("Created GL context R size: ",3);
 	g_debug->dataInt(contextRSize,true);
-	g_debug->dataChar("Created GL context G size: ",false);
+	g_debug->header("Created GL context G size: ",3);
 	g_debug->dataInt(contextGSize,true);
-	g_debug->dataChar("Created GL context B size: ",false);
+	g_debug->header("Created GL context B size: ",3);
 	g_debug->dataInt(contextBSize,true);
-	g_debug->dataChar("Created GL context A size: ",false);
+	g_debug->header("Created GL context A size: ",3);
 	g_debug->dataInt(contextASize,true);
-	g_debug->dataChar("Created GL context Depth size: ",false);
+	g_debug->header("Created GL context Depth size: ",3);
 	g_debug->dataInt(contextDepthSize,true);
-	g_debug->dataChar("Created GL context Stencil size: ",false);
+	g_debug->header("Created GL context Stencil size: ",3);
 	g_debug->dataInt(contextSencilSize,true);
 
 	//RGB color buffer size check
@@ -114,7 +112,7 @@ bool OSOpenGLManager::checkOpenGLSDLContextProps() {
 			return false;
 		}
 
-	//Alpha channer size color buffer check
+	//Alpha channel size color buffer check
 	if (IND_RGBA == _colorBufferFormat) {
 		if (_numBitsPerColor != contextASize) {
 			return false;
@@ -144,7 +142,8 @@ bool OSOpenGLManager::createOpenGLSDLContext() {
     _glContext = SDL_GL_CreateContext(_sdlWindow); 
 
 	if (!_glContext) {
-		
+        g_debug->header("Error creating OpenGL contect", 2);
+		return false;
 	}
 
 	g_debug->header("OpenGL context created", 3);

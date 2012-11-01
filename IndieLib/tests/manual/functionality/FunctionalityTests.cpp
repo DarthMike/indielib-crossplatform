@@ -118,7 +118,7 @@ bool FunctionalityTests::resetParameters() {
 		}
 		bool fs(mI->_window->isFullScreen());
 		char newTitleText[] = "NEWTITLE";
-		IND_WindowProperties props (newTitleText, g_possibleRes[resind].x, g_possibleRes[resind].y, 32, 1, fs);
+		IND_WindowProperties props (newTitleText, g_possibleRes[resind].x, g_possibleRes[resind].y, 32, 1, fs, 1);
 		mI->_render->reset(props);
 		return true;
 	}

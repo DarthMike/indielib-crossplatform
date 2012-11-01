@@ -126,14 +126,9 @@ bool IND_Math::isPowerOfTwo(long pN) {
 	return (pN == 1L);
 }
 
-#if defined (INDIERENDER_OPENGL) || defined (INDIERENDER_GLES_IOS) // TODO : cleanup ??
-
-
-
 // --------------------------------------------------------------------------------
 //									 Private methods
 // --------------------------------------------------------------------------------
-#endif
 
 /** @cond DOCUMENT_PRIVATEAPI */
 

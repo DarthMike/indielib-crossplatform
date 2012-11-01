@@ -54,7 +54,11 @@ Suite 330, Boston, MA 02111-1307 USA
 
 @b Operation:
 
-This function returns a pointer to correctly created window if success. NULL if failed
+ Creates a render and window, with supplied window params. Window params need to be compatible with platform
+ running on, as engine will not try to fit display params to something 'similar'. i.e. running in an iPhone 4 and asking for a
+ screen with 800x600 will just fail.
+ 
+  This function returns a pointer to correctly created window if success. NULL if failed
 */
 IND_Window* IND_Render::initRenderAndWindow(IND_WindowProperties& windowproperties) {
 	resetTimer();
@@ -1364,7 +1368,7 @@ void IND_Render::getFpsString(char *pBuffer)     {
 
 //! This function returns a pointer to the IND_Window object where the render has been created
 IND_Window *IND_Render::getWindow() {
-	return NULL; //FIXME: .. or remove this comment if it makes sence to just return NULL here. /Michael
+	return _wrappedRenderer->getWindow();
 }
 
 void IND_Render::getNumrenderedObjectsString(char* pBuffer)      {

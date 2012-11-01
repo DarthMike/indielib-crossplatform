@@ -44,17 +44,6 @@ void   OpenGLRender::clearViewPort(BYTE pR,
 	             static_cast<GLclampf>(pB / 255.0f),
 	             0.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
-	
-	//Clear back color buffer again if double buffering
-    //TODO: See if double buffering needs to be taken into account here (clear semantics of "clearViewPort"
-    //if (_doubleBuffer) {
-	   // _osOpenGLMgr->presentBuffer();
-	   // glClearColor(static_cast<GLclampf>(pR / 255.0f),
-	   //              static_cast<GLclampf>(pG / 255.0f),
-	   //              static_cast<GLclampf>(pB / 255.0f),
-	   //              0.0f);
-	   // glClear(GL_COLOR_BUFFER_BIT);
-    //}
 }
 
 void OpenGLRender::lookAt(float pEyeX, float pEyeY, float pEyeZ,

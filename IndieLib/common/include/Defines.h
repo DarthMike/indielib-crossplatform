@@ -565,7 +565,6 @@ For example using gray range (they only use one byte per pixel).
 @arg ::IND_LUMINANCE
 @arg ::IND_COLOUR_INDEX
 */
-//TODO: MIGUEL - REVIEW THAT ALL DEFINED TYPES ARE USED. I MISS WHY THERE IS IND_BGR AND IND_BGRA
 typedef int IND_ColorFormat;
 //! For unknown types
 #define IND_UNKNOWN							0
@@ -575,14 +574,8 @@ typedef int IND_ColorFormat;
 #define IND_RGB                             2
 //! Real color, using 4 bytes per pixel. The fourth byte is used to the transparency variable.
 #define IND_RGBA                            3
-//! Real colour using 3 bytes per pixel.
-#define IND_BGR                             4
-//! Real color using 3 bytes per pixel. The fourth byte is used to the transparency variable.
-#define IND_BGRA                            5
 //! Gray range using 1 byte per pixel.
-#define IND_LUMINANCE                       6
-
-//#define IND_LUMINANCE_ALPHA                   0x190A
+#define IND_LUMINANCE                       4
 
 // --------------------------------------------------------------------------------
 //								     Colour quality

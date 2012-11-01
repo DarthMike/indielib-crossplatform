@@ -132,7 +132,7 @@ bool FreeImageHelper::isImageFormatSupported(FREE_IMAGE_FORMAT format){
 /**
  * Returns the extension name of the FREE_IMAGE_FORMAT in the supplied chararray. 
  * @param format		FREE_IMAGE_FORMAT as defined by the Freeimage library.
- * @param pExtImage		image extention that is going to hold the extension of the format.If the FREE_IMAGE_FORMAT is not supported by Indielib or is not known by Freeimage, "" is returned.
+ * @param pExtImage[in,out]		image extention that is going to hold the extension of the format.If the FREE_IMAGE_FORMAT is not supported by Indielib or is not known by Freeimage, "" is returned.
  */
 void FreeImageHelper::getImageFormatName(FREE_IMAGE_FORMAT format, char* pExtImage){
 		//if	  (format == FIF_UNKNOWN)	{	strcpy (pExtImage, "");		}	// Unknown format (returned value only, never use it as input value)

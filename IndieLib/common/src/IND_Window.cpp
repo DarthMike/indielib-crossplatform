@@ -208,10 +208,7 @@ bool IND_Window::reset(IND_WindowProperties& props) {
     
     //The actual size change
     SDL_SetWindowSize(getSDLWindow(),props._width,props._height);
-    
-	//TODO: Support other pixel formats
-	//SDL_DisplayMode closestMode;
-	//SDL_GetClosestDisplayMode(0,&dMode,&closestMode);
+    //Format is hardcoded to rgba, this is also hardcoded on render creation.
 	dMode.format = static_cast<Uint32>(SDL_PIXELFORMAT_RGBA4444);
 
     //Set window display mode as requested... don't know what's the exact use of this

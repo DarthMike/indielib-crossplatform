@@ -83,7 +83,7 @@ IND_Window* OpenGLRender::initRenderAndWindow(IND_WindowProperties& props) {
 	_doubleBuffer = props._doubleBuffer;
     
 	//Initialize OpenGL parameters for SDL before creating the window for OpenGL
-	_osOpenGLMgr->setOpenGLContextParams(IND_RGBA, //Color format
+	_osOpenGLMgr->setOpenGLContextParams(IND_RGBA, //Color format. HARDCODED, AND HAS TO MATCH WINDOW HARDCODED FORMAT!
 										 props._bpp/4, //Color depth (Bpp) /  num colors
 	                                     2, //Depth Buffer bits
 	                                     1,  //Stencil Buffer bits
@@ -155,8 +155,6 @@ void OpenGLRender::beginScene() {
 
 	if (!_ok)
 		return;
-
-	//TODO // ----- Recovering device (after ALT+TAB) -----
 
 	//Clear buffers
 	glClearColor(0, 0, 0, 0);

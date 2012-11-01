@@ -347,17 +347,37 @@ typedef struct structVertex2d CUSTOMVERTEX2D;
  
  It abstracts coordinate system handedness and how the matrices are stored in memory in the underlying renderer.
  
+ Matrix (OpenGL COLUM-MAJOR ORDER!) (Note indices are the same, just store order in memory is different)
+ Be aware that DirectX matrixes are stored in memory using ROW-MAJOR ORDER!. Use methods here to convert
+ between them safely.
+ 
+ Matrix would look like this:
+ _11, _21, _31, _41
+ _12, _22, _32, _42
+ _13, _23, _33, _43
+ _14, _24, _34, _44
+ 
  For example, Matrix in openGL is stored in array using colum-major order
  A Matrix 4x4\n (_11, _21, _31, _41,\n _12, _22, _32, _42,\n _13, _23, _33, _43\n _14, _24, _34, _44)
  */
 struct structMatrix {
-	//Matrix (OpenGL COLUM-MAJOR ORDER!) (Note indices are the same, just store order in memory is different)
-	//Be aware that DirectX matrixes are stored in memory using ROW-MAJOR ORDER!. Use methods here to convert
-	//between them safely.
-	float _11, _21, _31, _41;
-	float _12, _22, _32, _42;
-	float _13, _23, _33, _43;
-	float _14, _24, _34, _44;
+	
+	float _11;      //!< Matrix element
+    float _21;      //!< Matrix element
+    float _31;      //!< Matrix element
+    float _41;      //!< Matrix element
+	float _12;      //!< Matrix element
+    float _22;      //!< Matrix element
+    float _32;      //!< Matrix element
+    float _42;      //!< Matrix element
+	float _13;      //!< Matrix element
+    float _23;      //!< Matrix element
+    float _33;      //!< Matrix element
+    float _43;      //!< Matrix element
+	float _14;      //!< Matrix element
+    float _24;      //!< Matrix element
+    float _34;      //!< Matrix element
+    float _44;      //!< Matrix element
 
     /**
      @brief Default constructor
@@ -496,7 +516,8 @@ typedef struct structMatrix IND_Matrix;
 
 //! 2d Point 2d\n (x, y)
 struct structPoint {
-	int x, y;
+	int x;      //!< Coordinate x
+    int y;      //!< Coordinate y
 };
 //! Alias for the 2d point structure
 typedef struct structPoint IND_Point;
@@ -1230,9 +1251,15 @@ typedef int IND_InitializationMode;
 struct structBoundingCollision {
 	int _type;                          //!< 0 = Triange, 1 = Circle
 	char *_id;                          //!< Group Id for grouping bounding areas
-	int _posX, _posY;                   //!< Position
+	int _posX;                          //!<_posX Position
+    int _posY;                          //!< _posY Position
 	int _radius;                        //!< Radius of the circle
-	int _ax, _ay, _bx, _by, _cx, _cy;   //!< Vertices of the triangle
+	int _ax;                            //!< Vertex of the triangle
+    int _ay;                            //!< Vertex of the triangle
+    int _bx;                            //!< Vertex of the triangle
+    int _by;                            //!< Vertex of the triangle
+    int _cx;                            //!< Vertex of the triangle
+    int _cy;                            //!< Vertex of the triangle
 
     //! Default constructor
 	structBoundingCollision() {

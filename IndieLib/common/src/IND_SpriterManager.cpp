@@ -74,7 +74,7 @@ bool IND_SpriterManager::remove(IND_Animation *pAn) {
 	return 0;
 }
 
-bool IND_SpriterManager::addSpriterFile(list<IND_Animation*> *pNewSpriterAnimationList,char *pSCMLFileName){
+bool IND_SpriterManager::addSpriterFile(list<IND_Animation*> *pNewSpriterAnimationList, const char *pSCMLFileName){
 	if (parseSpriterData(pNewSpriterAnimationList,pSCMLFileName)){
 		return 1;
 	}
@@ -95,7 +95,7 @@ bool IND_SpriterManager::addSpriterFile(list<IND_Animation*> *pNewSpriterAnimati
  * @param pNewSpriterAnimations		TODO describtion.
  * @param pSCMLFileName				TODO describtion.
  */
-bool IND_SpriterManager::parseSpriterData(list<IND_Animation*> *pNewSpriterAnimationList,char *pSCMLFileName) {
+bool IND_SpriterManager::parseSpriterData(list<IND_Animation*> *pNewSpriterAnimationList,const char *pSCMLFileName) {
 	TiXmlDocument *eXmlDoc = new TiXmlDocument(pSCMLFileName);
 
 	// Fatal error, cannot load

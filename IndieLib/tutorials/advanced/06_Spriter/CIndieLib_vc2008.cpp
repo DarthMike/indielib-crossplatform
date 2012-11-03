@@ -74,7 +74,7 @@ bool CIndieLib::init() {
 	//_tmxMapManager       =   new     IND_TmxMapManager;
 	_spriterManager      =	 new	  IND_SpriterManager;
 
-	IND_WindowProperties props ("IndieLib", 800, 600, 32, 0, 0);
+	IND_WindowProperties props ("IndieLib", 800, 600, 32, 0, 0, 1);
 	
 	
 	_window = _render        ->initRenderAndWindow(props);                                 

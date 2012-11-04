@@ -87,12 +87,12 @@ int IndieLib()
 
 	// Rocket
 	mRocket->setHotSpot(0.5f, 0.5f);
-	mRocket->setPosition(200, 450, 1);
+	mRocket->setPosition(80, 300, 1);
 	mRocket->setBoundingAreas("../../resources/rocket_collisions.xml");
 
 	// Sword Master Animation
 	mSwordMaster->setHotSpot(0.5f, 0.5f);
-	mSwordMaster->setPosition(400, 220, 3);
+	mSwordMaster->setPosition(200, 50, 3);
 
 	// Text
 	mTextSmallWhite->setLineSpacing	(18);

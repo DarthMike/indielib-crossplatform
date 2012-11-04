@@ -173,12 +173,20 @@ void OpenGLRender::setTransform2d(int pX,
 	if (pMatrix) {
 		_math.matrix4DSetIdentity(*pMatrix);
 	}
-
+    
 	// Translations
 	if (pX != 0 || pY != 0) {
 		IND_Matrix trans;
 		_math.matrix4DSetTranslation(trans,static_cast<float>(pX),static_cast<float>(pY),0.0f);
 		_math.matrix4DMultiply(totalTrans,trans,temp);
+		totalTrans = temp;
+	}
+    
+    // Hotspot - Revert hotspot not to affect translation
+	if (pAxisCalX != 0 || pAxisCalY != 0) {
+		IND_Matrix hotspot;
+		_math.matrix4DSetTranslation(hotspot,static_cast<float>(-pAxisCalX),static_cast<float>(-pAxisCalY),0.0f);
+		_math.matrix4DMultiply(totalTrans,hotspot,temp);
 		totalTrans = temp;
 	}
 
@@ -212,7 +220,7 @@ void OpenGLRender::setTransform2d(int pX,
 		totalTrans = temp;
 	}
 
-	// Hotspot
+	// Hotspot - Add hotspot to make all transforms to be affected by it
 	if (pAxisCalX != 0 || pAxisCalY != 0) {
 		IND_Matrix hotspot;
 		_math.matrix4DSetTranslation(hotspot,static_cast<float>(pAxisCalX),static_cast<float>(pAxisCalY),0.0f);
@@ -220,34 +228,40 @@ void OpenGLRender::setTransform2d(int pX,
 		totalTrans = temp;
 	}
 
-	// Mirroring (180º rotations) and translation
+    // Mirroring (180º rotations) and translation
 	if (pMirrorX || pMirrorY) {
 		//A mirror is a rotation in desired axis (the actual mirror) and a repositioning because rotation
 		//also moves 'out of place' the entity translation-wise
 		if (pMirrorX) {
 			IND_Matrix mirrorX;
+            //After rotation around origin, move back texture to correct place
+            _math.matrix4DSetTranslation(mirrorX,
+                                         static_cast<float>(pWidth),
+                                         0.0f,
+                                         0.0f);
+			_math.matrix4DMultiply(totalTrans,mirrorX,temp);
+			totalTrans = temp;
+            
+            //Rotate in y, to invert texture
 			_math.matrix4DSetRotationAroundAxis(mirrorX,180.0f,IND_Vector3(0.0f,1.0f,0.0f));
 			_math.matrix4DMultiply(totalTrans,mirrorX,temp);
 			totalTrans = temp;
-			_math.matrix4DSetTranslation(mirrorX,
-				static_cast<float>(-pWidth+pAxisCalX),//pWidth is the neeeded amount for normal mirroring, pAxisCalX is a correction for hotspot
-				static_cast<float>(-pAxisCalY),  //Corrects the next translation when hotspot is on in Y
-				0.0f); 
-			_math.matrix4DMultiply(totalTrans,mirrorX,temp);
-			totalTrans = temp;
 		}
-
+        
 		//A mirror is a rotation in desired axis (the actual mirror) and a repositioning because rotation
 		//also moves 'out of place' the entity translation-wise
 		if (pMirrorY) {
 			IND_Matrix mirrorY;
-			_math.matrix4DSetRotationAroundAxis(mirrorY,180.0f,IND_Vector3(1.0f,0.0f,0.0f));
+            //After rotation around origin, move back texture to correct place
+            _math.matrix4DSetTranslation(mirrorY,
+                                         0.0f,
+                                         static_cast<float>(pHeight),
+                                         0.0f);
 			_math.matrix4DMultiply(totalTrans,mirrorY,temp);
 			totalTrans = temp;
-			_math.matrix4DSetTranslation(mirrorY,
-				static_cast<float>(-pAxisCalX), //Corrects the next translation when hotspot is on in X
-				static_cast<float>(-pHeight+pAxisCalY), //pHeight is the neeeded amount for normal mirroring, pAxisCalY is a correction for hotspot
-				0.0f); 
+            
+            //Rotate in x, to invert texture
+			_math.matrix4DSetRotationAroundAxis(mirrorY,180.0f,IND_Vector3(1.0f,0.0f,0.0f));
 			_math.matrix4DMultiply(totalTrans,mirrorY,temp);
 			totalTrans = temp;
 		}

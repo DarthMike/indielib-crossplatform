@@ -3,7 +3,6 @@
  *****************************************************************************************/
 
 #include "CIndieLib_vc2008.h"
-#include "IND_TmxMap.h"
 
 #include <cstring>
 
@@ -19,17 +18,9 @@ int IndieLib()
 	CIndieLib *mI = CIndieLib::instance();
 	if (!mI->init()) return 0;			
 
-	// ----- Map loading -----
-	// TODO: map loading goes here...
-       
-	IND_TmxMap *map = new IND_TmxMap();
-	if (!mI->_tmxMapManager->add(map, "example.tmx")) return 0;
+	// ----- Spriter animation loading -----
 
-			// Get a tileset.
-		//const Tmx::Tileset *tileset = map->getTmxMapHandle()->GetTileset(0);
-
-		// Print tileset information.
-		printf("Name: %s\n", map->getTmxMapHandle()->GetTileset(0)->GetName().c_str());
+	if (!mI->_spriterManager->addSpriterFile(NULL,"Example.SCML")) return 0;
 
 
 
@@ -47,14 +38,10 @@ int IndieLib()
 
 		// ----- Input ----
 
-		// Show / Hide the grid pressing "space"
+		// for future use ...
 		if (mI->_input->onKeyPress(IND_SPACE))
 		{
-//			if (mShowGrid){
 
-//			}else{
-
-//			}
 		}
 
 		// ----- Updating entities attributes  -----
@@ -65,7 +52,6 @@ int IndieLib()
 		mI->_render->beginScene();
 		mI->_render->clearViewPort(0, 0, 0);
 //		mI->_entity2dManager->renderEntities2d();
-//		if (mShowGrid) mI->_entity2dManager->renderGridAreas(0, 0, 0, 255);
 		mI->_render->endScene();	
 	}
 

@@ -96,7 +96,7 @@ void FontTests_Pretty::setActive(bool active){
 
 		// ----- Changing the attributes of the 2d entities -----
 		_tip->setHotSpot(0.5f, 0.5f);
-		_tip->setPosition(250, 300, 0);
+		_tip->setPosition(135, 150, 0);
 
 		char titleText[] = "IndieLib Fonts";
 		_textTitle->setText(titleText);	

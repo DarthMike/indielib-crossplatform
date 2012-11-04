@@ -68,7 +68,7 @@ int IndieLib()
 	// ----- Changing the attributes of the 2d entities -----
 
 	mTip->setHotSpot(0.5f, 0.5f);
-	mTip->setPosition(250, 300, 0);
+	mTip->setPosition(135, 150, 0);
 
 	mTextTitle->setText("IndieLib Fonts");	
 	mTextTitle->setLineSpacing(18);

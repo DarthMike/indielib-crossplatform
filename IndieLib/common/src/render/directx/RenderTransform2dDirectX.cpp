@@ -165,29 +165,35 @@ void DirectXRender::setTransform2d(int pX,
 		//A mirror is a rotation in desired axis (the actual mirror) and a repositioning because rotation
 		//also moves 'out of place' the entity translation-wise
 		if (pMirrorX) {
-			D3DXMatrixTranslation(&mMatTraslation, 
-								  static_cast<float>(- pWidth+pAxisCalX),//pWidth is the neeeded amount for normal mirroring, pAxisCalX is a correction for hotspot
-								  static_cast<float>(-pAxisCalY), //Corrects the next translation when hotspot is on in Y
-								  0);
-			D3DXMatrixMultiply(&mMatWorld, &mMatWorld, &mMatTraslation);
+			//Rotate in y, to invert texture
 			D3DXMatrixRotationY(&mMatY, D3DXToRadian(180));
 			D3DXMatrixMultiply(&mMatWorld, &mMatWorld, &mMatY);
+
+			//After rotation around origin, move back texture to correct place
+			D3DXMatrixTranslation(&mMatTraslation, 
+								  static_cast<float>(pWidth),
+								  0.0f,
+								  0);
+			D3DXMatrixMultiply(&mMatWorld, &mMatWorld, &mMatTraslation);
 		}
 
 		//A mirror is a rotation in desired axis (the actual mirror) and a repositioning because rotation
 		//also moves 'out of place' the entity translation-wise
 		if (pMirrorY) {
-			D3DXMatrixTranslation(&mMatTraslation, 
-								  static_cast<float>(-pAxisCalX),  //Corrects the next translation when hotspot is on in X
-								  static_cast<float>( - pHeight+pAxisCalY), //pHeight is the neeeded amount for normal mirroring, pAxisCalY is a correction for hotspot
-								  0);
-			D3DXMatrixMultiply(&mMatWorld, &mMatWorld, &mMatTraslation);
+			//Rotate in x, to invert texture
 			D3DXMatrixRotationX(&mMatX, D3DXToRadian(180));
 			D3DXMatrixMultiply(&mMatWorld, &mMatWorld, &mMatX);
+
+			//After rotation around origin, move back texture to correct place
+			D3DXMatrixTranslation(&mMatTraslation, 
+								  0.0f, 
+								  static_cast<float>(pHeight),
+								  0);
+			D3DXMatrixMultiply(&mMatWorld, &mMatWorld, &mMatTraslation);
 		}
 	}
 
-	// Hotspot
+	// Hotspot - Set hotspot to affect following transforms
 	if (pAxisCalX != 0 || pAxisCalY != 0) {
 		D3DXMatrixTranslation(&mMatTraslation, static_cast<float>( pAxisCalX), static_cast<float>( pAxisCalY), 0);
 		D3DXMatrixMultiply(&mMatWorld, &mMatWorld, &mMatTraslation);
@@ -211,6 +217,12 @@ void DirectXRender::setTransform2d(int pX,
 	if (pAngleZ != 0.0f) {
 		D3DXMatrixRotationZ(&mMatZ, D3DXToRadian(pAngleZ));
 		D3DXMatrixMultiply(&mMatWorld, &mMatWorld, &mMatZ);
+	}
+
+	// Hotspot - Reset hotspot not to affect translations
+	if (pAxisCalX != 0 || pAxisCalY != 0) {
+		D3DXMatrixTranslation(&mMatTraslation, static_cast<float>(-pAxisCalX), static_cast<float>(-pAxisCalY), 0);
+		D3DXMatrixMultiply(&mMatWorld, &mMatWorld, &mMatTraslation);
 	}
 
 	// Translations

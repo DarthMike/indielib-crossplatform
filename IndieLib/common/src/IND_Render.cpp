@@ -32,7 +32,7 @@ Suite 330, Boston, MA 02111-1307 USA
 
 // ----- Libs -----
 #ifdef INDIERENDER_DIRECTX
-#include "render/directx/IND_Render.h"
+#include "render/directx/DirectXRender.h"
 #endif
 
 #ifdef INDIERENDER_GLES_IOS
@@ -1411,7 +1411,7 @@ IND_Window* IND_Render::createRender(IND_WindowProperties& windowProperties) {
 
 	// If the window is correctly initialized
 #ifdef INDIERENDER_DIRECTX
-	_wrappedRenderer = new IND_Render();
+	_wrappedRenderer = new DirectXRender();
 #endif
 
 #ifdef INDIERENDER_GLES_IOS

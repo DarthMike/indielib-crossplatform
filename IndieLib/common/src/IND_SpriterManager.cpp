@@ -143,18 +143,27 @@ for (int j = 0; j < 20; j++) {
 }
 */
 
-	// Parse all the folders
 	while (eFolder) {
 
-		// TODO loop over files, and parse each
 		printf("Folder: %s\n", eFolder->Attribute("name"));
+
+		TiXmlElement *eFile = 0;
+		eFile = eFolder->FirstChildElement("file");
+
+		while (eFile){
+			//printf("  id    : %s\n", eFile->Attribute("id"));
+			//printf("  name  : %s\n", eFile->Attribute("name"));
+			//printf("  width : %s\n", eFile->Attribute("width"));
+			//printf("  height: %s\n", eFile->Attribute("height"));
+
+			eFile = eFile->NextSiblingElement("file");
+		}
 
 		eFolder = eFolder->NextSiblingElement("folder");
 	}
 
 	// ----------------- Parse entities -----------------
 
-	// Entities
 	TiXmlElement *eEntity = 0;
 	eEntity = eSpriter_data->FirstChildElement("entity");
 
@@ -165,14 +174,94 @@ for (int j = 0; j < 20; j++) {
 		return 0;
 	}
 
-
-	// Parse all the entities
 	while (eEntity) {
 
-		// TODO loop over animation etc. and parse each
-		printf("Entity id: %s\n", eEntity->Attribute("id"));
+		//printf("Entity id: %s\n", eEntity->Attribute("id"));
+
+		TiXmlElement *eAnimation = 0;
+		eAnimation = eEntity->FirstChildElement("animation");
+
+		while(eAnimation){
+			//printf("  id     : %s\n", eAnimation->Attribute("id"));
+			//printf("  name   : %s\n", eAnimation->Attribute("name"));
+			//printf("  length : %s\n", eAnimation->Attribute("length"));
+			//printf("  looping: %s\n", eAnimation->Attribute("looping"));
+			
+			TiXmlElement *eMainline = 0;
+			eMainline = eAnimation->FirstChildElement("mainline");
+			
+			if (!eMainline) {
+				g_debug->header("Animation is missing mainline", 2);
+				eXmlDoc->Clear();
+				delete eXmlDoc;
+				return 0;
+			}
+			
+			TiXmlElement *eMKey = 0;
+			eMKey = eMainline->FirstChildElement("key");
+
+			while (eMKey){
+				//printf(" id: %s", eMKey->Attribute("id"));
+				//printf(" time: %s\n", eMKey->Attribute("time"));
+
+				TiXmlElement *eObject_ref = 0;
+				eObject_ref = eMKey->FirstChildElement("object_ref");
+				
+				while (eObject_ref){
+					//printf(" id: %s",        eObject_ref->Attribute("id"));
+					//printf(" timeline: %s",  eObject_ref->Attribute("timeline"));
+					//printf(" key: %s",       eObject_ref->Attribute("key"));
+					//printf(" z_index: %s\n", eObject_ref->Attribute("z_index"));
+				
+					eObject_ref = eObject_ref->NextSiblingElement("object_ref");
+				}
+
+				eMKey = eMKey->NextSiblingElement("key");
+			}
+
+			TiXmlElement *eTimeline = 0;
+			eTimeline = eAnimation->FirstChildElement("timeline");
+
+			while (eTimeline){
+				printf("timeline id: %s\n", eTimeline->Attribute("id"));
+				
+				TiXmlElement *eTKey = 0;
+				eTKey = eTimeline->FirstChildElement("key");
+				
+				while (eTKey){
+					printf(" id: %s", eTKey->Attribute("id"));
+				    printf(" spin: %s\n", eTKey->Attribute("spin"));
+
+					//TiXmlElement *eObject = 0;
+					//eObject = eTKey->FirstChildElement("object"); // asumption: there is only one "object" element under the key....					
+					
+					//printf(" folder: %s", eObject->Attribute("folder"));
+					//printf(" file: %s", eObject->Attribute("file"));
+					//printf(" x: %s", eObject->Attribute("x"));
+					//printf(" y: %s", eObject->Attribute("y"));
+					//printf(" pivot_x: %s", eObject->Attribute("pivot_x"));
+					//printf(" pivot_y: %s", eObject->Attribute("pivot_y"));
+					//printf(" angle: %s\n", eObject->Attribute("angle"));
+
+					eTKey = eTimeline->NextSiblingElement("key");
+
+				}
+				
+
+				eTimeline = eTimeline->NextSiblingElement("timeline");
+			}
+
+
+
+			eAnimation = eAnimation->NextSiblingElement("animation");
+		}
+
+
+
 
 		eEntity = eEntity->NextSiblingElement("entity");
+
+
 	}
 
 

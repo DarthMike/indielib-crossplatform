@@ -72,7 +72,7 @@ bool CIndieLib::init() {
 	//_entity3dManager       =   new     IND_Entity3dManager;
 	_math                =   new     IND_Math;
 
-	IND_WindowProperties props ("IndieLib", 800, 600, 32, 0, 0);
+	IND_WindowProperties props ("IndieLib", 800, 600, 32, false, true,true);
 	
 	
 	_window = _render        ->initRenderAndWindow(props);                                 

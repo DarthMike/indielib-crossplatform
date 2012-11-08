@@ -778,7 +778,7 @@ resets screen resolution
 bool Listener::ResetScreen (int pScreenWidth, int pScreenHeight)
 {
 	//Set new window params and reset it
-	IND_WindowProperties props ("",pScreenWidth,pScreenHeight, 32,0,mI->_window->isFullScreen());
+	IND_WindowProperties props ("",pScreenWidth,pScreenHeight, 32,false,mI->_window->isFullScreen(),true);
 	props._fullscreen = !mI->_window->isFullScreen();
 	mI->_render->reset (props);
 

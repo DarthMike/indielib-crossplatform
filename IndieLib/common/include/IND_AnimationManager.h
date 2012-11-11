@@ -148,11 +148,11 @@ private:
 
 	void        addToList(IND_Animation *pNewAnimation);
 	void        delFromlist(IND_Animation *pAn);
-	IND_Image   *loadImage(char *pName);
+	IND_Image   *loadImage(const char *pName);
 	bool        remove(IND_Animation *pAn, bool pType);
 
-	bool        parseAnimation(IND_Animation *pNewAnimation, char *pAnimationName);
-	bool        isDeclaredFrame(char *pFrameName, IND_Animation *pNewAnimation, int *pPos);
+	bool        parseAnimation(IND_Animation *pNewAnimation, const char *pAnimationName);
+	bool        isDeclaredFrame(const char *pFrameName, IND_Animation *pNewAnimation, int *pPos);
 
 	void        writeMessage();
 	void        initVars();

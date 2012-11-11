@@ -22,11 +22,11 @@ public:
 
 	// ----- Methods -----
 
-	bool parseCollision(list <BOUNDING_COLLISION *> *pBList, char *pFile);
-	void setBoundingTriangle(list <BOUNDING_COLLISION *> *pBList, char *pId, int pAx, int pAy, int pBx, int pBy, int pCx, int pCy);
-	void setBoundingCircle(list <BOUNDING_COLLISION *> *pBList, char *pId, int pOffsetX, int pOffsetY, int pRadius);
-	void setBoundingRectangle(list <BOUNDING_COLLISION *> *pBList, char *pId, int pOffsetX, int pOffsetY, int pWidth, int pHeight);
-	void deleteBoundingAreas(list <BOUNDING_COLLISION *> *pBList, char *pId);
+	bool parseCollision(list <BOUNDING_COLLISION *> *pBList, const char *pFile);
+	void setBoundingTriangle(list <BOUNDING_COLLISION *> *pBList, const char *pId, int pAx, int pAy, int pBx, int pBy, int pCx, int pCy);
+	void setBoundingCircle(list <BOUNDING_COLLISION *> *pBList, const char *pId, int pOffsetX, int pOffsetY, int pRadius);
+	void setBoundingRectangle(list <BOUNDING_COLLISION *> *pBList, const char *pId, int pOffsetX, int pOffsetY, int pWidth, int pHeight);
+	void deleteBoundingAreas(list <BOUNDING_COLLISION *> *pBList, const char *pId);
 
 protected:
 

@@ -43,7 +43,7 @@ CollisionParser *CollisionParser::instance() {
 * @param pCx		TODO describtion
 * @param pCy		TODO describtion
 */
-void CollisionParser::setBoundingTriangle(list <BOUNDING_COLLISION *> *pBList, char *pId, int pAx, int pAy, int pBx, int pBy, int pCx, int pCy) {
+void CollisionParser::setBoundingTriangle(list <BOUNDING_COLLISION *> *pBList, const char *pId, int pAx, int pAy, int pBx, int pBy, int pCx, int pCy) {
 	BOUNDING_COLLISION *_b = new BOUNDING_COLLISION (0,pId);
 
 	_b->_ax     = pAx;
@@ -65,7 +65,7 @@ void CollisionParser::setBoundingTriangle(list <BOUNDING_COLLISION *> *pBList, c
 * @param pOffsetY	the y position of the center of the circle
 * @param pRadius	the radius of the circle
 */
-void CollisionParser::setBoundingCircle(list <BOUNDING_COLLISION *> *pBList, char *pId, int pOffsetX, int pOffsetY, int pRadius) {
+void CollisionParser::setBoundingCircle(list <BOUNDING_COLLISION *> *pBList, const char *pId, int pOffsetX, int pOffsetY, int pRadius) {
 	BOUNDING_COLLISION *_b = new BOUNDING_COLLISION(1,pId);
 
 	_b->_posX       = pOffsetX;
@@ -85,7 +85,7 @@ void CollisionParser::setBoundingCircle(list <BOUNDING_COLLISION *> *pBList, cha
 * @param pWidth		the width of the rectangle
 * @param pHeight	the height of the rectangle
 */
-void CollisionParser::setBoundingRectangle(list <BOUNDING_COLLISION *> *pBList, char *pId, int pOffsetX, int pOffsetY, int pWidth, int pHeight) {
+void CollisionParser::setBoundingRectangle(list <BOUNDING_COLLISION *> *pBList, const char *pId, int pOffsetX, int pOffsetY, int pWidth, int pHeight) {
 	// First triangle
 	BOUNDING_COLLISION *mB1 = new BOUNDING_COLLISION(0,pId);
 
@@ -118,7 +118,7 @@ void CollisionParser::setBoundingRectangle(list <BOUNDING_COLLISION *> *pBList, 
 * @param pBList		TODO describtion
 * @param pFile		the filepath of the file
 */
-bool CollisionParser::parseCollision(list <BOUNDING_COLLISION *> *pBList, char *pFile) {
+bool CollisionParser::parseCollision(list <BOUNDING_COLLISION *> *pBList, const char *pFile) {
 	TiXmlDocument   *mXmlDoc = new TiXmlDocument(pFile);
 
 	// Fatal error, cannot load
@@ -147,17 +147,14 @@ bool CollisionParser::parseCollision(list <BOUNDING_COLLISION *> *pBList, char *
 		        mXTriangle->Attribute("by") &&
 		        mXTriangle->Attribute("cx") &&
 		        mXTriangle->Attribute("cy")) {
-			char *_id = new char [strlen(mXTriangle->Attribute("id"))];
-			strcpy(_id, mXTriangle->Attribute("id"));
 			setBoundingTriangle(pBList,
-			                    _id,
+			                    mXTriangle->Attribute("id"),
 			                    atoi(mXTriangle->Attribute("ax")),
 			                    atoi(mXTriangle->Attribute("ay")),
 			                    atoi(mXTriangle->Attribute("bx")),
 			                    atoi(mXTriangle->Attribute("by")),
 			                    atoi(mXTriangle->Attribute("cx")),
 			                    atoi(mXTriangle->Attribute("cy")));
-            DISPOSEARRAY(_id);
 		} else {
 			g_debug->header("The triangle doesn't have all the attributes", 2);
 			mXmlDoc->Clear();
@@ -178,14 +175,11 @@ bool CollisionParser::parseCollision(list <BOUNDING_COLLISION *> *pBList, char *
 		        mXCircle->Attribute("x") &&
 		        mXCircle->Attribute("y") &&
 		        mXCircle->Attribute("radius")) {
-			char *_id = new char [strlen(mXCircle->Attribute("id"))];
-			strcpy(_id, mXCircle->Attribute("id"));
 			setBoundingCircle(pBList,
-			                  _id,
+			                  mXCircle->Attribute("id"),
 			                  atoi(mXCircle->Attribute("x")),
 			                  atoi(mXCircle->Attribute("y")),
 			                  atoi(mXCircle->Attribute("radius")));
-            DISPOSEARRAY(_id);
 		} else {
 			g_debug->header("The circle doesn't have all the attributes", 2);
 			mXmlDoc->Clear();
@@ -207,15 +201,12 @@ bool CollisionParser::parseCollision(list <BOUNDING_COLLISION *> *pBList, char *
 		        mXRectangle->Attribute("y") &&
 		        mXRectangle->Attribute("width") &&
 		        mXRectangle->Attribute("height")) {
-			char *_id = new char [strlen(mXRectangle->Attribute("id"))];
-			strcpy(_id, mXRectangle->Attribute("id"));
 			setBoundingRectangle(pBList,
-			                     _id,
+			                     mXRectangle->Attribute("id"),
 			                     atoi(mXRectangle->Attribute("x")),
 			                     atoi(mXRectangle->Attribute("y")),
 			                     atoi(mXRectangle->Attribute("width")),
 			                     atoi(mXRectangle->Attribute("height")));
-            DISPOSEARRAY(_id);
 		} else {
 			g_debug->header("The rectangle doesn't have all the attributes", 2);
 			mXmlDoc->Clear();
@@ -240,7 +231,7 @@ bool CollisionParser::parseCollision(list <BOUNDING_COLLISION *> *pBList, char *
 * @param pBList		TODO describtion
 * @param pId		id of the the bounding areas, "*" is all areas. 
 */
-void CollisionParser::deleteBoundingAreas(list <BOUNDING_COLLISION *> *pBList, char *pId) {
+void CollisionParser::deleteBoundingAreas(list <BOUNDING_COLLISION *> *pBList, const char *pId) {
 	bool mExit = 0;
 
 	while (!mExit) {

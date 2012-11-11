@@ -398,7 +398,7 @@ bool IND_AnimationManager::calculateAxis(IND_Animation *pAn,
  * Load an image and returns the pointer.
  * @param pName					TODO describtion.
  */
-IND_Image *IND_AnimationManager::loadImage(char *pName) {
+IND_Image *IND_AnimationManager::loadImage(const char *pName) {
 	IND_Image *mNewImage = new IND_Image;
 
 	char *_name = new char [MAX_TOKEN];// TODO: valgrind states that this new char[] leaks (test: tutorial 4) 
@@ -420,7 +420,7 @@ IND_Image *IND_AnimationManager::loadImage(char *pName) {
  * @param pNewAnimation				TODO describtion.
  * @param pAnimationName			TODO describtion.
  */
-bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, char *pAnimationName) {
+bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, const char *pAnimationName) {
 	TiXmlDocument   *mXmlDoc = new TiXmlDocument(pAnimationName);
 
 	// Fatal error, cannot load
@@ -745,7 +745,7 @@ bool IND_AnimationManager::remove(IND_Animation *pAn, bool pType) {
  * @param pNewAnimation				TODO describtion.
  * @param pPos					TODO describtion.
  */
-bool IND_AnimationManager::isDeclaredFrame(char *pFrameName, IND_Animation *pNewAnimation, int *pPos) {
+bool IND_AnimationManager::isDeclaredFrame(const char *pFrameName, IND_Animation *pNewAnimation, int *pPos) {
 	int _pos = 0;
 
 	vector <IND_Frame *>::iterator mVectorFrameIter;

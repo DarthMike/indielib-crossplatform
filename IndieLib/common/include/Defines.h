@@ -1242,8 +1242,7 @@ typedef int IND_InitializationMode;
 /**@{*/
 //! Encapsulates information about a parsed bounding collision information from xml
 struct structBoundingCollision {
-	int _type;                          //!< 0 = Triange, 1 = Circle
-	char *_id;                          //!< Group Id for grouping bounding areas
+public:
 	int _posX;                          //!<_posX Position
     int _posY;                          //!< _posY Position
 	int _radius;                        //!< Radius of the circle
@@ -1253,11 +1252,41 @@ struct structBoundingCollision {
     int _by;                            //!< Vertex of the triangle
     int _cx;                            //!< Vertex of the triangle
     int _cy;                            //!< Vertex of the triangle
-
+private:
+    int _type;                          //!< 0 = Triange, 1 = Circle
+	char *_id;                          //!< Group Id for grouping bounding areas
+    
+public:
     //! Default constructor
 	structBoundingCollision() {
 		_type = _posX = _posY = _radius = _ax = _ay = _bx = _by = _cx = _cy = 0;
 	}
+    
+    /**
+     Designater constructor
+     @param type The type for this collision. Can't be changed after creation
+     @param identifier A string to match with a collision zone. Can't be changed after
+    */
+    structBoundingCollision(int type, const char* identifier) {
+        _type = type;
+        _id = new char[strlen(identifier) + 1];
+        strcpy(_id, identifier);
+        _posX = _posY = _radius = _ax = _ay = _bx = _by = _cx = _cy = 0;
+    }
+    ~structBoundingCollision() {
+        DISPOSEARRAY(_id);
+    }
+    
+    
+    //!Returns the ID for this collision
+    const char* const getId() {
+        return _id;
+    }
+
+    //!Returns the type of this collision
+    int getType() {
+        return _type;
+    }
 };
 //! Alias for the bounding collision structure
 typedef struct structBoundingCollision BOUNDING_COLLISION;

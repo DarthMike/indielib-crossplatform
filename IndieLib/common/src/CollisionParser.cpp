@@ -44,10 +44,8 @@ CollisionParser *CollisionParser::instance() {
 * @param pCy		TODO describtion
 */
 void CollisionParser::setBoundingTriangle(list <BOUNDING_COLLISION *> *pBList, char *pId, int pAx, int pAy, int pBx, int pBy, int pCx, int pCy) {
-	BOUNDING_COLLISION *_b = new BOUNDING_COLLISION;
+	BOUNDING_COLLISION *_b = new BOUNDING_COLLISION (0,pId);
 
-	_b->_type   = 0;
-	_b->_id     = pId;
 	_b->_ax     = pAx;
 	_b->_ay     = pAy;
 	_b->_bx     = pBx;
@@ -68,10 +66,8 @@ void CollisionParser::setBoundingTriangle(list <BOUNDING_COLLISION *> *pBList, c
 * @param pRadius	the radius of the circle
 */
 void CollisionParser::setBoundingCircle(list <BOUNDING_COLLISION *> *pBList, char *pId, int pOffsetX, int pOffsetY, int pRadius) {
-	BOUNDING_COLLISION *_b = new BOUNDING_COLLISION;
+	BOUNDING_COLLISION *_b = new BOUNDING_COLLISION(1,pId);
 
-	_b->_type       = 1;
-	_b->_id         = pId;
 	_b->_posX       = pOffsetX;
 	_b->_posY       = pOffsetY;
 	_b->_radius     = pRadius;
@@ -91,10 +87,8 @@ void CollisionParser::setBoundingCircle(list <BOUNDING_COLLISION *> *pBList, cha
 */
 void CollisionParser::setBoundingRectangle(list <BOUNDING_COLLISION *> *pBList, char *pId, int pOffsetX, int pOffsetY, int pWidth, int pHeight) {
 	// First triangle
-	BOUNDING_COLLISION *mB1 = new BOUNDING_COLLISION;
+	BOUNDING_COLLISION *mB1 = new BOUNDING_COLLISION(0,pId);
 
-	mB1->_type  = 0;
-	mB1->_id    = pId;
 	mB1->_ax    = pOffsetX;
 	mB1->_ay    = pOffsetY;
 	mB1->_bx    = pOffsetX + pWidth;
@@ -105,10 +99,8 @@ void CollisionParser::setBoundingRectangle(list <BOUNDING_COLLISION *> *pBList, 
 	pBList->push_back(mB1);
 
 	// Second triangle
-	BOUNDING_COLLISION *mB2 = new BOUNDING_COLLISION;
+	BOUNDING_COLLISION *mB2 = new BOUNDING_COLLISION(0,pId);;
 
-	mB2->_type  = 0;
-	mB2->_id    = pId;
 	mB2->_ax    = pOffsetX + pWidth;
 	mB2->_ay    = pOffsetY;
 	mB2->_bx    = pOffsetX + pWidth;
@@ -165,6 +157,7 @@ bool CollisionParser::parseCollision(list <BOUNDING_COLLISION *> *pBList, char *
 			                    atoi(mXTriangle->Attribute("by")),
 			                    atoi(mXTriangle->Attribute("cx")),
 			                    atoi(mXTriangle->Attribute("cy")));
+            DISPOSEARRAY(_id);
 		} else {
 			g_debug->header("The triangle doesn't have all the attributes", 2);
 			mXmlDoc->Clear();
@@ -192,6 +185,7 @@ bool CollisionParser::parseCollision(list <BOUNDING_COLLISION *> *pBList, char *
 			                  atoi(mXCircle->Attribute("x")),
 			                  atoi(mXCircle->Attribute("y")),
 			                  atoi(mXCircle->Attribute("radius")));
+            DISPOSEARRAY(_id);
 		} else {
 			g_debug->header("The circle doesn't have all the attributes", 2);
 			mXmlDoc->Clear();
@@ -221,6 +215,7 @@ bool CollisionParser::parseCollision(list <BOUNDING_COLLISION *> *pBList, char *
 			                     atoi(mXRectangle->Attribute("y")),
 			                     atoi(mXRectangle->Attribute("width")),
 			                     atoi(mXRectangle->Attribute("height")));
+            DISPOSEARRAY(_id);
 		} else {
 			g_debug->header("The rectangle doesn't have all the attributes", 2);
 			mXmlDoc->Clear();
@@ -255,7 +250,8 @@ void CollisionParser::deleteBoundingAreas(list <BOUNDING_COLLISION *> *pBList, c
 		        _listIter  != pBList->end();
 		        _listIter++) {
 			// Check the id, if it's equal, delete the area
-			if (!strcmp((*_listIter)->_id, pId) || !strcmp(pId, "*")) {
+            const char* const identifier = (*_listIter)->getId();
+			if (!strcmp(identifier, pId) || !strcmp(pId, "*")) {
 				DISPOSE((*_listIter));
 				pBList->remove((*_listIter));
 				mExit = 0;

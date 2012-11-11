@@ -540,7 +540,7 @@ void IND_Entity2dManager::renderCollisionAreas(int pLayer, BYTE pR, BYTE pG, BYT
 					for (_listIter  = mBoundingListToRender->begin();
 					        _listIter != mBoundingListToRender->end();
 					        _listIter++) {
-						switch ((*_listIter)->_type) {
+						switch ((*_listIter)->getType()) {
 							// Triangle
 						case 0: {
 							_render->blitCollisionLine((*_listIter)->_ax, (*_listIter)->_ay, (*_listIter)->_bx, (*_listIter)->_by, pR, pG, pB, pA, (*mIter)->_mat);
@@ -701,31 +701,33 @@ inline bool IND_Entity2dManager::isCollision(list <BOUNDING_COLLISION *> *pBound
 		        j != pBoundingList2->end();
 		        j++) {
 			// Check only if the group is correct
-			if (    (!strcmp(pId1, (*i)->_id)  && !strcmp(pId2, (*j)->_id))   ||      // "group1", "group2"
-			        (!strcmp(pId1, "*"      )  && !strcmp((*j)->_id, pId2))   ||      // "*", "group"
-			        (!strcmp((*i)->_id, pId1)  && !strcmp(pId2 , "*")     )   ||      // "group", "*"
+            const char* const id1 = (*i)->getId();
+            const char* const id2 = (*j)->getId();
+			if (    (!strcmp(pId1, id1)  && !strcmp(pId2, id2))   ||      // "group1", "group2"
+			        (!strcmp(pId1, "*"      )  && !strcmp(id2, pId2))   ||      // "*", "group"
+			        (!strcmp(id1, pId1)  && !strcmp(pId2 , "*")     )   ||      // "group", "*"
 			        (!strcmp(pId1, "*"      )  && !strcmp(pId2 , "*")     )     ) {   // "*", "*"
 				
 				// Triangle to triangle
-				if ((*i)->_type == 0 && (*j)->_type == 0) {
+				if ((*i)->getType() == 0 && (*j)->getType() == 0) {
 					if (_math->isTriangleToTriangleCollision((*i), pMat1, (*j), pMat2))
 						mCollision = 1;
 				}
 
 				// Circle to triangle
-				if ((*i)->_type == 1 && (*j)->_type == 0) {
+				if ((*i)->getType() == 1 && (*j)->getType() == 0) {
 					if (_math->isCircleToTriangleCollision((*i), pMat1, pScale1, (*j), pMat2))
 						mCollision = 1;
 				}
 
 				// Triangle to circle
-				if ((*i)->_type == 0 && (*j)->_type == 1) {
+				if ((*i)->getType() == 0 && (*j)->getType() == 1) {
 					if (_math->isCircleToTriangleCollision((*j), pMat2, pScale2, (*i), pMat1))
 						mCollision = 1;
 				}
 
 				// Circle to circle
-				if ((*i)->_type == 1 && (*j)->_type == 1) {
+				if ((*i)->getType() == 1 && (*j)->getType() == 1) {
 					if (_math->isCircleToCircleCollision((*i), pMat1, pScale1, (*j), pMat2, pScale2))
 						mCollision = 1;
 				}

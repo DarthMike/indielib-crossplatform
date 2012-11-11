@@ -61,12 +61,16 @@ private:
 		vector <FRAME_TIME *> *_listFrames; // List of frames with their times
 		bool _isActive;                     // Flage
 		structSequence() {
+            _name = new char [1024];
 			i = 0;
 			_isActive = 0;
 			_width = _height = _numFrames =  0;
-			_name = 0;
 			_listFrames = new vector <FRAME_TIME *>;
 		}
+        
+        ~structSequence() {
+            DISPOSEARRAY(_name);
+        }
 	};
 	typedef struct structSequence SEQUENCE;
 
@@ -86,8 +90,8 @@ private:
 	void                    setNumFrames(int pNumFrames)        {
 		_sequence._numFrames = pNumFrames;
 	}
-	void                    setName(char *pName)           {
-		_sequence._name = pName;
+	void                    setName(const char *pName)           {
+        strcpy(_sequence._name,pName);
 	}
 	void                    setPosInVectorFrame(int pPos, int pNewPos) {
 		(*_sequence._listFrames) [pPos]->_pos = pNewPos;
@@ -122,7 +126,7 @@ private:
 	int                     getNumFrames()                      {
 		return _sequence._numFrames;
 	}
-	char                    *getName()                      {
+	const char* const getName()                      {
 		return _sequence._name;
 	}
 	vector <FRAME_TIME *>    *getListFrames()                      {

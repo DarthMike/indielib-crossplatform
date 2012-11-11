@@ -105,7 +105,7 @@ public:
 	// ----- Relative to lobal animation ------
 
 	//! This function returns the animation script file name in a string of characters.
-	char                    *getName()              {
+	const char* const getName()              {
 		return _animation._name;
 	}
 	//! This function returns the total number of animation sequences.
@@ -130,7 +130,7 @@ public:
 	//! This function returns the number of frames which are referenced by the sequeence received as a parameter.
 	int                     getNumFrames(int pSequence);
 	//! This function returns the name, in a string of characters, of the sequence received as a paramater.
-	char                    *getName(int pSequence);
+	const char* const getName(int pSequence);
 
 	// NOT DOCUMENTED
 	int                     getActualFramePos(int pSequence);
@@ -165,7 +165,12 @@ private:
 		structAnimation() : 
 			_name(NULL),
 			_sumSequences(0),
-			_listSequences(NULL) {}
+			_listSequences(NULL) {
+                _name = new char [MAX_TOKEN];
+            }
+        ~structAnimation() {
+            DISPOSEARRAY(_name);
+        }
 		
 	};
 	typedef struct structAnimation ANIMATION;
@@ -174,8 +179,8 @@ private:
 
 	// ----- Private sets ------
 
-	void                    setName(char *pName)               {
-		_animation._name = pName;
+	void                    setName(const char *pName)               {
+		strcpy(_animation._name,pName);
 	}
 	void                    setNumSequences(int pNum)                  {
 		_animation._sumSequences = pNum;

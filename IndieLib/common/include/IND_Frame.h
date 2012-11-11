@@ -48,11 +48,14 @@ private:
 		int _offsetY;
 		list <BOUNDING_COLLISION *> *_listBoundingCollision;
 		structFrame() {
-			_name       = 0;
+			_name       = new char [MAX_TOKEN];
 			_image      = 0;
 			_surface    = 0;
 			_offsetX = _offsetY = 0;
 		}
+        ~structFrame() {
+            DISPOSEARRAY(_name);
+        }
 	};
 	typedef struct structFrame A_FRAME;
 
@@ -60,8 +63,8 @@ private:
 
 	// ----- Private sets ------
 
-	void setName(char *pName)       {
-		_frame._name = pName;
+	void setName(const char *pName)       {
+		strcpy(_frame._name,pName);
 	}
 	void setImage(IND_Image *pIm)    {
 		_frame._image = pIm;

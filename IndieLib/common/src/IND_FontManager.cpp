@@ -31,10 +31,6 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "IND_ImageManager.h"
 #include "IND_Math.h"
 
-// ----- Defines -----
-
-#define MAX_TOKEN 1024
-
 // --------------------------------------------------------------------------------
 //							  Initialization / Destruction
 // --------------------------------------------------------------------------------

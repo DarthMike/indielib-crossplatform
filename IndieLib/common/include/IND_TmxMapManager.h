@@ -69,9 +69,9 @@ public:
 
 	// ----- Public methods -----
 
-	bool add(IND_TmxMap *pNewMap, char *pName);
+	bool add(IND_TmxMap *pNewMap,const char *pName);
 	bool remove(IND_TmxMap *pMap);
-	bool save(IND_TmxMap *pMap, char *pName);
+	bool save(IND_TmxMap *pMap,const char *pName);
 	bool clone(IND_TmxMap *pNewMap, IND_TmxMap *pOldMap);
 	//FIXME Tmx::Map* load(char *pName);
 	bool add(IND_TmxMap *pNewMap, IND_TmxMap *pMapToBeCopied);
@@ -90,8 +90,8 @@ private:
 
 	// ----- Private Methods -----
 
-	void getExtensionFromName(char *pName,char* pMap);
-	bool checkExtImage(char *pMap);
+	void getExtensionFromName(const char *pName,char* pMap);
+	bool checkExtImage(const char *pMap);
 
 	void addToList(IND_TmxMap *pNewMap);
 	void delFromlist(IND_TmxMap *pMap);

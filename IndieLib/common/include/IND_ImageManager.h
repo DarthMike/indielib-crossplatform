@@ -102,7 +102,7 @@ private:
 	// ----- Private Methods -----
 
 	void getExtensionFromName(const char *pName, char* pExtImage);
-	bool checkExtImage(char *pExtImage);
+	bool checkExtImage(const char *pExtImage);
 
 	void addToList(IND_Image *pNewImage);
 	void delFromlist(IND_Image *pIm);

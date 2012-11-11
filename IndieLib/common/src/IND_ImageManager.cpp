@@ -258,7 +258,7 @@ bool IND_ImageManager::add(IND_Image *pNewImage, FIBITMAP *pImageToBeCopied) {
 	pNewImage->setBpp(FreeImage_GetBPP(pImage));
 	pNewImage->setBytespp(pNewImage->getBpp()/8);
 	pNewImage->setPointer(FreeImage_GetBits(pImage));
-	pNewImage->setName((char*) "Image clone-added");
+	pNewImage->setName("Image clone-added");
 	pNewImage->setFreeImageHandle(pImage);
 
 	// ----- Puts the object into the manager -----
@@ -420,11 +420,7 @@ bool IND_ImageManager::clone(IND_Image *pNewImage, IND_Image *pOldImage) {
 	getExtensionFromName(pOldImage->getName(),ext);
 	pNewImage->setExtension(ext);
 	pNewImage->setPointer(FreeImage_GetBits(image));
-    char* name =  (char*)malloc(100);
-    strcpy(name, "Image cloned");
-	pNewImage->setName(name);
-    free(name);
-    name = NULL;
+	pNewImage->setName("Image cloned");
 	pNewImage->setFreeImageHandle(image);
 
 	// ----- Put the object into the manager -----
@@ -519,7 +515,7 @@ void IND_ImageManager::getExtensionFromName(const char *pName, char* pExtImage) 
 Check if it is a known extension
 ==================
 */
-bool IND_ImageManager::checkExtImage(char *pExtImage) {
+bool IND_ImageManager::checkExtImage(const char *pExtImage) {
 	for (int i = 0; i < MAX_EXT_IMAGE; i++) {
 		if (!strcmp(pExtImage, _supportedExt [i]))
 			return 1;

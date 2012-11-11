@@ -141,6 +141,10 @@ users for really concrete purposes.
 //Platform definition checkings
 #include "IndiePlatforms.h"
 
+#ifdef PLATFORM_LINUX
+#include <cstring> 
+#endif
+
 // ----- Renderer settings -----
 //****Renderer choosing in static time****
 //YOU SHOULD CHANGE HERE THE DEFINITION OF WHICH RENDERER TO COMPILE WITH

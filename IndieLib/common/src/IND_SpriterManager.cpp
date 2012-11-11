@@ -13,6 +13,12 @@ Something about license goes here ;)
 #include "Defines.h"
 #include "dependencies/tinyxml/tinyxml.h"
 #include "IND_SpriterManager.h"
+#include "IND_SpriterEntity.h"
+#include "IND_Image.h"
+#include "IND_ImageManager.h"
+//#ifdef linux
+#include <string>
+//#endif
 
 
 // ----- Defines -----
@@ -63,19 +69,22 @@ void IND_SpriterManager::end() {
 
 
 /**
- * Returns 1 (true) if the Spriter animation object passed as a parameter
+ * Returns 1 (true) if the Spriter Entity object passed as a parameter
  * exists and it is successfully eliminated.
- * @param pAn				Pointer to a Spriter animation object.
+ * @param pEn				Pointer to a Spriter Entity object.
  */
-bool IND_SpriterManager::remove(IND_Animation *pAn) {
+bool IND_SpriterManager::remove(IND_SpriterEntity *pEn) {
 //	if (remove(pAn, 0))
 //		return 1;
+// TODO : search for entity and remove from vector
+
+
 
 	return 0;
 }
 
-bool IND_SpriterManager::addSpriterFile(list<IND_Animation*> *pNewSpriterAnimationList, const char *pSCMLFileName){
-	if (parseSpriterData(pNewSpriterAnimationList,pSCMLFileName)){
+bool IND_SpriterManager::addSpriterFile(list<IND_SpriterEntity*> *pNewSpriterEntityList, const char *pSCMLFileName){
+	if (parseSpriterData(pNewSpriterEntityList,pSCMLFileName)){
 		return 1;
 	}
 	
@@ -95,8 +104,8 @@ bool IND_SpriterManager::addSpriterFile(list<IND_Animation*> *pNewSpriterAnimati
  * @param pNewSpriterAnimations		TODO describtion.
  * @param pSCMLFileName				TODO describtion.
  */
-bool IND_SpriterManager::parseSpriterData(list<IND_Animation*> *pNewSpriterAnimationList,const char *pSCMLFileName) {
-	TiXmlDocument *eXmlDoc = new TiXmlDocument(pSCMLFileName);
+bool IND_SpriterManager::parseSpriterData(list<IND_SpriterEntity*> *pNewSpriterEntityList,const char *pSCMLFileName) {
+	TiXmlDocument *eXmlDoc = new TiXmlDocument(pSCMLFileName);		
 
 	// Fatal error, cannot load
 	if (!eXmlDoc->LoadFile()){
@@ -105,12 +114,26 @@ bool IND_SpriterManager::parseSpriterData(list<IND_Animation*> *pNewSpriterAnima
 	}
 
 
+	string spriterTopPath;
+    string s = string(pSCMLFileName);
+
+	unsigned int lastPosTemp = s.find_last_of("\\/");
+
+	if(lastPosTemp == string::npos){
+		spriterTopPath = "./";
+    }
+	else{
+    	spriterTopPath = s.substr(0, lastPosTemp);
+	}
+	//printf("Top directory : %s\n", spriterTopPath.c_str());
+
+
 	// Document root
 	TiXmlElement *eSpriter_data = 0;
 	eSpriter_data = eXmlDoc->FirstChildElement("spriter_data");
 
 	if (!eSpriter_data) {
-		g_debug->header("Invalid name for document root, should be <spriter_data>", 2);
+		g_debug->header("Invalid name for Spriter document root, should be <spriter_data>", 2);
 		eXmlDoc->Clear();
 		delete eXmlDoc;
 		return 0;
@@ -118,35 +141,19 @@ bool IND_SpriterManager::parseSpriterData(list<IND_Animation*> *pNewSpriterAnima
 
 	// ----------------- Parse folders and create the images -----------------
 
-	// Folders
 	TiXmlElement *eFolder = 0;
 	eFolder = eSpriter_data->FirstChildElement("folder");
 
 	if (!eFolder) {
-		g_debug->header("There are no folders to parse", 2);
+		g_debug->header("There are no Spriter resourcefolders to parse", 2);
 		eXmlDoc->Clear();
 		delete eXmlDoc;
 		return 0;
 	}
 
-/*
-vector< vector<int> > vec;
-
-for (int i = 0; i < 10; i++) {
-    vec.push_back(vector<int>()); // Add an empty row
-}
-
-for (int j = 0; j < 20; j++) {
-    for (int i = 0; i < vec.size(); i++) {
-        vec[i].push_back(i * j); // Add column to all rows
-    }
-}
-*/
-
 	while (eFolder) {
 
-		printf("Folder: %s\n", eFolder->Attribute("name"));
-
+		//printf("Folder: %s\n", eFolder->Attribute("name"));
 		TiXmlElement *eFile = 0;
 		eFile = eFolder->FirstChildElement("file");
 
@@ -155,6 +162,16 @@ for (int j = 0; j < 20; j++) {
 			//printf("  name  : %s\n", eFile->Attribute("name"));
 			//printf("  width : %s\n", eFile->Attribute("width"));
 			//printf("  height: %s\n", eFile->Attribute("height"));
+
+			string result = spriterTopPath + string(eFile->Attribute("name"));
+			printf("  file    : %s\n", result.c_str());
+			
+			IND_Image *mImageTemp = new IND_Image();
+			if (!_imageManager->add(mImageTemp, result.c_str())){
+				eXmlDoc->Clear();
+				delete eXmlDoc;
+				return 0;
+			}	
 
 			eFile = eFile->NextSiblingElement("file");
 		}
@@ -175,6 +192,8 @@ for (int j = 0; j < 20; j++) {
 	}
 
 	while (eEntity) {
+
+		//IND_SpriterEntity *entityTemp = new IND_SpriterEntity(); TODO: use....
 
 		//printf("Entity id: %s\n", eEntity->Attribute("id"));
 
@@ -223,14 +242,14 @@ for (int j = 0; j < 20; j++) {
 			eTimeline = eAnimation->FirstChildElement("timeline");
 
 			while (eTimeline){
-				printf("timeline id: %s\n", eTimeline->Attribute("id"));
+				//printf("timeline id: %s\n", eTimeline->Attribute("id"));
 				
 				TiXmlElement *eTKey = 0;
 				eTKey = eTimeline->FirstChildElement("key");
 				
 				while (eTKey){
-					printf(" id: %s", eTKey->Attribute("id"));
-				    printf(" spin: %s\n", eTKey->Attribute("spin"));
+					//printf(" id: %s", eTKey->Attribute("id"));
+				    //printf(" spin: %s\n", eTKey->Attribute("spin"));
 
 					//TiXmlElement *eObject = 0;
 					//eObject = eTKey->FirstChildElement("object"); // asumption: there is only one "object" element under the key....					
@@ -277,8 +296,8 @@ for (int j = 0; j < 20; j++) {
  * Inserts an animation into the manager.
  * @param pNewAnimation				The animation that is to be inserted into manager.
  */
-void IND_SpriterManager::addToList(IND_Animation *pNewAnimation) {
-	_listSpriterAnimations->push_back(pNewAnimation);
+void IND_SpriterManager::addToList(IND_SpriterEntity *pNewEntity) {
+	_listSpriterEntity->push_back(pNewEntity);
 }
 
 
@@ -286,9 +305,9 @@ void IND_SpriterManager::addToList(IND_Animation *pNewAnimation) {
  * Removes a Spriter animation from the manager.
  * @param pAn					The animation that is to be removed from the manager.
  */
-void IND_SpriterManager::delFromlist(IND_Animation *pAn) {
-	_listSpriterAnimations->remove(pAn);
-	pAn = NULL;
+void IND_SpriterManager::delFromlist(IND_SpriterEntity *pEn) {
+	_listSpriterEntity->remove(pEn);
+	pEn = NULL;
 }
 
 
@@ -306,7 +325,9 @@ void IND_SpriterManager::writeMessage() {
  * Init manager variables.
  */
 void IND_SpriterManager::initVars() {
-//	_listAnimations = new list <IND_Animation *>;
+	_listSpriterEntity = new list <IND_SpriterEntity *>;
+    _imageManager = new IND_ImageManager();
+	_imageManager->init();
 }
 
 

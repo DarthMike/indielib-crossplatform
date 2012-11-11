@@ -75,7 +75,7 @@ private:
 
 	// ----- Private sets ------
 
-	void setName(char *pName)   {
+	void setName(const char *pName)   {
 		strcpy(_tmxMap._name, pName);
 	}
 		

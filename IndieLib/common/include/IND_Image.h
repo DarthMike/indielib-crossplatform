@@ -147,9 +147,9 @@ private:
 
 		structImage() {
 			_width = _height = _bpp = _bytespp = _format = 0;
-			_ext = new char [128];
+			_ext = new char [10];
 			_pointer = NULL;
-			_name = new char [128];
+			_name = new char [MAX_TOKEN];
 			_handle = NULL;
 		}
 

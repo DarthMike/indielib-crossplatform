@@ -36,11 +36,6 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "CollisionParser.h"
 
 
-// ----- Defines -----
-
-#define MAX_TOKEN 1024
-
-
 // --------------------------------------------------------------------------------
 //							  Initialization / Destruction
 // --------------------------------------------------------------------------------
@@ -293,18 +288,15 @@ bool IND_AnimationManager::addToImage(IND_Animation *pNewAnimation, const char *
 		writeMessage();
 		return 0;
 	}
-
-	char stringTemp[128];
-	char *pCharTemp = strcpy(stringTemp, pAnimation);
 	
 	// ----- Animation file parsing -----
 
-	if (!parseAnimation(pNewAnimation, pCharTemp)) {
+	if (!parseAnimation(pNewAnimation, pAnimation)) {
 		g_debug->header("Fatal error, cannot load the animation xml file", 2);
 		return 0;
 	}
 
-	pNewAnimation->_animation._name = pCharTemp;
+	strcpy(pNewAnimation->_animation._name,pAnimation);
 
 
 	// ----- Put the object into the manager  -----
@@ -400,13 +392,7 @@ bool IND_AnimationManager::calculateAxis(IND_Animation *pAn,
  */
 IND_Image *IND_AnimationManager::loadImage(const char *pName) {
 	IND_Image *mNewImage = new IND_Image;
-
-	char *_name = new char [MAX_TOKEN];// TODO: valgrind states that this new char[] leaks (test: tutorial 4) 
-	_name [0] = 0;
-	strcpy(_name, pName);
-
-	if (!_imageManager->add(mNewImage, _name)){
-		DISPOSEARRAY(_name);
+	if (!_imageManager->add(mNewImage, pName)){
 		DISPOSE(mNewImage);
 		return 0;
 	}
@@ -469,8 +455,7 @@ bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, const ch
 
 		// Frame name attribute
 		if (mXFrame->Attribute("name")) {
-			mNewFrame->setName(new char [MAX_TOKEN]); // TODO: valgrind states that this new char[] leaks (test: tutorial 4) 
-			strcpy(mNewFrame->getName(), mXFrame->Attribute("name"));
+			mNewFrame->setName(mXFrame->Attribute("name"));
 		} else {
 			g_debug->header("The frame doesn't have a \"name\" attribute", 2);
 			mXmlDoc->Clear();
@@ -558,9 +543,8 @@ bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, const ch
 
 		if (mXSequence->Attribute("name")) {
 			mNewSequence = new IND_Sequence();
-			mNewSequence->getSequenceTimer()->start();
-			mNewSequence->setName(new char [MAX_TOKEN]);
-			strcpy(mNewSequence->getName(), mXSequence->Attribute("name"));
+			mNewSequence->setName(mXSequence->Attribute("name"));
+            mNewSequence->getSequenceTimer()->start();
 		} else {
 			g_debug->header("The sequence doesn't have a \"name\" attribute", 2);
 			mXmlDoc->Clear();
@@ -691,7 +675,7 @@ bool IND_AnimationManager::remove(IND_Animation *pAn, bool pType) {
 			_surfaceManager->remove((*mVectorFramesIter)->getSurface());
 
 		// Free frame
-		delete((*mVectorFramesIter));
+		DISPOSE(*mVectorFramesIter);
 	}
 
 	// Clear frame vector
@@ -706,7 +690,7 @@ bool IND_AnimationManager::remove(IND_Animation *pAn, bool pType) {
 		        mVectorFrameTimeIter  != (*pAn->_animation._listSequences) [m]->_sequence._listFrames->end();
 		        mVectorFrameTimeIter++) {
 			// Free pointer
-			delete((*mVectorFrameTimeIter));
+			DISPOSE(*mVectorFrameTimeIter);
 		}
 
 		// Free frame list of each sequence
@@ -721,8 +705,7 @@ bool IND_AnimationManager::remove(IND_Animation *pAn, bool pType) {
 	        mVectorSequenceIter  != pAn->_animation._listSequences->end();
 	        mVectorSequenceIter++) {
 		// Free pointer
-		delete((*mVectorSequenceIter)->getName()); // TODO : mem leaked fixed with this, - should probably be handled in method on element instead..
-		delete((*mVectorSequenceIter));
+		DISPOSE(*mVectorSequenceIter);
 	}
 
 	// Free sequence list

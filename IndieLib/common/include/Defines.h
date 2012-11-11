@@ -1309,6 +1309,9 @@ const int MAX_CHARS_IN_INT64_STR = (20 + 1);
     
 //! Determines how a circle is renderered
 const int SIDES_PER_CIRCLE = 30;   //Number of sides a circle has (will blit as many lines as specified here when blitting a circle primitive)
+
+//! Default size for allocated char buffers
+const int MAX_TOKEN = 1024;
 /**@}*/
 
 #endif // _DEFINES_

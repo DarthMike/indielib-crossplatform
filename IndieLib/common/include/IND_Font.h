@@ -50,7 +50,7 @@ public:
 		return _font._numChars;
 	}
 	//! This function returns the name of the font configuration file.
-	char *getFileName()      {
+	const char* const getFileName()      {
 		return _font._name;
 	}
 
@@ -89,7 +89,11 @@ private:
 			_numChars(0),
 			_name(NULL),
 			_surface(NULL){
+                _name = new char[MAX_TOKEN];
 		}
+        ~structFont() {
+            DISPOSEARRAY(_name);
+        }
 	};
 	typedef struct structFont FONT;
 
@@ -104,7 +108,7 @@ private:
 		_font._numChars = pNumChars;
 	}
 	void        setFileName(char *pName)           {
-		_font._name = pName;
+		strcpy(_font._name,pName);
 	}
 	void        setSurface(IND_Surface *pSurface) {
 		_font._surface = pSurface;
@@ -118,7 +122,7 @@ private:
 	IND_Surface *getSurface()                      {
 		return _font._surface;
 	}
-	char        *getName()                      {
+	const char* const getName()                      {
 		return _font._name;
 	}
 

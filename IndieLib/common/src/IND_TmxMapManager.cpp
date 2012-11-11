@@ -87,7 +87,7 @@ It supports the following file formats:
 tmx.
 
 */
-bool IND_TmxMapManager::add(IND_TmxMap *pNewTmxMap, char *pName) {
+bool IND_TmxMapManager::add(IND_TmxMap *pNewTmxMap,const char *pName) {
 	g_debug->header("Loading TmxMap", 5);
 	
 	if(!pName) {
@@ -166,7 +166,7 @@ Otherwise null is returned.
 
 */
 /*
-Tmx::Map* IND_TmxMapManager::load(char *pName) {
+Tmx::Map* IND_TmxMapManager::load(const char *pName) {
 	g_debug->header("Loading TmxMap", 5);
 	
 	if(!pName) {
@@ -344,7 +344,7 @@ Obtain file extension
 Return "" if the file hasn't got an extension
 ==================
 */
-void IND_TmxMapManager::getExtensionFromName(char *pName, char* pExtImage) {
+void IND_TmxMapManager::getExtensionFromName(const char *pName, char* pExtImage) {
 	
 	int i;
 	// The search starts at the end of the name
@@ -366,7 +366,7 @@ void IND_TmxMapManager::getExtensionFromName(char *pName, char* pExtImage) {
 Check if it is a known extension
 ==================
 */
-bool IND_TmxMapManager::checkExtImage(char *pExtImage) {
+bool IND_TmxMapManager::checkExtImage(const char *pExtImage) {
 	for (int i = 0; i < MAX_EXT_TMXMAP; i++) {
 		if (!strcmp(pExtImage, _supportedExt [i]))
 			return 1;

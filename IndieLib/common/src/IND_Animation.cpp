@@ -95,12 +95,12 @@ int IND_Animation::getNumFrames(int pSequence) {
  * TODO describtion.
  * @param pSequence			The sequence number of a sequence in the list of sequences.
  */
-char *IND_Animation::getName(int pSequence) {
-	char* name = (char*) "NO_ANIM_NAME";
-	if (getListSequences()) {
-		name = (*getListSequences()) [pSequence]->getName();
-	}
-	return name;
+const char* const IND_Animation::getName(int pSequence) {
+    if (!getListSequences()) {
+        return NULL;
+    } else {
+        return ((*getListSequences()) [pSequence]->getName());
+    }
 }
 
 /**

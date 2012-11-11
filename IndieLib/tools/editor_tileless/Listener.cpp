@@ -303,7 +303,7 @@ void Listener::ListenCommon()
 	if (mI->_input->onKeyPress (IND_F1)) 
 	{
 		//Toggle full screen
-		IND_WindowProperties props ("",mScreenWidth,mScreenHeight, 32,0,!mI->_window->isFullScreen());
+		IND_WindowProperties props ("",mScreenWidth,mScreenHeight, 32,false,!mI->_window->isFullScreen(),true);
 		props._fullscreen = !mI->_window->isFullScreen();
 		mI->_render->reset (props);
 	}

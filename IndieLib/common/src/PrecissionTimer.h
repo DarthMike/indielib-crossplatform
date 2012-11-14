@@ -72,15 +72,15 @@ public:
 
 private:
 	//----- INTERNAL VARIABLES -----
-	bool _highRes;    //Using High-res timer?
-	bool _started;    //Started status
-	bool _paused;     //Paused Status
+	bool _highRes;    		//Using High-res timer?
+	bool _started;    		//Started status
+	bool _paused;     		//Paused Status
 
 #ifdef PLATFORM_WIN32
-	__int64 mStartTime; //Start time(Windows- specific format...)
-	__int64 mFinalTime; //End time(Windows- specific format...)
-	__int64 _elapsedTime;  //Elapsed time (Windows- specific format...)
-	__int64 mFrequency; //High-res timer frequency
+	__int64 mStartTime;		//Start time (Windows- specific format...)
+	__int64 mFinalTime;		//End time (Windows- specific format...)
+	__int64 _elapsedTime;	//Elapsed time (Windows- specific format...)
+	__int64 mFrequency; 	//High-res timer frequency
 #endif
 
 #if defined (PLATFORM_IOS) || defined (PLATFORM_OSX)
@@ -91,8 +91,9 @@ private:
 #endif
 
 #ifdef PLATFORM_LINUX
-	uint64_t mStartTime;
-	uint64_t _elapsedTime; // TODO: not sure that this is the right type......
+	uint64_t mStartTime;	//Start time (linux - specific)
+	uint64_t mFinalTime;	//End time (linux - specific)
+	uint64_t _elapsedTime;	//Elapsed time (linux - specific)
 	struct timespec linux_start, linux_end;
 #endif
 

@@ -44,9 +44,8 @@ double PrecissionTimer::getTicks() {
 
 #ifdef PLATFORM_LINUX
 	 clock_gettime(CLOCK_MONOTONIC, &linux_end);
-	 uint64_t start_time = ((((uint64_t)linux_start.tv_sec) * 1000000000ULL) + (uint64_t) linux_start.tv_nsec);
-     uint64_t end_time = ((((uint64_t) linux_end.tv_sec) * 1000000000ULL) + (uint64_t) linux_end.tv_nsec); 
-     _elapsedTime = end_time - start_time; 
+     mFinalTime = ((((uint64_t) linux_end.tv_sec) * 1000000000ULL) + (uint64_t) linux_end.tv_nsec); 
+     _elapsedTime = (mFinalTime - mStartTime) / 1000000.0f; 
 #endif
 	return(static_cast<double>(_elapsedTime));
 

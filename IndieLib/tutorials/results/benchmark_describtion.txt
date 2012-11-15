@@ -1,16 +1,10 @@
 TODO: describe for each benchmark tutorial what is the tutorial about + what keys are used.
 
 
-benchmark 01:
+benchmark 01: Alien BenchMark
 
 
-benchmark 02:
-
-
-benchmark 03:
-
-
-etc.
+benchmark 02: Rabbits BenchMark
 
 
 

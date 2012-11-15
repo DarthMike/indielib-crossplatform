@@ -6,7 +6,7 @@ advanced 02: Blitting 2d Directly
 TODO: describtion..
 
 advanced 04: Several ViewPorts
-TODO: describtion..
+In this tutorial, 2 viewports is created and each viewport get a cameras attached. Both camera's at start has the same setting and therefore each viewport show the same result: A rotating beetle, a fixed octupus and a rotating bug. To rotate the upper camera hold down right or left mousebutton. For zooming in and out, use the mouse scroll.
 
 
 

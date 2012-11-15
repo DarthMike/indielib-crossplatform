@@ -1,18 +1,38 @@
 TODO: describe for each basic tutorial what is the tutorial about + what keys are used.
 
 
-basic 01:
+basic 01: Installing
 
 
-basic 02:
+basic 02: IND_Surface
 
 
-basic 03:
+basic 03: IND_Image
 
 
-etc.
+basic 04: IND_Animation
 
 
+basic 05: IND_Font
 
 
+basic 06: Primitives
+
+
+basic 07: IND_Input
+
+
+basic 08: Colissions
+
+
+basic 11: Animated Tile Scrolling
+
+
+basic 13: 2d camera.
+
+
+basic 15: Parallax Scrolling
+
+
+basic 16: IND_Timer
 

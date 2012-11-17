@@ -87,6 +87,12 @@ typedef struct structAttributes ATTRIBUTES;
 // TYPE
 struct SURFACE {
     SURFACE() : _vertexArray(NULL), _texturesArray(NULL){}
+    SURFACE(int pNumBlocks, int numVertices) : _vertexArray(NULL), _texturesArray(NULL) {
+        // This buffer will be used for drawing the IND_Surface using DrawPrimitiveUp
+        _vertexArray = new CUSTOMVERTEX2D[numVertices];
+        // Each block, needs a texture. We use an array of textures in order to store them.
+        _texturesArray = new TEXTURE [pNumBlocks];
+    }
     ~SURFACE(){
         // Free textures handles
         DISPOSEARRAY(_texturesArray);

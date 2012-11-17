@@ -509,7 +509,7 @@ Init at construction time
 ==================
 */
 void IND_Surface::init() {
-    _surface = new SURFACE();
+    _surface = new SURFACE(1,1);
 }
 
 /*
@@ -519,7 +519,6 @@ Release at destruction time
 */
 void IND_Surface::release() {
     freeTextureData();
-    DISPOSE(_surface);
 }
 
 /*
@@ -584,6 +583,8 @@ void IND_Surface::freeTextureData() {
     _surface->_attributes._blocksX = 0;
     _surface->_attributes._blocksY = 0;
     _surface->_attributes._numTextures = 0;
+    
+    DISPOSE(_surface);
 }
 
 /*

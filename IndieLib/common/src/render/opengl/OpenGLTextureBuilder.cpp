@@ -70,6 +70,9 @@ bool OpenGLTextureBuilder::createNewTexture(IND_Surface  *pNewSurface,
     // ----- Cutting blocks -----
     INFO_SURFACE mI;
 	_cutter->fillInfoSurface(pImage, &mI, pBlockSizeX, pBlockSizeY);
+    
+    pNewSurface->freeTextureData(); //Guard against using same texture data all over again in same surface
+    pNewSurface->_surface = new SURFACE(mI._numBlocks,mI._numVertices);
 	pNewSurface->_surface->_attributes._type			 = mI._type;
 	pNewSurface->_surface->_attributes._quality			 = mI._quality;
 	pNewSurface->_surface->_attributes._blocksX          = mI._blocksX;
@@ -84,19 +87,13 @@ bool OpenGLTextureBuilder::createNewTexture(IND_Surface  *pNewSurface,
 	pNewSurface->_surface->_attributes._width            = mI._widthImage;
 	pNewSurface->_surface->_attributes._height           = mI._heightImage;
 	pNewSurface->_surface->_attributes._isHaveSurface    = 1;
-
-	// Allocate space for the vertex buffer
-	// This buffer will be used for drawing the IND_Surface using DrawPrimitiveUp
-	pNewSurface->_surface->_vertexArray = new CUSTOMVERTEX2D [mI._numVertices];
-
-	// Each block, needs a texture. We use an array of textures in order to store them.
-	pNewSurface->_surface->_texturesArray = new TEXTURE [mI._numBlocks];
+    
+    assert(pNewSurface->_surface->_texturesArray); //Should have allocated textures array!
     glGenTextures(mI._numBlocks,pNewSurface->_surface->_texturesArray);
     
     GLenum glerror = glGetError();
     if (glerror) {
 		g_debug->header("OpenGL error while creating textures ", 2);
-        //TODO: Test error and mem. leaks 
         return false;
     }
 	

@@ -40,7 +40,7 @@ Suite 330, Boston, MA 02111-1307 USA
 // --------------------------------------------------------------------------------
 
 
-IND_Entity2d::IND_Entity2d() : _listBoundingCollision(NULL), _text(NULL) {
+IND_Entity2d::IND_Entity2d() : _text(NULL),  _listBoundingCollision(NULL) {
 	initAttrib();
 }
 

@@ -40,17 +40,14 @@ Suite 330, Boston, MA 02111-1307 USA
 // --------------------------------------------------------------------------------
 
 
-IND_Entity2d::IND_Entity2d() {
+IND_Entity2d::IND_Entity2d() : _listBoundingCollision(NULL), _text(NULL) {
 	initAttrib();
 }
 
 
 IND_Entity2d::~IND_Entity2d() {
 	DISPOSE(_listBoundingCollision);
-
-	if (_text) {
-		free (_text);
-	}
+    DISPOSEARRAY(_text);
 }
 
 
@@ -294,14 +291,11 @@ void IND_Entity2d::setLineSpacing(int pLineSpacing) {
  */
 void IND_Entity2d::setText(const char *pText) {
 	if (pText) {
-		if (_text) {
-			free (_text);
-			_text = NULL;
-		}
+		DISPOSEARRAY(_text);
 
 		size_t textSize = strlen(pText);
 		//Reallocate text on heap memory. Characters in string +1 (line ending)
-		_text = static_cast<char*>(malloc((textSize+1) * sizeof(char)));  // TODO check for NULL value ( see point 2 http://cplus.about.com/od/learningc/ss/pointers_7.htm )
+		_text = new char [textSize + 1];
 		//Cooy string contents
 		strcpy(_text,pText);
 	}
@@ -931,13 +925,13 @@ void IND_Entity2d::initAttrib() {
 	_charSpacing = 0;
 	_lineSpacing = 20;
 
-	_text = NULL;
 	const char* defText = "";
 	setText(defText);
 
 	// Collision attributes
 	_showCollisionAreas = 1;
 	_collisionParser = CollisionParser::instance();
+    DISPOSE(_listBoundingCollision);
 	_listBoundingCollision = new list <BOUNDING_COLLISION *>;
 
 	// Show grid areas

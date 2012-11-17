@@ -427,8 +427,7 @@ void IND_FontManager::freeVars() {
 		// Free bitmap IND_Surface
 		_surfaceManager->remove((*mFontListIter)->getSurface());
 
-		// Free letter array
-		DISPOSEARRAY((*mFontListIter)->_font._letters);
+        DISPOSE(*mFontListIter);
 	}
 
 	// Clear list

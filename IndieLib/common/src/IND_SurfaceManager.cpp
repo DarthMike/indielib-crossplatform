@@ -688,8 +688,7 @@ void IND_SurfaceManager::freeVars() {
 		g_debug->header("Freeing surface:", 3);
         //FIXME: This breaks on LLVM compiler (OSX, XCode)
 		//g_debug->dataInt((int) & (*mSurfaceListIter)->_surface, 1);
-
-        (*mSurfaceListIter)->freeTextureData();
+        DISPOSE(*mSurfaceListIter);
 	}
 
 	// Clear list

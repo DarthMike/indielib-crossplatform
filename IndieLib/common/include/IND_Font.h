@@ -93,6 +93,7 @@ private:
 		}
         ~structFont() {
             DISPOSEARRAY(_name);
+            DISPOSEARRAY(_letters);
         }
 	};
 	typedef struct structFont FONT;

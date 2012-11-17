@@ -393,7 +393,7 @@ Deletes object from the manager
 */
 void IND_TmxMapManager::delFromlist(IND_TmxMap *pMap) {
 	_listMaps->remove(pMap);
-	pMap = 0;
+	DISPOSE(pMap);
 }
 
 

@@ -116,11 +116,8 @@ void INDImageTests_nonPOTLoad::release() {
     //Release all variables from indieLib before exiting
 	for (int i = 0; i < _testedEntities; ++i) {
 		iLib->_imageManager->remove(_images[i]);
-		DISPOSE(_images[i]);
 		iLib->_surfaceManager->remove(_surfaces[i]);
-		DISPOSE(_surfaces[i]);
 		iLib->_entity2dManager->remove(_entities[i]);
-		DISPOSE(_entities[i]);
 	}
 
 	DISPOSEARRAY(_images);

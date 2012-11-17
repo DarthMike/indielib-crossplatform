@@ -373,11 +373,11 @@ bool IND_ImageManager::remove(IND_Image *pIm) {
 	g_debug->header("File name:", 3);
 	g_debug->dataChar(pIm->getName(), 1);
 
+    // Free image
+	FreeImage_Unload(pIm->getFreeImageHandle());
+    
 	// Quit from list
 	delFromlist(pIm);
-
-	// Free image
-	FreeImage_Unload(pIm->getFreeImageHandle());	
 
 	g_debug->header("Ok", 6);
 
@@ -540,7 +540,7 @@ Deletes object from the manager
 */
 void IND_ImageManager::delFromlist(IND_Image *pIm) {
 	_listImages->remove(pIm);
-	pIm = 0;
+    DISPOSE(pIm);
 }
 
 /*

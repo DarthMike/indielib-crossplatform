@@ -118,9 +118,7 @@ void FontTests::release() {
 	//Release all variables from indieLib before exiting
 	for (int i = 0; i < _testedEntities; ++i) {
 		iLib->_fontManager->remove(_fonts[i]);
-		DISPOSE(_fonts[i]);
 		iLib->_entity2dManager->remove(_entities[i]);
-		DISPOSE(_entities[i]);
 	}
 
 	DISPOSEARRAY(_fonts);

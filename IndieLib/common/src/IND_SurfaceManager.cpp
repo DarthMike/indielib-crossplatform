@@ -592,9 +592,8 @@ Deletes object from the manager
 ==================
 */
 void IND_SurfaceManager::delFromlist(IND_Surface *pSu) {
-    pSu->freeTextureData();
 	_listSurfaces->remove(pSu);
-	pSu = 0;
+	DISPOSE(pSu);
 }
 
 

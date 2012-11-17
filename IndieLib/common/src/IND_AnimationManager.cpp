@@ -762,7 +762,7 @@ void IND_AnimationManager::addToList(IND_Animation *pNewAnimation) {
  */
 void IND_AnimationManager::delFromlist(IND_Animation *pAn) {
 	_listAnimations->remove(pAn);
-	pAn = NULL;
+    DISPOSE(pAn);
 }
 
 
@@ -793,7 +793,8 @@ void IND_AnimationManager::freeVars() {
 	for (mAnimationListIter  = _listAnimations->begin();
 	        mAnimationListIter != _listAnimations->end();
 	        mAnimationListIter++) {
-		// We released the animation(indicates no release pointer (Google Translate)
+		
+        
 		remove((*mAnimationListIter), 1);
 
 		g_debug->header("Ok", 6);

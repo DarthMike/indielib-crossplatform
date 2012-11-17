@@ -152,21 +152,12 @@ void FontTests_Pretty::release() {
 	
 	//Release all variables from indieLib before exiting
 	iLib->_surfaceManager->remove(_surfaceBack);
-	DISPOSE(_surfaceBack);
 	iLib->_surfaceManager->remove(_surfaceTip);
-	DISPOSE(_surfaceTip);
 	iLib->_fontManager->remove(_fontSmall);
-	DISPOSE(_fontSmall);
 	iLib->_fontManager->remove(_fontBig);
-	DISPOSE(_fontBig);
 	iLib->_entity2dManager->remove(_back);
-	DISPOSE(_back);
 	iLib->_entity2dManager->remove(_tip);
-	DISPOSE(_tip);
 	iLib->_entity2dManager->remove(_textTitle);
-	DISPOSE(_textTitle);
 	iLib->_entity2dManager->remove(_textSmallBlack);
-	DISPOSE(_textSmallBlack);
 	iLib->_entity2dManager->remove(_textSmallWhite);
-	DISPOSE(_textSmallWhite);
 }

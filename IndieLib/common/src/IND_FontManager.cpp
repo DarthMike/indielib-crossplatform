@@ -242,14 +242,11 @@ bool IND_FontManager::remove(IND_Font  *pFo) {
 	g_debug->header("File name:", 3);
 	g_debug->dataChar(pFo->getFileName(), 1);
 
+    // Free bitmap IND_Surface
+	_surfaceManager->remove(pFo->getSurface());
+    
 	// Quit from list
 	delFromlist(pFo);
-
-	// Free bitmap IND_Surface
-	_surfaceManager->remove(pFo->getSurface());
-
-	// Free letter array
-	DISPOSEARRAY(pFo->_font._letters);
 
 	g_debug->header("Ok", 6);
 
@@ -386,7 +383,7 @@ Deletes object from the manager
 */
 void IND_FontManager::delFromlist(IND_Font *pFo) {
 	_listFonts->remove(pFo);
-	pFo = NULL;
+	DISPOSE(pFo);
 }
 
 

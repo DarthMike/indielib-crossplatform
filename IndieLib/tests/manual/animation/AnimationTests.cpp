@@ -110,9 +110,7 @@ void AnimationTests::release() {
     //Release all variables from indieLib before exiting
 	for (int i = 0; i < _testedEntities; ++i) {
 		iLib->_animationManager->remove(_animations[i]);
-		DISPOSE(_animations[i]);
 		iLib->_entity2dManager->remove(_entities[i]);
-		DISPOSE(_entities[i]);
 	}
 
 	DISPOSEARRAY(_animations);

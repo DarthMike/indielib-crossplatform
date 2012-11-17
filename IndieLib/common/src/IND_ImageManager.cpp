@@ -591,9 +591,8 @@ void IND_ImageManager::freeVars() {
 
 			// Free image
 			FreeImage_Unload(handle);
-
-			// Free the string of the extension
-			DISPOSEARRAY((*mImageListIter)->_image._ext);
+            (*mImageListIter)->setFreeImageHandle(NULL);
+            DISPOSE(*mImageListIter);
 		}
 	}
 

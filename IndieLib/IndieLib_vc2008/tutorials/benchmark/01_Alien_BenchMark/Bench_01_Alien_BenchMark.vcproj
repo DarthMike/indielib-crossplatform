@@ -228,6 +228,14 @@
 				RelativePath="..\..\..\..\tutorials\benchmark\01_Alien_BenchMark\Tutorial01.cpp"
 				>
 			</File>
+			<File
+				RelativePath="..\..\..\..\tutorials\WorkingPath.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\tutorials\WorkingPath.h"
+				>
+			</File>
 		</Filter>
 	</Files>
 	<Globals>

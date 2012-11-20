@@ -212,6 +212,14 @@
 				RelativePath="..\..\..\..\tutorials\basic\16_IND_Timer\Tutorial16.cpp"
 				>
 			</File>
+			<File
+				RelativePath="..\..\..\..\tutorials\WorkingPath.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\tutorials\WorkingPath.h"
+				>
+			</File>
 		</Filter>
 	</Files>
 	<Globals>

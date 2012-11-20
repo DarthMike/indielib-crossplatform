@@ -8,6 +8,7 @@
 #include "IND_Font.h"
 #include "IND_Entity2d.h"
 #include "IND_Camera2d.h"
+#include "WorkingPath.h"
 
 #include <cstring>
 
@@ -18,6 +19,11 @@ Main
 */
 int IndieLib()			
 {
+    //Sets the working path as the 'exe' directory. All resource paths are relative to this directory
+	if (!WorkingPathSetup::setWorkingPathFromExe(NULL)) {
+		std::cout<<"\nUnable to Set the working path !";
+	}
+	
 	// ----- IndieLib intialization -----
 
 	CIndieLib *mI = CIndieLib::instance();

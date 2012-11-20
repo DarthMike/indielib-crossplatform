@@ -211,6 +211,14 @@
 				RelativePath="..\..\..\..\tutorials\basic\08_Collisions\Tutorial08.cpp"
 				>
 			</File>
+			<File
+				RelativePath="..\..\..\..\tutorials\WorkingPath.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\tutorials\WorkingPath.h"
+				>
+			</File>
 		</Filter>
 	</Files>
 	<Globals>

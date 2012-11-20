@@ -212,6 +212,14 @@
 				RelativePath="..\..\..\..\tutorials\advanced\02_Blitting_2d_Directly\Tutorial02.cpp"
 				>
 			</File>
+			<File
+				RelativePath="..\..\..\..\tutorials\WorkingPath.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\tutorials\WorkingPath.h"
+				>
+			</File>
 		</Filter>
 	</Files>
 	<Globals>

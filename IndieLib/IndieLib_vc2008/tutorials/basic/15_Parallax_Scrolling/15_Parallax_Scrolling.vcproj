@@ -213,6 +213,14 @@
 				RelativePath="..\..\..\..\tutorials\basic\15_Parallax_Scrolling\Tutorial15.cpp"
 				>
 			</File>
+			<File
+				RelativePath="..\..\..\..\tutorials\WorkingPath.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\..\tutorials\WorkingPath.h"
+				>
+			</File>
 		</Filter>
 	</Files>
 	<Globals>

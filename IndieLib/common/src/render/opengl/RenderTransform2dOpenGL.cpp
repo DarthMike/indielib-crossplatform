@@ -181,14 +181,6 @@ void OpenGLRender::setTransform2d(int pX,
 		_math.matrix4DMultiply(totalTrans,trans,temp);
 		totalTrans = temp;
 	}
-    
-    // Hotspot - Revert hotspot not to affect translation
-	if (pAxisCalX != 0 || pAxisCalY != 0) {
-		IND_Matrix hotspot;
-		_math.matrix4DSetTranslation(hotspot,static_cast<float>(-pAxisCalX),static_cast<float>(-pAxisCalY),0.0f);
-		_math.matrix4DMultiply(totalTrans,hotspot,temp);
-		totalTrans = temp;
-	}
 
 	// Scaling
 	if (pScaleX != 1.0f || pScaleY != 1.0f) {

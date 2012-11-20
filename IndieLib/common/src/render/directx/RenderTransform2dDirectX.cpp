@@ -219,12 +219,6 @@ void DirectXRender::setTransform2d(int pX,
 		D3DXMatrixMultiply(&mMatWorld, &mMatWorld, &mMatZ);
 	}
 
-	// Hotspot - Reset hotspot not to affect translations
-	if (pAxisCalX != 0 || pAxisCalY != 0) {
-		D3DXMatrixTranslation(&mMatTraslation, static_cast<float>(-pAxisCalX), static_cast<float>(-pAxisCalY), 0);
-		D3DXMatrixMultiply(&mMatWorld, &mMatWorld, &mMatTraslation);
-	}
-
 	// Translations
 	if (pX != 0 || pY != 0) {
 		D3DXMatrixTranslation(&mMatTraslation, static_cast<float>(pX), static_cast<float>(pY), 0);

@@ -57,19 +57,20 @@ void EntityTests_animateRotations::prepareTests() {
 	// Rocket
 	_entities[0]->setSurface(_surfaces[0]);
 	_entities[0]->setHotSpot(0.5f, 0.5f);
-	_entities[0]->setPosition(80, 300, 1);
-    
+	_entities[0]->setScale(2.0f,2.0f);
+	_entities[0]->setPosition(200, 450, 1);
+
 	// Beetle
 	_entities[1]->setSurface(_surfaces[1]);
 	_entities[1]->setHotSpot(0.5f, 0.5f);
 	_entities[1]->setMirrorX(1);
 	_entities[1]->setPosition(300,250,1);
-    
+
 	// Sword Master Animation
 	_entities[2]->setAnimation(_animations[0]);
 	_entities[2]->setHotSpot(0.5f, 0.5f);
-	_entities[2]->setPosition(200, 50, 0);
-    
+	_entities[2]->setPosition(500, 220, 3);
+
 	//Star
 	_entities[3]->setSurface(_surfaces[2]);
 	_entities[3]->setHotSpot(0.5f, 0.5f);

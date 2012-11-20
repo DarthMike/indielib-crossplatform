@@ -54,7 +54,7 @@ void CollisionTests::prepareTests() {
 	// Rocket
 	_entities[0]->setSurface(_surfaces[0]);
 	_entities[0]->setHotSpot(0.5f, 0.5f);
-	_entities[0]->setPosition(80, 300, 1);
+	_entities[0]->setPosition(200, 450, 1);
 	_entities[0]->setBoundingAreas("../../resources/rocket_collisions.xml");
 
 	// Beetle
@@ -68,7 +68,7 @@ void CollisionTests::prepareTests() {
 	// Sword Master Animation
 	_entities[2]->setAnimation(_animations[0]);
 	_entities[2]->setHotSpot(0.5f, 0.5f);
-	_entities[2]->setPosition(200, 50, 3);
+	_entities[2]->setPosition(500, 220, 3);
 
 	// Text
 	_entities[3]->setFont(_fonts[0]);

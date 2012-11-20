@@ -6,7 +6,7 @@
 #include "IND_Surface.h"
 #include "IND_Animation.h"
 //#include "IND_Matrix.h"
-#include "WorkingPath.h"
+#include "../../WorkingPath.h"
 
 /*
 ==================

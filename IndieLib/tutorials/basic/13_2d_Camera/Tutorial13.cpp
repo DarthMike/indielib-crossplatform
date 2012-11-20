@@ -7,7 +7,7 @@
 #include "IND_Font.h"
 #include "IND_Entity2d.h"
 #include "IND_Camera2d.h"
-#include "WorkingPath.h"
+#include "../../WorkingPath.h"
 #include <cstring>
 
 static const float K_ZOOMSPEED = 0.001f;

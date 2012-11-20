@@ -7,7 +7,7 @@
 #include "IND_Font.h"
 #include "IND_Entity2d.h"
 #include "IND_Timer.h"
-#include "WorkingPath.h"
+#include "../../WorkingPath.h"
 
 #include <cstring>
 

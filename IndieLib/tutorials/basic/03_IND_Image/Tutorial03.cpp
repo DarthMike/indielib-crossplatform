@@ -7,7 +7,7 @@
 #include "IND_Surface.h"
 #include "IND_Entity2d.h"
 #include "IND_Image.h"
-#include "WorkingPath.h"
+#include "../../WorkingPath.h"
 
 /*
 ==================

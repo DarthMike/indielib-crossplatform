@@ -4,7 +4,7 @@
 
 #include "CIndieLib_vc2008.h"
 #include "IND_TmxMap.h"
-#include "WorkingPath.h"
+#include "../../WorkingPath.h"
 
 #include <cstring>
 

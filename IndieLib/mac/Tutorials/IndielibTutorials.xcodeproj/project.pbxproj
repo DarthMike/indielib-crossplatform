@@ -136,6 +136,24 @@
 		E744863115E7EC5100DDE3BF /* Tutorial02.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E744862E15E7EC5100DDE3BF /* Tutorial02.cpp */; };
 		E75EB2B6159CB25100693F41 /* libIndielib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
 		E7DBCB1D159C78F600C8B2D9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */; };
+		E7DFACA2165C1A86004507C5 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7DFACA0165C1A86004507C5 /* WorkingPath.cpp */; };
+		E7DFACA3165C1A86004507C5 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7DFACA0165C1A86004507C5 /* WorkingPath.cpp */; };
+		E7DFACA4165C1A86004507C5 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7DFACA0165C1A86004507C5 /* WorkingPath.cpp */; };
+		E7DFACA5165C1A86004507C5 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7DFACA0165C1A86004507C5 /* WorkingPath.cpp */; };
+		E7DFACA6165C1A86004507C5 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7DFACA0165C1A86004507C5 /* WorkingPath.cpp */; };
+		E7DFACA7165C1A86004507C5 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7DFACA0165C1A86004507C5 /* WorkingPath.cpp */; };
+		E7DFACA8165C1A86004507C5 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7DFACA0165C1A86004507C5 /* WorkingPath.cpp */; };
+		E7DFACA9165C1A86004507C5 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7DFACA0165C1A86004507C5 /* WorkingPath.cpp */; };
+		E7DFACAA165C1A86004507C5 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7DFACA0165C1A86004507C5 /* WorkingPath.cpp */; };
+		E7DFACAB165C1A86004507C5 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7DFACA0165C1A86004507C5 /* WorkingPath.cpp */; };
+		E7DFACAC165C1A86004507C5 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7DFACA0165C1A86004507C5 /* WorkingPath.cpp */; };
+		E7DFACAD165C1A86004507C5 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7DFACA0165C1A86004507C5 /* WorkingPath.cpp */; };
+		E7DFACAE165C1A86004507C5 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7DFACA0165C1A86004507C5 /* WorkingPath.cpp */; };
+		E7DFACAF165C1A86004507C5 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7DFACA0165C1A86004507C5 /* WorkingPath.cpp */; };
+		E7DFACB0165C1A86004507C5 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7DFACA0165C1A86004507C5 /* WorkingPath.cpp */; };
+		E7DFACB1165C1A86004507C5 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7DFACA0165C1A86004507C5 /* WorkingPath.cpp */; };
+		E7DFACB2165C1A86004507C5 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7DFACA0165C1A86004507C5 /* WorkingPath.cpp */; };
+		E7DFACB3165C1A86004507C5 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7DFACA0165C1A86004507C5 /* WorkingPath.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -370,6 +388,8 @@
 		E7DBCB1F159C78F600C8B2D9 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		E7DBCB20159C78F600C8B2D9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		E7DBCB21159C78F600C8B2D9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		E7DFACA0165C1A86004507C5 /* WorkingPath.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = WorkingPath.cpp; path = ../../tutorials/WorkingPath.cpp; sourceTree = "<group>"; };
+		E7DFACA1165C1A86004507C5 /* WorkingPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WorkingPath.h; path = ../../tutorials/WorkingPath.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -803,6 +823,8 @@
 				E70712AF15A09C4700BF34D9 /* UnitTests.xcodeproj */,
 				E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */,
 				E7DBCB22159C78F600C8B2D9 /* IndielibTutorials */,
+				E7DFACA0165C1A86004507C5 /* WorkingPath.cpp */,
+				E7DFACA1165C1A86004507C5 /* WorkingPath.h */,
 				E74485A815E7EA0000DDE3BF /* Basic */,
 				E74485F415E7EB2300DDE3BF /* Advanced */,
 				E744863215E7EC5900DDE3BF /* Benchmark */,
@@ -1461,6 +1483,7 @@
 			files = (
 				E73EAF3215E6C1AE00B95FE4 /* CIndieLib_vc2008.cpp in Sources */,
 				E73EAF3315E6C1AE00B95FE4 /* Tutorial02.cpp in Sources */,
+				E7DFACA3165C1A86004507C5 /* WorkingPath.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1470,6 +1493,7 @@
 			files = (
 				E73EAF4F15E6C81600B95FE4 /* CIndieLib_vc2008.cpp in Sources */,
 				E73EAF5015E6C81600B95FE4 /* Tutorial03.cpp in Sources */,
+				E7DFACA4165C1A86004507C5 /* WorkingPath.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1479,6 +1503,7 @@
 			files = (
 				E73EAF6A15E6CA2C00B95FE4 /* CIndieLib_vc2008.cpp in Sources */,
 				E73EAF6B15E6CA2C00B95FE4 /* Tutorial04.cpp in Sources */,
+				E7DFACA5165C1A86004507C5 /* WorkingPath.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1488,6 +1513,7 @@
 			files = (
 				E73EAF8415E6CC2700B95FE4 /* CIndieLib_vc2008.cpp in Sources */,
 				E73EAF8515E6CC2700B95FE4 /* Tutorial05.cpp in Sources */,
+				E7DFACA6165C1A86004507C5 /* WorkingPath.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1497,6 +1523,7 @@
 			files = (
 				E73EAF9E15E6CED700B95FE4 /* CIndieLib_vc2008.cpp in Sources */,
 				E73EAF9F15E6CED700B95FE4 /* Tutorial07.cpp in Sources */,
+				E7DFACA8165C1A86004507C5 /* WorkingPath.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1506,6 +1533,7 @@
 			files = (
 				E73EAFB815E6D09F00B95FE4 /* CIndieLib_vc2008.cpp in Sources */,
 				E73EAFB915E6D09F00B95FE4 /* Tutorial06.cpp in Sources */,
+				E7DFACA7165C1A86004507C5 /* WorkingPath.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1515,6 +1543,7 @@
 			files = (
 				E73EAFD215E6D28A00B95FE4 /* CIndieLib_vc2008.cpp in Sources */,
 				E73EAFD315E6D28A00B95FE4 /* Tutorial08.cpp in Sources */,
+				E7DFACA9165C1A86004507C5 /* WorkingPath.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1524,6 +1553,7 @@
 			files = (
 				E73EAFEC15E6D3DF00B95FE4 /* CIndieLib_vc2008.cpp in Sources */,
 				E73EAFED15E6D3DF00B95FE4 /* Tutorial11.cpp in Sources */,
+				E7DFACAA165C1A86004507C5 /* WorkingPath.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1533,6 +1563,7 @@
 			files = (
 				E73EB00615E6D4A300B95FE4 /* CIndieLib_vc2008.cpp in Sources */,
 				E73EB00715E6D4A300B95FE4 /* Tutorial13.cpp in Sources */,
+				E7DFACAB165C1A86004507C5 /* WorkingPath.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1542,6 +1573,7 @@
 			files = (
 				E73EB02015E6D54D00B95FE4 /* CIndieLib_vc2008.cpp in Sources */,
 				E73EB02115E6D54D00B95FE4 /* Tutorial15.cpp in Sources */,
+				E7DFACAC165C1A86004507C5 /* WorkingPath.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1551,6 +1583,7 @@
 			files = (
 				E73EB03C15E6D6D000B95FE4 /* CIndieLib_vc2008.cpp in Sources */,
 				E73EB03E15E6D6D000B95FE4 /* Tutorial16.cpp in Sources */,
+				E7DFACAD165C1A86004507C5 /* WorkingPath.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1560,6 +1593,7 @@
 			files = (
 				E74485A615E7E9EC00DDE3BF /* CIndieLib_vc2008.cpp in Sources */,
 				E74485A715E7E9EC00DDE3BF /* Tutorial01.cpp in Sources */,
+				E7DFACAE165C1A86004507C5 /* WorkingPath.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1569,6 +1603,7 @@
 			files = (
 				E74485C015E7EA4F00DDE3BF /* CIndieLib_vc2008.cpp in Sources */,
 				E74485C115E7EA4F00DDE3BF /* Tutorial02.cpp in Sources */,
+				E7DFACAF165C1A86004507C5 /* WorkingPath.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1578,6 +1613,7 @@
 			files = (
 				E74485D915E7EAE500DDE3BF /* CIndieLib_vc2008.cpp in Sources */,
 				E74485DA15E7EAE500DDE3BF /* Tutorial04.cpp in Sources */,
+				E7DFACB0165C1A86004507C5 /* WorkingPath.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1587,6 +1623,7 @@
 			files = (
 				E74485F215E7EB1800DDE3BF /* CIndieLib_vc2008.cpp in Sources */,
 				E74485F315E7EB1800DDE3BF /* Tutorial05.cpp in Sources */,
+				E7DFACB1165C1A86004507C5 /* WorkingPath.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1598,6 +1635,7 @@
 				E744861115E7EC2000DDE3BF /* CTerrain.cpp in Sources */,
 				E744861215E7EC2000DDE3BF /* CUfo.cpp in Sources */,
 				E744861315E7EC2000DDE3BF /* Tutorial01.cpp in Sources */,
+				E7DFACB2165C1A86004507C5 /* WorkingPath.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1608,6 +1646,7 @@
 				E744862F15E7EC5100DDE3BF /* CIndieLib_vc2008.cpp in Sources */,
 				E744863015E7EC5100DDE3BF /* CRabbit.cpp in Sources */,
 				E744863115E7EC5100DDE3BF /* Tutorial02.cpp in Sources */,
+				E7DFACB3165C1A86004507C5 /* WorkingPath.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1617,6 +1656,7 @@
 			files = (
 				E72ECCC015E6BBC300250CEE /* CIndieLib_vc2008.cpp in Sources */,
 				E72ECCC115E6BBC300250CEE /* Tutorial01.cpp in Sources */,
+				E7DFACA2165C1A86004507C5 /* WorkingPath.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

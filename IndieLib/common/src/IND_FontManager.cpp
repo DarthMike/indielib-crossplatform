@@ -117,6 +117,7 @@ bool IND_FontManager::add(IND_Font		*pNewFont,
 
 	// IND_Surface creation
 	if (!add(pNewFont, mNewImage, pFile, pType, pQuality)) {
+		DISPOSE(mNewImage);
 		_imageManager->remove(mNewImage);
 		return 0;
 	}

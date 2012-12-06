@@ -22,7 +22,7 @@
 			IntermediateDirectory="$(SolutionDir)/build/$(ConfigurationName)/$(ProjectName)"
 			ConfigurationType="1"
 			InheritedPropertySheets="..\..\IndieLib.vsprops"
-			CharacterSet="1"
+			CharacterSet="0"
 			ManagedExtensions="0"
 			WholeProgramOptimization="1"
 			>

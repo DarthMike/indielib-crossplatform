@@ -43,6 +43,16 @@ Suite 330, Boston, MA 02111-1307 USA
 /**@{*/
 
 /**
+Max macro
+*/
+#define MAX(a, b)  (((a) > (b)) ? (a) : (b))
+
+/**
+Min macro
+*/
+#define MIN(a, b)  (((a) < (b)) ? (a) : (b))
+
+/**
  @brief Encapsulates common math operations used through the library
  
  This class is comprised by a set of static methods, and a set of object methds which need 
@@ -180,6 +190,27 @@ public:
 		} while (b < p);
 
 		return len;
+	}
+
+	/**
+	@brief Calculates a minimum and maximum value of 4 values.
+
+	Given 4 values, it calculates and returns the maximum and minimum values
+
+	@param p1 Value to compare
+	@param p2 Value to compare
+	@param p3 Value to compare
+	@param p4 Value to compare
+	@param [in,out] pMax Max value result
+	@param [in,out] pMin Min value result
+	*/
+	inline void minAndMax4(int p1, int p2, int p3, int p4, int *pMax,int *pMin) {
+		*pMax = MAX(p1, p2);
+		*pMax = MAX(*pMax, p3);
+		*pMax = MAX(*pMax, p4);
+		*pMin = MIN(p1, p2);
+		*pMin = MIN(*pMin, p3);
+		*pMin = MIN(*pMin, p4);
 	}
     /**@}*/
     
@@ -999,6 +1030,7 @@ public:
 	}
 
     /**@}*/
+
 private:
 
     /** @cond DOCUMENT_PRIVATEAPI */

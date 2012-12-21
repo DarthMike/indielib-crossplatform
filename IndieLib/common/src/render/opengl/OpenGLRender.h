@@ -324,7 +324,7 @@ public:
 
 
 	// ----- Rendering steps -----
-	void calculeFrustumPlanes();
+	void calculateFrustumPlanes();
 	
 	// ----- Atributtes -----
 
@@ -412,12 +412,6 @@ private:
 	//Culling helpers
 	unsigned short CullFrustumBox(const IND_Vector3 &pAABBMin, const IND_Vector3 &pAABBMax);
 	void CalculateBoundingRectangle(IND_Vector3 *mP1, IND_Vector3 *mP2, IND_Vector3 *mP3, IND_Vector3 *mP4);
-	void MinAndMax4(int p1,
-	                int p2,
-	                int p3,
-	                int p4,
-	                int *pMax,
-	                int *pMin);
 
 	//Text rendering helpers
 	int getLongInPixels(IND_Font *pFo, char *pText, int pPos, int pOffset);

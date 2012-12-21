@@ -42,7 +42,7 @@ Suite 330, Boston, MA 02111-1307 USA
 Calculates 6 planes defining the frustum
 ==================
 */
-void OpenGLRender::calculeFrustumPlanes() {
+void OpenGLRender::calculateFrustumPlanes() {
 	//TODO
 	//D3DXMATRIX mMatView, mMatProj;
 	//_info._device->GetTransform(D3DTS_VIEW, &mMatView);
@@ -160,32 +160,13 @@ Creates a bounding rectangle surronding the block for discarding it using frustu
 void OpenGLRender::CalculateBoundingRectangle(IND_Vector3 *mP1, IND_Vector3 *mP2, IND_Vector3 *mP3, IND_Vector3 *mP4) {
 	int mMinX, mMaxX, mMinY, mMaxY;
 
-	MinAndMax4((int) mP1->_x, (int) mP2->_x, (int) mP3->_x, (int) mP4->_x, &mMaxX, &mMinX);
-	MinAndMax4((int) mP1->_y, (int) mP2->_y, (int) mP3->_y, (int) mP4->_y, &mMaxY, &mMinY);
+	_math->minAndMax4((int) mP1->_x, (int) mP2->_x, (int) mP3->_x, (int) mP4->_x, &mMaxX, &mMinX);
+	_math->minAndMax4((int) mP1->_y, (int) mP2->_y, (int) mP3->_y, (int) mP4->_y, &mMaxY, &mMinY);
 
 	mP1->_x = (float) mMinX;
 	mP1->_y = (float) mMinY;
 	mP2->_x = (float) mMaxX;
 	mP2->_y = (float) mMaxY;
-}
-
-/*
-==================
-Returns the max and min of 4 values
-==================
-*/
-void OpenGLRender::MinAndMax4(int p1,
-                               int p2,
-                               int p3,
-                               int p4,
-                               int *pMax,
-                               int *pMin) {
-	*pMax = MAX(p1, p2);
-	*pMax = MAX(*pMax, p3);
-	*pMax = MAX(*pMax, p4);
-	*pMin = MIN(p1, p2);
-	*pMin = MIN(*pMin, p3);
-	*pMin = MIN(*pMin, p4);
 }
 
 /** @endcond */

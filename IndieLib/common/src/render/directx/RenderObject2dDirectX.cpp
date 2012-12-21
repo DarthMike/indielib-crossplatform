@@ -50,10 +50,10 @@ void DirectXRender::blitSurface(IND_Surface *pSu) {
 		                   static_cast<float>(pSu->_surface->_vertexArray[mCont + 3]._x), static_cast<float>(pSu->_surface->_vertexArray[mCont + 3]._y),
 		                   &mP1, &mP2, &mP3, &mP4);
 
-		D3DXVECTOR3 mP1_f3(mP1);
-		D3DXVECTOR3 mP2_f3(mP2);
-		D3DXVECTOR3 mP3_f3(mP3);
-		D3DXVECTOR3 mP4_f3(mP4);
+		IND_Vector3 mP1_f3(mP1.x,mP1.y,mP1.z);
+		IND_Vector3 mP2_f3(mP2.x,mP2.y,mP2.z);
+		IND_Vector3 mP3_f3(mP3.x,mP3.y,mP3.z);
+		IND_Vector3 mP4_f3(mP4.x,mP4.y,mP4.z);
 
 		// Calculate the bounding rectangle that we are going to try to discard
 		CalculateBoundingRectangle(&mP1_f3, &mP2_f3, &mP3_f3, &mP4_f3);
@@ -98,10 +98,10 @@ void DirectXRender::blitGrid(IND_Surface *pSu, BYTE pR, BYTE pG, BYTE pB, BYTE p
 		                   static_cast<float>( pSu->_surface->_vertexArray[i + 3]._x), static_cast<float>( pSu->_surface->_vertexArray[i + 3]._y),
 		                   &mP1, &mP2, &mP3, &mP4);
 
-		D3DXVECTOR3 mP1_f3(mP1);
-		D3DXVECTOR3 mP2_f3(mP2);
-		D3DXVECTOR3 mP3_f3(mP3);
-		D3DXVECTOR3 mP4_f3(mP4);
+		IND_Vector3 mP1_f3(mP1.x,mP1.y,mP1.z);
+		IND_Vector3 mP2_f3(mP2.x,mP2.y,mP2.z);
+		IND_Vector3 mP3_f3(mP3.x,mP3.y,mP3.z);
+		IND_Vector3 mP4_f3(mP4.x,mP4.y,mP4.z);
 
 		// Calculate the bounding rectangle that we are going to try to discard
 		CalculateBoundingRectangle(&mP1_f3, &mP2_f3, &mP3_f3, &mP4_f3);
@@ -147,10 +147,10 @@ void DirectXRender::blitRegionSurface(IND_Surface *pSu,
 							   0.0f, static_cast<float>(pHeight),
 							   &mP1, &mP2, &mP3, &mP4);
 
-			D3DXVECTOR3 mP1_f3(mP1);
-			D3DXVECTOR3 mP2_f3(mP2);
-			D3DXVECTOR3 mP3_f3(mP3);
-			D3DXVECTOR3 mP4_f3(mP4);
+			IND_Vector3 mP1_f3(mP1.x,mP1.y,mP1.z);
+			IND_Vector3 mP2_f3(mP2.x,mP2.y,mP2.z);
+			IND_Vector3 mP3_f3(mP3.x,mP3.y,mP3.z);
+			IND_Vector3 mP4_f3(mP4.x,mP4.y,mP4.z);
 
 			// Calculate the bounding rectangle that we are going to try to discard
 			CalculateBoundingRectangle(&mP1_f3, &mP2_f3, &mP3_f3, &mP4_f3);
@@ -199,10 +199,10 @@ bool DirectXRender::blitWrapSurface(IND_Surface *pSu,
 						   0.0f, static_cast<float>(pHeight),
 						   &mP1, &mP2, &mP3, &mP4);
 
-		D3DXVECTOR3 mP1_f3(mP1);
-		D3DXVECTOR3 mP2_f3(mP2);
-		D3DXVECTOR3 mP3_f3(mP3);
-		D3DXVECTOR3 mP4_f3(mP4);
+		IND_Vector3 mP1_f3(mP1.x,mP1.y,mP1.z);
+		IND_Vector3 mP2_f3(mP2.x,mP2.y,mP2.z);
+		IND_Vector3 mP3_f3(mP3.x,mP3.y,mP3.z);
+		IND_Vector3 mP4_f3(mP4.x,mP4.y,mP4.z);
 
 		// Calculate the bounding rectangle that we are going to try to discard
 		CalculateBoundingRectangle(&mP1_f3, &mP2_f3, &mP3_f3, &mP4_f3);

@@ -28,9 +28,7 @@ Suite 330, Boston, MA 02111-1307 USA
 
 #include "Global.h"
 #include "DirectXRender.h"
-
-#define MAX(a, b)  (((a) > (b)) ? (a) : (b))
-#define MIN(a, b)  (((a) < (b)) ? (a) : (b))
+#include "IND_Math.h"
 
 // --------------------------------------------------------------------------------
 //							         Private methods
@@ -41,7 +39,7 @@ Suite 330, Boston, MA 02111-1307 USA
 Calculates 6 planes defining the frustum
 ==================
 */
-void DirectXRender::calculeFrustumPlanes() {
+void DirectXRender::calculateFrustumPlanes() {
 	D3DXMATRIX mMatView, mMatProj;
 	_info._device->GetTransform(D3DTS_VIEW, &mMatView);
 	_info._device->GetTransform(D3DTS_PROJECTION, &mMatProj);
@@ -51,39 +49,39 @@ void DirectXRender::calculeFrustumPlanes() {
 	D3DXMatrixMultiply(&matComb, &mMatView, &mMatProj);
 
 	// Left clipping plane
-	mFrustumPlanes[0].mNormal.x     = -(matComb._14 + matComb._11);
-	mFrustumPlanes[0].mNormal.y     = -(matComb._24 + matComb._21);
-	mFrustumPlanes[0].mNormal.z     = -(matComb._34 + matComb._31);
+	mFrustumPlanes[0].mNormal._x     = -(matComb._14 + matComb._11);
+	mFrustumPlanes[0].mNormal._y     = -(matComb._24 + matComb._21);
+	mFrustumPlanes[0].mNormal._z     = -(matComb._34 + matComb._31);
 	mFrustumPlanes[0].mDistance     = -(matComb._44 + matComb._41);
 
 	// Right clipping plane
-	mFrustumPlanes[1].mNormal.x     = -(matComb._14 - matComb._11);
-	mFrustumPlanes[1].mNormal.y     = -(matComb._24 - matComb._21);
-	mFrustumPlanes[1].mNormal.z     = -(matComb._34 - matComb._31);
+	mFrustumPlanes[1].mNormal._x     = -(matComb._14 - matComb._11);
+	mFrustumPlanes[1].mNormal._y     = -(matComb._24 - matComb._21);
+	mFrustumPlanes[1].mNormal._z     = -(matComb._34 - matComb._31);
 	mFrustumPlanes[1].mDistance     = -(matComb._44 - matComb._41);
 
 	// Top clipping plane
-	mFrustumPlanes[2].mNormal.x     = -(matComb._14 - matComb._12);
-	mFrustumPlanes[2].mNormal.y     = -(matComb._24 - matComb._22);
-	mFrustumPlanes[2].mNormal.z     = -(matComb._34 - matComb._32);
+	mFrustumPlanes[2].mNormal._x     = -(matComb._14 - matComb._12);
+	mFrustumPlanes[2].mNormal._y     = -(matComb._24 - matComb._22);
+	mFrustumPlanes[2].mNormal._z     = -(matComb._34 - matComb._32);
 	mFrustumPlanes[2].mDistance     = -(matComb._44 - matComb._42);
 
 	// Bottom clipping plane
-	mFrustumPlanes[3].mNormal.x     = -(matComb._14 + matComb._12);
-	mFrustumPlanes[3].mNormal.y     = -(matComb._24 + matComb._22);
-	mFrustumPlanes[3].mNormal.z     = -(matComb._34 + matComb._32);
+	mFrustumPlanes[3].mNormal._x     = -(matComb._14 + matComb._12);
+	mFrustumPlanes[3].mNormal._y     = -(matComb._24 + matComb._22);
+	mFrustumPlanes[3].mNormal._z     = -(matComb._34 + matComb._32);
 	mFrustumPlanes[3].mDistance     = -(matComb._44 + matComb._42);
 
 	// Near clipping plane
-	mFrustumPlanes[4].mNormal.x     = -(matComb._14 + matComb._13);
-	mFrustumPlanes[4].mNormal.y     = -(matComb._24 + matComb._23);
-	mFrustumPlanes[4].mNormal.z     = -(matComb._34 + matComb._33);
+	mFrustumPlanes[4].mNormal._x     = -(matComb._14 + matComb._13);
+	mFrustumPlanes[4].mNormal._y     = -(matComb._24 + matComb._23);
+	mFrustumPlanes[4].mNormal._z     = -(matComb._34 + matComb._33);
 	mFrustumPlanes[4].mDistance     = -(matComb._44 + matComb._43);
 
 	// Far clipping plane
-	mFrustumPlanes[5].mNormal.x     = -(matComb._14 - matComb._13);
-	mFrustumPlanes[5].mNormal.y     = -(matComb._24 - matComb._23);
-	mFrustumPlanes[5].mNormal.z     = -(matComb._34 - matComb._33);
+	mFrustumPlanes[5].mNormal._x     = -(matComb._14 - matComb._13);
+	mFrustumPlanes[5].mNormal._y     = -(matComb._24 - matComb._23);
+	mFrustumPlanes[5].mNormal._z     = -(matComb._34 - matComb._33);
 	mFrustumPlanes[5].mDistance     = -(matComb._44 - matComb._43);
 
 	//for (int i = 0; i < 6; i++)
@@ -100,34 +98,34 @@ Taking an AABB min and max in world space, work out its interaction with the vie
 Note: the viewing frustum must be calculated first
 ==================
 */
-WORD DirectXRender::CullFrustumBox(const D3DXVECTOR3 &pAABBMin, const D3DXVECTOR3 &pAABBMax) {
+WORD DirectXRender::CullFrustumBox(const IND_Vector3 &pAABBMin, const IND_Vector3 &pAABBMax) {
 	bool mIntersect = 0;
 	WORD mResult = 0;
-	D3DXVECTOR3 mMinExtreme, mMaxExtreme;
+	IND_Vector3 mMinExtreme, mMaxExtreme;
 
 	for (WORD i = 0; i < 6; i++) {
-		if (mFrustumPlanes[i].mNormal.x >= 0) {
-			mMinExtreme.x = pAABBMin.x;
-			mMaxExtreme.x = pAABBMax.x;
+		if (mFrustumPlanes[i].mNormal._x >= 0) {
+			mMinExtreme._x = pAABBMin._x;
+			mMaxExtreme._x = pAABBMax._x;
 		} else {
-			mMinExtreme.x = pAABBMax.x;
-			mMaxExtreme.x = pAABBMin.x;
+			mMinExtreme._x = pAABBMax._x;
+			mMaxExtreme._x = pAABBMin._x;
 		}
 
-		if (mFrustumPlanes[i].mNormal.y >= 0) {
-			mMinExtreme.y = pAABBMin.y;
-			mMaxExtreme.y = pAABBMax.y;
+		if (mFrustumPlanes[i].mNormal._y >= 0) {
+			mMinExtreme._y = pAABBMin._y;
+			mMaxExtreme._y = pAABBMax._y;
 		} else {
-			mMinExtreme.y = pAABBMax.y;
-			mMaxExtreme.y = pAABBMin.y;
+			mMinExtreme._y = pAABBMax._y;
+			mMaxExtreme._y = pAABBMin._y;
 		}
 
-		if (mFrustumPlanes[i].mNormal.z >= 0) {
-			mMinExtreme.z = pAABBMin.z;
-			mMaxExtreme.z = pAABBMax.z;
+		if (mFrustumPlanes[i].mNormal._z >= 0) {
+			mMinExtreme._z = pAABBMin._z;
+			mMaxExtreme._z = pAABBMax._z;
 		} else {
-			mMinExtreme.z = pAABBMax.z;
-			mMaxExtreme.z = pAABBMin.z;
+			mMinExtreme._z = pAABBMax._z;
+			mMaxExtreme._z = pAABBMin._z;
 		}
 
 		if (mFrustumPlanes[i].DistanceToPoint(mMinExtreme) > 0) {
@@ -154,16 +152,16 @@ WORD DirectXRender::CullFrustumBox(const D3DXVECTOR3 &pAABBMin, const D3DXVECTOR
 Creates a bounding rectangle surronding the block for discarding it using frustum culling
 ==================
 */
-void DirectXRender::CalculateBoundingRectangle(D3DXVECTOR3 *mP1, D3DXVECTOR3 *mP2, D3DXVECTOR3 *mP3, D3DXVECTOR3 *mP4) {
+void DirectXRender::CalculateBoundingRectangle(IND_Vector3 *mP1, IND_Vector3 *mP2, IND_Vector3 *mP3, IND_Vector3 *mP4) {
 	int mMinX, mMaxX, mMinY, mMaxY;
 
-	MinAndMax4((int) mP1->x, (int) mP2->x, (int) mP3->x, (int) mP4->x, &mMaxX, &mMinX);
-	MinAndMax4((int) mP1->y, (int) mP2->y, (int) mP3->y, (int) mP4->y, &mMaxY, &mMinY);
+	_math->minAndMax4((int) mP1->_x, (int) mP2->_x, (int) mP3->_x, (int) mP4->_x, &mMaxX, &mMinX);
+	_math->minAndMax4((int) mP1->_y, (int) mP2->_y, (int) mP3->_y, (int) mP4->_y, &mMaxY, &mMinY);
 
-	mP1->x = (float) mMinX;
-	mP1->y = (float) mMinY;
-	mP2->x = (float) mMaxX;
-	mP2->y = (float) mMaxY;
+	mP1->_x = (float) mMinX;
+	mP1->_y = (float) mMinY;
+	mP2->_x = (float) mMaxX;
+	mP2->_y = (float) mMaxY;
 }
 
 
@@ -195,26 +193,6 @@ void DirectXRender::Transform4Vertices(float pX1, float pY1,
 	D3DXVec2Transform(mP2Res, &mP2, &mMatWorld);
 	D3DXVec2Transform(mP3Res, &mP3, &mMatWorld);
 	D3DXVec2Transform(mP4Res, &mP4, &mMatWorld);
-}
-
-
-/*
-==================
-Returns the max and min of 4 values
-==================
-*/
-void DirectXRender::MinAndMax4(int p1,
-                               int p2,
-                               int p3,
-                               int p4,
-                               int *pMax,
-                               int *pMin) {
-	*pMax = MAX(p1, p2);
-	*pMax = MAX(*pMax, p3);
-	*pMax = MAX(*pMax, p4);
-	*pMin = MIN(p1, p2);
-	*pMin = MIN(*pMin, p3);
-	*pMin = MIN(*pMin, p4);
 }
 
 /** @endcond */

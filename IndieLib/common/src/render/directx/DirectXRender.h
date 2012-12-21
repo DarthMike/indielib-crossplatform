@@ -42,6 +42,7 @@ Suite 330, Boston, MA 02111-1307 USA
 
 #include "Defines.h"
 #include "IND_Render.h"
+#include "IND_Vector3.h"
 
 // ----- Forward Declarations -----
 class IND_Window;
@@ -319,7 +320,7 @@ public:
 
 
 	// ----- Rendering steps -----
-	void calculeFrustumPlanes();
+	void calculateFrustumPlanes();
 
 	// ----- Atributtes -----
 
@@ -406,18 +407,18 @@ private:
 	int _numDiscardedObjects;
 
 	struct StrucutFrustumPlane {
-		D3DXVECTOR3 mNormal;
+		IND_Vector3 mNormal;
 		float mDistance;
 
-		float DistanceToPoint(D3DXVECTOR3 &pPnt) {
-			return D3DXVec3Dot(&mNormal, &pPnt) + mDistance;
+		float DistanceToPoint(IND_Vector3 &pPnt) {
+			return  mNormal.dotProduct(pPnt) + mDistance;
 		}
 
 		void Normalise() {
-			float denom = 1 / sqrt((mNormal.x * mNormal.x) + (mNormal.y * mNormal.y) + (mNormal.z * mNormal.z));
-			mNormal.x = mNormal.x * denom;
-			mNormal.y = mNormal.y * denom;
-			mNormal.z = mNormal.z * denom;
+			float denom = 1 / sqrt((mNormal._x * mNormal._x) + (mNormal._y * mNormal._y) + (mNormal._z * mNormal._z));
+			mNormal._x = mNormal._x * denom;
+			mNormal._y = mNormal._y * denom;
+			mNormal._z = mNormal._z * denom;
 			mDistance = mDistance * denom;
 		}
 	};
@@ -554,14 +555,8 @@ private:
 
 	// ----- Culling -----
 
-	WORD CullFrustumBox(const D3DXVECTOR3 &pAABBMin, const D3DXVECTOR3 &pAABBMax);
-	void CalculateBoundingRectangle(D3DXVECTOR3 *mP1, D3DXVECTOR3 *mP2, D3DXVECTOR3 *mP3, D3DXVECTOR3 *mP4);
-	void MinAndMax4(int p1,
-	                int p2,
-	                int p3,
-	                int p4,
-	                int *pMax,
-	                int *pMin);
+	WORD CullFrustumBox(const IND_Vector3 &pAABBMin, const IND_Vector3 &pAABBMax);
+	void CalculateBoundingRectangle(IND_Vector3 *mP1, IND_Vector3 *mP2, IND_Vector3 *mP3, IND_Vector3 *mP4);
 	void Transform4Vertices(float pX1, float pY1,
 	                        float pX2, float pY2,
 	                        float pX3, float pY3,

@@ -49,43 +49,43 @@ void DirectXRender::reCalculateFrustrumPlanes() {
 	D3DXMatrixMultiply(&matComb, &mMatView, &mMatProj);
 
 	// Left clipping plane
-	mFrustrumPlanes.planes[0]._normal._x     = -(matComb._14 + matComb._11);
-	mFrustrumPlanes.planes[0]._normal._y     = -(matComb._24 + matComb._21);
-	mFrustrumPlanes.planes[0]._normal._z     = -(matComb._34 + matComb._31);
-	mFrustrumPlanes.planes[0]._distance     = -(matComb._44 + matComb._41);
+	_frustrumPlanes.planes[0]._normal._x     = -(matComb._14 + matComb._11);
+	_frustrumPlanes.planes[0]._normal._y     = -(matComb._24 + matComb._21);
+	_frustrumPlanes.planes[0]._normal._z     = -(matComb._34 + matComb._31);
+	_frustrumPlanes.planes[0]._distance     = -(matComb._44 + matComb._41);
 
 	// Right clipping plane
-	mFrustrumPlanes.planes[1]._normal._x     = -(matComb._14 - matComb._11);
-	mFrustrumPlanes.planes[1]._normal._y     = -(matComb._24 - matComb._21);
-	mFrustrumPlanes.planes[1]._normal._z     = -(matComb._34 - matComb._31);
-	mFrustrumPlanes.planes[1]._distance     = -(matComb._44 - matComb._41);
+	_frustrumPlanes.planes[1]._normal._x     = -(matComb._14 - matComb._11);
+	_frustrumPlanes.planes[1]._normal._y     = -(matComb._24 - matComb._21);
+	_frustrumPlanes.planes[1]._normal._z     = -(matComb._34 - matComb._31);
+	_frustrumPlanes.planes[1]._distance     = -(matComb._44 - matComb._41);
 
 	// Top clipping plane
-	mFrustrumPlanes.planes[2]._normal._x     = -(matComb._14 - matComb._12);
-	mFrustrumPlanes.planes[2]._normal._y     = -(matComb._24 - matComb._22);
-	mFrustrumPlanes.planes[2]._normal._z     = -(matComb._34 - matComb._32);
-	mFrustrumPlanes.planes[2]._distance     = -(matComb._44 - matComb._42);
+	_frustrumPlanes.planes[2]._normal._x     = -(matComb._14 - matComb._12);
+	_frustrumPlanes.planes[2]._normal._y     = -(matComb._24 - matComb._22);
+	_frustrumPlanes.planes[2]._normal._z     = -(matComb._34 - matComb._32);
+	_frustrumPlanes.planes[2]._distance     = -(matComb._44 - matComb._42);
 
 	// Bottom clipping plane
-	mFrustrumPlanes.planes[3]._normal._x     = -(matComb._14 + matComb._12);
-	mFrustrumPlanes.planes[3]._normal._y     = -(matComb._24 + matComb._22);
-	mFrustrumPlanes.planes[3]._normal._z     = -(matComb._34 + matComb._32);
-	mFrustrumPlanes.planes[3]._distance     = -(matComb._44 + matComb._42);
+	_frustrumPlanes.planes[3]._normal._x     = -(matComb._14 + matComb._12);
+	_frustrumPlanes.planes[3]._normal._y     = -(matComb._24 + matComb._22);
+	_frustrumPlanes.planes[3]._normal._z     = -(matComb._34 + matComb._32);
+	_frustrumPlanes.planes[3]._distance     = -(matComb._44 + matComb._42);
 
 	// Near clipping plane
-	mFrustrumPlanes.planes[4]._normal._x     = -(matComb._14 + matComb._13);
-	mFrustrumPlanes.planes[4]._normal._y     = -(matComb._24 + matComb._23);
-	mFrustrumPlanes.planes[4]._normal._z     = -(matComb._34 + matComb._33);
-	mFrustrumPlanes.planes[4]._distance     = -(matComb._44 + matComb._43);
+	_frustrumPlanes.planes[4]._normal._x     = -(matComb._14 + matComb._13);
+	_frustrumPlanes.planes[4]._normal._y     = -(matComb._24 + matComb._23);
+	_frustrumPlanes.planes[4]._normal._z     = -(matComb._34 + matComb._33);
+	_frustrumPlanes.planes[4]._distance     = -(matComb._44 + matComb._43);
 
 	// Far clipping plane
-	mFrustrumPlanes.planes[5]._normal._x     = -(matComb._14 - matComb._13);
-	mFrustrumPlanes.planes[5]._normal._y     = -(matComb._24 - matComb._23);
-	mFrustrumPlanes.planes[5]._normal._z     = -(matComb._34 - matComb._33);
-	mFrustrumPlanes.planes[5]._distance     = -(matComb._44 - matComb._43);
+	_frustrumPlanes.planes[5]._normal._x     = -(matComb._14 - matComb._13);
+	_frustrumPlanes.planes[5]._normal._y     = -(matComb._24 - matComb._23);
+	_frustrumPlanes.planes[5]._normal._z     = -(matComb._34 - matComb._33);
+	_frustrumPlanes.planes[5]._distance     = -(matComb._44 - matComb._43);
 
 	//for (int i = 0; i < 6; i++)
-	//mFrustrumPlanes [i].Normalise();
+	//_frustrumPlanes [i].Normalise();
 }
 
 /*

@@ -407,7 +407,7 @@ private:
 	int _numrenderedObjects;
 	int _numDiscardedObjects;
 
-	FRUSTRUMPLANES mFrustrumPlanes;
+	FRUSTRUMPLANES _frustrumPlanes;
 
 	D3DDISPLAYMODE mDisplayMode;                    // Display mode
 	D3DPRESENT_PARAMETERS mPresentParameters;       // Presentation parameters

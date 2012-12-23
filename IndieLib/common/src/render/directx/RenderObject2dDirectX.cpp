@@ -60,7 +60,7 @@ void DirectXRender::blitSurface(IND_Surface *pSu) {
 
 		// ---- Discard bounding rectangle using frustum culling if possible ----
 
-		if (_math->cullFrustumBox(mP1_f3, mP2_f3,mFrustrumPlanes)) {
+		if (_math->cullFrustumBox(mP1_f3, mP2_f3,_frustrumPlanes)) {
 			_info._device->SetFVF(D3DFVF_CUSTOMVERTEX2D);
 
 			if (!pSu->isHaveGrid()) {
@@ -108,7 +108,7 @@ void DirectXRender::blitGrid(IND_Surface *pSu, BYTE pR, BYTE pG, BYTE pB, BYTE p
 
 		// ---- Discard bounding rectangle using frustum culling if possible ----
 		//FIXME: This discards some grids when they are visible. Run test INDImageTests_nonPOTLoad to see effect on planet image grid.
-		if (_math->cullFrustumBox(mP1_f3, mP2_f3,mFrustrumPlanes)) {
+		if (_math->cullFrustumBox(mP1_f3, mP2_f3,_frustrumPlanes)) {
 			BlitGridQuad(static_cast<int>(pSu->_surface->_vertexArray[i]._x), static_cast<int>(pSu->_surface->_vertexArray[i]._y),
 			             static_cast<int>(pSu->_surface->_vertexArray[i + 1]._x), static_cast<int>(pSu->_surface->_vertexArray[i + 1]._y),
 			             static_cast<int>(pSu->_surface->_vertexArray[i + 2]._x), static_cast<int>(pSu->_surface->_vertexArray[i + 2]._y),
@@ -157,7 +157,7 @@ void DirectXRender::blitRegionSurface(IND_Surface *pSu,
 
 			// ---- Discard bounding rectangle using frustum culling if possible ----
 
-			if (!_math->cullFrustumBox(mP1_f3, mP2_f3,mFrustrumPlanes)) {
+			if (!_math->cullFrustumBox(mP1_f3, mP2_f3,_frustrumPlanes)) {
 				_numDiscardedObjects++;
 				return;
 			}
@@ -209,7 +209,7 @@ bool DirectXRender::blitWrapSurface(IND_Surface *pSu,
 
 		// ---- Discard bounding rectangle using frustum culling if possible ----
 
-		if (!_math->cullFrustumBox(mP1_f3, mP2_f3,mFrustrumPlanes)) {
+		if (!_math->cullFrustumBox(mP1_f3, mP2_f3,_frustrumPlanes)) {
 			_numDiscardedObjects++;
 			return 1;
 		}

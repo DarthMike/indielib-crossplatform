@@ -509,7 +509,7 @@ Init at construction time
 ==================
 */
 void IND_Surface::init() {
-    _surface = new SURFACE(1,1);
+    _surface = new SURFACE(1,1); // TODO: MFK: valgrind states that this line generates garbage in basic tutorial 11
 }
 
 /*

@@ -243,6 +243,9 @@ void IND_Entity2dManager::renderEntities2d(int pLayer) {
 	// TODO: How to know if an entity has changed z-value from here int order to avoid sorting?
 	sort(_listEntities2d[pLayer]->begin(), _listEntities2d[pLayer]->end(), zIsLess);
 
+	//Set cull region
+	_render->reCalculateFrustrumPlanes();
+
 	// Iterates the list
 	vector <IND_Entity2d *>::iterator mIter;
 	for (mIter  = _listEntities2d[pLayer]->begin();

@@ -262,7 +262,7 @@ void IND_Render::beginScene() {
 	}
 
 	// Set culling region
-	calculateFrustumPlanes();
+	reCalculateFrustrumPlanes();
 
 	_wrappedRenderer->beginScene();
 }
@@ -1451,8 +1451,8 @@ void IND_Render::resetTimer() {
 Perform frustum planes calculation in underlying renderer
 ==================
 */
-void IND_Render::calculateFrustumPlanes() {
-	_wrappedRenderer->calculateFrustumPlanes();
+void IND_Render::reCalculateFrustrumPlanes() {
+	_wrappedRenderer->reCalculateFrustrumPlanes();
 }
 
 

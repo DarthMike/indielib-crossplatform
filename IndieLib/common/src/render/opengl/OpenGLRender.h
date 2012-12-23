@@ -324,7 +324,7 @@ public:
 
 
 	// ----- Rendering steps -----
-	void calculateFrustumPlanes();
+	void reCalculateFrustrumPlanes();
 	
 	// ----- Atributtes -----
 
@@ -408,10 +408,6 @@ private:
 						  BYTE pR, BYTE pG, BYTE pB, BYTE pA);
 
 	void BlitGridLine (int pPosX1, int pPosY1, int pPosX2, int pPosY2,  BYTE pR, BYTE pG, BYTE pB, BYTE pA);
-
-	//Culling helpers
-	unsigned short CullFrustumBox(const IND_Vector3 &pAABBMin, const IND_Vector3 &pAABBMax);
-	void CalculateBoundingRectangle(IND_Vector3 *mP1, IND_Vector3 *mP2, IND_Vector3 *mP3, IND_Vector3 *mP4);
 
 	//Text rendering helpers
 	int getLongInPixels(IND_Font *pFo, char *pText, int pPos, int pOffset);

@@ -39,7 +39,7 @@ Suite 330, Boston, MA 02111-1307 USA
 Calculates 6 planes defining the frustum
 ==================
 */
-void DirectXRender::calculateFrustumPlanes() {
+void DirectXRender::reCalculateFrustrumPlanes() {
 	D3DXMATRIX mMatView, mMatProj;
 	_info._device->GetTransform(D3DTS_VIEW, &mMatView);
 	_info._device->GetTransform(D3DTS_PROJECTION, &mMatProj);
@@ -49,121 +49,44 @@ void DirectXRender::calculateFrustumPlanes() {
 	D3DXMatrixMultiply(&matComb, &mMatView, &mMatProj);
 
 	// Left clipping plane
-	mFrustumPlanes[0].mNormal._x     = -(matComb._14 + matComb._11);
-	mFrustumPlanes[0].mNormal._y     = -(matComb._24 + matComb._21);
-	mFrustumPlanes[0].mNormal._z     = -(matComb._34 + matComb._31);
-	mFrustumPlanes[0].mDistance     = -(matComb._44 + matComb._41);
+	mFrustrumPlanes.planes[0]._normal._x     = -(matComb._14 + matComb._11);
+	mFrustrumPlanes.planes[0]._normal._y     = -(matComb._24 + matComb._21);
+	mFrustrumPlanes.planes[0]._normal._z     = -(matComb._34 + matComb._31);
+	mFrustrumPlanes.planes[0]._distance     = -(matComb._44 + matComb._41);
 
 	// Right clipping plane
-	mFrustumPlanes[1].mNormal._x     = -(matComb._14 - matComb._11);
-	mFrustumPlanes[1].mNormal._y     = -(matComb._24 - matComb._21);
-	mFrustumPlanes[1].mNormal._z     = -(matComb._34 - matComb._31);
-	mFrustumPlanes[1].mDistance     = -(matComb._44 - matComb._41);
+	mFrustrumPlanes.planes[1]._normal._x     = -(matComb._14 - matComb._11);
+	mFrustrumPlanes.planes[1]._normal._y     = -(matComb._24 - matComb._21);
+	mFrustrumPlanes.planes[1]._normal._z     = -(matComb._34 - matComb._31);
+	mFrustrumPlanes.planes[1]._distance     = -(matComb._44 - matComb._41);
 
 	// Top clipping plane
-	mFrustumPlanes[2].mNormal._x     = -(matComb._14 - matComb._12);
-	mFrustumPlanes[2].mNormal._y     = -(matComb._24 - matComb._22);
-	mFrustumPlanes[2].mNormal._z     = -(matComb._34 - matComb._32);
-	mFrustumPlanes[2].mDistance     = -(matComb._44 - matComb._42);
+	mFrustrumPlanes.planes[2]._normal._x     = -(matComb._14 - matComb._12);
+	mFrustrumPlanes.planes[2]._normal._y     = -(matComb._24 - matComb._22);
+	mFrustrumPlanes.planes[2]._normal._z     = -(matComb._34 - matComb._32);
+	mFrustrumPlanes.planes[2]._distance     = -(matComb._44 - matComb._42);
 
 	// Bottom clipping plane
-	mFrustumPlanes[3].mNormal._x     = -(matComb._14 + matComb._12);
-	mFrustumPlanes[3].mNormal._y     = -(matComb._24 + matComb._22);
-	mFrustumPlanes[3].mNormal._z     = -(matComb._34 + matComb._32);
-	mFrustumPlanes[3].mDistance     = -(matComb._44 + matComb._42);
+	mFrustrumPlanes.planes[3]._normal._x     = -(matComb._14 + matComb._12);
+	mFrustrumPlanes.planes[3]._normal._y     = -(matComb._24 + matComb._22);
+	mFrustrumPlanes.planes[3]._normal._z     = -(matComb._34 + matComb._32);
+	mFrustrumPlanes.planes[3]._distance     = -(matComb._44 + matComb._42);
 
 	// Near clipping plane
-	mFrustumPlanes[4].mNormal._x     = -(matComb._14 + matComb._13);
-	mFrustumPlanes[4].mNormal._y     = -(matComb._24 + matComb._23);
-	mFrustumPlanes[4].mNormal._z     = -(matComb._34 + matComb._33);
-	mFrustumPlanes[4].mDistance     = -(matComb._44 + matComb._43);
+	mFrustrumPlanes.planes[4]._normal._x     = -(matComb._14 + matComb._13);
+	mFrustrumPlanes.planes[4]._normal._y     = -(matComb._24 + matComb._23);
+	mFrustrumPlanes.planes[4]._normal._z     = -(matComb._34 + matComb._33);
+	mFrustrumPlanes.planes[4]._distance     = -(matComb._44 + matComb._43);
 
 	// Far clipping plane
-	mFrustumPlanes[5].mNormal._x     = -(matComb._14 - matComb._13);
-	mFrustumPlanes[5].mNormal._y     = -(matComb._24 - matComb._23);
-	mFrustumPlanes[5].mNormal._z     = -(matComb._34 - matComb._33);
-	mFrustumPlanes[5].mDistance     = -(matComb._44 - matComb._43);
+	mFrustrumPlanes.planes[5]._normal._x     = -(matComb._14 - matComb._13);
+	mFrustrumPlanes.planes[5]._normal._y     = -(matComb._24 - matComb._23);
+	mFrustrumPlanes.planes[5]._normal._z     = -(matComb._34 - matComb._33);
+	mFrustrumPlanes.planes[5]._distance     = -(matComb._44 - matComb._43);
 
 	//for (int i = 0; i < 6; i++)
-	//mFrustumPlanes [i].Normalise();
+	//mFrustrumPlanes [i].Normalise();
 }
-
-
-/*
-==================
-Taking an AABB min and max in world space, work out its interaction with the view frustum
-0 is outside
-1 is partially in
-2 is completely within
-Note: the viewing frustum must be calculated first
-==================
-*/
-WORD DirectXRender::CullFrustumBox(const IND_Vector3 &pAABBMin, const IND_Vector3 &pAABBMax) {
-	bool mIntersect = 0;
-	WORD mResult = 0;
-	IND_Vector3 mMinExtreme, mMaxExtreme;
-
-	for (WORD i = 0; i < 6; i++) {
-		if (mFrustumPlanes[i].mNormal._x >= 0) {
-			mMinExtreme._x = pAABBMin._x;
-			mMaxExtreme._x = pAABBMax._x;
-		} else {
-			mMinExtreme._x = pAABBMax._x;
-			mMaxExtreme._x = pAABBMin._x;
-		}
-
-		if (mFrustumPlanes[i].mNormal._y >= 0) {
-			mMinExtreme._y = pAABBMin._y;
-			mMaxExtreme._y = pAABBMax._y;
-		} else {
-			mMinExtreme._y = pAABBMax._y;
-			mMaxExtreme._y = pAABBMin._y;
-		}
-
-		if (mFrustumPlanes[i].mNormal._z >= 0) {
-			mMinExtreme._z = pAABBMin._z;
-			mMaxExtreme._z = pAABBMax._z;
-		} else {
-			mMinExtreme._z = pAABBMax._z;
-			mMaxExtreme._z = pAABBMin._z;
-		}
-
-		if (mFrustumPlanes[i].DistanceToPoint(mMinExtreme) > 0) {
-			mResult  = 0;
-			return mResult;
-		}
-
-		if (mFrustumPlanes[i].DistanceToPoint(mMaxExtreme) >= 0)
-			mIntersect = 1;
-	}
-
-	if (mIntersect)
-		mResult = 1;
-	else
-		mResult = 2;
-
-	return mResult;
-
-}
-
-
-/*
-==================
-Creates a bounding rectangle surronding the block for discarding it using frustum culling
-==================
-*/
-void DirectXRender::CalculateBoundingRectangle(IND_Vector3 *mP1, IND_Vector3 *mP2, IND_Vector3 *mP3, IND_Vector3 *mP4) {
-	int mMinX, mMaxX, mMinY, mMaxY;
-
-	_math->minAndMax4((int) mP1->_x, (int) mP2->_x, (int) mP3->_x, (int) mP4->_x, &mMaxX, &mMinX);
-	_math->minAndMax4((int) mP1->_y, (int) mP2->_y, (int) mP3->_y, (int) mP4->_y, &mMaxY, &mMinY);
-
-	mP1->_x = (float) mMinX;
-	mP1->_y = (float) mMinY;
-	mP2->_x = (float) mMaxX;
-	mP2->_y = (float) mMaxY;
-}
-
 
 /*
 ==================

@@ -148,8 +148,8 @@ users for really concrete purposes.
 // ----- Renderer settings -----
 //****Renderer choosing in static time****
 //YOU SHOULD CHANGE HERE THE DEFINITION OF WHICH RENDERER TO COMPILE WITH
-//#define INDIERENDER_DIRECTX
-#define INDIERENDER_OPENGL
+#define INDIERENDER_DIRECTX
+//#define INDIERENDER_OPENGL
 //#define INDIERENDER_GLES_IOS
 
 // ----- Renderer set checkings -----
@@ -1296,6 +1296,35 @@ public:
 typedef struct structBoundingCollision BOUNDING_COLLISION;
 /**@}*/
 
+/**
+ * @defgroup Culling
+ * @ingroup Types
+ */
+/**@{*/
+struct StructFrustrumPlane {
+		IND_Vector3 _normal;
+		float _distance;
+
+		float DistanceToPoint(IND_Vector3 &pPnt) {
+			return  _normal.dotProduct(pPnt) + _distance;
+		}
+
+		void Normalise() {
+			float denom = 1 / sqrt((_normal._x * _normal._x) + (_normal._y * _normal._y) + (_normal._z * _normal._z));
+			_normal._x = _normal._x * denom;
+			_normal._y = _normal._y * denom;
+			_normal._z = _normal._z * denom;
+			_distance = _distance * denom;
+		}
+	};
+
+
+struct StructFrustrum {
+	StructFrustrumPlane planes[6];
+};
+
+typedef StructFrustrum FRUSTRUMPLANES;
+/**@}*/
 /**
  * @defgroup GlobalConstants Global constants
  * @ingroup Types

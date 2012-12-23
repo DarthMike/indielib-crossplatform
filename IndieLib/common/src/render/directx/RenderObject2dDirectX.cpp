@@ -56,11 +56,11 @@ void DirectXRender::blitSurface(IND_Surface *pSu) {
 		IND_Vector3 mP4_f3(mP4.x,mP4.y,mP4.z);
 
 		// Calculate the bounding rectangle that we are going to try to discard
-		CalculateBoundingRectangle(&mP1_f3, &mP2_f3, &mP3_f3, &mP4_f3);
+		_math->calculateBoundingRectangle(&mP1_f3, &mP2_f3, &mP3_f3, &mP4_f3);
 
 		// ---- Discard bounding rectangle using frustum culling if possible ----
 
-		if (CullFrustumBox(mP1_f3, mP2_f3)) {
+		if (_math->cullFrustumBox(mP1_f3, mP2_f3,mFrustrumPlanes)) {
 			_info._device->SetFVF(D3DFVF_CUSTOMVERTEX2D);
 
 			if (!pSu->isHaveGrid()) {
@@ -104,11 +104,11 @@ void DirectXRender::blitGrid(IND_Surface *pSu, BYTE pR, BYTE pG, BYTE pB, BYTE p
 		IND_Vector3 mP4_f3(mP4.x,mP4.y,mP4.z);
 
 		// Calculate the bounding rectangle that we are going to try to discard
-		CalculateBoundingRectangle(&mP1_f3, &mP2_f3, &mP3_f3, &mP4_f3);
+		_math->calculateBoundingRectangle(&mP1_f3, &mP2_f3, &mP3_f3, &mP4_f3);
 
 		// ---- Discard bounding rectangle using frustum culling if possible ----
 		//FIXME: This discards some grids when they are visible. Run test INDImageTests_nonPOTLoad to see effect on planet image grid.
-		if (CullFrustumBox(mP1_f3, mP2_f3)) {
+		if (_math->cullFrustumBox(mP1_f3, mP2_f3,mFrustrumPlanes)) {
 			BlitGridQuad(static_cast<int>(pSu->_surface->_vertexArray[i]._x), static_cast<int>(pSu->_surface->_vertexArray[i]._y),
 			             static_cast<int>(pSu->_surface->_vertexArray[i + 1]._x), static_cast<int>(pSu->_surface->_vertexArray[i + 1]._y),
 			             static_cast<int>(pSu->_surface->_vertexArray[i + 2]._x), static_cast<int>(pSu->_surface->_vertexArray[i + 2]._y),
@@ -153,11 +153,11 @@ void DirectXRender::blitRegionSurface(IND_Surface *pSu,
 			IND_Vector3 mP4_f3(mP4.x,mP4.y,mP4.z);
 
 			// Calculate the bounding rectangle that we are going to try to discard
-			CalculateBoundingRectangle(&mP1_f3, &mP2_f3, &mP3_f3, &mP4_f3);
+			_math->calculateBoundingRectangle(&mP1_f3, &mP2_f3, &mP3_f3, &mP4_f3);
 
 			// ---- Discard bounding rectangle using frustum culling if possible ----
 
-			if (!CullFrustumBox(mP1_f3, mP2_f3)) {
+			if (!_math->cullFrustumBox(mP1_f3, mP2_f3,mFrustrumPlanes)) {
 				_numDiscardedObjects++;
 				return;
 			}
@@ -205,11 +205,11 @@ bool DirectXRender::blitWrapSurface(IND_Surface *pSu,
 		IND_Vector3 mP4_f3(mP4.x,mP4.y,mP4.z);
 
 		// Calculate the bounding rectangle that we are going to try to discard
-		CalculateBoundingRectangle(&mP1_f3, &mP2_f3, &mP3_f3, &mP4_f3);
+		_math->calculateBoundingRectangle(&mP1_f3, &mP2_f3, &mP3_f3, &mP4_f3);
 
 		// ---- Discard bounding rectangle using frustum culling if possible ----
 
-		if (!CullFrustumBox(mP1_f3, mP2_f3)) {
+		if (!_math->cullFrustumBox(mP1_f3, mP2_f3,mFrustrumPlanes)) {
 			_numDiscardedObjects++;
 			return 1;
 		}

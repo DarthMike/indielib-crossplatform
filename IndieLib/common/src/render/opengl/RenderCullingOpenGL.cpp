@@ -42,7 +42,7 @@ Suite 330, Boston, MA 02111-1307 USA
 Calculates 6 planes defining the frustum
 ==================
 */
-void OpenGLRender::calculateFrustumPlanes() {
+void OpenGLRender::reCalculateFrustrumPlanes() {
 	//TODO
 	//D3DXMATRIX mMatView, mMatProj;
 	//_info._device->GetTransform(D3DTS_VIEW, &mMatView);
@@ -53,120 +53,43 @@ void OpenGLRender::calculateFrustumPlanes() {
 	//D3DXMatrixMultiply(&matComb, &mMatView, &mMatProj);
 
 	//// Left clipping plane
-	//mFrustumPlanes[0].mNormal.x     = -(matComb._14 + matComb._11);
-	//mFrustumPlanes[0].mNormal.y     = -(matComb._24 + matComb._21);
-	//mFrustumPlanes[0].mNormal.z     = -(matComb._34 + matComb._31);
-	//mFrustumPlanes[0].mDistance     = -(matComb._44 + matComb._41);
+	//mFrustrumPlanes.planes[0]._normal.x     = -(matComb._14 + matComb._11);
+	//mFrustrumPlanes.planes[0]._normal.y     = -(matComb._24 + matComb._21);
+	//mFrustrumPlanes.planes[0]._normal.z     = -(matComb._34 + matComb._31);
+	//mFrustrumPlanes.planes[0]._distance     = -(matComb._44 + matComb._41);
 
 	//// Right clipping plane
-	//mFrustumPlanes[1].mNormal.x     = -(matComb._14 - matComb._11);
-	//mFrustumPlanes[1].mNormal.y     = -(matComb._24 - matComb._21);
-	//mFrustumPlanes[1].mNormal.z     = -(matComb._34 - matComb._31);
-	//mFrustumPlanes[1].mDistance     = -(matComb._44 - matComb._41);
+	//mFrustrumPlanes.planes[1]._normal.x     = -(matComb._14 - matComb._11);
+	//mFrustrumPlanes.planes[1]._normal.y     = -(matComb._24 - matComb._21);
+	//mFrustrumPlanes.planes[1]._normal.z     = -(matComb._34 - matComb._31);
+	//mFrustrumPlanes.planes[1]._distance     = -(matComb._44 - matComb._41);
 
 	//// Top clipping plane
-	//mFrustumPlanes[2].mNormal.x     = -(matComb._14 - matComb._12);
-	//mFrustumPlanes[2].mNormal.y     = -(matComb._24 - matComb._22);
-	//mFrustumPlanes[2].mNormal.z     = -(matComb._34 - matComb._32);
-	//mFrustumPlanes[2].mDistance     = -(matComb._44 - matComb._42);
+	//mFrustrumPlanes.planes[2]._normal.x     = -(matComb._14 - matComb._12);
+	//mFrustrumPlanes.planes[2]._normal.y     = -(matComb._24 - matComb._22);
+	//mFrustrumPlanes.planes[2]._normal.z     = -(matComb._34 - matComb._32);
+	//mFrustrumPlanes.planes[2]._distance     = -(matComb._44 - matComb._42);
 
 	//// Bottom clipping plane
-	//mFrustumPlanes[3].mNormal.x     = -(matComb._14 + matComb._12);
-	//mFrustumPlanes[3].mNormal.y     = -(matComb._24 + matComb._22);
-	//mFrustumPlanes[3].mNormal.z     = -(matComb._34 + matComb._32);
-	//mFrustumPlanes[3].mDistance     = -(matComb._44 + matComb._42);
+	//mFrustrumPlanes.planes[3]._normal.x     = -(matComb._14 + matComb._12);
+	//mFrustrumPlanes.planes[3]._normal.y     = -(matComb._24 + matComb._22);
+	//mFrustrumPlanes.planes[3]._normal.z     = -(matComb._34 + matComb._32);
+	//mFrustrumPlanes.planes[3]._distance     = -(matComb._44 + matComb._42);
 
 	//// Near clipping plane
-	//mFrustumPlanes[4].mNormal.x     = -(matComb._14 + matComb._13);
-	//mFrustumPlanes[4].mNormal.y     = -(matComb._24 + matComb._23);
-	//mFrustumPlanes[4].mNormal.z     = -(matComb._34 + matComb._33);
-	//mFrustumPlanes[4].mDistance     = -(matComb._44 + matComb._43);
+	//mFrustrumPlanes.planes[4]._normal.x     = -(matComb._14 + matComb._13);
+	//mFrustrumPlanes.planes[4]._normal.y     = -(matComb._24 + matComb._23);
+	//mFrustrumPlanes.planes[4]._normal.z     = -(matComb._34 + matComb._33);
+	//mFrustrumPlanes.planes[4]._distance     = -(matComb._44 + matComb._43);
 
 	//// Far clipping plane
-	//mFrustumPlanes[5].mNormal.x     = -(matComb._14 - matComb._13);
-	//mFrustumPlanes[5].mNormal.y     = -(matComb._24 - matComb._23);
-	//mFrustumPlanes[5].mNormal.z     = -(matComb._34 - matComb._33);
-	//mFrustumPlanes[5].mDistance     = -(matComb._44 - matComb._43);
+	//mFrustrumPlanes.planes[5]._normal.x     = -(matComb._14 - matComb._13);
+	//mFrustrumPlanes.planes[5]._normal.y     = -(matComb._24 - matComb._23);
+	//mFrustrumPlanes.planes[5]._normal.z     = -(matComb._34 - matComb._33);
+	//mFrustrumPlanes.planes[5]._distance     = -(matComb._44 - matComb._43);
 
 	//for (int i = 0; i < 6; i++)
-	//mFrustumPlanes [i].Normalise();
-}
-
-
-/*
-==================
-Taking an AABB min and max in world space, work out its interaction with the view frustum
-0 is outside
-1 is partially in
-2 is completely within
-Note: the viewing frustum must be calculated first
-==================
-*/
-unsigned short OpenGLRender::CullFrustumBox(const IND_Vector3 &pAABBMin, const IND_Vector3 &pAABBMax) {
-	bool mIntersect = 0;
-	unsigned short mResult = 0;
-	//TODO
-	/*D3DXVECTOR3 mMinExtreme, mMaxExtreme;
-
-	for (WORD i = 0; i < 6; i++) {
-		if (mFrustumPlanes[i].mNormal.x >= 0) {
-			mMinExtreme.x = pAABBMin.x;
-			mMaxExtreme.x = pAABBMax.x;
-		} else {
-			mMinExtreme.x = pAABBMax.x;
-			mMaxExtreme.x = pAABBMin.x;
-		}
-
-		if (mFrustumPlanes[i].mNormal.y >= 0) {
-			mMinExtreme.y = pAABBMin.y;
-			mMaxExtreme.y = pAABBMax.y;
-		} else {
-			mMinExtreme.y = pAABBMax.y;
-			mMaxExtreme.y = pAABBMin.y;
-		}
-
-		if (mFrustumPlanes[i].mNormal.z >= 0) {
-			mMinExtreme.z = pAABBMin.z;
-			mMaxExtreme.z = pAABBMax.z;
-		} else {
-			mMinExtreme.z = pAABBMax.z;
-			mMaxExtreme.z = pAABBMin.z;
-		}
-
-		if (mFrustumPlanes[i].DistanceToPoint(mMinExtreme) > 0) {
-			mResult  = 0;
-			return mResult;
-		}
-
-		if (mFrustumPlanes[i].DistanceToPoint(mMaxExtreme) >= 0)
-			mIntersect = 1;
-	}*/
-
-	if (mIntersect)
-		mResult = 1;
-	else
-		mResult = 2;
-
-	return mResult;
-
-}
-
-
-/*
-==================
-Creates a bounding rectangle surronding the block for discarding it using frustum culling
-==================
-*/
-void OpenGLRender::CalculateBoundingRectangle(IND_Vector3 *mP1, IND_Vector3 *mP2, IND_Vector3 *mP3, IND_Vector3 *mP4) {
-	int mMinX, mMaxX, mMinY, mMaxY;
-
-	_math->minAndMax4((int) mP1->_x, (int) mP2->_x, (int) mP3->_x, (int) mP4->_x, &mMaxX, &mMinX);
-	_math->minAndMax4((int) mP1->_y, (int) mP2->_y, (int) mP3->_y, (int) mP4->_y, &mMaxY, &mMinY);
-
-	mP1->_x = (float) mMinX;
-	mP1->_y = (float) mMinY;
-	mP2->_x = (float) mMaxX;
-	mP2->_y = (float) mMaxY;
+	//mFrustrumPlanes [i].Normalise();
 }
 
 /** @endcond */

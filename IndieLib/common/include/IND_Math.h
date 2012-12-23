@@ -213,7 +213,94 @@ public:
 		*pMin = MIN(*pMin, p4);
 	}
     /**@}*/
-    
+
+	/**
+     @name Culling utilities
+     */
+	/**@{*/
+    /**
+	@brief Creates a bounding rectangle surrounding a block.
+
+	p1* -- -- *p2
+	  |       |
+	  |		  |
+	  |		  |
+	p3* -- -- *p4
+
+	All points can be arbitrary, as the bounding rectangle gets max/min values to form a rectangle
+	@param mP1 A point
+	@param mP2 A point
+	@param mP3 A point
+	@param mP4 A point
+	*/
+	inline void calculateBoundingRectangle(IND_Vector3 *mP1, IND_Vector3 *mP2, IND_Vector3 *mP3, IND_Vector3 *mP4) {
+		int mMinX, mMaxX, mMinY, mMaxY;
+
+		minAndMax4((int) mP1->_x, (int) mP2->_x, (int) mP3->_x, (int) mP4->_x, &mMaxX, &mMinX);
+		minAndMax4((int) mP1->_y, (int) mP2->_y, (int) mP3->_y, (int) mP4->_y, &mMaxY, &mMinY);
+
+		mP1->_x = (float) mMinX;
+		mP1->_y = (float) mMinY;
+		mP2->_x = (float) mMaxX;
+		mP2->_y = (float) mMaxY;
+	}
+
+	/*
+==================
+Taking an AABB min and max in world space, work out its interaction with the view frustum
+0 is outside
+1 is partially in
+2 is completely within
+Note: the viewing frustum must be calculated first
+==================
+*/
+	unsigned int cullFrustumBox(const IND_Vector3 &pAABBMin, const IND_Vector3 &pAABBMax, FRUSTRUMPLANES& pFrustrum) {
+		bool mIntersect = 0;
+		unsigned int mResult = 0;
+		IND_Vector3 mMinExtreme, mMaxExtreme;
+
+		for (unsigned int i = 0; i < 6; i++) {
+			if (pFrustrum.planes[i]._normal._x >= 0) {
+				mMinExtreme._x = pAABBMin._x;
+				mMaxExtreme._x = pAABBMax._x;
+			} else {
+				mMinExtreme._x = pAABBMax._x;
+				mMaxExtreme._x = pAABBMin._x;
+			}
+
+			if (pFrustrum.planes[i]._normal._y >= 0) {
+				mMinExtreme._y = pAABBMin._y;
+				mMaxExtreme._y = pAABBMax._y;
+			} else {
+				mMinExtreme._y = pAABBMax._y;
+				mMaxExtreme._y = pAABBMin._y;
+			}
+
+			if (pFrustrum.planes[i]._normal._z >= 0) {
+				mMinExtreme._z = pAABBMin._z;
+				mMaxExtreme._z = pAABBMax._z;
+			} else {
+				mMinExtreme._z = pAABBMax._z;
+				mMaxExtreme._z = pAABBMin._z;
+			}
+
+			if (pFrustrum.planes[i].DistanceToPoint(mMinExtreme) > 0) {
+				mResult  = 0;
+				return mResult;
+			}
+
+			if (pFrustrum.planes[i].DistanceToPoint(mMaxExtreme) >= 0)
+				mIntersect = 1;
+		}
+
+		if (mIntersect)
+			mResult = 1;
+		else
+			mResult = 2;
+
+		return mResult;
+	}
+	/**@}*/
     /**
      @name Collision calculation
      */

@@ -486,7 +486,7 @@ private:
 	void resetTimer();
 
 	// ----- Private Interface (for friend classes) -----
-	void calculateFrustumPlanes();
+	void reCalculateFrustrumPlanes();
 	void blitCollisionCircle(int pPosX, int pPosY, int pRadius, float pScale, BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pWorldMatrix);
 	void blitCollisionLine(int pPosX1, int pPosY1, int pPosX2, int pPosY2,  BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pIndWorldMatrix);
 

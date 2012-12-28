@@ -182,7 +182,7 @@ void IND_Input::update() {
 		}
         
 		// ----- Keyboard ------
-		switch (mEvent.key.keysym.sym) {
+		switch (mEvent.key.keysym.sym) {  //TODO: MFK valgrind is unhappy about this "Conditional jump or move depends on uninitialised value(s)".
 			case SDLK_a:
 				_keys [IND_A].setState(mEvent.key.state);
 				break;

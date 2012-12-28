@@ -451,7 +451,7 @@ bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, const ch
 	// Parse all the frames
 	while (mXFrame) {
 		IND_Frame *mNewFrame = new IND_Frame;
-		mNewFrame->_frame._listBoundingCollision = new list <BOUNDING_COLLISION *>;
+		mNewFrame->_frame._listBoundingCollision = new list <BOUNDING_COLLISION *>; // TODO: MFK: valgrind states that this line generates garbage in basic tutorial 11
 
 		// Frame name attribute
 		if (mXFrame->Attribute("name")) {

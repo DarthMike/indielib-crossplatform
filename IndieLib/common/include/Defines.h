@@ -399,7 +399,7 @@ struct structMatrix {
      */
 	structMatrix(float* matrixArray){
 		if (!matrixArray) {
-			_11 = _12 = _13 = _14 = _21 = _22 = _23 = _24 = _31 = _32 = _33 = _34 = _41 = _42 = _43 = _44 = 0;
+			_11 = _12 = _13 = _14 = _21 = _22 = _23 = _24 = _31 = _32 = _33 = _34 = _41 = _42 = _43 = _44 = 0.0f;
             return;
 		}
 		readFromArray(matrixArray);
@@ -1305,22 +1305,32 @@ struct StructFrustrumPlane {
 		IND_Vector3 _normal;
 		float _distance;
 
-		float DistanceToPoint(IND_Vector3 &pPnt) {
+		float distanceToPoint(IND_Vector3 &pPnt) {
 			return  _normal.dotProduct(pPnt) + _distance;
 		}
 
-		void Normalise() {
+		void normalise() {
 			float denom = 1 / sqrt((_normal._x * _normal._x) + (_normal._y * _normal._y) + (_normal._z * _normal._z));
 			_normal._x = _normal._x * denom;
 			_normal._y = _normal._y * denom;
 			_normal._z = _normal._z * denom;
 			_distance = _distance * denom;
 		}
+
+		void print() {
+			printf("\nFRUSTRUMPLANE: Normal: (%.1f,%1.f,%1.f) Distance:%.1f",_normal._x,_normal._y,_normal._z,_distance);
+		}
 	};
 
 
 struct StructFrustrum {
 	StructFrustrumPlane planes[6];
+
+	void print() {
+		for (int i = 0;i < 6;++i) {
+			planes[i].print();
+		}
+	}
 };
 
 typedef StructFrustrum FRUSTRUMPLANES;

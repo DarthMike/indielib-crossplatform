@@ -245,22 +245,27 @@ public:
 		mP2->_y = (float) mMaxY;
 	}
 
-	/*
-==================
-Taking an AABB min and max in world space, work out its interaction with the view frustum
-0 is outside
-1 is partially in
-2 is completely within
-Note: the viewing frustum must be calculated first
-==================
-*/
+	/** @brief Determines if a box determined by 2 points, is inside the supplied frustrum
+
+		Taking an AABB min and max in world space, work out its interaction with the view frustum
+		0 is outside
+		1 is partially in
+		2 is completely within
+		Note: the viewing frustum must be calculated first
+		//Here we are testing boxes against the frustrum, using the technique called "Geometric Approach - Testing Boxes II" here:
+		http://zach.in.tu-clausthal.de/teaching/cg_literatur/lighthouse3d_view_frustum_culling/index.html
+
+		@param pAABBMin First vertex of the box
+		@param pAABBMax Second vertex of the box
+		@param pFrustrum Frustrum structure as per camera position, specified by 6 planes
+	*/
 	unsigned int cullFrustumBox(const IND_Vector3 &pAABBMin, const IND_Vector3 &pAABBMax, FRUSTRUMPLANES& pFrustrum) {
 		bool mIntersect = 0;
 		unsigned int mResult = 0;
 		IND_Vector3 mMinExtreme, mMaxExtreme;
 
 		for (unsigned int i = 0; i < 6; i++) {
-			if (pFrustrum.planes[i]._normal._x >= 0) {
+			if (pFrustrum.planes[i]._normal._x >= 0.0f) {
 				mMinExtreme._x = pAABBMin._x;
 				mMaxExtreme._x = pAABBMax._x;
 			} else {
@@ -268,7 +273,7 @@ Note: the viewing frustum must be calculated first
 				mMaxExtreme._x = pAABBMin._x;
 			}
 
-			if (pFrustrum.planes[i]._normal._y >= 0) {
+			if (pFrustrum.planes[i]._normal._y >= 0.0f) {
 				mMinExtreme._y = pAABBMin._y;
 				mMaxExtreme._y = pAABBMax._y;
 			} else {
@@ -276,7 +281,7 @@ Note: the viewing frustum must be calculated first
 				mMaxExtreme._y = pAABBMin._y;
 			}
 
-			if (pFrustrum.planes[i]._normal._z >= 0) {
+			if (pFrustrum.planes[i]._normal._z >= 0.0f) {
 				mMinExtreme._z = pAABBMin._z;
 				mMaxExtreme._z = pAABBMax._z;
 			} else {
@@ -284,12 +289,12 @@ Note: the viewing frustum must be calculated first
 				mMaxExtreme._z = pAABBMin._z;
 			}
 
-			if (pFrustrum.planes[i].DistanceToPoint(mMinExtreme) > 0) {
+			if (pFrustrum.planes[i].distanceToPoint(mMinExtreme) > 0.0f) {
 				mResult  = 0;
 				return mResult;
 			}
 
-			if (pFrustrum.planes[i].DistanceToPoint(mMaxExtreme) >= 0)
+			if (pFrustrum.planes[i].distanceToPoint(mMaxExtreme) >= 0.0f)
 				mIntersect = 1;
 		}
 
@@ -301,6 +306,7 @@ Note: the viewing frustum must be calculated first
 		return mResult;
 	}
 	/**@}*/
+
     /**
      @name Collision calculation
      */

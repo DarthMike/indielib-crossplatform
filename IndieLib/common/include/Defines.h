@@ -148,8 +148,8 @@ users for really concrete purposes.
 // ----- Renderer settings -----
 //****Renderer choosing in static time****
 //YOU SHOULD CHANGE HERE THE DEFINITION OF WHICH RENDERER TO COMPILE WITH
-#define INDIERENDER_DIRECTX
-//#define INDIERENDER_OPENGL
+//#define INDIERENDER_DIRECTX
+#define INDIERENDER_OPENGL
 //#define INDIERENDER_GLES_IOS
 
 // ----- Renderer set checkings -----
@@ -1317,8 +1317,8 @@ struct StructFrustrumPlane {
 			_distance = _distance * denom;
 		}
 
-		void print() {
-			printf("\nFRUSTRUMPLANE: Normal: (%.1f,%1.f,%1.f) Distance:%.1f",_normal._x,_normal._y,_normal._z,_distance);
+		void description() {
+			printf("\nFRUSTRUMPLANE: Normal: (%.5f,%.5f,%.5f) Distance:%.5f",_normal._x,_normal._y,_normal._z,_distance);
 		}
 	};
 
@@ -1326,9 +1326,9 @@ struct StructFrustrumPlane {
 struct StructFrustrum {
 	StructFrustrumPlane planes[6];
 
-	void print() {
+	void description() {
 		for (int i = 0;i < 6;++i) {
-			planes[i].print();
+			planes[i].description();
 		}
 	}
 };

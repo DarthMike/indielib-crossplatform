@@ -84,8 +84,9 @@ void DirectXRender::reCalculateFrustrumPlanes() {
 	_frustrumPlanes.planes[5]._normal._z     = -(matComb._34 - matComb._33);
 	_frustrumPlanes.planes[5]._distance     = -(matComb._44 - matComb._43);
 
-	//for (int i = 0; i < 6; i++)
-	//_frustrumPlanes [i].Normalise();
+	for (int i = 0;i<6;++i) {
+		_frustrumPlanes.planes[i].normalise();
+	}
 }
 
 /*

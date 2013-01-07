@@ -320,11 +320,7 @@ public:
 
 
 	void blit3dMesh(IND_3dMesh *p3dMesh);
-	void set3dMeshSequence(IND_3dMesh *p3dMesh, unsigned int pIndex);
-
-
-	// ----- Rendering steps -----
-	void reCalculateFrustrumPlanes();
+	void set3dMeshSequence(IND_3dMesh *p3dMesh, unsigned int pIndex);	
 	
 	// ----- Atributtes -----
 
@@ -415,14 +411,26 @@ private:
 	//Setup helper
 	bool resetViewport(int pWitdh, int pHeight);
 
-		// ----- Collisions -----
+	// ----- Collisions -----
 	void blitCollisionCircle(int pPosX, int pPosY, int pRadius, float pScale, BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pWorldMatrix);
 	void blitCollisionLine(int pPosX1, int pPosY1, int pPosX2, int pPosY2,  BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pIndWorldMatrix);
 
+	// ---- Culling helpers ----
+	void reCalculateFrustrumPlanes();
+	void transformVerticesToWorld(float pX1, float pY1,
+											float pX2, float pY2,
+											float pX3, float pY3,
+											float pX4, float pY4,
+											IND_Vector3 *mP1Res,
+											IND_Vector3 *mP2Res,
+											IND_Vector3 *mP3Res,
+											IND_Vector3 *mP4Res);
 	// ----- Objects -----
 	IND_Math _math;
 	IND_Window *_window;
 	OSOpenGLManager *_osOpenGLMgr;
+
+	FRUSTRUMPLANES _frustrumPlanes;
 
 	// ----- Vars -----
 	bool _ok;
@@ -465,6 +473,9 @@ private:
         float _pointPixelScale;
 	};
 	struct infoStruct _info;
+
+	//Current 'model-to-world' matrix
+	IND_Matrix _modelToWorld;
 
     //Current 'camera' matrix
     IND_Matrix _cameraMatrix;

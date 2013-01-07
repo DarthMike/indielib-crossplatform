@@ -40,56 +40,99 @@ Suite 330, Boston, MA 02111-1307 USA
 /*
 ==================
 Calculates 6 planes defining the frustum
+Plane extraction works as per this:
+http://www8.cs.umu.se/kurser/5DV051/HT12/lab/plane_extraction.pdf
+We calculate planes in model space, that is, before being transformed by camera.
+To perform culling calculations, the comparisons need to be in same space. In our case, model space.
 ==================
 */
 void OpenGLRender::reCalculateFrustrumPlanes() {
-	//TODO
-	//D3DXMATRIX mMatView, mMatProj;
-	//_info._device->GetTransform(D3DTS_VIEW, &mMatView);
-	//_info._device->GetTransform(D3DTS_PROJECTION, &mMatProj);
+	IND_Matrix  mMatProj;
+	float temp [16];
+	glGetFloatv(GL_PROJECTION_MATRIX,temp);
+	mMatProj.readFromArray(temp);
 
-	//// Get combined matrix
-	//D3DXMATRIXA16 matComb;
-	//D3DXMatrixMultiply(&matComb, &mMatView, &mMatProj);
+	// Get combined matrix
+	IND_Matrix matComb;
+	_math.matrix4DMultiply(mMatProj,_cameraMatrix,matComb);
 
-	//// Left clipping plane
-	//mFrustrumPlanes.planes[0]._normal.x     = -(matComb._14 + matComb._11);
-	//mFrustrumPlanes.planes[0]._normal.y     = -(matComb._24 + matComb._21);
-	//mFrustrumPlanes.planes[0]._normal.z     = -(matComb._34 + matComb._31);
-	//mFrustrumPlanes.planes[0]._distance     = -(matComb._44 + matComb._41);
+	// Left clipping plane
+	_frustrumPlanes.planes[0]._normal._x     = (matComb._41 + matComb._11);
+	_frustrumPlanes.planes[0]._normal._y     = (matComb._42 + matComb._12);
+	_frustrumPlanes.planes[0]._normal._z     = (matComb._43 + matComb._13);
+	_frustrumPlanes.planes[0]._distance     = (matComb._44 + matComb._14);
 
-	//// Right clipping plane
-	//mFrustrumPlanes.planes[1]._normal.x     = -(matComb._14 - matComb._11);
-	//mFrustrumPlanes.planes[1]._normal.y     = -(matComb._24 - matComb._21);
-	//mFrustrumPlanes.planes[1]._normal.z     = -(matComb._34 - matComb._31);
-	//mFrustrumPlanes.planes[1]._distance     = -(matComb._44 - matComb._41);
+	// Right clipping plane
+	_frustrumPlanes.planes[1]._normal._x     = (matComb._41 - matComb._11);
+	_frustrumPlanes.planes[1]._normal._y     = (matComb._42 - matComb._12);
+	_frustrumPlanes.planes[1]._normal._z     = (matComb._43 - matComb._13);
+	_frustrumPlanes.planes[1]._distance     = (matComb._44 - matComb._14);
 
-	//// Top clipping plane
-	//mFrustrumPlanes.planes[2]._normal.x     = -(matComb._14 - matComb._12);
-	//mFrustrumPlanes.planes[2]._normal.y     = -(matComb._24 - matComb._22);
-	//mFrustrumPlanes.planes[2]._normal.z     = -(matComb._34 - matComb._32);
-	//mFrustrumPlanes.planes[2]._distance     = -(matComb._44 - matComb._42);
+	// Top clipping plane
+	_frustrumPlanes.planes[2]._normal._x     = (matComb._41 - matComb._21);
+	_frustrumPlanes.planes[2]._normal._y     = (matComb._42 - matComb._22);
+	_frustrumPlanes.planes[2]._normal._z     = (matComb._43 - matComb._23);
+	_frustrumPlanes.planes[2]._distance     = (matComb._44 - matComb._24);
 
-	//// Bottom clipping plane
-	//mFrustrumPlanes.planes[3]._normal.x     = -(matComb._14 + matComb._12);
-	//mFrustrumPlanes.planes[3]._normal.y     = -(matComb._24 + matComb._22);
-	//mFrustrumPlanes.planes[3]._normal.z     = -(matComb._34 + matComb._32);
-	//mFrustrumPlanes.planes[3]._distance     = -(matComb._44 + matComb._42);
+	// Bottom clipping plane
+	_frustrumPlanes.planes[3]._normal._x     = (matComb._41 + matComb._21);
+	_frustrumPlanes.planes[3]._normal._y     = (matComb._42 + matComb._22);
+	_frustrumPlanes.planes[3]._normal._z     = (matComb._43 + matComb._23);
+	_frustrumPlanes.planes[3]._distance     = (matComb._44 + matComb._24);
 
-	//// Near clipping plane
-	//mFrustrumPlanes.planes[4]._normal.x     = -(matComb._14 + matComb._13);
-	//mFrustrumPlanes.planes[4]._normal.y     = -(matComb._24 + matComb._23);
-	//mFrustrumPlanes.planes[4]._normal.z     = -(matComb._34 + matComb._33);
-	//mFrustrumPlanes.planes[4]._distance     = -(matComb._44 + matComb._43);
+	// Near clipping plane
+	_frustrumPlanes.planes[4]._normal._x     = (matComb._41 + matComb._31);
+	_frustrumPlanes.planes[4]._normal._y     = (matComb._42 + matComb._32);
+	_frustrumPlanes.planes[4]._normal._z     = (matComb._43 + matComb._33);
+	_frustrumPlanes.planes[4]._distance     = (matComb._44 + matComb._34);
 
-	//// Far clipping plane
-	//mFrustrumPlanes.planes[5]._normal.x     = -(matComb._14 - matComb._13);
-	//mFrustrumPlanes.planes[5]._normal.y     = -(matComb._24 - matComb._23);
-	//mFrustrumPlanes.planes[5]._normal.z     = -(matComb._34 - matComb._33);
-	//mFrustrumPlanes.planes[5]._distance     = -(matComb._44 - matComb._43);
+	// Far clipping plane
+	_frustrumPlanes.planes[5]._normal._x     = (matComb._41 - matComb._31);
+	_frustrumPlanes.planes[5]._normal._y     = (matComb._42 - matComb._32);
+	_frustrumPlanes.planes[5]._normal._z     = (matComb._43 - matComb._33);
+	_frustrumPlanes.planes[5]._distance     = (matComb._44 - matComb._34);
 
-	//for (int i = 0; i < 6; i++)
-	//mFrustrumPlanes [i].Normalise();
+	for (int i = 0;i<6;++i) {
+		_frustrumPlanes.planes[i].normalise();
+	}
+
+	printf("\nPRINT:");
+	_frustrumPlanes.description();
+}
+
+/*
+==================
+Transforms vertices (supposedly from a quad) to world coordinates using the cached
+model-to-world transform, already loaded in GL state
+==================
+*/
+void OpenGLRender::transformVerticesToWorld(float pX1, float pY1,
+											float pX2, float pY2,
+											float pX3, float pY3,
+											float pX4, float pY4,
+											IND_Vector3 *mP1Res,
+											IND_Vector3 *mP2Res,
+											IND_Vector3 *mP3Res,
+											IND_Vector3 *mP4Res) {
+	if (!mP1Res || !mP2Res || !mP3Res || !mP4Res) {
+		return;
+	}
+
+	IND_Vector3 mP1(pX1, pY1,0.0f);
+	IND_Vector3 mP2(pX2, pY2,0.0f);
+	IND_Vector3 mP3(pX3, pY3,0.0f);
+	IND_Vector3 mP4(pX4, pY4,0.0f);
+
+	_math.transformVector3DbyMatrix4D(mP1,_modelToWorld);
+	_math.transformVector3DbyMatrix4D(mP2,_modelToWorld);
+	_math.transformVector3DbyMatrix4D(mP3,_modelToWorld);
+	_math.transformVector3DbyMatrix4D(mP4,_modelToWorld);
+
+	//What we want to do here is copy members, not pointers. We rely on operator overloading
+	*mP1Res = mP1;
+	*mP2Res = mP2;
+	*mP3Res = mP3;
+	*mP4Res = mP4;
 }
 
 /** @endcond */

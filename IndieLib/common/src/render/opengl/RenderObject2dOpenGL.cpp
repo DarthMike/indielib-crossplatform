@@ -40,7 +40,6 @@ Suite 330, Boston, MA 02111-1307 USA
 // --------------------------------------------------------------------------------
 
 void OpenGLRender::blitSurface(IND_Surface *pSu) {
-	//FIXME: DISCARD BLITTING ELEMENTS OUTSIDE BOUNDING RECTANGLE AS IN DIRECTX
 	//Enable texturing
 	glEnable(GL_TEXTURE_2D);
 
@@ -48,40 +47,57 @@ void OpenGLRender::blitSurface(IND_Surface *pSu) {
 	int mCont = 0;
     //LOOP - Blit textures in surface
 	for (int i = 0; i < pSu->getNumBlocks(); i++) {
+		IND_Vector3 mP1, mP2, mP3, mP4;
 
-        //Surface drawing
-	    glEnableClientState(GL_VERTEX_ARRAY);
-	    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-		
-		if (!pSu->isHaveGrid()) {
-			//Texture ID - If it doesn't have a grid, every other block must be blit by 
-			//a different texture in texture array ID. 
-			glBindTexture(GL_TEXTURE_2D,pSu->_surface->_texturesArray[i]);
+        transformVerticesToWorld(static_cast<float>(pSu->_surface->_vertexArray[mCont]._x), static_cast<float>(pSu->_surface->_vertexArray[mCont]._y),
+		                   static_cast<float>(pSu->_surface->_vertexArray[mCont + 1]._x), static_cast<float>(pSu->_surface->_vertexArray[mCont + 1]._y),
+		                   static_cast<float>(pSu->_surface->_vertexArray[mCont + 2]._x), static_cast<float>(pSu->_surface->_vertexArray[mCont + 2]._y),
+		                   static_cast<float>(pSu->_surface->_vertexArray[mCont + 3]._x), static_cast<float>(pSu->_surface->_vertexArray[mCont + 3]._y),
+		                   &mP1, &mP2, &mP3, &mP4);
+
+		// Calculate the bounding rectangle that we are going to try to discard
+		_math.calculateBoundingRectangle(&mP1, &mP2, &mP3, &mP4);
+
+		// ---- Discard bounding rectangle using frustum culling if possible ----
+
+		if (!_math.cullFrustumBox(mP1, mP2,_frustrumPlanes)) {
+			_numDiscardedObjects++;
 		} else {
-			//In a case of rendering a grid. Same texture (but different vertex position)
-			//is rendered all the time. In other words, different pieces of same texture are rendered
-			glBindTexture(GL_TEXTURE_2D,pSu->_surface->_texturesArray[0]);
-		}
-        //Set CLAMP for texture
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-        
-	    glVertexPointer(3, GL_FLOAT, sizeof(CUSTOMVERTEX2D), &pSu->_surface->_vertexArray[mCont]._x);
-	    glTexCoordPointer(2, GL_FLOAT, sizeof(CUSTOMVERTEX2D), &pSu->_surface->_vertexArray[mCont]._u);
-	    glDrawArrays(GL_TRIANGLE_STRIP, 0,4);	
-    	
-    #ifdef _DEBUG
-        GLenum glerror = glGetError();
-		if (glerror) {
-		    g_debug->header("OpenGL error in surface blitting ", 2);
-		}
-    #endif	
 
-	    glDisableClientState(GL_VERTEX_ARRAY);
-	    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-	    _numrenderedObjects++;
-		
-  		mCont += 4;
+			//Surface drawing
+			glEnableClientState(GL_VERTEX_ARRAY);
+			glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+			
+			if (!pSu->isHaveGrid()) {
+				//Texture ID - If it doesn't have a grid, every other block must be blit by 
+				//a different texture in texture array ID. 
+				glBindTexture(GL_TEXTURE_2D,pSu->_surface->_texturesArray[i]);
+			} else {
+				//In a case of rendering a grid. Same texture (but different vertex position)
+				//is rendered all the time. In other words, different pieces of same texture are rendered
+				glBindTexture(GL_TEXTURE_2D,pSu->_surface->_texturesArray[0]);
+			}
+			//Set CLAMP for texture
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	        
+			glVertexPointer(3, GL_FLOAT, sizeof(CUSTOMVERTEX2D), &pSu->_surface->_vertexArray[mCont]._x);
+			glTexCoordPointer(2, GL_FLOAT, sizeof(CUSTOMVERTEX2D), &pSu->_surface->_vertexArray[mCont]._u);
+			glDrawArrays(GL_TRIANGLE_STRIP, 0,4);	
+	    	
+		#ifdef _DEBUG
+			GLenum glerror = glGetError();
+			if (glerror) {
+				g_debug->header("OpenGL error in surface blitting ", 2);
+			}
+		#endif	
+
+			glDisableClientState(GL_VERTEX_ARRAY);
+			glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+			_numrenderedObjects++;
+		}
+  		
+		mCont += 4;
 	}//LOOP END
 }
 

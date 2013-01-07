@@ -289,13 +289,15 @@ public:
 				mMaxExtreme._z = pAABBMin._z;
 			}
 
-			if (pFrustrum.planes[i].distanceToPoint(mMinExtreme) > 0.0f) {
-				mResult  = 0;
+			if (pFrustrum.planes[i].distanceToPoint(mMaxExtreme) < 0.0f) {
+				mIntersect = 0;
+				mResult = 0;
 				return mResult;
 			}
 
-			if (pFrustrum.planes[i].distanceToPoint(mMaxExtreme) >= 0.0f)
+			if (pFrustrum.planes[i].distanceToPoint(mMinExtreme) < 0.0f) {
 				mIntersect = 1;
+			}
 		}
 
 		if (mIntersect)

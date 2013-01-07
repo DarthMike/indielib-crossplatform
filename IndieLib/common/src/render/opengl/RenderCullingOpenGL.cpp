@@ -95,9 +95,6 @@ void OpenGLRender::reCalculateFrustrumPlanes() {
 	for (int i = 0;i<6;++i) {
 		_frustrumPlanes.planes[i].normalise();
 	}
-
-	printf("\nPRINT:");
-	_frustrumPlanes.description();
 }
 
 /*

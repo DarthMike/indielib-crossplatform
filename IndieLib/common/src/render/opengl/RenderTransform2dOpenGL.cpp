@@ -119,7 +119,7 @@ void OpenGLRender::setCamera2d(IND_Camera2d *pCamera2d) {
 	if (pCamera2d->_zoom != 1.0f) {
         //Zoom global scale (around where camera points - screen center)
         glScalef(pCamera2d->_zoom, pCamera2d->_zoom,0);
-	}   
+	} 
 
 	//------ Lookat transform -----
 	glMultMatrixf(reinterpret_cast<GLfloat *>(&lookatmatrix));
@@ -128,9 +128,9 @@ void OpenGLRender::setCamera2d(IND_Camera2d *pCamera2d) {
     glScalef(_info._pointPixelScale, _info._pointPixelScale, 1.0f);
 
     //Store result from GL matrix back to our local matrix
-    float m[16];
-	glGetFloatv(GL_MODELVIEW_MATRIX, m);
-    _cameraMatrix.readFromArray(m);
+    float cam[16];
+	glGetFloatv(GL_MODELVIEW_MATRIX, cam);
+    _cameraMatrix.readFromArray(cam);
     
 	// ----- Projection Matrix -----
 	//Setup a 2d projection (orthogonal)
@@ -258,6 +258,8 @@ void OpenGLRender::setTransform2d(int pX,
 			totalTrans = temp;
 		}
 	}
+	//Cache the change
+	_modelToWorld = totalTrans;
 
 	//Apply the changes to the GL matrix stack (model view)
     //Camera transform
@@ -287,6 +289,9 @@ void OpenGLRender::setTransform2d(IND_Matrix &pMatrix) {
     float matrixArray [16];
     pMatrix.arrayRepresentation(matrixArray);
 	glMultMatrixf(matrixArray);
+
+	//Finally cache the change
+	_modelToWorld = pMatrix;
 }
 
 void OpenGLRender::setIdentityTransform2d ()  {
@@ -294,6 +299,9 @@ void OpenGLRender::setIdentityTransform2d ()  {
 	float camMatrixArray [16];
     _cameraMatrix.arrayRepresentation(camMatrixArray);
     glLoadMatrixf(camMatrixArray);
+
+	//Finally cache the change
+	_math.matrix4DSetIdentity(_modelToWorld);
 }
 
 void OpenGLRender::setRainbow2d(IND_Type pType,

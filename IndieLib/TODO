@@ -6,8 +6,6 @@ DIRECTX TO OPENGL (THINKING IN OPENGL ES)
 	- when features are more complete, go back to init code and add device info gathering, as done
 	  with directx render.
 	- FOR OPENGL 3.5: Delve into supporting extensions
-	- there are some public methods on original IND_Render (Now DirectX_Render)
-	  which depended in D3D types. Refactor API and include in IND_Render (and opengl implementations) ex: BlitGridLine(...)
 
 INPUT FOR IOS (MAY NEED ABSTRACTIONS)
 - Should be handled by SDL 2.0 correctly.
@@ -21,6 +19,7 @@ OPTIMIZATION AND PERFORMANCE
 - Noticed that OpenGL is just slower now than DirectX. Without measuring it's noticable in windows high-end computer.
 
 CORRECT API TO COMPLY WITH C++ CONST-CORRECTNESS
+
 SEARCH FOR CONVERSION OF FORMATS AND TRY TO REDUCE THEM. SOME ARE NOT NEEDED  EXAMPLE: FILLPIXEL(INT X, INT Y...) INTS ARE CONVERTED TO FLOATS WHEN 
         UNDERLYING STRUCTURE IS FLOATS!
 REMOVE ALL C-STYLE CASTS (<type>) TO THE C++ EQUIVALENT WITH static_cast<type>(..).

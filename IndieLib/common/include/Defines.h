@@ -1301,34 +1301,44 @@ typedef struct structBoundingCollision BOUNDING_COLLISION;
  * @ingroup Types
  */
 /**@{*/
+    
+//! Frustrum plane representation via normal and a distance from origin. Generally represented as Ax+By+Cz+D=0
 struct StructFrustrumPlane {
-		IND_Vector3 _normal;
-		float _distance;
+    IND_Vector3 _normal; 			//!<_normal The normal vector describing the plane (A,B,C)
+    float _distance;				//!<_distance The distance of the point in plane from origin (D)
+    
+    /**
+     Calculates the distance between the plane to a 3d point in space.
+     @param pPnt The point to calculate distance to
+     @return Signed distance module between point and plane
+     */
+    float distanceToPoint(IND_Vector3 &pPnt) {
+        return  _normal.dotProduct(pPnt) + _distance;
+    }
+    
+    //! Normalises the plane. Better to execute signed distance calculations
+    void normalise() {
+        float denom = 1 / sqrt((_normal._x * _normal._x) + (_normal._y * _normal._y) + (_normal._z * _normal._z));
+        _normal._x = _normal._x * denom;
+        _normal._y = _normal._y * denom;
+        _normal._z = _normal._z * denom;
+        _distance = _distance * denom;
+    }
+    
+    //! Prints itself to console.
+    void description() {
+        printf("\nFRUSTRUMPLANE: Normal: (%.5f,%.5f,%.5f) Distance:%.5f",_normal._x,_normal._y,_normal._z,_distance);
+    }
+};
 
-		float distanceToPoint(IND_Vector3 &pPnt) {
-			return  _normal.dotProduct(pPnt) + _distance;
-		}
-
-		void normalise() {
-			float denom = 1 / sqrt((_normal._x * _normal._x) + (_normal._y * _normal._y) + (_normal._z * _normal._z));
-			_normal._x = _normal._x * denom;
-			_normal._y = _normal._y * denom;
-			_normal._z = _normal._z * denom;
-			_distance = _distance * denom;
-		}
-
-		void description() {
-			printf("\nFRUSTRUMPLANE: Normal: (%.5f,%.5f,%.5f) Distance:%.5f",_normal._x,_normal._y,_normal._z,_distance);
-		}
-	};
-
-
+//! A frustrum is composed of 6 planes in a bounding volume.
 struct StructFrustrum {
-	StructFrustrumPlane planes[6];
+	StructFrustrumPlane _planes[6];			//!<planes The planes consisting the frustrum
 
+    //! Prints itself to console.
 	void description() {
 		for (int i = 0;i < 6;++i) {
-			planes[i].description();
+			_planes[i].description();
 		}
 	}
 };

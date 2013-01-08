@@ -265,7 +265,7 @@ public:
 		IND_Vector3 mMinExtreme, mMaxExtreme;
 
 		for (unsigned int i = 0; i < 6; i++) {
-			if (pFrustrum.planes[i]._normal._x >= 0.0f) {
+			if (pFrustrum._planes[i]._normal._x >= 0.0f) {
 				mMinExtreme._x = pAABBMin._x;
 				mMaxExtreme._x = pAABBMax._x;
 			} else {
@@ -273,7 +273,7 @@ public:
 				mMaxExtreme._x = pAABBMin._x;
 			}
 
-			if (pFrustrum.planes[i]._normal._y >= 0.0f) {
+			if (pFrustrum._planes[i]._normal._y >= 0.0f) {
 				mMinExtreme._y = pAABBMin._y;
 				mMaxExtreme._y = pAABBMax._y;
 			} else {
@@ -281,7 +281,7 @@ public:
 				mMaxExtreme._y = pAABBMin._y;
 			}
 
-			if (pFrustrum.planes[i]._normal._z >= 0.0f) {
+			if (pFrustrum._planes[i]._normal._z >= 0.0f) {
 				mMinExtreme._z = pAABBMin._z;
 				mMaxExtreme._z = pAABBMax._z;
 			} else {
@@ -289,13 +289,13 @@ public:
 				mMaxExtreme._z = pAABBMin._z;
 			}
 
-			if (pFrustrum.planes[i].distanceToPoint(mMaxExtreme) < 0.0f) {
+			if (pFrustrum._planes[i].distanceToPoint(mMaxExtreme) < 0.0f) {
 				mIntersect = 0;
 				mResult = 0;
 				return mResult;
 			}
 
-			if (pFrustrum.planes[i].distanceToPoint(mMinExtreme) < 0.0f) {
+			if (pFrustrum._planes[i].distanceToPoint(mMinExtreme) < 0.0f) {
 				mIntersect = 1;
 			}
 		}

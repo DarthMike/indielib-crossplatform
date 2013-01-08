@@ -597,7 +597,7 @@
 					"\"/usr/X11/include\"",
 				);
 				INCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_TEST_FLAGS = "";
@@ -634,7 +634,7 @@
 					"\"$(SRCROOT)/../../common/src\"",
 					"\"/usr/X11/include\"",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_LDFLAGS = "";
 				OTHER_TEST_FLAGS = "";
 				SDKROOT = macosx;

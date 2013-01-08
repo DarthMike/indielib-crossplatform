@@ -441,6 +441,7 @@
 					"\"$(SRCROOT)/../../tests\"",
 					"\"$(SRCROOT)/../../common\"",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 			};
 			name = Debug;
 		};
@@ -452,6 +453,7 @@
 					"\"$(SRCROOT)/../../tests\"",
 					"\"$(SRCROOT)/../../common\"",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 			};
 			name = Release;
 		};
@@ -483,7 +485,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "IndielibTests/IndielibTests-Info.plist";
 				INSTALL_PATH = /mac;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -513,7 +514,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "IndielibTests/IndielibTests-Info.plist";
 				INSTALL_PATH = /mac;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;

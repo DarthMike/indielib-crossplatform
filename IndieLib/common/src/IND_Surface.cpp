@@ -509,7 +509,9 @@ Init at construction time
 ==================
 */
 void IND_Surface::init() {
-    _surface = new SURFACE(1,1); // TODO: MFK: valgrind states that this line generates garbage in basic tutorial 11
+    if (!_surface) {
+    	_surface = new SURFACE(1,1); // TODO: MFK: valgrind states that this line generates garbage in basic tutorial 11
+    }
 }
 
 /*
@@ -565,19 +567,18 @@ void IND_Surface::freeTextureData() {
     // Free textures
     int numTextures (getNumTextures());
     
-    if(0 == numTextures)
-        return;
-
-	//Free all texture handles from renderer
+    if(0 != numTextures) {
+        //Free all texture handles from renderer
 #ifdef INDIERENDER_DIRECTX
-    //LOOP - All textures
-	for (int i = 0; i < numTextures; i++) {
-		_surface->_texturesArray [i]._texture->Release();	
-	}//LOOP END
+        //LOOP - All textures
+        for (int i = 0; i < numTextures; i++) {
+            _surface->_texturesArray [i]._texture->Release();
+        }//LOOP END
 #endif
 #ifdef INDIERENDER_OPENGL
 		glDeleteTextures(numTextures,_surface->_texturesArray);
 #endif
+	}
 
     _surface->_attributes._isHaveSurface = 0;
     _surface->_attributes._blocksX = 0;

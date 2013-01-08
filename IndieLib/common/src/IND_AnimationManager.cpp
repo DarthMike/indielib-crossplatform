@@ -451,12 +451,9 @@ bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, const ch
 		return 0;
 	}
 
-	pNewAnimation->_vectorFrames = new vector <IND_Frame *>;
-
 	// Parse all the frames
 	while (mXFrame) {
 		IND_Frame *mNewFrame = new IND_Frame;
-		mNewFrame->_frame._listBoundingCollision = new list <BOUNDING_COLLISION *>; // TODO: MFK: valgrind states that this line generates garbage in basic tutorial 11
 
 		// Frame name attribute
 		if (mXFrame->Attribute("name")) {
@@ -539,8 +536,6 @@ bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, const ch
 		delete mXmlDoc;
 		return 0;
 	}
-
-	pNewAnimation->_animation._listSequences = new  vector <IND_Sequence *>;
 
 	// Parse all the sequences
 	while (mXSequence) {
@@ -683,39 +678,7 @@ bool IND_AnimationManager::remove(IND_Animation *pAn, bool pType) {
 		DISPOSE(*mVectorFramesIter);
 	}
 
-	// Clear frame vector
-	pAn->_vectorFrames->clear();
-
-	// ----- Free frames-----
-
-	for (int m = 0; m < pAn->getNumSequences(); m++) {
-		// Free all the pointers to FRAME_TIME
-		vector <IND_Sequence::FRAME_TIME *>::iterator mVectorFrameTimeIter;
-		for (mVectorFrameTimeIter  = (*pAn->_animation._listSequences) [m]->_sequence._listFrames->begin();
-		        mVectorFrameTimeIter  != (*pAn->_animation._listSequences) [m]->_sequence._listFrames->end();
-		        mVectorFrameTimeIter++) {
-			// Free pointer
-			DISPOSE(*mVectorFrameTimeIter);
-		}
-
-		// Free frame list of each sequence
-		(*pAn->_animation._listSequences) [m]->_sequence._listFrames->clear();
-	}
-
-	// ----- Free sequences -----
-
-	// Free all the pointers to SEQUENCE
-	vector <IND_Sequence *>::iterator mVectorSequenceIter;
-	for (mVectorSequenceIter  = pAn->_animation._listSequences->begin();
-	        mVectorSequenceIter  != pAn->_animation._listSequences->end();
-	        mVectorSequenceIter++) {
-		// Free pointer
-		DISPOSE(*mVectorSequenceIter);
-	}
-
-	// Free sequence list
-	pAn->_animation._listSequences->clear();
-
+    
 	if (pType) return 1;
 
 	// Quit from list

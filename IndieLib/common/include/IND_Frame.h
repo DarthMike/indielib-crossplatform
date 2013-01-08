@@ -47,14 +47,16 @@ private:
 		int _offsetX;
 		int _offsetY;
 		list <BOUNDING_COLLISION *> *_listBoundingCollision;
-		structFrame() {
+		structFrame() : _name(NULL), _image(NULL), _surface(NULL), _offsetX(0), _offsetY(0),_listBoundingCollision(NULL){
 			_name       = new char [MAX_TOKEN];
 			_image      = 0;
 			_surface    = 0;
 			_offsetX = _offsetY = 0;
+            _listBoundingCollision = new list<BOUNDING_COLLISION*>;
 		}
         ~structFrame() {
             DISPOSEARRAY(_name);
+            DISPOSE(_listBoundingCollision);
         }
 	};
 	typedef struct structFrame A_FRAME;

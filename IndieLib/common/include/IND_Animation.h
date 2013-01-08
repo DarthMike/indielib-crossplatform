@@ -25,10 +25,10 @@ Suite 330, Boston, MA 02111-1307 USA
 
 // ----- Includes -----
 #include <vector>
+#include "IND_Sequence.h"
 
 // ----- Forward Declarations -----
 class IND_Frame;
-class IND_Sequence;
 class IND_Image;
 class IND_Frame;
 class IND_Surface;
@@ -97,9 +97,13 @@ The  @b tokens or <b>keywords</b> of a @b IndieLib animation file are:
 class LIB_EXP IND_Animation {
 public:
 
-	IND_Animation() :
-			_vectorFrames(NULL) 
-	  {}
+	IND_Animation() : _vectorFrames(NULL) {
+      	_vectorFrames = new vector <IND_Frame *>;
+    }
+    
+    ~IND_Animation() {
+        DISPOSE(_vectorFrames);
+    }
 	// ----- Public gets ------
 
 	// ----- Relative to lobal animation ------
@@ -132,7 +136,7 @@ public:
 	//! This function returns the name, in a string of characters, of the sequence received as a paramater.
 	const char* const getName(int pSequence);
 
-	// NOT DOCUMENTED
+	//FIXME: NOT DOCUMENTED
 	int                     getActualFramePos(int pSequence);
 	int                     getActualFrameTime(int pSequence);
 	int                     getActualOffsetX(int pSequence);
@@ -167,9 +171,23 @@ private:
 			_sumSequences(0),
 			_listSequences(NULL) {
                 _name = new char [MAX_TOKEN];
+                _listSequences = new  vector <IND_Sequence *>;
             }
         ~structAnimation() {
             DISPOSEARRAY(_name);
+            
+            // ----- Free sequences for each animation -----
+            // Free all the pointers to SEQUENCE
+            vector <IND_Sequence *>::iterator mVectorSequenceIter;
+            for (mVectorSequenceIter  = _listSequences->begin();
+                 mVectorSequenceIter  != _listSequences->end();
+                 mVectorSequenceIter++) {
+                // Free pointer
+                DISPOSE(*mVectorSequenceIter);
+            }
+            
+            // Free sequence list
+            DISPOSE(_listSequences);
         }
 		
 	};

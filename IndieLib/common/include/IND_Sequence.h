@@ -43,9 +43,7 @@ private:
 	struct structFrameTime {
 		int _pos;                           // Position in vector frames
 		int _time;                          // Frame duration
-		structFrameTime() {
-			_pos = 0;
-			_time = 150;
+		structFrameTime() :_pos(0), _time(150) {
 		}
 	};
 	typedef struct structFrameTime FRAME_TIME;
@@ -70,6 +68,19 @@ private:
         
         ~structSequence() {
             DISPOSEARRAY(_name);
+            
+            // ----- Free frames in each sequence -----
+            for (int m = 0; m < _numFrames; m++) {
+                // Free all the pointers to FRAME_TIME
+                vector <IND_Sequence::FRAME_TIME *>::iterator mVectorFrameTimeIter;
+                for (mVectorFrameTimeIter  = _listFrames->begin();
+                     mVectorFrameTimeIter  != _listFrames->end();
+                     mVectorFrameTimeIter++) {
+                    // Free frame of each sequence
+                    DISPOSE(*mVectorFrameTimeIter);
+                }
+            }
+            DISPOSE(_listFrames);
         }
 	};
 	typedef struct structSequence SEQUENCE;

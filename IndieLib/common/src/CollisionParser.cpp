@@ -122,7 +122,10 @@ bool CollisionParser::parseCollision(list <BOUNDING_COLLISION *> *pBList, const 
 	TiXmlDocument   *mXmlDoc = new TiXmlDocument(pFile);
 
 	// Fatal error, cannot load
-	if (!mXmlDoc->LoadFile()) return 0;
+	if (!mXmlDoc->LoadFile()) {
+        DISPOSE(mXmlDoc);
+        return 0;
+    }
 
 	// Document root
 	TiXmlElement *mXBoundingAreas = 0;

@@ -392,12 +392,14 @@ bool IND_AnimationManager::calculateAxis(IND_Animation *pAn,
  */
 IND_Image *IND_AnimationManager::loadImage(const char *pName) {
 	IND_Image *mNewImage = new IND_Image;
-	if (!_imageManager->add(mNewImage, pName)){
+    
+    bool noError = _imageManager->add(mNewImage, pName);
+    
+    if (!noError) {
 		DISPOSE(mNewImage);
-		return 0;
-	}
+    }
 	
-	return mNewImage;
+	return noError ? mNewImage : NULL;
 }
 
 
@@ -410,7 +412,10 @@ bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, const ch
 	TiXmlDocument   *mXmlDoc = new TiXmlDocument(pAnimationName);
 
 	// Fatal error, cannot load
-	if (!mXmlDoc->LoadFile()) return 0;
+	if (!mXmlDoc->LoadFile()) {
+        DISPOSE(mXmlDoc);
+     	return 0;
+    }
 
 	// Document root
 	TiXmlElement *mXAnimation = 0;

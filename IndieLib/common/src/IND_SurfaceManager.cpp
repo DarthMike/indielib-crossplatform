@@ -155,20 +155,23 @@ bool IND_SurfaceManager::add(IND_Surface    *pNewSurface,
                              IND_Quality     pQuality) {
 	// Loads the image
 	IND_Image *mNewImage = new IND_Image();
-	if (!_imageManager->add(mNewImage, pName))
-		return 0;
+
+    bool noError(true);
+    noError = _imageManager->add(mNewImage, pName);
 
 	// Surface creation
-	if (!addMain(pNewSurface, mNewImage, 0, 0, pType, pQuality)) {
-		DISPOSE(mNewImage);
-		_imageManager->remove(mNewImage);
-		return 0;
+	if (noError) {
+        addMain(pNewSurface, mNewImage, 0, 0, pType, pQuality);
 	}
 
 	// Free image
+    if (!noError) {
+        DISPOSE(mNewImage);
+    }
+    
 	_imageManager->remove(mNewImage);
 
-	return 1;
+	return noError;
 }
 
 
@@ -223,25 +226,30 @@ bool IND_SurfaceManager::add(IND_Surface    *pNewSurface,
                              BYTE            pR,
                              BYTE            pG,
                              BYTE            pB) {
-	// Image loading
-	IND_Image *mNewImage = new IND_Image;
-	if (!_imageManager->add(mNewImage, pName))
-		return 0;
+    // Loads the image
+	IND_Image *mNewImage = new IND_Image();
+    
+    bool noError(true);
+    noError = _imageManager->add(mNewImage, pName);
 
-	// Color key
-	mNewImage->setAlpha(pR, pG, pB);
-
+    // Color key
+    if (noError) {
+        mNewImage->setAlpha(pR, pG, pB);
+    }
+    
 	// Surface creation
-	if (!addMain(pNewSurface, mNewImage, 0, 0, pType, pQuality)) {
-		DISPOSE(mNewImage);
-		_imageManager->remove(mNewImage);
-		return 0;
+	if (noError) {
+        addMain(pNewSurface, mNewImage, 0, 0, pType, pQuality);
 	}
-
+    
 	// Free image
+    if (!noError) {
+        DISPOSE(mNewImage);
+    }
+    
 	_imageManager->remove(mNewImage);
-
-	return 1;
+    
+	return noError;
 }
 
 
@@ -268,22 +276,25 @@ bool IND_SurfaceManager::add(IND_Surface    *pNewSurface,
                              int             pBlockSize,
                              IND_Type        pType,
                              IND_Quality     pQuality) {
-	IND_Image *mNewImage = new IND_Image;
-	if (!_imageManager->add(mNewImage, pName)) {
-		DISPOSE(mNewImage);
-		_imageManager->remove(mNewImage);
-		return 0;
+    // Loads the image
+	IND_Image *mNewImage = new IND_Image();
+    
+    bool noError(true);
+    noError = _imageManager->add(mNewImage, pName);
+    
+	// Surface creation
+	if (noError) {
+        addMain(pNewSurface, mNewImage, pBlockSize, pBlockSize, pType, pQuality);
 	}
-
-	if (!addMain(pNewSurface, mNewImage, pBlockSize, pBlockSize, pType, pQuality)) {
-		DISPOSE(mNewImage);
-		_imageManager->remove(mNewImage);
-		return 0;
-	}
-
+    
+	// Free image
+    if (!noError) {
+        DISPOSE(mNewImage);
+    }
+    
 	_imageManager->remove(mNewImage);
-
-	return 1;
+    
+	return noError;
 }
 
 
@@ -341,28 +352,30 @@ bool IND_SurfaceManager::add(IND_Surface    *pNewSurface,
                              BYTE pR,
                              BYTE pG,
                              BYTE pB) {
-	// Image loading
-	IND_Image *mNewImage = new IND_Image;
-	if (!_imageManager->add(mNewImage, pName)) {
-		DISPOSE(mNewImage);
-		_imageManager->remove(mNewImage);
-		return 0;
-	}
-
-	// Color key
-	mNewImage->setAlpha(pR, pG, pB);
-
+    // Loads the image
+	IND_Image *mNewImage = new IND_Image();
+    
+    bool noError(true);
+    noError = _imageManager->add(mNewImage, pName);
+    
+    // Color key
+    if (noError) {
+        mNewImage->setAlpha(pR, pG, pB);
+    }
+    
 	// Surface creation
-	if (!addMain(pNewSurface, mNewImage, pBlockSize, pBlockSize, pType, pQuality)) {
-		DISPOSE(mNewImage);
-		_imageManager->remove(mNewImage);
-		return 0;
+	if (noError) {
+        addMain(pNewSurface, mNewImage, pBlockSize, pBlockSize, pType, pQuality);
 	}
-
+    
 	// Free image
+    if (!noError) {
+        DISPOSE(mNewImage);
+    }
+    
 	_imageManager->remove(mNewImage);
-
-	return 1;
+    
+	return noError;
 }
 
 /**

@@ -112,20 +112,24 @@ bool IND_FontManager::add(IND_Font		*pNewFont,
                           IND_Quality	pQuality) {
 	// Image loading
 	IND_Image *mNewImage = new IND_Image;
-	if (!_imageManager->add(mNewImage, pName))
-		return 0;
+    
+    bool noError(true);
+    noError = _imageManager->add(mNewImage, pName);
 
 	// IND_Surface creation
-	if (!add(pNewFont, mNewImage, pFile, pType, pQuality)) {
-		DISPOSE(mNewImage);
-		_imageManager->remove(mNewImage);
-		return 0;
-	}
+	if (noError) {
+        add(pNewFont, mNewImage, pFile, pType, pQuality);
+    }
 
 	// Free the image
+    if (!noError) {
+        DISPOSE(mNewImage);
+    }
+    
 	_imageManager->remove(mNewImage);
 
-	return 1;
+    
+	return noError;
 }
 
 /**
@@ -270,7 +274,10 @@ bool IND_FontManager::parseFont(IND_Font *pNewFont, char *pFontName) {
 	TiXmlDocument   *mXmlDoc = new TiXmlDocument(pFontName);
 
 	// Fatal error, cannot load
-	if (!mXmlDoc->LoadFile()) return 0;
+	if (!mXmlDoc->LoadFile()) {
+        DISPOSE(mXmlDoc);
+     	return 0;
+    }
 
 	// Document root
 	TiXmlElement *mXFont = 0;

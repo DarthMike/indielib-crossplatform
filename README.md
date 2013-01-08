@@ -59,3 +59,8 @@ This library bases on several others to achieve some of it's functionality:
 
 # Building the library
 Instructions to build the library are available on the [wiki](http://www.indielib.com/wiki/index.php?title=Building_IndieLib) page.
+
+# Roadmap
+Roadmap is updated in indielib [wiki page](http://www.indielib.com/wiki/index.php?title=IndieLib_developer_FAQ). All tasks have a corresponding issue in the issues tab in GitHub.
+
+

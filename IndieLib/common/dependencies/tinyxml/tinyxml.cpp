@@ -1138,8 +1138,12 @@ void TiXmlDocument::CopyTo( TiXmlDocument* target ) const
 TiXmlNode* TiXmlDocument::Clone() const
 {
 	TiXmlDocument* clone = new TiXmlDocument();
-	if ( !clone )
+	if ( !clone ) {
+        //MIGUEL HACK - FIX MEM. LEAK IN CASE OF ERROR IN TiXML
+        delete clone;
+        //MIGUEL HACK - END
 		return 0;
+    }
 
 	CopyTo( clone );
 	return clone;

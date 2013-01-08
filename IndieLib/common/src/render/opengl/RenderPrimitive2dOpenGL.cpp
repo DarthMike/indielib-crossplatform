@@ -425,7 +425,7 @@ void OpenGLRender::setForPrimitive(BYTE pA, bool pResetTransform) {
 Blits a bounding line
 ==================
 */
- void OpenGLRender::BlitGridLine (int pPosX1, int pPosY1, int pPosX2, int pPosY2,  BYTE pR, BYTE pG, BYTE pB, BYTE pA)
+ void OpenGLRender::blitGridLine (int pPosX1, int pPosY1, int pPosX2, int pPosY2,  BYTE pR, BYTE pG, BYTE pB, BYTE pA)
 {	
 	float r(static_cast<float>(pR) / 255.0f), g(static_cast<float>(pG) / 255.0f), b(static_cast<float>(pB) / 255.0f), a(static_cast<float>(pA) / 255.0f);
 	// Filling pixels
@@ -454,8 +454,6 @@ Blits a bounding line
 #endif
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_COLOR_ARRAY);	
-
-	//NOTE: Not called mvTransformResetState(); as it is done in BlitGrid public API method
 }
 
 /*
@@ -463,18 +461,16 @@ Blits a bounding line
 Blits quad of the grid of an IND_Surface
 ==================
 */
-void OpenGLRender::BlitGridQuad    (int pAx, int pAy,
+void OpenGLRender::blitGridQuad    (int pAx, int pAy,
                                    int pBx, int pBy,
                                    int pCx, int pCy,
                                    int pDx, int pDy,
                                    BYTE pR, BYTE pG, BYTE pB, BYTE pA)
 {
-	BlitGridLine (pAx, pAy, pBx, pBy, pR, pG, pB, pA);
-	BlitGridLine (pBx, pBy, pDx, pDy, pR, pG, pB, pA);
-	BlitGridLine (pDx, pDy, pCx, pCy, pR, pG, pB, pA);
-	BlitGridLine (pCx, pCy, pAx, pAy, pR, pG, pB, pA);
-
-	//NOTE: Not called mvTransformResetState(); as it is done in BlitGrid public API method
+	blitGridLine (pAx, pAy, pBx, pBy, pR, pG, pB, pA);
+	blitGridLine (pBx, pBy, pDx, pDy, pR, pG, pB, pA);
+	blitGridLine (pDx, pDy, pCx, pCy, pR, pG, pB, pA);
+	blitGridLine (pCx, pCy, pAx, pAy, pR, pG, pB, pA);
 }
 
 /*
@@ -536,7 +532,7 @@ void OpenGLRender::blitCollisionLine(int pPosX1, int pPosY1, int pPosX2, int pPo
 	//Transform with supplied matrix
 	setTransform2d(pIndWorldMatrix);
 	//Blit the line 
-	BlitGridLine (pPosX1, pPosY1, pPosX2, pPosY2,  pR, pG, pB, pA);
+	blitGridLine (pPosX1, pPosY1, pPosX2, pPosY2,  pR, pG, pB, pA);
 }
 
 /** @endcond */

@@ -397,13 +397,13 @@ private:
 	void fillVertex2d(CUSTOMVERTEX2D *pVertex2d, float pX, float pY, float pU, float pV);
 	void setForPrimitive(BYTE pA, bool pResetTransform);
 
-	void BlitGridQuad    (int pAx, int pAy,
+	void blitGridQuad    (int pAx, int pAy,
                           int pBx, int pBy,
                           int pCx, int pCy,
                           int pDx, int pDy,
 						  BYTE pR, BYTE pG, BYTE pB, BYTE pA);
 
-	void BlitGridLine (int pPosX1, int pPosY1, int pPosX2, int pPosY2,  BYTE pR, BYTE pG, BYTE pB, BYTE pA);
+	void blitGridLine (int pPosX1, int pPosY1, int pPosX2, int pPosY2,  BYTE pR, BYTE pG, BYTE pB, BYTE pA);
 
 	//Text rendering helpers
 	int getLongInPixels(IND_Font *pFo, char *pText, int pPos, int pOffset);

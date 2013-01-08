@@ -40,30 +40,30 @@ Suite 330, Boston, MA 02111-1307 USA
 // --------------------------------------------------------------------------------
 
 void OpenGLRender::blitSurface(IND_Surface *pSu) {
-	//Enable texturing
-	glEnable(GL_TEXTURE_2D);
-
     // ----- Blitting -----
 	int mCont = 0;
     //LOOP - Blit textures in surface
 	for (int i = 0; i < pSu->getNumBlocks(); i++) {
+        //Get vertex world coords, to perform frustrum culling test in world coords
 		IND_Vector3 mP1, mP2, mP3, mP4;
-
         transformVerticesToWorld(static_cast<float>(pSu->_surface->_vertexArray[mCont]._x), static_cast<float>(pSu->_surface->_vertexArray[mCont]._y),
 		                   static_cast<float>(pSu->_surface->_vertexArray[mCont + 1]._x), static_cast<float>(pSu->_surface->_vertexArray[mCont + 1]._y),
 		                   static_cast<float>(pSu->_surface->_vertexArray[mCont + 2]._x), static_cast<float>(pSu->_surface->_vertexArray[mCont + 2]._y),
 		                   static_cast<float>(pSu->_surface->_vertexArray[mCont + 3]._x), static_cast<float>(pSu->_surface->_vertexArray[mCont + 3]._y),
 		                   &mP1, &mP2, &mP3, &mP4);
 
-		// Calculate the bounding rectangle that we are going to try to discard
+		//Calculate the bounding rectangle that we are going to try to discard
 		_math.calculateBoundingRectangle(&mP1, &mP2, &mP3, &mP4);
 
-		// ---- Discard bounding rectangle using frustum culling if possible ----
+		//Discard bounding rectangle using frustum culling if possible
 
 		if (!_math.cullFrustumBox(mP1, mP2,_frustrumPlanes)) {
 			_numDiscardedObjects++;
 		} else {
 
+            //Enable texturing
+            glEnable(GL_TEXTURE_2D);
+            
 			//Surface drawing
 			glEnableClientState(GL_VERTEX_ARRAY);
 			glEnableClientState(GL_TEXTURE_COORD_ARRAY);
@@ -106,14 +106,25 @@ void OpenGLRender::blitGrid(IND_Surface *pSu, BYTE pR, BYTE pG, BYTE pB, BYTE pA
 
 	//LOOP - All texture blocks of the surface
 	for (int i = 0; i < pSu->getNumBlocks() * 4; i += 4) {
-
-		// FIXME: ---- Discard bounding rectangle using frustum culling if possible ----
-
-			BlitGridQuad((int) pSu->_surface->_vertexArray[i]._x, (int) pSu->_surface->_vertexArray[i]._y,
+        //Get vertex world coords, to perform frustrum culling test in world coords
+		IND_Vector3 mP1, mP2, mP3, mP4;
+        transformVerticesToWorld(static_cast<float>(pSu->_surface->_vertexArray[i]._x), static_cast<float>(pSu->_surface->_vertexArray[i]._y),
+                                 static_cast<float>(pSu->_surface->_vertexArray[i + 1]._x), static_cast<float>(pSu->_surface->_vertexArray[i + 1]._y),
+                                 static_cast<float>(pSu->_surface->_vertexArray[i + 2]._x), static_cast<float>(pSu->_surface->_vertexArray[i + 2]._y),
+                                 static_cast<float>(pSu->_surface->_vertexArray[i + 3]._x), static_cast<float>(pSu->_surface->_vertexArray[i + 3]._y),
+                                 &mP1, &mP2, &mP3, &mP4);
+        
+        //Calculate the bounding rectangle that we are going to try to discard
+		_math.calculateBoundingRectangle(&mP1, &mP2, &mP3, &mP4);
+        
+        //Discard bounding rectangle using frustum culling if possible
+        if (_math.cullFrustumBox(mP1, mP2,_frustrumPlanes)) {
+			blitGridQuad((int) pSu->_surface->_vertexArray[i]._x, (int) pSu->_surface->_vertexArray[i]._y,
 			             (int) pSu->_surface->_vertexArray[i + 1]._x, (int) pSu->_surface->_vertexArray[i + 1]._y,
 			             (int) pSu->_surface->_vertexArray[i + 2]._x, (int) pSu->_surface->_vertexArray[i + 2]._y,
 			             (int) pSu->_surface->_vertexArray[i + 3]._x, (int) pSu->_surface->_vertexArray[i + 3]._y,
 			             pR, pG, pB, pA);
+        }
 		
 	}//LOOP END
 
@@ -126,8 +137,7 @@ void OpenGLRender::blitRegionSurface(IND_Surface *pSu,
                                      int pWidth,
                                      int pHeight) {
 
-	//FIXME: DISCARD BLITTING ELEMENTS OUTSIDE BOUNDING RECTANGLE AS IN DIRECTX
-	// If the region is the same as the image area, we blit normally
+	//If the region is the same as the image area, we blit normally
 	if (!pX && !pY && (pWidth == pSu->getWidth()) && (pHeight == pSu->getHeight())) {
 		blitSurface(pSu);
 	} else {
@@ -140,10 +150,6 @@ void OpenGLRender::blitRegionSurface(IND_Surface *pSu,
 		}
 		
 		if (correctParams) {
-			//Enable texturing
-			glEnable(GL_TEXTURE_2D);
-
-			// ----- Blitting -----
 			//Only draws first texture block in texture
 			// Prepare the quad that is going to be blitted
 			// Calculates the position and mapping coords for that block
@@ -159,28 +165,46 @@ void OpenGLRender::blitRegionSurface(IND_Surface *pSu,
 			fillVertex2d(&_vertices2d [2], 0.0f, 0.0f , (x/bWidth), (1.0f - ((y+ spareY) / bHeight)));
 			fillVertex2d(&_vertices2d [3], 0.0f, height, (x/bWidth), (1.0f - (y + height + spareY) / bHeight));
 		        
-			//Surface drawing
-			glEnableClientState(GL_VERTEX_ARRAY);
-			glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-			glBindTexture(GL_TEXTURE_2D,pSu->_surface->_texturesArray[0]);
-            //Set CLAMP for texture
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+        	//Get vertex world coords, to perform frustrum culling test in world coords
+            IND_Vector3 mP1, mP2, mP3, mP4;
+            transformVerticesToWorld(_vertices2d[0]._x, _vertices2d[0]._y,
+                                     _vertices2d[1]._x, _vertices2d[1]._y,
+                                     _vertices2d[2]._x, _vertices2d[2]._y,
+                                     _vertices2d[3]._x, _vertices2d[3]._y,
+                                     &mP1, &mP2, &mP3, &mP4);
             
-			glVertexPointer(3, GL_FLOAT, sizeof(CUSTOMVERTEX2D), &_vertices2d[0]._x);
-			glTexCoordPointer(2, GL_FLOAT, sizeof(CUSTOMVERTEX2D), &_vertices2d[0]._u);
-			glDrawArrays(GL_TRIANGLE_STRIP, 0,4);	
+            //Calculate the bounding rectangle that we are going to try to discard
+            _math.calculateBoundingRectangle(&mP1, &mP2, &mP3, &mP4);
+            
+            //Discard bounding rectangle using frustum culling if possible
+            if (!_math.cullFrustumBox(mP1, mP2, _frustrumPlanes)) {
+                _numDiscardedObjects++;
+            } else {
+                //Enable texturing
+                glEnable(GL_TEXTURE_2D);
+                //Surface drawing
+                glEnableClientState(GL_VERTEX_ARRAY);
+                glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+                glBindTexture(GL_TEXTURE_2D,pSu->_surface->_texturesArray[0]);
+                //Set CLAMP for texture
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+                
+                glVertexPointer(3, GL_FLOAT, sizeof(CUSTOMVERTEX2D), &_vertices2d[0]._x);
+                glTexCoordPointer(2, GL_FLOAT, sizeof(CUSTOMVERTEX2D), &_vertices2d[0]._u);
+                glDrawArrays(GL_TRIANGLE_STRIP, 0,4);
 		    	
-			#ifdef _DEBUG
+#ifdef _DEBUG
 				GLenum glerror = glGetError();
 				if (glerror) {
 					g_debug->header("OpenGL error in surface blitting ", 2);
 				}
-			#endif	
-
-			glDisableClientState(GL_VERTEX_ARRAY);
-			glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-			_numrenderedObjects++;
+#endif
+                
+                glDisableClientState(GL_VERTEX_ARRAY);
+                glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+                _numrenderedObjects++;
+            }
 		}
 		
 	}
@@ -193,16 +217,12 @@ bool OpenGLRender::blitWrapSurface(IND_Surface *pSu,
                                    int pHeight,
                                    float pUDisplace,
                                    float pVDisplace) {
-	//FIXME: DISCARD BLITTING ELEMENTS OUTSIDE BOUNDING RECTANGLE AS IN DIRECTX
    bool correctParams = true;
    if (pSu->getNumTextures() != 1) {
 		correctParams = false; 
    }
 
    if (correctParams) {
-		//Enable texturing
-		glEnable(GL_TEXTURE_2D);
-
 		_numrenderedObjects++;
 
 		// Prepare the quad that is going to be blitted
@@ -220,18 +240,36 @@ bool OpenGLRender::blitWrapSurface(IND_Surface *pSu,
 		//Lower-left
 		fillVertex2d(&_vertices2d [3], 0.0f, height,-pUDisplace, -v + pVDisplace);
 
-		//Surface drawing
-		glEnableClientState(GL_VERTEX_ARRAY);
-		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-		glBindTexture(GL_TEXTURE_2D,pSu->_surface->_texturesArray[0]);
-        //Set wrap for this texture
-        glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
-        glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_REPEAT);
+       //Get vertex world coords, to perform frustrum culling test in world coords
+       IND_Vector3 mP1, mP2, mP3, mP4;
+       transformVerticesToWorld(_vertices2d[0]._x, _vertices2d[0]._y,
+                                _vertices2d[1]._x, _vertices2d[1]._y,
+                                _vertices2d[2]._x, _vertices2d[2]._y,
+                                _vertices2d[3]._x, _vertices2d[3]._y,
+                                &mP1, &mP2, &mP3, &mP4);
        
-		glVertexPointer(3, GL_FLOAT, sizeof(CUSTOMVERTEX2D), &_vertices2d[0]._x);
-		glTexCoordPointer(2, GL_FLOAT, sizeof(CUSTOMVERTEX2D), &_vertices2d[0]._u);
-		glDrawArrays(GL_TRIANGLE_STRIP, 0,4);
-
+       //Calculate the bounding rectangle that we are going to try to discard
+       _math.calculateBoundingRectangle(&mP1, &mP2, &mP3, &mP4);
+       
+       //Discard bounding rectangle using frustum culling if possible
+       if (!_math.cullFrustumBox(mP1, mP2, _frustrumPlanes)) {
+           _numDiscardedObjects++;
+       } else {
+           //Enable texturing
+           glEnable(GL_TEXTURE_2D);
+           //Surface drawing
+           glEnableClientState(GL_VERTEX_ARRAY);
+           glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+           glBindTexture(GL_TEXTURE_2D,pSu->_surface->_texturesArray[0]);
+           //Set wrap for this texture
+           glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
+           glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_REPEAT);
+           
+           glVertexPointer(3, GL_FLOAT, sizeof(CUSTOMVERTEX2D), &_vertices2d[0]._x);
+           glTexCoordPointer(2, GL_FLOAT, sizeof(CUSTOMVERTEX2D), &_vertices2d[0]._u);
+           glDrawArrays(GL_TRIANGLE_STRIP, 0,4);
+           _numrenderedObjects++;
+       }
    }
 
 	return correctParams;

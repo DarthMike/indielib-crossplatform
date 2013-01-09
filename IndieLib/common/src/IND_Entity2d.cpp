@@ -46,6 +46,13 @@ IND_Entity2d::IND_Entity2d() : _text(NULL),  _listBoundingCollision(NULL) {
 
 
 IND_Entity2d::~IND_Entity2d() {
+    if (_listBoundingCollision) {
+        list<BOUNDING_COLLISION*>::iterator itr;
+        for (itr = _listBoundingCollision->begin(); itr != _listBoundingCollision->end();++itr) {
+            delete  (*itr);
+        }
+    }
+    
 	DISPOSE(_listBoundingCollision);
     DISPOSEARRAY(_text);
 }

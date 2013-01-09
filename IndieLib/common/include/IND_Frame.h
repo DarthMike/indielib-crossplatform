@@ -56,6 +56,10 @@ private:
 		}
         ~structFrame() {
             DISPOSEARRAY(_name);
+            list<BOUNDING_COLLISION*>::iterator itr;
+            for (itr = _listBoundingCollision->begin(); itr != _listBoundingCollision->end();++itr) {
+                delete  (*itr);
+            }
             DISPOSE(_listBoundingCollision);
         }
 	};

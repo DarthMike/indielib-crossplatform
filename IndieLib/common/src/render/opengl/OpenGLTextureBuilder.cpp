@@ -79,8 +79,8 @@ bool OpenGLTextureBuilder::createNewTexture(IND_Surface  *pNewSurface,
 	pNewSurface->_surface->_attributes._blocksY          = mI._blocksY;
 	pNewSurface->_surface->_attributes._spareX           = mI._spareX;
 	pNewSurface->_surface->_attributes._spareY           = mI._spareY;
-	pNewSurface->_surface->_attributes._numBlocks        = mI._blocksX * mI._blocksY;
-	pNewSurface->_surface->_attributes._numTextures      = mI._blocksX * mI._blocksY;
+	pNewSurface->_surface->_attributes._numBlocks        = mI._numBlocks;
+	pNewSurface->_surface->_attributes._numTextures      = mI._numBlocks;
 	pNewSurface->_surface->_attributes._isHaveGrid       = 0;
 	pNewSurface->_surface->_attributes._widthBlock       = mI._widthBlock;
 	pNewSurface->_surface->_attributes._heightBlock      = mI._heightBlock;

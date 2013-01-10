@@ -37,7 +37,8 @@ void INDImageTests_Conversions_NonRGB::prepareTests() {
 
 	//Colour index format, 16-bit
 	//NO image preload needed. Added here to keep image-surface match perfect in index
-	_images[2] = NULL;
+    delete _images[2];
+    _images[2] = NULL;
 	
 	// ----- Surfaces loading -----
 	//No conversion - Show it 

@@ -142,7 +142,8 @@ users for really concrete purposes.
 #include "IndiePlatforms.h"
 
 #ifdef PLATFORM_LINUX
-#include <cstring> 
+#include <cstring>
+#include <stdio.h> 
 #endif
 
 // ----- Renderer settings -----

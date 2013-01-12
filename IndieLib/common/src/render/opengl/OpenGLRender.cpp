@@ -102,7 +102,7 @@ IND_Window* OpenGLRender::initRenderAndWindow(IND_WindowProperties& props) {
 		g_debug->header("Finalizing OpenGL", 5);
 		freeVars();
 		g_debug->header("OpenGL finalized", 6);
-		return false;
+		return NULL;
 	}
 
 	g_debug->header("Checking created OpenGL context pixel format", 5);

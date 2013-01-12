@@ -1427,7 +1427,7 @@ IND_Window* IND_Render::createRender(IND_WindowProperties& windowProperties) {
 #endif
 
 	if(!_wrappedRenderer){
-		return false;
+		return NULL;
 	} else {
 		return (_wrappedRenderer->initRenderAndWindow(windowProperties));
 	}

@@ -26,7 +26,7 @@
 // Author: Tamir Atias
 //-----------------------------------------------------------------------------
 #include "dependencies/tinyxml/tinyxml.h"
-#include <zlib.h>
+#include "dependencies/FreeImage/Source/ZLib/zlib.h"
 #include <stdlib.h>
 #include "TmxLayer.h"
 #include "TmxUtil.h"

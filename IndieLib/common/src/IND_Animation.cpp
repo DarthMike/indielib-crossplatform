@@ -35,10 +35,11 @@ Suite 330, Boston, MA 02111-1307 USA
  * Get the image of a frame in the animation.
  * @param pFrame			The frame number of a frame in the animation.
  */
-IND_Image *IND_Animation::getImage(int pFrame) {
+IND_Image *IND_Animation::getImage(unsigned int pFrame) {
 	IND_Image* img = NULL;
-	if (getVectorFrames()) {
-		img = (*getVectorFrames()) [pFrame]->getImage();
+	vector<IND_Frame*> *frames = getVectorFrames();
+	if (frames && frames->size() > pFrame) {
+		img = (*frames) [pFrame]->getImage();
 	}
 	return img;
 }
@@ -47,10 +48,11 @@ IND_Image *IND_Animation::getImage(int pFrame) {
  * Get the surface of a frame in the animation.
  * @param pFrame			The frame number of a frame in the animation.
  */
-IND_Surface *IND_Animation::getSurface(int pFrame) {
+IND_Surface *IND_Animation::getSurface(unsigned int pFrame) {
 	IND_Surface* surf = NULL;
-	if (getVectorFrames()) {
-		 surf = (*getVectorFrames()) [pFrame]->getSurface();
+	vector<IND_Frame*> *frames = getVectorFrames();
+	if (frames && frames->size() > pFrame) {
+		 surf = (*frames) [pFrame]->getSurface();
 	}
 	return surf;
 }
@@ -59,10 +61,11 @@ IND_Surface *IND_Animation::getSurface(int pFrame) {
  * TODO describtion.
  * @param pSequence			The sequence number of a sequence in the list of sequences.
  */
-int IND_Animation::getHighWidth(int pSequence) {
-	int hw = 0;
-	if (getListSequences()) {
-		hw = (*getListSequences()) [pSequence]->getHighWidth();
+unsigned int IND_Animation::getHighWidth(unsigned int pSequence) {
+	unsigned int hw = 0;
+	vector <IND_Sequence *> *sequences = getListSequences();
+	if (sequences && sequences->size() > pSequence) {
+		hw = (*sequences) [pSequence]->getHighWidth();
 	}
 	return hw;
 }
@@ -71,10 +74,11 @@ int IND_Animation::getHighWidth(int pSequence) {
  * TODO describtion.
  * @param pSequence			The sequence number of a sequence in the list of sequences.
  */
-int IND_Animation::getHighHeight(int pSequence) {
-	int hh = 0;
-	if (getListSequences()) {
-		hh = (*getListSequences()) [pSequence]->getHighHeight();
+unsigned int IND_Animation::getHighHeight(unsigned int pSequence) {
+	unsigned int hh = 0;
+	vector <IND_Sequence *> *sequences = getListSequences();
+	if (sequences && sequences->size() > pSequence) {
+		hh = (*sequences) [pSequence]->getHighHeight();
 	}
 	return hh;
 }
@@ -83,9 +87,10 @@ int IND_Animation::getHighHeight(int pSequence) {
  * TODO describtion.
  * @param pSequence			The sequence number of a sequence in the list of sequences.
  */
-int IND_Animation::getNumFrames(int pSequence) {
-	int numFrames = 0;
-	if (getListSequences()) {
+unsigned int IND_Animation::getNumFrames(unsigned int pSequence) {
+	unsigned int numFrames = 0;
+	vector <IND_Sequence *> *sequences = getListSequences();
+	if (sequences && sequences->size() > pSequence) {
 		numFrames = (*getListSequences()) [pSequence]->getNumFrames();
 	}
 	return numFrames;
@@ -95,11 +100,12 @@ int IND_Animation::getNumFrames(int pSequence) {
  * TODO describtion.
  * @param pSequence			The sequence number of a sequence in the list of sequences.
  */
-const char* const IND_Animation::getName(int pSequence) {
-    if (!getListSequences()) {
-        return NULL;
+const char* const IND_Animation::getName(unsigned int pSequence) {
+	vector <IND_Sequence *> *sequences = getListSequences();
+	if (sequences && sequences->size() > pSequence) {
+        return ((*sequences) [pSequence]->getName());
     } else {
-        return ((*getListSequences()) [pSequence]->getName());
+        return NULL;
     }
 }
 
@@ -107,10 +113,11 @@ const char* const IND_Animation::getName(int pSequence) {
  * TODO describtion.
  * @param pSequence			The sequence number of a sequence in the list of sequences.
  */
-int IND_Animation::getActualFramePos(int pSequence) {
-	int framePos = 0;
-	if (getListSequences()) {
-		framePos = (*getListSequences()) [pSequence]->getActualFramePos();
+unsigned int IND_Animation::getActualFramePos(unsigned int pSequence) {
+	unsigned int framePos = 0;
+	vector <IND_Sequence *> *sequences = getListSequences();
+	if (sequences && sequences->size() > pSequence) {
+		framePos = (*sequences) [pSequence]->getActualFramePos();
 	}
 	return framePos;
 }
@@ -119,10 +126,11 @@ int IND_Animation::getActualFramePos(int pSequence) {
  * TODO describtion.
  * @param pSequence			The sequence number of a sequence in the list of sequences.
  */
-int IND_Animation::getActualFrameTime(int pSequence) {
-	int frameTime = 0;
-	if (getListSequences()) {
-		frameTime = (*getListSequences()) [pSequence]->getActualFrameTime();
+unsigned int IND_Animation::getActualFrameTime(unsigned int pSequence) {
+	unsigned int frameTime = 0;
+	vector <IND_Sequence *> *sequences = getListSequences();
+	if (sequences && sequences->size() > pSequence) {
+		frameTime = (*sequences) [pSequence]->getActualFrameTime();
 	}
 	return frameTime;
 }
@@ -131,8 +139,8 @@ int IND_Animation::getActualFrameTime(int pSequence) {
  * TODO describtion.
  * @param pSequence			The sequence number of a sequence in the list of sequences.
  */
-int IND_Animation::getActualOffsetX(int pSequence) {
-	int offset = 0;
+unsigned int IND_Animation::getActualOffsetX(unsigned int pSequence) {
+	unsigned int offset = 0;
 	if (getVectorFrames() && getListSequences()) {
 		offset = (*getVectorFrames()) [(*getListSequences()) [pSequence]->getActualFramePosInVec()]->GetOffsetX();
 	}
@@ -143,10 +151,11 @@ int IND_Animation::getActualOffsetX(int pSequence) {
  * TODO describtion.
  * @param pSequence			The sequence number of a sequence in the list of sequences.
  */
-int IND_Animation::getActualOffsetY(int pSequence) {
-	int offset = 0;
-	if (getVectorFrames() && getListSequences()) {
-		offset = (*getVectorFrames()) [(*getListSequences()) [pSequence]->getActualFramePosInVec()]->GetOffsetY();
+unsigned int IND_Animation::getActualOffsetY(unsigned int pSequence) {
+	unsigned int offset = 0;
+	vector<IND_Frame*> *frames = getVectorFrames();
+	if (frames && frames->size() > pSequence && getListSequences()) {
+		offset = (*frames) [(*getListSequences()) [pSequence]->getActualFramePosInVec()]->GetOffsetY();
 	}
 	return offset;
 }
@@ -155,9 +164,11 @@ int IND_Animation::getActualOffsetY(int pSequence) {
  * TODO describtion.
  * @param pSequence			The sequence number of a sequence in the list of sequences.
  */
-IND_Surface *IND_Animation::getActualSurface(int pSequence) {
+IND_Surface *IND_Animation::getActualSurface(unsigned int pSequence) {
 	IND_Surface* actualSurf = NULL;
-	if (getVectorFrames() && getListSequences()) {
+	vector<IND_Frame*> *frames = getVectorFrames();
+	vector <IND_Sequence *> *sequences = getListSequences();
+	if (frames && frames->size() > pSequence && sequences && sequences->size() > pSequence) {
 		actualSurf = (*getVectorFrames()) [(*getListSequences()) [pSequence]->getActualFramePosInVec()]->getSurface();
 	}
 
@@ -169,9 +180,10 @@ IND_Surface *IND_Animation::getActualSurface(int pSequence) {
  * @param pSequence			The sequence number of a sequence in the list of sequences.
  * @param pPos                          TODO describtion.
  */
-void IND_Animation::setActualFramePos(int pSequence, int pPos) {
-	if (getListSequences()) {
-		(*getListSequences()) [pSequence]->setActualFramePos(pPos);
+void IND_Animation::setActualFramePos(unsigned int pSequence, unsigned int pPos) {
+	vector <IND_Sequence *> *sequences = getListSequences();
+	if (sequences && sequences->size() > pSequence) {
+		(*sequences) [pSequence]->setActualFramePos(pPos);
 	}
 }
 
@@ -179,10 +191,11 @@ void IND_Animation::setActualFramePos(int pSequence, int pPos) {
  * TODO describtion.
  * @param pSequence			The sequence number of a sequence in the list of sequences.
  */
-IND_Timer *IND_Animation::getSequenceTimer(int pSequence) {
+IND_Timer *IND_Animation::getSequenceTimer(unsigned int pSequence) {
 	IND_Timer* timer = NULL;
-	if (getListSequences()) {
-		timer = (*getListSequences()) [pSequence]->getSequenceTimer();
+	vector <IND_Sequence *> *sequences = getListSequences();
+	if (sequences && sequences->size() > pSequence) {
+		timer = (*sequences) [pSequence]->getSequenceTimer();
 	}
 	return timer;
 }
@@ -191,10 +204,11 @@ IND_Timer *IND_Animation::getSequenceTimer(int pSequence) {
  * TODO describtion.
  * @param pSequence			The sequence number of a sequence in the list of sequences.
  */
-bool IND_Animation::getIsActive(int pSequence) {
+bool IND_Animation::getIsActive(unsigned int pSequence) {
 	bool active = false;
-	if (getListSequences()) {
-		active = (*getListSequences()) [pSequence]->getIsActive();
+	vector <IND_Sequence *> *sequences = getListSequences();
+	if (sequences && sequences->size() > pSequence) {
+		active = (*sequences) [pSequence]->getIsActive();
 	}
 	return active;
 }
@@ -204,9 +218,10 @@ bool IND_Animation::getIsActive(int pSequence) {
  * @param pSequence			The sequence number of a sequence in the list of sequences.
  * @param pAct                          TODO describtion.
  */
-void IND_Animation::setIsActive(int pSequence, bool pAct) {
-	if (getListSequences()) {
-		(*getListSequences()) [pSequence]->setIsActive(pAct);
+void IND_Animation::setIsActive(unsigned int pSequence, bool pAct) {
+	vector <IND_Sequence *> *sequences = getListSequences();
+	if (sequences && sequences->size() > pSequence) {
+		(*sequences) [pSequence]->setIsActive(pAct);
 	}
 }
 
@@ -215,8 +230,9 @@ void IND_Animation::setIsActive(int pSequence, bool pAct) {
  * @param pFrame			The frame number of a frame in the animation.
  * @param pNewImage                     The image that is to be set on the frame.
  */
-void IND_Animation::setImage(int pFrame, IND_Image *pNewImage) {
-	if (getVectorFrames()) {
+void IND_Animation::setImage(unsigned int pFrame, IND_Image *pNewImage) {
+	vector<IND_Frame*> *frames = getVectorFrames();
+	if (frames && frames->size() > pFrame) {
 		(*getVectorFrames()) [pFrame]->setImage(pNewImage);
 	}
 }
@@ -226,8 +242,9 @@ void IND_Animation::setImage(int pFrame, IND_Image *pNewImage) {
  * @param pFrame			The frame number of a frame in the animation.
  * @param pNewSurface                   The surface that is to be set on the frame.
  */
-void IND_Animation::setSurface(int pFrame, IND_Surface *pNewSurface) {
-	if (getVectorFrames()) {
+void IND_Animation::setSurface(unsigned int pFrame, IND_Surface *pNewSurface) {
+	vector<IND_Frame*> *frames = getVectorFrames();
+	if (frames && frames->size() > pFrame) {
 		(*getVectorFrames()) [pFrame]->setSurface(pNewSurface);
 	}
 }

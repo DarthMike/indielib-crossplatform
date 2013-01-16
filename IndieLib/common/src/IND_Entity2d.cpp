@@ -155,7 +155,7 @@ void IND_Entity2d::setShow(bool pShow) {
  * Default: 0.
  * @param pSequence				Frame number of the sequence to draw.
  */
-void IND_Entity2d::setSequence(int pSequence) {
+void IND_Entity2d::setSequence(unsigned int pSequence) {
 	if (_an) {
 		_an->setActualFramePos(_sequence, 0);
 		_an->setIsActive(_sequence, false); //Reset

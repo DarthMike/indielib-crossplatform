@@ -397,7 +397,7 @@ Using this method is equivalent to using all of these methods:
 - IND_Entity2d::setWrapDisplacement()
 */
 int IND_Render::blitAnimation(IND_Animation *pAn,
-			      int pSequence,
+			      unsigned int pSequence,
                               int pX,
       			      int pY,
                               int pWidth,

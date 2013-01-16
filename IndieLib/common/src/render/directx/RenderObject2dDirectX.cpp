@@ -246,7 +246,7 @@ bool DirectXRender::blitWrapSurface(IND_Surface *pSu,
 	return correctParams;
 }
 
-int DirectXRender::blitAnimation(IND_Animation *pAn, int pSequence,
+int DirectXRender::blitAnimation(IND_Animation *pAn, unsigned int pSequence,
                                  int pX, int pY,
                                  int pWidth, int pHeight,
                                  bool pToggleWrap,

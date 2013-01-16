@@ -95,7 +95,7 @@ public:
 	*
 	*/
 	/**@{*/
-	void    setSequence(int pSequence);
+	void    setSequence(unsigned int pSequence);
 	void    setNumReplays(int pNumReplays);
 	/**@}*/
 
@@ -446,7 +446,7 @@ private:
 	float _vDisplace;       // V Coordinate displacement
 
 	// Animation attributes
-	int _sequence;          // Index of the sequence
+	unsigned int _sequence;          // Index of the sequence
 	int _numReplays;        // Num of replays of the sequence
 	int _firstTime;         // Flag
 

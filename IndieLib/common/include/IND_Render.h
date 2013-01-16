@@ -342,7 +342,7 @@ public:
 	                     float pVDisplace);
 
 	int blitAnimation(IND_Animation *pAn,
-	                  int pSequence,
+	                  unsigned int pSequence,
 	                  int pX,
 			  int pY,
 	                  int pWidth,

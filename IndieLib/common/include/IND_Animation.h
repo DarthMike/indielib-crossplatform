@@ -113,7 +113,7 @@ public:
 		return _animation._name;
 	}
 	//! This function returns the total number of animation sequences.
-	int                     getNumSequences()              {
+	unsigned int                     getNumSequences()              {
 		return _animation._sumSequences;
 	}
 	//! This function returns the total number of animation frames.
@@ -121,39 +121,39 @@ public:
 		return _vectorFrames->size();
 	}
 	//! This function returns the pointer to the object ::IND_Image that contains the frame received or NULL in case that the object has not been loaded.
-	IND_Image               *getImage(int pFrame);
+	IND_Image               *getImage(unsigned int pFrame);
 	//! This function returns the pointer to the object ::IND_Surface that contains the frame received or NULL in case that the object has not been loaded.
-	IND_Surface             *getSurface(int pFrame);
+	IND_Surface             *getSurface(unsigned int pFrame);
 
 	// ----- Relative to a concrete sequence ------
 
 	//! This function returns the maximum width of the sequence. It means, the width of the widest frame of the sequence.
-	int                     getHighWidth(int pSequence);
+	unsigned int                     getHighWidth(unsigned int pSequence);
 	//! This function returns the maximum height of the sequence. It means, the height of the highest frame of the sequence.
-	int                     getHighHeight(int pSequence);
+	unsigned int                     getHighHeight(unsigned int pSequence);
 	//! This function returns the number of frames which are referenced by the sequeence received as a parameter.
-	int                     getNumFrames(int pSequence);
+	unsigned int                     getNumFrames(unsigned int pSequence);
 	//! This function returns the name, in a string of characters, of the sequence received as a paramater.
-	const char* const getName(int pSequence);
+	const char* const getName(unsigned int pSequence);
 
 	//FIXME: NOT DOCUMENTED
-	int                     getActualFramePos(int pSequence);
-	int                     getActualFrameTime(int pSequence);
-	int                     getActualOffsetX(int pSequence);
-	int                     getActualOffsetY(int pSequence);
-	IND_Surface             *getActualSurface(int pSequence);
-	void                    setActualFramePos(int pSequence, int pPos);
-	IND_Timer               *getSequenceTimer(int pSequence);
+	unsigned int                     getActualFramePos(unsigned int pSequence);
+	unsigned int                     getActualFrameTime(unsigned int pSequence);
+	unsigned int                     getActualOffsetX(unsigned int pSequence);
+	unsigned int                     getActualOffsetY(unsigned int pSequence);
+	IND_Surface             *getActualSurface(unsigned int pSequence);
+	void                    setActualFramePos(unsigned int pSequence, unsigned int pPos);
+	IND_Timer               *getSequenceTimer(unsigned int pSequence);
 
-	bool                    getIsActive(int pSequence);
-	void                    setIsActive(int pSequence, bool pAct);
+	bool                    getIsActive(unsigned int pSequence);
+	void                    setIsActive(unsigned int pSequence, bool pAct);
 
 	// ----- Public sets ------
 
 	//! This function establishes a IND_Image object in a frame. It can be useful for modifying some frames of animations.Note: It is convenient to eliminate any IND_Image object that would be there before setting the actual one.
-	void                    setImage(int pFrame, IND_Image *pNewImage);
+	void                    setImage(unsigned int pFrame, IND_Image *pNewImage);
 	//! This function establishes a IND_Surface object in a frame. It can be useful for modifying some frames of animations.Note: It is convenient to eliminate any IND_Surface object that would be there before setting the actual one.
-	void                    setSurface(int pFrame, IND_Surface *pNewSurface);
+	void                    setSurface(unsigned int pFrame, IND_Surface *pNewSurface);
 
 private:
 	/** @cond DOCUMENT_PRIVATEAPI */
@@ -200,7 +200,7 @@ private:
 	void                    setName(const char *pName)               {
 		strcpy(_animation._name,pName);
 	}
-	void                    setNumSequences(int pNum)                  {
+	void                    setNumSequences(unsigned int pNum)                  {
 		_animation._sumSequences = pNum;
 	}
 

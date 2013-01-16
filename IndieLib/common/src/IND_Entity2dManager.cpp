@@ -533,10 +533,15 @@ void IND_Entity2dManager::renderCollisionAreas(int pLayer, BYTE pR, BYTE pG, BYT
 
 				// Bounding list of a frame in an animation
 				if ((*mIter)->_an) {
-					mBoundingListToRender = (*(*mIter)->_an->getVectorFrames()) [(*mIter)->_an->getActualFramePos((*mIter)->getSequence())]->GetListBoundingCollision();
+
+					vector <IND_Frame*> *frames = (*mIter)->_an->getVectorFrames();
+					unsigned int framePos = (*mIter)->_an->getActualFramePos((*mIter)->getSequence());
+					if (frames && frames->size() > framePos) {
+						mBoundingListToRender = (*frames) [framePos]->GetListBoundingCollision();
+					}
 				}
-                assert(mBoundingListToRender);
-				if (!mBoundingListToRender->empty()) {
+
+				if (mBoundingListToRender) {
 					list <BOUNDING_COLLISION *>::iterator _listIter;
 					for (_listIter  = mBoundingListToRender->begin();
 					        _listIter != mBoundingListToRender->end();

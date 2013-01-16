@@ -276,20 +276,16 @@ bool OpenGLRender::blitWrapSurface(IND_Surface *pSu,
 }
 
 
-int OpenGLRender::blitAnimation(IND_Animation *pAn, int pSequence,
+int OpenGLRender::blitAnimation(IND_Animation *pAn, unsigned int pSequence,
                                 int pX, int pY,
                                 int pWidth, int pHeight,
                                 bool pToggleWrap,
                                 float pUDisplace,
                                 float pVDisplace) {
 
-	bool correctParams = true;
 	int mFinish = 1;
-	if (pSequence < 0 || pSequence > pAn->getNumSequences() - 1)  {
-		correctParams = false;
-	}
 
-	if (correctParams) {
+	if (pSequence < pAn->getNumSequences()) {
 		if (!pAn->getIsActive(pSequence)) {
 			pAn->getSequenceTimer(pSequence)->start();
 			pAn->setIsActive(pSequence, 1);

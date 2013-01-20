@@ -509,7 +509,7 @@
 		E72ECCBB15E6BBC300250CEE /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
 		E72ECCBC15E6BBC300250CEE /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIndieLib_vc2008.h; sourceTree = "<group>"; };
 		E72ECCBD15E6BBC300250CEE /* Tutorial01.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial01.cpp; sourceTree = "<group>"; };
-		E73EAF2915E6BF7E00B95FE4 /* Tutorial 02.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tutorial 02.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E73EAF2915E6BF7E00B95FE4 /* Tutorial02.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial02.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E73EAF2F15E6C1AE00B95FE4 /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
 		E73EAF3015E6C1AE00B95FE4 /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIndieLib_vc2008.h; sourceTree = "<group>"; };
 		E73EAF3115E6C1AE00B95FE4 /* Tutorial02.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial02.cpp; sourceTree = "<group>"; };
@@ -1038,7 +1038,7 @@
 			isa = PBXGroup;
 			children = (
 				E7DBCB18159C78F600C8B2D9 /* Tutorial01.app */,
-				E73EAF2915E6BF7E00B95FE4 /* Tutorial 02.app */,
+				E73EAF2915E6BF7E00B95FE4 /* Tutorial02.app */,
 				E73EAF4815E6C7B400B95FE4 /* Tutorial03.app */,
 				E73EAF6315E6C9DA00B95FE4 /* Tutorial04.app */,
 				E73EAF7D15E6CB3900B95FE4 /* Tutorial05.app */,
@@ -1117,7 +1117,7 @@
 			);
 			name = Tutorial02;
 			productName = IndielibTests;
-			productReference = E73EAF2915E6BF7E00B95FE4 /* Tutorial 02.app */;
+			productReference = E73EAF2915E6BF7E00B95FE4 /* Tutorial02.app */;
 			productType = "com.apple.product-type.application";
 		};
 		E73EAF3715E6C7B400B95FE4 /* Tutorial03 */ = {
@@ -2005,7 +2005,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INSTALL_PATH = /mac;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = "Tutorial 02";
+				PRODUCT_NAME = Tutorial02;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
@@ -2022,7 +2022,7 @@
 				DSTROOT = "$(SRCROOT)/../../bin";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INSTALL_PATH = /mac;
-				PRODUCT_NAME = "Tutorial 02";
+				PRODUCT_NAME = Tutorial02;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};

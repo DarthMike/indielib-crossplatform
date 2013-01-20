@@ -647,9 +647,12 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
 				DYLIB_COMPATIBILITY_VERSION = 0;
 				DYLIB_CURRENT_VERSION = 5;
 				EXECUTABLE_PREFIX = lib;
+				INSTALL_PATH = /mac;
 				LD_DYLIB_INSTALL_NAME = "@loader_path/$(EXECUTABLE_NAME)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -672,9 +675,12 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
 				DYLIB_COMPATIBILITY_VERSION = 0;
 				DYLIB_CURRENT_VERSION = 5;
 				EXECUTABLE_PREFIX = lib;
+				INSTALL_PATH = /mac;
 				LD_DYLIB_INSTALL_NAME = "@loader_path/$(EXECUTABLE_NAME)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

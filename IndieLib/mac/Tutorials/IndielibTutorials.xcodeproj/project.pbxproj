@@ -135,6 +135,24 @@
 		E744863015E7EC5100DDE3BF /* CRabbit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E744862C15E7EC5100DDE3BF /* CRabbit.cpp */; };
 		E744863115E7EC5100DDE3BF /* Tutorial02.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E744862E15E7EC5100DDE3BF /* Tutorial02.cpp */; };
 		E75EB2B6159CB25100693F41 /* libIndielib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E773A55516AC316D004E6FDD /* libIndielib.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E773A55716AC31E2004E6FDD /* libIndielib.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E773A55916AC31EE004E6FDD /* libIndielib.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E773A55B16AC31F6004E6FDD /* libIndielib.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E773A55D16AC3200004E6FDD /* libIndielib.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E773A55F16AC3208004E6FDD /* libIndielib.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E773A56216AC3216004E6FDD /* libIndielib.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E773A56416AC321F004E6FDD /* libIndielib.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E773A56616AC3228004E6FDD /* libIndielib.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E773A56816AC3231004E6FDD /* libIndielib.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E773A56A16AC323D004E6FDD /* libIndielib.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E773A56C16AC3243004E6FDD /* libIndielib.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E773A56E16AC324A004E6FDD /* libIndielib.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E773A57016AC3251004E6FDD /* libIndielib.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E773A57216AC3258004E6FDD /* libIndielib.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E773A57416AC3260004E6FDD /* libIndielib.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E773A57616AC3267004E6FDD /* libIndielib.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E773A57816AC326F004E6FDD /* libIndielib.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
 		E7DBCB1D159C78F600C8B2D9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */; };
 		E7DFACA2165C1A86004507C5 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7DFACA0165C1A86004507C5 /* WorkingPath.cpp */; };
 		E7DFACA3165C1A86004507C5 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7DFACA0165C1A86004507C5 /* WorkingPath.cpp */; };
@@ -299,6 +317,189 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		E773A55416AC3166004E6FDD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				E773A55516AC316D004E6FDD /* libIndielib.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E773A55616AC31DC004E6FDD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				E773A55716AC31E2004E6FDD /* libIndielib.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E773A55816AC31E9004E6FDD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				E773A55916AC31EE004E6FDD /* libIndielib.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E773A55A16AC31F1004E6FDD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				E773A55B16AC31F6004E6FDD /* libIndielib.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E773A55C16AC31FA004E6FDD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				E773A55D16AC3200004E6FDD /* libIndielib.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E773A55E16AC3203004E6FDD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				E773A55F16AC3208004E6FDD /* libIndielib.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E773A56116AC3211004E6FDD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				E773A56216AC3216004E6FDD /* libIndielib.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E773A56316AC3219004E6FDD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				E773A56416AC321F004E6FDD /* libIndielib.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E773A56516AC3222004E6FDD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				E773A56616AC3228004E6FDD /* libIndielib.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E773A56716AC322D004E6FDD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				E773A56816AC3231004E6FDD /* libIndielib.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E773A56916AC3234004E6FDD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				E773A56A16AC323D004E6FDD /* libIndielib.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E773A56B16AC323F004E6FDD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				E773A56C16AC3243004E6FDD /* libIndielib.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E773A56D16AC3245004E6FDD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				E773A56E16AC324A004E6FDD /* libIndielib.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E773A56F16AC324C004E6FDD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				E773A57016AC3251004E6FDD /* libIndielib.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E773A57116AC3253004E6FDD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				E773A57216AC3258004E6FDD /* libIndielib.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E773A57316AC325A004E6FDD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				E773A57416AC3260004E6FDD /* libIndielib.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E773A57516AC3262004E6FDD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				E773A57616AC3267004E6FDD /* libIndielib.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E773A57716AC326A004E6FDD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				E773A57816AC326F004E6FDD /* libIndielib.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		E70712AF15A09C4700BF34D9 /* UnitTests.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = UnitTests.xcodeproj; path = ../UnitTests/UnitTests.xcodeproj; sourceTree = "<group>"; };
 		E72ECCA415E6B5FF00250CEE /* IndielibTutorials-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "IndielibTutorials-Info.plist"; path = "IndielibTutorials/IndielibTutorials-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -308,7 +509,7 @@
 		E72ECCBB15E6BBC300250CEE /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
 		E72ECCBC15E6BBC300250CEE /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIndieLib_vc2008.h; sourceTree = "<group>"; };
 		E72ECCBD15E6BBC300250CEE /* Tutorial01.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial01.cpp; sourceTree = "<group>"; };
-		E73EAF2915E6BF7E00B95FE4 /* Tutorial 02.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tutorial 02.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E73EAF2915E6BF7E00B95FE4 /* Tutorial02.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial02.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E73EAF2F15E6C1AE00B95FE4 /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
 		E73EAF3015E6C1AE00B95FE4 /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIndieLib_vc2008.h; sourceTree = "<group>"; };
 		E73EAF3115E6C1AE00B95FE4 /* Tutorial02.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial02.cpp; sourceTree = "<group>"; };
@@ -837,7 +1038,7 @@
 			isa = PBXGroup;
 			children = (
 				E7DBCB18159C78F600C8B2D9 /* Tutorial01.app */,
-				E73EAF2915E6BF7E00B95FE4 /* Tutorial 02.app */,
+				E73EAF2915E6BF7E00B95FE4 /* Tutorial02.app */,
 				E73EAF4815E6C7B400B95FE4 /* Tutorial03.app */,
 				E73EAF6315E6C9DA00B95FE4 /* Tutorial04.app */,
 				E73EAF7D15E6CB3900B95FE4 /* Tutorial05.app */,
@@ -907,6 +1108,7 @@
 				E73EAF1A15E6BF7E00B95FE4 /* Sources */,
 				E73EAF1D15E6BF7E00B95FE4 /* Frameworks */,
 				E73EAF2015E6BF7E00B95FE4 /* Resources */,
+				E773A55616AC31DC004E6FDD /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -915,7 +1117,7 @@
 			);
 			name = Tutorial02;
 			productName = IndielibTests;
-			productReference = E73EAF2915E6BF7E00B95FE4 /* Tutorial 02.app */;
+			productReference = E73EAF2915E6BF7E00B95FE4 /* Tutorial02.app */;
 			productType = "com.apple.product-type.application";
 		};
 		E73EAF3715E6C7B400B95FE4 /* Tutorial03 */ = {
@@ -925,6 +1127,7 @@
 				E73EAF3A15E6C7B400B95FE4 /* Sources */,
 				E73EAF3E15E6C7B400B95FE4 /* Frameworks */,
 				E73EAF4115E6C7B400B95FE4 /* Resources */,
+				E773A55816AC31E9004E6FDD /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -943,6 +1146,7 @@
 				E73EAF5515E6C9DA00B95FE4 /* Sources */,
 				E73EAF5915E6C9DA00B95FE4 /* Frameworks */,
 				E73EAF5C15E6C9DA00B95FE4 /* Resources */,
+				E773A55A16AC31F1004E6FDD /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -961,6 +1165,7 @@
 				E73EAF6F15E6CB3900B95FE4 /* Sources */,
 				E73EAF7315E6CB3900B95FE4 /* Frameworks */,
 				E73EAF7615E6CB3900B95FE4 /* Resources */,
+				E773A55C16AC31FA004E6FDD /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -979,6 +1184,7 @@
 				E73EAF8915E6CE5D00B95FE4 /* Sources */,
 				E73EAF8D15E6CE5D00B95FE4 /* Frameworks */,
 				E73EAF9015E6CE5D00B95FE4 /* Resources */,
+				E773A56116AC3211004E6FDD /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -997,6 +1203,7 @@
 				E73EAFA315E6D07000B95FE4 /* Sources */,
 				E73EAFA715E6D07000B95FE4 /* Frameworks */,
 				E73EAFAA15E6D07000B95FE4 /* Resources */,
+				E773A55E16AC3203004E6FDD /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1015,6 +1222,7 @@
 				E73EAFBD15E6D1F100B95FE4 /* Sources */,
 				E73EAFC115E6D1F100B95FE4 /* Frameworks */,
 				E73EAFC415E6D1F100B95FE4 /* Resources */,
+				E773A56316AC3219004E6FDD /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1033,6 +1241,7 @@
 				E73EAFD715E6D35300B95FE4 /* Sources */,
 				E73EAFDB15E6D35300B95FE4 /* Frameworks */,
 				E73EAFDE15E6D35300B95FE4 /* Resources */,
+				E773A56516AC3222004E6FDD /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1051,6 +1260,7 @@
 				E73EAFF115E6D46A00B95FE4 /* Sources */,
 				E73EAFF515E6D46A00B95FE4 /* Frameworks */,
 				E73EAFF815E6D46A00B95FE4 /* Resources */,
+				E773A56716AC322D004E6FDD /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1069,6 +1279,7 @@
 				E73EB00B15E6D51800B95FE4 /* Sources */,
 				E73EB00F15E6D51800B95FE4 /* Frameworks */,
 				E73EB01215E6D51800B95FE4 /* Resources */,
+				E773A56916AC3234004E6FDD /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1087,6 +1298,7 @@
 				E73EB02515E6D66300B95FE4 /* Sources */,
 				E73EB02915E6D66300B95FE4 /* Frameworks */,
 				E73EB02C15E6D66300B95FE4 /* Resources */,
+				E773A56B16AC323F004E6FDD /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1105,6 +1317,7 @@
 				E744858F15E7E9B600DDE3BF /* Sources */,
 				E744859315E7E9B600DDE3BF /* Frameworks */,
 				E744859615E7E9B600DDE3BF /* Resources */,
+				E773A56D16AC3245004E6FDD /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1123,6 +1336,7 @@
 				E74485AC15E7EA2400DDE3BF /* Sources */,
 				E74485AF15E7EA2400DDE3BF /* Frameworks */,
 				E74485B215E7EA2400DDE3BF /* Resources */,
+				E773A56F16AC324C004E6FDD /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1141,6 +1355,7 @@
 				E74485C515E7EA5900DDE3BF /* Sources */,
 				E74485C815E7EA5900DDE3BF /* Frameworks */,
 				E74485CB15E7EA5900DDE3BF /* Resources */,
+				E773A57116AC3253004E6FDD /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1159,6 +1374,7 @@
 				E74485DE15E7EAF100DDE3BF /* Sources */,
 				E74485E115E7EAF100DDE3BF /* Frameworks */,
 				E74485E415E7EAF100DDE3BF /* Resources */,
+				E773A57316AC325A004E6FDD /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1177,6 +1393,7 @@
 				E74485F815E7EBF900DDE3BF /* Sources */,
 				E74485FB15E7EBF900DDE3BF /* Frameworks */,
 				E74485FE15E7EBF900DDE3BF /* Resources */,
+				E773A57516AC3262004E6FDD /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1195,6 +1412,7 @@
 				E744861715E7EC2900DDE3BF /* Sources */,
 				E744861C15E7EC2900DDE3BF /* Frameworks */,
 				E744861F15E7EC2900DDE3BF /* Resources */,
+				E773A57716AC326A004E6FDD /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1213,6 +1431,7 @@
 				E7DBCB14159C78F600C8B2D9 /* Sources */,
 				E7DBCB15159C78F600C8B2D9 /* Frameworks */,
 				E7DBCB16159C78F600C8B2D9 /* Resources */,
+				E773A55416AC3166004E6FDD /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1786,7 +2005,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INSTALL_PATH = /mac;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = "Tutorial 02";
+				PRODUCT_NAME = Tutorial02;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1803,7 +2022,7 @@
 				DSTROOT = "$(SRCROOT)/../../bin";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INSTALL_PATH = /mac;
-				PRODUCT_NAME = "Tutorial 02";
+				PRODUCT_NAME = Tutorial02;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};

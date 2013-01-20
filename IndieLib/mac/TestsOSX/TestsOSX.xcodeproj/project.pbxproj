@@ -11,6 +11,7 @@
 		E744863615E8E48700DDE3BF /* CollisionTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E744863415E8E48700DDE3BF /* CollisionTests.cpp */; };
 		E74EAAD715FBD0AC009E948F /* EntityTests_interactions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E74EAAD515FBD0AC009E948F /* EntityTests_interactions.cpp */; };
 		E75EB2B6159CB25100693F41 /* libIndielib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
+		E773A55216AC1D45004E6FDD /* libIndielib.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
 		E796D45A15F88AD900724FBD /* EntityTests_animateRotations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E796D45615F88AD900724FBD /* EntityTests_animateRotations.cpp */; };
 		E796D45B15F88AD900724FBD /* EntityTests_animateScale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E796D45815F88AD900724FBD /* EntityTests_animateScale.cpp */; };
 		E7DBCB1D159C78F600C8B2D9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */; };
@@ -49,6 +50,19 @@
 			remoteInfo = Indielib;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E773A55116AC1D14004E6FDD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				E773A55216AC1D45004E6FDD /* libIndielib.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		E7071232159EFEC500BF34D9 /* WorkingPath.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = WorkingPath.cpp; path = ../../../tests/WorkingPath.cpp; sourceTree = "<group>"; };
@@ -310,6 +324,7 @@
 			buildPhases = (
 				E7DBCB14159C78F600C8B2D9 /* Sources */,
 				E7DBCB15159C78F600C8B2D9 /* Frameworks */,
+				E773A55116AC1D14004E6FDD /* CopyFiles */,
 				E7DBCB16159C78F600C8B2D9 /* Resources */,
 			);
 			buildRules = (

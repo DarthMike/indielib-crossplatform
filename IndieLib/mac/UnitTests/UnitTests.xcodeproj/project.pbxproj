@@ -34,6 +34,7 @@
 		E74486C915EA497900DDE3BF /* ImageManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E744866615EA412A00DDE3BF /* ImageManager.cpp */; };
 		E74486D415EA5C1500DDE3BF /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E74486D215EA5C1500DDE3BF /* WorkingPath.cpp */; };
 		E74486FF15F25E2200DDE3BF /* Vector2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E74486FE15F25E2200DDE3BF /* Vector2.cpp */; };
+		E773A55316AC221C004E6FDD /* libIndielib.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = E744863F15EA3E3D00DDE3BF /* libIndielib.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,12 +57,13 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		E744868815EA478800DDE3BF /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 6;
 			files = (
+				E773A55316AC221C004E6FDD /* libIndielib.dylib in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 

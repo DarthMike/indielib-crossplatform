@@ -1,0 +1,54 @@
+### Global
+debug.log
+config.log
+*.a-i386
+*.dylib-i386
+*.dylib-x86_64
+*.a-x86_64
+
+### C++ ignore
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+
+# Compiled Dynamic libraries
+*.so
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+
+### Mac specific
+xcschememanagement.plist
+
+### SDL specific
+*.d
+
+### linux specific
+*~
+Makefile
+.deps
+.po
+.dirstamp
+
+# http://www.gnu.org/software/automake
+
+Makefile.in
+
+# http://www.gnu.org/software/autoconf
+
+/autom4te.cache
+/aclocal.m4
+/compile
+/configure
+/depcomp
+/install-sh
+/missing
+libfreeimage-3.15.3.dylib
+glewinfo
+IndieLib/common/dependencies/glew-1.9.0/glew.pc
+IndieLib/common/dependencies/glew-1.9.0/glewmx.pc
+glew.pc

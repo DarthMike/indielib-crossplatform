@@ -8,4 +8,9 @@
 		Name="VCCLCompilerTool"
 		AdditionalIncludeDirectories="..\..\..\..\common\include"
 	/>
+	<Tool
+		Name="VCLinkerTool"
+		AdditionalDependencies="IndieLib_vc2008.lib"
+		AdditionalLibraryDirectories="&quot;../../../../bin/win&quot;"
+	/>
 </VisualStudioPropertySheet>

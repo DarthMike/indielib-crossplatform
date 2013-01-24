@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E73EAF1715E6BF7E00B95FE4"
-               BuildableName = "Tutorial 02.app"
+               BuildableName = "Tutorial02.app"
                BlueprintName = "Tutorial02"
                ReferencedContainer = "container:IndielibTutorials.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E73EAF1715E6BF7E00B95FE4"
-            BuildableName = "Tutorial 02.app"
+            BuildableName = "Tutorial02.app"
             BlueprintName = "Tutorial02"
             ReferencedContainer = "container:IndielibTutorials.xcodeproj">
          </BuildableReference>
@@ -52,7 +52,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E73EAF1715E6BF7E00B95FE4"
-            BuildableName = "Tutorial 02.app"
+            BuildableName = "Tutorial02.app"
             BlueprintName = "Tutorial02"
             ReferencedContainer = "container:IndielibTutorials.xcodeproj">
          </BuildableReference>
@@ -70,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E73EAF1715E6BF7E00B95FE4"
-            BuildableName = "Tutorial 02.app"
+            BuildableName = "Tutorial02.app"
             BlueprintName = "Tutorial02"
             ReferencedContainer = "container:IndielibTutorials.xcodeproj">
          </BuildableReference>

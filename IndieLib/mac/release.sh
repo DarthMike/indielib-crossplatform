@@ -12,6 +12,10 @@ do
 xcodebuild -workspace IndielibOSX.xcworkspace -scheme $SCHEME clean
 done
 
+#build indielib
+echo"*************BUILD INDIELIB**********************"
+xcodebuild -workspace IndielibOSX.xcworkspace -scheme IndieLib -configuration release
+
 #build tutorials
 echo "************START BUILDING TUTORIALS*******************"
 for TUTORIAL in $TUTORIALS

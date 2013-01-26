@@ -874,6 +874,7 @@
 				E73EAF1D15E6BF7E00B95FE4 /* Frameworks */,
 				E73EAF2015E6BF7E00B95FE4 /* Resources */,
 				E773A55616AC31DC004E6FDD /* CopyFiles */,
+				E73763E016B44B440043EF0D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -892,6 +893,7 @@
 				E73EAF3E15E6C7B400B95FE4 /* Frameworks */,
 				E73EAF4115E6C7B400B95FE4 /* Resources */,
 				E773A55816AC31E9004E6FDD /* CopyFiles */,
+				E73763E116B44B4C0043EF0D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -910,6 +912,7 @@
 				E73EAF5915E6C9DA00B95FE4 /* Frameworks */,
 				E73EAF5C15E6C9DA00B95FE4 /* Resources */,
 				E773A55A16AC31F1004E6FDD /* CopyFiles */,
+				E73763E216B44B500043EF0D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -928,6 +931,7 @@
 				E73EAF7315E6CB3900B95FE4 /* Frameworks */,
 				E73EAF7615E6CB3900B95FE4 /* Resources */,
 				E773A55C16AC31FA004E6FDD /* CopyFiles */,
+				E73763E316B44B550043EF0D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -946,6 +950,7 @@
 				E73EAF8D15E6CE5D00B95FE4 /* Frameworks */,
 				E73EAF9015E6CE5D00B95FE4 /* Resources */,
 				E773A56116AC3211004E6FDD /* CopyFiles */,
+				E73763E516B44B5C0043EF0D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -964,6 +969,7 @@
 				E73EAFA715E6D07000B95FE4 /* Frameworks */,
 				E73EAFAA15E6D07000B95FE4 /* Resources */,
 				E773A55E16AC3203004E6FDD /* CopyFiles */,
+				E73763E416B44B590043EF0D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -982,6 +988,7 @@
 				E73EAFC115E6D1F100B95FE4 /* Frameworks */,
 				E73EAFC415E6D1F100B95FE4 /* Resources */,
 				E773A56316AC3219004E6FDD /* CopyFiles */,
+				E73763E616B44B600043EF0D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1000,6 +1007,7 @@
 				E73EAFDB15E6D35300B95FE4 /* Frameworks */,
 				E73EAFDE15E6D35300B95FE4 /* Resources */,
 				E773A56516AC3222004E6FDD /* CopyFiles */,
+				E73763E716B44B640043EF0D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1018,6 +1026,7 @@
 				E73EAFF515E6D46A00B95FE4 /* Frameworks */,
 				E73EAFF815E6D46A00B95FE4 /* Resources */,
 				E773A56716AC322D004E6FDD /* CopyFiles */,
+				E73763E816B44B690043EF0D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1036,6 +1045,7 @@
 				E73EB00F15E6D51800B95FE4 /* Frameworks */,
 				E73EB01215E6D51800B95FE4 /* Resources */,
 				E773A56916AC3234004E6FDD /* CopyFiles */,
+				E73763E916B44B6C0043EF0D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1054,6 +1064,7 @@
 				E73EB02915E6D66300B95FE4 /* Frameworks */,
 				E73EB02C15E6D66300B95FE4 /* Resources */,
 				E773A56B16AC323F004E6FDD /* CopyFiles */,
+				E73763EA16B44B700043EF0D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1072,6 +1083,7 @@
 				E744859315E7E9B600DDE3BF /* Frameworks */,
 				E744859615E7E9B600DDE3BF /* Resources */,
 				E773A56D16AC3245004E6FDD /* CopyFiles */,
+				E73763EB16B44B730043EF0D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1090,6 +1102,7 @@
 				E74485AF15E7EA2400DDE3BF /* Frameworks */,
 				E74485B215E7EA2400DDE3BF /* Resources */,
 				E773A56F16AC324C004E6FDD /* CopyFiles */,
+				E73763EC16B44B760043EF0D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1108,6 +1121,7 @@
 				E74485C815E7EA5900DDE3BF /* Frameworks */,
 				E74485CB15E7EA5900DDE3BF /* Resources */,
 				E773A57116AC3253004E6FDD /* CopyFiles */,
+				E73763ED16B44B790043EF0D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1126,6 +1140,7 @@
 				E74485E115E7EAF100DDE3BF /* Frameworks */,
 				E74485E415E7EAF100DDE3BF /* Resources */,
 				E773A57316AC325A004E6FDD /* CopyFiles */,
+				E73763EE16B44B7D0043EF0D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1144,6 +1159,7 @@
 				E74485FB15E7EBF900DDE3BF /* Frameworks */,
 				E74485FE15E7EBF900DDE3BF /* Resources */,
 				E773A57516AC3262004E6FDD /* CopyFiles */,
+				E73763EF16B44B7F0043EF0D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1162,6 +1178,7 @@
 				E744861C15E7EC2900DDE3BF /* Frameworks */,
 				E744861F15E7EC2900DDE3BF /* Resources */,
 				E773A57716AC326A004E6FDD /* CopyFiles */,
+				E73763F016B44B840043EF0D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1180,6 +1197,7 @@
 				E7DBCB15159C78F600C8B2D9 /* Frameworks */,
 				E7DBCB16159C78F600C8B2D9 /* Resources */,
 				E773A55416AC3166004E6FDD /* CopyFiles */,
+				E737639916B20A3F0043EF0D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1414,6 +1432,243 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E737639916B20A3F0043EF0D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "printenv\nLIBPATH=\"$SRCROOT/../../bin$INSTALL_PATH/libIndielib.dylib\"\nEXEPATH=\"$SRCROOT/../../bin$INSTALL_PATH/$PRODUCT_NAME.app/Contents/MacOS\"\n\ncp \"$LIBPATH\" \"$EXEPATH\"\n";
+		};
+		E73763E016B44B440043EF0D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "printenv\nLIBPATH=\"$SRCROOT/../../bin$INSTALL_PATH/libIndielib.dylib\"\nEXEPATH=\"$SRCROOT/../../bin$INSTALL_PATH/$PRODUCT_NAME.app/Contents/MacOS\"\n\ncp \"$LIBPATH\" \"$EXEPATH\"";
+		};
+		E73763E116B44B4C0043EF0D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "printenv\nLIBPATH=\"$SRCROOT/../../bin$INSTALL_PATH/libIndielib.dylib\"\nEXEPATH=\"$SRCROOT/../../bin$INSTALL_PATH/$PRODUCT_NAME.app/Contents/MacOS\"\n\ncp \"$LIBPATH\" \"$EXEPATH\"";
+		};
+		E73763E216B44B500043EF0D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "printenv\nLIBPATH=\"$SRCROOT/../../bin$INSTALL_PATH/libIndielib.dylib\"\nEXEPATH=\"$SRCROOT/../../bin$INSTALL_PATH/$PRODUCT_NAME.app/Contents/MacOS\"\n\ncp \"$LIBPATH\" \"$EXEPATH\"";
+		};
+		E73763E316B44B550043EF0D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "printenv\nLIBPATH=\"$SRCROOT/../../bin$INSTALL_PATH/libIndielib.dylib\"\nEXEPATH=\"$SRCROOT/../../bin$INSTALL_PATH/$PRODUCT_NAME.app/Contents/MacOS\"\n\ncp \"$LIBPATH\" \"$EXEPATH\"";
+		};
+		E73763E416B44B590043EF0D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "printenv\nLIBPATH=\"$SRCROOT/../../bin$INSTALL_PATH/libIndielib.dylib\"\nEXEPATH=\"$SRCROOT/../../bin$INSTALL_PATH/$PRODUCT_NAME.app/Contents/MacOS\"\n\ncp \"$LIBPATH\" \"$EXEPATH\"";
+		};
+		E73763E516B44B5C0043EF0D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "printenv\nLIBPATH=\"$SRCROOT/../../bin$INSTALL_PATH/libIndielib.dylib\"\nEXEPATH=\"$SRCROOT/../../bin$INSTALL_PATH/$PRODUCT_NAME.app/Contents/MacOS\"\n\ncp \"$LIBPATH\" \"$EXEPATH\"";
+		};
+		E73763E616B44B600043EF0D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "printenv\nLIBPATH=\"$SRCROOT/../../bin$INSTALL_PATH/libIndielib.dylib\"\nEXEPATH=\"$SRCROOT/../../bin$INSTALL_PATH/$PRODUCT_NAME.app/Contents/MacOS\"\n\ncp \"$LIBPATH\" \"$EXEPATH\"";
+		};
+		E73763E716B44B640043EF0D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "printenv\nLIBPATH=\"$SRCROOT/../../bin$INSTALL_PATH/libIndielib.dylib\"\nEXEPATH=\"$SRCROOT/../../bin$INSTALL_PATH/$PRODUCT_NAME.app/Contents/MacOS\"\n\ncp \"$LIBPATH\" \"$EXEPATH\"";
+		};
+		E73763E816B44B690043EF0D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "printenv\nLIBPATH=\"$SRCROOT/../../bin$INSTALL_PATH/libIndielib.dylib\"\nEXEPATH=\"$SRCROOT/../../bin$INSTALL_PATH/$PRODUCT_NAME.app/Contents/MacOS\"\n\ncp \"$LIBPATH\" \"$EXEPATH\"";
+		};
+		E73763E916B44B6C0043EF0D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "printenv\nLIBPATH=\"$SRCROOT/../../bin$INSTALL_PATH/libIndielib.dylib\"\nEXEPATH=\"$SRCROOT/../../bin$INSTALL_PATH/$PRODUCT_NAME.app/Contents/MacOS\"\n\ncp \"$LIBPATH\" \"$EXEPATH\"";
+		};
+		E73763EA16B44B700043EF0D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "printenv\nLIBPATH=\"$SRCROOT/../../bin$INSTALL_PATH/libIndielib.dylib\"\nEXEPATH=\"$SRCROOT/../../bin$INSTALL_PATH/$PRODUCT_NAME.app/Contents/MacOS\"\n\ncp \"$LIBPATH\" \"$EXEPATH\"";
+		};
+		E73763EB16B44B730043EF0D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "printenv\nLIBPATH=\"$SRCROOT/../../bin$INSTALL_PATH/libIndielib.dylib\"\nEXEPATH=\"$SRCROOT/../../bin$INSTALL_PATH/$PRODUCT_NAME.app/Contents/MacOS\"\n\ncp \"$LIBPATH\" \"$EXEPATH\"";
+		};
+		E73763EC16B44B760043EF0D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "printenv\nLIBPATH=\"$SRCROOT/../../bin$INSTALL_PATH/libIndielib.dylib\"\nEXEPATH=\"$SRCROOT/../../bin$INSTALL_PATH/$PRODUCT_NAME.app/Contents/MacOS\"\n\ncp \"$LIBPATH\" \"$EXEPATH\"";
+		};
+		E73763ED16B44B790043EF0D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "printenv\nLIBPATH=\"$SRCROOT/../../bin$INSTALL_PATH/libIndielib.dylib\"\nEXEPATH=\"$SRCROOT/../../bin$INSTALL_PATH/$PRODUCT_NAME.app/Contents/MacOS\"\n\ncp \"$LIBPATH\" \"$EXEPATH\"";
+		};
+		E73763EE16B44B7D0043EF0D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "printenv\nLIBPATH=\"$SRCROOT/../../bin$INSTALL_PATH/libIndielib.dylib\"\nEXEPATH=\"$SRCROOT/../../bin$INSTALL_PATH/$PRODUCT_NAME.app/Contents/MacOS\"\n\ncp \"$LIBPATH\" \"$EXEPATH\"";
+		};
+		E73763EF16B44B7F0043EF0D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "printenv\nLIBPATH=\"$SRCROOT/../../bin$INSTALL_PATH/libIndielib.dylib\"\nEXEPATH=\"$SRCROOT/../../bin$INSTALL_PATH/$PRODUCT_NAME.app/Contents/MacOS\"\n\ncp \"$LIBPATH\" \"$EXEPATH\"";
+		};
+		E73763F016B44B840043EF0D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "printenv\nLIBPATH=\"$SRCROOT/../../bin$INSTALL_PATH/libIndielib.dylib\"\nEXEPATH=\"$SRCROOT/../../bin$INSTALL_PATH/$PRODUCT_NAME.app/Contents/MacOS\"\n\ncp \"$LIBPATH\" \"$EXEPATH\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E73EAF1A15E6BF7E00B95FE4 /* Sources */ = {

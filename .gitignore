@@ -52,3 +52,5 @@ glewinfo
 IndieLib/common/dependencies/glew-1.9.0/glew.pc
 IndieLib/common/dependencies/glew-1.9.0/glewmx.pc
 glew.pc
+IndieLib/tutorials/mac/IndielibTutorials.xcodeproj/project.xcworkspace/xcuserdata/mquinones.xcuserdatad/UserInterfaceState.xcuserstate
+IndieLib/tutorials/mac/IndielibTutorials.xcodeproj/project.xcworkspace/xcuserdata/mquinones.xcuserdatad/WorkspaceSettings.xcsettings

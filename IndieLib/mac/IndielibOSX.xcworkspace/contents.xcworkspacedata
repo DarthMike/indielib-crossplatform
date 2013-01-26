@@ -11,9 +11,6 @@
       location = "group:TestsOSX/TestsOSX.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Tutorials/IndielibTutorials.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:../CHANGELOG">
    </FileRef>
    <FileRef

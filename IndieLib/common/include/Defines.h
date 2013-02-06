@@ -94,7 +94,7 @@ Suite 330, Boston, MA 02111-1307 USA
  */
 
 /**
- * @defgroup Advanced Advanced methods for bliting directly to the screen without using entities. It uses IND_Render methods (recommended only for advanced IndieLib users)
+ * @defgroup Advanced Advanced methods for bliting directly to the screen without using entities. 
  */
 
 /**

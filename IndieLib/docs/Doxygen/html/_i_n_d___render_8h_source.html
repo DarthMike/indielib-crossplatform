@@ -361,7 +361,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;                             <span class="keywordtype">float</span> pVDisplace);</div>
 <div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;</div>
 <div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;        <span class="keywordtype">int</span> blitAnimation(<a class="code" href="class_i_n_d___animation.html" title="IND_Animation objects are loaded trough the methods of IND_AnimationManager.">IND_Animation</a> *pAn,</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;                          <span class="keywordtype">int</span> pSequence,</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;                          <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> pSequence,</div>
 <div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;                          <span class="keywordtype">int</span> pX,</div>
 <div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;                          <span class="keywordtype">int</span> pY,</div>
 <div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;                          <span class="keywordtype">int</span> pWidth,</div>
@@ -464,7 +464,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;        <span class="keywordtype">void</span> resetTimer();</div>
 <div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;</div>
 <div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;        <span class="comment">// ----- Private Interface (for friend classes) -----</span></div>
-<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;        <span class="keywordtype">void</span> calculeFrustumPlanes();</div>
+<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;        <span class="keywordtype">void</span> reCalculateFrustrumPlanes();</div>
 <div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;        <span class="keywordtype">void</span> blitCollisionCircle(<span class="keywordtype">int</span> pPosX, <span class="keywordtype">int</span> pPosY, <span class="keywordtype">int</span> pRadius, <span class="keywordtype">float</span> pScale, BYTE pR, BYTE pG, BYTE pB, BYTE pA, <a class="code" href="structstruct_matrix.html" title="Matrix representation used by all Indielib entities.">IND_Matrix</a> pWorldMatrix);</div>
 <div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;        <span class="keywordtype">void</span> blitCollisionLine(<span class="keywordtype">int</span> pPosX1, <span class="keywordtype">int</span> pPosY1, <span class="keywordtype">int</span> pPosX2, <span class="keywordtype">int</span> pPosY2,  BYTE pR, BYTE pG, BYTE pB, BYTE pA, <a class="code" href="structstruct_matrix.html" title="Matrix representation used by all Indielib entities.">IND_Matrix</a> pIndWorldMatrix);</div>
 <div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;</div>
@@ -478,7 +478,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 1 2012 17:39:01 for IndieLib - Crossplatform by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Feb 6 2013 21:40:20 for IndieLib - Crossplatform by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

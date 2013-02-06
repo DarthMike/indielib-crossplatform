@@ -155,8 +155,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><div class="memdoc">
 
 <p>Returns 1 (true) if the animation file exists and is added successfully to the manager, loading the frames as <a class="el" href="class_i_n_d___image.html" title="IND_Image is an image object from the class IND_ImageManager.">IND_Image</a> objects. </p>
-<p>So this animation won't be able to be drawn to the screen directly, but you will be able to modify the <a class="el" href="class_i_n_d___image.html" title="IND_Image is an image object from the class IND_ImageManager.">IND_Image</a> objects (for applying a filter, for example) accessing them trough the <a class="el" href="class_i_n_d___animation.html#a4a9682c03a94b723f67415e817212840" title="This function returns the pointer to the object IND_Image that contains the frame received or NULL in...">IND_Animation::getImage(int pFrame)</a> function.</p>
-<p>Once they have been modified, they can be converted to <a class="el" href="class_i_n_d___surface.html" title="IND_Surface is an surface object from the class IND_SurfaceManager.">IND_Surface</a> and applied to the animation using <a class="el" href="class_i_n_d___animation.html#acf15e80b3af423ffa273baea62b9ed65" title="This function establishes a IND_Surface object in a frame. It can be useful for modifying some frames...">IND_Animation::setSurface(int pFrame, IND_Surface *pNewSurface)</a> and then the animation will be able to be drawn correctly</p>
+<p>So this animation won't be able to be drawn to the screen directly, but you will be able to modify the <a class="el" href="class_i_n_d___image.html" title="IND_Image is an image object from the class IND_ImageManager.">IND_Image</a> objects (for applying a filter, for example) accessing them trough the ::IND_Animation::getImage(int pFrame) function.</p>
+<p>Once they have been modified, they can be converted to <a class="el" href="class_i_n_d___surface.html" title="IND_Surface is an surface object from the class IND_SurfaceManager.">IND_Surface</a> and applied to the animation using ::IND_Animation::setSurface(int pFrame, IND_Surface *pNewSurface) and then the animation will be able to be drawn correctly</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pNewAnimation</td><td>Pointer to a new animation object. </td></tr>
@@ -504,7 +504,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 1 2012 17:39:01 for IndieLib - Crossplatform by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Feb 6 2013 21:40:21 for IndieLib - Crossplatform by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

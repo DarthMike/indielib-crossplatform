@@ -160,15 +160,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="keyword">private</span>:</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="comment">//----- INTERNAL VARIABLES -----</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordtype">bool</span> _highRes;    <span class="comment">//Using High-res timer?</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordtype">bool</span> _started;    <span class="comment">//Started status</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordtype">bool</span> _paused;     <span class="comment">//Paused Status</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordtype">bool</span> _highRes;                  <span class="comment">//Using High-res timer?</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordtype">bool</span> _started;                  <span class="comment">//Started status</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordtype">bool</span> _paused;                   <span class="comment">//Paused Status</span></div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">#ifdef PLATFORM_WIN32</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor"></span>        __int64 mStartTime; <span class="comment">//Start time(Windows- specific format...)</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        __int64 mFinalTime; <span class="comment">//End time(Windows- specific format...)</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        __int64 _elapsedTime;  <span class="comment">//Elapsed time (Windows- specific format...)</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        __int64 mFrequency; <span class="comment">//High-res timer frequency</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor"></span>        __int64 mStartTime;             <span class="comment">//Start time (Windows- specific format...)</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        __int64 mFinalTime;             <span class="comment">//End time (Windows- specific format...)</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        __int64 _elapsedTime;   <span class="comment">//Elapsed time (Windows- specific format...)</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        __int64 mFrequency;     <span class="comment">//High-res timer frequency</span></div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">#if defined (PLATFORM_IOS) || defined (PLATFORM_OSX)</span></div>
@@ -179,20 +179,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="preprocessor">#ifdef PLATFORM_LINUX</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor"></span>        uint64_t mStartTime;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        uint64_t _elapsedTime; <span class="comment">// TODO: not sure that this is the right type......</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="keyword">struct </span>timespec linux_start, linux_end;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <span class="comment">//----- INTERNAL FUNCTIONS -----</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="keywordtype">void</span> init();</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;};</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor"></span>        uint64_t mStartTime;    <span class="comment">//Start time (linux - specific)</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        uint64_t mFinalTime;    <span class="comment">//End time (linux - specific)</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        uint64_t _elapsedTime;  <span class="comment">//Elapsed time (linux - specific)</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <span class="keyword">struct </span>timespec linux_start, linux_end;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="comment">//----- INTERNAL FUNCTIONS -----</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <span class="keywordtype">void</span> init();</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;};</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 1 2012 17:39:01 for IndieLib - Crossplatform by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Feb 6 2013 21:40:21 for IndieLib - Crossplatform by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

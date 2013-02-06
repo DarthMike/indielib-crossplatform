@@ -102,17 +102,20 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstruct_bounding_collision.html#a769670c8dae9598980c11ac81cc1dd93">structBoundingCollision</a> ()</td></tr>
 <tr class="memdesc:a769670c8dae9598980c11ac81cc1dd93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor. <br/></td></tr>
 <tr class="separator:a769670c8dae9598980c11ac81cc1dd93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e6e94eaf285d0e7badaef2c627302d0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstruct_bounding_collision.html#a6e6e94eaf285d0e7badaef2c627302d0">structBoundingCollision</a> (int type, const char *identifier)</td></tr>
+<tr class="memdesc:a6e6e94eaf285d0e7badaef2c627302d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Designater constructor.  <a href="#a6e6e94eaf285d0e7badaef2c627302d0"></a><br/></td></tr>
+<tr class="separator:a6e6e94eaf285d0e7badaef2c627302d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e9ad487c2e60c331595e78b411d1970"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4e9ad487c2e60c331595e78b411d1970"></a>
+const char *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstruct_bounding_collision.html#a4e9ad487c2e60c331595e78b411d1970">getId</a> ()</td></tr>
+<tr class="memdesc:a4e9ad487c2e60c331595e78b411d1970"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the ID for this collision. <br/></td></tr>
+<tr class="separator:a4e9ad487c2e60c331595e78b411d1970"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ae893ce2f6d5ce0f2bfb6e4f2ea2c3e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7ae893ce2f6d5ce0f2bfb6e4f2ea2c3e"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstruct_bounding_collision.html#a7ae893ce2f6d5ce0f2bfb6e4f2ea2c3e">getType</a> ()</td></tr>
+<tr class="memdesc:a7ae893ce2f6d5ce0f2bfb6e4f2ea2c3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the type of this collision. <br/></td></tr>
+<tr class="separator:a7ae893ce2f6d5ce0f2bfb6e4f2ea2c3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a011b0784d6d3ff06a37317a79b577ed0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a011b0784d6d3ff06a37317a79b577ed0"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstruct_bounding_collision.html#a011b0784d6d3ff06a37317a79b577ed0">_type</a></td></tr>
-<tr class="memdesc:a011b0784d6d3ff06a37317a79b577ed0"><td class="mdescLeft">&#160;</td><td class="mdescRight">0 = Triange, 1 = Circle <br/></td></tr>
-<tr class="separator:a011b0784d6d3ff06a37317a79b577ed0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a34eea7a4c6f4138a2e5450b445403134"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a34eea7a4c6f4138a2e5450b445403134"></a>
-char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstruct_bounding_collision.html#a34eea7a4c6f4138a2e5450b445403134">_id</a></td></tr>
-<tr class="memdesc:a34eea7a4c6f4138a2e5450b445403134"><td class="mdescLeft">&#160;</td><td class="mdescRight">Group Id for grouping bounding areas. <br/></td></tr>
-<tr class="separator:a34eea7a4c6f4138a2e5450b445403134"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aab1fc4acd2fca99f11ebbcd0818d15b2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aab1fc4acd2fca99f11ebbcd0818d15b2"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstruct_bounding_collision.html#aab1fc4acd2fca99f11ebbcd0818d15b2">_posX</a></td></tr>
 <tr class="memdesc:aab1fc4acd2fca99f11ebbcd0818d15b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">_posX Position <br/></td></tr>
@@ -152,13 +155,57 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struc
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Encapsulates information about a parsed bounding collision information from xml. </p>
-</div><hr/>The documentation for this struct was generated from the following file:<ul>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a6e6e94eaf285d0e7badaef2c627302d0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">structBoundingCollision::structBoundingCollision </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>identifier</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Designater constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>The type for this collision. Can't be changed after creation </td></tr>
+    <tr><td class="paramname">identifier</td><td>A string to match with a collision zone. Can't be changed after </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
 <li>/Users/mquinones/Desktop/SOFTWARE DEV/PROJECTS/indielib-gitrepo/IndieLib/common/include/<a class="el" href="_defines_8h_source.html">Defines.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 1 2012 17:39:02 for IndieLib - Crossplatform by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Feb 6 2013 21:40:21 for IndieLib - Crossplatform by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

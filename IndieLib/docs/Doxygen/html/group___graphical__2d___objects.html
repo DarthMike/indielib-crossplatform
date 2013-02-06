@@ -77,7 +77,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="headertitle">
 <div class="title">Bliting Surfaces, Animations and Fonts and setting the transformations directly</div>  </div>
-<div class="ingroups"><a class="el" href="group___advanced.html">Advanced methods for bliting directly to the screen without using entities. It uses IND_Render methods (recommended only for advanced IndieLib users)</a></div></div><!--header-->
+<div class="ingroups"><a class="el" href="group___advanced.html">Advanced methods for bliting directly to the screen without using entities.</a></div></div><!--header-->
 <div class="contents">
 
 <p>With these methods you can set the 2d transformations (using IND_Render::Set2dTransform) and color attributes (using IND_Render::SetRainbow()) and blit directly to the screen surfaces, animations, and fonts using <a class="el" href="class_i_n_d___render.html" title="The methods of this class are used for preparing the render area, viewport, etc.">IND_Render</a> class.  
@@ -127,15 +127,15 @@ Advanced 2d bliting methods (it's preferible to use IND_Entity2d together with I
 <tr class="memitem:ga50c9fdcc248a7771f8dd518ac4172203"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___graphical__2d___objects.html#ga50c9fdcc248a7771f8dd518ac4172203">IND_Render::blitText</a> (<a class="el" href="class_i_n_d___font.html">IND_Font</a> *pFo, char *pText, int pX, int pY, int pOffset, int pLineSpacing, float pScaleX, float pScaleY, BYTE pR, BYTE pG, BYTE pB, BYTE pA, BYTE pFadeR, BYTE pFadeG, BYTE pFadeB, BYTE pFadeA, <a class="el" href="group___i_n_d___filter.html#ga6693382ff655f59c9c94aea5e4bd2420">IND_Filter</a> pLinearFilter, <a class="el" href="group___i_n_d___blending_type.html#ga0c6c208f915bd65b3c330e683e00079c">IND_BlendingType</a> pSo, <a class="el" href="group___i_n_d___blending_type.html#ga0c6c208f915bd65b3c330e683e00079c">IND_BlendingType</a> pDs, <a class="el" href="group___i_n_d___align.html#gad7dc778700ecdc3c72b14fd5ffe4919d">IND_Align</a> pAlign)</td></tr>
 <tr class="memdesc:ga50c9fdcc248a7771f8dd518ac4172203"><td class="mdescLeft">&#160;</td><td class="mdescRight"><b>Parameters:</b>  <a href="#ga50c9fdcc248a7771f8dd518ac4172203"></a><br/></td></tr>
 <tr class="separator:ga50c9fdcc248a7771f8dd518ac4172203"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga6eaa60e59777b96d8e2cc20fc962ffb5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___graphical__2d___objects.html#ga6eaa60e59777b96d8e2cc20fc962ffb5">IND_Render::blitAnimation</a> (<a class="el" href="class_i_n_d___animation.html">IND_Animation</a> *pAn, int pSequence, int pX, int pY, int pWidth, int pHeight, bool pToggleWrap, float pUDisplace, float pVDisplace)</td></tr>
-<tr class="memdesc:ga6eaa60e59777b96d8e2cc20fc962ffb5"><td class="mdescLeft">&#160;</td><td class="mdescRight"><b>Parameters:</b>  <a href="#ga6eaa60e59777b96d8e2cc20fc962ffb5"></a><br/></td></tr>
-<tr class="separator:ga6eaa60e59777b96d8e2cc20fc962ffb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab201088d575ecba69dc05c44c013f48c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___graphical__2d___objects.html#gab201088d575ecba69dc05c44c013f48c">IND_Render::blitAnimation</a> (<a class="el" href="class_i_n_d___animation.html">IND_Animation</a> *pAn, unsigned int pSequence, int pX, int pY, int pWidth, int pHeight, bool pToggleWrap, float pUDisplace, float pVDisplace)</td></tr>
+<tr class="memdesc:gab201088d575ecba69dc05c44c013f48c"><td class="mdescLeft">&#160;</td><td class="mdescRight"><b>Parameters:</b>  <a href="#gab201088d575ecba69dc05c44c013f48c"></a><br/></td></tr>
+<tr class="separator:gab201088d575ecba69dc05c44c013f48c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>With these methods you can set the 2d transformations (using IND_Render::Set2dTransform) and color attributes (using IND_Render::SetRainbow()) and blit directly to the screen surfaces, animations, and fonts using <a class="el" href="class_i_n_d___render.html" title="The methods of this class are used for preparing the render area, viewport, etc.">IND_Render</a> class. </p>
 <p>Remember that you can use <a class="el" href="class_i_n_d___entity2d.html" title="IND_Entity2d is an 2d entity object of the class IND_Entity2dManager.">IND_Entity2d</a> together with <a class="el" href="class_i_n_d___entity2d_manager.html" title="Manager of IND_Entity2d objects.">IND_Entity2dManager</a> for drawing these graphical objects to the screen without having to use this advanced method directly. This method is only useful for advanced users for really concrete purposes. </p>
 <h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="ga6eaa60e59777b96d8e2cc20fc962ffb5"></a>
+<a class="anchor" id="gab201088d575ecba69dc05c44c013f48c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -148,7 +148,7 @@ Advanced 2d bliting methods (it's preferible to use IND_Entity2d together with I
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">unsigned int&#160;</td>
           <td class="paramname"><em>pSequence</em>, </td>
         </tr>
         <tr>
@@ -1245,7 +1245,7 @@ Advanced 2d bliting methods (it's preferible to use IND_Entity2d together with I
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 1 2012 17:39:01 for IndieLib - Crossplatform by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Feb 6 2013 21:40:21 for IndieLib - Crossplatform by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

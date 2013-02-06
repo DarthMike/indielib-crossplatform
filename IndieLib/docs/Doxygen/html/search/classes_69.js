@@ -15,6 +15,7 @@ var searchData=
   ['ind_5fmath',['IND_Math',['../class_i_n_d___math.html',1,'']]],
   ['ind_5frender',['IND_Render',['../class_i_n_d___render.html',1,'']]],
   ['ind_5fsequence',['IND_Sequence',['../class_i_n_d___sequence.html',1,'']]],
+  ['ind_5fspriterentity',['IND_SpriterEntity',['../class_i_n_d___spriter_entity.html',1,'']]],
   ['ind_5fsurface',['IND_Surface',['../class_i_n_d___surface.html',1,'']]],
   ['ind_5fsurfacemanager',['IND_SurfaceManager',['../class_i_n_d___surface_manager.html',1,'']]],
   ['ind_5ftimer',['IND_Timer',['../class_i_n_d___timer.html',1,'']]],

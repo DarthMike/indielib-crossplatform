@@ -235,9 +235,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>setAntialiasing</b> (
 <tr class="memitem:a54d62c38b5f68539a73320794d90c600"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_n_d___render.html#a54d62c38b5f68539a73320794d90c600">blitWrapSurface</a> (<a class="el" href="class_i_n_d___surface.html">IND_Surface</a> *pSu, int pWidth, int pHeight, float pUDisplace, float pVDisplace)</td></tr>
 <tr class="memdesc:a54d62c38b5f68539a73320794d90c600"><td class="mdescLeft">&#160;</td><td class="mdescRight"><b>Parameters:</b>  <a href="#a54d62c38b5f68539a73320794d90c600"></a><br/></td></tr>
 <tr class="separator:a54d62c38b5f68539a73320794d90c600"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga6eaa60e59777b96d8e2cc20fc962ffb5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___graphical__2d___objects.html#ga6eaa60e59777b96d8e2cc20fc962ffb5">blitAnimation</a> (<a class="el" href="class_i_n_d___animation.html">IND_Animation</a> *pAn, int pSequence, int pX, int pY, int pWidth, int pHeight, bool pToggleWrap, float pUDisplace, float pVDisplace)</td></tr>
-<tr class="memdesc:ga6eaa60e59777b96d8e2cc20fc962ffb5"><td class="mdescLeft">&#160;</td><td class="mdescRight"><b>Parameters:</b>  <a href="group___graphical__2d___objects.html#ga6eaa60e59777b96d8e2cc20fc962ffb5"></a><br/></td></tr>
-<tr class="separator:ga6eaa60e59777b96d8e2cc20fc962ffb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab201088d575ecba69dc05c44c013f48c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___graphical__2d___objects.html#gab201088d575ecba69dc05c44c013f48c">blitAnimation</a> (<a class="el" href="class_i_n_d___animation.html">IND_Animation</a> *pAn, unsigned int pSequence, int pX, int pY, int pWidth, int pHeight, bool pToggleWrap, float pUDisplace, float pVDisplace)</td></tr>
+<tr class="memdesc:gab201088d575ecba69dc05c44c013f48c"><td class="mdescLeft">&#160;</td><td class="mdescRight"><b>Parameters:</b>  <a href="group___graphical__2d___objects.html#gab201088d575ecba69dc05c44c013f48c"></a><br/></td></tr>
+<tr class="separator:gab201088d575ecba69dc05c44c013f48c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga50c9fdcc248a7771f8dd518ac4172203"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___graphical__2d___objects.html#ga50c9fdcc248a7771f8dd518ac4172203">blitText</a> (<a class="el" href="class_i_n_d___font.html">IND_Font</a> *pFo, char *pText, int pX, int pY, int pOffset, int pLineSpacing, float pScaleX, float pScaleY, BYTE pR, BYTE pG, BYTE pB, BYTE pA, BYTE pFadeR, BYTE pFadeG, BYTE pFadeB, BYTE pFadeA, <a class="el" href="group___i_n_d___filter.html#ga6693382ff655f59c9c94aea5e4bd2420">IND_Filter</a> pLinearFilter, <a class="el" href="group___i_n_d___blending_type.html#ga0c6c208f915bd65b3c330e683e00079c">IND_BlendingType</a> pSo, <a class="el" href="group___i_n_d___blending_type.html#ga0c6c208f915bd65b3c330e683e00079c">IND_BlendingType</a> pDs, <a class="el" href="group___i_n_d___align.html#gad7dc778700ecdc3c72b14fd5ffe4919d">IND_Align</a> pAlign)</td></tr>
 <tr class="memdesc:ga50c9fdcc248a7771f8dd518ac4172203"><td class="mdescLeft">&#160;</td><td class="mdescRight"><b>Parameters:</b>  <a href="group___graphical__2d___objects.html#ga50c9fdcc248a7771f8dd518ac4172203"></a><br/></td></tr>
 <tr class="separator:ga50c9fdcc248a7771f8dd518ac4172203"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -775,6 +775,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
 <li><b>windowproperties</b> Properties of window to be created</li>
 </ul>
 <p><b>Operation:</b> </p>
+<p>Creates a render and window, with supplied window params. Window params need to be compatible with platform running on, as engine will not try to fit display params to something 'similar'. i.e. running in an iPhone 4 and asking for a screen with 800x600 will just fail.</p>
 <p>This function returns a pointer to correctly created window if success. NULL if failed </p>
 
 </div>
@@ -994,7 +995,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 1 2012 17:39:01 for IndieLib - Crossplatform by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Feb 6 2013 21:40:21 for IndieLib - Crossplatform by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

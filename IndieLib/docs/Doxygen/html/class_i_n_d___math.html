@@ -110,6 +110,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:af9212be51a8aa5bf90ee185be7cd2514"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_n_d___math.html#af9212be51a8aa5bf90ee185be7cd2514">randSeed</a> (long pNum)</td></tr>
 <tr class="memdesc:af9212be51a8aa5bf90ee185be7cd2514"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the seed for random numbers.  <a href="#af9212be51a8aa5bf90ee185be7cd2514"></a><br/></td></tr>
 <tr class="separator:af9212be51a8aa5bf90ee185be7cd2514"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Culling utilities</div></td></tr>
+<tr class="memitem:a5621ea979e20dd56e80bb0cc8ac50206"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_n_d___math.html#a5621ea979e20dd56e80bb0cc8ac50206">calculateBoundingRectangle</a> (<a class="el" href="class_i_n_d___vector3.html">IND_Vector3</a> *mP1, <a class="el" href="class_i_n_d___vector3.html">IND_Vector3</a> *mP2, <a class="el" href="class_i_n_d___vector3.html">IND_Vector3</a> *mP3, <a class="el" href="class_i_n_d___vector3.html">IND_Vector3</a> *mP4)</td></tr>
+<tr class="memdesc:a5621ea979e20dd56e80bb0cc8ac50206"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a bounding rectangle surrounding a block.  <a href="#a5621ea979e20dd56e80bb0cc8ac50206"></a><br/></td></tr>
+<tr class="separator:a5621ea979e20dd56e80bb0cc8ac50206"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ea8c0f031b18925db0cf79f9b382525"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_n_d___math.html#a1ea8c0f031b18925db0cf79f9b382525">cullFrustumBox</a> (const <a class="el" href="class_i_n_d___vector3.html">IND_Vector3</a> &amp;pAABBMin, const <a class="el" href="class_i_n_d___vector3.html">IND_Vector3</a> &amp;pAABBMax, <a class="el" href="struct_struct_frustrum.html">FRUSTRUMPLANES</a> &amp;pFrustrum)</td></tr>
+<tr class="memdesc:a1ea8c0f031b18925db0cf79f9b382525"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines if a box determined by 2 points, is inside the supplied frustrum.  <a href="#a1ea8c0f031b18925db0cf79f9b382525"></a><br/></td></tr>
+<tr class="separator:a1ea8c0f031b18925db0cf79f9b382525"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Matrix utilities</div></td></tr>
 <tr class="memitem:a2e11e492a67ade2849e8b2d401b50f3b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_n_d___math.html#a2e11e492a67ade2849e8b2d401b50f3b">matrix4DMultiply</a> (const <a class="el" href="group___math__strucutures.html#gaf486c298edce0d5a57d53383b3b5627f">IND_Matrix</a> &amp;m1, const <a class="el" href="group___math__strucutures.html#gaf486c298edce0d5a57d53383b3b5627f">IND_Matrix</a> &amp;m2, <a class="el" href="group___math__strucutures.html#gaf486c298edce0d5a57d53383b3b5627f">IND_Matrix</a> &amp;result) const </td></tr>
 <tr class="memdesc:a2e11e492a67ade2849e8b2d401b50f3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiplies 2 matrices.  <a href="#a2e11e492a67ade2849e8b2d401b50f3b"></a><br/></td></tr>
@@ -168,6 +175,9 @@ Miscellaneus utilities</h2></td></tr>
 <tr class="memitem:aa2c982bdb7a7caa8e55a1a9a6efa7f1e"><td class="memTemplItemLeft" align="right" valign="top">type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_i_n_d___math.html#aa2c982bdb7a7caa8e55a1a9a6efa7f1e">angleToRadians</a> (type angle, bool invert=false) const </td></tr>
 <tr class="memdesc:aa2c982bdb7a7caa8e55a1a9a6efa7f1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs conversion from degrees to radian units.  <a href="#aa2c982bdb7a7caa8e55a1a9a6efa7f1e"></a><br/></td></tr>
 <tr class="separator:aa2c982bdb7a7caa8e55a1a9a6efa7f1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6882d009d6381bb5a12cc73d3f21fd04"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_n_d___math.html#a6882d009d6381bb5a12cc73d3f21fd04">minAndMax4</a> (int p1, int p2, int p3, int p4, int *pMax, int *pMin)</td></tr>
+<tr class="memdesc:a6882d009d6381bb5a12cc73d3f21fd04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates a minimum and maximum value of 4 values.  <a href="#a6882d009d6381bb5a12cc73d3f21fd04"></a><br/></td></tr>
+<tr class="separator:a6882d009d6381bb5a12cc73d3f21fd04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a92659d070b3f3715b3e748ada0444d25"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_n_d___math.html#a92659d070b3f3715b3e748ada0444d25">itoa</a> (int val, char *buf)</td></tr>
 <tr class="memdesc:a92659d070b3f3715b3e748ada0444d25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cross-Platform version of itoa.  <a href="#a92659d070b3f3715b3e748ada0444d25"></a><br/></td></tr>
 <tr class="separator:a92659d070b3f3715b3e748ada0444d25"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -256,6 +266,121 @@ template&lt;typename type &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Value converted to radian </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a5621ea979e20dd56e80bb0cc8ac50206"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IND_Math::calculateBoundingRectangle </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_i_n_d___vector3.html">IND_Vector3</a> *&#160;</td>
+          <td class="paramname"><em>mP1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_i_n_d___vector3.html">IND_Vector3</a> *&#160;</td>
+          <td class="paramname"><em>mP2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_i_n_d___vector3.html">IND_Vector3</a> *&#160;</td>
+          <td class="paramname"><em>mP3</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_i_n_d___vector3.html">IND_Vector3</a> *&#160;</td>
+          <td class="paramname"><em>mP4</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates a bounding rectangle surrounding a block. </p>
+<p>p1* &ndash; &ndash; <em>p2 | | | | | | p3</em> &ndash; &ndash; *p4</p>
+<p>All points can be arbitrary, as the bounding rectangle gets max/min values to form a rectangle </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mP1</td><td>A point </td></tr>
+    <tr><td class="paramname">mP2</td><td>A point </td></tr>
+    <tr><td class="paramname">mP3</td><td>A point </td></tr>
+    <tr><td class="paramname">mP4</td><td>A point </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a1ea8c0f031b18925db0cf79f9b382525"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int IND_Math::cullFrustumBox </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_i_n_d___vector3.html">IND_Vector3</a> &amp;&#160;</td>
+          <td class="paramname"><em>pAABBMin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_i_n_d___vector3.html">IND_Vector3</a> &amp;&#160;</td>
+          <td class="paramname"><em>pAABBMax</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_struct_frustrum.html">FRUSTRUMPLANES</a> &amp;&#160;</td>
+          <td class="paramname"><em>pFrustrum</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Determines if a box determined by 2 points, is inside the supplied frustrum. </p>
+<pre class="fragment">            Taking an AABB min and max in world space, work out its interaction with the view frustum
+            0 is outside
+            1 is partially in
+            2 is completely within
+            Note: the viewing frustum must be calculated first
+</pre><p> Here we are testing boxes against the frustrum, using the technique called "Geometric Approach - Testing Boxes II" here: <a href="http://zach.in.tu-clausthal.de/teaching/cg_literatur/lighthouse3d_view_frustum_culling/index.html">http://zach.in.tu-clausthal.de/teaching/cg_literatur/lighthouse3d_view_frustum_culling/index.html</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pAABBMin</td><td>First vertex of the box </td></tr>
+    <tr><td class="paramname">pAABBMax</td><td>Second vertex of the box </td></tr>
+    <tr><td class="paramname">pFrustrum</td><td>Frustrum structure as per camera position, specified by 6 planes </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -1525,6 +1650,78 @@ It replaces glOrtho directly (without multiplying the matrix to GL of course)
 
 </div>
 </div>
+<a class="anchor" id="a6882d009d6381bb5a12cc73d3f21fd04"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IND_Math::minAndMax4 </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>p1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>p2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>p3</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>p4</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>pMax</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>pMin</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Calculates a minimum and maximum value of 4 values. </p>
+<p>Given 4 values, it calculates and returns the maximum and minimum values</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">p1</td><td>Value to compare </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">p2</td><td>Value to compare </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">p3</td><td>Value to compare </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">p4</td><td>Value to compare </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">pMax</td><td>Max value result </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">pMin</td><td>Min value result </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="af42920a70c9374fc7be3e37eff43cb70"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1789,7 +1986,7 @@ template&lt;typename type &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 1 2012 17:39:01 for IndieLib - Crossplatform by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Feb 6 2013 21:40:21 for IndieLib - Crossplatform by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

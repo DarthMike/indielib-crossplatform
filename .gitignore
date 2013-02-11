@@ -21,6 +21,14 @@ config.log
 *.la
 *.a
 
+### Win specific
+*.ncb
+*.suo
+*.ilk
+*.exp
+*.idb
+*.pdb
+
 ### Mac specific
 xcschememanagement.plist
 

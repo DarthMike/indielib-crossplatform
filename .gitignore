@@ -28,6 +28,7 @@ config.log
 *.exp
 *.idb
 *.pdb
+*.user
 
 ### Mac specific
 xcschememanagement.plist

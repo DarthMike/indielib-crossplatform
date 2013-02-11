@@ -65,3 +65,4 @@ IndieLib/tutorials/mac/IndielibTutorials.xcodeproj/project.xcworkspace/xcuserdat
 IndieLib/tutorials/mac/IndielibTutorials.xcodeproj/project.xcworkspace/xcuserdata/mquinones.xcuserdatad/WorkspaceSettings.xcsettings
 IndieLib/common/dependencies/glew-1.9.0/lib
 IndieLib/common/dependencies/SDL-2.0/osx
+IndieLib/bin/mac

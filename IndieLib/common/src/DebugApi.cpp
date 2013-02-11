@@ -23,6 +23,7 @@ Suite 330, Boston, MA 02111-1307 USA
 
 #include <string.h>
 #include "DebugApi.h"
+#include "IndieVersion.h"
 
 
 // --------------------------------------------------------------------------------
@@ -60,7 +61,7 @@ bool DebugApi::init() {
 	*_count << "+---------------------\\ (----(   )--------------------+" << endl;
 	*_count << "                       \\_)    ) /                      " << endl;
 	*_count << "                             (_/                        " << endl;
-
+    *_count << "Indielib version: "<<IND_VERSION.major<<"."<<IND_VERSION.minor<<"."<<IND_VERSION.revision;
 	*_count << endl;
 	*_count << endl;
 	*_count << "[g_debug.log]:" << " (";

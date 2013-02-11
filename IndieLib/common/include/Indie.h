@@ -45,6 +45,9 @@ Suite 330, Boston, MA 02111-1307 USA
 #include <fstream>
 using namespace std;
 
+//Version defs
+#include "IndieVersion.h"
+
 // Defines and types
 #include "Defines.h"
 

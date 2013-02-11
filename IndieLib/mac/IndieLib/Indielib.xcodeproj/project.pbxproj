@@ -61,6 +61,8 @@
 		E75EB188159CADF900693F41 /* RenderTransform3dOpenGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAB0A159CADEF00693F41 /* RenderTransform3dOpenGL.cpp */; };
 		E75EB189159CADF900693F41 /* RenderTransformCommonOpenGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAB0B159CADEF00693F41 /* RenderTransformCommonOpenGL.cpp */; };
 		E75EB2AB159CAF1100693F41 /* IND_Camera3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EB2AA159CAF1100693F41 /* IND_Camera3d.cpp */; };
+		E793C03516C964BC002F9867 /* IndieVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = E793C03416C964BC002F9867 /* IndieVersion.h */; };
+		E793C03816C9654B002F9867 /* IndieVersion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E793C03616C9654B002F9867 /* IndieVersion.cpp */; };
 		E7DBCA5C159B10E900C8B2D9 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCA5B159B10E900C8B2D9 /* CoreFoundation.framework */; };
 		E7DBCA60159B117500C8B2D9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCA5F159B117500C8B2D9 /* AudioToolbox.framework */; };
 		E7DBCA62159B117C00C8B2D9 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCA61159B117C00C8B2D9 /* AudioUnit.framework */; };
@@ -188,6 +190,8 @@
 		E75EB2A8159CAEFF00693F41 /* IND_Camera3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IND_Camera3d.h; sourceTree = "<group>"; };
 		E75EB2AA159CAF1100693F41 /* IND_Camera3d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IND_Camera3d.cpp; sourceTree = "<group>"; };
 		E75EB2B4159CB02400693F41 /* libIndielib.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libIndielib.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		E793C03416C964BC002F9867 /* IndieVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndieVersion.h; sourceTree = "<group>"; };
+		E793C03616C9654B002F9867 /* IndieVersion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IndieVersion.cpp; sourceTree = "<group>"; };
 		E7DBCA5B159B10E900C8B2D9 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		E7DBCA5D159B10F900C8B2D9 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		E7DBCA5F159B117500C8B2D9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -341,6 +345,7 @@
 				E75EAABF159CADEF00693F41 /* IndieLib.h */,
 				E75EAAC0159CADEF00693F41 /* IndiePlatforms.h */,
 				E75EAAC1159CADEF00693F41 /* XMeshStructures.h */,
+				E793C03416C964BC002F9867 /* IndieVersion.h */,
 			);
 			name = include;
 			path = ../../common/include;
@@ -376,6 +381,7 @@
 				E75EAAE1159CADEF00693F41 /* IND_TmxMapManager.cpp */,
 				E75EAAE2159CADEF00693F41 /* IND_Window.cpp */,
 				E75EAAE3159CADEF00693F41 /* IndieLib.cpp */,
+				E793C03616C9654B002F9867 /* IndieVersion.cpp */,
 				E75EAAE4159CADEF00693F41 /* platform */,
 				E75EAAEB159CADEF00693F41 /* PrecissionTimer.cpp */,
 				E75EAAEC159CADEF00693F41 /* PrecissionTimer.h */,
@@ -448,6 +454,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E793C03516C964BC002F9867 /* IndieVersion.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -555,6 +562,7 @@
 				E75EB188159CADF900693F41 /* RenderTransform3dOpenGL.cpp in Sources */,
 				E75EB189159CADF900693F41 /* RenderTransformCommonOpenGL.cpp in Sources */,
 				E75EB2AB159CAF1100693F41 /* IND_Camera3d.cpp in Sources */,
+				E793C03816C9654B002F9867 /* IndieVersion.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

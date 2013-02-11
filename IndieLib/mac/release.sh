@@ -1,6 +1,25 @@
 #bin/bash
 ARCHIVENAME="Indielib_OSX"
+
+
+#build dependencies
+cd ../common/dependencies/FreeImage
+make clean all
+
+cd ../SDL-2.0
+./configure --prefix=`pwd`/osx
+make clean
+make
+make install
+
+cd ../glew-1.9.0
+make clean all
+cp libGLEW.a OSX/libGLEW.a
+cp libGLEW.1.9.0.dylib OSX/libGLEW.1.9.0.dylib
+
 #clean all targets first
+cd ../../../mac
+
 echo "************CLEAN ALL TARGETS*******************"
 ALLSCHEMES=$(xcodebuild -workspace IndielibOSX.xcworkspace -list)
 

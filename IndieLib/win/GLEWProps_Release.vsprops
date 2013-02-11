@@ -5,8 +5,12 @@
 	Name="GLEWProps_Release"
 	>
 	<Tool
+		Name="VCCLCompilerTool"
+		PreprocessorDefinitions="GLEW_STATIC "
+	/>
+	<Tool
 		Name="VCLinkerTool"
-		AdditionalDependencies="glew32.lib"
-		AdditionalLibraryDirectories="&quot;..\Common\Dependencies\glew-1.9.0\lib\Win&quot;"
+		AdditionalDependencies="glew32s.lib"
+		AdditionalLibraryDirectories="&quot;..\common\dependencies\glew-1.9.0\lib&quot;"
 	/>
 </VisualStudioPropertySheet>

@@ -11,6 +11,6 @@
 	<Tool
 		Name="VCLinkerTool"
 		AdditionalDependencies="SDL2.lib SDL2main.lib"
-		AdditionalLibraryDirectories="&quot;..\Common\Dependencies\SDL-2.0\lib\Win32_release&quot;"
+		AdditionalLibraryDirectories="&quot;..\common\dependencies\SDL-2.0\VisualC\SDLmain\Release&quot;;&quot;..\common\dependencies\SDL-2.0\VisualC\SDL\Release&quot;"
 	/>
 </VisualStudioPropertySheet>

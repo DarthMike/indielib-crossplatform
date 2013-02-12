@@ -1,24 +1,49 @@
-#bin/bash
-ARCHIVENAME="Indielib_OSX"
+#bin/sh
+DEPSDIR="../common/dependencies"
+TUTORIALSDIR="../tutorials/mac"
+DESTDIR="../../../"
 
+echo $1
+if [ -z "$1" ] 
+then
+echo "EXPECTED ARCHIVE VERSION INPUT PARAMETER"
+exit -1
+fi
+
+ARCHIVENAME="Indielib_OSX_$1"
+echo $ARCHIVENAME
+
+RUNDIR=`pwd`
+
+echo "WORKING FROM: $RUNDIR"
+echo "DEPENDENCIES RELATIVE DIR: $DEPSDIR"
+echo "TUTORIALS RELATIVE DIR: $TUTORIALSDIR"
+echo "DESTINATION DIRECTORY: $DESTDIR"
 
 #build dependencies
-cd ../common/dependencies/FreeImage
-make clean all
+cd $DEPSDIR
 
+#builds static + shared. Will delete shared to link statically
+cd ./FreeImage
+make clean
+make
+rm Dist/*.dylib
+
+#build static SDL lib only
 cd ../SDL-2.0
-./configure --prefix=`pwd`/osx
+./configure --disable-shared --enable-static --prefix=`pwd`/osx
 make clean
 make
 make install
 
+#builds static + shared. Will delete shared to link statically
 cd ../glew-1.9.0
-make clean all
-cp libGLEW.a OSX/libGLEW.a
-cp libGLEW.1.9.0.dylib OSX/libGLEW.1.9.0.dylib
+make clean
+make
+rm lib/*.dylib
 
 #clean all targets first
-cd ../../../mac
+cd $RUNDIR
 
 echo "************CLEAN ALL TARGETS*******************"
 ALLSCHEMES=$(xcodebuild -workspace IndielibOSX.xcworkspace -list)
@@ -33,12 +58,12 @@ echo"*************BUILD INDIELIB**********************"
 xcodebuild -workspace IndielibOSX.xcworkspace -scheme IndieLib -configuration release
 
 #build tutorials
-cd ../tutorials/mac
+cd $TUTORIALSDIR
 ./release.sh
 
 #package distributable files in zip
 echo"*************PACKAGE FILES************************"
-cd ../../../
+cd $DESTDIR
 rm $ARCHIVENAME.zip
 
 #-X Option not to add hidden files .* in OSX

@@ -63,6 +63,7 @@
 		E75EB2AB159CAF1100693F41 /* IND_Camera3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EB2AA159CAF1100693F41 /* IND_Camera3d.cpp */; };
 		E793C03516C964BC002F9867 /* IndieVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = E793C03416C964BC002F9867 /* IndieVersion.h */; };
 		E793C03816C9654B002F9867 /* IndieVersion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E793C03616C9654B002F9867 /* IndieVersion.cpp */; };
+		E793C04716CAEDAF002F9867 /* libiconv.2.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E793C04616CAEDAF002F9867 /* libiconv.2.4.0.dylib */; };
 		E7DBCA5C159B10E900C8B2D9 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCA5B159B10E900C8B2D9 /* CoreFoundation.framework */; };
 		E7DBCA60159B117500C8B2D9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCA5F159B117500C8B2D9 /* AudioToolbox.framework */; };
 		E7DBCA62159B117C00C8B2D9 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCA61159B117C00C8B2D9 /* AudioUnit.framework */; };
@@ -192,6 +193,7 @@
 		E75EB2B4159CB02400693F41 /* libIndielib.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libIndielib.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		E793C03416C964BC002F9867 /* IndieVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndieVersion.h; sourceTree = "<group>"; };
 		E793C03616C9654B002F9867 /* IndieVersion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IndieVersion.cpp; sourceTree = "<group>"; };
+		E793C04616CAEDAF002F9867 /* libiconv.2.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.4.0.dylib; path = usr/lib/libiconv.2.4.0.dylib; sourceTree = SDKROOT; };
 		E7DBCA5B159B10E900C8B2D9 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		E7DBCA5D159B10F900C8B2D9 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		E7DBCA5F159B117500C8B2D9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -208,6 +210,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E793C04716CAEDAF002F9867 /* libiconv.2.4.0.dylib in Frameworks */,
 				E7DBCA6C159B11AA00C8B2D9 /* ForceFeedback.framework in Frameworks */,
 				E7DBCA6A159B11A200C8B2D9 /* Carbon.framework in Frameworks */,
 				E7DBCA68159B119600C8B2D9 /* IOKit.framework in Frameworks */,
@@ -226,6 +229,7 @@
 		4C76AB70153B5A2800A80F99 = {
 			isa = PBXGroup;
 			children = (
+				E793C04616CAEDAF002F9867 /* libiconv.2.4.0.dylib */,
 				E7DBCA6B159B11AA00C8B2D9 /* ForceFeedback.framework */,
 				E7DBCA69159B11A200C8B2D9 /* Carbon.framework */,
 				E7DBCA67159B119600C8B2D9 /* IOKit.framework */,
@@ -665,14 +669,13 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../common/dependencies/FreeImage/Dist\"",
-					"\"$(SRCROOT)/../../common/dependencies/FreeImage\"",
 					"\"$(SRCROOT)/../../common/dependencies/glew-1.9.0/lib\"",
 					"\"$(SRCROOT)/../../common/dependencies/SDL-2.0/osx/lib\"/**",
 				);
 				"OTHER_LDFLAGS[arch=*]" = (
+					"-lGLEW",
 					"-lSDL2",
-					"\"$(SRCROOT)/../../common/dependencies/FreeImage/Dist/libfreeImage.a\"",
-					"\"$(SRCROOT)/../../common/dependencies/glew-1.9.0/lib/libGLEW.a\"",
+					"-lfreeImage",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -693,7 +696,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../common/dependencies/FreeImage/Dist\"",
-					"\"$(SRCROOT)/../../common/dependencies/FreeImage\"",
 					"\"$(SRCROOT)/../../common/dependencies/glew-1.9.0/lib\"",
 					"\"$(SRCROOT)/../../common/dependencies/SDL-2.0/osx/lib\"/**",
 				);

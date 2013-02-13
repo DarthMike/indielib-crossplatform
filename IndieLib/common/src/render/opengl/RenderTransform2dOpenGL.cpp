@@ -83,8 +83,11 @@ bool OpenGLRender::setViewPort2d(int pX,
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 	glPixelStorei(GL_PACK_ALIGNMENT, 1);
 	//Texture clamp ON by default
-	glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
-	glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);	
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);
+	//By default select fastest texture filter
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	return true;
 }
 
@@ -329,7 +332,13 @@ void OpenGLRender::setRainbow2d(IND_Type pType,
 	blendR = blendG = blendB = blendA = 1.0f;
 
 	// ----- Filters -----
-	//Maybe disable texture-related features? (Filtering and so on...)
+	int filterType = GL_NEAREST;
+	if (IND_FILTER_LINEAR == pFilter) {
+		filterType = GL_LINEAR;
+	}
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, filterType);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, filterType);
 
 	// ----- Back face culling -----
 	if (pCull) {

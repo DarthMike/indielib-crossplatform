@@ -33,9 +33,10 @@ using namespace std;
 
 /** @cond DOCUMENT_PRIVATEAPI */
 
+
 class DebugApi {
 public:
-
+ 
 	// ----- Init/End -----
 
 	DebugApi(): _ok(false)  { }
@@ -57,7 +58,14 @@ public:
 	void dataFloat(float pDataFloat, bool pFlag);
 	void breakPoint();
 	char *duplicateCharString(const char *charString);
-
+    
+    static const int LogHeaderOk;
+    static const int LogHeaderError;
+    static const int LogHeaderInfo;
+    static const int LogHeaderWarning;
+    static const int LogHeaderBegin;
+    static const int LogHeaderEnd;
+    
 private:
 
 	// ----- Private -----

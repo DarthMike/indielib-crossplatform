@@ -303,7 +303,7 @@ void OpenGLTextureBuilder::getGLFormat(IND_Surface *pNewSurface, IND_Image* pIma
 				*pGLInternalFormat = GL_NONE;
 				*pGLFormat = GL_NONE;
 				*pGLType = GL_NONE;
-				g_debug->header("Not supported format of image! texture not loaded" , 4);
+				g_debug->header("Not supported format of image! texture not loaded" , DebugApi::LogHeaderWarning);
                 }
 
 			break;
@@ -322,7 +322,7 @@ void OpenGLTextureBuilder::getGLFormat(IND_Surface *pNewSurface, IND_Image* pIma
 					*pGLInternalFormat = GL_NONE;
 					*pGLFormat = GL_NONE;
 					*pGLType = GL_NONE;
-					g_debug->header("Not supported format of image! texture not loaded" , 4);
+					g_debug->header("Not supported format of image! texture not loaded" , DebugApi::LogHeaderWarning);
             }
 			} else if (32 == bpp) {
 				//FreeImage loads channel order differently depending on processor endianess (24 and 32 bits).
@@ -336,7 +336,7 @@ void OpenGLTextureBuilder::getGLFormat(IND_Surface *pNewSurface, IND_Image* pIma
 				*pGLInternalFormat = GL_NONE;
 				*pGLFormat = GL_NONE;
 				*pGLType = GL_NONE;
-				g_debug->header("Not supported format of image! texture not loaded" , 4);
+				g_debug->header("Not supported format of image! texture not loaded" , DebugApi::LogHeaderWarning);
                 }
 			break;
 		case (IND_RGBA): 
@@ -357,7 +357,7 @@ void OpenGLTextureBuilder::getGLFormat(IND_Surface *pNewSurface, IND_Image* pIma
 				*pGLInternalFormat = GL_NONE;
 				*pGLFormat = GL_NONE;
 				*pGLType = GL_NONE;
-				g_debug->header("Not supported format of image! texture not loaded" , 4);
+				g_debug->header("Not supported format of image! texture not loaded" , DebugApi::LogHeaderWarning);
             }
 
             break;
@@ -366,7 +366,7 @@ void OpenGLTextureBuilder::getGLFormat(IND_Surface *pNewSurface, IND_Image* pIma
 			*pGLInternalFormat = GL_NONE;
             *pGLFormat = GL_NONE;
 			*pGLType = GL_NONE;
-            g_debug->header("Not supported format of image! texture not loaded" , 4);
+            g_debug->header("Not supported format of image! texture not loaded" , DebugApi::LogHeaderWarning);
             break;
     }        
 }

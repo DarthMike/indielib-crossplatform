@@ -646,10 +646,10 @@ void IND_SurfaceManager::convertImage(IND_Image* pImage ,IND_Type pType, IND_Qua
 		//Ignore quality specifier (we assume is IND_16)
 		if (IND_ALPHA == pType) {
 			pImage->convert(IND_RGBA, 32);
-			g_debug->header("Image type converted to IND_RGBA implicitly" , 4);
+			g_debug->header("Image type converted to IND_RGBA implicitly" , DebugApi::LogHeaderWarning);
 		} else {
 			pImage->convert(IND_RGB, 16);
-			g_debug->header("Image type converted to IND_RGB implicitly" , 4);
+			g_debug->header("Image type converted to IND_RGB implicitly" , DebugApi::LogHeaderWarning);
 		}
 	}
 	
@@ -681,8 +681,8 @@ void IND_SurfaceManager::convertImage(IND_Image* pImage ,IND_Type pType, IND_Qua
 				}
 				break;
 			default:
-				g_debug->header("No good Quality specified when creating surface" , 4);
-				g_debug->header("Image type converted to 32-bit RGB implicitly." , 4);
+				g_debug->header("No good Quality specified when creating surface" , DebugApi::LogHeaderWarning);
+				g_debug->header("Image type converted to 32-bit RGB implicitly." , DebugApi::LogHeaderWarning);
 				pImage->convert(pImage->getFormatInt(), 32);
 				break;
 		}

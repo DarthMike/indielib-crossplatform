@@ -59,7 +59,7 @@ bool IND_FontManager::init(IND_ImageManager *pImageManager, IND_SurfaceManager *
 
 		g_debug->header("FontManager OK", 6);
 	} else {
-		g_debug->header("SurfaceManager is not correctly initalized", 2);
+		g_debug->header("SurfaceManager is not correctly initalized", DebugApi::LogHeaderError);
 		_ok = false;
 	}
 
@@ -173,7 +173,7 @@ bool IND_FontManager::add(IND_Font		*pNewFont,
 	        !mMath.isPowerOfTwo(pImage->getHeight())) {
 		g_debug->header("This operation can not be done", 3);
 		g_debug->dataChar("", 1);
-		g_debug->header("The height and width of the font must be power of 2", 2);
+		g_debug->header("The height and width of the font must be power of 2", DebugApi::LogHeaderError);
 		return 0;
 	}
 
@@ -194,7 +194,7 @@ bool IND_FontManager::add(IND_Font		*pNewFont,
 	// ----- XML font parsing -----	
 
 	if (!parseFont(pNewFont, pFileCharTemp)) {
-		g_debug->header("Fatal error, cannot load the font xml file", 2);
+		g_debug->header("Fatal error, cannot load the font xml file", DebugApi::LogHeaderError);
 		return 0;
 	}
 
@@ -284,7 +284,7 @@ bool IND_FontManager::parseFont(IND_Font *pNewFont, char *pFontName) {
 	mXFont = mXmlDoc->FirstChildElement("font");
 
 	if (!mXFont) {
-		g_debug->header("Invalid name for document root, should be <font>", 2);
+		g_debug->header("Invalid name for document root, should be <font>", DebugApi::LogHeaderError);
 		mXmlDoc->Clear();
 		delete mXmlDoc;
 		return 0;
@@ -294,7 +294,7 @@ bool IND_FontManager::parseFont(IND_Font *pNewFont, char *pFontName) {
 		pNewFont->_font._numChars = atoi(mXFont->Attribute("num_characters"));
 		pNewFont->setLetters(new IND_Font::LETTER [pNewFont->getNumChars()]);
 	} else {
-		g_debug->header("The font doesn't have a \"num_characters\" attribute", 2);
+		g_debug->header("The font doesn't have a \"num_characters\" attribute", DebugApi::LogHeaderError);
 		mXmlDoc->Clear();
 		delete mXmlDoc;
 		return 0;
@@ -304,7 +304,7 @@ bool IND_FontManager::parseFont(IND_Font *pNewFont, char *pFontName) {
 	mXChar = mXFont->FirstChildElement("char");
 
 	if (!mXChar) {
-		g_debug->header("There are no chars to parse", 2);
+		g_debug->header("There are no chars to parse", DebugApi::LogHeaderError);
 		mXmlDoc->Clear();
 		delete mXmlDoc;
 		return 0;
@@ -317,7 +317,7 @@ bool IND_FontManager::parseFont(IND_Font *pNewFont, char *pFontName) {
 		if (mXChar->Attribute("id")) {
 			pNewFont->getLetters() [mCont]._letter = static_cast<unsigned char>(atoi(mXChar->Attribute("id")));
 		} else {
-			g_debug->header("The char doesn't have a \"id\" attribute", 2);
+			g_debug->header("The char doesn't have a \"id\" attribute", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();
 			delete mXmlDoc;
 			return 0;
@@ -327,7 +327,7 @@ bool IND_FontManager::parseFont(IND_Font *pNewFont, char *pFontName) {
 		if (mXChar->Attribute("x")) {
 			pNewFont->getLetters() [mCont]._offsetX = atoi(mXChar->Attribute("x"));
 		} else {
-			g_debug->header("The char doesn't have a \"x\" attribute", 2);
+			g_debug->header("The char doesn't have a \"x\" attribute", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();
 			delete mXmlDoc;
 			return 0;
@@ -337,7 +337,7 @@ bool IND_FontManager::parseFont(IND_Font *pNewFont, char *pFontName) {
 		if (mXChar->Attribute("y")) {
 			pNewFont->getLetters() [mCont]._offsetY = atoi(mXChar->Attribute("y"));
 		} else {
-			g_debug->header("The char doesn't have a \"y\" attribute", 2);
+			g_debug->header("The char doesn't have a \"y\" attribute", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();
 			delete mXmlDoc;
 			return 0;
@@ -347,7 +347,7 @@ bool IND_FontManager::parseFont(IND_Font *pNewFont, char *pFontName) {
 		if (mXChar->Attribute("width")) {
 			pNewFont->getLetters() [mCont]._widthChar = atoi(mXChar->Attribute("width"));
 		} else {
-			g_debug->header("The char doesn't have a \"width\" attribute", 2);
+			g_debug->header("The char doesn't have a \"width\" attribute", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();
 			delete mXmlDoc;
 			return 0;
@@ -357,7 +357,7 @@ bool IND_FontManager::parseFont(IND_Font *pNewFont, char *pFontName) {
 		if (mXChar->Attribute("height")) {
 			pNewFont->getLetters() [mCont]._heightChar = atoi(mXChar->Attribute("height"));
 		} else {
-			g_debug->header("The char doesn't have a \"height\" attribute", 2);
+			g_debug->header("The char doesn't have a \"height\" attribute", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();
 			delete mXmlDoc;
 			return 0;
@@ -403,7 +403,7 @@ Initialization error message
 void IND_FontManager::writeMessage() {
 	g_debug->header("This operation can not be done", 3);
 	g_debug->dataChar("", 1);
-	g_debug->header("Invalid Id or FontManager not correctly initialized", 2);
+	g_debug->header("Invalid Id or FontManager not correctly initialized", DebugApi::LogHeaderError);
 }
 
 /*

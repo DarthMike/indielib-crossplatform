@@ -65,7 +65,7 @@ bool IND_AnimationManager::init(IND_ImageManager *pImageManager, IND_SurfaceMana
 
 		g_debug->header("AnimationManager OK", 6);
 	} else {
-		g_debug->header("SurfaceManager is not correctly initialized", 2);
+		g_debug->header("SurfaceManager is not correctly initialized", DebugApi::LogHeaderError);
 		_ok = false;
 	}
 
@@ -292,7 +292,7 @@ bool IND_AnimationManager::addToImage(IND_Animation *pNewAnimation, const char *
 	// ----- Animation file parsing -----
 
 	if (!parseAnimation(pNewAnimation, pAnimation)) {
-		g_debug->header("Fatal error, cannot load the animation xml file", 2);
+		g_debug->header("Fatal error, cannot load the animation xml file", DebugApi::LogHeaderError);
 		return 0;
 	}
 
@@ -422,7 +422,7 @@ bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, const ch
 	mXAnimation = mXmlDoc->FirstChildElement("animation");
 
 	if (!mXAnimation) {
-		g_debug->header("Invalid name for document root, should be <animation>", 2);
+		g_debug->header("Invalid name for document root, should be <animation>", DebugApi::LogHeaderError);
 		mXmlDoc->Clear();
 		delete mXmlDoc;
 		return 0;
@@ -435,7 +435,7 @@ bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, const ch
 	mXFrames = mXAnimation->FirstChildElement("frames");
 
 	if (!mXFrames) {
-		g_debug->header("Invalid name for frames child, should be <frames>", 2);
+		g_debug->header("Invalid name for frames child, should be <frames>", DebugApi::LogHeaderError);
 		mXmlDoc->Clear();
 		delete mXmlDoc;
 		return 0;
@@ -445,7 +445,7 @@ bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, const ch
 	mXFrame = mXFrames->FirstChildElement("frame");
 
 	if (!mXFrame) {
-		g_debug->header("There are no frames to parse", 2);
+		g_debug->header("There are no frames to parse", DebugApi::LogHeaderError);
 		mXmlDoc->Clear();
 		delete mXmlDoc;
 		return 0;
@@ -459,7 +459,7 @@ bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, const ch
 		if (mXFrame->Attribute("name")) {
 			mNewFrame->setName(mXFrame->Attribute("name"));
 		} else {
-			g_debug->header("The frame doesn't have a \"name\" attribute", 2);
+			g_debug->header("The frame doesn't have a \"name\" attribute", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();
 			delete mNewFrame;
 			delete mXmlDoc;
@@ -473,7 +473,7 @@ bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, const ch
 			if (mNewFrame->getImage() == 0)
 				return 0;
 		} else {
-			g_debug->header("The frame doesn't have a \"file\" attribute", 2);
+			g_debug->header("The frame doesn't have a \"file\" attribute", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();
 			delete mXmlDoc;
 			return 0;
@@ -498,7 +498,7 @@ bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, const ch
 			g_debug->dataChar((char *) mXFrame->Attribute("collision"), 1);
 
 			if (!_collisionParser->parseCollision(mNewFrame->_frame._listBoundingCollision, (char *) mXFrame->Attribute("collision"))) {
-				g_debug->header("Fatal error, cannot load the collision xml file", 2);
+				g_debug->header("Fatal error, cannot load the collision xml file", DebugApi::LogHeaderError);
 				return 0;
 			}
 
@@ -521,7 +521,7 @@ bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, const ch
 	mXSequences = mXFrames->NextSiblingElement("sequences");
 
 	if (!mXSequences) {
-		g_debug->header("Invalid name for sequences child, should be <sequences>", 2);
+		g_debug->header("Invalid name for sequences child, should be <sequences>", DebugApi::LogHeaderError);
 		mXmlDoc->Clear();
 		delete mXmlDoc;
 		return 0;
@@ -531,7 +531,7 @@ bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, const ch
 	mXSequence = mXSequences->FirstChildElement("sequence");
 
 	if (!mXSequence) {
-		g_debug->header("There are no sequences to parse", 2);
+		g_debug->header("There are no sequences to parse", DebugApi::LogHeaderError);
 		mXmlDoc->Clear();
 		delete mXmlDoc;
 		return 0;
@@ -546,7 +546,7 @@ bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, const ch
 			mNewSequence->setName(mXSequence->Attribute("name"));
             mNewSequence->getSequenceTimer()->start();
 		} else {
-			g_debug->header("The sequence doesn't have a \"name\" attribute", 2);
+			g_debug->header("The sequence doesn't have a \"name\" attribute", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();
 			delete mXmlDoc;
 			return 0;
@@ -556,7 +556,7 @@ bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, const ch
 		mXSequenceFrame = mXSequence->FirstChildElement("frame");
 
 		if (!mXSequenceFrame) {
-			g_debug->header("There are no frames in the sequence to parse", 2);
+			g_debug->header("There are no frames in the sequence to parse", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();
 			delete mXmlDoc;
 			return 0;
@@ -595,7 +595,7 @@ bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, const ch
 					// Move to the next frame reference
 					mXSequenceFrame = mXSequenceFrame->NextSiblingElement("frame");
 				} else {
-					g_debug->header("Unknown frame in sequences", 2);
+					g_debug->header("Unknown frame in sequences", DebugApi::LogHeaderError);
 					mXmlDoc->Clear();
 					delete mXmlDoc;
 					return 0;
@@ -609,7 +609,7 @@ bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, const ch
 			// Move to the next sequence
 			mXSequence = mXSequence->NextSiblingElement("sequence");
 		} else {
-			g_debug->header("The frame sequence doesn't have a \"name\" attribute", 2);
+			g_debug->header("The frame sequence doesn't have a \"name\" attribute", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();
 			delete mXmlDoc;
 			return 0;
@@ -740,7 +740,7 @@ void IND_AnimationManager::delFromlist(IND_Animation *pAn) {
 void IND_AnimationManager::writeMessage() {
 	g_debug->header("This operation can not be done", 3);
 	g_debug->dataChar("", 1);
-	g_debug->header("Invalid Id or not correctly initialized AnimationManager", 2);
+	g_debug->header("Invalid Id or not correctly initialized AnimationManager", DebugApi::LogHeaderError);
 }
 
 

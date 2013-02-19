@@ -108,7 +108,7 @@ bool IND_TmxMapManager::add(IND_TmxMap *pNewTmxMap,const char *pName) {
 	char ext [128];
 	getExtensionFromName(pName,ext);
 	if (!checkExtImage(ext)){
-		g_debug->header("Unknown extension", 2);
+		g_debug->header("Unknown extension", DebugApi::LogHeaderError);
 		return 0;
 	}
 	
@@ -119,9 +119,9 @@ bool IND_TmxMapManager::add(IND_TmxMap *pNewTmxMap,const char *pName) {
 	map->ParseFile(pName); //FIXME> remove this comment: "./example/example.tmx"
 
 	if (map->HasError()) {
-		g_debug->header("Error code:", 2);
+		g_debug->header("Error code:", DebugApi::LogHeaderError);
 		//FIXME g_debug->dataChar(map->GetErrorCode(), 1);
-		g_debug->header("Error text:", 2);
+		g_debug->header("Error text:", DebugApi::LogHeaderError);
 		//FIXME g_debug->dataChar(map->GetErrorText().c_str(), 1);
 		DISPOSE(map);		
 		return 0;
@@ -187,7 +187,7 @@ Tmx::Map* IND_TmxMapManager::load(const char *pName) {
 	char ext [128];
 	getExtensionFromName(pName, ext);
 	if (!checkExtImage(ext)){
-		g_debug->header("Unknown extension", 2);
+		g_debug->header("Unknown extension", DebugApi::LogHeaderError);
 		return NULL;
 	}
 
@@ -200,9 +200,9 @@ Tmx::Map* IND_TmxMapManager::load(const char *pName) {
 	map->ParseFile(pName); //FIXME> remove this comment: "./example/example.tmx"
 
 	if (map->HasError()) {
-		g_debug->header("Error code:", 2);
+		g_debug->header("Error code:", DebugApi::LogHeaderError);
 		//FIXME g_debug->dataChar(map->GetErrorCode(), 1);
-		g_debug->header("Error text:", 2);
+		g_debug->header("Error text:", DebugApi::LogHeaderError);
 		//FIXME g_debug->dataChar(map->GetErrorText().c_str(), 1);
 		DISPOSE(map);		
 		return NULL;
@@ -296,7 +296,7 @@ bool IND_TmxMapManager::clone(IND_TmxMap *pNewTmxMap, IND_TmxMap *pOldTmxMap) { 
 
 //	FIBITMAP* image = FreeImage_Clone(pOldImage->getFreeImageHandle());
 //	if (!image) {
-//		g_debug->header("Image could not be cloned", 2);
+//		g_debug->header("Image could not be cloned", DebugApi::LogHeaderError);
 //		return 0;
 //	}
 	
@@ -405,7 +405,7 @@ Initialization error message
 void IND_TmxMapManager::writeMessage() {
 	g_debug->header("This operation can not be done", 3);
 	g_debug->dataChar("", 1);
-	g_debug->header("Invalid Id or IND_TmxMapManager not correctly initialized", 2);
+	g_debug->header("Invalid Id or IND_TmxMapManager not correctly initialized", DebugApi::LogHeaderError);
 }
 
 

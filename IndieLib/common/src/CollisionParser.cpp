@@ -132,7 +132,7 @@ bool CollisionParser::parseCollision(list <BOUNDING_COLLISION *> *pBList, const 
 	mXBoundingAreas = mXmlDoc->FirstChildElement("bounding_areas");
 
 	if (!mXBoundingAreas) {
-		g_debug->header("Invalid name for document root, should be <bounding_areas>", 2);
+		g_debug->header("Invalid name for document root, should be <bounding_areas>", DebugApi::LogHeaderError);
 		mXmlDoc->Clear();
 		delete mXmlDoc;
 		return 0;
@@ -159,7 +159,7 @@ bool CollisionParser::parseCollision(list <BOUNDING_COLLISION *> *pBList, const 
 			                    atoi(mXTriangle->Attribute("cx")),
 			                    atoi(mXTriangle->Attribute("cy")));
 		} else {
-			g_debug->header("The triangle doesn't have all the attributes", 2);
+			g_debug->header("The triangle doesn't have all the attributes", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();
 			delete mXmlDoc;
 			return 0;
@@ -184,7 +184,7 @@ bool CollisionParser::parseCollision(list <BOUNDING_COLLISION *> *pBList, const 
 			                  atoi(mXCircle->Attribute("y")),
 			                  atoi(mXCircle->Attribute("radius")));
 		} else {
-			g_debug->header("The circle doesn't have all the attributes", 2);
+			g_debug->header("The circle doesn't have all the attributes", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();
 			delete mXmlDoc;
 			return 0;
@@ -211,7 +211,7 @@ bool CollisionParser::parseCollision(list <BOUNDING_COLLISION *> *pBList, const 
 			                     atoi(mXRectangle->Attribute("width")),
 			                     atoi(mXRectangle->Attribute("height")));
 		} else {
-			g_debug->header("The rectangle doesn't have all the attributes", 2);
+			g_debug->header("The rectangle doesn't have all the attributes", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();
 			delete mXmlDoc;
 			return 0;

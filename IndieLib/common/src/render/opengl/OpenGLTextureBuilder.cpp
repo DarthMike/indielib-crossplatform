@@ -62,7 +62,7 @@ bool OpenGLTextureBuilder::createNewTexture(IND_Surface  *pNewSurface,
     GLboolean enabled;
     glGetBooleanv(GL_TEXTURE_2D,&enabled);
     if (GL_FALSE == enabled){
-        g_debug->header("GL Textures not enabled!!", 2);
+        g_debug->header("GL Textures not enabled!!", DebugApi::LogHeaderError);
         return false;
     }
 #endif	
@@ -93,7 +93,7 @@ bool OpenGLTextureBuilder::createNewTexture(IND_Surface  *pNewSurface,
     
     GLenum glerror = glGetError();
     if (glerror) {
-		g_debug->header("OpenGL error while creating textures ", 2);
+		g_debug->header("OpenGL error while creating textures ", DebugApi::LogHeaderError);
         return false;
     }
 	
@@ -221,7 +221,7 @@ bool OpenGLTextureBuilder::createNewTexture(IND_Surface  *pNewSurface,
 
 			GLenum glerror = glGetError();
 			if (glerror) {
-				g_debug->header("OpenGL error while assigning texture to buffer", 2);
+				g_debug->header("OpenGL error while assigning texture to buffer", DebugApi::LogHeaderError);
 				//TODO: Test error and mem. leaks 
 				return false;
 			}

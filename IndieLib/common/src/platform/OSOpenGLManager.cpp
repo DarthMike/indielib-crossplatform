@@ -142,7 +142,7 @@ bool OSOpenGLManager::createOpenGLSDLContext() {
     _glContext = SDL_GL_CreateContext(_sdlWindow); 
 
 	if (!_glContext) {
-        g_debug->header("Error creating OpenGL contect", 2);
+        g_debug->header("Error creating OpenGL contect", DebugApi::LogHeaderError);
 		return false;
 	}
 

@@ -53,11 +53,11 @@ void IndieLib::init(IND_InitializationMode pMode) {
 
 	// SDL initialization
 	if(0 != SDL_Init(SDL_INIT_VIDEO)) {
-		g_debug->header("Unable to initialize SDL!", 2);
+		g_debug->header("Unable to initialize SDL!", DebugApi::LogHeaderError);
 	}
 
 	if(0 != SDL_InitSubSystem(SDL_INIT_TIMER) ){
-		g_debug->header("Unable to initialize SDL timer subsystem", 2);
+		g_debug->header("Unable to initialize SDL timer subsystem", DebugApi::LogHeaderError);
 	}
 }
 

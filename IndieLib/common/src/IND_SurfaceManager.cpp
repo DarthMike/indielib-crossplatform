@@ -69,7 +69,7 @@ bool IND_SurfaceManager::init(IND_ImageManager *pImageManager, IND_Render *pRend
 		g_debug->header("Checking IND_Render", 1);
 		_render = pRender;
 	} else {
-		g_debug->header("IND_Render is not correctly initialized", 2);
+		g_debug->header("IND_Render is not correctly initialized", DebugApi::LogHeaderError);
 		_ok = false;
 		return _ok;
 	}
@@ -95,7 +95,7 @@ bool IND_SurfaceManager::init(IND_ImageManager *pImageManager, IND_Render *pRend
 
 		g_debug->header("SurfaceManager OK", 6);
 	} else {
-		g_debug->header("ImageManager is not correctly initialized", 2);
+		g_debug->header("ImageManager is not correctly initialized", DebugApi::LogHeaderError);
 		_ok = false;
 	}
 
@@ -630,7 +630,7 @@ Writes a message in the log that the object was not initialized
 void IND_SurfaceManager::writeMessage() {
 	g_debug->header("This operation can not be done", 3);
 	g_debug->dataChar("", 1);
-	g_debug->header("Invalid Id or SurfaceManager not correctly initialized", 2);
+	g_debug->header("Invalid Id or SurfaceManager not correctly initialized", DebugApi::LogHeaderError);
 }
 
 /*

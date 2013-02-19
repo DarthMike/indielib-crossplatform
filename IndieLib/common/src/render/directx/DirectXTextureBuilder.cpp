@@ -272,7 +272,7 @@ IDirect3DTexture9 *DirectXTextureBuilder::createTexture(BYTE *pImage,
 	                        &mNewTexture);
 
 	if (FAILED(mHr)) {
-		g_debug->header("Error creating the texture", 2);
+		g_debug->header("Error creating the texture", DebugApi::LogHeaderError);
 		exit(0);  // TODO: Free objects?
 	}
 
@@ -283,7 +283,7 @@ IDirect3DTexture9 *DirectXTextureBuilder::createTexture(BYTE *pImage,
 	// The surfaces points to the texture
 	mHr = mNewTexture->GetSurfaceLevel(0, &_surface);
 	if (FAILED(mHr)) {
-		g_debug->header("Error creating the surface", 2);
+		g_debug->header("Error creating the surface", DebugApi::LogHeaderError);
 		exit(0);  // TODO: free objects
 	}
 
@@ -308,7 +308,7 @@ IDirect3DTexture9 *DirectXTextureBuilder::createTexture(BYTE *pImage,
 	                                0);
 
 	if (FAILED(mHr)) {
-		g_debug->header("Error loading the block to the surface", 2);
+		g_debug->header("Error loading the block to the surface", DebugApi::LogHeaderError);
 		exit(0);  // TODO: free objects
 	}
 

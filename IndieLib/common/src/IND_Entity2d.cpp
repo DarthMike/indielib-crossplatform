@@ -636,7 +636,7 @@ bool IND_Entity2d::setBoundingAreas(const char *pFile) {
 	g_debug->header("Parsing collision file", 5);
 
 	if(!pFile) {
-		g_debug->header("No filename provided", 2);
+		g_debug->header("No filename provided", DebugApi::LogHeaderError);
 		return 0;
 	}
 
@@ -645,7 +645,7 @@ bool IND_Entity2d::setBoundingAreas(const char *pFile) {
 
 	// Only for surfaces
 	if (!_su) {
-		g_debug->header("The entity hasn't got a surface assigned, for animations you must define the collision scripts in the .xml file", 2);
+		g_debug->header("The entity hasn't got a surface assigned, for animations you must define the collision scripts in the .xml file", DebugApi::LogHeaderError);
 		return 0;
 	}
 
@@ -655,7 +655,7 @@ bool IND_Entity2d::setBoundingAreas(const char *pFile) {
 	// ----- Parsing collision file -----
 
 	if (!_collisionParser->parseCollision(_listBoundingCollision, pFileCharTemp)) {
-		g_debug->header("Fatal error, cannot load the collision xml file", 2);
+		g_debug->header("Fatal error, cannot load the collision xml file", DebugApi::LogHeaderError);
 		return 0;
 	}
 

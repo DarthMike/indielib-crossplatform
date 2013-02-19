@@ -69,7 +69,7 @@ void OpenGLRender::blitPixel(int pX,
 #ifdef _DEBUG
     GLenum glerror = glGetError();
 	if (glerror) {
-		g_debug->header("OpenGL error in pixel blitting ", 2);
+		g_debug->header("OpenGL error in pixel blitting ", DebugApi::LogHeaderError);
 	}
 #endif	
 
@@ -106,7 +106,7 @@ void OpenGLRender::blitLine(int pX1,
 #ifdef _DEBUG
     GLenum glerror = glGetError();
 	if (glerror) {
-		g_debug->header("OpenGL error in Line blitting ", 2);
+		g_debug->header("OpenGL error in Line blitting ", DebugApi::LogHeaderError);
 	}
 #endif
 
@@ -145,7 +145,7 @@ void OpenGLRender::blitRectangle(int pX1,
 #ifdef _DEBUG
     GLenum glerror = glGetError();
 	if (glerror) {
-		g_debug->header("OpenGL error in rectangle blitting ", 2);
+		g_debug->header("OpenGL error in rectangle blitting ", DebugApi::LogHeaderError);
 	}
 #endif
 
@@ -183,7 +183,7 @@ void OpenGLRender::blitFillRectangle(int pX1,
 #ifdef _DEBUG
     GLenum glerror = glGetError();
 	if (glerror) {
-		g_debug->header("OpenGL error in rectangle blitting ", 2);
+		g_debug->header("OpenGL error in rectangle blitting ", DebugApi::LogHeaderError);
 	}
 #endif
 
@@ -223,7 +223,7 @@ void OpenGLRender::blitTriangleList(IND_Point *pTrianglePoints,
 #ifdef _DEBUG
     GLenum glerror = glGetError();
 	if (glerror) {
-		g_debug->header("OpenGL error in triangle list blitting ", 2);
+		g_debug->header("OpenGL error in triangle list blitting ", DebugApi::LogHeaderError);
 	}
 #endif
 
@@ -267,7 +267,7 @@ void OpenGLRender::blitColoredTriangle(int pX1,
 #ifdef _DEBUG
     GLenum glerror = glGetError();
 	if (glerror) {
-		g_debug->header("OpenGL error in colored triangle blitting ", 2);
+		g_debug->header("OpenGL error in colored triangle blitting ", DebugApi::LogHeaderError);
 	}
 #endif
 
@@ -307,7 +307,7 @@ bool OpenGLRender::blitPoly2d(IND_Point *pPolyPoints,
 #ifdef _DEBUG
     GLenum glerror = glGetError();
 	if (glerror) {
-		g_debug->header("OpenGL error in triangle poly2d blitting ", 2);
+		g_debug->header("OpenGL error in triangle poly2d blitting ", DebugApi::LogHeaderError);
 	}
 #endif
 
@@ -354,7 +354,7 @@ bool OpenGLRender::blitRegularPoly(int pX,
 #ifdef _DEBUG
     GLenum glerror = glGetError();
 	if (glerror) {
-		g_debug->header("OpenGL error in triangle list blitting ", 2);
+		g_debug->header("OpenGL error in triangle list blitting ", DebugApi::LogHeaderError);
 	}
 #endif
 
@@ -424,7 +424,7 @@ Blits a bounding line
 #ifdef _DEBUG
     GLenum glerror = glGetError();
 	if (glerror) {
-		g_debug->header("OpenGL error in grid line blitting ", 2);
+		g_debug->header("OpenGL error in grid line blitting ", DebugApi::LogHeaderError);
 	}
 #endif
 
@@ -486,7 +486,7 @@ void OpenGLRender::blitCollisionCircle(int pPosX, int pPosY, int pRadius, float 
 #ifdef _DEBUG
     GLenum glerror = glGetError();
 	if (glerror) {
-		g_debug->header("OpenGL error in circle blitting ", 2);
+		g_debug->header("OpenGL error in circle blitting ", DebugApi::LogHeaderError);
 	}
 #endif
 

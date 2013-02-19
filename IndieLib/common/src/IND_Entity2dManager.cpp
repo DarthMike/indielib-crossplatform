@@ -74,7 +74,7 @@ bool IND_Entity2dManager::init(IND_Render *pRender) {
 		g_debug->header(" Checking IND_Render", 1);
 		_render = pRender;
 	} else {
-		g_debug->header("IND_Render is not correctly initialized", 2);
+		g_debug->header("IND_Render is not correctly initialized", DebugApi::LogHeaderError);
 		_ok = false;
 		return _ok;
 	}
@@ -779,7 +779,7 @@ Initialization error message
 void IND_Entity2dManager::writeMessage() {
 	g_debug->header("This operation can not be done", 3);
 	g_debug->dataChar("", 1);
-	g_debug->header("Invalid Id or IND_Entity2dManager not correctly initialized", 2);
+	g_debug->header("Invalid Id or IND_Entity2dManager not correctly initialized", DebugApi::LogHeaderError);
 }
 
 

@@ -90,7 +90,7 @@ void OpenGLRender::blitSurface(IND_Surface *pSu) {
 		#ifdef _DEBUG
 			GLenum glerror = glGetError();
 			if (glerror) {
-				g_debug->header("OpenGL error in surface blitting ", 2);
+				g_debug->header("OpenGL error in surface blitting ", DebugApi::LogHeaderError);
 			}
 		#endif
 			_numrenderedObjects++;
@@ -201,7 +201,7 @@ void OpenGLRender::blitRegionSurface(IND_Surface *pSu,
 #ifdef _DEBUG
 				GLenum glerror = glGetError();
 				if (glerror) {
-					g_debug->header("OpenGL error in surface blitting ", 2);
+					g_debug->header("OpenGL error in surface blitting ", DebugApi::LogHeaderError);
 				}
 #endif
                 _numrenderedObjects++;

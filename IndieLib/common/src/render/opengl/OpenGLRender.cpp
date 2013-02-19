@@ -53,7 +53,7 @@ Suite 330, Boston, MA 02111-1307 USA
 
 IND_Window* OpenGLRender::initRenderAndWindow(IND_WindowProperties& props) {
 	if(props._bpp <= 0 || props._height <= 0 || props._width <= 0) {
-		g_debug->header("Error initializing window: Invalid parameters provided", 2);
+		g_debug->header("Error initializing window: Invalid parameters provided", DebugApi::LogHeaderError);
 		return 0;
 	}
 	end();
@@ -91,7 +91,7 @@ IND_Window* OpenGLRender::initRenderAndWindow(IND_WindowProperties& props) {
 	                                    );
 
 	if(!_window->create(props)) {
-		g_debug->header("Error creating window: Not supported params provided", 2);
+		g_debug->header("Error creating window: Not supported params provided", DebugApi::LogHeaderError);
 		freeVars();
 		return NULL;
 	}
@@ -120,14 +120,14 @@ IND_Window* OpenGLRender::initRenderAndWindow(IND_WindowProperties& props) {
 
 bool OpenGLRender::reset(IND_WindowProperties& props) {
 	if(props._bpp <= 0 || props._height <= 0 || props._width <= 0) {
-		g_debug->header("Error resetting window: Invalid parameters provided", 2);
+		g_debug->header("Error resetting window: Invalid parameters provided", DebugApi::LogHeaderError);
 		return 0;
 	}
 
     bool viewPortWasFullWindow = (_window->getWidth() == _info._viewPortWidth) && (_window->getHeight() == _info._viewPortHeight);
     
 	if (!_window->reset(props)) {
-		g_debug->header("Error resetting SDL window", 2);
+		g_debug->header("Error resetting SDL window", DebugApi::LogHeaderError);
 		return 0;
 	}
     
@@ -171,7 +171,7 @@ void OpenGLRender::endScene() {
 #ifdef _DEBUG
     GLenum glerror = glGetError();
 	if (glerror) {
-        g_debug->header("OpenGLRenderer::endScene() OpenGL error flag!", 2);
+        g_debug->header("OpenGLRenderer::endScene() OpenGL error flag!", DebugApi::LogHeaderError);
 		printf("OpenGLRenderer::endScene() Error at end of scene! :%i\n",glerror);
 	}
 #endif	
@@ -235,7 +235,7 @@ bool OpenGLRender::initializeOpenGLRender() {
 		// Window error
 		g_debug->header("This operation can not be done:", 3);
 		g_debug->dataChar("", 1);
-		g_debug->header("Invalid Id or IND_Window not correctly initialized.", 2);
+		g_debug->header("Invalid Id or IND_Window not correctly initialized.", DebugApi::LogHeaderError);
 
 		return false;
 	}
@@ -267,13 +267,13 @@ bool OpenGLRender::checkGLExtensions() {
 
 	GLenum err = glewInit();
 	if (GLEW_OK != err) {
-		g_debug->header("Extensions loading (GLEW) failed!", 2);
+		g_debug->header("Extensions loading (GLEW) failed!", DebugApi::LogHeaderError);
 		return false;
 	}
 
 	//Check system support for minimum targeted version of library
 	if (!glewIsSupported(MINIMUM_OPENGL_VERSION_STRING)) {
-		g_debug->header("Minimum OPENGL version is not available!", 2);
+		g_debug->header("Minimum OPENGL version is not available!", DebugApi::LogHeaderError);
 		return false;
 	}
 

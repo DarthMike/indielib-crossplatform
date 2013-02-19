@@ -59,7 +59,7 @@ Suite 330, Boston, MA 02111-1307 USA
 
 IND_Window* DirectXRender::initRenderAndWindow(IND_WindowProperties& props) {
 	if(props._bpp <= 0 || props._height <= 0 || props._width <= 0) {
-		g_debug->header("Error resetting window: Invalid parameters provided", 2);
+		g_debug->header("Error resetting window: Invalid parameters provided", DebugApi::LogHeaderError);
 		return 0;
 	}
 
@@ -123,7 +123,7 @@ bool DirectXRender::init(LPDIRECT3D9 pDirect3d, IDirect3DDevice9 *pD3dDevice) {
 
 bool DirectXRender::reset(IND_WindowProperties& props) {
 	if(props._bpp <= 0 || props._height <= 0 || props._width <= 0) {
-		g_debug->header("Error resetting window: Invalid parameters provided", 2);
+		g_debug->header("Error resetting window: Invalid parameters provided", DebugApi::LogHeaderError);
 		return 0;
 	}
 
@@ -221,7 +221,7 @@ bool DirectXRender::Direct3Dinit(int pWidth,
 	// Direct3D creation
 	LPDIRECT3D9 direct3d = Direct3DCreate9(D3D_SDK_VERSION);
 	if (!direct3d) {
-		g_debug->header("Error creating D3D object", 2);
+		g_debug->header("Error creating D3D object", DebugApi::LogHeaderError);
 		return 0;
 	} else {
 		g_debug->header("Creating D3D object", 1);
@@ -249,7 +249,7 @@ bool DirectXRender::Direct3Dinit(int pWidth,
 		                                   D3DCREATE_SOFTWARE_VERTEXPROCESSING,
 		                                   &mPresentParameters,
 		                                   &_info._device)) != D3D_OK) {
-			g_debug->header("Error creating the Device (D3DCREATE_SOFTWARE_VERTEXPROCESSING)", 2);
+			g_debug->header("Error creating the Device (D3DCREATE_SOFTWARE_VERTEXPROCESSING)", DebugApi::LogHeaderError);
 			return 0;
 		} else {
 			_info._softwareVertexProcessing = 1;
@@ -383,7 +383,7 @@ bool DirectXRender::createRender(IND_Window* pWindow) {
 	// Window error
 	g_debug->header("This operation can not be done:", 3);
 	g_debug->dataChar("", 1);
-	g_debug->header("Invalid Id or IND_Window not correctly initialized.", 2);
+	g_debug->header("Invalid Id or IND_Window not correctly initialized.", DebugApi::LogHeaderError);
 
 	return 0;
 }
@@ -525,7 +525,7 @@ int DirectXRender::fillPresentParameters(int pWidth,
 	// Windowed
 	if (!pFullscreen) {
 		if ((_info._direct3d->GetAdapterDisplayMode(D3DADAPTER_DEFAULT, &mDisplayMode)) != D3D_OK) {
-			g_debug->header("Error obtaining the adapter", 2);
+			g_debug->header("Error obtaining the adapter", DebugApi::LogHeaderError);
 			return 0;
 		} else
 			g_debug->header("Obtaining the adapter", 1);

@@ -38,7 +38,7 @@ Suite 330, Boston, MA 02111-1307 USA
 // --------------------------------------------------------------------------------
 
 void OSOpenGLManager::setOpenGLContextParams(IND_ColorFormat colorFormat, int numBitsPerColor, int numDepthBits, int numStencilBits, bool doublebuffer) {
-	g_debug->header("Initiating OpenGL SDL Context Parameters", 3);
+	g_debug->header("Initiating OpenGL SDL Context Parameters", DebugApi::LogHeaderInfo);
 	
 	if (IND_RGBA == colorFormat) {
 		SDL_GL_SetAttribute(SDL_GL_RED_SIZE,            numBitsPerColor);
@@ -67,7 +67,7 @@ void OSOpenGLManager::setOpenGLContextParams(IND_ColorFormat colorFormat, int nu
 	_numStencilBits = numStencilBits;
 	_colorBufferFormat = colorFormat;
 
-	g_debug->header("OpenGL Context Parameters Initated", 3);
+	g_debug->header("OpenGL Context Parameters Initated", DebugApi::LogHeaderInfo);
 	g_debug->dataChar("OK", true);
 }
 
@@ -135,7 +135,7 @@ bool OSOpenGLManager::checkOpenGLSDLContextProps() {
 }
 
 bool OSOpenGLManager::createOpenGLSDLContext() {
-	g_debug->header("Creating OpenGL context", 3);
+	g_debug->header("Creating OpenGL context", DebugApi::LogHeaderInfo);
 	g_debug->dataChar("OK", true);
   
 	_sdlWindow = _window->getSDLWindow();
@@ -146,17 +146,17 @@ bool OSOpenGLManager::createOpenGLSDLContext() {
 		return false;
 	}
 
-	g_debug->header("OpenGL context created", 3);
+	g_debug->header("OpenGL context created", DebugApi::LogHeaderInfo);
 	g_debug->dataChar("OK", true);
 	return true;
 }
 
 void OSOpenGLManager::endOpenGLContext() {
 	if (_glContext) {
-		g_debug->header("Destroying OpenGL Context", 3);
+		g_debug->header("Destroying OpenGL Context", DebugApi::LogHeaderInfo);
 		g_debug->dataChar("OK", true);
 		SDL_GL_DeleteContext(_glContext);
-		g_debug->header("OpenGL Context Destroyed", 3);
+		g_debug->header("OpenGL Context Destroyed", DebugApi::LogHeaderInfo);
 		g_debug->dataChar("OK", true);
 	}
 }

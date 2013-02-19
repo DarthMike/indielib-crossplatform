@@ -496,7 +496,7 @@ bool IND_SurfaceManager::addMain(IND_Surface    *pNewSurface,
 		return 0;
 	}
 
-	g_debug->header("From image:", 3);
+	g_debug->header("From image:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(pImage->getName(), 1);
 
 	//Convert image if needed
@@ -514,34 +514,34 @@ bool IND_SurfaceManager::addMain(IND_Surface    *pNewSurface,
 	// ----- g_debug -----
 
 
-	g_debug->header("Type:", 3);
+	g_debug->header("Type:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(pNewSurface->getTypeString(), 1);
 
-	g_debug->header("Quality:", 3);
+	g_debug->header("Quality:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(pNewSurface->getQualityString(), 1);
 
-	g_debug->header("Image size:", 3);
+	g_debug->header("Image size:", DebugApi::LogHeaderInfo);
 	g_debug->dataInt(pNewSurface->_surface->_attributes._width, 0);
 	g_debug->dataChar("x", 0);
 	g_debug->dataInt(pNewSurface->_surface->_attributes._height, 1);
 
-	g_debug->header("Block size:", 3);
+	g_debug->header("Block size:", DebugApi::LogHeaderInfo);
 	g_debug->dataInt(pNewSurface->_surface->_attributes._widthBlock, 0);
 	g_debug->dataChar("x", 0);
 	g_debug->dataInt(pNewSurface->_surface->_attributes._heightBlock, 1);
 
-	g_debug->header("Number of blocks:", 3);
+	g_debug->header("Number of blocks:", DebugApi::LogHeaderInfo);
 	g_debug->dataInt(pNewSurface->_surface->_attributes._blocksX, 0);
 	g_debug->dataChar("x", 0);
 	g_debug->dataInt(pNewSurface->_surface->_attributes._blocksY, 1);
 
-	g_debug->header("Spare (Right | Down):", 3);
+	g_debug->header("Spare (Right | Down):", DebugApi::LogHeaderInfo);
 	g_debug->dataInt(pNewSurface->_surface->_attributes._spareX, 0);
 	g_debug->dataChar("x", 0);
 	g_debug->dataInt(pNewSurface->_surface->_attributes._spareY, 1);
 
 	//TODO: LOG % NOT USED
-	//g_debug->Header ("Not used percentage:", 3);
+	//g_debug->Header ("Not used percentage:", DebugApi::LogHeaderInfo);
 	//g_debug->DataFloat (pNewSurface->_surface->_attributes., 0);
 	//g_debug->DataChar ("%", 1);
 
@@ -628,7 +628,7 @@ Writes a message in the log that the object was not initialized
 ==================
 */
 void IND_SurfaceManager::writeMessage() {
-	g_debug->header("This operation can not be done", 3);
+	g_debug->header("This operation can not be done", DebugApi::LogHeaderInfo);
 	g_debug->dataChar("", 1);
 	g_debug->header("Invalid Id or SurfaceManager not correctly initialized", DebugApi::LogHeaderError);
 }
@@ -709,7 +709,7 @@ void IND_SurfaceManager::freeVars() {
 	for (mSurfaceListIter  = _listSurfaces->begin();
 	        mSurfaceListIter != _listSurfaces->end();
 	        mSurfaceListIter++) {
-		g_debug->header("Freeing surface:", 3);
+		g_debug->header("Freeing surface:", DebugApi::LogHeaderInfo);
         //FIXME: This breaks on LLVM compiler (OSX, XCode)
 		//g_debug->dataInt((int) & (*mSurfaceListIter)->_surface, 1);
         DISPOSE(*mSurfaceListIter);

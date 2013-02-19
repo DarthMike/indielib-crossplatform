@@ -154,7 +154,7 @@ bool IND_FontManager::add(IND_Font		*pNewFont,
                           IND_Type		pType,
                           IND_Quality	pQuality) {
 	g_debug->header("Parsing and loading font", 5);
-	g_debug->header("File name:", 3);
+	g_debug->header("File name:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(pFile, 1);
 
 	if (!_ok) {
@@ -171,7 +171,7 @@ bool IND_FontManager::add(IND_Font		*pNewFont,
 
 	if (!mMath.isPowerOfTwo(pImage->getWidth()) ||
 	        !mMath.isPowerOfTwo(pImage->getHeight())) {
-		g_debug->header("This operation can not be done", 3);
+		g_debug->header("This operation can not be done", DebugApi::LogHeaderInfo);
 		g_debug->dataChar("", 1);
 		g_debug->header("The height and width of the font must be power of 2", DebugApi::LogHeaderError);
 		return 0;
@@ -244,7 +244,7 @@ bool IND_FontManager::remove(IND_Font  *pFo) {
 
 	// ----- Free object -----
 
-	g_debug->header("File name:", 3);
+	g_debug->header("File name:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(pFo->getFileName(), 1);
 
     // Free bitmap IND_Surface
@@ -401,7 +401,7 @@ Initialization error message
 ==================
 */
 void IND_FontManager::writeMessage() {
-	g_debug->header("This operation can not be done", 3);
+	g_debug->header("This operation can not be done", DebugApi::LogHeaderInfo);
 	g_debug->dataChar("", 1);
 	g_debug->header("Invalid Id or FontManager not correctly initialized", DebugApi::LogHeaderError);
 }
@@ -426,7 +426,7 @@ void IND_FontManager::freeVars() {
 	for (mFontListIter  = _listFonts->begin();
 	        mFontListIter != _listFonts->end();
 	        mFontListIter++) {
-		g_debug->header("Freeing font:", 3);
+		g_debug->header("Freeing font:", DebugApi::LogHeaderInfo);
 		g_debug->dataChar((*mFontListIter)->getFileName(), 1);
 
 		// Free bitmap IND_Surface

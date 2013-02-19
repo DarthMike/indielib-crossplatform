@@ -640,7 +640,7 @@ bool IND_Entity2d::setBoundingAreas(const char *pFile) {
 		return 0;
 	}
 
-	g_debug->header("File name:", 3);
+	g_debug->header("File name:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(pFile, 1);
 
 	// Only for surfaces

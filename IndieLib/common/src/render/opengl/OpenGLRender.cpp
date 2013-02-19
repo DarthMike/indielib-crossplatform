@@ -233,7 +233,7 @@ bool OpenGLRender::initializeOpenGLRender() {
 	//Check dependency of window initialization
 	if (!_window->isOK()) {
 		// Window error
-		g_debug->header("This operation can not be done:", 3);
+		g_debug->header("This operation can not be done:", DebugApi::LogHeaderInfo);
 		g_debug->dataChar("", 1);
 		g_debug->header("Invalid Id or IND_Window not correctly initialized.", DebugApi::LogHeaderError);
 
@@ -319,22 +319,22 @@ void OpenGLRender::writeInfo() {
 
 	// ----- D3D version -----
 
-	g_debug->header("OpenGL version:" , 3);
+	g_debug->header("OpenGL version:" , DebugApi::LogHeaderInfo);
 	g_debug->dataChar(_info._version, 1);
 
 	// ----- Vendor -----
 
-	g_debug->header("Mark:" , 3);
+	g_debug->header("Mark:" , DebugApi::LogHeaderInfo);
 	g_debug->dataChar(_info._vendor, 1);
 
 	// ----- Renderer -----
 
-	g_debug->header("Chip:" , 3);
+	g_debug->header("Chip:" , DebugApi::LogHeaderInfo);
 	g_debug->dataChar(_info._renderer, 1);
 
 	// ----- Antialiasing -----
 
-	g_debug->header("Primitive antialising:", 3);
+	g_debug->header("Primitive antialising:", DebugApi::LogHeaderInfo);
 	if (_info._antialiasing)
 		g_debug->dataChar("Yes", 1);
 	else
@@ -342,17 +342,17 @@ void OpenGLRender::writeInfo() {
 
 	// ----- Max texture size -----
 
-	g_debug->header("Maximum texture size:" , 3);
+	g_debug->header("Maximum texture size:" , DebugApi::LogHeaderInfo);
 	g_debug->dataInt(_info._maxTextureSize, 0);
 	g_debug->dataChar("x", 0);
 	g_debug->dataInt(_info._maxTextureSize, 1);
-	g_debug->header("Texture units:" , 3);
+	g_debug->header("Texture units:" , DebugApi::LogHeaderInfo);
 	g_debug->dataInt(_info._textureUnits, 0);
 
 
 	// ----- Vertex Shader version  -----
 
-	/*g_debug->Header ("Vertex Shader:" , 3);
+	/*g_debug->Header ("Vertex Shader:" , DebugApi::LogHeaderInfo);
 	g_debug->DataInt (D3DSHADER_VERSION_MAJOR (_info._vertexShaderVersion), 0);
 	g_debug->DataChar (".", 0);
 	g_debug->DataInt (D3DSHADER_VERSION_MINOR (_info._vertexShaderVersion), 0);
@@ -364,7 +364,7 @@ void OpenGLRender::writeInfo() {
 
 	// ----- Pixel Shader version -----
 
-	/*g_debug->Header ("Pixel Shader:" , 3);
+	/*g_debug->Header ("Pixel Shader:" , DebugApi::LogHeaderInfo);
 	g_debug->DataInt (D3DSHADER_VERSION_MAJOR (_info._pixelShaderVersion), 0);
 	g_debug->DataChar (".", 0);
 	g_debug->DataInt (D3DSHADER_VERSION_MINOR (_info._pixelShaderVersion), 1);*/

@@ -281,7 +281,7 @@ bool IND_AnimationManager::addToSurface(IND_Animation *pNewAnimation,
  */
 bool IND_AnimationManager::addToImage(IND_Animation *pNewAnimation, const char *pAnimation) {
 	g_debug->header("Parsing and loading animation", 5);
-	g_debug->header("File name:", 3);
+	g_debug->header("File name:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(pAnimation, 1);
 
 	if (!_ok) {
@@ -494,7 +494,7 @@ bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, const ch
 			// ----- Parsing collision file -----
 
 			g_debug->header("Parsing collision file", 5);
-			g_debug->header("File name:", 3);
+			g_debug->header("File name:", DebugApi::LogHeaderInfo);
 			g_debug->dataChar((char *) mXFrame->Attribute("collision"), 1);
 
 			if (!_collisionParser->parseCollision(mNewFrame->_frame._listBoundingCollision, (char *) mXFrame->Attribute("collision"))) {
@@ -657,7 +657,7 @@ bool IND_AnimationManager::remove(IND_Animation *pAn, bool pType) {
 
 	// ----- Free object -----
 
-	g_debug->header("Name:", 3);
+	g_debug->header("Name:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(pAn->_animation._name, 1);
 
 	// ------ Free all the surfaces and animations -----
@@ -738,7 +738,7 @@ void IND_AnimationManager::delFromlist(IND_Animation *pAn) {
  * Initialization error message.
  */
 void IND_AnimationManager::writeMessage() {
-	g_debug->header("This operation can not be done", 3);
+	g_debug->header("This operation can not be done", DebugApi::LogHeaderInfo);
 	g_debug->dataChar("", 1);
 	g_debug->header("Invalid Id or not correctly initialized AnimationManager", DebugApi::LogHeaderError);
 }

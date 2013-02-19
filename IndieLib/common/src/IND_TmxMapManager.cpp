@@ -95,7 +95,7 @@ bool IND_TmxMapManager::add(IND_TmxMap *pNewTmxMap,const char *pName) {
 		return 0;
 	}
 
-	g_debug->header("File name:", 3);
+	g_debug->header("File name:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(pName, 1);
 
 	if (!_ok) {
@@ -138,15 +138,15 @@ bool IND_TmxMapManager::add(IND_TmxMap *pNewTmxMap,const char *pName) {
 
 	// ----- g_debug -----
 
-//FIXME	g_debug->header("Size:", 3);
+//FIXME	g_debug->header("Size:", DebugApi::LogHeaderInfo);
 //FIXME	g_debug->dataInt(pNewImage->getWidth(), 0);
 //FIXME	g_debug->dataChar("x", 0);
 //FIXME	g_debug->dataInt(pNewImage->getHeight(), 1);
 
-//FIXME	g_debug->header("Bpp:", 3);
+//FIXME	g_debug->header("Bpp:", DebugApi::LogHeaderInfo);
 //FIXME	g_debug->dataInt(pNewImage->getBytespp(), 1);
 
-//FIXME	g_debug->header("Format:", 3);
+//FIXME	g_debug->header("Format:", DebugApi::LogHeaderInfo);
 //FIXME	g_debug->dataChar(pNewImage->getFormatString(), 1);
 
 	g_debug->header("TmxMap loaded", 6);
@@ -174,7 +174,7 @@ Tmx::Map* IND_TmxMapManager::load(const char *pName) {
 		return NULL;
 	}
 
-	g_debug->header("File name:", 3);
+	g_debug->header("File name:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(pName, 1);
 
 	if (!_ok) {
@@ -191,7 +191,7 @@ Tmx::Map* IND_TmxMapManager::load(const char *pName) {
 		return NULL;
 	}
 
-	g_debug->header("Extension:", 3);
+	g_debug->header("Extension:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(ext, 1);
 
 	// ----- Load TmxMap -----
@@ -255,7 +255,7 @@ bool IND_TmxMapManager::remove(IND_TmxMap *pMap) {
 
 	// ----- Free object -----
 
-//FIXME	g_debug->header("File name:", 3);
+//FIXME	g_debug->header("File name:", DebugApi::LogHeaderInfo);
 //FIXME	g_debug->dataChar(pIm->getName(), 1);
 
 	// Quit from list
@@ -320,7 +320,7 @@ bool IND_TmxMapManager::clone(IND_TmxMap *pNewTmxMap, IND_TmxMap *pOldTmxMap) { 
 
 	// ----- g_debug -----
 
-//	g_debug->header("File name:", 3);
+//	g_debug->header("File name:", DebugApi::LogHeaderInfo);
 //	g_debug->dataChar(pOldImage->getName(), 1);
 //	g_debug->header("Image cloned", 6);
 
@@ -403,7 +403,7 @@ Initialization error message
 ==================
 */
 void IND_TmxMapManager::writeMessage() {
-	g_debug->header("This operation can not be done", 3);
+	g_debug->header("This operation can not be done", DebugApi::LogHeaderInfo);
 	g_debug->dataChar("", 1);
 	g_debug->header("Invalid Id or IND_TmxMapManager not correctly initialized", DebugApi::LogHeaderError);
 }
@@ -436,7 +436,7 @@ void IND_TmxMapManager::freeVars() {
 //	        mImageListIter++) {
 //			FIBITMAP* handle = (*mImageListIter)->getFreeImageHandle();
 //		if (handle) {
-//			g_debug->header("Freeing image:", 3);
+//			g_debug->header("Freeing image:", DebugApi::LogHeaderInfo);
 //			g_debug->dataChar((*mImageListIter)->getName(), 1);
 //
 //			// Free image

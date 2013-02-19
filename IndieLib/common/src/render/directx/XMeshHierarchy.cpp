@@ -46,10 +46,10 @@ HRESULT XMeshHierarchy::CreateFrame(LPCSTR Name, LPD3DXFRAME *retNewFrame) {
 	// The frame name (note: may be 0 or zero length)
 	if (Name && strlen(Name)) {
 		newFrame->Name = g_debug->duplicateCharString(Name);
-		g_debug->header("Added frame:", 3);
+		g_debug->header("Added frame:", DebugApi::LogHeaderInfo);
 		g_debug->dataChar((char *) Name, 1);
 	} else {
-		g_debug->header("Added frame:", 3);
+		g_debug->header("Added frame:", DebugApi::LogHeaderInfo);
 		g_debug->dataChar("No name given", 1);
 	}
 
@@ -140,7 +140,7 @@ HRESULT XMeshHierarchy::CreateMeshContainer(
 				// Use the D3DX function to load the texture
 				if (FAILED(D3DXCreateTextureFromFile(pd3dDevice, mTexturePath,
 				                                     &newMeshContainer->_exTextures[i]))) {
-					g_debug->header("Could not load texture:", 3);
+					g_debug->header("Could not load texture:", DebugApi::LogHeaderInfo);
 					g_debug->dataChar(mTexturePath, 1);
 					return 0;
 				}
@@ -175,7 +175,7 @@ HRESULT XMeshHierarchy::CreateMeshContainer(
 		for (UINT i = 0; i < numBones; i++)
 			newMeshContainer->_exBoneOffsets[i] = *(newMeshContainer->pSkinInfo->GetBoneOffsetMatrix(i));
 
-		g_debug->header("Mesh has skinning info. Number of bones is:", 3);
+		g_debug->header("Mesh has skinning info. Number of bones is:", DebugApi::LogHeaderInfo);
 		g_debug->dataInt(numBones, 1);
 
 		// Note: in the Microsoft samples a GenerateSkinnedMesh function is called here in order to prepare

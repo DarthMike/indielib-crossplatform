@@ -110,7 +110,7 @@ bool IND_ImageManager::add(IND_Image *pNewImage, const char *pName) {
 		return 0;
 	}
 
-	g_debug->header("File name:", 3);
+	g_debug->header("File name:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(pName, 1);
 
 	if (!_ok) {
@@ -124,7 +124,7 @@ bool IND_ImageManager::add(IND_Image *pNewImage, const char *pName) {
 	getExtensionFromName(pName,ext);
 	if (checkExtImage(ext)) {
 		pNewImage->setExtension(ext);
-		g_debug->header("Extension:", 3);
+		g_debug->header("Extension:", DebugApi::LogHeaderInfo);
 		g_debug->dataChar(ext, 1);
 	} else {
 		g_debug->header("Unknown extension", DebugApi::LogHeaderError);
@@ -162,15 +162,15 @@ bool IND_ImageManager::add(IND_Image *pNewImage, const char *pName) {
 
 	// ----- g_debug -----
 
-	g_debug->header("Size:", 3);
+	g_debug->header("Size:", DebugApi::LogHeaderInfo);
 	g_debug->dataInt(pNewImage->getWidth(), 0);
 	g_debug->dataChar("x", 0);
 	g_debug->dataInt(pNewImage->getHeight(), 1);
 
-	g_debug->header("Bpp:", 3);
+	g_debug->header("Bpp:", DebugApi::LogHeaderInfo);
 	g_debug->dataInt(pNewImage->getBytespp(), 1);
 
-	g_debug->header("Format:", 3);
+	g_debug->header("Format:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(pNewImage->getFormatString(), 1);
 
 	g_debug->header("Image loaded", 6);
@@ -191,7 +191,7 @@ FIBITMAP* IND_ImageManager::load(const char *pName) {
 		return NULL;
 	}
 
-	g_debug->header("File name:", 3);
+	g_debug->header("File name:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(pName, 1);
 
 	if (!_ok) {
@@ -208,7 +208,7 @@ FIBITMAP* IND_ImageManager::load(const char *pName) {
 		return NULL;
 	}
 
-	g_debug->header("Extension:", 3);
+	g_debug->header("Extension:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(ext, 1);
 
 	// ----- Load image -----
@@ -267,15 +267,15 @@ bool IND_ImageManager::add(IND_Image *pNewImage, FIBITMAP *pImageToBeCopied) {
 
 	// ----- g_debug -----
 
-	g_debug->header("Size:", 3);
+	g_debug->header("Size:", DebugApi::LogHeaderInfo);
 	g_debug->dataInt(pNewImage->getWidth(), 0);
 	g_debug->dataChar("x", 0);
 	g_debug->dataInt(pNewImage->getHeight(), 1);
 
-	g_debug->header("Bpp:", 3);
+	g_debug->header("Bpp:", DebugApi::LogHeaderInfo);
 	g_debug->dataInt(pNewImage->getBytespp(), 1);
 
-	g_debug->header("Format:", 3);
+	g_debug->header("Format:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(pNewImage->getFormatString(), 1);
 
 	g_debug->header("Image cloned and added", 6);
@@ -370,7 +370,7 @@ bool IND_ImageManager::remove(IND_Image *pIm) {
 
 	// ----- Free object -----
 
-	g_debug->header("File name:", 3);
+	g_debug->header("File name:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(pIm->getName(), 1);
 
     // Free image
@@ -429,7 +429,7 @@ bool IND_ImageManager::clone(IND_Image *pNewImage, IND_Image *pOldImage) {
 
 	// ----- g_debug -----
 
-	g_debug->header("File name:", 3);
+	g_debug->header("File name:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(pOldImage->getName(), 1);
 	g_debug->header("Image cloned", 6);
 
@@ -463,15 +463,15 @@ bool IND_ImageManager::save(IND_Image *pIm, const char *pName) {
 	//	return 0;
 	//}
 
-	//g_debug->header("Image type:", 3);
+	//g_debug->header("Image type:", DebugApi::LogHeaderInfo);
 	//g_debug->dataChar(_ext, 1);
 
 	//ilBindImage(pIm->getDevilId());
 
-	//g_debug->header("File name:", 3);
+	//g_debug->header("File name:", DebugApi::LogHeaderInfo);
 	//g_debug->dataChar(pName, 1);
 
-	//g_debug->header("Size:", 3);
+	//g_debug->header("Size:", DebugApi::LogHeaderInfo);
 	//g_debug->dataInt(pIm->getWidth(), 0);
 	//g_debug->dataChar("x", 0);
 	//g_debug->dataInt(pIm->getHeight(), 1);
@@ -549,7 +549,7 @@ Initialization error message
 ==================
 */
 void IND_ImageManager::writeMessage() {
-	g_debug->header("This operation can not be done", 3);
+	g_debug->header("This operation can not be done", DebugApi::LogHeaderInfo);
 	g_debug->dataChar("", 1);
 	g_debug->header("Invalid Id or IND_ImageManager not correctly initialized", DebugApi::LogHeaderError);
 }
@@ -586,7 +586,7 @@ void IND_ImageManager::freeVars() {
 	        mImageListIter++) {
 			FIBITMAP* handle = (*mImageListIter)->getFreeImageHandle();
 		if (handle) {
-			g_debug->header("Freeing image:", 3);
+			g_debug->header("Freeing image:", DebugApi::LogHeaderInfo);
 			g_debug->dataChar((*mImageListIter)->getName(), 1);
 
 			// Free image

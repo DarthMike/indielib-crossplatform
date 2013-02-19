@@ -140,7 +140,7 @@ bool IND_Window::create(IND_WindowProperties& props) {
 
 	g_debug->header("Window created", DebugApi::LogHeaderOk);
 
-	g_debug->header("Mode:", 3);
+	g_debug->header("Mode:", DebugApi::LogHeaderInfo);
 	if (!_attributes._fullscreen)
 		g_debug->dataChar("Window", 1);
 	else

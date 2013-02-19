@@ -60,13 +60,11 @@ void OpenGLRender::blitSurface(IND_Surface *pSu) {
 		if (!_math.cullFrustumBox(mP1, mP2,_frustrumPlanes)) {
 			_numDiscardedObjects++;
 		} else {
-
-            //Enable texturing
-            glEnable(GL_TEXTURE_2D);
-            
-			//Surface drawing
-			glEnableClientState(GL_VERTEX_ARRAY);
-			glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+#ifdef _DEBUG
+            GLboolean enabled;
+            glGetBooleanv(GL_TEXTURE_2D,&enabled);
+            assert(GL_FALSE != enabled); //Should have texturing enabled
+#endif
 			
 			if (!pSu->isHaveGrid()) {
 				//Texture ID - If it doesn't have a grid, every other block must be blit by 
@@ -77,7 +75,11 @@ void OpenGLRender::blitSurface(IND_Surface *pSu) {
 				//is rendered all the time. In other words, different pieces of same texture are rendered
 				glBindTexture(GL_TEXTURE_2D,pSu->_surface->_texturesArray[0]);
 			}
-			//Set CLAMP for texture
+            
+            //Set texture params requested before (via rainbow2d API)
+            setGLBoundTextureParams();
+            
+			//Override CLAMP for texture
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	        
@@ -90,10 +92,7 @@ void OpenGLRender::blitSurface(IND_Surface *pSu) {
 			if (glerror) {
 				g_debug->header("OpenGL error in surface blitting ", 2);
 			}
-		#endif	
-
-			glDisableClientState(GL_VERTEX_ARRAY);
-			glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+		#endif
 			_numrenderedObjects++;
 		}
   		
@@ -180,13 +179,18 @@ void OpenGLRender::blitRegionSurface(IND_Surface *pSu,
             if (!_math.cullFrustumBox(mP1, mP2, _frustrumPlanes)) {
                 _numDiscardedObjects++;
             } else {
-                //Enable texturing
-                glEnable(GL_TEXTURE_2D);
-                //Surface drawing
-                glEnableClientState(GL_VERTEX_ARRAY);
-                glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+#ifdef _DEBUG
+                GLboolean enabled;
+                glGetBooleanv(GL_TEXTURE_2D,&enabled);
+                assert(GL_FALSE != enabled); //Should have texturing enabled
+#endif
+                
                 glBindTexture(GL_TEXTURE_2D,pSu->_surface->_texturesArray[0]);
-                //Set CLAMP for texture
+                
+                //Set texture params requested before (via rainbow2d API)
+                setGLBoundTextureParams();
+                
+                //Override CLAMP for texture
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
                 
@@ -200,9 +204,6 @@ void OpenGLRender::blitRegionSurface(IND_Surface *pSu,
 					g_debug->header("OpenGL error in surface blitting ", 2);
 				}
 #endif
-                
-                glDisableClientState(GL_VERTEX_ARRAY);
-                glDisableClientState(GL_TEXTURE_COORD_ARRAY);
                 _numrenderedObjects++;
             }
 		}
@@ -255,13 +256,18 @@ bool OpenGLRender::blitWrapSurface(IND_Surface *pSu,
        if (!_math.cullFrustumBox(mP1, mP2, _frustrumPlanes)) {
            _numDiscardedObjects++;
        } else {
-           //Enable texturing
-           glEnable(GL_TEXTURE_2D);
-           //Surface drawing
-           glEnableClientState(GL_VERTEX_ARRAY);
-           glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+#ifdef _DEBUG
+           GLboolean enabled;
+           glGetBooleanv(GL_TEXTURE_2D,&enabled);
+           assert(GL_FALSE != enabled); //Should have texturing enabled
+#endif
+           
            glBindTexture(GL_TEXTURE_2D,pSu->_surface->_texturesArray[0]);
-           //Set wrap for this texture
+           
+           //Set texture params requested before (via rainbow2d API)
+           setGLBoundTextureParams();
+           
+           //Override CLAMP for texture
            glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
            glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_REPEAT);
            

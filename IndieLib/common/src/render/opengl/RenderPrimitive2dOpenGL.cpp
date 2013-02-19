@@ -53,15 +53,14 @@ void OpenGLRender::blitPixel(int pX,
 	// Fill the PIXEL structure
 	fillPixel (&_pixels [0], static_cast<float>(pX), static_cast<float>(pY), r, g, b, a);
 	
-	//Render primitive - No textures
-	glDisable(GL_TEXTURE_2D);
+	// Pixel drawing
+	setGLClientStateToPrimitive();
 
 	// Color and transformation
 	setForPrimitive (pA, true);
 
-	// Pixel drawing
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
+	
+    
 	glVertexPointer(3, GL_FLOAT, sizeof(PIXEL), &_pixels[0]._x);
 	glColorPointer(4, GL_FLOAT, sizeof(PIXEL), &_pixels[0]._colorR);
 	glDrawArrays(GL_POINTS, 0,1);	
@@ -74,8 +73,9 @@ void OpenGLRender::blitPixel(int pX,
 	}
 #endif	
 
-	glDisableClientState(GL_VERTEX_ARRAY);
-	glDisableClientState(GL_COLOR_ARRAY);
+    //Reenable texturing
+    setGLClientStateToTexturing();
+	
 }
 
 void OpenGLRender::blitLine(int pX1,
@@ -92,14 +92,12 @@ void OpenGLRender::blitLine(int pX1,
 	fillPixel(&_pixels[1], static_cast<float>(pX2), static_cast<float>(pY2), r, g, b, a);
 
 	//Render primitive - No textures
-	glDisable(GL_TEXTURE_2D);
+	setGLClientStateToPrimitive();
 
 	// Color and transformation
 	setForPrimitive(pA,true);
 
 	//Line blitting
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
 	glVertexPointer(3, GL_FLOAT, sizeof(PIXEL), &_pixels[0]._x);
 	glColorPointer(4, GL_FLOAT, sizeof(PIXEL), &_pixels[0]._colorR);
 	glDrawArrays(GL_LINES, 0, 2);
@@ -112,9 +110,8 @@ void OpenGLRender::blitLine(int pX1,
 	}
 #endif
 
-	glDisableClientState(GL_VERTEX_ARRAY);
-	glDisableClientState(GL_COLOR_ARRAY);
-
+    //Reenable texturing
+	setGLClientStateToTexturing();
 }
 
 void OpenGLRender::blitRectangle(int pX1,
@@ -135,14 +132,12 @@ void OpenGLRender::blitRectangle(int pX1,
 	fillPixel (&_pixels [4], static_cast<float>(pX1), static_cast<float>(pY1),      r, g, b,a);
 	
 	//Render primitive - No textures
-	glDisable(GL_TEXTURE_2D);
+	setGLClientStateToPrimitive();
 
 	// Color and transformation
 	setForPrimitive (pA,true);
 
 	//rectangle blitting
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
 	glVertexPointer(3, GL_FLOAT, sizeof(PIXEL), &_pixels[0]._x);
 	glColorPointer(4, GL_FLOAT, sizeof(PIXEL), &_pixels[0]._colorR);
 	glDrawArrays(GL_LINE_STRIP, 0, 5);
@@ -154,9 +149,8 @@ void OpenGLRender::blitRectangle(int pX1,
 	}
 #endif
 
-	glDisableClientState(GL_VERTEX_ARRAY);
-	glDisableClientState(GL_COLOR_ARRAY);
-
+    //Reenable texturing
+	setGLClientStateToTexturing();
 }
 
 void OpenGLRender::blitFillRectangle(int pX1,
@@ -176,14 +170,12 @@ void OpenGLRender::blitFillRectangle(int pX1,
 	fillPixel (&_pixels [3], static_cast<float>(pX2), static_cast<float>(pY2),      r, g, b,a);
 
 	//Render primitive - No textures
-	glDisable(GL_TEXTURE_2D);
+	setGLClientStateToPrimitive();
 
 	// Color and transformation
 	setForPrimitive (pA,true);
 
 	//rectangle blitting
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
 	glVertexPointer(3, GL_FLOAT, sizeof(PIXEL), &_pixels[0]._x);
 	glColorPointer(4, GL_FLOAT, sizeof(PIXEL), &_pixels[0]._colorR);
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
@@ -195,9 +187,8 @@ void OpenGLRender::blitFillRectangle(int pX1,
 	}
 #endif
 
-	glDisableClientState(GL_VERTEX_ARRAY);
-	glDisableClientState(GL_COLOR_ARRAY);
-
+    //Reenable texturing
+	setGLClientStateToTexturing();
 }
 
 void OpenGLRender::blitTriangleList(IND_Point *pTrianglePoints,
@@ -219,15 +210,12 @@ void OpenGLRender::blitTriangleList(IND_Point *pTrianglePoints,
 	}//LOOP END
 
 	//Render primitive - No textures
-	glDisable(GL_TEXTURE_2D);
+	setGLClientStateToPrimitive();
 
 	// Color and transformation
 	setForPrimitive(pA,true);
 
 	//Triangle strip blitting
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
-
 	glVertexPointer(3, GL_FLOAT, sizeof(PIXEL), &_pixels[0]._x);
 	glColorPointer(4, GL_FLOAT, sizeof(PIXEL), &_pixels[0]._colorR);
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, pNumPoints);
@@ -238,9 +226,9 @@ void OpenGLRender::blitTriangleList(IND_Point *pTrianglePoints,
 		g_debug->header("OpenGL error in triangle list blitting ", 2);
 	}
 #endif
-	glDisableClientState(GL_VERTEX_ARRAY);
-	glDisableClientState(GL_COLOR_ARRAY);
 
+    //Reenable texturing
+	setGLClientStateToTexturing();
 }
 
 
@@ -266,15 +254,12 @@ void OpenGLRender::blitColoredTriangle(int pX1,
 	fillPixel (&_pixels[2], static_cast<float>(pX3), static_cast<float>(pY3), r3, g3, b3, a);
 
 	//Render primitive - No textures
-	glDisable(GL_TEXTURE_2D);
+	setGLClientStateToPrimitive();
 
 	// Color and transformation
 	setForPrimitive(pA,true);
 
 	//Single Colored Triangle blitting
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
-
 	glVertexPointer(3, GL_FLOAT, sizeof(PIXEL), &_pixels[0]._x);
 	glColorPointer(4, GL_FLOAT, sizeof(PIXEL), &_pixels[0]._colorR);
 	glDrawArrays(GL_TRIANGLES, 0, 3);
@@ -285,9 +270,9 @@ void OpenGLRender::blitColoredTriangle(int pX1,
 		g_debug->header("OpenGL error in colored triangle blitting ", 2);
 	}
 #endif
-	glDisableClientState(GL_VERTEX_ARRAY);
-	glDisableClientState(GL_COLOR_ARRAY);
 
+    //Reenable texturing
+	setGLClientStateToTexturing();
 }
 
 
@@ -309,15 +294,12 @@ bool OpenGLRender::blitPoly2d(IND_Point *pPolyPoints,
     }
 
 	//Render primitive - No textures
-	glDisable(GL_TEXTURE_2D);
+	setGLClientStateToPrimitive();
 
 	// Color and transformation
 	setForPrimitive(pA,true);
 
 	// Polygon blitting
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
-
 	glVertexPointer(3, GL_FLOAT, sizeof(PIXEL), &_pixels[0]._x);
 	glColorPointer(4, GL_FLOAT, sizeof(PIXEL), &_pixels[0]._colorR);
 	glDrawArrays(GL_LINE_STRIP, 0, pNumLines+1);
@@ -328,9 +310,9 @@ bool OpenGLRender::blitPoly2d(IND_Point *pPolyPoints,
 		g_debug->header("OpenGL error in triangle poly2d blitting ", 2);
 	}
 #endif
-	glDisableClientState(GL_VERTEX_ARRAY);
-	glDisableClientState(GL_COLOR_ARRAY);
 
+    //Reenable texturing
+	setGLClientStateToTexturing();
 	return 1;
 }
 
@@ -359,14 +341,10 @@ bool OpenGLRender::blitRegularPoly(int pX,
 	fillPixel(&_pixels [i], pX + (pRadius * cos(_math.angleToRadians(pAngle))), pY + (pRadius * sin(_math.angleToRadians(pAngle))), r, g, b, a);
 	
 	//Render primitive - No textures
-	glDisable(GL_TEXTURE_2D);
+	setGLClientStateToPrimitive();
 
 	// Color and transformation
 	setForPrimitive(pA,true);
-
-	//Blitting
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
 
 	//Polygon blitting
 	glVertexPointer(3, GL_FLOAT, sizeof(PIXEL), &_pixels[0]._x);
@@ -379,9 +357,9 @@ bool OpenGLRender::blitRegularPoly(int pX,
 		g_debug->header("OpenGL error in triangle list blitting ", 2);
 	}
 #endif
-	glDisableClientState(GL_VERTEX_ARRAY);
-	glDisableClientState(GL_COLOR_ARRAY);
 
+    //Reenable texturing
+	setGLClientStateToTexturing();
 	return 1;
 }
 
@@ -433,13 +411,10 @@ Blits a bounding line
     fillPixel (&_pixels[1], static_cast<float>(pPosX2), static_cast<float>(pPosY2), r, g, b, a);
 
 	//Render primitive - No textures
-	glDisable(GL_TEXTURE_2D);
+	setGLClientStateToPrimitive();
+    
 	// Color settings
     setRainbow2d (IND_OPAQUE, 1, 0, 0, IND_FILTER_POINT, pR, pG, pB, pA, 0, 0, 0, 255, 0, 0);
-
-	//Blitting
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
 
 	//Polygon blitting
 	glVertexPointer(3, GL_FLOAT, sizeof(PIXEL), &_pixels[0]._x);
@@ -452,8 +427,9 @@ Blits a bounding line
 		g_debug->header("OpenGL error in grid line blitting ", 2);
 	}
 #endif
-	glDisableClientState(GL_VERTEX_ARRAY);
-	glDisableClientState(GL_COLOR_ARRAY);	
+
+    //Reenable texturing
+	setGLClientStateToTexturing();
 }
 
 /*
@@ -494,16 +470,13 @@ void OpenGLRender::blitCollisionCircle(int pPosX, int pPosY, int pRadius, float 
 	}
     
 	//Render primitive - No textures
-	glDisable(GL_TEXTURE_2D);
+	setGLClientStateToPrimitive();
+    
 	//Transform
 	setTransform2d(pIndWorldMatrix);
 
 	// Color settings
     setRainbow2d (IND_OPAQUE, 1, 0, 0, IND_FILTER_POINT, pR, pG, pB, pA, 0, 0, 0, 255, 0, 0);
-
-	//Blitting
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
 
 	//Polygon blitting
 	glVertexPointer(3, GL_FLOAT, sizeof(PIXEL), &_pixels[0]._x);
@@ -516,9 +489,9 @@ void OpenGLRender::blitCollisionCircle(int pPosX, int pPosY, int pRadius, float 
 		g_debug->header("OpenGL error in circle blitting ", 2);
 	}
 #endif
-	glDisableClientState(GL_VERTEX_ARRAY);
-	glDisableClientState(GL_COLOR_ARRAY);	
 
+    //Reenable texturing
+	setGLClientStateToTexturing();
 }
 
 

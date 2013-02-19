@@ -255,6 +255,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\tests\manual\surface\SurfaceTests_Filters.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\tests\manual\surface\SurfaceTests_Filters.h"
+				>
+			</File>
+			<File
 				RelativePath="..\tests\manual\surface\SurfaceTests_textBlock.cpp"
 				>
 			</File>

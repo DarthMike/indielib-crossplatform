@@ -71,7 +71,7 @@ bool DebugApi::init() {
     *_count << "Indielib version: "<<IND_VERSION.major<<"."<<IND_VERSION.minor<<"."<<IND_VERSION.revision;
 	*_count << endl;
 	*_count << endl;
-	*_count << "[g_debug.log]:" << " (";
+	*_count << "[Init time]:" << " (";
 
 	// Date
 	string days [7] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thrusday", "Friday", "Saturday"};

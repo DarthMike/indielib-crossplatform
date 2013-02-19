@@ -669,12 +669,12 @@ void IND_Image::setAlphaChannel(BYTE pR, BYTE pG, BYTE pB) {
 					}//LOOP END
 				}//LOOP END
 			} else {
-				g_debug->header("Intent to set alpha channel via colorkey to non 32-bit RGBA image!",2);
+				g_debug->header("Intent to set alpha channel via colorkey to non 32-bit RGBA image!",DebugApi::LogHeaderError);
 	}
 		break;
 		
 		default:
-			g_debug->header("Intent to set alpha channel via colorkey to not supported image!",2);
+			g_debug->header("Intent to set alpha channel via colorkey to not supported image!",DebugApi::LogHeaderError);
 			break;
 	}
 }

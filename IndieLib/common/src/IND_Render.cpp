@@ -1431,6 +1431,8 @@ IND_Window* IND_Render::createRender(IND_WindowProperties& windowProperties) {
 	} else {
 		return (_wrappedRenderer->initRenderAndWindow(windowProperties));
 	}
+    
+    g_debug->header("Render created", DebugApi::LogHeaderEnd);
 }
 
 /*

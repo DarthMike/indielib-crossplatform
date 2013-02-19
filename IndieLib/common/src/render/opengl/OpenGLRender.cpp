@@ -99,17 +99,17 @@ IND_Window* OpenGLRender::initRenderAndWindow(IND_WindowProperties& props) {
 	g_debug->header("Creating OpenGL Render", DebugApi::LogHeaderBegin);
 	_ok = initializeOpenGLRender();
 	if (!_ok) {
-		g_debug->header("Finalizing OpenGL", DebugApi::LogHeaderBegin);
+		g_debug->header("Finalizing OpenGL", DebugApi::LogHeaderWarning);
 		freeVars();
 		g_debug->header("OpenGL finalized", DebugApi::LogHeaderEnd);
 		return NULL;
 	}
 
-	g_debug->header("Checking created OpenGL context pixel format", DebugApi::LogHeaderBegin);
+	g_debug->header("Checking created OpenGL context pixel format", DebugApi::LogHeaderOk);
 	if(!_osOpenGLMgr->checkOpenGLSDLContextProps()) {
-		g_debug->header("Different GL context pixel format used", DebugApi::LogHeaderEnd);
+		g_debug->header("Different GL context pixel format used", DebugApi::LogHeaderWarning);
 	} else {
-		g_debug->header("Same GL context pixel format used", DebugApi::LogHeaderEnd);
+		g_debug->header("Same GL context pixel format used", DebugApi::LogHeaderOk);
 	}
 
 	writeInfo();

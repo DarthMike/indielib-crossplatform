@@ -113,13 +113,13 @@ bool IND_Window::create(IND_WindowProperties& props) {
 										  windowFlags);
 	if (!_attributes._sdlWindow) {
 		g_debug->header("Error creating SDL window", DebugApi::LogHeaderError);
-		g_debug->header(std::string(SDL_GetError()),2);
+		g_debug->header(std::string(SDL_GetError()),DebugApi::LogHeaderError);
 		return 0;
 	}
 
 	if (!reset(props)) {
 		g_debug->header("Error setting SDL window params", DebugApi::LogHeaderError);
-		g_debug->header(std::string(SDL_GetError()),2);
+		g_debug->header(std::string(SDL_GetError()),DebugApi::LogHeaderError);
 		return 0;
 	}
 
@@ -129,7 +129,7 @@ bool IND_Window::create(IND_WindowProperties& props) {
 	if(SDL_FALSE == SDL_GetWindowWMInfo(getSDLWindow(),_attributes._windowInfo)) {
 		
 		g_debug->header("Error while getting SDL window manager info: " , DebugApi::LogHeaderError);
-		g_debug->header(std::string(SDL_GetError()),2);
+		g_debug->header(std::string(SDL_GetError()),DebugApi::LogHeaderError);
 		return 0;
 	}
 	
@@ -195,7 +195,7 @@ bool IND_Window::reset(IND_WindowProperties& props) {
 	
 	if (props._bpp != 32) {
 		g_debug->header("Error creating SDL window", DebugApi::LogHeaderError);
-		g_debug->header(std::string(SDL_GetError()),2);
+		g_debug->header(std::string(SDL_GetError()),DebugApi::LogHeaderError);
 		return 0;
 	}
 

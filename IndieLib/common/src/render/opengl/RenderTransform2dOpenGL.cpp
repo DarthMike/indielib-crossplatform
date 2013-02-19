@@ -312,19 +312,16 @@ void OpenGLRender::setRainbow2d(IND_Type pType,
 	blendR = blendG = blendB = blendA = 1.0f;
 
 	// ----- Filters -----
+    // In GL, texture filtering is applied to the bound texture. From this method we don't know which is the
+    // bound texture, so we cache the requested state, so before actually rendering, we could set the state
+    // to the bound texture
 	int filterType = GL_NEAREST;
 	if (IND_FILTER_LINEAR == pFilter) {
 		filterType = GL_LINEAR;
 	}
 
-    
-    for (int textUnit = GL_TEXTURE0; textUnit < (GL_TEXTURE0 + _info._textureUnits); ++textUnit) {
-        glClientActiveTexture(textUnit);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, filterType);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, filterType);
-    }
-    
-    glClientActiveTexture(GL_TEXTURE0);
+    _tex2dState.magFilter = filterType;
+    _tex2dState.minFilter = filterType;
 
 	// ----- Back face culling -----
 	if (pCull) {
@@ -464,18 +461,6 @@ void OpenGLRender::setDefaultGLState() {
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 	glPixelStorei(GL_PACK_ALIGNMENT, 1);
     
-    //Change texture sampler parameters for all texture units
-    for (int textUnit = GL_TEXTURE0; textUnit < (GL_TEXTURE0 + _info._textureUnits); ++textUnit) {
-        glClientActiveTexture(textUnit);
-        //Texture clamp ON by default
-        glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
-        glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);
-        //By default select fastest texture filter
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    }
-    glClientActiveTexture(GL_TEXTURE0);  //Leave first texture unit as default
-    
     setGLClientStateToTexturing();
 }
 
@@ -497,6 +482,14 @@ void OpenGLRender::setGLClientStateToTexturing() {
     glDisableClientState(GL_NORMAL_ARRAY);
 }
 
+void OpenGLRender::setGLBoundTextureParams() {
+    //Texture wrap mode
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,_tex2dState.wrapS);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,_tex2dState.wrapT);
+    //By default select fastest texture filter
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, _tex2dState.magFilter);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, _tex2dState.minFilter);
+}
 
 /** @endcond */
 

@@ -75,7 +75,11 @@ void OpenGLRender::blitSurface(IND_Surface *pSu) {
 				//is rendered all the time. In other words, different pieces of same texture are rendered
 				glBindTexture(GL_TEXTURE_2D,pSu->_surface->_texturesArray[0]);
 			}
-			//Set CLAMP for texture
+            
+            //Set texture params requested before (via rainbow2d API)
+            setGLBoundTextureParams();
+            
+			//Override CLAMP for texture
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	        
@@ -182,7 +186,11 @@ void OpenGLRender::blitRegionSurface(IND_Surface *pSu,
 #endif
                 
                 glBindTexture(GL_TEXTURE_2D,pSu->_surface->_texturesArray[0]);
-                //Set CLAMP for texture
+                
+                //Set texture params requested before (via rainbow2d API)
+                setGLBoundTextureParams();
+                
+                //Override CLAMP for texture
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
                 
@@ -255,7 +263,11 @@ bool OpenGLRender::blitWrapSurface(IND_Surface *pSu,
 #endif
            
            glBindTexture(GL_TEXTURE_2D,pSu->_surface->_texturesArray[0]);
-           //Set wrap for this texture
+           
+           //Set texture params requested before (via rainbow2d API)
+           setGLBoundTextureParams();
+           
+           //Override CLAMP for texture
            glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
            glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_REPEAT);
            

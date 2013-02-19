@@ -65,10 +65,6 @@ void OpenGLRender::blitSurface(IND_Surface *pSu) {
             glGetBooleanv(GL_TEXTURE_2D,&enabled);
             assert(GL_FALSE != enabled); //Should have texturing enabled
 #endif
-            
-			//Surface drawing
-			glEnableClientState(GL_VERTEX_ARRAY);
-			glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 			
 			if (!pSu->isHaveGrid()) {
 				//Texture ID - If it doesn't have a grid, every other block must be blit by 
@@ -92,10 +88,7 @@ void OpenGLRender::blitSurface(IND_Surface *pSu) {
 			if (glerror) {
 				g_debug->header("OpenGL error in surface blitting ", 2);
 			}
-		#endif	
-
-			glDisableClientState(GL_VERTEX_ARRAY);
-			glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+		#endif
 			_numrenderedObjects++;
 		}
   		
@@ -187,9 +180,7 @@ void OpenGLRender::blitRegionSurface(IND_Surface *pSu,
                 glGetBooleanv(GL_TEXTURE_2D,&enabled);
                 assert(GL_FALSE != enabled); //Should have texturing enabled
 #endif
-                //Surface drawing
-                glEnableClientState(GL_VERTEX_ARRAY);
-                glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+                
                 glBindTexture(GL_TEXTURE_2D,pSu->_surface->_texturesArray[0]);
                 //Set CLAMP for texture
                 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
@@ -205,9 +196,6 @@ void OpenGLRender::blitRegionSurface(IND_Surface *pSu,
 					g_debug->header("OpenGL error in surface blitting ", 2);
 				}
 #endif
-                
-                glDisableClientState(GL_VERTEX_ARRAY);
-                glDisableClientState(GL_TEXTURE_COORD_ARRAY);
                 _numrenderedObjects++;
             }
 		}
@@ -265,9 +253,7 @@ bool OpenGLRender::blitWrapSurface(IND_Surface *pSu,
            glGetBooleanv(GL_TEXTURE_2D,&enabled);
            assert(GL_FALSE != enabled); //Should have texturing enabled
 #endif
-           //Surface drawing
-           glEnableClientState(GL_VERTEX_ARRAY);
-           glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+           
            glBindTexture(GL_TEXTURE_2D,pSu->_surface->_texturesArray[0]);
            //Set wrap for this texture
            glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);

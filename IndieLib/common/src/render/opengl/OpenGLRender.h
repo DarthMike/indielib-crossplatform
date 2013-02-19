@@ -410,6 +410,12 @@ private:
 
 	//Setup helper
 	bool resetViewport(int pWitdh, int pHeight);
+    
+    //GL state helpers
+    void setDefaultGLState();
+    
+    void setGLClientStateToPrimitive();
+    void setGLClientStateToTexturing();
 
 	// ----- Collisions -----
 	void blitCollisionCircle(int pPosX, int pPosY, int pRadius, float pScale, BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pWorldMatrix);

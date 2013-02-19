@@ -146,7 +146,7 @@ bool IND_Window::create(IND_WindowProperties& props) {
 	else
 		g_debug->dataChar("Full screen", 1);
 
-	g_debug->header("Window OK", 6);
+	g_debug->header("Window OK", DebugApi::LogHeaderEnd);
 
 	_ok = true;
 
@@ -166,7 +166,7 @@ void IND_Window::end() {
 			_attributes._sdlWindow = NULL;
 		}
 		freeVars();
-		g_debug ->header("Window finalized", 6);
+		g_debug ->header("Window finalized", DebugApi::LogHeaderEnd);
         
 		_ok = false;
 	}

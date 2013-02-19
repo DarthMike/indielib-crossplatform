@@ -81,7 +81,7 @@ bool IND_Entity2dManager::init(IND_Render *pRender) {
 
 	_math = new IND_Math();
 	_math->init();
-	g_debug->header("Entity2dManager OK", 6);
+	g_debug->header("Entity2dManager OK", DebugApi::LogHeaderEnd);
 
 	return _ok;
 }
@@ -96,8 +96,8 @@ void IND_Entity2dManager::end() {
 		DISPOSE (_math);
 		g_debug->header("Freeing 2d entities" , DebugApi::LogHeaderBegin);
 		freeVars();
-		g_debug->header("Entities freed", 6);
-		g_debug->header("IND_Entity2dManager finalized", 6);
+		g_debug->header("Entities freed", DebugApi::LogHeaderEnd);
+		g_debug->header("IND_Entity2dManager finalized", DebugApi::LogHeaderEnd);
 
 		_ok = false;
 	}
@@ -140,7 +140,7 @@ bool IND_Entity2dManager::add(IND_Entity2d *pNewEntity2d) {
 	pNewEntity2d->setLayer(0);
 	// ----- g_debug -----
 
-	g_debug->header("2d entity added", 6);
+	g_debug->header("2d entity added", DebugApi::LogHeaderEnd);
 
 	return 1;
 }
@@ -183,7 +183,7 @@ bool IND_Entity2dManager::add(int pLayer, IND_Entity2d *pNewEntity2d) {
 	pNewEntity2d->setLayer(pLayer);
 	// ----- g_debug -----
 
-	g_debug->header("2d entity added", 6);
+	g_debug->header("2d entity added", DebugApi::LogHeaderEnd);
 
 	return 1;
 }
@@ -223,13 +223,13 @@ bool IND_Entity2dManager::remove(IND_Entity2d *pEn) {
 			// Quit from list
 			_listEntities2d[i]->erase(_listIter);
 
-			g_debug->header("Ok", 6);
+			g_debug->header("Ok", DebugApi::LogHeaderEnd);
 
 			return 1;
 		}
 	}
 
-	g_debug->header("Entity not found", 6);
+	g_debug->header("Entity not found", DebugApi::LogHeaderEnd);
 	return 0;
 }
 

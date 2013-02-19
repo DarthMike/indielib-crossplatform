@@ -93,7 +93,7 @@ bool IND_SurfaceManager::init(IND_ImageManager *pImageManager, IND_Render *pRend
 #endif
 		_ok = true;
 
-		g_debug->header("SurfaceManager OK", 6);
+		g_debug->header("SurfaceManager OK", DebugApi::LogHeaderEnd);
 	} else {
 		g_debug->header("ImageManager is not correctly initialized", DebugApi::LogHeaderError);
 		_ok = false;
@@ -113,8 +113,8 @@ void IND_SurfaceManager::end() {
 		g_debug->header("Finalizing SurfaceManager", DebugApi::LogHeaderBegin);
 		g_debug->header("Freeing surfaces" , DebugApi::LogHeaderBegin);
 		freeVars();
-		g_debug->header("Surfaces freed", 6);
-		g_debug->header("IND_SurfaceManager finalized", 6);
+		g_debug->header("Surfaces freed", DebugApi::LogHeaderEnd);
+		g_debug->header("IND_SurfaceManager finalized", DebugApi::LogHeaderEnd);
 
 		_ok = false;
 	}
@@ -466,7 +466,7 @@ bool IND_SurfaceManager::remove(IND_Surface *pSu) {
 	// Quit from list
 	delFromlist(pSu);
 
-	g_debug->header("Ok", 6);
+	g_debug->header("Ok", DebugApi::LogHeaderEnd);
 
 	return 1;
 }
@@ -545,7 +545,7 @@ bool IND_SurfaceManager::addMain(IND_Surface    *pNewSurface,
 	//g_debug->DataFloat (pNewSurface->_surface->_attributes., 0);
 	//g_debug->DataChar ("%", 1);
 
-	g_debug->header("Surface created", 6);
+	g_debug->header("Surface created", DebugApi::LogHeaderEnd);
 
 	return 1;
 }

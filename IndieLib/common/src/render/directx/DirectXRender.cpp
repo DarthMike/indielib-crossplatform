@@ -116,7 +116,7 @@ bool DirectXRender::init(LPDIRECT3D9 pDirect3d, IDirect3DDevice9 *pD3dDevice) {
 	//setCamera2d(&mCamera2d);
 	clearViewPort(0, 0, 0);
 
-	g_debug->header("Direct3D OK", 6);
+	g_debug->header("Direct3D OK", DebugApi::LogHeaderEnd);
 
 	return _ok;
 }
@@ -199,7 +199,7 @@ void DirectXRender::end() {
 	if (_ok) {
 		g_debug->header("Finalizing Direct3D", DebugApi::LogHeaderBegin);
 		freeVars();
-		g_debug->header("Direct3D finalized ", 6);
+		g_debug->header("Direct3D finalized ", DebugApi::LogHeaderEnd);
 		_ok = false;
 	}
 }
@@ -334,7 +334,7 @@ bool DirectXRender::Direct3dReset(int pWidth,
 	g_debug->dataChar("x", 0);
 	g_debug->dataInt(pBpp, 1);
 
-	g_debug->header("Direct3D reseted", 6);
+	g_debug->header("Direct3D reseted", DebugApi::LogHeaderEnd);
 
 	// Reset timer
 	//FIXME: CHECK HOW TO BE CONSISTENT WITH FPS COUNT (NOT TOO IMPORTANT)
@@ -368,11 +368,11 @@ bool DirectXRender::createRender(IND_Window* pWindow) {
 		if (!Direct3Dinit(mWidthWin, mHeightWin, mBitsWin, mVsync, mFullscreen)) {
 			g_debug->header("Finalizing D3D", DebugApi::LogHeaderBegin);
 			freeVars();
-			g_debug->header("D3D finalized", 6);
+			g_debug->header("D3D finalized", DebugApi::LogHeaderEnd);
 			return 0;
 		}
 
-		g_debug->header("Direct3D OK", 6);
+		g_debug->header("Direct3D OK", DebugApi::LogHeaderEnd);
 
 		// Hardware information
 		writeInfo();
@@ -508,7 +508,7 @@ void DirectXRender::writeInfo() {
 	g_debug->dataChar(".", 0);
 	g_debug->dataInt(D3DSHADER_VERSION_MINOR(_info._pixelShaderVersion), 1);
 
-	g_debug->header("Hardware Ok" , 6);
+	g_debug->header("Hardware Ok" , DebugApi::LogHeaderEnd);
 }
 
 

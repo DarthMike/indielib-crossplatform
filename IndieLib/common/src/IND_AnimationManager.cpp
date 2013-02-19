@@ -63,7 +63,7 @@ bool IND_AnimationManager::init(IND_ImageManager *pImageManager, IND_SurfaceMana
 
 		_ok = true;
 
-		g_debug->header("AnimationManager OK", 6);
+		g_debug->header("AnimationManager OK", DebugApi::LogHeaderEnd);
 	} else {
 		g_debug->header("SurfaceManager is not correctly initialized", DebugApi::LogHeaderError);
 		_ok = false;
@@ -81,8 +81,8 @@ void IND_AnimationManager::end() {
 		g_debug->header("Finalizing AnimationManager", DebugApi::LogHeaderBegin);
 		g_debug->header("Freeing animations" , DebugApi::LogHeaderBegin);
 		freeVars();
-		g_debug->header("Animations freed", 6);
-		g_debug->header("AnimationManager finalized", 6);
+		g_debug->header("Animations freed", DebugApi::LogHeaderEnd);
+		g_debug->header("AnimationManager finalized", DebugApi::LogHeaderEnd);
 
 		_ok = false;
 	}
@@ -305,7 +305,7 @@ bool IND_AnimationManager::addToImage(IND_Animation *pNewAnimation, const char *
 
 	// ----- g_debug -----
 
-	g_debug->header("Animation parsed and loaded", 6);
+	g_debug->header("Animation parsed and loaded", DebugApi::LogHeaderEnd);
 
 	return 1;
 }
@@ -504,7 +504,7 @@ bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, const ch
 
 			// ----- g_debug -----
 
-			g_debug->header("Collision file loaded", 6);
+			g_debug->header("Collision file loaded", DebugApi::LogHeaderEnd);
 		}
 
 		// Push the frame into the frames vector
@@ -684,7 +684,7 @@ bool IND_AnimationManager::remove(IND_Animation *pAn, bool pType) {
 	// Quit from list
 	delFromlist(pAn);
 
-	g_debug->header("Ok", 6);
+	g_debug->header("Ok", DebugApi::LogHeaderEnd);
 
 	return 1;
 }
@@ -765,7 +765,7 @@ void IND_AnimationManager::freeVars() {
         
 		remove((*mAnimationListIter), 1);
 
-		g_debug->header("Ok", 6);
+		g_debug->header("Ok", DebugApi::LogHeaderEnd);
 	}
 
 	// Clear list

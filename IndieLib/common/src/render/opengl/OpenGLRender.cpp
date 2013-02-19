@@ -101,20 +101,20 @@ IND_Window* OpenGLRender::initRenderAndWindow(IND_WindowProperties& props) {
 	if (!_ok) {
 		g_debug->header("Finalizing OpenGL", DebugApi::LogHeaderBegin);
 		freeVars();
-		g_debug->header("OpenGL finalized", 6);
+		g_debug->header("OpenGL finalized", DebugApi::LogHeaderEnd);
 		return NULL;
 	}
 
 	g_debug->header("Checking created OpenGL context pixel format", DebugApi::LogHeaderBegin);
 	if(!_osOpenGLMgr->checkOpenGLSDLContextProps()) {
-		g_debug->header("Different GL context pixel format used", 6);
+		g_debug->header("Different GL context pixel format used", DebugApi::LogHeaderEnd);
 	} else {
-		g_debug->header("Same GL context pixel format used", 6);
+		g_debug->header("Same GL context pixel format used", DebugApi::LogHeaderEnd);
 	}
 
 	writeInfo();
 
-	g_debug->header("OpenGL Render Created", 6);
+	g_debug->header("OpenGL Render Created", DebugApi::LogHeaderEnd);
 	return _window;
 }
 
@@ -200,7 +200,7 @@ void OpenGLRender::end() {
 		g_debug->header("Finalizing OpenGL", DebugApi::LogHeaderBegin);
 		_osOpenGLMgr->endOpenGLContext();
 		freeVars();
-		g_debug->header("OpenGL finalized ", 6);
+		g_debug->header("OpenGL finalized ", DebugApi::LogHeaderEnd);
 		_ok = false;
 	}
 }
@@ -369,7 +369,7 @@ void OpenGLRender::writeInfo() {
 	g_debug->DataChar (".", 0);
 	g_debug->DataInt (D3DSHADER_VERSION_MINOR (_info._pixelShaderVersion), 1);*/
 
-	g_debug->header("Hardware Ok" , 6);
+	g_debug->header("Hardware Ok" , DebugApi::LogHeaderEnd);
 }
 
 /*

@@ -41,7 +41,7 @@ bool IND_TmxMapManager::init() {
 	//g_debug->header("Using FreeImage ver:",1);
 	//g_debug->header(freeImageVer,1);
 	//g_debug->header(freeImageCopyright,1);
-	g_debug->header("TmxMapManager OK", 6);
+	g_debug->header("TmxMapManager OK", DebugApi::LogHeaderEnd);
 	
 	//TODO: REGISTER ERROR HANDLERS FOR FREEIMAGE
 
@@ -60,8 +60,8 @@ void IND_TmxMapManager::end() {
 		g_debug->header("Freeing TmxMaps" , DebugApi::LogHeaderBegin);
 		freeVars();
 		//FreeImage_DeInitialise();
-		g_debug->header("TmxMaps freed", 6);
-		g_debug->header("TmxMapManager finalized", 6);
+		g_debug->header("TmxMaps freed", DebugApi::LogHeaderEnd);
+		g_debug->header("TmxMapManager finalized", DebugApi::LogHeaderEnd);
 
 		_ok = false;
 	}
@@ -149,7 +149,7 @@ bool IND_TmxMapManager::add(IND_TmxMap *pNewTmxMap,const char *pName) {
 //FIXME	g_debug->header("Format:", DebugApi::LogHeaderInfo);
 //FIXME	g_debug->dataChar(pNewImage->getFormatString(), 1);
 
-	g_debug->header("TmxMap loaded", 6);
+	g_debug->header("TmxMap loaded", DebugApi::LogHeaderEnd);
 
 	return 1;
 }
@@ -264,7 +264,7 @@ bool IND_TmxMapManager::remove(IND_TmxMap *pMap) {
 	// Free Map
 //FIXME	FreeImage_Unload(pIm->getFreeImageHandle());	
 
-	g_debug->header("Ok", 6);
+	g_debug->header("Ok", DebugApi::LogHeaderEnd);
 
 	return 1;
 }
@@ -322,7 +322,7 @@ bool IND_TmxMapManager::clone(IND_TmxMap *pNewTmxMap, IND_TmxMap *pOldTmxMap) { 
 
 //	g_debug->header("File name:", DebugApi::LogHeaderInfo);
 //	g_debug->dataChar(pOldImage->getName(), 1);
-//	g_debug->header("Image cloned", 6);
+//	g_debug->header("Image cloned", DebugApi::LogHeaderEnd);
 
 	return 1;
 }

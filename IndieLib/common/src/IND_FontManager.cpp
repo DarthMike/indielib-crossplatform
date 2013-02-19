@@ -57,7 +57,7 @@ bool IND_FontManager::init(IND_ImageManager *pImageManager, IND_SurfaceManager *
 
 		_ok = true;
 
-		g_debug->header("FontManager OK", 6);
+		g_debug->header("FontManager OK", DebugApi::LogHeaderEnd);
 	} else {
 		g_debug->header("SurfaceManager is not correctly initalized", DebugApi::LogHeaderError);
 		_ok = false;
@@ -75,8 +75,8 @@ void IND_FontManager::end() {
 		g_debug->header("Finalizing FontManager", DebugApi::LogHeaderBegin);
 		g_debug->header("Freeing fonts" , DebugApi::LogHeaderBegin);
 		freeVars();
-		g_debug->header("Fonts freed", 6);
-		g_debug->header("FontManager finalized", 6);
+		g_debug->header("Fonts freed", DebugApi::LogHeaderEnd);
+		g_debug->header("FontManager finalized", DebugApi::LogHeaderEnd);
 
 		_ok = false;
 	}
@@ -206,7 +206,7 @@ bool IND_FontManager::add(IND_Font		*pNewFont,
 
 	// ----- g_debug -----
 
-	g_debug->header("Font parsed and loaded", 6);
+	g_debug->header("Font parsed and loaded", DebugApi::LogHeaderEnd);
 
 	return 1;
 }
@@ -253,7 +253,7 @@ bool IND_FontManager::remove(IND_Font  *pFo) {
 	// Quit from list
 	delFromlist(pFo);
 
-	g_debug->header("Ok", 6);
+	g_debug->header("Ok", DebugApi::LogHeaderEnd);
 
 	return 1;
 }

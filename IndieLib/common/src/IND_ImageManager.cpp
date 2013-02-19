@@ -56,7 +56,7 @@ bool IND_ImageManager::init() {
 	g_debug->header("Using FreeImage ver:",1);
 	g_debug->header(freeImageVer,1);
 	g_debug->header(freeImageCopyright,1);
-	g_debug->header("ImageManager OK", 6);
+	g_debug->header("ImageManager OK", DebugApi::LogHeaderEnd);
 	
 	//TODO: REGISTER ERROR HANDLERS FOR FREEIMAGE
 
@@ -72,8 +72,8 @@ void IND_ImageManager::end() {
 		g_debug->header("Freeing images" , DebugApi::LogHeaderBegin);
 		freeVars();
 		FreeImage_DeInitialise();
-		g_debug->header("Images freed", 6);
-		g_debug->header("ImageManager finalized", 6);
+		g_debug->header("Images freed", DebugApi::LogHeaderEnd);
+		g_debug->header("ImageManager finalized", DebugApi::LogHeaderEnd);
 
 		_ok = false;
 	}
@@ -173,7 +173,7 @@ bool IND_ImageManager::add(IND_Image *pNewImage, const char *pName) {
 	g_debug->header("Format:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(pNewImage->getFormatString(), 1);
 
-	g_debug->header("Image loaded", 6);
+	g_debug->header("Image loaded", DebugApi::LogHeaderEnd);
 
 	return 1;
 }
@@ -278,7 +278,7 @@ bool IND_ImageManager::add(IND_Image *pNewImage, FIBITMAP *pImageToBeCopied) {
 	g_debug->header("Format:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(pNewImage->getFormatString(), 1);
 
-	g_debug->header("Image cloned and added", 6);
+	g_debug->header("Image cloned and added", DebugApi::LogHeaderEnd);
 
 	return 1;
 }
@@ -379,7 +379,7 @@ bool IND_ImageManager::remove(IND_Image *pIm) {
 	// Quit from list
 	delFromlist(pIm);
 
-	g_debug->header("Ok", 6);
+	g_debug->header("Ok", DebugApi::LogHeaderEnd);
 
 	return 1;
 }
@@ -431,7 +431,7 @@ bool IND_ImageManager::clone(IND_Image *pNewImage, IND_Image *pOldImage) {
 
 	g_debug->header("File name:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(pOldImage->getName(), 1);
-	g_debug->header("Image cloned", 6);
+	g_debug->header("Image cloned", DebugApi::LogHeaderEnd);
 
 	return 1;
 }
@@ -478,7 +478,7 @@ bool IND_ImageManager::save(IND_Image *pIm, const char *pName) {
 
 	//ilSaveImage(pName);
 
-	//g_debug->header("Ok", 6);
+	//g_debug->header("Ok", DebugApi::LogHeaderEnd);
 	return 1;
 }
 

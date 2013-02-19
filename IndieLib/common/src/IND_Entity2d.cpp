@@ -661,7 +661,7 @@ bool IND_Entity2d::setBoundingAreas(const char *pFile) {
 
 	// ----- g_debug -----
 
-	g_debug->header("Collision file loaded", 6);
+	g_debug->header("Collision file loaded", DebugApi::LogHeaderEnd);
 
 	return 1;
 }

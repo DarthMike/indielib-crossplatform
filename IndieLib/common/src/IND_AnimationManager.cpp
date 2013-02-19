@@ -53,10 +53,10 @@ bool IND_AnimationManager::init(IND_ImageManager *pImageManager, IND_SurfaceMana
 	g_debug->header("Initializing AnimationManager", 5);
 
 	if (pSurfaceManager->isOK()) {
-		g_debug->header("SurfaceManager Ok", 1);
+		g_debug->header("SurfaceManager Ok", DebugApi::LogHeaderOk);
 		_surfaceManager = pSurfaceManager;
 
-		g_debug->header("ImageManager Ok", 1);
+		g_debug->header("ImageManager Ok", DebugApi::LogHeaderOk);
 		_imageManager = pImageManager;
 
 		_collisionParser = CollisionParser::instance();

@@ -224,7 +224,7 @@ bool DirectXRender::Direct3Dinit(int pWidth,
 		g_debug->header("Error creating D3D object", DebugApi::LogHeaderError);
 		return 0;
 	} else {
-		g_debug->header("Creating D3D object", 1);
+		g_debug->header("Creating D3D object", DebugApi::LogHeaderOk);
 		_info._direct3d = direct3d;
 	}
 
@@ -232,7 +232,7 @@ bool DirectXRender::Direct3Dinit(int pWidth,
 
 	// We try to create the device using hardware vertex processing, if it is not possible
 	// we use software vertex processing
-	g_debug->header("Creating the device (D3DCREATE_HARDWARE_VERTEXPROCESSING)", 1);
+	g_debug->header("Creating the device (D3DCREATE_HARDWARE_VERTEXPROCESSING)", DebugApi::LogHeaderOk);
 
 	if ((_info._direct3d->CreateDevice(D3DADAPTER_DEFAULT,
 	                                   D3DDEVTYPE_HAL,
@@ -240,8 +240,8 @@ bool DirectXRender::Direct3Dinit(int pWidth,
 	                                   D3DCREATE_HARDWARE_VERTEXPROCESSING,
 	                                   &mPresentParameters,
 	                                   &_info._device)) != D3D_OK) {
-		g_debug->header("Not possible to create the device (D3DCREATE_HARDWARE_VERTEXPROCESSING)", 1);
-		g_debug->header("Creating the device (D3DCREATE_SOFTWARE_VERTEXPROCESSING) instead", 1);
+		g_debug->header("Not possible to create the device (D3DCREATE_HARDWARE_VERTEXPROCESSING)", DebugApi::LogHeaderOk);
+		g_debug->header("Creating the device (D3DCREATE_SOFTWARE_VERTEXPROCESSING) instead", DebugApi::LogHeaderOk);
 
 		if ((_info._direct3d->CreateDevice(D3DADAPTER_DEFAULT,
 		                                   D3DDEVTYPE_HAL,
@@ -528,7 +528,7 @@ int DirectXRender::fillPresentParameters(int pWidth,
 			g_debug->header("Error obtaining the adapter", DebugApi::LogHeaderError);
 			return 0;
 		} else
-			g_debug->header("Obtaining the adapter", 1);
+			g_debug->header("Obtaining the adapter", DebugApi::LogHeaderOk);
 	} else
 		// Full screen
 	{
@@ -541,7 +541,7 @@ int DirectXRender::fillPresentParameters(int pWidth,
 		else
 			mDisplayMode.Format = D3DFMT_R5G6B5;
 
-		g_debug->header("Obtaining the adapter", 1);
+		g_debug->header("Obtaining the adapter", DebugApi::LogHeaderOk);
 	}
 
 	ZeroMemory(&mPresentParameters, sizeof(mPresentParameters));
@@ -580,7 +580,7 @@ int DirectXRender::fillPresentParameters(int pWidth,
 	                                                            D3DMULTISAMPLE_2_SAMPLES,
 	                                                            &mQualityLevels)))
 	{
-	    g_debug->Header ("Iniciando Antialiasing", 1);
+	    g_debug->Header ("Iniciando Antialiasing", DebugApi::LogHeaderOk);
 	    mPresentParameters.MultiSampleType = D3DMULTISAMPLE_2_SAMPLES;
 	    mPresentParameters.MultiSampleQuality = mQualityLevels;
 	}
@@ -602,13 +602,13 @@ void DirectXRender::DestroyD3DWindow() {
 	if (_info._device)
 		_info._device->Release();
 	_info._device = NULL;
-	g_debug ->header("Finalizing the Device", 1);
+	g_debug ->header("Finalizing the Device", DebugApi::LogHeaderOk);
 
 	// Free D3D object
 	if (_info._direct3d)
 		_info._direct3d->Release();
 	_info._direct3d = NULL;
-	g_debug ->header("Finalizing D3D object", 1);
+	g_debug ->header("Finalizing D3D object", DebugApi::LogHeaderOk);
 }
 
 /*

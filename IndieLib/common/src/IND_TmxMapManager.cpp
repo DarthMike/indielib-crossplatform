@@ -32,7 +32,7 @@ bool IND_TmxMapManager::init() {
 	initVars();
 
 	g_debug->header("Initializing TmxMapManager", 5);
-	g_debug->header("Preparing TmxMapManager", 1);
+	g_debug->header("Preparing TmxMapManager", DebugApi::LogHeaderOk);
 	_ok = true;
 
 	//FreeImage_Initialise();

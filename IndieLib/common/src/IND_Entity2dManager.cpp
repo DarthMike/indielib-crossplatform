@@ -65,13 +65,13 @@ bool IND_Entity2dManager::init(IND_Render *pRender) {
 	initVars();
 
 	g_debug->header("Initializing Entity2dManager", 5);
-	g_debug->header("Preparing Entity2dManager", 1);
+	g_debug->header("Preparing Entity2dManager", DebugApi::LogHeaderOk);
 
 	_ok = true;
 
 	// Checking IND_Render
 	if (pRender->isOK()) {
-		g_debug->header(" Checking IND_Render", 1);
+		g_debug->header(" Checking IND_Render", DebugApi::LogHeaderOk);
 		_render = pRender;
 	} else {
 		g_debug->header("IND_Render is not correctly initialized", DebugApi::LogHeaderError);

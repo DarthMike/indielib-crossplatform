@@ -182,7 +182,7 @@ HRESULT XMeshHierarchy::CreateMeshContainer(
 		// the skinned mesh data for optimial hardware acceleration. As mentioned in the notes this sample
 		// does not do hardware skinning but instead uses software skinning.
 	} else {
-		g_debug->header("Mesh has no skinning info", 1);
+		g_debug->header("Mesh has no skinning info", DebugApi::LogHeaderOk);
 
 		// No skin info so 0 all the pointers
 		newMeshContainer->pSkinInfo = 0;
@@ -198,7 +198,7 @@ HRESULT XMeshHierarchy::CreateMeshContainer(
 	// The mesh may contain a reference to an effect file
 	if (effectInstances) {
 		if (effectInstances->pEffectFilename)
-			g_debug->header("This .x file references an effect file. Effect files are not handled by IndieLib", 1);
+			g_debug->header("This .x file references an effect file. Effect files are not handled by IndieLib", DebugApi::LogHeaderOk);
 	}
 
 	// Set the output mesh container pointer to our newly created one

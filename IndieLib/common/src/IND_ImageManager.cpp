@@ -47,7 +47,7 @@ bool IND_ImageManager::init() {
 	initVars();
 
 	g_debug->header("Initializing ImageManager", 5);
-	g_debug->header("Preparing ImageManager", 1);
+	g_debug->header("Preparing ImageManager", DebugApi::LogHeaderOk);
 	_ok = true;
 
 	FreeImage_Initialise();

@@ -66,7 +66,7 @@ bool IND_SurfaceManager::init(IND_ImageManager *pImageManager, IND_Render *pRend
 
 	// Checking IND_Render
 	if (pRender->isOK()) {
-		g_debug->header("Checking IND_Render", 1);
+		g_debug->header("Checking IND_Render", DebugApi::LogHeaderOk);
 		_render = pRender;
 	} else {
 		g_debug->header("IND_Render is not correctly initialized", DebugApi::LogHeaderError);
@@ -76,7 +76,7 @@ bool IND_SurfaceManager::init(IND_ImageManager *pImageManager, IND_Render *pRend
 
 	// Checking IND_ImageManager
 	if (pImageManager->isOK()) {
-		g_debug->header("Checking IND_ImageManager", 1);
+		g_debug->header("Checking IND_ImageManager", DebugApi::LogHeaderOk);
 		_imageManager = pImageManager;
 
 		// Texture Builder
@@ -664,19 +664,19 @@ void IND_SurfaceManager::convertImage(IND_Image* pImage ,IND_Type pType, IND_Qua
 				break;
 			case IND_16:
 				if (IND_ALPHA == pType) {
-					g_debug->header("Image type converted to 16-bit RGBA implicitly." , 1);
+					g_debug->header("Image type converted to 16-bit RGBA implicitly." , DebugApi::LogHeaderOk);
 					pImage->convert(IND_RGBA, 16);
 				} else {
-					g_debug->header("Image type converted to 16-bit RGB implicitly." , 1);
+					g_debug->header("Image type converted to 16-bit RGB implicitly." , DebugApi::LogHeaderOk);
 					pImage->convert(pImage->getFormatInt(), 16);
 				}
 				break;
 			case IND_32:
 				if (IND_ALPHA == pType) {
-					g_debug->header("Image type converted to 32-bit RGBA implicitly." , 1);
+					g_debug->header("Image type converted to 32-bit RGBA implicitly." , DebugApi::LogHeaderOk);
 					pImage->convert(IND_RGBA, 32);
 				} else {
-					g_debug->header("Image type converted to 32-bit RGB implicitly." , 1);
+					g_debug->header("Image type converted to 32-bit RGB implicitly." , DebugApi::LogHeaderOk);
 					pImage->convert(pImage->getFormatInt(), 32);
 				}
 				break;

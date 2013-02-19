@@ -138,7 +138,7 @@ bool IND_Window::create(IND_WindowProperties& props) {
 	SDL_ShowCursor(SDL_DISABLE);
 #endif
 
-	g_debug->header("Window created", 1);
+	g_debug->header("Window created", DebugApi::LogHeaderOk);
 
 	g_debug->header("Mode:", 3);
 	if (!_attributes._fullscreen)

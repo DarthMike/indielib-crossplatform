@@ -46,7 +46,7 @@ bool IND_ImageManager::init() {
 	end();
 	initVars();
 
-	g_debug->header("Initializing ImageManager", 5);
+	g_debug->header("Initializing ImageManager", DebugApi::LogHeaderBegin);
 	g_debug->header("Preparing ImageManager", DebugApi::LogHeaderOk);
 	_ok = true;
 
@@ -68,8 +68,8 @@ bool IND_ImageManager::init() {
  */
 void IND_ImageManager::end() {
 	if (_ok) {
-		g_debug->header("Finalizing ImageManager", 5);
-		g_debug->header("Freeing images" , 5);
+		g_debug->header("Finalizing ImageManager", DebugApi::LogHeaderBegin);
+		g_debug->header("Freeing images" , DebugApi::LogHeaderBegin);
 		freeVars();
 		FreeImage_DeInitialise();
 		g_debug->header("Images freed", 6);
@@ -103,7 +103,7 @@ bool IND_ImageManager::add(IND_Image *pNewImage, const char *pName) {
 	// TODO: clean up documentation, maybe create and refer to a method in FreeimageHelper that returns
 	//       a stringarray of all Indielib supported types..
 
-	g_debug->header("Loading Image", 5);
+	g_debug->header("Loading Image", DebugApi::LogHeaderBegin);
 	
 	if(!pName) {
 		g_debug->header("Invalid File name provided (null)",2);
@@ -184,7 +184,7 @@ bool IND_ImageManager::add(IND_Image *pNewImage, const char *pName) {
  * @param pName						Pointer to name of the image file to load.
  */
 FIBITMAP* IND_ImageManager::load(const char *pName) {
-		g_debug->header("Loading Image", 5);
+		g_debug->header("Loading Image", DebugApi::LogHeaderBegin);
 	
 	if(!pName) {
 		g_debug->header("Invalid File name provided (null)",2);
@@ -238,7 +238,7 @@ bool IND_ImageManager::add(IND_Image *pNewImage, FIBITMAP *pImageToBeCopied) {
 		return 0;
 	}
 
-	g_debug->header("Cloning Image", 5);
+	g_debug->header("Cloning Image", DebugApi::LogHeaderBegin);
 
 	// ----- Image creation using FreeImage -----
 
@@ -294,7 +294,7 @@ bool IND_ImageManager::add(IND_Image *pNewImage, FIBITMAP *pImageToBeCopied) {
  * @param pColorFormat				New image format. See ::IND_ColorFormat.
  */
 bool IND_ImageManager::add(IND_Image *pNewImage, int pWidth, int pHeight, IND_ColorFormat pColorFormat) {
-	g_debug->header("Creating Image", 5);
+	g_debug->header("Creating Image", DebugApi::LogHeaderBegin);
 
 	if (!_ok) {
 		writeMessage();
@@ -343,7 +343,7 @@ bool IND_ImageManager::add(IND_Image *pNewImage, int pWidth, int pHeight, IND_Co
  * @param pIm						Pointer to an image object.
  */
 bool IND_ImageManager::remove(IND_Image *pIm) {
-	g_debug->header("Freeing image", 5);
+	g_debug->header("Freeing image", DebugApi::LogHeaderBegin);
 
 	if (!_ok || !pIm) {
 		writeMessage();
@@ -391,7 +391,7 @@ bool IND_ImageManager::remove(IND_Image *pIm) {
  * @param pOldImage					Pointer to the image that is to be cloned.
  */
 bool IND_ImageManager::clone(IND_Image *pNewImage, IND_Image *pOldImage) {
-	g_debug->header("Cloning Image", 5);
+	g_debug->header("Cloning Image", DebugApi::LogHeaderBegin);
 
 	if (!_ok || !pNewImage || !pOldImage || !pOldImage->getFreeImageHandle()) {
 		writeMessage();
@@ -445,7 +445,7 @@ bool IND_ImageManager::clone(IND_Image *pNewImage, IND_Image *pOldImage) {
  * @param pName						Image name.
  */
 bool IND_ImageManager::save(IND_Image *pIm, const char *pName) {
-	g_debug->header("Saving image", 5);
+	g_debug->header("Saving image", DebugApi::LogHeaderBegin);
 
 	if (!_ok || !pIm || !pIm->isImageLoaded()) {
 		writeMessage();

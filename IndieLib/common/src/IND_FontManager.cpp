@@ -45,7 +45,7 @@ bool IND_FontManager::init(IND_ImageManager *pImageManager, IND_SurfaceManager *
 	end();
 	initVars();
 
-	g_debug->header("Initializing FontManager", 5);
+	g_debug->header("Initializing FontManager", DebugApi::LogHeaderBegin);
 
 	// Checking IND_SurfaceManager
 	if (pSurfaceManager->isOK()) {
@@ -72,8 +72,8 @@ bool IND_FontManager::init(IND_ImageManager *pImageManager, IND_SurfaceManager *
 void IND_FontManager::end() {
 	if (_ok) {
 		// If the object is loaded, we free it
-		g_debug->header("Finalizing FontManager", 5);
-		g_debug->header("Freeing fonts" , 5);
+		g_debug->header("Finalizing FontManager", DebugApi::LogHeaderBegin);
+		g_debug->header("Freeing fonts" , DebugApi::LogHeaderBegin);
 		freeVars();
 		g_debug->header("Fonts freed", 6);
 		g_debug->header("FontManager finalized", 6);
@@ -153,7 +153,7 @@ bool IND_FontManager::add(IND_Font		*pNewFont,
                           const char	*pFile,
                           IND_Type		pType,
                           IND_Quality	pQuality) {
-	g_debug->header("Parsing and loading font", 5);
+	g_debug->header("Parsing and loading font", DebugApi::LogHeaderBegin);
 	g_debug->header("File name:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(pFile, 1);
 
@@ -217,7 +217,7 @@ bool IND_FontManager::add(IND_Font		*pNewFont,
  * @param pFo						Pointer to font object type 1
  */
 bool IND_FontManager::remove(IND_Font  *pFo) {
-	g_debug->header("Freeing font", 5);
+	g_debug->header("Freeing font", DebugApi::LogHeaderBegin);
 
 	if (!_ok) {
 		writeMessage();

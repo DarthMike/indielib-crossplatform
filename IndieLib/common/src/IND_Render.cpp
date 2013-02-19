@@ -1411,7 +1411,7 @@ Creates the render
 ==================
 */
 IND_Window* IND_Render::createRender(IND_WindowProperties& windowProperties) {
-	g_debug->header("Creating Render", 5);
+	g_debug->header("Creating Render", DebugApi::LogHeaderBegin);
 
 	// If the window is correctly initialized
 #ifdef INDIERENDER_DIRECTX

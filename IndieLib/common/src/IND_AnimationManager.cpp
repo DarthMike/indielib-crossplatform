@@ -50,7 +50,7 @@ bool IND_AnimationManager::init(IND_ImageManager *pImageManager, IND_SurfaceMana
 	end();
 	initVars();
 
-	g_debug->header("Initializing AnimationManager", 5);
+	g_debug->header("Initializing AnimationManager", DebugApi::LogHeaderBegin);
 
 	if (pSurfaceManager->isOK()) {
 		g_debug->header("SurfaceManager Ok", DebugApi::LogHeaderOk);
@@ -78,8 +78,8 @@ bool IND_AnimationManager::init(IND_ImageManager *pImageManager, IND_SurfaceMana
  */
 void IND_AnimationManager::end() {
 	if (_ok) {
-		g_debug->header("Finalizing AnimationManager", 5);
-		g_debug->header("Freeing animations" , 5);
+		g_debug->header("Finalizing AnimationManager", DebugApi::LogHeaderBegin);
+		g_debug->header("Freeing animations" , DebugApi::LogHeaderBegin);
 		freeVars();
 		g_debug->header("Animations freed", 6);
 		g_debug->header("AnimationManager finalized", 6);
@@ -280,7 +280,7 @@ bool IND_AnimationManager::addToSurface(IND_Animation *pNewAnimation,
  * @param pAnimation				Name of the animation XML script.
  */
 bool IND_AnimationManager::addToImage(IND_Animation *pNewAnimation, const char *pAnimation) {
-	g_debug->header("Parsing and loading animation", 5);
+	g_debug->header("Parsing and loading animation", DebugApi::LogHeaderBegin);
 	g_debug->header("File name:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(pAnimation, 1);
 
@@ -493,7 +493,7 @@ bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, const ch
 		if (mXFrame->Attribute("collision")) {
 			// ----- Parsing collision file -----
 
-			g_debug->header("Parsing collision file", 5);
+			g_debug->header("Parsing collision file", DebugApi::LogHeaderBegin);
 			g_debug->header("File name:", DebugApi::LogHeaderInfo);
 			g_debug->dataChar((char *) mXFrame->Attribute("collision"), 1);
 
@@ -630,7 +630,7 @@ bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, const ch
  * @param pType					TODO describtion.
  */
 bool IND_AnimationManager::remove(IND_Animation *pAn, bool pType) {
-	g_debug->header("Freeing animation", 5);
+	g_debug->header("Freeing animation", DebugApi::LogHeaderBegin);
 
 	if (!_ok) {
 		writeMessage();

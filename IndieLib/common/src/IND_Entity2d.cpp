@@ -633,7 +633,7 @@ void IND_Entity2d::setBlendDest(IND_BlendingType pDs) {
  * @param pFile						Xml file defining the bounding areas.
  */
 bool IND_Entity2d::setBoundingAreas(const char *pFile) {
-	g_debug->header("Parsing collision file", 5);
+	g_debug->header("Parsing collision file", DebugApi::LogHeaderBegin);
 
 	if(!pFile) {
 		g_debug->header("No filename provided", DebugApi::LogHeaderError);

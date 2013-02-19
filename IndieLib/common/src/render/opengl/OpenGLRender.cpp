@@ -96,16 +96,16 @@ IND_Window* OpenGLRender::initRenderAndWindow(IND_WindowProperties& props) {
 		return NULL;
 	}
 
-	g_debug->header("Creating OpenGL Render", 5);
+	g_debug->header("Creating OpenGL Render", DebugApi::LogHeaderBegin);
 	_ok = initializeOpenGLRender();
 	if (!_ok) {
-		g_debug->header("Finalizing OpenGL", 5);
+		g_debug->header("Finalizing OpenGL", DebugApi::LogHeaderBegin);
 		freeVars();
 		g_debug->header("OpenGL finalized", 6);
 		return NULL;
 	}
 
-	g_debug->header("Checking created OpenGL context pixel format", 5);
+	g_debug->header("Checking created OpenGL context pixel format", DebugApi::LogHeaderBegin);
 	if(!_osOpenGLMgr->checkOpenGLSDLContextProps()) {
 		g_debug->header("Different GL context pixel format used", 6);
 	} else {
@@ -144,7 +144,7 @@ bool OpenGLRender::reset(IND_WindowProperties& props) {
 
 bool OpenGLRender::toggleFullScreen() {
 
-	g_debug->header("Changing To/From Full Screen", 5);
+	g_debug->header("Changing To/From Full Screen", DebugApi::LogHeaderBegin);
 
 	if (!_window->toggleFullScreen()) return false;
 
@@ -197,7 +197,7 @@ void OpenGLRender::getNumDiscardedObjectsString(char *pBuffer)      {
 
 void OpenGLRender::end() {
 	if (_ok) {
-		g_debug->header("Finalizing OpenGL", 5);
+		g_debug->header("Finalizing OpenGL", DebugApi::LogHeaderBegin);
 		_osOpenGLMgr->endOpenGLContext();
 		freeVars();
 		g_debug->header("OpenGL finalized ", 6);
@@ -315,7 +315,7 @@ Write hardware information to debug log
 ==================
 */
 void OpenGLRender::writeInfo() {
-	g_debug->header("Hardware information" , 5);
+	g_debug->header("Hardware information" , DebugApi::LogHeaderBegin);
 
 	// ----- D3D version -----
 

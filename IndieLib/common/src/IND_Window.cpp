@@ -67,7 +67,7 @@ bool IND_Window::create(IND_WindowProperties& props) {
 	end();
 	initVars();
 
-	g_debug->header("Creating SDL window", 5);
+	g_debug->header("Creating SDL window", DebugApi::LogHeaderBegin);
 
 	if(props._bpp <= 0 || props._height <= 0 || props._width <= 0) {
 		g_debug->header("Error creating window: Invalid parameters provided", DebugApi::LogHeaderError);
@@ -160,7 +160,7 @@ Frees the manager and all the objects that it contains.
 */
 void IND_Window::end() {
 	if (_ok) {
-		g_debug ->header("Finalizing the window", 5);
+		g_debug ->header("Finalizing the window", DebugApi::LogHeaderBegin);
 		if (_attributes._sdlWindow) {
 			SDL_DestroyWindow(getSDLWindow());
 			_attributes._sdlWindow = NULL;

@@ -31,7 +31,7 @@ bool IND_TmxMapManager::init() {
 	end();
 	initVars();
 
-	g_debug->header("Initializing TmxMapManager", 5);
+	g_debug->header("Initializing TmxMapManager", DebugApi::LogHeaderBegin);
 	g_debug->header("Preparing TmxMapManager", DebugApi::LogHeaderOk);
 	_ok = true;
 
@@ -56,8 +56,8 @@ This function frees the manager and all the objects that it contains.
 */
 void IND_TmxMapManager::end() {
 	if (_ok) {
-		g_debug->header("Finalizing TmxMapManager", 5);
-		g_debug->header("Freeing TmxMaps" , 5);
+		g_debug->header("Finalizing TmxMapManager", DebugApi::LogHeaderBegin);
+		g_debug->header("Freeing TmxMaps" , DebugApi::LogHeaderBegin);
 		freeVars();
 		//FreeImage_DeInitialise();
 		g_debug->header("TmxMaps freed", 6);
@@ -88,7 +88,7 @@ tmx.
 
 */
 bool IND_TmxMapManager::add(IND_TmxMap *pNewTmxMap,const char *pName) {
-	g_debug->header("Loading TmxMap", 5);
+	g_debug->header("Loading TmxMap", DebugApi::LogHeaderBegin);
 	
 	if(!pName) {
 		g_debug->header("Invalid File name provided (null)",2);
@@ -167,7 +167,7 @@ Otherwise null is returned.
 */
 /*
 Tmx::Map* IND_TmxMapManager::load(const char *pName) {
-	g_debug->header("Loading TmxMap", 5);
+	g_debug->header("Loading TmxMap", DebugApi::LogHeaderBegin);
 	
 	if(!pName) {
 		g_debug->header("Invalid File name provided (null)",2);
@@ -228,7 +228,7 @@ This function returns 1(true) if the IND_TmxMap object passed as parameter exist
 deleted from the manager successfully.
 */
 bool IND_TmxMapManager::remove(IND_TmxMap *pMap) {
-	g_debug->header("Freeing Map", 5);
+	g_debug->header("Freeing Map", DebugApi::LogHeaderBegin);
 
 	if (!_ok || !pMap) {
 		writeMessage();
@@ -282,7 +282,7 @@ This function returns 1 (true) if the image object passed as a parameter
 exists and is added successfully to the manager creating a new image cloning from a previous one.
 */
 bool IND_TmxMapManager::clone(IND_TmxMap *pNewTmxMap, IND_TmxMap *pOldTmxMap) { // FIXME: is a clone method needed or should it be removed
-//	g_debug->header("Cloning Image", 5);
+//	g_debug->header("Cloning Image", DebugApi::LogHeaderBegin);
 
 //	if (!_ok || !pNewImage || !pOldImage || !pOldImage->getFreeImageHandle()) {
 //		writeMessage();

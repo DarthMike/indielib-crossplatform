@@ -62,7 +62,7 @@ bool IND_SurfaceManager::init(IND_ImageManager *pImageManager, IND_Render *pRend
 	end();
 	initVars();
 
-	g_debug->header("Initializing SurfaceManager", 5);
+	g_debug->header("Initializing SurfaceManager", DebugApi::LogHeaderBegin);
 
 	// Checking IND_Render
 	if (pRender->isOK()) {
@@ -110,8 +110,8 @@ This function frees the manager and all the objects that it contains.
 */
 void IND_SurfaceManager::end() {
 	if (_ok) {
-		g_debug->header("Finalizing SurfaceManager", 5);
-		g_debug->header("Freeing surfaces" , 5);
+		g_debug->header("Finalizing SurfaceManager", DebugApi::LogHeaderBegin);
+		g_debug->header("Freeing surfaces" , DebugApi::LogHeaderBegin);
 		freeVars();
 		g_debug->header("Surfaces freed", 6);
 		g_debug->header("IND_SurfaceManager finalized", 6);
@@ -437,7 +437,7 @@ bool IND_SurfaceManager::clone(IND_Surface *pNewSurface, IND_Surface *pSurfaceTo
 This function returns 1 (true) if the parameter surface object exists and it is satisfactory deleted from the manager.
 */
 bool IND_SurfaceManager::remove(IND_Surface *pSu) {
-	g_debug->header("Freeing surface", 5);
+	g_debug->header("Freeing surface", DebugApi::LogHeaderBegin);
 
 	if (!_ok || !pSu) {
 		writeMessage();
@@ -489,7 +489,7 @@ bool IND_SurfaceManager::addMain(IND_Surface    *pNewSurface,
                                  int             pBlockSizeY,
                                  IND_Type        pType,
                                  IND_Quality     pQuality) {
-	g_debug->header("Creating surface", 5);
+	g_debug->header("Creating surface", DebugApi::LogHeaderBegin);
 
 	if (!_ok || !pNewSurface || !pImage) {
 		writeMessage();

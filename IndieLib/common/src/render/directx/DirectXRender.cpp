@@ -87,7 +87,7 @@ IND_Window* DirectXRender::initRenderAndWindow(IND_WindowProperties& props) {
 }
 
 bool DirectXRender::init(LPDIRECT3D9 pDirect3d, IDirect3DDevice9 *pD3dDevice) {
-	g_debug->header("Initializing Direct3D", 5);
+	g_debug->header("Initializing Direct3D", DebugApi::LogHeaderBegin);
 
 	// Fill Info
 	_info._direct3d = pDirect3d;
@@ -197,7 +197,7 @@ void DirectXRender::getNumDiscardedObjectsString(char* pBuffer)      {
 
 void DirectXRender::end() {
 	if (_ok) {
-		g_debug->header("Finalizing Direct3D", 5);
+		g_debug->header("Finalizing Direct3D", DebugApi::LogHeaderBegin);
 		freeVars();
 		g_debug->header("Direct3D finalized ", 6);
 		_ok = false;
@@ -292,7 +292,7 @@ bool DirectXRender::Direct3dReset(int pWidth,
                                   int pBpp,
                                   bool pVsync,
                                   bool pFullscreen) {
-	g_debug->header("Reseting Direct3D", 5);
+	g_debug->header("Reseting Direct3D", DebugApi::LogHeaderBegin);
 
 	if (!fillPresentParameters(pWidth,pHeight,pBpp,pVsync,pFullscreen)) return 0;
 
@@ -350,7 +350,7 @@ Creates the render
 ==================
 */
 bool DirectXRender::createRender(IND_Window* pWindow) {
-	g_debug->header("Initializing Direct3D", 5);
+	g_debug->header("Initializing Direct3D", DebugApi::LogHeaderBegin);
 
 	// If the window is correctly initialized
 	if (pWindow->isOK()) {
@@ -366,7 +366,7 @@ bool DirectXRender::createRender(IND_Window* pWindow) {
 
 		// Direct3d initialization
 		if (!Direct3Dinit(mWidthWin, mHeightWin, mBitsWin, mVsync, mFullscreen)) {
-			g_debug->header("Finalizing D3D", 5);
+			g_debug->header("Finalizing D3D", DebugApi::LogHeaderBegin);
 			freeVars();
 			g_debug->header("D3D finalized", 6);
 			return 0;
@@ -457,7 +457,7 @@ Writes the information into the debug field
 ==================
 */
 void DirectXRender::writeInfo() {
-	g_debug->header("Hardware information" , 5);
+	g_debug->header("Hardware information" , DebugApi::LogHeaderBegin);
 
 	// ----- D3D version -----
 

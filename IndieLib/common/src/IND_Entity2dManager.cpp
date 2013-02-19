@@ -64,7 +64,7 @@ bool IND_Entity2dManager::init(IND_Render *pRender) {
 	end();
 	initVars();
 
-	g_debug->header("Initializing Entity2dManager", 5);
+	g_debug->header("Initializing Entity2dManager", DebugApi::LogHeaderBegin);
 	g_debug->header("Preparing Entity2dManager", DebugApi::LogHeaderOk);
 
 	_ok = true;
@@ -92,9 +92,9 @@ bool IND_Entity2dManager::init(IND_Render *pRender) {
  */
 void IND_Entity2dManager::end() {
 	if (_ok) {
-		g_debug->header("Finalizing Entity2dManager", 5);
+		g_debug->header("Finalizing Entity2dManager", DebugApi::LogHeaderBegin);
 		DISPOSE (_math);
-		g_debug->header("Freeing 2d entities" , 5);
+		g_debug->header("Freeing 2d entities" , DebugApi::LogHeaderBegin);
 		freeVars();
 		g_debug->header("Entities freed", 6);
 		g_debug->header("IND_Entity2dManager finalized", 6);
@@ -123,7 +123,7 @@ bool IND_Entity2dManager::isOK()           const {
  * @param pNewEntity2d				Pointer to an entity object.
  */
 bool IND_Entity2dManager::add(IND_Entity2d *pNewEntity2d) {
-	g_debug->header("Adding 2d entity", 5);
+	g_debug->header("Adding 2d entity", DebugApi::LogHeaderBegin);
 	g_debug->header("Name:", DebugApi::LogHeaderInfo);
     pNewEntity2d->_id = _idTrack++;
 	g_debug->dataInt(pNewEntity2d->getId(), 1);
@@ -161,7 +161,7 @@ bool IND_Entity2dManager::add(IND_Entity2d *pNewEntity2d) {
  * @param pNewEntity2d                		Pointer to an entity object.
  */
 bool IND_Entity2dManager::add(int pLayer, IND_Entity2d *pNewEntity2d) {
-	g_debug->header("Adding 2d entity", 5);
+	g_debug->header("Adding 2d entity", DebugApi::LogHeaderBegin);
 	g_debug->header("Name:", DebugApi::LogHeaderInfo);
     pNewEntity2d->_id = _idTrack++;
 	g_debug->dataInt(pNewEntity2d->getId(), 1);
@@ -194,7 +194,7 @@ bool IND_Entity2dManager::add(int pLayer, IND_Entity2d *pNewEntity2d) {
  * @param pEn				Pointer to an entity object.
  */
 bool IND_Entity2dManager::remove(IND_Entity2d *pEn) {
-	g_debug->header("Freeing 2d entity", 5);
+	g_debug->header("Freeing 2d entity", DebugApi::LogHeaderBegin);
 	g_debug->header("Name:", DebugApi::LogHeaderInfo);
 	g_debug->dataInt(pEn->getId(), 1);
 

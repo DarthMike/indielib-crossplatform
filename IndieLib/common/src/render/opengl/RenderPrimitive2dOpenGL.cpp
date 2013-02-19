@@ -76,6 +76,9 @@ void OpenGLRender::blitPixel(int pX,
 
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_COLOR_ARRAY);
+    
+    //Reenable texturing
+	glEnable(GL_TEXTURE_2D);
 }
 
 void OpenGLRender::blitLine(int pX1,
@@ -114,7 +117,8 @@ void OpenGLRender::blitLine(int pX1,
 
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_COLOR_ARRAY);
-
+    //Reenable texturing
+	glEnable(GL_TEXTURE_2D);
 }
 
 void OpenGLRender::blitRectangle(int pX1,
@@ -156,7 +160,8 @@ void OpenGLRender::blitRectangle(int pX1,
 
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_COLOR_ARRAY);
-
+    //Reenable texturing
+	glEnable(GL_TEXTURE_2D);
 }
 
 void OpenGLRender::blitFillRectangle(int pX1,
@@ -197,7 +202,8 @@ void OpenGLRender::blitFillRectangle(int pX1,
 
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_COLOR_ARRAY);
-
+    //Reenable texturing
+	glEnable(GL_TEXTURE_2D);
 }
 
 void OpenGLRender::blitTriangleList(IND_Point *pTrianglePoints,
@@ -240,7 +246,8 @@ void OpenGLRender::blitTriangleList(IND_Point *pTrianglePoints,
 #endif
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_COLOR_ARRAY);
-
+    //Reenable texturing
+	glEnable(GL_TEXTURE_2D);
 }
 
 
@@ -287,7 +294,8 @@ void OpenGLRender::blitColoredTriangle(int pX1,
 #endif
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_COLOR_ARRAY);
-
+    //Reenable texturing
+	glEnable(GL_TEXTURE_2D);
 }
 
 
@@ -330,7 +338,8 @@ bool OpenGLRender::blitPoly2d(IND_Point *pPolyPoints,
 #endif
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_COLOR_ARRAY);
-
+    //Reenable texturing
+	glEnable(GL_TEXTURE_2D);
 	return 1;
 }
 
@@ -381,7 +390,8 @@ bool OpenGLRender::blitRegularPoly(int pX,
 #endif
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_COLOR_ARRAY);
-
+    //Reenable texturing
+	glEnable(GL_TEXTURE_2D);
 	return 1;
 }
 
@@ -453,7 +463,9 @@ Blits a bounding line
 	}
 #endif
 	glDisableClientState(GL_VERTEX_ARRAY);
-	glDisableClientState(GL_COLOR_ARRAY);	
+	glDisableClientState(GL_COLOR_ARRAY);
+    //Reenable texturing
+	glEnable(GL_TEXTURE_2D);
 }
 
 /*
@@ -517,7 +529,9 @@ void OpenGLRender::blitCollisionCircle(int pPosX, int pPosY, int pRadius, float 
 	}
 #endif
 	glDisableClientState(GL_VERTEX_ARRAY);
-	glDisableClientState(GL_COLOR_ARRAY);	
+	glDisableClientState(GL_COLOR_ARRAY);
+    //Reenable texturing
+	glEnable(GL_TEXTURE_2D);
 
 }
 

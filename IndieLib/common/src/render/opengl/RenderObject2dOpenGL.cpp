@@ -60,9 +60,11 @@ void OpenGLRender::blitSurface(IND_Surface *pSu) {
 		if (!_math.cullFrustumBox(mP1, mP2,_frustrumPlanes)) {
 			_numDiscardedObjects++;
 		} else {
-
-            //Enable texturing
-            glEnable(GL_TEXTURE_2D);
+#ifdef _DEBUG
+            GLboolean enabled;
+            glGetBooleanv(GL_TEXTURE_2D,&enabled);
+            assert(GL_FALSE != enabled); //Should have texturing enabled
+#endif
             
 			//Surface drawing
 			glEnableClientState(GL_VERTEX_ARRAY);
@@ -180,8 +182,11 @@ void OpenGLRender::blitRegionSurface(IND_Surface *pSu,
             if (!_math.cullFrustumBox(mP1, mP2, _frustrumPlanes)) {
                 _numDiscardedObjects++;
             } else {
-                //Enable texturing
-                glEnable(GL_TEXTURE_2D);
+#ifdef _DEBUG
+                GLboolean enabled;
+                glGetBooleanv(GL_TEXTURE_2D,&enabled);
+                assert(GL_FALSE != enabled); //Should have texturing enabled
+#endif
                 //Surface drawing
                 glEnableClientState(GL_VERTEX_ARRAY);
                 glEnableClientState(GL_TEXTURE_COORD_ARRAY);
@@ -255,8 +260,11 @@ bool OpenGLRender::blitWrapSurface(IND_Surface *pSu,
        if (!_math.cullFrustumBox(mP1, mP2, _frustrumPlanes)) {
            _numDiscardedObjects++;
        } else {
-           //Enable texturing
-           glEnable(GL_TEXTURE_2D);
+#ifdef _DEBUG
+           GLboolean enabled;
+           glGetBooleanv(GL_TEXTURE_2D,&enabled);
+           assert(GL_FALSE != enabled); //Should have texturing enabled
+#endif
            //Surface drawing
            glEnableClientState(GL_VERTEX_ARRAY);
            glEnableClientState(GL_TEXTURE_COORD_ARRAY);

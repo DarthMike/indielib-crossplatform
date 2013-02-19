@@ -53,10 +53,11 @@ bool IND_ImageManager::init() {
 	FreeImage_Initialise();
 	const char* freeImageVer = FreeImage_GetVersion();
 	const char* freeImageCopyright = FreeImage_GetCopyrightMessage();
-	g_debug->header("Using FreeImage ver:",1);
-	g_debug->header(freeImageVer,1);
-	g_debug->header(freeImageCopyright,1);
-	g_debug->header("ImageManager OK", DebugApi::LogHeaderEnd);
+	g_debug->header("Using FreeImage version: ",DebugApi::LogHeaderInfo);
+	g_debug->dataChar(freeImageVer, true);
+    g_debug->header("Copyright: ", DebugApi::LogHeaderInfo);
+    g_debug->dataChar(freeImageCopyright, true);
+	g_debug->header("ImageManager Initialised", DebugApi::LogHeaderEnd);
 	
 	//TODO: REGISTER ERROR HANDLERS FOR FREEIMAGE
 
@@ -106,7 +107,7 @@ bool IND_ImageManager::add(IND_Image *pNewImage, const char *pName) {
 	g_debug->header("Loading Image", DebugApi::LogHeaderBegin);
 	
 	if(!pName) {
-		g_debug->header("Invalid File name provided (null)",2);
+		g_debug->header("Invalid File name provided (null)",DebugApi::LogHeaderError);
 		return 0;
 	}
 
@@ -187,7 +188,7 @@ FIBITMAP* IND_ImageManager::load(const char *pName) {
 		g_debug->header("Loading Image", DebugApi::LogHeaderBegin);
 	
 	if(!pName) {
-		g_debug->header("Invalid File name provided (null)",2);
+		g_debug->header("Invalid File name provided (null)",DebugApi::LogHeaderError);
 		return NULL;
 	}
 

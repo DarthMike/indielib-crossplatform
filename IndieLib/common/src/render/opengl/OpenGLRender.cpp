@@ -66,16 +66,16 @@ IND_Window* OpenGLRender::initRenderAndWindow(IND_WindowProperties& props) {
 		return NULL;
 	}
     
-    g_debug->header("Requested Window Height:", 0);
-    g_debug->dataInt(props._height, 1);
-    g_debug->dataChar("Requested Window Width: ", 0);
-    g_debug->dataInt(props._width, 1);
-    g_debug->dataChar("Requested Window Bpp: ", 0);
-    g_debug->dataInt(props._bpp, 1);
-    g_debug->dataChar("Requested Window FullScreen: ", 0);
-    g_debug->dataInt(props._fullscreen, 1);
-    g_debug->dataChar("Requested Window Double buffer: ", 0);
-    g_debug->dataInt(props._doubleBuffer, 1);
+    g_debug->header("Requested Window Height:", DebugApi::LogHeaderInfo);
+    g_debug->dataInt(props._height, true);
+    g_debug->header("Requested Window Width: ", DebugApi::LogHeaderInfo);
+    g_debug->dataInt(props._width, true);
+    g_debug->header("Requested Window Bpp: ", DebugApi::LogHeaderInfo);
+    g_debug->dataInt(props._bpp, true);
+    g_debug->header("Requested Window FullScreen: ", DebugApi::LogHeaderInfo);
+    g_debug->dataInt(props._fullscreen, true);
+    g_debug->header("Requested Window Double buffer: ", DebugApi::LogHeaderInfo);
+    g_debug->dataInt(props._doubleBuffer, true);
 	
 	if(!_osOpenGLMgr) {
 		_osOpenGLMgr = new OSOpenGLManager(_window);  

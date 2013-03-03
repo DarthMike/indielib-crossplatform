@@ -83,7 +83,7 @@ int IndieLib()
 	mOctopus->setHotSpot(0.5f, 0.5f);
 	mOctopus->setPosition(450, 150, 2);
 
-	// But
+	// Bug
 	IND_Entity2d *mBug = new IND_Entity2d();
 	mI->_entity2dManager->add(mBug);
 	mBug->setSurface(mSurfaceBug);

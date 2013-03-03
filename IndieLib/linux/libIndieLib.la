@@ -17,15 +17,15 @@ old_library='libIndieLib.a'
 inherited_linker_flags=''
 
 # Libraries that this one depends upon.
-dependency_libs=' -lfreeimage'
+dependency_libs=' -lfreeimage -lSDL2 -lGLEW -lGLU -lGL'
 
 # Names of additional weak libraries provided by this library
 weak_library_names=''
 
 # Version information for libIndieLib.
-current=1
+current=0
 age=0
-revision=0
+revision=5
 
 # Is this an already installed library?
 installed=no
@@ -38,4 +38,4 @@ dlopen=''
 dlpreopen=''
 
 # Directory that this library needs to be installed in:
-libdir='/home/michael/indielib/IndieLib/lib'
+libdir='/usr/local/lib'

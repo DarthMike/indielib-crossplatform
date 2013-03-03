@@ -2,8 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.67])
-AC_INIT([IndieLib], [0.001], [michael@visualdesign.dk])
-#CFLAGS=$CFLAGS + " -I{$topsrc_dir}../../common/dependencies/DevIL-SDK-x86-1.7.8/include/" 
+AC_INIT([IndieLib], [0.5], [michael@visualdesign.dk])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 AM_INIT_AUTOMAKE([foreign -Wall -Werror])

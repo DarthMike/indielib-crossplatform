@@ -15,8 +15,9 @@ comment goes here
 #endif
 
 #include "dependencies/TmxParser/Tmx.h"
+
 // ----- Forward declarations ------
-//struct Map;
+struct FIBITMAP;
 
 // --------------------------------------------------------------------------------
 //									 IND_TmxMap
@@ -50,6 +51,10 @@ public:
 	Tmx::Map* getTmxMapHandle() {
 		return _tmxMap._handle;
 	}
+    
+    FIBITMAP* getImage() {
+        return _tmxMap._image;
+    }
 
 private:
 	/** @cond DOCUMENT_PRIVATEAPI */
@@ -59,19 +64,25 @@ private:
 	struct structTmxMap {
 		char        *_name;             // Map name
 		Tmx::Map    *_handle;           // Map handle
+        FIBITMAP    *_image;            // Map tilesheet image
 
 		structTmxMap() {
 			_name = new char [128];
 			_handle = NULL;
+            _image  = NULL;
 		}
 
 		~structTmxMap() {
 			DISPOSEARRAY(_name);
+            // TODO: properly dispose the TMX map structure..
+            //DISPOSE(_image);
 		}
 	};
 	typedef struct structTmxMap TmxMap;
 
 	TmxMap _tmxMap;
+    
+    
 
 	// ----- Private sets ------
 
@@ -83,7 +94,9 @@ private:
 		_tmxMap._handle = pHandle;
 	}
 	
-
+    void setImage(FIBITMAP* pImage) {
+		_tmxMap._image = pImage;
+	}
 	// ----- Private methods -----
 
 	//void setAlphaChannel(BYTE pR, BYTE pG, BYTE pB);

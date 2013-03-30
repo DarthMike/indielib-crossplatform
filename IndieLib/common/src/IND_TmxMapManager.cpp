@@ -4,6 +4,8 @@
  *****************************************************************************************/
 
 /*
+ 
+ Here goes something about license ......
 
 */
 
@@ -11,6 +13,7 @@
 
 #include "Global.h"
 #include "dependencies/TmxParser/Tmx.h"
+#include "dependencies/FreeImage/Dist/FreeImage.h"
 #include "IND_TmxMapManager.h"
 #include "IND_TmxMap.h"
 
@@ -35,12 +38,6 @@ bool IND_TmxMapManager::init() {
 	g_debug->header("Preparing TmxMapManager", 1);
 	_ok = true;
 
-	//FreeImage_Initialise();
-	//const char* freeImageVer = FreeImage_GetVersion();
-	//const char* freeImageCopyright = FreeImage_GetCopyrightMessage();
-	//g_debug->header("Using FreeImage ver:",1);
-	//g_debug->header(freeImageVer,1);
-	//g_debug->header(freeImageCopyright,1);
 	g_debug->header("TmxMapManager OK", 6);
 	
 	//TODO: REGISTER ERROR HANDLERS FOR FREEIMAGE
@@ -59,7 +56,6 @@ void IND_TmxMapManager::end() {
 		g_debug->header("Finalizing TmxMapManager", 5);
 		g_debug->header("Freeing TmxMaps" , 5);
 		freeVars();
-		//FreeImage_DeInitialise();
 		g_debug->header("TmxMaps freed", 6);
 		g_debug->header("TmxMapManager finalized", 6);
 
@@ -116,104 +112,74 @@ bool IND_TmxMapManager::add(IND_TmxMap *pNewTmxMap,const char *pName) {
 	// ----- Load TmxMap -----
 
 	Tmx::Map *map = new Tmx::Map();
-	map->ParseFile(pName); //FIXME> remove this comment: "./example/example.tmx"
-
+	map->ParseFile(pName);
+    
 	if (map->HasError()) {
 		g_debug->header("Error code:", 2);
-		//FIXME g_debug->dataChar(map->GetErrorCode(), 1);
+		//g_debug->dataChar(map->GetErrorCode(), 1); //TODO
 		g_debug->header("Error text:", 2);
-		//FIXME g_debug->dataChar(map->GetErrorText().c_str(), 1);
-		DISPOSE(map);		
+		g_debug->dataChar(map->GetErrorText().c_str(), 1);
+		
+        DISPOSE(map);
+		
+        return 0;
+	}
+
+    
+   	// ----- Load TmxMap tilesetimagesheet -----
+    
+    
+    string tmxPath;
+    string imagePath;
+    string s = string(pName);
+    
+    unsigned int lastPosTemp = s.find_last_of("\\/");
+    
+    if(lastPosTemp == string::npos){
+        tmxPath = "./";
+    }
+    else{
+        tmxPath = s.substr(0, lastPosTemp + 1);
+    }
+    
+    
+    imagePath = tmxPath.append(map->GetTileset(0)->GetImage()->GetSource());  // FIXME : this is very wrong we need to store an array of images instead.... i.e NO '0'
+    
+    
+    // ----- Load image -----
+
+	FREE_IMAGE_FORMAT imgFormat =  FreeImage_GetFileType(imagePath.c_str(), 0);
+	if (FIF_UNKNOWN == imgFormat) {
+		g_debug->header("Image not found", 2);
+        DISPOSE(map);
+        return 0;
+    }
+	FIBITMAP* image = FreeImage_Load(imgFormat, imagePath.c_str(), 0);
+	if (!image) {
+		g_debug->header("Image could not be loaded", 2);
+        DISPOSE(map);
 		return 0;
 	}
 
 	
-	// Attributes
-	pNewTmxMap->setTmxMapHandle(map);
+	 // ----- Attributes -----
+	
+    pNewTmxMap->setTmxMapHandle(map);
 	pNewTmxMap->setName(pName);
-
+    pNewTmxMap->setImage(image); // FIXME should be added to an array
+    
+    
 	// ----- Puts the object into the manager -----
-
-	addToList(pNewTmxMap);
+    
+    addToList(pNewTmxMap);
 
 	// ----- g_debug -----
+    
+    g_debug->header("TmxMap loaded", 6);
 
-//FIXME	g_debug->header("Size:", 3);
-//FIXME	g_debug->dataInt(pNewImage->getWidth(), 0);
-//FIXME	g_debug->dataChar("x", 0);
-//FIXME	g_debug->dataInt(pNewImage->getHeight(), 1);
-
-//FIXME	g_debug->header("Bpp:", 3);
-//FIXME	g_debug->dataInt(pNewImage->getBytespp(), 1);
-
-//FIXME	g_debug->header("Format:", 3);
-//FIXME	g_debug->dataChar(pNewImage->getFormatString(), 1);
-
-	g_debug->header("TmxMap loaded", 6);
-
+    
 	return 1;
 }
-
-/**
-@b Parameters:
-
-@arg @b pName             Pointer to name of the TmxMap file to load
-
-@b Operation:
-
-This function returns a pointer to a FIBITMAP if the path to the file is correct and if Indielib support the image format.
-Otherwise null is returned.
-
-*/
-/*
-Tmx::Map* IND_TmxMapManager::load(const char *pName) {
-	g_debug->header("Loading TmxMap", 5);
-	
-	if(!pName) {
-		g_debug->header("Invalid File name provided (null)",2);
-		return NULL;
-	}
-
-	g_debug->header("File name:", 3);
-	g_debug->dataChar(pName, 1);
-
-	if (!_ok) {
-		writeMessage();
-		return NULL;
-	}
-
-	// ----- checking file extension -----
-
-	char ext [128];
-	getExtensionFromName(pName, ext);
-	if (!checkExtImage(ext)){
-		g_debug->header("Unknown extension", 2);
-		return NULL;
-	}
-
-	g_debug->header("Extension:", 3);
-	g_debug->dataChar(ext, 1);
-
-	// ----- Load TmxMap -----
-
-	Tmx::Map *map = new Tmx::Map();
-	map->ParseFile(pName); //FIXME> remove this comment: "./example/example.tmx"
-
-	if (map->HasError()) {
-		g_debug->header("Error code:", 2);
-		//FIXME g_debug->dataChar(map->GetErrorCode(), 1);
-		g_debug->header("Error text:", 2);
-		//FIXME g_debug->dataChar(map->GetErrorText().c_str(), 1);
-		DISPOSE(map);		
-		return NULL;
-	}
-
-
-	return map;
-}
-*/
-
-
 
 
 
@@ -417,7 +383,7 @@ Init manager vars
 void IND_TmxMapManager::initVars() {
 	_listMaps = new list <IND_TmxMap *>;
 
-//	// Supported extensions
+	// Supported extensions
 	_supportedExt [0]  = (char*) "tmx";
 }
 

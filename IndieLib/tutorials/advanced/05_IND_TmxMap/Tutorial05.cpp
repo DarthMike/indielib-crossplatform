@@ -51,6 +51,10 @@ int IndieLib()
         printf("Name: %s\n", tileset->GetName().c_str());
         printf("Margin: %d\n", tileset->GetMargin());
         printf("Spacing: %d\n", tileset->GetSpacing());
+        printf("Tile Width: %d\n", tileset->GetTileWidth());
+        printf("Tile Height: %d\n", tileset->GetTileHeight());
+
+        
         printf("Image Width: %d\n", tileset->GetImage()->GetWidth());
         printf("Image Height: %d\n", tileset->GetImage()->GetHeight());
         printf("Image Source: %s\n", tileset->GetImage()->GetSource().c_str());

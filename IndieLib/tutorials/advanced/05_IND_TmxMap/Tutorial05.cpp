@@ -4,8 +4,10 @@
 
 #include "CIndieLib_vc2008.h"
 #include "IND_TmxMap.h"
+#include "IND_Surface.h"
 #include "../../WorkingPath.h"
 
+#include <math.h>
 #include <cstring>
 
 /*
@@ -23,15 +25,16 @@ int IndieLib()
 	// ----- IndieLib intialization -----
 
 	CIndieLib *mI = CIndieLib::instance();
-	if (!mI->init()) return 0;			
+    if (!mI->init()) return 0;
 
 	// ----- Map loading -----
 	   
 	IND_TmxMap *map = new IND_TmxMap();
-	if (!mI->_tmxMapManager->add(map, "../../resources/tmx/example.tmx")) return 0;
-
+	//if (!mI->_tmxMapManager->add(map, "../../resources/tmx/example.tmx")) return 0; // orthogonal
+    if (!mI->_tmxMapManager->add(map, "../../resources/tmx/isometric_grass_and_water.tmx")) return 0; // isometric
     
     
+    /*
     // NOTE THE CODE SHOWN HERE IS DIRECTLY TAKEN FROM THE TmxParser example code
 
     // Iterate through the tilesets.
@@ -90,6 +93,7 @@ int IndieLib()
                 
                 // Find a tileset for that id.
                 const Tmx::Tileset *tileset = map->getTmxMapHandle()->FindTileset(layer->GetTileGid(x, y));
+               
                 if (layer->IsTileFlippedHorizontally(x, y)){
                     printf("h");
                 }else{
@@ -154,43 +158,142 @@ int IndieLib()
     }
     
     delete map;
+	*/
+	
+    IND_Surface *mSurfaceTiles = new IND_Surface();
+    
+    if (!mI->_surfaceManager->add(mSurfaceTiles, map->getImagePath(), IND_ALPHA, IND_32)) return 0;
 
-
-
-
+    
+    
+    const Tmx::Tileset *tileset = map->getTmxMapHandle()->GetTileset(0);
+    
+    // Print tileset information.
+    printf("Name: %s\n", tileset->GetName().c_str());
+    printf("Margin: %d\n", tileset->GetMargin());
+    printf("Spacing: %d\n", tileset->GetSpacing());
+    printf("Tile Width: %d\n", tileset->GetTileWidth());
+    printf("Tile Height: %d\n", tileset->GetTileHeight());
+    
+    const int tileWidth = tileset->GetTileWidth();
+    const int tileHeight = tileset->GetTileHeight();
+    const int tileMargin = tileset->GetMargin();
+    const int tileSpacing = tileset->GetSpacing();
+    
+    
+    //const int mWidth = mSurfaceTiles->getWidth();
+    //const int mHeight = mSurfaceTiles->getHeight();
+    
+//    const int startX = 10;
+//    const int startY = 20;
+    
+//    int sourceX;
+//    int sourceY;
+//    int sourceWidth;
+//    int sourceHeight;
+    
+    
+//    int destX;
+//    int destY;
+//    int tileGid;
+    
+    
+    IND_Matrix *mMatrix = new IND_Matrix();
+    
 	while (!mI->_input->onKeyPress(IND_ESCAPE) && !mI->_input->quit())
 	{
-		// ----- Input update ----
-
+        // ----- Input update ----
+        
 		mI->_input->update();
-
-		// ----- Text -----
-
-//		strcpy(mText, "Press space to see the grid in action. This is really cool, isn't it?");
-//		mTextSmallWhite->setText(mText);
-
-		// ----- Input ----
-
-		// Show / Hide the grid pressing "space"
-		if (mI->_input->onKeyPress(IND_SPACE))
-		{
-//			if (mShowGrid){
-
-//			}else{
-
-//			}
-		}
-
-		// ----- Updating entities attributes  -----
-
-
+        
+        
 		// ----- Render  -----
-
+        
 		mI->_render->beginScene();
-		mI->_render->clearViewPort(0, 0, 0);
-//		mI->_entity2dManager->renderEntities2d();
-//		if (mShowGrid) mI->_entity2dManager->renderGridAreas(0, 0, 0, 255);
-		mI->_render->endScene();	
+		mI->_render->clearViewPort(255, 60, 60);
+        
+        
+        // at present time the loaded TMX is ISOMETRIC , later TODO: there needs to be draw code for the orthogonal
+        
+        const Tmx::Layer *layer = map->getTmxMapHandle()->GetLayer(0);  // TODO: later this need to be looped over
+       
+        for (int x = 0; x < layer->GetWidth(); ++x)
+        {
+            for (int y = 0; y < layer->GetHeight(); ++y)
+            {
+                // Get the tile's id.
+                int CurTile = layer->GetTileGid(x, y);
+                 printf("%03d ", CurTile);
+                
+                if(CurTile == 0)
+                {
+                    continue;
+                }
+                
+                const Tmx::Tileset *tileset = map->getTmxMapHandle()->FindTileset(CurTile);
+                
+                //CurTile = tileset->GetFirstGid() + CurTile;
+                CurTile--;
+                
+                int tileset_col = (CurTile % 4 /*Num_Of_Cols*/); // TODO the number of cols needs to be calculated from where?
+                int tileset_row = (CurTile / 4 /*Num_Of_Cols*/);// TODO the number of cols needs to be calculated from where?
+                
+                int sourceX = (tileset->GetMargin() + (tileset->GetTileWidth() + tileset->GetSpacing()) * tileset_col);
+                int sourceY = (tileset->GetMargin() + (tileset->GetTileHeight() + tileset->GetSpacing()) * tileset_row);
+                int sourceWidth = tileset->GetTileWidth();
+                int sourceHeight = tileset->GetTileHeight();
+                
+                int destX = ((x * tileset->GetTileWidth()  / 2  ) + (y * tileset->GetTileWidth() / 2  ) ) ;
+                int destY = ((y * tileset->GetTileHeight() / 2 ) - (x * tileset->GetTileHeight() / 2  ) ) ;
+                
+               
+         
+		mI->_render->setTransform2d(destY + 800,        // x pos    TODO: FIND out why x and y needed to be switched to gain same map as in tiled
+									destX - 200,        // y pos    TODO: FIND out why x and y needed to be switched to gain same map as in tiled
+									0,					// Angle x
+									0,					// Angle y
+									0,					// Angle z
+									1,					// Scale x
+									1,					// Scale y
+									0,					// Axis cal x
+									0,					// Axis cal y
+									0,					// Mirror x
+									0,					// Mirror y
+									0,		// Width
+									0,		// Height
+									mMatrix);			// Matrix in wich the transformation will be applied (optional)
+     
+		// 2) We apply the color, blending and culling transformations.
+        	mI->_render->setRainbow2d(IND_ALPHA,								// IND_Type
+                                    1,					// Back face culling 0/1 => off / on
+                                    0,					// Mirror x
+                                    0,					// Mirror y
+                                    IND_FILTER_LINEAR,	// IND_Filter
+                                    255,				// R Component	for tinting
+                                    255,				// G Component	for tinting
+                                    255,				// B Component	for tinting
+                                    255,				// A Component	for tinting
+                                    0,					// R Component	for fading to a color
+                                    0,					// G Component	for fading to a color
+                                    0,					// B Component	for fading to a color
+                                    255,				// Amount of fading
+                                    IND_SRCALPHA,		// IND_BlendingType (source)
+                                    IND_INVSRCALPHA);	// IND_BlendingType (destination)
+        
+        
+        
+		// 3) Blit the IND_Surface
+		mI->_render->blitRegionSurface(mSurfaceTiles, sourceX, sourceY, sourceWidth, sourceHeight); // 265, 199
+        
+            }
+            
+            printf("\n");
+        }
+        
+        printf("\n");
+        
+        mI->_render->endScene();	        
+        
 	}
 
 	// ----- Free -----

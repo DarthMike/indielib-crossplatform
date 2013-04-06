@@ -166,8 +166,8 @@ bool IND_TmxMapManager::add(IND_TmxMap *pNewTmxMap,const char *pName) {
 	
     pNewTmxMap->setTmxMapHandle(map);
 	pNewTmxMap->setName(pName);
-    pNewTmxMap->setImage(image); // FIXME should be added to an array
-    
+    pNewTmxMap->setImage(image);                    // FIXME should be added to an array
+    pNewTmxMap->setImagePath(imagePath.c_str());    // FIXME should be added to an array
     
 	// ----- Puts the object into the manager -----
     

@@ -55,6 +55,10 @@ public:
     FIBITMAP* getImage() {
         return _tmxMap._image;
     }
+    
+    char* getImagePath()  {
+		return _tmxMap._imagePath;
+	}
 
 private:
 	/** @cond DOCUMENT_PRIVATEAPI */
@@ -65,17 +69,20 @@ private:
 		char        *_name;             // Map name
 		Tmx::Map    *_handle;           // Map handle
         FIBITMAP    *_image;            // Map tilesheet image
+        char        *_imagePath;        // Map tilesheet imagepath
 
 		structTmxMap() {
 			_name = new char [128];
 			_handle = NULL;
             _image  = NULL;
+            _imagePath = new char [128];
 		}
 
 		~structTmxMap() {
 			DISPOSEARRAY(_name);
             // TODO: properly dispose the TMX map structure..
             //DISPOSE(_image);
+            DISPOSEARRAY(_imagePath);
 		}
 	};
 	typedef struct structTmxMap TmxMap;
@@ -97,6 +104,12 @@ private:
     void setImage(FIBITMAP* pImage) {
 		_tmxMap._image = pImage;
 	}
+    
+    void setImagePath(const char *pImagePath)   {
+		strcpy(_tmxMap._imagePath, pImagePath);
+	}
+    
+    
 	// ----- Private methods -----
 
 	//void setAlphaChannel(BYTE pR, BYTE pG, BYTE pB);

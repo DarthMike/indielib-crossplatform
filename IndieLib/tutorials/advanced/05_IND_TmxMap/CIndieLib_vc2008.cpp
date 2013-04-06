@@ -47,7 +47,7 @@ bool CIndieLib::init() {
 	_math                =   new     IND_Math;
 	_tmxMapManager       =   new     IND_TmxMapManager;
 
-	IND_WindowProperties props ("IndieLib", 800, 600, 32, 0, 0, 1);
+	IND_WindowProperties props ("IndieLib", 1920, 1080, 32, 0, 0, 1);
 	
 	
 	_window = _render        ->initRenderAndWindow(props);                                 

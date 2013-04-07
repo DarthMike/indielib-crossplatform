@@ -200,6 +200,7 @@ int IndieLib()
     
     IND_Matrix *mMatrix = new IND_Matrix();
     
+    int kMapCenterOffset = mI->_window->getWidth() / 2;
 	while (!mI->_input->onKeyPress(IND_ESCAPE) && !mI->_input->quit())
 	{
         // ----- Input update ----
@@ -216,40 +217,51 @@ int IndieLib()
         // at present time the loaded TMX is ISOMETRIC , later TODO: there needs to be draw code for the orthogonal
         
         const Tmx::Layer *layer = map->getTmxMapHandle()->GetLayer(0);  // TODO: later this need to be looped over
-       
-        for (int x = 0; x < layer->GetWidth(); ++x)
+        int layerColumns = layer->GetWidth();
+        int layerRows = layer->GetHeight();
+        for (int x = 0; x < layerColumns; ++x)
         {
-            for (int y = 0; y < layer->GetHeight(); ++y)
+            for (int y = 0; y < layerRows; ++y)
             {
                 // Get the tile's id.
                 int CurTile = layer->GetTileGid(x, y);
                  printf("%03d ", CurTile);
                 
+                // If gid is 0, means empty tile
                 if(CurTile == 0)
                 {
                     continue;
                 }
                 
                 const Tmx::Tileset *tileset = map->getTmxMapHandle()->FindTileset(CurTile);
+                int tilesetColumns = (mSurfaceTiles->getWidth() - 2*tileset->GetMargin()) / tileset->GetTileWidth();
+                int tilesetRows = (mSurfaceTiles->getHeight() - 2*tileset->GetMargin()) / tileset->GetTileHeight();
                 
-                //CurTile = tileset->GetFirstGid() + CurTile;
+                // 0-based index (as valid gid starts from 1.)
                 CurTile--;
                 
-                int tileset_col = (CurTile % 4 /*Num_Of_Cols*/); // TODO the number of cols needs to be calculated from where?
-                int tileset_row = (CurTile / 4 /*Num_Of_Cols*/);// TODO the number of cols needs to be calculated from where?
+                int tileset_col = (CurTile % tilesetColumns);
+                int tileset_row = (CurTile / tilesetColumns);
                 
                 int sourceX = (tileset->GetMargin() + (tileset->GetTileWidth() + tileset->GetSpacing()) * tileset_col);
                 int sourceY = (tileset->GetMargin() + (tileset->GetTileHeight() + tileset->GetSpacing()) * tileset_row);
                 int sourceWidth = tileset->GetTileWidth();
                 int sourceHeight = tileset->GetTileHeight();
                 
-                int destX = ((x * tileset->GetTileWidth()  / 2  ) + (y * tileset->GetTileWidth() / 2  ) ) ;
-                int destY = ((y * tileset->GetTileHeight() / 2 ) - (x * tileset->GetTileHeight() / 2  ) ) ;
+                /*
+                 TMX isometric coordinates are specified starting from top (upper) corner, as 0,0
+                 From there, 0,1 will be half tile width to the 'right', 1,0 will be half width to the 'left'
+                 */
+                
+                int destX = (x * map->getTmxMapHandle()->GetTileWidth()/2) - (y * map->getTmxMapHandle()->GetTileWidth()/2);
+                int destY = (y * map->getTmxMapHandle()->GetTileHeight()/2) + (x * map->getTmxMapHandle()->GetTileHeight()/2);
+                
+                
                 
                
          
-		mI->_render->setTransform2d(destY + 800,        // x pos    TODO: FIND out why x and y needed to be switched to gain same map as in tiled
-									destX - 200,        // y pos    TODO: FIND out why x and y needed to be switched to gain same map as in tiled
+		mI->_render->setTransform2d(destX + kMapCenterOffset,        // x pos - Added center because we start in 0,0 (corner of screen)
+									destY,        // y pos
 									0,					// Angle x
 									0,					// Angle y
 									0,					// Angle z

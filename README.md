@@ -48,6 +48,9 @@ Simple interface and extreme easiness: really fast game prototyping using entiti
 * Lights
 * 3d-related objects (meshes etc.)
 
+###Tools supported
+* [Tiled map editor](http://www.mapeditor.org/)
+
 ###Dependencies
 This library bases on several others to achieve some of it's functionality:
 

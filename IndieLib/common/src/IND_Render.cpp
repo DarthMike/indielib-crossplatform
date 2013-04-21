@@ -1426,13 +1426,12 @@ IND_Window* IND_Render::createRender(IND_WindowProperties& windowProperties) {
 	_wrappedRenderer = new OpenGLRender();
 #endif
 
-	if(!_wrappedRenderer){
-		return NULL;
-	} else {
-		return (_wrappedRenderer->initRenderAndWindow(windowProperties));
+	IND_Window* window = NULL;
+	if(_wrappedRenderer){
+		window = _wrappedRenderer->initRenderAndWindow(windowProperties);
 	}
-    
-    g_debug->header("Render created", DebugApi::LogHeaderEnd);
+
+    return window;
 }
 
 /*

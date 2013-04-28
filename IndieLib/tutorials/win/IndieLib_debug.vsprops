@@ -2,7 +2,7 @@
 <VisualStudioPropertySheet
 	ProjectType="Visual C++"
 	Version="8.00"
-	Name="IndieLib"
+	Name="IndieLib_debug"
 	>
 	<Tool
 		Name="VCCLCompilerTool"
@@ -10,7 +10,7 @@
 	/>
 	<Tool
 		Name="VCLinkerTool"
-		AdditionalDependencies="IndieLib_vc2008.lib"
+		AdditionalDependencies="IndieLibd.lib"
 		AdditionalLibraryDirectories="&quot;../../../../bin/win&quot;"
 	/>
 </VisualStudioPropertySheet>

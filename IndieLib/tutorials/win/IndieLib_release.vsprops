@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="windows-1250"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="IndieLib_release"
+	>
+	<Tool
+		Name="VCCLCompilerTool"
+		AdditionalIncludeDirectories="..\..\..\..\common\include"
+	/>
+	<Tool
+		Name="VCLinkerTool"
+		AdditionalDependencies="IndieLib.lib"
+		AdditionalLibraryDirectories="&quot;../../../../bin/win&quot;"
+	/>
+</VisualStudioPropertySheet>

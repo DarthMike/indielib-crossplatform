@@ -25,6 +25,8 @@ Suite 330, Boston, MA 02111-1307 USA
 
 #define MAX_CHARS 4096
 
+#include "IND_Object.h"
+
 
 // --------------------------------------------------------------------------------
 //									 IND_Font
@@ -40,9 +42,16 @@ Font class managed by IND_FontManager for drawing texts into the screen, click i
 /**
 @b IND_Font is a bitmap font object from the class ::IND_FontManager. Read the explanation in ::IND_FontManager for having more details.
 */
-class LIB_EXP IND_Font {
+class LIB_EXP IND_Font : public IND_Object {
 public:
-
+    static IND_Font* newFont() {
+        return new IND_Font();
+    }
+    
+    virtual void destroy() {
+        delete this;
+    }
+    
 	// ----- Public Gets ------
 
 	//! This function returns the number of characters of the font.
@@ -56,6 +65,9 @@ public:
 
 private:
 	/** @cond DOCUMENT_PRIVATEAPI */
+    IND_Font();
+    virtual ~IND_Font();
+    
 	// ----- Structures ------
 
 	// LETTER

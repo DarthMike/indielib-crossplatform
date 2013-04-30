@@ -541,7 +541,7 @@ typedef struct structPoint IND_Point;
 
 #define DISPOSE(x)      if (x)      { delete    x;  x = NULL; }
 #define DISPOSEARRAY(x) if (x)      { delete[] x;  x = NULL; }
-
+#define DISPOSEMANAGED(x) if (x)   { x->destroy(); x = NULL; }
 
 // --------------------------------------------------------------------------------
 //									Color Formats

@@ -38,6 +38,22 @@ Suite 330, Boston, MA 02111-1307 USA
 // --------------------------------------------------------------------------------
 //							  Initialization / Destruction
 // --------------------------------------------------------------------------------
+/**
+ *  Factory method to build instances of this class.
+ *
+ *  You should never allocate instances by calling new or allocating objects in the stack.
+ *  All memory related to this instance is managed by Indielib internally, and you must add it or remove it from
+ *  a manager.
+ *
+ *  @return A correctly initialized instance
+ */
+IND_Entity2d* IND_Entity2d::newEntity2d() {
+    return new IND_Entity2d();
+}
+
+void IND_Entity2d::destroy() {
+    delete this;
+}
 
 
 IND_Entity2d::IND_Entity2d() : _text(NULL),  _listBoundingCollision(NULL) {

@@ -26,6 +26,7 @@ Suite 330, Boston, MA 02111-1307 USA
 // ----- Includes -----
 #include <vector>
 #include "IND_Sequence.h"
+#include "IND_Object.h"
 
 // ----- Forward Declarations -----
 class IND_Frame;
@@ -94,16 +95,11 @@ The  @b tokens or <b>keywords</b> of a @b IndieLib animation file are:
 
 @image html surfa1.jpg Animations example in IndieLib.
 */
-class LIB_EXP IND_Animation {
+class LIB_EXP IND_Animation : public IND_Object{
 public:
-
-	IND_Animation() : _vectorFrames(NULL) {
-      	_vectorFrames = new vector <IND_Frame *>;
-    }
+    static IND_Animation* newAnimation();
     
-    ~IND_Animation() {
-        DISPOSE(_vectorFrames);
-    }
+    virtual void destroy();
 	// ----- Public gets ------
 
 	// ----- Relative to lobal animation ------
@@ -157,6 +153,13 @@ public:
 
 private:
 	/** @cond DOCUMENT_PRIVATEAPI */
+    IND_Animation() : _vectorFrames(NULL) {
+      	_vectorFrames = new vector <IND_Frame *>;
+    }
+    
+    virtual ~IND_Animation() {
+        DISPOSE(_vectorFrames);
+    }
 	// ----- Structures ------
 
 	vector <IND_Frame *> *_vectorFrames;    // Vector of frames

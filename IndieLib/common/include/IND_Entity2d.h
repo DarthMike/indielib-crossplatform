@@ -27,6 +27,7 @@ Suite 330, Boston, MA 02111-1307 USA
 
 #include "Defines.h"
 #include <list>
+#include "IND_Object.h"
 
 // ----- Forward declarations -----
 class CollisionParser;
@@ -64,14 +65,14 @@ IND_Entity2d can have so many different graphical objects associated to it:
 - Fonts
 - Primitives (lines, rectangles, circles, polys, etc)
 */
-class LIB_EXP IND_Entity2d {
+class LIB_EXP IND_Entity2d : public IND_Object {
 public:
 
 	// ----- Init -----
+    static IND_Entity2d* newEntity2d();
 
-	IND_Entity2d();
-	~IND_Entity2d();
-
+    void destroy();
+    
 	// ----- Public sets ------
 
 	/** @name Graphical objects assignation to the 2d entity
@@ -387,7 +388,9 @@ public:
 private:
 	/** @cond DOCUMENT_PRIVATEAPI */
 	// ----- Private ------
-
+	IND_Entity2d();
+	virtual ~IND_Entity2d();
+    
 	// ----- Objects -----
 
 	CollisionParser *_collisionParser;

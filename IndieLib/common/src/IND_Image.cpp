@@ -35,6 +35,24 @@ Suite 330, Boston, MA 02111-1307 USA
 // --------------------------------------------------------------------------------
 
 /**
+ *  Factory method to build instances of this class.
+ *
+ *  You should never allocate instances by calling new or allocating objects in the stack.
+ *  All memory related to this instance is managed by Indielib internally, and you must add it or remove it from
+ *  a manager.
+ *
+ *  @return A correctly initialized instance
+ */
+IND_Image* IND_Image::newImage() {
+    return new IND_Image();
+}
+
+void IND_Image::destroy() {
+    delete this;
+}
+
+
+/**
  * Clears the image to the chosen color. Returns 0 if there is no image loaded.
  * For ::IND_LUMINANCE image type, the 'color' value is taken from the pA parameter. Other parameters are ignored
  * @param pR						Byte R (Red).

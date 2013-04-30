@@ -68,6 +68,22 @@ Suite 330, Boston, MA 02111-1307 USA
 //										Public Methods
 // --------------------------------------------------------------------------------
 
+/**
+ *  Factory method to build instances of this class.
+ *
+ *  You should never allocate instances by calling new or allocating objects in the stack.
+ *  All memory related to this instance is managed by Indielib internally, and you must add it or remove it from
+ *  a manager.
+ *
+ *  @return A correctly initialized instance
+ */
+IND_Surface* IND_Surface::newSurface() {
+    return new IND_Surface();
+}
+
+void IND_Surface::destroy() {
+    delete this;
+}
 
 /**
  * Returns the type of the surface. See ::IND_Type.

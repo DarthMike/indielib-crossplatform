@@ -26,6 +26,7 @@ Suite 330, Boston, MA 02111-1307 USA
 // ----- Includes -----
 
 #include "Defines.h"
+#include "IND_Object.h"
 
 // ----- Forward declarations -----
 struct SURFACE;
@@ -44,19 +45,12 @@ IND_Surface class managed by IND_SurfaceManager for displaying surfaces and anim
 /**
 @b IND_Surface is an surface object from the class ::IND_SurfaceManager. Read the explanation in ::IND_SurfaceManager for more details.
 */
-class LIB_EXP IND_Surface {
+class LIB_EXP IND_Surface : public IND_Object {
 public:
-
-    // ----- Construction / Destruction -----
-    IND_Surface (): _surface(NULL) {
-        init();
-    }
-
-    ~IND_Surface () {
-        release();
-    }
-
-
+    
+    static IND_Surface* newSurface();
+    virtual void destroy();
+    
 	// ----- Public Methods ------
 
 	bool        setGrid(int pNumBlocksX, int pNumBlocksY);
@@ -100,6 +94,14 @@ public:
 
 private:
 	/** @cond DOCUMENT_PRIVATEAPI */
+    IND_Surface (): _surface(NULL) {
+        init();
+    }
+    
+    ~IND_Surface () {
+        release();
+    }
+    
 	// ----- Structures ------
 	SURFACE *_surface;
 

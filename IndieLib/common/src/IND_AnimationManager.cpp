@@ -122,7 +122,7 @@ bool IND_AnimationManager::addToSurface(IND_Animation *pNewAnimation,
 		IND_Image *ActualImage = pNewAnimation->getImage(i);
 
 		// Creation of the surface
-		IND_Surface *mNewSurface = new IND_Surface;
+		IND_Surface *mNewSurface = IND_Surface::newSurface();
 		_surfaceManager->add(mNewSurface, ActualImage, pType, pQuality);
 		pNewAnimation->setSurface(i, mNewSurface);
 
@@ -172,7 +172,7 @@ bool IND_AnimationManager::addToSurface(IND_Animation *pNewAnimation,
 		mCurrentImage->setAlpha(pR,pG,pB);
 		
 		// Creation of the surface
-		IND_Surface *mNewSurface = new IND_Surface;
+		IND_Surface *mNewSurface = IND_Surface::newSurface();
 		_surfaceManager->add(mNewSurface, mCurrentImage, pType, pQuality);
 		pNewAnimation->setSurface(i, mNewSurface);
 
@@ -208,7 +208,7 @@ bool IND_AnimationManager:: addToSurface(IND_Animation *pNewAnimation,
 		IND_Image *ActualImage = pNewAnimation->getImage(i);
 
 		// Creation of the surface
-		IND_Surface *mNewSurface = new IND_Surface;
+		IND_Surface *mNewSurface = IND_Surface::newSurface();
 		_surfaceManager->add(mNewSurface, ActualImage, pBlockSize,  pType, pQuality);
 		pNewAnimation->setSurface(i, mNewSurface);
 
@@ -254,7 +254,7 @@ bool IND_AnimationManager::addToSurface(IND_Animation *pNewAnimation,
 		mCurrentImage->setAlpha(pR, pG, pB);
 
 		// Creation of the surface
-		IND_Surface *mNewSurface = new IND_Surface;
+		IND_Surface *mNewSurface = IND_Surface::newSurface();
 		_surfaceManager->add(mNewSurface, mCurrentImage, pBlockSize, pType, pQuality);
 		pNewAnimation->setSurface(i, mNewSurface);
 
@@ -391,12 +391,12 @@ bool IND_AnimationManager::calculateAxis(IND_Animation *pAn,
  * @param pName					TODO describtion.
  */
 IND_Image *IND_AnimationManager::loadImage(const char *pName) {
-	IND_Image *mNewImage = new IND_Image;
+	IND_Image *mNewImage = IND_Image::newImage();
     
     bool noError = _imageManager->add(mNewImage, pName);
     
     if (!noError) {
-		DISPOSE(mNewImage);
+		DISPOSEMANAGED(mNewImage);
     }
 	
 	return noError ? mNewImage : NULL;

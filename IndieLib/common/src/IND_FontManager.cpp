@@ -111,7 +111,7 @@ bool IND_FontManager::add(IND_Font		*pNewFont,
                           IND_Type		pType,
                           IND_Quality	pQuality) {
 	// Image loading
-	IND_Image *mNewImage = new IND_Image;
+	IND_Image *mNewImage = IND_Image::newImage();
     
     bool noError(true);
     noError = _imageManager->add(mNewImage, pName);
@@ -123,7 +123,7 @@ bool IND_FontManager::add(IND_Font		*pNewFont,
 
 	// Free the image
     if (!noError) {
-        DISPOSE(mNewImage);
+        DISPOSEMANAGED(mNewImage);
     }
     
 	_imageManager->remove(mNewImage);
@@ -179,7 +179,7 @@ bool IND_FontManager::add(IND_Font		*pNewFont,
 
 	// ----- Bitmap (IND_Surface object) creation -----
 
-	IND_Surface *mNewSurface = new IND_Surface;
+	IND_Surface *mNewSurface = IND_Surface::newSurface();
 	if (!_surfaceManager->add(mNewSurface, pImage, pType, pQuality))
 		return 0;
 
@@ -391,7 +391,7 @@ Deletes object from the manager
 */
 void IND_FontManager::delFromlist(IND_Font *pFo) {
 	_listFonts->remove(pFo);
-	DISPOSE(pFo);
+	DISPOSEMANAGED(pFo);
 }
 
 
@@ -432,7 +432,7 @@ void IND_FontManager::freeVars() {
 		// Free bitmap IND_Surface
 		_surfaceManager->remove((*mFontListIter)->getSurface());
 
-        DISPOSE(*mFontListIter);
+        delFromlist(*mFontListIter);
 	}
 
 	// Clear list

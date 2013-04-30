@@ -46,7 +46,7 @@ TEST(add1) {
 	CIndieLib *iLib = CIndieLib::instance();
 	iLib->init();
 
-	IND_Image *mImageBug = new IND_Image();
+	IND_Image *mImageBug = IND_Image::newImage();
 	CHECK(iLib->_imageManager->add(mImageBug, "../../resources/Enemy Bug.png"));
 
 //	iLib->end();
@@ -60,7 +60,7 @@ TEST(remove) {
 	CIndieLib *iLib = CIndieLib::instance();
 //	iLib->init();
 	
-	IND_Image *mImageBug = new IND_Image();
+	IND_Image *mImageBug = IND_Image::newImage();
 	iLib->_imageManager->add(mImageBug, "../../resources/Enemy Bug.png");
 	
 	CHECK(iLib->_imageManager->remove(mImageBug));
@@ -76,8 +76,8 @@ TEST(clone) {
 	CIndieLib *iLib = CIndieLib::instance();
 //	iLib->init();
 	
-	IND_Image *mImageBug = new IND_Image();
-	IND_Image *mImageClone = new IND_Image();
+	IND_Image *mImageBug = IND_Image::newImage();
+	IND_Image *mImageClone = IND_Image::newImage();
 	iLib->_imageManager->add(mImageBug, "../../resources/Enemy Bug.png");
 	
 	CHECK(iLib->_imageManager->clone(mImageClone,mImageBug));

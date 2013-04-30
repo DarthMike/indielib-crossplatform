@@ -154,7 +154,7 @@ bool IND_SurfaceManager::add(IND_Surface    *pNewSurface,
                              IND_Type        pType,
                              IND_Quality     pQuality) {
 	// Loads the image
-	IND_Image *mNewImage = new IND_Image();
+	IND_Image *mNewImage = IND_Image::newImage();
 
     bool noError(true);
     noError = _imageManager->add(mNewImage, pName);
@@ -166,7 +166,7 @@ bool IND_SurfaceManager::add(IND_Surface    *pNewSurface,
 
 	// Free image
     if (!noError) {
-        DISPOSE(mNewImage);
+        DISPOSEMANAGED(mNewImage);
     }
     
 	_imageManager->remove(mNewImage);
@@ -227,7 +227,7 @@ bool IND_SurfaceManager::add(IND_Surface    *pNewSurface,
                              BYTE            pG,
                              BYTE            pB) {
     // Loads the image
-	IND_Image *mNewImage = new IND_Image();
+	IND_Image *mNewImage = IND_Image::newImage();
     
     bool noError(true);
     noError = _imageManager->add(mNewImage, pName);
@@ -244,7 +244,7 @@ bool IND_SurfaceManager::add(IND_Surface    *pNewSurface,
     
 	// Free image
     if (!noError) {
-        DISPOSE(mNewImage);
+        DISPOSEMANAGED(mNewImage);
     }
     
 	_imageManager->remove(mNewImage);
@@ -277,7 +277,7 @@ bool IND_SurfaceManager::add(IND_Surface    *pNewSurface,
                              IND_Type        pType,
                              IND_Quality     pQuality) {
     // Loads the image
-	IND_Image *mNewImage = new IND_Image();
+	IND_Image *mNewImage = IND_Image::newImage();
     
     bool noError(true);
     noError = _imageManager->add(mNewImage, pName);
@@ -289,7 +289,7 @@ bool IND_SurfaceManager::add(IND_Surface    *pNewSurface,
     
 	// Free image
     if (!noError) {
-        DISPOSE(mNewImage);
+        DISPOSEMANAGED(mNewImage);
     }
     
 	_imageManager->remove(mNewImage);
@@ -353,7 +353,7 @@ bool IND_SurfaceManager::add(IND_Surface    *pNewSurface,
                              BYTE pG,
                              BYTE pB) {
     // Loads the image
-	IND_Image *mNewImage = new IND_Image();
+	IND_Image *mNewImage = IND_Image::newImage();
     
     bool noError(true);
     noError = _imageManager->add(mNewImage, pName);
@@ -370,7 +370,7 @@ bool IND_SurfaceManager::add(IND_Surface    *pNewSurface,
     
 	// Free image
     if (!noError) {
-        DISPOSE(mNewImage);
+        DISPOSEMANAGED(mNewImage);
     }
     
 	_imageManager->remove(mNewImage);
@@ -618,7 +618,7 @@ Deletes object from the manager
 */
 void IND_SurfaceManager::delFromlist(IND_Surface *pSu) {
 	_listSurfaces->remove(pSu);
-	DISPOSE(pSu);
+	DISPOSEMANAGED(pSu);
 }
 
 
@@ -712,7 +712,7 @@ void IND_SurfaceManager::freeVars() {
 		g_debug->header("Freeing surface:", DebugApi::LogHeaderInfo);
         //FIXME: This breaks on LLVM compiler (OSX, XCode)
 		//g_debug->dataInt((int) & (*mSurfaceListIter)->_surface, 1);
-        DISPOSE(*mSurfaceListIter);
+        delFromlist(*mSurfaceListIter);
 	}
 
 	// Clear list

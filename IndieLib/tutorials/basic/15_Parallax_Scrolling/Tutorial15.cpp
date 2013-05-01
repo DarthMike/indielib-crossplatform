@@ -32,24 +32,24 @@ int IndieLib()
 	// ----- Surface loading -----
 
 	// Loading cave
-	IND_Surface *mSurfaceCave = new IND_Surface();
+	IND_Surface *mSurfaceCave = IND_Surface::newSurface();
 	if (!mI->_surfaceManager->add(mSurfaceCave, "../../resources/cave.png", IND_ALPHA, IND_32)) return 0;
 
 	// Loading cave (first plane)
-	IND_Surface *mSurfaceCaveFirstPlane = new IND_Surface();
+	IND_Surface *mSurfaceCaveFirstPlane = IND_Surface::newSurface();
 	if (!mI->_surfaceManager->add(mSurfaceCaveFirstPlane, "../../resources/cave_near.png", IND_ALPHA, IND_32)) return 0;
 
 	// Loading sky
-	IND_Surface *mSurfaceSky = new IND_Surface();
+	IND_Surface *mSurfaceSky = IND_Surface::newSurface();
 	if (!mI->_surfaceManager->add(mSurfaceSky, "../../resources/sky.jpg", IND_OPAQUE, IND_32)) return 0;
 
 	// Font
-	IND_Font *mFontSmall = new IND_Font();
+	IND_Font *mFontSmall = IND_Font::newFont();
 	if (!mI->_fontManager->add(mFontSmall, "../../resources/font_small.png", "../../resources/font_small.xml", IND_ALPHA, IND_32)) return 0;
 
 	// ----- Font creation -----
 
-	IND_Entity2d *mTextSmallWhite = new IND_Entity2d();					
+	IND_Entity2d *mTextSmallWhite = IND_Entity2d::newEntity2d();					
 	mI->_entity2dManager->add(3, mTextSmallWhite);				// Entity adding (Layer 3)
 	mTextSmallWhite->setFont(mFontSmall);					// Set the font into the entity
 	mTextSmallWhite->setLineSpacing(18);
@@ -60,18 +60,18 @@ int IndieLib()
 	// ----- Entities -----
 
 	// Creating 2d entity for the sky
-	IND_Entity2d *mSky = new IND_Entity2d();					
+	IND_Entity2d *mSky = IND_Entity2d::newEntity2d();					
 	mI->_entity2dManager->add(0, mSky);					// Entity adding (Layer 0)
 	mSky->setSurface(mSurfaceSky);
 	mSky->setPosition(600, 0, 0);
 
 	// Creating 2d entity for the cave
-	IND_Entity2d *mCave = new IND_Entity2d();					
+	IND_Entity2d *mCave = IND_Entity2d::newEntity2d();					
 	mI->_entity2dManager->add(1, mCave);					// Entity adding (Layer 1)
 	mCave->setSurface(mSurfaceCave);
 
 	// Creating 2d entity for the cave (first plane)
-	IND_Entity2d *mCaveFirstPlane = new IND_Entity2d();					
+	IND_Entity2d *mCaveFirstPlane = IND_Entity2d::newEntity2d();					
 	mI->_entity2dManager->add(2, mCaveFirstPlane);				// Entity adding (Layer 2)
 	mCaveFirstPlane->setSurface(mSurfaceCaveFirstPlane);
 

@@ -28,20 +28,20 @@ int IndieLib()
 	// ----- Surface loading -----
 
 	// Loading draco
-	IND_Surface *mSurfaceDraco = new IND_Surface();
+	IND_Surface *mSurfaceDraco = IND_Surface::newSurface();
 	if (!mI->_surfaceManager->add(mSurfaceDraco, "../../resources/draco.png", IND_ALPHA, IND_32)) return 0;
 
 	// Loading gem (this image has a blue rectangle surronding it)
-	IND_Surface *mSurfaceGem = new IND_Surface();
+	IND_Surface *mSurfaceGem = IND_Surface::newSurface();
 	if (!mI->_surfaceManager->add(mSurfaceGem, "../../resources/gem_squared.png", IND_ALPHA, IND_32)) return 0;
 
 	// Loading bug
-	IND_Surface *mSurfaceBug = new IND_Surface();
+	IND_Surface *mSurfaceBug = IND_Surface::newSurface();
 	if (!mI->_surfaceManager->add(mSurfaceBug, "../../resources/Enemy Bug.png", IND_ALPHA, IND_32)) return 0;
 
 	// ----- Animation loading -----
 
-	IND_Animation *mAnimationUfo = new IND_Animation();
+	IND_Animation *mAnimationUfo = IND_Animation::newAnimation();
 	if (!mI->_animationManager->addToSurface(mAnimationUfo, "../../resources/animations/ufo.xml", IND_ALPHA, IND_32)) return 0;
 
 	// ----- Main Loop -----

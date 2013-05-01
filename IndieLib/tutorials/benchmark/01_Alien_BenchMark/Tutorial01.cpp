@@ -45,39 +45,39 @@ int IndieLib()
 	// ----- Surface loading -----
 
 	// Loading cursor
-	IND_Surface *mSurfaceCursor = new IND_Surface();
+	IND_Surface *mSurfaceCursor = IND_Surface::newSurface();
 	if (!mI->_surfaceManager->add(mSurfaceCursor, "../../resources/cursor.png", IND_ALPHA, IND_32))
 		return 0;
 
 	// Loading tile for the terrain
-	IND_Surface *mSurfaceTerrain = new IND_Surface();
+	IND_Surface *mSurfaceTerrain = IND_Surface::newSurface();
 	if (!mI->_surfaceManager->add(mSurfaceTerrain, "../../resources/tiled_terrain.png", IND_OPAQUE, IND_32))
 		return 0;
 
 	// Loading alien hole 1
-	IND_Surface *mSurfaceHole1 = new IND_Surface();
+	IND_Surface *mSurfaceHole1 = IND_Surface::newSurface();
 	if (!mI->_surfaceManager->add(mSurfaceHole1, "../../resources/hole1.png", IND_ALPHA, IND_32)) 
 		return 0;
 	
 	// Loading alien hole 2
-	IND_Surface *mSurfaceHole2 = new IND_Surface();
+	IND_Surface *mSurfaceHole2 = IND_Surface::newSurface();
 	if (!mI->_surfaceManager->add(mSurfaceHole2, "../../resources/hole2.png", IND_ALPHA, IND_32)) 
 		return 0;
 
 	// Font
-	IND_Font *mFontSmall = new IND_Font();
+	IND_Font *mFontSmall = IND_Font::newFont();
 	if (!mI->_fontManager->add(mFontSmall, "../../resources/font_small.png", "../../resources/font_small.xml", IND_ALPHA, IND_32)) 
 		return 0;
 
 	// ----- Animation loading -----
 
-	IND_Animation *mAnimationUfo = new IND_Animation();
+	IND_Animation *mAnimationUfo = IND_Animation::newAnimation();
 	if (!mI->_animationManager->addToSurface(mAnimationUfo, "../../resources/animations/ufo.xml", IND_ALPHA, IND_32)) 
 		return 0;
 
 	// ----- Cursor creation -----
 
-	IND_Entity2d *mCursor = new IND_Entity2d();
+	IND_Entity2d *mCursor = IND_Entity2d::newEntity2d();
 	mI->_entity2dManager->add(1, mCursor);			// Entity adding in layer 1 (gui)	
 	mCursor->setSurface(mSurfaceCursor);
 
@@ -87,7 +87,7 @@ int IndieLib()
 
 	// ----- Font creation -----
 
-	IND_Entity2d *mTextSmallWhite = new IND_Entity2d();					
+	IND_Entity2d *mTextSmallWhite = IND_Entity2d::newEntity2d();					
 	mI->_entity2dManager->add(1, mTextSmallWhite);		// Entity adding in layer 1 (gui)
 	mTextSmallWhite->setFont(mFontSmall);			// Set the font into the entity
 

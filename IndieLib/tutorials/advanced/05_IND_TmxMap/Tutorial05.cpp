@@ -28,7 +28,7 @@ int IndieLib()
 	// ----- Map loading -----
 	// TODO: map loading goes here...
        
-	IND_TmxMap *map = new IND_TmxMap();
+	IND_TmxMap *map = IND_TmxMap::newTmxMap();
 	if (!mI->_tmxMapManager->add(map, "example.tmx")) return 0;
 
 			// Get a tileset.

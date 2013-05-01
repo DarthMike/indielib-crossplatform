@@ -20,7 +20,7 @@ CUfo::CUfo ()
 {
 	// Get IndieLib singleton object
 	mI = CIndieLib::instance();
-	mUfo = new IND_Entity2d();
+	mUfo = IND_Entity2d::newEntity2d();
 }
 
 

@@ -27,7 +27,7 @@ Suite 330, Boston, MA 02111-1307 USA
 
 #include "IND_Object.h"
 
-
+class IND_Surface;
 // --------------------------------------------------------------------------------
 //									 IND_Font
 // --------------------------------------------------------------------------------
@@ -65,8 +65,8 @@ public:
 
 private:
 	/** @cond DOCUMENT_PRIVATEAPI */
-    IND_Font();
-    virtual ~IND_Font();
+    IND_Font() {}
+    virtual ~IND_Font() {}
     
 	// ----- Structures ------
 

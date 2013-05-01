@@ -124,12 +124,12 @@ void PrimitiveTests::setActive(bool active){
 //-----------------------------------PRIVATE METHODS----------------------------
 
 void PrimitiveTests::init() {
-	_pixel = new IND_Entity2d();
-	_regularPoly = new IND_Entity2d();
-	_line = new IND_Entity2d();
-	_rectangle = new IND_Entity2d();
-	_fillRectangle = new IND_Entity2d();
-	_poly2d = new IND_Entity2d();
+	_pixel = IND_Entity2d::newEntity2d();
+	_regularPoly = IND_Entity2d::newEntity2d();
+	_line = IND_Entity2d::newEntity2d();
+	_rectangle = IND_Entity2d::newEntity2d();
+	_fillRectangle = IND_Entity2d::newEntity2d();
+	_poly2d = IND_Entity2d::newEntity2d();
 
 }
 
@@ -142,10 +142,4 @@ void PrimitiveTests::release() {
     iLib->_entity2dManager->remove(_rectangle);
     iLib->_entity2dManager->remove(_fillRectangle);
     iLib->_entity2dManager->remove(_poly2d);	
-	DISPOSE(_pixel);
-	DISPOSE(_regularPoly);
-	DISPOSE(_line);
-	DISPOSE(_rectangle);
-	DISPOSE(_fillRectangle);
-	DISPOSE(_poly2d);
 }

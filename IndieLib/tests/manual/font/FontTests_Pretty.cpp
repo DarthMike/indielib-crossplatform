@@ -135,16 +135,16 @@ void FontTests_Pretty::setActive(bool active){
 //-----------------------------------PRIVATE METHODS----------------------------
 
 void FontTests_Pretty::init() {
-	_surfaceBack = new IND_Surface();
-	_surfaceTip = new IND_Surface();
-	_fontSmall = new IND_Font();
-	_fontBig = new IND_Font();
+	_surfaceBack = IND_Surface::newSurface();
+	_surfaceTip = IND_Surface::newSurface();
+	_fontSmall = IND_Font::newFont();
+	_fontBig = IND_Font::newFont();
 
-	_back = new IND_Entity2d();
-	_tip = new IND_Entity2d();
-	_textTitle = new IND_Entity2d();
-	_textSmallBlack = new IND_Entity2d();					
-	_textSmallWhite = new IND_Entity2d();					
+	_back = IND_Entity2d::newEntity2d();
+	_tip = IND_Entity2d::newEntity2d();
+	_textTitle = IND_Entity2d::newEntity2d();
+	_textSmallBlack = IND_Entity2d::newEntity2d();					
+	_textSmallWhite = IND_Entity2d::newEntity2d();					
 }
 
 void FontTests_Pretty::release() {

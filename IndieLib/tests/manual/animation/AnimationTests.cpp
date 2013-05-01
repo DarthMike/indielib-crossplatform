@@ -100,8 +100,8 @@ void AnimationTests::init() {
 
 	//Create underlying entities
 	for (int i = 0; i < _testedEntities; ++i) {
-		_animations[i] = new IND_Animation();
-		_entities[i] = new IND_Entity2d();
+		_animations[i] = IND_Animation::newAnimation();
+		_entities[i] = IND_Entity2d::newEntity2d();
 	}
 }
 

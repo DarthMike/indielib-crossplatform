@@ -812,6 +812,7 @@ void IND_Entity2dManager::freeVars() {
 			// Delete all the bounding areas
 			(*mEntityListIter)->deleteBoundingAreas((char*)"*");
             g_debug->dataInt((*mEntityListIter)->getId(), 1);
+            DISPOSEMANAGED((*mEntityListIter));
 		}
 
 		// Clear list

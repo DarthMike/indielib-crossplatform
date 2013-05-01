@@ -541,7 +541,7 @@ Deletes object from the manager
 */
 void IND_ImageManager::delFromlist(IND_Image *pIm) {
 	_listImages->remove(pIm);
-    DISPOSE(pIm);
+    DISPOSEMANAGED(pIm);
 }
 
 /*
@@ -593,7 +593,7 @@ void IND_ImageManager::freeVars() {
 			// Free image
 			FreeImage_Unload(handle);
             (*mImageListIter)->setFreeImageHandle(NULL);
-            DISPOSE(*mImageListIter);
+            delFromlist(*mImageListIter);
 		}
 	}
 

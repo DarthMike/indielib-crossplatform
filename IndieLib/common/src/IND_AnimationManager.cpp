@@ -730,7 +730,7 @@ void IND_AnimationManager::addToList(IND_Animation *pNewAnimation) {
  */
 void IND_AnimationManager::delFromlist(IND_Animation *pAn) {
 	_listAnimations->remove(pAn);
-    DISPOSE(pAn);
+    DISPOSEMANAGED(pAn);
 }
 
 

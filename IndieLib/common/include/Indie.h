@@ -74,7 +74,7 @@ using namespace std;
 #endif
 
 // Spriter animations
-#ifdef PLATFORM_LINUX  //FIXME: Should add compile settings to all platforms when support is fully completed
+#if defined (PLATFORM_LINUX) || defined (PLATFORM_OSX)  //FIXME: Should add compile settings to all platforms when support is fully completed
 #include "IND_SpriterManager.h"
 #endif
 

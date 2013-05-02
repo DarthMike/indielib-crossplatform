@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4CC1EA861732E6EE00A31689 /* IND_SpriterManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CC1EA851732E6EE00A31689 /* IND_SpriterManager.cpp */; };
+		4CC1EA891732E70300A31689 /* IND_SpriterEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CC1EA871732E70300A31689 /* IND_SpriterEntity.h */; };
+		4CC1EA8A1732E70300A31689 /* IND_SpriterManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CC1EA881732E70300A31689 /* IND_SpriterManager.h */; };
 		E72BA060158CC7BB0003C431 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E72BA05F158CC7BB0003C431 /* OpenGL.framework */; };
 		E75EB0D5159CADF800693F41 /* tinystr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAA49159CADEF00693F41 /* tinystr.cpp */; };
 		E75EB0D7159CADF800693F41 /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAA4B159CADEF00693F41 /* tinyxml.cpp */; };
@@ -75,6 +78,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4CC1EA851732E6EE00A31689 /* IND_SpriterManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IND_SpriterManager.cpp; sourceTree = "<group>"; };
+		4CC1EA871732E70300A31689 /* IND_SpriterEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IND_SpriterEntity.h; sourceTree = "<group>"; };
+		4CC1EA881732E70300A31689 /* IND_SpriterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IND_SpriterManager.h; sourceTree = "<group>"; };
 		E72BA05F158CC7BB0003C431 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		E744863815E952D100DDE3BF /* IND_Vector2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IND_Vector2.h; sourceTree = "<group>"; };
 		E75EAA49159CADEF00693F41 /* tinystr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinystr.cpp; sourceTree = "<group>"; };
@@ -317,6 +323,8 @@
 		E75EAA9E159CADEF00693F41 /* include */ = {
 			isa = PBXGroup;
 			children = (
+				4CC1EA871732E70300A31689 /* IND_SpriterEntity.h */,
+				4CC1EA881732E70300A31689 /* IND_SpriterManager.h */,
 				E75EAA9F159CADEF00693F41 /* CollisionParser.h */,
 				E75EAAA0159CADEF00693F41 /* Defines.h */,
 				E75EAAA1159CADEF00693F41 /* ImageCutter.h */,
@@ -358,6 +366,7 @@
 		E75EAAC2159CADEF00693F41 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				4CC1EA851732E6EE00A31689 /* IND_SpriterManager.cpp */,
 				E75EAAC3159CADEF00693F41 /* CollisionParser.cpp */,
 				E75EAAC4159CADEF00693F41 /* DebugApi.cpp */,
 				E75EAAC5159CADEF00693F41 /* DebugApi.h */,
@@ -459,6 +468,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E793C03516C964BC002F9867 /* IndieVersion.h in Headers */,
+				4CC1EA891732E70300A31689 /* IND_SpriterEntity.h in Headers */,
+				4CC1EA8A1732E70300A31689 /* IND_SpriterManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -567,6 +578,7 @@
 				E75EB189159CADF900693F41 /* RenderTransformCommonOpenGL.cpp in Sources */,
 				E75EB2AB159CAF1100693F41 /* IND_Camera3d.cpp in Sources */,
 				E793C03816C9654B002F9867 /* IndieVersion.cpp in Sources */,
+				4CC1EA861732E6EE00A31689 /* IND_SpriterManager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

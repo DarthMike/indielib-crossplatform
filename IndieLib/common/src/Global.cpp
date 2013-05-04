@@ -5,5 +5,5 @@
 
 #include "Global.h"
 
-DebugApi *g_debug = new DebugApi;
+DebugApi *g_debug = NULL;
 

@@ -113,7 +113,7 @@ private:
 
 	// ----- Containers -----
 
-	list <IND_Font *> *_listFonts;
+	std::list <IND_Font *> *_listFonts;
 
 	// ----- Private methods -----
 

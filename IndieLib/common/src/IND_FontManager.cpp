@@ -112,23 +112,22 @@ bool IND_FontManager::add(IND_Font		*pNewFont,
                           IND_Quality	pQuality) {
 	// Image loading
 	IND_Image *mNewImage = IND_Image::newImage();
-    
-    bool noError(true);
-    noError = _imageManager->add(mNewImage, pName);
-
-	// IND_Surface creation
-	if (noError) {
-        add(pNewFont, mNewImage, pFile, pType, pQuality);
-    }
-
-	// Free the image
-    if (!noError) {
+    bool noImgError = _imageManager->add(mNewImage, pName);
+    if (!noImgError) {
         DISPOSEMANAGED(mNewImage);
     }
     
-	_imageManager->remove(mNewImage);
+    bool noError(noImgError);
 
+	// IND_Surface creation
+	if (noError) {
+        noError = add(pNewFont, mNewImage, pFile, pType, pQuality);
+    }
     
+    if (noImgError) {
+        _imageManager->remove(mNewImage);
+    }
+
 	return noError;
 }
 
@@ -162,9 +161,6 @@ bool IND_FontManager::add(IND_Font		*pNewFont,
 		return 0;
 	}
 
-	char stringTemp[128];
-	char *pFileCharTemp = strcpy(stringTemp, pFile);
-
 	// ----- Width and height of the bitmap font MUST be power of two -----
 
 	IND_Math mMath;
@@ -176,6 +172,15 @@ bool IND_FontManager::add(IND_Font		*pNewFont,
 		g_debug->header("The height and width of the font must be power of 2", DebugApi::LogHeaderError);
 		return 0;
 	}
+    
+    // ----- XML font parsing -----
+    
+	if (!parseFont(pNewFont, pFile)) {
+		g_debug->header("Fatal error, cannot load the font xml file", DebugApi::LogHeaderError);
+		return 0;
+	}
+    
+	pNewFont->setFileName(pFile);
 
 	// ----- Bitmap (IND_Surface object) creation -----
 
@@ -190,15 +195,6 @@ bool IND_FontManager::add(IND_Font		*pNewFont,
 	}
 
 	pNewFont->setSurface(mNewSurface);
-
-	// ----- XML font parsing -----	
-
-	if (!parseFont(pNewFont, pFileCharTemp)) {
-		g_debug->header("Fatal error, cannot load the font xml file", DebugApi::LogHeaderError);
-		return 0;
-	}
-
-	pNewFont->setFileName(pFileCharTemp);
 
 	// ----- Puts the object into the manager -----
 
@@ -246,9 +242,6 @@ bool IND_FontManager::remove(IND_Font  *pFo) {
 
 	g_debug->header("File name:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(pFo->getFileName(), 1);
-
-    // Free bitmap IND_Surface
-	_surfaceManager->remove(pFo->getSurface());
     
 	// Quit from list
 	delFromlist(pFo);
@@ -270,7 +263,7 @@ Parses and XML font file
 Uses Tinyxml
 ==================
 */
-bool IND_FontManager::parseFont(IND_Font *pNewFont, char *pFontName) {
+bool IND_FontManager::parseFont(IND_Font *pNewFont,const char *pFontName) {
 	TiXmlDocument   *mXmlDoc = new TiXmlDocument(pFontName);
 
 	// Fatal error, cannot load
@@ -291,7 +284,7 @@ bool IND_FontManager::parseFont(IND_Font *pNewFont, char *pFontName) {
 	}
 
 	if (mXFont->Attribute("num_characters")) {
-		pNewFont->_font._numChars = atoi(mXFont->Attribute("num_characters"));
+		pNewFont->setNumChars(atoi(mXFont->Attribute("num_characters")));
 		pNewFont->setLetters(new IND_Font::LETTER [pNewFont->getNumChars()]);
 	} else {
 		g_debug->header("The font doesn't have a \"num_characters\" attribute", DebugApi::LogHeaderError);
@@ -390,6 +383,8 @@ Deletes object from the manager
 ==================
 */
 void IND_FontManager::delFromlist(IND_Font *pFo) {
+    // Free bitmap IND_Surface
+	_surfaceManager->remove(pFo->getSurface());
 	_listFonts->remove(pFo);
 	DISPOSEMANAGED(pFo);
 }
@@ -431,8 +426,9 @@ void IND_FontManager::freeVars() {
 
 		// Free bitmap IND_Surface
 		_surfaceManager->remove((*mFontListIter)->getSurface());
-
-        delFromlist(*mFontListIter);
+        
+        // Free font
+        DISPOSEMANAGED((*mFontListIter));
 	}
 
 	// Clear list

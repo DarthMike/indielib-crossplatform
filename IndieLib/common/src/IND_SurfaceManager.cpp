@@ -441,24 +441,24 @@ bool IND_SurfaceManager::remove(IND_Surface *pSu) {
 
 	if (!_ok || !pSu) {
 		writeMessage();
-		return 0;
+		return false;
 	}
 
 	// Search object
-	bool mIs = 0;
+	bool mIs = false;
 	list <IND_Surface *>::iterator mSurfaceListIter;
 	for (mSurfaceListIter  = _listSurfaces->begin();
 	        mSurfaceListIter != _listSurfaces->end();
 	        mSurfaceListIter++) {
 		if ((*mSurfaceListIter) == pSu) {
-			mIs = 1;
+			mIs = true;
 			break;
 		}
 	}
 
 	if (!mIs) {
 		writeMessage();
-		return 0;
+		return false;
 	}
 
 	// ----- Free object -----
@@ -468,7 +468,7 @@ bool IND_SurfaceManager::remove(IND_Surface *pSu) {
 
 	g_debug->header("Ok", DebugApi::LogHeaderEnd);
 
-	return 1;
+	return true;
 }
 
 
@@ -712,7 +712,7 @@ void IND_SurfaceManager::freeVars() {
 		g_debug->header("Freeing surface:", DebugApi::LogHeaderInfo);
         //FIXME: This breaks on LLVM compiler (OSX, XCode)
 		//g_debug->dataInt((int) & (*mSurfaceListIter)->_surface, 1);
-        delFromlist(*mSurfaceListIter);
+        DISPOSEMANAGED((*mSurfaceListIter));
 	}
 
 	// Clear list

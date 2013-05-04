@@ -102,6 +102,7 @@ private:
 			_name(NULL),
 			_surface(NULL){
                 _name = new char[MAX_TOKEN];
+                memset(_name, (int)'\0', MAX_TOKEN);
 		}
         ~structFont() {
             DISPOSEARRAY(_name);
@@ -120,7 +121,7 @@ private:
 	void        setNumChars(int pNumChars)         {
 		_font._numChars = pNumChars;
 	}
-	void        setFileName(char *pName)           {
+	void        setFileName(const char *pName)           {
 		strcpy(_font._name,pName);
 	}
 	void        setSurface(IND_Surface *pSurface) {
@@ -134,9 +135,6 @@ private:
 	}
 	IND_Surface *getSurface()                      {
 		return _font._surface;
-	}
-	const char* const getName()                      {
-		return _font._name;
 	}
 
 	// ----- Friends -----

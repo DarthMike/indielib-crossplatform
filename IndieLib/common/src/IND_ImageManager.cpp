@@ -593,7 +593,7 @@ void IND_ImageManager::freeVars() {
 			// Free image
 			FreeImage_Unload(handle);
             (*mImageListIter)->setFreeImageHandle(NULL);
-            delFromlist(*mImageListIter);
+            DISPOSEMANAGED((*mImageListIter));
 		}
 	}
 

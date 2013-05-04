@@ -16,65 +16,25 @@
 #include "CIndieLib_vc2008.h"
 #include "IND_Image.h"
 
-
-/*
-   	// ----- Init/End -----
-
-	IND_ImageManager(): _ok(false)  { }
-	~IND_ImageManager()              {
-		end();
-	}
-
-	bool    init();
-	void    end();
-	bool    isOK()  const {
-		return _ok;
-	}
-
-	// ----- Public methods -----
-
-	add1:   bool add(IND_Image *pNewImage, char *pName);
-	add2:   bool add(IND_Image *pNewImage, int pWidth, int pHeight, IND_ColorFormat pColorFormat);
-	remove: bool remove(IND_Image *pIm);
-	save:   bool save(IND_Image *pIm, char *pName);
-	clone:  bool clone(IND_Image *pNewImage, IND_Image *pOldImage);
-	load:   FIBITMAP* load(char *pName);
-	add3:   bool add(IND_Image *pNewImage, FIBITMAP *pImageToBeCopied);
-*/
-
 TEST(add1) {
 	CIndieLib *iLib = CIndieLib::instance();
 	iLib->init();
 
 	IND_Image *mImageBug = IND_Image::newImage();
 	CHECK(iLib->_imageManager->add(mImageBug, "../../resources/Enemy Bug.png"));
+}
 
-//	iLib->end();
-}
-/*
-TEST(add2) {
-	CIndieLib *iLib = CIndieLib::instance();
-}
-*/
 TEST(remove) {
 	CIndieLib *iLib = CIndieLib::instance();
-//	iLib->init();
 	
 	IND_Image *mImageBug = IND_Image::newImage();
 	iLib->_imageManager->add(mImageBug, "../../resources/Enemy Bug.png");
 	
 	CHECK(iLib->_imageManager->remove(mImageBug));
+}
 
-//	iLib->end();
-}
-/*
-TEST(save) {
-	CIndieLib *iLib = CIndieLib::instance();
-}
-*/
 TEST(clone) {
 	CIndieLib *iLib = CIndieLib::instance();
-//	iLib->init();
 	
 	IND_Image *mImageBug = IND_Image::newImage();
 	IND_Image *mImageClone = IND_Image::newImage();
@@ -82,10 +42,7 @@ TEST(clone) {
 	
 	CHECK(iLib->_imageManager->clone(mImageClone,mImageBug));
 	CHECK(mImageClone->getFreeImageHandle() != NULL);
-
-//	iLib->end();
 }
-
 
 TEST(load) {
 	CIndieLib *iLib = CIndieLib::instance();
@@ -93,8 +50,3 @@ TEST(load) {
 	FIBITMAP* bitmap = iLib->_imageManager->load("../../resources/Enemy Bug.png");
 	CHECK(bitmap != NULL);
 }
-/*
-TEST(add3) {
-	CIndieLib *iLib = CIndieLib::instance();
-}
-*/

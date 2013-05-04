@@ -41,7 +41,6 @@ const int DebugApi::LogHeaderEnd = 6;
  * Init
  */
 bool DebugApi::init() {
-	end();
 	initVars();
 
 	// File

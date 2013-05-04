@@ -49,7 +49,12 @@ void IndieLib::init(IND_InitializationMode pMode) {
 #endif
 
 	// g_debug initilization
-	if (pMode)  g_debug->init();
+	if (pMode) {
+        if (!g_debug) {
+            g_debug = new DebugApi();
+            g_debug->init();
+        }
+    }
 
 	// SDL initialization
 	if(0 != SDL_Init(SDL_INIT_VIDEO)) {

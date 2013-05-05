@@ -57,6 +57,7 @@
 #include "entities/EntityTests_animateScale.h"
 #include "entities/EntityTests_interactions.h"
 #include "surface/SurfaceTests_Filters.h"
+#include "surface/SurfaceTests_layout.h"
 
 /*
 ==================
@@ -122,6 +123,8 @@ void initTests() {
     g_tests.push_back(entity3);
     SurfaceTests_Filters* filters = new SurfaceTests_Filters();
     g_tests.push_back(filters);
+	SurfaceTests_layout* layout = new SurfaceTests_layout();
+	g_tests.push_back(layout);
 
 }
 

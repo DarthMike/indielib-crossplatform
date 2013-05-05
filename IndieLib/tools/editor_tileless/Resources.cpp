@@ -29,6 +29,12 @@ Resources::Resources()
 {
 	// Get IndieLib instante
 	mI = CIndieLib::instance();
+
+	mMouseSurface = IND_Surface::newSurface();
+	mMouseEntity = IND_Entity2d::newEntity2d();
+	mFont = IND_Font::newFont();
+	mFontEntity = IND_Entity2d::newEntity2d();
+
 }
 
 

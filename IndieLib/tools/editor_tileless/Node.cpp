@@ -31,6 +31,9 @@ Node::Node (int pX, int pY, int pZ, int pId, int pLayer, IND_Surface *pSurface)
 	// Get IndieLib instante
 	mI = CIndieLib::instance();
 
+	// Entity 
+	mEntity = IND_Entity2d::newEntity2d();
+
 	// Surface id
 	mId = pId;
 

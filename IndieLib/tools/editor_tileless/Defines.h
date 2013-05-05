@@ -34,7 +34,7 @@
 // Brush entity, used for each of the brushes for droping backdrops to the screen
 struct structBackDropBrushes
 {	
-	IND_Entity2d mEntity; 			// Entity
+	IND_Entity2d* mEntity; 			// Entity
 	int mId;						// Brush Id
 };
 typedef struct structBackDropBrushes BRUSH;
@@ -44,7 +44,7 @@ typedef struct structBackDropBrushes BRUSH;
 // can be converted later to brushes
 struct structBackDropSurfaces
 {	
-	IND_Surface mSurface; 			// Surface
+	IND_Surface* mSurface; 			// Surface
 	int mId;						// Surface Id
 };
 typedef struct structBackDropSurfaces SURFACEWITHID;

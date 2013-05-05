@@ -43,8 +43,8 @@ public:
 	bool					LoadResources				(char *pResourceFile);
 	bool					LoadTileset					(char *pTilesetFile);
 
-	IND_Entity2d			*GetMouseEntity				()							{ return &mMouseEntity;			}
-	IND_Entity2d			*GetFontEntity				()							{ return &mFontEntity;			}
+	IND_Entity2d			*GetMouseEntity				()							{ return mMouseEntity;			}
+	IND_Entity2d			*GetFontEntity				()							{ return mFontEntity;			}
 	char					*GetTilesetPath				()							{ return mTilesetPath;			}				
 	vector <SURFACEWITHID*>		*GetVectorTiles				()							{ return &mVectorTiles;			}
 	IND_Surface				*GetSurfaceById				(int pId);
@@ -58,12 +58,12 @@ private:
 	vector <SURFACEWITHID*> mVectorTiles;	
 
 	// Mouse pointer
-	IND_Surface mMouseSurface;
-	IND_Entity2d mMouseEntity;
+	IND_Surface* mMouseSurface;
+	IND_Entity2d* mMouseEntity;
 
 	// Font
-	IND_Font mFont;
-	IND_Entity2d mFontEntity;
+	IND_Font* mFont;
+	IND_Entity2d* mFontEntity;
 
 	// Current tileset location
 	char mTilesetPath [MAX_PATH];

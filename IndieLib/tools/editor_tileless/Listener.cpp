@@ -419,7 +419,7 @@ void Listener::ListenEditing()
 			mBackDropNodeOver->GetEntity()->showGridAreas (true);
 
 			// Hide backdrop brush 
-			mBackDropBrushes [mCurrentBackDropBrush].mEntity.setShow (false);
+			mBackDropBrushes [mCurrentBackDropBrush].mEntity->setShow (false);
 
 			// Listen for possible changes that the selected backdrop can suffer
 			ListenHoverBackDrop ();
@@ -431,7 +431,7 @@ void Listener::ListenEditing()
 				mBackDropNodeOver->GetEntity()->showGridAreas (false);
 
 			// Show backdrop brush 
-			mBackDropBrushes [mCurrentBackDropBrush].mEntity.setShow (true);
+			mBackDropBrushes [mCurrentBackDropBrush].mEntity->setShow (true);
 
 			// Listen for switching between backdrop images on the brush, drop them in the map, etc
 			ListenBackDropBrush ();
@@ -707,40 +707,40 @@ void Listener::ListenBackDropBrush()
 	if (scrolled && mI->_input->getMouseScrollY() > 0.0f) 
 	{
 		// Hide current backdrop, we are going to change to another one
-		mBackDropBrushes [mCurrentBackDropBrush].mEntity.setShow (false);
+		mBackDropBrushes [mCurrentBackDropBrush].mEntity->setShow (false);
 
 		// Set previous backdrop as the current one
 		mCurrentBackDropBrush--; 
 		if (mCurrentBackDropBrush < 0) mCurrentBackDropBrush = mNumBackDropBrushes - 1;
 
 		// Show current backdrop
-		mBackDropBrushes [mCurrentBackDropBrush].mEntity.setShow (true);
+		mBackDropBrushes [mCurrentBackDropBrush].mEntity->setShow (true);
 	}
 
 	// Switch between brush backdrop images (next)
 	if (scrolled && mI->_input->getMouseScrollY() < 0.0f) 
 	{
 		// Hide current backdrop, we are going to change to another one
-		mBackDropBrushes [mCurrentBackDropBrush].mEntity.setShow (false);
+		mBackDropBrushes [mCurrentBackDropBrush].mEntity->setShow (false);
 
 		// Set next backdrop as the current one
 		mCurrentBackDropBrush++; 
 		if (mCurrentBackDropBrush > mNumBackDropBrushes - 1) mCurrentBackDropBrush = 0;
 
 		// Show current backdrop
-		mBackDropBrushes [mCurrentBackDropBrush].mEntity.setShow (true);
+		mBackDropBrushes [mCurrentBackDropBrush].mEntity->setShow (true);
 	}
 
 	// -------------------- Updating current backdrop "brush" position --------------------
 
 	// Position of the backdrop brush in the mouse position already calculated in ListenCommon(). 
-	mBackDropBrushes [mCurrentBackDropBrush].mEntity.setPosition (mPosBrushX, mPosBrushY, 0);
+	mBackDropBrushes [mCurrentBackDropBrush].mEntity->setPosition (mPosBrushX, mPosBrushY, 0);
 
 	// -------------------- Drop back drop :) --------------------
 
 	if (mI->_input->onMouseButtonRelease(IND_MBUTTON_LEFT))
 	{
-		mMap->CreateNode ((int) mPosBrushX, (int) mPosBrushY, 0, mBackDropBrushes [mCurrentBackDropBrush].mId, mLayer, mBackDropBrushes [mCurrentBackDropBrush].mEntity.getSurface());
+		mMap->CreateNode ((int) mPosBrushX, (int) mPosBrushY, 0, mBackDropBrushes [mCurrentBackDropBrush].mId, mLayer, mBackDropBrushes [mCurrentBackDropBrush].mEntity->getSurface());
 	}
 }
 
@@ -880,17 +880,17 @@ void Listener::CreateBackDropBrushes ()
 		mIter++)
 	{	
 		mBackDropBrushes [i].mId = (*mIter)->mId;								// Id
-		mBackDropBrushes [i].mEntity.setSurface (&(*mIter)->mSurface);			// Set the surface (brush image) into the entity
-		mI->_entity2dManager->add (BRUSH_LAYER, &mBackDropBrushes [i].mEntity);	// Add the entity to the IndieLib manager
-		mBackDropBrushes [i].mEntity.setHotSpot (0.5f, 0.5f);					// Pivot point in the middle of the surface
-		mBackDropBrushes [i].mEntity.setShow (false);							// Hide the brush
-		mBackDropBrushes [i].mEntity.setTransparency (128);						// Brushes are 50% Transparent
+		mBackDropBrushes [i].mEntity->setSurface ((*mIter)->mSurface);			// Set the surface (brush image) into the entity
+		mI->_entity2dManager->add (BRUSH_LAYER, mBackDropBrushes [i].mEntity);	// Add the entity to the IndieLib manager
+		mBackDropBrushes [i].mEntity->setHotSpot (0.5f, 0.5f);					// Pivot point in the middle of the surface
+		mBackDropBrushes [i].mEntity->setShow (false);							// Hide the brush
+		mBackDropBrushes [i].mEntity->setTransparency (128);						// Brushes are 50% Transparent
 		i++;
 	}
 
 	// We only show the current brush
 	mCurrentBackDropBrush = 0;
-	mBackDropBrushes [0].mEntity.setShow (true);
+	mBackDropBrushes [0].mEntity->setShow (true);
 }
 
 
@@ -904,7 +904,7 @@ void Listener::DeleteBackDropBrushes ()
 	// Delete all the brushes
 	for (int i = 0; i < mNumBackDropBrushes; i++)
 	{
-		mI->_entity2dManager->remove (&mBackDropBrushes[i].mEntity);
+		mI->_entity2dManager->remove (mBackDropBrushes[i].mEntity);
 	}
 	
 	// Delete the array of brushes

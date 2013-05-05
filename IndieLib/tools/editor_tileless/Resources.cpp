@@ -76,7 +76,7 @@ IND_Surface *Resources::GetSurfaceById (int pId)
 	{
 		// Check if the ID is the correct one
 		if ((*mIter)->mId == pId)
-			return &(*mIter)->mSurface;
+			return (*mIter)->mSurface;
 	}
 
 	// Returns error
@@ -96,25 +96,25 @@ Load Resources
 bool Resources::LoadEditorElements ()
 {
 	// Load the mouse pointer, it is loaded to and IndieLib surface
-	if (!mI->_surfaceManager->add (&mMouseSurface, "../../resources/images/editor/cursor.png", IND_ALPHA, IND_32)) return 0;
+	if (!mI->_surfaceManager->add (mMouseSurface, "../../resources/images/editor/cursor.png", IND_ALPHA, IND_32)) return 0;
 	
 	// Add the Mouse entity to the IndieLib Entity Manager
-	mI->_entity2dManager->add (BRUSH_LAYER, &mMouseEntity);
-	mMouseEntity.setSurface (&mMouseSurface);
+	mI->_entity2dManager->add (BRUSH_LAYER, mMouseEntity);
+	mMouseEntity->setSurface (mMouseSurface);
 
 	// Create a collision bounding rectangle for the mouse. It will be used in order to be able to select 
 	// the editor elements (by checking if there is a collision
-	mMouseEntity.setBoundingRectangle ("cursor", 0, 0, 20, 20);
-	mMouseEntity.setHotSpot (0.5f, 0.5f);
+	mMouseEntity->setBoundingRectangle ("cursor", 0, 0, 20, 20);
+	mMouseEntity->setHotSpot (0.5f, 0.5f);
 
 	// Font loading
-	if (!mI->_fontManager->add (&mFont, "../../resources/fonts/font_small.png", "../../resources/fonts/font_small.xml", IND_ALPHA, IND_32)) return 0;
-	mI->_entity2dManager->add	(GUI_LAYER, &mFontEntity);
-	mFontEntity.setFont			(&mFont);
-	mFontEntity.setLineSpacing	(18);
-	mFontEntity.setCharSpacing	(-8);
-	mFontEntity.setPosition		(0, 0, 1);
-	mFontEntity.setAlign		(IND_LEFT);
+	if (!mI->_fontManager->add (mFont, "../../resources/fonts/font_small.png", "../../resources/fonts/font_small.xml", IND_ALPHA, IND_32)) return 0;
+	mI->_entity2dManager->add	(GUI_LAYER, mFontEntity);
+	mFontEntity->setFont			(mFont);
+	mFontEntity->setLineSpacing	(18);
+	mFontEntity->setCharSpacing	(-8);
+	mFontEntity->setPosition		(0, 0, 1);
+	mFontEntity->setAlign		(IND_LEFT);
 
 	return true;
 }
@@ -196,7 +196,7 @@ bool Resources::LoadTileset (char *pTilesetFile)
 			strcpy (mFileName, mXSurface->Attribute("image"));	
 
 			// Load surface
-			if (!mI->_surfaceManager->add (&mNewSurface->mSurface, mFileName, IND_ALPHA, IND_32)) return 0;
+			if (!mI->_surfaceManager->add (mNewSurface->mSurface, mFileName, IND_ALPHA, IND_32)) return 0;
 		}
 		else
 		{
@@ -231,7 +231,7 @@ void  Resources::FreeTileset ()
 		mIter != mVectorTiles.end();
 		mIter++)
 	{
-		mI->_surfaceManager->remove(&(*mIter)->mSurface);
+		mI->_surfaceManager->remove((*mIter)->mSurface);
 		delete (*mIter);
 	}
 

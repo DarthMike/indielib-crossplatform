@@ -39,13 +39,13 @@ public:
 	Node			(int pX, int pY, int pZ, int pId, int pLayer, IND_Surface *pSurface);
 	~Node			();
 
-	IND_Entity2d	*GetEntity		()				{ return &mEntity;	}
+	IND_Entity2d	*GetEntity		()				{ return mEntity;	}
 	int				GetLayer		()				{ return mLayer;	}
 	int				GetSurfaceId	()				{ return mId;		}
 
 private:
 
-	IND_Entity2d mEntity;
+	IND_Entity2d* mEntity;
 	int mId;			// Surface id
 	CIndieLib *mI;		// Pointer to IndieLib class
 	int mLayer;			// Layer where the node is created

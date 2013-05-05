@@ -263,6 +263,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\tests\manual\surface\SurfaceTests_layout.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\tests\manual\surface\SurfaceTests_layout.h"
+				>
+			</File>
+			<File
 				RelativePath="..\tests\manual\surface\SurfaceTests_textBlock.cpp"
 				>
 			</File>

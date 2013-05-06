@@ -44,7 +44,7 @@ int IndieLib()
 
 	// ----- Spriter animation loading -----
 
-	if (!mI->_spriterManager->addSpriterFile(NULL,"Example.SCML")){
+	if (!mI->_spriterManager->addSpriterFile(NULL,"../../resources/Spriter/monster/Example.SCML")){
         
         //return 0;
 

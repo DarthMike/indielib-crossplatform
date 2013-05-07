@@ -169,7 +169,7 @@ bool IND_SpriterManager::parseSpriterData(list<IND_SpriterEntity*> *pNewSpriterE
 
 			string result = spriterTopPath + string(eFile->Attribute("name"));
 			
-			IND_Image *mImageTemp = new IND_Image();
+			IND_Image *mImageTemp = IND_Image::newImage();
 			if (!_imageManager->add(mImageTemp, result.c_str())){
 				g_debug->header("Unable to add Spriter image", 2);
                 eXmlDoc->Clear();

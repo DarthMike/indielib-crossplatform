@@ -28,12 +28,12 @@ int IndieLib()
     
     // ----- Font -----
 	
-    IND_Font *mFontSmall = new IND_Font();
+    IND_Font *mFontSmall = IND_Font::newFont();
 	if (!mI->_fontManager->add(mFontSmall, "../../resources/font_small.png", "../../resources/font_small.xml", IND_ALPHA, IND_32)) return 0;
     
 	// ----- Font creation -----
     
-	IND_Entity2d *mTextSmallWhite = new IND_Entity2d() ;
+	IND_Entity2d *mTextSmallWhite = IND_Entity2d::newEntity2d() ;
 	mI->_entity2dManager->add(mTextSmallWhite);				// Entity adding
 	mTextSmallWhite->setFont(mFontSmall);					// Set the font into the entity
 	mTextSmallWhite->setLineSpacing(18);

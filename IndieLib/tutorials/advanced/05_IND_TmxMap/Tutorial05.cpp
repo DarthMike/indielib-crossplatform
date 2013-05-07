@@ -36,12 +36,12 @@ int IndieLib()
     
     // ----- Font -----
 	
-    IND_Font *mFontSmall = new IND_Font();
+    IND_Font *mFontSmall = IND_Font::newFont();
 	if (!mI->_fontManager->add(mFontSmall, "../../resources/font_small.png", "../../resources/font_small.xml", IND_ALPHA, IND_32)) return 0;
     
 	// ----- Font creation -----
     
-	IND_Entity2d *mTextSmallWhite = new IND_Entity2d() ;
+	IND_Entity2d *mTextSmallWhite = IND_Entity2d::newEntity2d();
 	mI->_entity2dManager->add(mTextSmallWhite);				// Entity adding
 	mTextSmallWhite->setFont(mFontSmall);					// Set the font into the entity
 	mTextSmallWhite->setLineSpacing(18);
@@ -52,17 +52,17 @@ int IndieLib()
     
     // ----- Map -----
     
-    IND_TmxMap *orthogonalMap = new IND_TmxMap();
+    IND_TmxMap *orthogonalMap = IND_TmxMap::newTmxMap();
     if (!mI->_tmxMapManager->add(orthogonalMap, "../../resources/tmx/example.tmx")) return 0;                  // Orthogonal, multiple Layers, flipped tiles.
     
-    IND_TmxMap *isometricMap = new IND_TmxMap();
+    IND_TmxMap *isometricMap = IND_TmxMap::newTmxMap();
 	if (!mI->_tmxMapManager->add(isometricMap, "../../resources/tmx/isometric_grass_and_water.tmx")) return 0; // Isometric, one layer, no flipped tiles.
     
     
-    IND_Surface *mSurfaceIsometricTiles = new IND_Surface();
+    IND_Surface *mSurfaceIsometricTiles = IND_Surface::newSurface();
     if (!mI->_surfaceManager->add(mSurfaceIsometricTiles, isometricMap->getImagePath(), IND_ALPHA, IND_32)) return 0;
 
-    IND_Surface *mSurfaceOrthogonalTiles = new IND_Surface();
+    IND_Surface *mSurfaceOrthogonalTiles = IND_Surface::newSurface();
     if (!mI->_surfaceManager->add(mSurfaceOrthogonalTiles, orthogonalMap->getImagePath(), IND_ALPHA, IND_32)) return 0;
 
     

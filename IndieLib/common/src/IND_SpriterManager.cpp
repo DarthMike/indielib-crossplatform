@@ -105,7 +105,10 @@ bool IND_SpriterManager::addSpriterFile(list<IND_SpriterEntity*> *pNewSpriterEnt
  * @param pSCMLFileName				TODO describtion.
  */
 bool IND_SpriterManager::parseSpriterData(list<IND_SpriterEntity*> *pNewSpriterEntityList,const char *pSCMLFileName) {
-	TiXmlDocument *eXmlDoc = new TiXmlDocument(pSCMLFileName);		
+	
+    g_debug->header("Start parsing Spriter SGML file", 5);
+    
+    TiXmlDocument *eXmlDoc = new TiXmlDocument(pSCMLFileName);
 
 	// Fatal error, cannot load
 	if (!eXmlDoc->LoadFile()){
@@ -123,10 +126,11 @@ bool IND_SpriterManager::parseSpriterData(list<IND_SpriterEntity*> *pNewSpriterE
 		spriterTopPath = "./";
     }
 	else{
-    	spriterTopPath = s.substr(0, lastPosTemp);
+    	spriterTopPath = s.substr(0, lastPosTemp + 1);
 	}
-	//printf("Top directory : %s\n", spriterTopPath.c_str());
-
+    
+	g_debug->header("Top directory : ", 3);
+    g_debug->dataChar(spriterTopPath.c_str(), true);
 
 	// Document root
 	TiXmlElement *eSpriter_data = 0;
@@ -145,7 +149,7 @@ bool IND_SpriterManager::parseSpriterData(list<IND_SpriterEntity*> *pNewSpriterE
 	eFolder = eSpriter_data->FirstChildElement("folder");
 
 	if (!eFolder) {
-		g_debug->header("There are no Spriter resourcefolders to parse", 2);
+		g_debug->header("There are no Spriter resourcefolders to parse", 3);
 		eXmlDoc->Clear();
 		delete eXmlDoc;
 		return 0;
@@ -164,11 +168,11 @@ bool IND_SpriterManager::parseSpriterData(list<IND_SpriterEntity*> *pNewSpriterE
 			//printf("  height: %s\n", eFile->Attribute("height"));
 
 			string result = spriterTopPath + string(eFile->Attribute("name"));
-			printf("  file    : %s\n", result.c_str());
 			
 			IND_Image *mImageTemp = new IND_Image();
 			if (!_imageManager->add(mImageTemp, result.c_str())){
-				eXmlDoc->Clear();
+				g_debug->header("Unable to add Spriter image", 2);
+                eXmlDoc->Clear();
 				delete eXmlDoc;
 				return 0;
 			}	
@@ -288,6 +292,8 @@ bool IND_SpriterManager::parseSpriterData(list<IND_SpriterEntity*> *pNewSpriterE
 	eXmlDoc->Clear();
 	delete eXmlDoc;
 
+    g_debug->header("End parsing Spriter SGML file", 6);
+    
 	return 1;
 }
 

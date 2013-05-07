@@ -30,28 +30,28 @@ int IndieLib()
 	// ----- Surface loading -----
 
 	// Loading Background
-	IND_Surface *mSurfaceBack = new IND_Surface();
+	IND_Surface *mSurfaceBack = IND_Surface::newSurface();
 	if (!mI->_surfaceManager->add(mSurfaceBack, "../../resources/twist.jpg", IND_OPAQUE, IND_32)) return 0;
 
 	// Loading Beettleship
-	IND_Surface *mSurfaceBeetleship = new IND_Surface();
+	IND_Surface *mSurfaceBeetleship = IND_Surface::newSurface();
 	if (!mI->_surfaceManager->add(mSurfaceBeetleship, "../../resources/beetleship.png", IND_ALPHA, IND_32)) return 0;
 
 	// Loading Octopus
-	IND_Surface *mSurfaceOctopus = new IND_Surface();
+	IND_Surface *mSurfaceOctopus = IND_Surface::newSurface();
 	if (!mI->_surfaceManager->add(mSurfaceOctopus, "../../resources/octopus.png", IND_ALPHA, IND_32)) return 0;
 
 	// Loading Planet
-	IND_Surface *mSurfacePlanet = new IND_Surface();
+	IND_Surface *mSurfacePlanet = IND_Surface::newSurface();
 	if (!mI->_surfaceManager->add(mSurfacePlanet, "../../resources/planet.png", IND_ALPHA, IND_32)) return 0;
 
 	// Font
-	IND_Font *mFontSmall = new IND_Font() ;
+	IND_Font *mFontSmall = IND_Font::newFont() ;
 	if (!mI->_fontManager->add(mFontSmall, "../../resources/font_small.png", "../../resources/font_small.xml", IND_ALPHA, IND_32)) return 0;
 
 	// ----- Font creation -----
 
-	IND_Entity2d *mTextSmallWhite = new IND_Entity2d();					
+	IND_Entity2d *mTextSmallWhite = IND_Entity2d::newEntity2d();					
 	mI->_entity2dManager->add(mTextSmallWhite);			// Entity adding
 	mTextSmallWhite->setFont(mFontSmall);				// Set the font into the entity
 	mTextSmallWhite->setLineSpacing(18);
@@ -62,22 +62,22 @@ int IndieLib()
 	// ----- Set the surfaces into 2d entities -----
 
 	// Creating 2d entity for the background
-	IND_Entity2d *mBack = new IND_Entity2d();					
+	IND_Entity2d *mBack = IND_Entity2d::newEntity2d();					
 	mI->_entity2dManager->add(mBack);				// Entity adding
 	mBack->setSurface(mSurfaceBack);				// Set the surface into the entity
 
 	// Creating 2d entity for the bettleship
-	IND_Entity2d *mBeetleship = new IND_Entity2d();					
+	IND_Entity2d *mBeetleship = IND_Entity2d::newEntity2d();					
 	mI->_entity2dManager->add(mBeetleship);				// Entity adding
 	mBeetleship->setSurface(mSurfaceBeetleship);			// Set the surface into the entity
 
 	// Creating 2d entity for the octopus
-	IND_Entity2d *mOctopus = new IND_Entity2d();					
+	IND_Entity2d *mOctopus = IND_Entity2d::newEntity2d();					
 	mI->_entity2dManager->add(mOctopus);				// Entity adding
 	mOctopus->setSurface(mSurfaceOctopus);				// Set the surface into the entity
 
 	// Creating 2d entity for the planet
-	IND_Entity2d *mPlanet = new IND_Entity2d();					
+	IND_Entity2d *mPlanet = IND_Entity2d::newEntity2d();					
 	mI->_entity2dManager->add(mPlanet);				// Entity adding
 	mPlanet->setSurface(mSurfacePlanet);				// Set the surface into the entity
 

@@ -50,22 +50,22 @@ bool IND_AnimationManager::init(IND_ImageManager *pImageManager, IND_SurfaceMana
 	end();
 	initVars();
 
-	g_debug->header("Initializing AnimationManager", 5);
+	g_debug->header("Initializing AnimationManager", DebugApi::LogHeaderBegin);
 
 	if (pSurfaceManager->isOK()) {
-		g_debug->header("SurfaceManager Ok", 1);
+		g_debug->header("SurfaceManager Ok", DebugApi::LogHeaderOk);
 		_surfaceManager = pSurfaceManager;
 
-		g_debug->header("ImageManager Ok", 1);
+		g_debug->header("ImageManager Ok", DebugApi::LogHeaderOk);
 		_imageManager = pImageManager;
 
 		_collisionParser = CollisionParser::instance();
 
 		_ok = true;
 
-		g_debug->header("AnimationManager OK", 6);
+		g_debug->header("AnimationManager OK", DebugApi::LogHeaderEnd);
 	} else {
-		g_debug->header("SurfaceManager is not correctly initialized", 2);
+		g_debug->header("SurfaceManager is not correctly initialized", DebugApi::LogHeaderError);
 		_ok = false;
 	}
 
@@ -78,11 +78,11 @@ bool IND_AnimationManager::init(IND_ImageManager *pImageManager, IND_SurfaceMana
  */
 void IND_AnimationManager::end() {
 	if (_ok) {
-		g_debug->header("Finalizing AnimationManager", 5);
-		g_debug->header("Freeing animations" , 5);
+		g_debug->header("Finalizing AnimationManager", DebugApi::LogHeaderBegin);
+		g_debug->header("Freeing animations" , DebugApi::LogHeaderBegin);
 		freeVars();
-		g_debug->header("Animations freed", 6);
-		g_debug->header("AnimationManager finalized", 6);
+		g_debug->header("Animations freed", DebugApi::LogHeaderEnd);
+		g_debug->header("AnimationManager finalized", DebugApi::LogHeaderEnd);
 
 		_ok = false;
 	}
@@ -122,7 +122,7 @@ bool IND_AnimationManager::addToSurface(IND_Animation *pNewAnimation,
 		IND_Image *ActualImage = pNewAnimation->getImage(i);
 
 		// Creation of the surface
-		IND_Surface *mNewSurface = new IND_Surface;
+		IND_Surface *mNewSurface = IND_Surface::newSurface();
 		_surfaceManager->add(mNewSurface, ActualImage, pType, pQuality);
 		pNewAnimation->setSurface(i, mNewSurface);
 
@@ -172,7 +172,7 @@ bool IND_AnimationManager::addToSurface(IND_Animation *pNewAnimation,
 		mCurrentImage->setAlpha(pR,pG,pB);
 		
 		// Creation of the surface
-		IND_Surface *mNewSurface = new IND_Surface;
+		IND_Surface *mNewSurface = IND_Surface::newSurface();
 		_surfaceManager->add(mNewSurface, mCurrentImage, pType, pQuality);
 		pNewAnimation->setSurface(i, mNewSurface);
 
@@ -208,7 +208,7 @@ bool IND_AnimationManager:: addToSurface(IND_Animation *pNewAnimation,
 		IND_Image *ActualImage = pNewAnimation->getImage(i);
 
 		// Creation of the surface
-		IND_Surface *mNewSurface = new IND_Surface;
+		IND_Surface *mNewSurface = IND_Surface::newSurface();
 		_surfaceManager->add(mNewSurface, ActualImage, pBlockSize,  pType, pQuality);
 		pNewAnimation->setSurface(i, mNewSurface);
 
@@ -254,7 +254,7 @@ bool IND_AnimationManager::addToSurface(IND_Animation *pNewAnimation,
 		mCurrentImage->setAlpha(pR, pG, pB);
 
 		// Creation of the surface
-		IND_Surface *mNewSurface = new IND_Surface;
+		IND_Surface *mNewSurface = IND_Surface::newSurface();
 		_surfaceManager->add(mNewSurface, mCurrentImage, pBlockSize, pType, pQuality);
 		pNewAnimation->setSurface(i, mNewSurface);
 
@@ -280,8 +280,8 @@ bool IND_AnimationManager::addToSurface(IND_Animation *pNewAnimation,
  * @param pAnimation				Name of the animation XML script.
  */
 bool IND_AnimationManager::addToImage(IND_Animation *pNewAnimation, const char *pAnimation) {
-	g_debug->header("Parsing and loading animation", 5);
-	g_debug->header("File name:", 3);
+	g_debug->header("Parsing and loading animation", DebugApi::LogHeaderBegin);
+	g_debug->header("File name:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(pAnimation, 1);
 
 	if (!_ok) {
@@ -292,7 +292,7 @@ bool IND_AnimationManager::addToImage(IND_Animation *pNewAnimation, const char *
 	// ----- Animation file parsing -----
 
 	if (!parseAnimation(pNewAnimation, pAnimation)) {
-		g_debug->header("Fatal error, cannot load the animation xml file", 2);
+		g_debug->header("Fatal error, cannot load the animation xml file", DebugApi::LogHeaderError);
 		return 0;
 	}
 
@@ -305,7 +305,7 @@ bool IND_AnimationManager::addToImage(IND_Animation *pNewAnimation, const char *
 
 	// ----- g_debug -----
 
-	g_debug->header("Animation parsed and loaded", 6);
+	g_debug->header("Animation parsed and loaded", DebugApi::LogHeaderEnd);
 
 	return 1;
 }
@@ -391,12 +391,12 @@ bool IND_AnimationManager::calculateAxis(IND_Animation *pAn,
  * @param pName					TODO describtion.
  */
 IND_Image *IND_AnimationManager::loadImage(const char *pName) {
-	IND_Image *mNewImage = new IND_Image;
+	IND_Image *mNewImage = IND_Image::newImage();
     
     bool noError = _imageManager->add(mNewImage, pName);
     
     if (!noError) {
-		DISPOSE(mNewImage);
+		DISPOSEMANAGED(mNewImage);
     }
 	
 	return noError ? mNewImage : NULL;
@@ -422,7 +422,7 @@ bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, const ch
 	mXAnimation = mXmlDoc->FirstChildElement("animation");
 
 	if (!mXAnimation) {
-		g_debug->header("Invalid name for document root, should be <animation>", 2);
+		g_debug->header("Invalid name for document root, should be <animation>", DebugApi::LogHeaderError);
 		mXmlDoc->Clear();
 		delete mXmlDoc;
 		return 0;
@@ -435,7 +435,7 @@ bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, const ch
 	mXFrames = mXAnimation->FirstChildElement("frames");
 
 	if (!mXFrames) {
-		g_debug->header("Invalid name for frames child, should be <frames>", 2);
+		g_debug->header("Invalid name for frames child, should be <frames>", DebugApi::LogHeaderError);
 		mXmlDoc->Clear();
 		delete mXmlDoc;
 		return 0;
@@ -445,7 +445,7 @@ bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, const ch
 	mXFrame = mXFrames->FirstChildElement("frame");
 
 	if (!mXFrame) {
-		g_debug->header("There are no frames to parse", 2);
+		g_debug->header("There are no frames to parse", DebugApi::LogHeaderError);
 		mXmlDoc->Clear();
 		delete mXmlDoc;
 		return 0;
@@ -459,7 +459,7 @@ bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, const ch
 		if (mXFrame->Attribute("name")) {
 			mNewFrame->setName(mXFrame->Attribute("name"));
 		} else {
-			g_debug->header("The frame doesn't have a \"name\" attribute", 2);
+			g_debug->header("The frame doesn't have a \"name\" attribute", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();
 			delete mNewFrame;
 			delete mXmlDoc;
@@ -473,7 +473,7 @@ bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, const ch
 			if (mNewFrame->getImage() == 0)
 				return 0;
 		} else {
-			g_debug->header("The frame doesn't have a \"file\" attribute", 2);
+			g_debug->header("The frame doesn't have a \"file\" attribute", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();
 			delete mXmlDoc;
 			return 0;
@@ -493,18 +493,18 @@ bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, const ch
 		if (mXFrame->Attribute("collision")) {
 			// ----- Parsing collision file -----
 
-			g_debug->header("Parsing collision file", 5);
-			g_debug->header("File name:", 3);
+			g_debug->header("Parsing collision file", DebugApi::LogHeaderBegin);
+			g_debug->header("File name:", DebugApi::LogHeaderInfo);
 			g_debug->dataChar((char *) mXFrame->Attribute("collision"), 1);
 
 			if (!_collisionParser->parseCollision(mNewFrame->_frame._listBoundingCollision, (char *) mXFrame->Attribute("collision"))) {
-				g_debug->header("Fatal error, cannot load the collision xml file", 2);
+				g_debug->header("Fatal error, cannot load the collision xml file", DebugApi::LogHeaderError);
 				return 0;
 			}
 
 			// ----- g_debug -----
 
-			g_debug->header("Collision file loaded", 6);
+			g_debug->header("Collision file loaded", DebugApi::LogHeaderEnd);
 		}
 
 		// Push the frame into the frames vector
@@ -521,7 +521,7 @@ bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, const ch
 	mXSequences = mXFrames->NextSiblingElement("sequences");
 
 	if (!mXSequences) {
-		g_debug->header("Invalid name for sequences child, should be <sequences>", 2);
+		g_debug->header("Invalid name for sequences child, should be <sequences>", DebugApi::LogHeaderError);
 		mXmlDoc->Clear();
 		delete mXmlDoc;
 		return 0;
@@ -531,7 +531,7 @@ bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, const ch
 	mXSequence = mXSequences->FirstChildElement("sequence");
 
 	if (!mXSequence) {
-		g_debug->header("There are no sequences to parse", 2);
+		g_debug->header("There are no sequences to parse", DebugApi::LogHeaderError);
 		mXmlDoc->Clear();
 		delete mXmlDoc;
 		return 0;
@@ -546,7 +546,7 @@ bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, const ch
 			mNewSequence->setName(mXSequence->Attribute("name"));
             mNewSequence->getSequenceTimer()->start();
 		} else {
-			g_debug->header("The sequence doesn't have a \"name\" attribute", 2);
+			g_debug->header("The sequence doesn't have a \"name\" attribute", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();
 			delete mXmlDoc;
 			return 0;
@@ -556,7 +556,7 @@ bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, const ch
 		mXSequenceFrame = mXSequence->FirstChildElement("frame");
 
 		if (!mXSequenceFrame) {
-			g_debug->header("There are no frames in the sequence to parse", 2);
+			g_debug->header("There are no frames in the sequence to parse", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();
 			delete mXmlDoc;
 			return 0;
@@ -595,7 +595,7 @@ bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, const ch
 					// Move to the next frame reference
 					mXSequenceFrame = mXSequenceFrame->NextSiblingElement("frame");
 				} else {
-					g_debug->header("Unknown frame in sequences", 2);
+					g_debug->header("Unknown frame in sequences", DebugApi::LogHeaderError);
 					mXmlDoc->Clear();
 					delete mXmlDoc;
 					return 0;
@@ -609,7 +609,7 @@ bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, const ch
 			// Move to the next sequence
 			mXSequence = mXSequence->NextSiblingElement("sequence");
 		} else {
-			g_debug->header("The frame sequence doesn't have a \"name\" attribute", 2);
+			g_debug->header("The frame sequence doesn't have a \"name\" attribute", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();
 			delete mXmlDoc;
 			return 0;
@@ -630,7 +630,7 @@ bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, const ch
  * @param pType					TODO describtion.
  */
 bool IND_AnimationManager::remove(IND_Animation *pAn, bool pType) {
-	g_debug->header("Freeing animation", 5);
+	g_debug->header("Freeing animation", DebugApi::LogHeaderBegin);
 
 	if (!_ok) {
 		writeMessage();
@@ -657,7 +657,7 @@ bool IND_AnimationManager::remove(IND_Animation *pAn, bool pType) {
 
 	// ----- Free object -----
 
-	g_debug->header("Name:", 3);
+	g_debug->header("Name:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(pAn->_animation._name, 1);
 
 	// ------ Free all the surfaces and animations -----
@@ -684,7 +684,7 @@ bool IND_AnimationManager::remove(IND_Animation *pAn, bool pType) {
 	// Quit from list
 	delFromlist(pAn);
 
-	g_debug->header("Ok", 6);
+	g_debug->header("Ok", DebugApi::LogHeaderEnd);
 
 	return 1;
 }
@@ -730,7 +730,7 @@ void IND_AnimationManager::addToList(IND_Animation *pNewAnimation) {
  */
 void IND_AnimationManager::delFromlist(IND_Animation *pAn) {
 	_listAnimations->remove(pAn);
-    DISPOSE(pAn);
+    DISPOSEMANAGED(pAn);
 }
 
 
@@ -738,9 +738,9 @@ void IND_AnimationManager::delFromlist(IND_Animation *pAn) {
  * Initialization error message.
  */
 void IND_AnimationManager::writeMessage() {
-	g_debug->header("This operation can not be done", 3);
+	g_debug->header("This operation can not be done", DebugApi::LogHeaderInfo);
 	g_debug->dataChar("", 1);
-	g_debug->header("Invalid Id or not correctly initialized AnimationManager", 2);
+	g_debug->header("Invalid Id or not correctly initialized AnimationManager", DebugApi::LogHeaderError);
 }
 
 
@@ -765,7 +765,7 @@ void IND_AnimationManager::freeVars() {
         
 		remove((*mAnimationListIter), 1);
 
-		g_debug->header("Ok", 6);
+		g_debug->header("Ok", DebugApi::LogHeaderEnd);
 	}
 
 	// Clear list

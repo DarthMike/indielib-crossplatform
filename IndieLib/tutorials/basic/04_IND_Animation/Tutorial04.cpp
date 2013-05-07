@@ -30,42 +30,42 @@ int IndieLib()
 	// ----- Surface loading -----
 
 	// Loading Background
-	IND_Surface *mSurfaceBack = new IND_Surface();
+	IND_Surface *mSurfaceBack = IND_Surface::newSurface();
 	if (!mI->_surfaceManager->add(mSurfaceBack, "../../resources/blue_background.jpg", IND_OPAQUE, IND_32)) return 0;
 
 	// ----- Animations loading -----
 
 	// Characters animations, we apply a color key of (0, 48, 152)
-	IND_Animation *mAnimationCharacter1 = new IND_Animation();
+	IND_Animation *mAnimationCharacter1 = IND_Animation::newAnimation();
 	if (!mI->_animationManager->addToSurface(mAnimationCharacter1, "../../resources/animations/character1.xml", IND_ALPHA, IND_32, 0, 48, 152)) return 0;
 
 	// Characters animations, we apply a color key of (0, 48, 152)
-	IND_Animation *mAnimationCharacter2 = new IND_Animation();
+	IND_Animation *mAnimationCharacter2 = IND_Animation::newAnimation();
 	if (!mI->_animationManager->addToSurface(mAnimationCharacter2, "../../resources/animations/character2.xml", IND_ALPHA, IND_32, 0, 48, 152)) return 0;
 
 	// Dust animation, we apply a color key of (255, 0, 255)
-	IND_Animation *mAnimationDust = new IND_Animation();
+	IND_Animation *mAnimationDust = IND_Animation::newAnimation();
 	if (!mI->_animationManager->addToSurface(mAnimationDust, "../../resources/animations/dust.xml", IND_ALPHA, IND_16, 255, 0, 255)) return 0;
 
 	// ----- Set the surface and animations into 2d entities -----
 
 	// Creating 2d entity for the background
-	IND_Entity2d *mBack = new IND_Entity2d();			
+	IND_Entity2d *mBack = IND_Entity2d::newEntity2d();			
 	mI->_entity2dManager->add(mBack);					// Entity adding
 	mBack->setSurface(mSurfaceBack);					// Set the surface into the entity
 
 	// Character 1
-	IND_Entity2d *mPlayer1 = new IND_Entity2d();
+	IND_Entity2d *mPlayer1 = IND_Entity2d::newEntity2d();
 	mI->_entity2dManager->add(mPlayer1);					// Entity adding
 	mPlayer1->setAnimation(mAnimationCharacter1);				// Set the animation into the entity
 
 	// Character 2
-	IND_Entity2d *mPlayer2 = new IND_Entity2d();
+	IND_Entity2d *mPlayer2 = IND_Entity2d::newEntity2d();
 	mI->_entity2dManager->add(mPlayer2);					// Entity adding
 	mPlayer2->setAnimation(mAnimationCharacter2);				// Set the animation into the entity
 
 	// Dust explosion
-	IND_Entity2d *mDust = new IND_Entity2d();
+	IND_Entity2d *mDust = IND_Entity2d::newEntity2d();
 	mI->_entity2dManager->add(mDust);					// Entity adding
 	mDust->setAnimation(mAnimationDust);					// Set the animation into the entity
 

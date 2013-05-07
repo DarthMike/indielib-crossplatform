@@ -1411,7 +1411,7 @@ Creates the render
 ==================
 */
 IND_Window* IND_Render::createRender(IND_WindowProperties& windowProperties) {
-	g_debug->header("Creating Render", 5);
+	g_debug->header("Creating Render", DebugApi::LogHeaderBegin);
 
 	// If the window is correctly initialized
 #ifdef INDIERENDER_DIRECTX
@@ -1426,11 +1426,12 @@ IND_Window* IND_Render::createRender(IND_WindowProperties& windowProperties) {
 	_wrappedRenderer = new OpenGLRender();
 #endif
 
-	if(!_wrappedRenderer){
-		return NULL;
-	} else {
-		return (_wrappedRenderer->initRenderAndWindow(windowProperties));
+	IND_Window* window = NULL;
+	if(_wrappedRenderer){
+		window = _wrappedRenderer->initRenderAndWindow(windowProperties);
 	}
+
+    return window;
 }
 
 /*

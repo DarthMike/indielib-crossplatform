@@ -34,8 +34,8 @@ bool IND_TmxMapManager::init() {
 	end();
 	initVars();
 
-	g_debug->header("Initializing TmxMapManager", 5);
-	g_debug->header("Preparing TmxMapManager", 1);
+	g_debug->header("Initializing TmxMapManager", DebugApi::LogHeaderBegin);
+	g_debug->header("Preparing TmxMapManager", DebugApi::LogHeaderOk);
 	_ok = true;
 
 	g_debug->header("TmxMapManager OK", 6);
@@ -53,8 +53,8 @@ This function frees the manager and all the objects that it contains.
 */
 void IND_TmxMapManager::end() {
 	if (_ok) {
-		g_debug->header("Finalizing TmxMapManager", 5);
-		g_debug->header("Freeing TmxMaps" , 5);
+		g_debug->header("Finalizing TmxMapManager", DebugApi::LogHeaderBegin);
+		g_debug->header("Freeing TmxMaps" , DebugApi::LogHeaderBegin);
 		freeVars();
 		g_debug->header("TmxMaps freed", 6);
 		g_debug->header("TmxMapManager finalized", 6);
@@ -84,14 +84,14 @@ tmx.
 
 */
 bool IND_TmxMapManager::add(IND_TmxMap *pNewTmxMap,const char *pName) {
-	g_debug->header("Loading TmxMap", 5);
+	g_debug->header("Loading TmxMap", DebugApi::LogHeaderBegin);
 	
 	if(!pName) {
-		g_debug->header("Invalid File name provided (null)",2);
+		g_debug->header("Invalid File name provided (null)",DebugApi::LogHeaderError);
 		return 0;
 	}
 
-	g_debug->header("File name:", 3);
+	g_debug->header("File name:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(pName, 1);
 
 	if (!_ok) {
@@ -104,7 +104,7 @@ bool IND_TmxMapManager::add(IND_TmxMap *pNewTmxMap,const char *pName) {
 	char ext [128];
 	getExtensionFromName(pName,ext);
 	if (!checkExtImage(ext)){
-		g_debug->header("Unknown extension", 2);
+		g_debug->header("Unknown extension", DebugApi::LogHeaderError);
 		return 0;
 	}
 	
@@ -194,7 +194,7 @@ This function returns 1(true) if the IND_TmxMap object passed as parameter exist
 deleted from the manager successfully.
 */
 bool IND_TmxMapManager::remove(IND_TmxMap *pMap) {
-	g_debug->header("Freeing Map", 5);
+	g_debug->header("Freeing Map", DebugApi::LogHeaderBegin);
 
 	if (!_ok || !pMap) {
 		writeMessage();
@@ -221,7 +221,7 @@ bool IND_TmxMapManager::remove(IND_TmxMap *pMap) {
 
 	// ----- Free object -----
 
-//FIXME	g_debug->header("File name:", 3);
+//FIXME	g_debug->header("File name:", DebugApi::LogHeaderInfo);
 //FIXME	g_debug->dataChar(pIm->getName(), 1);
 
 	// Quit from list
@@ -230,7 +230,7 @@ bool IND_TmxMapManager::remove(IND_TmxMap *pMap) {
 	// Free Map
 //FIXME	FreeImage_Unload(pIm->getFreeImageHandle());	
 
-	g_debug->header("Ok", 6);
+	g_debug->header("Ok", DebugApi::LogHeaderEnd);
 
 	return 1;
 }
@@ -248,7 +248,7 @@ This function returns 1 (true) if the image object passed as a parameter
 exists and is added successfully to the manager creating a new image cloning from a previous one.
 */
 bool IND_TmxMapManager::clone(IND_TmxMap *pNewTmxMap, IND_TmxMap *pOldTmxMap) { // FIXME: is a clone method needed or should it be removed
-//	g_debug->header("Cloning Image", 5);
+//	g_debug->header("Cloning Image", DebugApi::LogHeaderBegin);
 
 //	if (!_ok || !pNewImage || !pOldImage || !pOldImage->getFreeImageHandle()) {
 //		writeMessage();
@@ -262,7 +262,7 @@ bool IND_TmxMapManager::clone(IND_TmxMap *pNewTmxMap, IND_TmxMap *pOldTmxMap) { 
 
 //	FIBITMAP* image = FreeImage_Clone(pOldImage->getFreeImageHandle());
 //	if (!image) {
-//		g_debug->header("Image could not be cloned", 2);
+//		g_debug->header("Image could not be cloned", DebugApi::LogHeaderError);
 //		return 0;
 //	}
 	
@@ -286,9 +286,9 @@ bool IND_TmxMapManager::clone(IND_TmxMap *pNewTmxMap, IND_TmxMap *pOldTmxMap) { 
 
 	// ----- g_debug -----
 
-//	g_debug->header("File name:", 3);
+//	g_debug->header("File name:", DebugApi::LogHeaderInfo);
 //	g_debug->dataChar(pOldImage->getName(), 1);
-//	g_debug->header("Image cloned", 6);
+//	g_debug->header("Image cloned", DebugApi::LogHeaderEnd);
 
 	return 1;
 }
@@ -359,7 +359,7 @@ Deletes object from the manager
 */
 void IND_TmxMapManager::delFromlist(IND_TmxMap *pMap) {
 	_listMaps->remove(pMap);
-	DISPOSE(pMap);
+	DISPOSEMANAGED(pMap);
 }
 
 
@@ -369,9 +369,9 @@ Initialization error message
 ==================
 */
 void IND_TmxMapManager::writeMessage() {
-	g_debug->header("This operation can not be done", 3);
+	g_debug->header("This operation can not be done", DebugApi::LogHeaderInfo);
 	g_debug->dataChar("", 1);
-	g_debug->header("Invalid Id or IND_TmxMapManager not correctly initialized", 2);
+	g_debug->header("Invalid Id or IND_TmxMapManager not correctly initialized", DebugApi::LogHeaderError);
 }
 
 
@@ -402,7 +402,7 @@ void IND_TmxMapManager::freeVars() {
 //	        mImageListIter++) {
 //			FIBITMAP* handle = (*mImageListIter)->getFreeImageHandle();
 //		if (handle) {
-//			g_debug->header("Freeing image:", 3);
+//			g_debug->header("Freeing image:", DebugApi::LogHeaderInfo);
 //			g_debug->dataChar((*mImageListIter)->getName(), 1);
 //
 //			// Free image

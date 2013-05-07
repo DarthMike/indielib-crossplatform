@@ -108,8 +108,8 @@ void FontTests::init() {
 
 	//Create underlying entities
 	for (int i = 0; i < _testedEntities; ++i) {
-		_fonts[i] = new IND_Font();
-		_entities[i] = new IND_Entity2d();
+		_fonts[i] = IND_Font::newFont();
+		_entities[i] = IND_Entity2d::newEntity2d();
 	}
 }
 

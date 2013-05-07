@@ -27,6 +27,8 @@ Suite 330, Boston, MA 02111-1307 USA
 #include <string.h>
 #endif
 
+#include "IND_Object.h"
+
 // ----- Forward declarations ------
 struct FIBITMAP;
 
@@ -44,11 +46,14 @@ IND_Image class managed by IND_ImageManager for loading, saving and applying fil
 /**
 @b IND_Image is an image object from the class ::IND_ImageManager. Read the explanation in ::IND_ImageManager for more details.
 */
-class LIB_EXP IND_Image {
+class LIB_EXP IND_Image : public IND_Object {
 public:
 
 	// ----- Public methods ------
-
+    static IND_Image* newImage();
+    
+    virtual void destroy();
+    
 	bool clear(BYTE pR, BYTE pG, BYTE pB, BYTE pA);
 	bool getPixel(int pX, int pY, BYTE *pR, BYTE *pG, BYTE *pB, BYTE *pA);
 	bool putPixel(int pX, int pY, BYTE pR, BYTE pG, BYTE pB, BYTE pA);
@@ -131,6 +136,9 @@ public:
 
 private:
 	/** @cond DOCUMENT_PRIVATEAPI */
+    IND_Image() {}
+    virtual ~IND_Image() {}
+    
 	// ----- Structures ------
 
 	//TYPE

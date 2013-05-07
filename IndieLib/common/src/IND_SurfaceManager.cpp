@@ -62,21 +62,21 @@ bool IND_SurfaceManager::init(IND_ImageManager *pImageManager, IND_Render *pRend
 	end();
 	initVars();
 
-	g_debug->header("Initializing SurfaceManager", 5);
+	g_debug->header("Initializing SurfaceManager", DebugApi::LogHeaderBegin);
 
 	// Checking IND_Render
 	if (pRender->isOK()) {
-		g_debug->header("Checking IND_Render", 1);
+		g_debug->header("Checking IND_Render", DebugApi::LogHeaderOk);
 		_render = pRender;
 	} else {
-		g_debug->header("IND_Render is not correctly initialized", 2);
+		g_debug->header("IND_Render is not correctly initialized", DebugApi::LogHeaderError);
 		_ok = false;
 		return _ok;
 	}
 
 	// Checking IND_ImageManager
 	if (pImageManager->isOK()) {
-		g_debug->header("Checking IND_ImageManager", 1);
+		g_debug->header("Checking IND_ImageManager", DebugApi::LogHeaderOk);
 		_imageManager = pImageManager;
 
 		// Texture Builder
@@ -93,9 +93,9 @@ bool IND_SurfaceManager::init(IND_ImageManager *pImageManager, IND_Render *pRend
 #endif
 		_ok = true;
 
-		g_debug->header("SurfaceManager OK", 6);
+		g_debug->header("SurfaceManager OK", DebugApi::LogHeaderEnd);
 	} else {
-		g_debug->header("ImageManager is not correctly initialized", 2);
+		g_debug->header("ImageManager is not correctly initialized", DebugApi::LogHeaderError);
 		_ok = false;
 	}
 
@@ -110,11 +110,11 @@ This function frees the manager and all the objects that it contains.
 */
 void IND_SurfaceManager::end() {
 	if (_ok) {
-		g_debug->header("Finalizing SurfaceManager", 5);
-		g_debug->header("Freeing surfaces" , 5);
+		g_debug->header("Finalizing SurfaceManager", DebugApi::LogHeaderBegin);
+		g_debug->header("Freeing surfaces" , DebugApi::LogHeaderBegin);
 		freeVars();
-		g_debug->header("Surfaces freed", 6);
-		g_debug->header("IND_SurfaceManager finalized", 6);
+		g_debug->header("Surfaces freed", DebugApi::LogHeaderEnd);
+		g_debug->header("IND_SurfaceManager finalized", DebugApi::LogHeaderEnd);
 
 		_ok = false;
 	}
@@ -154,7 +154,7 @@ bool IND_SurfaceManager::add(IND_Surface    *pNewSurface,
                              IND_Type        pType,
                              IND_Quality     pQuality) {
 	// Loads the image
-	IND_Image *mNewImage = new IND_Image();
+	IND_Image *mNewImage = IND_Image::newImage();
 
     bool noError(true);
     noError = _imageManager->add(mNewImage, pName);
@@ -166,7 +166,7 @@ bool IND_SurfaceManager::add(IND_Surface    *pNewSurface,
 
 	// Free image
     if (!noError) {
-        DISPOSE(mNewImage);
+        DISPOSEMANAGED(mNewImage);
     }
     
 	_imageManager->remove(mNewImage);
@@ -227,7 +227,7 @@ bool IND_SurfaceManager::add(IND_Surface    *pNewSurface,
                              BYTE            pG,
                              BYTE            pB) {
     // Loads the image
-	IND_Image *mNewImage = new IND_Image();
+	IND_Image *mNewImage = IND_Image::newImage();
     
     bool noError(true);
     noError = _imageManager->add(mNewImage, pName);
@@ -244,7 +244,7 @@ bool IND_SurfaceManager::add(IND_Surface    *pNewSurface,
     
 	// Free image
     if (!noError) {
-        DISPOSE(mNewImage);
+        DISPOSEMANAGED(mNewImage);
     }
     
 	_imageManager->remove(mNewImage);
@@ -277,7 +277,7 @@ bool IND_SurfaceManager::add(IND_Surface    *pNewSurface,
                              IND_Type        pType,
                              IND_Quality     pQuality) {
     // Loads the image
-	IND_Image *mNewImage = new IND_Image();
+	IND_Image *mNewImage = IND_Image::newImage();
     
     bool noError(true);
     noError = _imageManager->add(mNewImage, pName);
@@ -289,7 +289,7 @@ bool IND_SurfaceManager::add(IND_Surface    *pNewSurface,
     
 	// Free image
     if (!noError) {
-        DISPOSE(mNewImage);
+        DISPOSEMANAGED(mNewImage);
     }
     
 	_imageManager->remove(mNewImage);
@@ -353,7 +353,7 @@ bool IND_SurfaceManager::add(IND_Surface    *pNewSurface,
                              BYTE pG,
                              BYTE pB) {
     // Loads the image
-	IND_Image *mNewImage = new IND_Image();
+	IND_Image *mNewImage = IND_Image::newImage();
     
     bool noError(true);
     noError = _imageManager->add(mNewImage, pName);
@@ -370,7 +370,7 @@ bool IND_SurfaceManager::add(IND_Surface    *pNewSurface,
     
 	// Free image
     if (!noError) {
-        DISPOSE(mNewImage);
+        DISPOSEMANAGED(mNewImage);
     }
     
 	_imageManager->remove(mNewImage);
@@ -437,28 +437,28 @@ bool IND_SurfaceManager::clone(IND_Surface *pNewSurface, IND_Surface *pSurfaceTo
 This function returns 1 (true) if the parameter surface object exists and it is satisfactory deleted from the manager.
 */
 bool IND_SurfaceManager::remove(IND_Surface *pSu) {
-	g_debug->header("Freeing surface", 5);
+	g_debug->header("Freeing surface", DebugApi::LogHeaderBegin);
 
 	if (!_ok || !pSu) {
 		writeMessage();
-		return 0;
+		return false;
 	}
 
 	// Search object
-	bool mIs = 0;
+	bool mIs = false;
 	list <IND_Surface *>::iterator mSurfaceListIter;
 	for (mSurfaceListIter  = _listSurfaces->begin();
 	        mSurfaceListIter != _listSurfaces->end();
 	        mSurfaceListIter++) {
 		if ((*mSurfaceListIter) == pSu) {
-			mIs = 1;
+			mIs = true;
 			break;
 		}
 	}
 
 	if (!mIs) {
 		writeMessage();
-		return 0;
+		return false;
 	}
 
 	// ----- Free object -----
@@ -466,9 +466,9 @@ bool IND_SurfaceManager::remove(IND_Surface *pSu) {
 	// Quit from list
 	delFromlist(pSu);
 
-	g_debug->header("Ok", 6);
+	g_debug->header("Ok", DebugApi::LogHeaderEnd);
 
-	return 1;
+	return true;
 }
 
 
@@ -489,14 +489,14 @@ bool IND_SurfaceManager::addMain(IND_Surface    *pNewSurface,
                                  int             pBlockSizeY,
                                  IND_Type        pType,
                                  IND_Quality     pQuality) {
-	g_debug->header("Creating surface", 5);
+	g_debug->header("Creating surface", DebugApi::LogHeaderBegin);
 
 	if (!_ok || !pNewSurface || !pImage) {
 		writeMessage();
 		return 0;
 	}
 
-	g_debug->header("From image:", 3);
+	g_debug->header("From image:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(pImage->getName(), 1);
 
 	//Convert image if needed
@@ -514,38 +514,38 @@ bool IND_SurfaceManager::addMain(IND_Surface    *pNewSurface,
 	// ----- g_debug -----
 
 
-	g_debug->header("Type:", 3);
+	g_debug->header("Type:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(pNewSurface->getTypeString(), 1);
 
-	g_debug->header("Quality:", 3);
+	g_debug->header("Quality:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(pNewSurface->getQualityString(), 1);
 
-	g_debug->header("Image size:", 3);
+	g_debug->header("Image size:", DebugApi::LogHeaderInfo);
 	g_debug->dataInt(pNewSurface->_surface->_attributes._width, 0);
 	g_debug->dataChar("x", 0);
 	g_debug->dataInt(pNewSurface->_surface->_attributes._height, 1);
 
-	g_debug->header("Block size:", 3);
+	g_debug->header("Block size:", DebugApi::LogHeaderInfo);
 	g_debug->dataInt(pNewSurface->_surface->_attributes._widthBlock, 0);
 	g_debug->dataChar("x", 0);
 	g_debug->dataInt(pNewSurface->_surface->_attributes._heightBlock, 1);
 
-	g_debug->header("Number of blocks:", 3);
+	g_debug->header("Number of blocks:", DebugApi::LogHeaderInfo);
 	g_debug->dataInt(pNewSurface->_surface->_attributes._blocksX, 0);
 	g_debug->dataChar("x", 0);
 	g_debug->dataInt(pNewSurface->_surface->_attributes._blocksY, 1);
 
-	g_debug->header("Spare (Right | Down):", 3);
+	g_debug->header("Spare (Right | Down):", DebugApi::LogHeaderInfo);
 	g_debug->dataInt(pNewSurface->_surface->_attributes._spareX, 0);
 	g_debug->dataChar("x", 0);
 	g_debug->dataInt(pNewSurface->_surface->_attributes._spareY, 1);
 
 	//TODO: LOG % NOT USED
-	//g_debug->Header ("Not used percentage:", 3);
+	//g_debug->Header ("Not used percentage:", DebugApi::LogHeaderInfo);
 	//g_debug->DataFloat (pNewSurface->_surface->_attributes., 0);
 	//g_debug->DataChar ("%", 1);
 
-	g_debug->header("Surface created", 6);
+	g_debug->header("Surface created", DebugApi::LogHeaderEnd);
 
 	return 1;
 }
@@ -618,7 +618,7 @@ Deletes object from the manager
 */
 void IND_SurfaceManager::delFromlist(IND_Surface *pSu) {
 	_listSurfaces->remove(pSu);
-	DISPOSE(pSu);
+	DISPOSEMANAGED(pSu);
 }
 
 
@@ -628,9 +628,9 @@ Writes a message in the log that the object was not initialized
 ==================
 */
 void IND_SurfaceManager::writeMessage() {
-	g_debug->header("This operation can not be done", 3);
+	g_debug->header("This operation can not be done", DebugApi::LogHeaderInfo);
 	g_debug->dataChar("", 1);
-	g_debug->header("Invalid Id or SurfaceManager not correctly initialized", 2);
+	g_debug->header("Invalid Id or SurfaceManager not correctly initialized", DebugApi::LogHeaderError);
 }
 
 /*
@@ -646,10 +646,10 @@ void IND_SurfaceManager::convertImage(IND_Image* pImage ,IND_Type pType, IND_Qua
 		//Ignore quality specifier (we assume is IND_16)
 		if (IND_ALPHA == pType) {
 			pImage->convert(IND_RGBA, 32);
-			g_debug->header("Image type converted to IND_RGBA implicitly" , 4);
+			g_debug->header("Image type converted to IND_RGBA implicitly" , DebugApi::LogHeaderWarning);
 		} else {
 			pImage->convert(IND_RGB, 16);
-			g_debug->header("Image type converted to IND_RGB implicitly" , 4);
+			g_debug->header("Image type converted to IND_RGB implicitly" , DebugApi::LogHeaderWarning);
 		}
 	}
 	
@@ -664,25 +664,25 @@ void IND_SurfaceManager::convertImage(IND_Image* pImage ,IND_Type pType, IND_Qua
 				break;
 			case IND_16:
 				if (IND_ALPHA == pType) {
-					g_debug->header("Image type converted to 16-bit RGBA implicitly." , 1);
+					g_debug->header("Image type converted to 16-bit RGBA implicitly." , DebugApi::LogHeaderOk);
 					pImage->convert(IND_RGBA, 16);
 				} else {
-					g_debug->header("Image type converted to 16-bit RGB implicitly." , 1);
+					g_debug->header("Image type converted to 16-bit RGB implicitly." , DebugApi::LogHeaderOk);
 					pImage->convert(pImage->getFormatInt(), 16);
 				}
 				break;
 			case IND_32:
 				if (IND_ALPHA == pType) {
-					g_debug->header("Image type converted to 32-bit RGBA implicitly." , 1);
+					g_debug->header("Image type converted to 32-bit RGBA implicitly." , DebugApi::LogHeaderOk);
 					pImage->convert(IND_RGBA, 32);
 				} else {
-					g_debug->header("Image type converted to 32-bit RGB implicitly." , 1);
+					g_debug->header("Image type converted to 32-bit RGB implicitly." , DebugApi::LogHeaderOk);
 					pImage->convert(pImage->getFormatInt(), 32);
 				}
 				break;
 			default:
-				g_debug->header("No good Quality specified when creating surface" , 4);
-				g_debug->header("Image type converted to 32-bit RGB implicitly." , 4);
+				g_debug->header("No good Quality specified when creating surface" , DebugApi::LogHeaderWarning);
+				g_debug->header("Image type converted to 32-bit RGB implicitly." , DebugApi::LogHeaderWarning);
 				pImage->convert(pImage->getFormatInt(), 32);
 				break;
 		}
@@ -709,10 +709,10 @@ void IND_SurfaceManager::freeVars() {
 	for (mSurfaceListIter  = _listSurfaces->begin();
 	        mSurfaceListIter != _listSurfaces->end();
 	        mSurfaceListIter++) {
-		g_debug->header("Freeing surface:", 3);
+		g_debug->header("Freeing surface:", DebugApi::LogHeaderInfo);
         //FIXME: This breaks on LLVM compiler (OSX, XCode)
 		//g_debug->dataInt((int) & (*mSurfaceListIter)->_surface, 1);
-        DISPOSE(*mSurfaceListIter);
+        DISPOSEMANAGED((*mSurfaceListIter));
 	}
 
 	// Clear list

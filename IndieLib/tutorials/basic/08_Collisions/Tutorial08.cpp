@@ -30,51 +30,51 @@ int IndieLib()
 	// ----- Surface loading -----
 
 	// Loading Background
-	IND_Surface *mSurfaceBack = new IND_Surface();
+	IND_Surface *mSurfaceBack = IND_Surface::newSurface();
 	if (!mI->_surfaceManager->add(mSurfaceBack, "../../resources/twist.jpg", IND_OPAQUE, IND_32)) return 0;
 
 	// Loading Rocket
-	IND_Surface *mSurfaceRocket = new IND_Surface();
+	IND_Surface *mSurfaceRocket = IND_Surface::newSurface();
 	if (!mI->_surfaceManager->add(mSurfaceRocket, "../../resources/rocket.png", IND_ALPHA, IND_32)) return 0;
 
 	// Loading Beetleship
-	IND_Surface *mSurfaceBeetle = new IND_Surface();
+	IND_Surface *mSurfaceBeetle = IND_Surface::newSurface();
 	if (!mI->_surfaceManager->add(mSurfaceBeetle, "../../resources/beetleship.png", IND_ALPHA, IND_32)) return 0;
 	
 	// Sword Master animation, we apply a color key of (0, 255, 0)
-	IND_Animation *mSwordMasterAnimation = new IND_Animation();
+	IND_Animation *mSwordMasterAnimation = IND_Animation::newAnimation();
 	if (!mI->_animationManager->addToSurface(mSwordMasterAnimation, "../../resources/animations/sword_master.xml", IND_ALPHA, IND_16, 0, 255, 0)) return 0; //TODO: setAlpha in Ind_Image fails.
 
 	// ----- Font loading -----
 
 	// Font
-	IND_Font *mFontSmall = new IND_Font();
+	IND_Font *mFontSmall = IND_Font::newFont();
 	if (!mI->_fontManager->add(mFontSmall, "../../resources/font_small.png", "../../resources/font_small.xml", IND_ALPHA, IND_32)) return 0;
 
 	// ----- Set the surfaces into 2d entities -----
 
 	// Creating 2d entity for the background
-	IND_Entity2d *mBack = new IND_Entity2d();					
+	IND_Entity2d *mBack = IND_Entity2d::newEntity2d();					
 	mI->_entity2dManager->add(mBack);					// Entity adding
 	mBack->setSurface(mSurfaceBack);					// Set the surface into the entity
 
 	// Creating 2d entity for the Rocket
-	IND_Entity2d *mRocket = new IND_Entity2d();					
+	IND_Entity2d *mRocket = IND_Entity2d::newEntity2d();					
 	mI->_entity2dManager->add(mRocket);					// Entity adding
 	mRocket->setSurface(mSurfaceRocket);					// Set the surface into the entity
 
 	// Creating 2d entity for the Beetleship
-	IND_Entity2d *mBeetle = new IND_Entity2d();					
+	IND_Entity2d *mBeetle = IND_Entity2d::newEntity2d();					
 	mI->_entity2dManager->add(mBeetle);					// Entity adding
 	mBeetle->setSurface(mSurfaceBeetle);					// Set the surface into the entity
 
 	// Creating 2d entity for the Sword Master animation
-	IND_Entity2d *mSwordMaster = new IND_Entity2d();					
+	IND_Entity2d *mSwordMaster = IND_Entity2d::newEntity2d();					
 	mI->_entity2dManager->add(mSwordMaster);				// Entity adding
 	mSwordMaster->setAnimation(mSwordMasterAnimation);			// Set the animation into the entity
 
 	// Text small white
-	IND_Entity2d *mTextSmallWhite = new IND_Entity2d();					
+	IND_Entity2d *mTextSmallWhite = IND_Entity2d::newEntity2d();					
 	mI->_entity2dManager->add(mTextSmallWhite);				// Entity adding
 	mTextSmallWhite->setFont(mFontSmall);					// Set the font into the entity
 

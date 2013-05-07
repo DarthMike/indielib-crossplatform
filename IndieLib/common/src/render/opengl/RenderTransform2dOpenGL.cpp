@@ -67,24 +67,7 @@ bool OpenGLRender::setViewPort2d(int pX,
 	           static_cast<GLsizei>(pHeight));
 	glMatrixMode(GL_MODELVIEW);
 
-	// ----- 2d GLState -----
-	//Many defaults are GL_FALSE, but for the sake of explicitly safe operations (and code clearness)
-	//I include glDisable explicits
-	glDisable(GL_LIGHTING); //We don't want lighting (may change in successive versions! for modern 2d..)
-	glDisable(GL_DEPTH_TEST); //No depth testing
-	glDisable(GL_NORMALIZE); //Don't normalize normal vectors after submitting them
-	glShadeModel(GL_SMOOTH); //Default shading mode (will change it where it is necessary)
-
-	// ----- Texturing settings  -----
-	// the texture wraps over at the edges (repeat)
-    //TODO: Verify this for iOS
-    glEnable(GL_TEXTURE_2D);
-	//Generally we work with byte-aligned textures.
-	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-	glPixelStorei(GL_PACK_ALIGNMENT, 1);
-	//Texture clamp ON by default
-	glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
-	glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);	
+	setDefaultGLState();
 	return true;
 }
 
@@ -329,7 +312,16 @@ void OpenGLRender::setRainbow2d(IND_Type pType,
 	blendR = blendG = blendB = blendA = 1.0f;
 
 	// ----- Filters -----
-	//Maybe disable texture-related features? (Filtering and so on...)
+    // In GL, texture filtering is applied to the bound texture. From this method we don't know which is the
+    // bound texture, so we cache the requested state, so before actually rendering, we could set the state
+    // to the bound texture
+	int filterType = GL_NEAREST;
+	if (IND_FILTER_LINEAR == pFilter) {
+		filterType = GL_LINEAR;
+	}
+
+    _tex2dState.magFilter = filterType;
+    _tex2dState.minFilter = filterType;
 
 	// ----- Back face culling -----
 	if (pCull) {
@@ -451,6 +443,52 @@ void OpenGLRender::setRainbow2d(IND_Type pType,
 	}
 
 
+}
+
+void OpenGLRender::setDefaultGLState() {
+    // ----- 2d GLState -----
+	//Many defaults are GL_FALSE, but for the sake of explicitly safe operations (and code clearness)
+	//I include glDisable explicits
+	glDisable(GL_LIGHTING); //We don't want lighting (may change in successive versions! for modern 2d..)
+	glDisable(GL_DEPTH_TEST); //No depth testing
+	glDisable(GL_NORMALIZE); //Don't normalize normal vectors after submitting them
+	glShadeModel(GL_SMOOTH); //Default shading mode (will change it where it is necessary)
+    
+	// ----- Texturing settings  -----
+	// the texture wraps over at the edges (repeat)
+    glEnable(GL_TEXTURE_2D);
+	//Generally we work with byte-aligned textures.
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+	glPixelStorei(GL_PACK_ALIGNMENT, 1);
+    
+    setGLClientStateToTexturing();
+}
+
+void OpenGLRender::setGLClientStateToPrimitive() {
+    glDisable(GL_TEXTURE_2D);
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glEnableClientState(GL_COLOR_ARRAY);
+    
+    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+    glDisableClientState(GL_NORMAL_ARRAY);
+}
+
+void OpenGLRender::setGLClientStateToTexturing() {
+    glEnable(GL_TEXTURE_2D);
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+    
+    glDisableClientState(GL_COLOR_ARRAY);
+    glDisableClientState(GL_NORMAL_ARRAY);
+}
+
+void OpenGLRender::setGLBoundTextureParams() {
+    //Texture wrap mode
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,_tex2dState.wrapS);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,_tex2dState.wrapT);
+    //By default select fastest texture filter
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, _tex2dState.magFilter);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, _tex2dState.minFilter);
 }
 
 /** @endcond */

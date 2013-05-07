@@ -31,20 +31,20 @@ int IndieLib()
 	// ----- Surface loading -----
 
 	// Loading Background
-	IND_Surface *mSurfaceBack = new IND_Surface();
+	IND_Surface *mSurfaceBack = IND_Surface::newSurface();
 	if (!mI->_surfaceManager->add(mSurfaceBack, "../../resources/twist.jpg", IND_OPAQUE, IND_32)) return 0;
 
 	// Loading draco
-	IND_Surface *mSurfaceDraco = new IND_Surface();
+	IND_Surface *mSurfaceDraco = IND_Surface::newSurface();
 	if (!mI->_surfaceManager->add(mSurfaceDraco, "../../resources/draco.png", IND_ALPHA, IND_32)) return 0;
 
 	// Font
-	IND_Font *mFontSmall = new IND_Font();
+	IND_Font *mFontSmall = IND_Font::newFont();
 	if (!mI->_fontManager->add(mFontSmall, "../../resources/font_small.png", "../../resources/font_small.xml", IND_ALPHA, IND_32)) return 0;
 
 	// ----- Font creation -----
 
-	IND_Entity2d *mTextSmallWhite = new IND_Entity2d() ;					
+	IND_Entity2d *mTextSmallWhite = IND_Entity2d::newEntity2d() ;					
 	mI->_entity2dManager->add(mTextSmallWhite);				// Entity adding
 	mTextSmallWhite->setFont(mFontSmall);					// Set the font into the entity
 	mTextSmallWhite->setLineSpacing(18);
@@ -59,12 +59,12 @@ int IndieLib()
 	// ----- Set the surfaces into 2d entities -----
 
 	// Creating 2d entity for the background
-	IND_Entity2d *mBack = new IND_Entity2d();					
+	IND_Entity2d *mBack = IND_Entity2d::newEntity2d();					
 	mI->_entity2dManager->add(mBack);						// Entity adding
 	mBack->setSurface(mSurfaceBack);						// Set the surface into the entity
 
 	// Creating 2d entity for the draco
-	IND_Entity2d *mDraco = new IND_Entity2d();					
+	IND_Entity2d *mDraco = IND_Entity2d::newEntity2d();					
 	mI->_entity2dManager->add(mDraco);						// Entity adding
 	mDraco->setSurface(mSurfaceDraco);						// Set the surface into the entity
 

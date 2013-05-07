@@ -53,7 +53,7 @@ Suite 330, Boston, MA 02111-1307 USA
 
 IND_Window* OpenGLRender::initRenderAndWindow(IND_WindowProperties& props) {
 	if(props._bpp <= 0 || props._height <= 0 || props._width <= 0) {
-		g_debug->header("Error initializing window: Invalid parameters provided", 2);
+		g_debug->header("Error initializing window: Invalid parameters provided", DebugApi::LogHeaderError);
 		return 0;
 	}
 	end();
@@ -66,16 +66,16 @@ IND_Window* OpenGLRender::initRenderAndWindow(IND_WindowProperties& props) {
 		return NULL;
 	}
     
-    g_debug->header("Requested Window Height:", 0);
-    g_debug->dataInt(props._height, 1);
-    g_debug->dataChar("Requested Window Width: ", 0);
-    g_debug->dataInt(props._width, 1);
-    g_debug->dataChar("Requested Window Bpp: ", 0);
-    g_debug->dataInt(props._bpp, 1);
-    g_debug->dataChar("Requested Window FullScreen: ", 0);
-    g_debug->dataInt(props._fullscreen, 1);
-    g_debug->dataChar("Requested Window Double buffer: ", 0);
-    g_debug->dataInt(props._doubleBuffer, 1);
+    g_debug->header("Requested Window Height:", DebugApi::LogHeaderInfo);
+    g_debug->dataInt(props._height, true);
+    g_debug->header("Requested Window Width: ", DebugApi::LogHeaderInfo);
+    g_debug->dataInt(props._width, true);
+    g_debug->header("Requested Window Bpp: ", DebugApi::LogHeaderInfo);
+    g_debug->dataInt(props._bpp, true);
+    g_debug->header("Requested Window FullScreen: ", DebugApi::LogHeaderInfo);
+    g_debug->dataInt(props._fullscreen, true);
+    g_debug->header("Requested Window Double buffer: ", DebugApi::LogHeaderInfo);
+    g_debug->dataInt(props._doubleBuffer, true);
 	
 	if(!_osOpenGLMgr) {
 		_osOpenGLMgr = new OSOpenGLManager(_window);  
@@ -91,43 +91,43 @@ IND_Window* OpenGLRender::initRenderAndWindow(IND_WindowProperties& props) {
 	                                    );
 
 	if(!_window->create(props)) {
-		g_debug->header("Error creating window: Not supported params provided", 2);
+		g_debug->header("Error creating window: Not supported params provided", DebugApi::LogHeaderError);
 		freeVars();
 		return NULL;
 	}
 
-	g_debug->header("Creating OpenGL Render", 5);
+	g_debug->header("Creating OpenGL Render", DebugApi::LogHeaderBegin);
 	_ok = initializeOpenGLRender();
 	if (!_ok) {
-		g_debug->header("Finalizing OpenGL", 5);
+		g_debug->header("Finalizing OpenGL", DebugApi::LogHeaderWarning);
 		freeVars();
-		g_debug->header("OpenGL finalized", 6);
+		g_debug->header("OpenGL finalized", DebugApi::LogHeaderEnd);
 		return NULL;
 	}
 
-	g_debug->header("Checking created OpenGL context pixel format", 5);
+	g_debug->header("Checking created OpenGL context pixel format", DebugApi::LogHeaderOk);
 	if(!_osOpenGLMgr->checkOpenGLSDLContextProps()) {
-		g_debug->header("Different GL context pixel format used", 6);
+		g_debug->header("Different GL context pixel format used", DebugApi::LogHeaderWarning);
 	} else {
-		g_debug->header("Same GL context pixel format used", 6);
+		g_debug->header("Same GL context pixel format used", DebugApi::LogHeaderOk);
 	}
 
 	writeInfo();
 
-	g_debug->header("OpenGL Render Created", 6);
+	g_debug->header("OpenGL Render Created", DebugApi::LogHeaderEnd);
 	return _window;
 }
 
 bool OpenGLRender::reset(IND_WindowProperties& props) {
 	if(props._bpp <= 0 || props._height <= 0 || props._width <= 0) {
-		g_debug->header("Error resetting window: Invalid parameters provided", 2);
+		g_debug->header("Error resetting window: Invalid parameters provided", DebugApi::LogHeaderError);
 		return 0;
 	}
 
     bool viewPortWasFullWindow = (_window->getWidth() == _info._viewPortWidth) && (_window->getHeight() == _info._viewPortHeight);
     
 	if (!_window->reset(props)) {
-		g_debug->header("Error resetting SDL window", 2);
+		g_debug->header("Error resetting SDL window", DebugApi::LogHeaderError);
 		return 0;
 	}
     
@@ -144,7 +144,7 @@ bool OpenGLRender::reset(IND_WindowProperties& props) {
 
 bool OpenGLRender::toggleFullScreen() {
 
-	g_debug->header("Changing To/From Full Screen", 5);
+	g_debug->header("Changing To/From Full Screen", DebugApi::LogHeaderBegin);
 
 	if (!_window->toggleFullScreen()) return false;
 
@@ -171,7 +171,7 @@ void OpenGLRender::endScene() {
 #ifdef _DEBUG
     GLenum glerror = glGetError();
 	if (glerror) {
-        g_debug->header("OpenGLRenderer::endScene() OpenGL error flag!", 2);
+        g_debug->header("OpenGLRenderer::endScene() OpenGL error flag!", DebugApi::LogHeaderError);
 		printf("OpenGLRenderer::endScene() Error at end of scene! :%i\n",glerror);
 	}
 #endif	
@@ -197,10 +197,10 @@ void OpenGLRender::getNumDiscardedObjectsString(char *pBuffer)      {
 
 void OpenGLRender::end() {
 	if (_ok) {
-		g_debug->header("Finalizing OpenGL", 5);
+		g_debug->header("Finalizing OpenGL", DebugApi::LogHeaderBegin);
 		_osOpenGLMgr->endOpenGLContext();
 		freeVars();
-		g_debug->header("OpenGL finalized ", 6);
+		g_debug->header("OpenGL finalized ", DebugApi::LogHeaderEnd);
 		_ok = false;
 	}
 }
@@ -233,9 +233,9 @@ bool OpenGLRender::initializeOpenGLRender() {
 	//Check dependency of window initialization
 	if (!_window->isOK()) {
 		// Window error
-		g_debug->header("This operation can not be done:", 3);
+		g_debug->header("This operation can not be done:", DebugApi::LogHeaderInfo);
 		g_debug->dataChar("", 1);
-		g_debug->header("Invalid Id or IND_Window not correctly initialized.", 2);
+		g_debug->header("Invalid Id or IND_Window not correctly initialized.", DebugApi::LogHeaderError);
 
 		return false;
 	}
@@ -267,13 +267,13 @@ bool OpenGLRender::checkGLExtensions() {
 
 	GLenum err = glewInit();
 	if (GLEW_OK != err) {
-		g_debug->header("Extensions loading (GLEW) failed!", 2);
+		g_debug->header("Extensions loading (GLEW) failed!", DebugApi::LogHeaderError);
 		return false;
 	}
 
 	//Check system support for minimum targeted version of library
 	if (!glewIsSupported(MINIMUM_OPENGL_VERSION_STRING)) {
-		g_debug->header("Minimum OPENGL version is not available!", 2);
+		g_debug->header("Minimum OPENGL version is not available!", DebugApi::LogHeaderError);
 		return false;
 	}
 
@@ -315,26 +315,26 @@ Write hardware information to debug log
 ==================
 */
 void OpenGLRender::writeInfo() {
-	g_debug->header("Hardware information" , 5);
+	g_debug->header("Hardware information" , DebugApi::LogHeaderBegin);
 
 	// ----- D3D version -----
 
-	g_debug->header("OpenGL version:" , 3);
+	g_debug->header("OpenGL version:" , DebugApi::LogHeaderInfo);
 	g_debug->dataChar(_info._version, 1);
 
 	// ----- Vendor -----
 
-	g_debug->header("Mark:" , 3);
+	g_debug->header("Mark:" , DebugApi::LogHeaderInfo);
 	g_debug->dataChar(_info._vendor, 1);
 
 	// ----- Renderer -----
 
-	g_debug->header("Chip:" , 3);
+	g_debug->header("Chip:" , DebugApi::LogHeaderInfo);
 	g_debug->dataChar(_info._renderer, 1);
 
 	// ----- Antialiasing -----
 
-	g_debug->header("Primitive antialising:", 3);
+	g_debug->header("Primitive antialising:", DebugApi::LogHeaderInfo);
 	if (_info._antialiasing)
 		g_debug->dataChar("Yes", 1);
 	else
@@ -342,17 +342,17 @@ void OpenGLRender::writeInfo() {
 
 	// ----- Max texture size -----
 
-	g_debug->header("Maximum texture size:" , 3);
+	g_debug->header("Maximum texture size:" , DebugApi::LogHeaderInfo);
 	g_debug->dataInt(_info._maxTextureSize, 0);
 	g_debug->dataChar("x", 0);
 	g_debug->dataInt(_info._maxTextureSize, 1);
-	g_debug->header("Texture units:" , 3);
+	g_debug->header("Texture units:" , DebugApi::LogHeaderInfo);
 	g_debug->dataInt(_info._textureUnits, 0);
 
 
 	// ----- Vertex Shader version  -----
 
-	/*g_debug->Header ("Vertex Shader:" , 3);
+	/*g_debug->Header ("Vertex Shader:" , DebugApi::LogHeaderInfo);
 	g_debug->DataInt (D3DSHADER_VERSION_MAJOR (_info._vertexShaderVersion), 0);
 	g_debug->DataChar (".", 0);
 	g_debug->DataInt (D3DSHADER_VERSION_MINOR (_info._vertexShaderVersion), 0);
@@ -364,12 +364,12 @@ void OpenGLRender::writeInfo() {
 
 	// ----- Pixel Shader version -----
 
-	/*g_debug->Header ("Pixel Shader:" , 3);
+	/*g_debug->Header ("Pixel Shader:" , DebugApi::LogHeaderInfo);
 	g_debug->DataInt (D3DSHADER_VERSION_MAJOR (_info._pixelShaderVersion), 0);
 	g_debug->DataChar (".", 0);
 	g_debug->DataInt (D3DSHADER_VERSION_MINOR (_info._pixelShaderVersion), 1);*/
 
-	g_debug->header("Hardware Ok" , 6);
+	g_debug->header("Hardware Ok" , DebugApi::LogHeaderEnd);
 }
 
 /*

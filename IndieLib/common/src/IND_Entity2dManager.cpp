@@ -64,24 +64,24 @@ bool IND_Entity2dManager::init(IND_Render *pRender) {
 	end();
 	initVars();
 
-	g_debug->header("Initializing Entity2dManager", 5);
-	g_debug->header("Preparing Entity2dManager", 1);
+	g_debug->header("Initializing Entity2dManager", DebugApi::LogHeaderBegin);
+	g_debug->header("Preparing Entity2dManager", DebugApi::LogHeaderOk);
 
 	_ok = true;
 
 	// Checking IND_Render
 	if (pRender->isOK()) {
-		g_debug->header(" Checking IND_Render", 1);
+		g_debug->header(" Checking IND_Render", DebugApi::LogHeaderOk);
 		_render = pRender;
 	} else {
-		g_debug->header("IND_Render is not correctly initialized", 2);
+		g_debug->header("IND_Render is not correctly initialized", DebugApi::LogHeaderError);
 		_ok = false;
 		return _ok;
 	}
 
 	_math = new IND_Math();
 	_math->init();
-	g_debug->header("Entity2dManager OK", 6);
+	g_debug->header("Entity2dManager OK", DebugApi::LogHeaderEnd);
 
 	return _ok;
 }
@@ -92,12 +92,12 @@ bool IND_Entity2dManager::init(IND_Render *pRender) {
  */
 void IND_Entity2dManager::end() {
 	if (_ok) {
-		g_debug->header("Finalizing Entity2dManager", 5);
+		g_debug->header("Finalizing Entity2dManager", DebugApi::LogHeaderBegin);
 		DISPOSE (_math);
-		g_debug->header("Freeing 2d entities" , 5);
+		g_debug->header("Freeing 2d entities" , DebugApi::LogHeaderBegin);
 		freeVars();
-		g_debug->header("Entities freed", 6);
-		g_debug->header("IND_Entity2dManager finalized", 6);
+		g_debug->header("Entities freed", DebugApi::LogHeaderEnd);
+		g_debug->header("IND_Entity2dManager finalized", DebugApi::LogHeaderEnd);
 
 		_ok = false;
 	}
@@ -123,8 +123,8 @@ bool IND_Entity2dManager::isOK()           const {
  * @param pNewEntity2d				Pointer to an entity object.
  */
 bool IND_Entity2dManager::add(IND_Entity2d *pNewEntity2d) {
-	g_debug->header("Adding 2d entity", 5);
-	g_debug->header("Name:", 3);
+	g_debug->header("Adding 2d entity", DebugApi::LogHeaderBegin);
+	g_debug->header("Name:", DebugApi::LogHeaderInfo);
     pNewEntity2d->_id = _idTrack++;
 	g_debug->dataInt(pNewEntity2d->getId(), 1);
 
@@ -140,7 +140,7 @@ bool IND_Entity2dManager::add(IND_Entity2d *pNewEntity2d) {
 	pNewEntity2d->setLayer(0);
 	// ----- g_debug -----
 
-	g_debug->header("2d entity added", 6);
+	g_debug->header("2d entity added", DebugApi::LogHeaderEnd);
 
 	return 1;
 }
@@ -161,11 +161,11 @@ bool IND_Entity2dManager::add(IND_Entity2d *pNewEntity2d) {
  * @param pNewEntity2d                		Pointer to an entity object.
  */
 bool IND_Entity2dManager::add(int pLayer, IND_Entity2d *pNewEntity2d) {
-	g_debug->header("Adding 2d entity", 5);
-	g_debug->header("Name:", 3);
+	g_debug->header("Adding 2d entity", DebugApi::LogHeaderBegin);
+	g_debug->header("Name:", DebugApi::LogHeaderInfo);
     pNewEntity2d->_id = _idTrack++;
 	g_debug->dataInt(pNewEntity2d->getId(), 1);
-	g_debug->header("Layer:", 3);
+	g_debug->header("Layer:", DebugApi::LogHeaderInfo);
 	g_debug->dataInt(pLayer, 1);
 
 	if (!_ok) {
@@ -183,7 +183,7 @@ bool IND_Entity2dManager::add(int pLayer, IND_Entity2d *pNewEntity2d) {
 	pNewEntity2d->setLayer(pLayer);
 	// ----- g_debug -----
 
-	g_debug->header("2d entity added", 6);
+	g_debug->header("2d entity added", DebugApi::LogHeaderEnd);
 
 	return 1;
 }
@@ -194,8 +194,8 @@ bool IND_Entity2dManager::add(int pLayer, IND_Entity2d *pNewEntity2d) {
  * @param pEn				Pointer to an entity object.
  */
 bool IND_Entity2dManager::remove(IND_Entity2d *pEn) {
-	g_debug->header("Freeing 2d entity", 5);
-	g_debug->header("Name:", 3);
+	g_debug->header("Freeing 2d entity", DebugApi::LogHeaderBegin);
+	g_debug->header("Name:", DebugApi::LogHeaderInfo);
 	g_debug->dataInt(pEn->getId(), 1);
 
 	if (!_ok || !pEn) {
@@ -223,13 +223,13 @@ bool IND_Entity2dManager::remove(IND_Entity2d *pEn) {
 			// Quit from list
 			_listEntities2d[i]->erase(_listIter);
 
-			g_debug->header("Ok", 6);
+			g_debug->header("Ok", DebugApi::LogHeaderEnd);
 
 			return 1;
 		}
 	}
 
-	g_debug->header("Entity not found", 6);
+	g_debug->header("Entity not found", DebugApi::LogHeaderEnd);
 	return 0;
 }
 
@@ -777,9 +777,9 @@ Initialization error message
 ==================
 */
 void IND_Entity2dManager::writeMessage() {
-	g_debug->header("This operation can not be done", 3);
+	g_debug->header("This operation can not be done", DebugApi::LogHeaderInfo);
 	g_debug->dataChar("", 1);
-	g_debug->header("Invalid Id or IND_Entity2dManager not correctly initialized", 2);
+	g_debug->header("Invalid Id or IND_Entity2dManager not correctly initialized", DebugApi::LogHeaderError);
 }
 
 
@@ -807,11 +807,12 @@ void IND_Entity2dManager::freeVars() {
 		for (mEntityListIter  = _listEntities2d[i]->begin();
 		        mEntityListIter != _listEntities2d[i]->end();
 		        mEntityListIter++) {
-			g_debug->header("Freeing 2d entity:", 3);
+			g_debug->header("Freeing 2d entity:", DebugApi::LogHeaderInfo);
 
 			// Delete all the bounding areas
 			(*mEntityListIter)->deleteBoundingAreas((char*)"*");
             g_debug->dataInt((*mEntityListIter)->getId(), 1);
+            DISPOSEMANAGED((*mEntityListIter));
 		}
 
 		// Clear list

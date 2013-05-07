@@ -27,7 +27,7 @@ CTerrain::CTerrain(int pNumBlocksX, int pNumBlocksY, int pNumHoles, IND_Surface 
 	// ----- Tiled terrain: Our terrain has pNumBlocksX x pNumBlocksY tiles of 512x512 pixels  each one ----
 
 	// We create a tiled surface using ToogleWrap and SetRegion methods
-	mTerrain = new IND_Entity2d();
+	mTerrain = IND_Entity2d::newEntity2d();
 	mI->_entity2dManager->add(0, mTerrain);	
 	mTerrain->setSurface(pTerrainTile);
 	mTerrain->toggleWrap(1);
@@ -38,7 +38,7 @@ CTerrain::CTerrain(int pNumBlocksX, int pNumBlocksY, int pNumHoles, IND_Surface 
 	// Memory allocation in a bidimensional array for the tiles
 	mHoles = new IND_Entity2d*[pNumHoles];
 	for (int i = 0; i < pNumHoles; i++ ) {
-		mHoles[i] = new IND_Entity2d();
+		mHoles[i] = IND_Entity2d::newEntity2d();
 	}
 	for (int i = 0; i < pNumHoles; i++)
 	{
@@ -90,10 +90,6 @@ End
 */
 CTerrain::~CTerrain()
 {
-	for (int i = 0; i < mNumHoles; i++ ) {
-		delete mHoles[i];
-	}
-
 	delete [] mHoles;
 	mI->_entity2dManager->end(); 
 }

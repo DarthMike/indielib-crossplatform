@@ -207,7 +207,13 @@ users for really concrete purposes.
 // ----- Lib export -----
 
 #ifdef PLATFORM_WIN32
+
+#ifdef INDIELIB_DLLBUILD
 #define DLL_EXP __declspec(dllexport)
+#else
+#define DLL_EXP __declspec(dllimport)
+#endif //INDIELIB_DLLBUILD
+
 #define LIB_EXP DLL_EXP
 #define IndieLib() WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 #endif //PLATFORM_WIN32
@@ -535,7 +541,7 @@ typedef struct structPoint IND_Point;
 
 #define DISPOSE(x)      if (x)      { delete    x;  x = NULL; }
 #define DISPOSEARRAY(x) if (x)      { delete[] x;  x = NULL; }
-
+#define DISPOSEMANAGED(x) if (x)   { x->destroy(); x = NULL; }
 
 // --------------------------------------------------------------------------------
 //									Color Formats

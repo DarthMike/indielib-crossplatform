@@ -272,7 +272,7 @@ IDirect3DTexture9 *DirectXTextureBuilder::createTexture(BYTE *pImage,
 	                        &mNewTexture);
 
 	if (FAILED(mHr)) {
-		g_debug->header("Error creating the texture", 2);
+		g_debug->header("Error creating the texture", DebugApi::LogHeaderError);
 		exit(0);  // TODO: Free objects?
 	}
 
@@ -283,7 +283,7 @@ IDirect3DTexture9 *DirectXTextureBuilder::createTexture(BYTE *pImage,
 	// The surfaces points to the texture
 	mHr = mNewTexture->GetSurfaceLevel(0, &_surface);
 	if (FAILED(mHr)) {
-		g_debug->header("Error creating the surface", 2);
+		g_debug->header("Error creating the surface", DebugApi::LogHeaderError);
 		exit(0);  // TODO: free objects
 	}
 
@@ -308,7 +308,7 @@ IDirect3DTexture9 *DirectXTextureBuilder::createTexture(BYTE *pImage,
 	                                0);
 
 	if (FAILED(mHr)) {
-		g_debug->header("Error loading the block to the surface", 2);
+		g_debug->header("Error loading the block to the surface", DebugApi::LogHeaderError);
 		exit(0);  // TODO: free objects
 	}
 
@@ -337,13 +337,13 @@ void DirectXTextureBuilder::getSourceAndDestinationFormat(IND_Image *pImage, D3D
 					*pSrcFormat = D3DFMT_R5G6B5;
 			} else {
 				*pSrcFormat = D3DFMT_UNKNOWN;
-				g_debug->header("Not supported format of image! texture not loaded" , 4);
+				g_debug->header("Not supported format of image! texture not loaded" , DebugApi::LogHeaderWarning);
 	}
 		} else if (32 == bpp) {
 			*pSrcFormat = D3DFMT_A8B8G8R8;
 		} else {
 			*pSrcFormat = D3DFMT_UNKNOWN;
-			g_debug->header("The pixel format for the image could not be resolved correctly!" , 4);
+			g_debug->header("The pixel format for the image could not be resolved correctly!" , DebugApi::LogHeaderWarning);
 		}
 	}
 	break;
@@ -354,7 +354,7 @@ void DirectXTextureBuilder::getSourceAndDestinationFormat(IND_Image *pImage, D3D
 			*pSrcFormat = D3DFMT_A8R8G8B8;
 		} else {
 			*pSrcFormat = D3DFMT_UNKNOWN;
-			g_debug->header("The pixel format for the image could not be resolved correctly!" , 4);
+			g_debug->header("The pixel format for the image could not be resolved correctly!" , DebugApi::LogHeaderWarning);
 	}
 		
 	}
@@ -362,7 +362,7 @@ void DirectXTextureBuilder::getSourceAndDestinationFormat(IND_Image *pImage, D3D
     //FIXME: IND_LUMINANCE ignored?
 	default: {
 		*pSrcFormat = D3DFMT_UNKNOWN;
-		g_debug->header("The pixel format for the image could not be resolved correctly!" , 4);
+		g_debug->header("The pixel format for the image could not be resolved correctly!" , DebugApi::LogHeaderWarning);
 	}
 	}
 

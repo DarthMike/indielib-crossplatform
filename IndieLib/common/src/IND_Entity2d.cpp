@@ -38,6 +38,22 @@ Suite 330, Boston, MA 02111-1307 USA
 // --------------------------------------------------------------------------------
 //							  Initialization / Destruction
 // --------------------------------------------------------------------------------
+/**
+ *  Factory method to build instances of this class.
+ *
+ *  You should never allocate instances by calling new or allocating objects in the stack.
+ *  All memory related to this instance is managed by Indielib internally, and you must add it or remove it from
+ *  a manager.
+ *
+ *  @return A correctly initialized instance
+ */
+IND_Entity2d* IND_Entity2d::newEntity2d() {
+    return new IND_Entity2d();
+}
+
+void IND_Entity2d::destroy() {
+    delete this;
+}
 
 
 IND_Entity2d::IND_Entity2d() : _text(NULL),  _listBoundingCollision(NULL) {
@@ -633,19 +649,19 @@ void IND_Entity2d::setBlendDest(IND_BlendingType pDs) {
  * @param pFile						Xml file defining the bounding areas.
  */
 bool IND_Entity2d::setBoundingAreas(const char *pFile) {
-	g_debug->header("Parsing collision file", 5);
+	g_debug->header("Parsing collision file", DebugApi::LogHeaderBegin);
 
 	if(!pFile) {
-		g_debug->header("No filename provided", 2);
+		g_debug->header("No filename provided", DebugApi::LogHeaderError);
 		return 0;
 	}
 
-	g_debug->header("File name:", 3);
+	g_debug->header("File name:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(pFile, 1);
 
 	// Only for surfaces
 	if (!_su) {
-		g_debug->header("The entity hasn't got a surface assigned, for animations you must define the collision scripts in the .xml file", 2);
+		g_debug->header("The entity hasn't got a surface assigned, for animations you must define the collision scripts in the .xml file", DebugApi::LogHeaderError);
 		return 0;
 	}
 
@@ -655,13 +671,13 @@ bool IND_Entity2d::setBoundingAreas(const char *pFile) {
 	// ----- Parsing collision file -----
 
 	if (!_collisionParser->parseCollision(_listBoundingCollision, pFileCharTemp)) {
-		g_debug->header("Fatal error, cannot load the collision xml file", 2);
+		g_debug->header("Fatal error, cannot load the collision xml file", DebugApi::LogHeaderError);
 		return 0;
 	}
 
 	// ----- g_debug -----
 
-	g_debug->header("Collision file loaded", 6);
+	g_debug->header("Collision file loaded", DebugApi::LogHeaderEnd);
 
 	return 1;
 }

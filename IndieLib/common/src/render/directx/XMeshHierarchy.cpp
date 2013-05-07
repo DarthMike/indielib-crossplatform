@@ -46,10 +46,10 @@ HRESULT XMeshHierarchy::CreateFrame(LPCSTR Name, LPD3DXFRAME *retNewFrame) {
 	// The frame name (note: may be 0 or zero length)
 	if (Name && strlen(Name)) {
 		newFrame->Name = g_debug->duplicateCharString(Name);
-		g_debug->header("Added frame:", 3);
+		g_debug->header("Added frame:", DebugApi::LogHeaderInfo);
 		g_debug->dataChar((char *) Name, 1);
 	} else {
-		g_debug->header("Added frame:", 3);
+		g_debug->header("Added frame:", DebugApi::LogHeaderInfo);
 		g_debug->dataChar("No name given", 1);
 	}
 
@@ -140,7 +140,7 @@ HRESULT XMeshHierarchy::CreateMeshContainer(
 				// Use the D3DX function to load the texture
 				if (FAILED(D3DXCreateTextureFromFile(pd3dDevice, mTexturePath,
 				                                     &newMeshContainer->_exTextures[i]))) {
-					g_debug->header("Could not load texture:", 3);
+					g_debug->header("Could not load texture:", DebugApi::LogHeaderInfo);
 					g_debug->dataChar(mTexturePath, 1);
 					return 0;
 				}
@@ -175,14 +175,14 @@ HRESULT XMeshHierarchy::CreateMeshContainer(
 		for (UINT i = 0; i < numBones; i++)
 			newMeshContainer->_exBoneOffsets[i] = *(newMeshContainer->pSkinInfo->GetBoneOffsetMatrix(i));
 
-		g_debug->header("Mesh has skinning info. Number of bones is:", 3);
+		g_debug->header("Mesh has skinning info. Number of bones is:", DebugApi::LogHeaderInfo);
 		g_debug->dataInt(numBones, 1);
 
 		// Note: in the Microsoft samples a GenerateSkinnedMesh function is called here in order to prepare
 		// the skinned mesh data for optimial hardware acceleration. As mentioned in the notes this sample
 		// does not do hardware skinning but instead uses software skinning.
 	} else {
-		g_debug->header("Mesh has no skinning info", 1);
+		g_debug->header("Mesh has no skinning info", DebugApi::LogHeaderOk);
 
 		// No skin info so 0 all the pointers
 		newMeshContainer->pSkinInfo = 0;
@@ -198,7 +198,7 @@ HRESULT XMeshHierarchy::CreateMeshContainer(
 	// The mesh may contain a reference to an effect file
 	if (effectInstances) {
 		if (effectInstances->pEffectFilename)
-			g_debug->header("This .x file references an effect file. Effect files are not handled by IndieLib", 1);
+			g_debug->header("This .x file references an effect file. Effect files are not handled by IndieLib", DebugApi::LogHeaderOk);
 	}
 
 	// Set the output mesh container pointer to our newly created one

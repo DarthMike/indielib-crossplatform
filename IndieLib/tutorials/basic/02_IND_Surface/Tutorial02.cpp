@@ -31,42 +31,42 @@ int IndieLib()
 	// ----- Surface loading -----
 
 	// Loading Background
-	IND_Surface *mSurfaceBack = new IND_Surface();
+	IND_Surface *mSurfaceBack = IND_Surface::newSurface();
 	if (!mI->_surfaceManager->add(mSurfaceBack, "../../resources/blue_background.jpg", IND_OPAQUE, IND_32)) return 0;
 
 	// Loading sprite of a warrior
-	IND_Surface *mSurfaceWarrior = new IND_Surface();
+	IND_Surface *mSurfaceWarrior = IND_Surface::newSurface();
 	if (!mI->_surfaceManager->add(mSurfaceWarrior, "../../resources/derekyu_sprite.png", IND_ALPHA, IND_32, 255, 0, 255)) return 0; // TODO: This calls setAlpha in IND_Image, which is broken, please fix.
 
 	// Loading sprite of a star
-	IND_Surface *mSurfaceStar = new IND_Surface();
+	IND_Surface *mSurfaceStar = IND_Surface::newSurface();
 	if (!mI->_surfaceManager->add(mSurfaceStar, "../../resources/star.png", IND_ALPHA, IND_32)) return 0;
 
 
 	// ----- Set the surfaces into 2d entities -----
 	
 	// Creating 2d entity for the background
-	IND_Entity2d *mBack = new IND_Entity2d();				
+	IND_Entity2d *mBack = IND_Entity2d::newEntity2d();				
 	mI->_entity2dManager->add(mBack);					// Entity adding
 	mBack->setSurface(mSurfaceBack);					// Set the surface into the entity
 
 	// Creating 2d entity for the warrior
-	IND_Entity2d *mWarrior = new IND_Entity2d();				
+	IND_Entity2d *mWarrior = IND_Entity2d::newEntity2d();				
 	mI->_entity2dManager->add(mWarrior);					// Entity adding
 	mWarrior->setSurface(mSurfaceWarrior);					// Set the surface into the entity
 
 	// Creating 2d entity for the star 1
-	IND_Entity2d *mStar1 = new IND_Entity2d();		
+	IND_Entity2d *mStar1 = IND_Entity2d::newEntity2d();		
 	mI->_entity2dManager->add(mStar1);					// Entity adding
 	mStar1->setSurface(mSurfaceStar);					// Set the surface into the entity
 
 	// Creating 2d entity for the star 2 (big and a bit orange)
-	IND_Entity2d *mStar2 = new IND_Entity2d();					
+	IND_Entity2d *mStar2 = IND_Entity2d::newEntity2d();					
 	mI->_entity2dManager->add(mStar2);					// Entity adding
 	mStar2->setSurface(mSurfaceStar);					// Set the surface into the entity
 
 	// Creating 2d entity for the star 3 
-	IND_Entity2d *mStar3 = new IND_Entity2d();					
+	IND_Entity2d *mStar3 = IND_Entity2d::newEntity2d();					
 	mI->_entity2dManager->add(mStar3);					// Entity adding
 	mStar3->setSurface(mSurfaceStar);					// Set the surface into the entity
 

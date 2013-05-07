@@ -67,10 +67,10 @@ bool IND_Window::create(IND_WindowProperties& props) {
 	end();
 	initVars();
 
-	g_debug->header("Creating SDL window", 5);
+	g_debug->header("Creating SDL window", DebugApi::LogHeaderBegin);
 
 	if(props._bpp <= 0 || props._height <= 0 || props._width <= 0) {
-		g_debug->header("Error creating window: Invalid parameters provided", 2);
+		g_debug->header("Error creating window: Invalid parameters provided", DebugApi::LogHeaderError);
 		return 0;
 	}
 	
@@ -112,14 +112,14 @@ bool IND_Window::create(IND_WindowProperties& props) {
 										 _attributes._height, 
 										  windowFlags);
 	if (!_attributes._sdlWindow) {
-		g_debug->header("Error creating SDL window", 2);
-		g_debug->header(std::string(SDL_GetError()),2);
+		g_debug->header("Error creating SDL window", DebugApi::LogHeaderError);
+		g_debug->header(std::string(SDL_GetError()),DebugApi::LogHeaderError);
 		return 0;
 	}
 
 	if (!reset(props)) {
-		g_debug->header("Error setting SDL window params", 2);
-		g_debug->header(std::string(SDL_GetError()),2);
+		g_debug->header("Error setting SDL window params", DebugApi::LogHeaderError);
+		g_debug->header(std::string(SDL_GetError()),DebugApi::LogHeaderError);
 		return 0;
 	}
 
@@ -128,8 +128,8 @@ bool IND_Window::create(IND_WindowProperties& props) {
 	
 	if(SDL_FALSE == SDL_GetWindowWMInfo(getSDLWindow(),_attributes._windowInfo)) {
 		
-		g_debug->header("Error while getting SDL window manager info: " , 2);
-		g_debug->header(std::string(SDL_GetError()),2);
+		g_debug->header("Error while getting SDL window manager info: " , DebugApi::LogHeaderError);
+		g_debug->header(std::string(SDL_GetError()),DebugApi::LogHeaderError);
 		return 0;
 	}
 	
@@ -138,15 +138,15 @@ bool IND_Window::create(IND_WindowProperties& props) {
 	SDL_ShowCursor(SDL_DISABLE);
 #endif
 
-	g_debug->header("Window created", 1);
+	g_debug->header("Window created", DebugApi::LogHeaderOk);
 
-	g_debug->header("Mode:", 3);
+	g_debug->header("Mode:", DebugApi::LogHeaderInfo);
 	if (!_attributes._fullscreen)
 		g_debug->dataChar("Window", 1);
 	else
 		g_debug->dataChar("Full screen", 1);
 
-	g_debug->header("Window OK", 6);
+	g_debug->header("Window OK", DebugApi::LogHeaderEnd);
 
 	_ok = true;
 
@@ -160,13 +160,13 @@ Frees the manager and all the objects that it contains.
 */
 void IND_Window::end() {
 	if (_ok) {
-		g_debug ->header("Finalizing the window", 5);
+		g_debug ->header("Finalizing the window", DebugApi::LogHeaderBegin);
 		if (_attributes._sdlWindow) {
 			SDL_DestroyWindow(getSDLWindow());
 			_attributes._sdlWindow = NULL;
 		}
 		freeVars();
-		g_debug ->header("Window finalized", 6);
+		g_debug ->header("Window finalized", DebugApi::LogHeaderEnd);
         
 		_ok = false;
 	}
@@ -194,8 +194,8 @@ bool IND_Window::reset(IND_WindowProperties& props) {
 	dMode.refresh_rate = 0;
 	
 	if (props._bpp != 32) {
-		g_debug->header("Error creating SDL window", 2);
-		g_debug->header(std::string(SDL_GetError()),2);
+		g_debug->header("Error creating SDL window", DebugApi::LogHeaderError);
+		g_debug->header(std::string(SDL_GetError()),DebugApi::LogHeaderError);
 		return 0;
 	}
 

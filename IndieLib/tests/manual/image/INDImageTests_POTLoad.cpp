@@ -115,9 +115,9 @@ void INDImageTests_POTLoad::init() {
 
 	//Create underlying entities
 	for (int i = 0; i < _testedEntities; ++i) {
-		_images[i] = new IND_Image();
-		_surfaces[i] = new IND_Surface();
-		_entities[i] = new IND_Entity2d();
+		_images[i] = IND_Image::newImage();
+		_surfaces[i] = IND_Surface::newSurface();
+		_entities[i] = IND_Entity2d::newEntity2d();
 	}
 }	
 

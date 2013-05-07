@@ -25,6 +25,13 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "DebugApi.h"
 #include "IndieVersion.h"
 
+const int DebugApi::LogHeaderOk = 1;
+const int DebugApi::LogHeaderError = 2;
+const int DebugApi::LogHeaderInfo = 3;
+const int DebugApi::LogHeaderWarning = 4;
+const int DebugApi::LogHeaderBegin = 5;
+const int DebugApi::LogHeaderEnd = 6;
+
 
 // --------------------------------------------------------------------------------
 //							  Initialization / Destruction
@@ -34,16 +41,15 @@ Suite 330, Boston, MA 02111-1307 USA
  * Init
  */
 bool DebugApi::init() {
-	end();
 	initVars();
 
 	// File
 	_count = new ofstream("debug.log", ios::out);
 
 	// Time
-	time_t mT;							// TODO: these 
-	time(&mT);							//       lines 
-	struct tm *mPetm = localtime(&mT);				//       probably needs cleeanup, but im not sure /Michael
+	time_t mT;							
+	time(&mT);							 
+	struct tm *mPetm = localtime(&mT);				
 
 	// :D
 
@@ -64,7 +70,7 @@ bool DebugApi::init() {
     *_count << "Indielib version: "<<IND_VERSION.major<<"."<<IND_VERSION.minor<<"."<<IND_VERSION.revision;
 	*_count << endl;
 	*_count << endl;
-	*_count << "[g_debug.log]:" << " (";
+	*_count << "[Init time]:" << " (";
 
 	// Date
 	string days [7] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thrusday", "Friday", "Saturday"};
@@ -106,124 +112,125 @@ void DebugApi::end() {
  */
 void DebugApi::header(string pTextString, int pType) {
 	if (!_ok) return;
-
+    
 	switch (pType) {
-		// Ok
-	case(1): {
-		// Line
-		*_count << "          ";
-		*_count << " [  OK   ] ";
-		advance();
-        *_count << pTextString.c_str() << endl;
-
-		break;
-	}
-	// Error
-	case(2): {
-		// Line
-		*_count << "          ";
-		*_count << " [ ERROR ] ";
-		advance();
-        *_count << pTextString.c_str() << endl;
-
-		// If we are inside a BEGIN / END, we go out
-		if (_depth > 0) {
-			// Going back
-			_depth -= ESP;
-			// Close bracket
-			*_count << "                     ";
-			advance();
-			*_count << "}" << endl;
-
-			// Line
-			writeTime();
-			*_count << " [  END  ] ";
-			advance();
-			*_count << "Error occurred";
-
-			// Measure the time between BEGIN and END
-			double elapsedTime = _timer.getTicks() - _tableTime [(_depth + ESP) / ESP];
-			if (elapsedTime < 0) elapsedTime = 0; // Medida de seguridad
-			*_count << " [Elaped time = " << elapsedTime * 0.001f << " seg]" << endl;
-
-			// Line jump after BEGIN/END
-			if (!_depth) {
-				*_count << "---------------------------------------------------------------------" << endl;
-			}
-		}
-
-		break;
-
-	}
-	// Info
-	// Info dosen't make a line jump in order DataChar and DataInt could write just after that line
-	case(3): {
-		// Line
-		*_count << "          ";
-		*_count << " [ INFO  ] ";
-		advance();
-        *_count << pTextString.c_str();
-
-		break;
-	}
-	// Warning
-	case(4): {
-		// Line
-		*_count << "          ";
-		*_count << " [WARNING] ";
-		advance();
-        *_count << pTextString.c_str() << endl;
-
-		break;
-	}
-	// Begin
-	case(5): {
-		// Line
-		writeTime();
-		*_count << " [ BEGIN ] ";
-		advance();
-        *_count << "-- " << pTextString.c_str() << " --" << endl;
-
-		// Open brackets
-		*_count << "                     ";
-		advance();
-		*_count << "{" << endl;
-
-		// Advance
-		_depth += ESP;
-
-		// Store the current time in the time table
-		_tableTime [_depth / ESP] = _timer.getTicks();
-
-		break;
-	}
-	// End
-	case(6): {
-		// Going back
-		_depth -= ESP;
-		// Close bracket
-		*_count << "                     ";
-		advance();
-		*_count << "}" << endl;
-
-		// Line
-		writeTime();
-		*_count << " [  END  ] ";
-		advance();
-        *_count << pTextString.c_str();
-
-		// Measure the time between BEGIN and END
-		double elapsedTime = _timer.getTicks() - _tableTime [(_depth + ESP) / ESP];
-		if (elapsedTime < 0) elapsedTime = 0; // Security Measure
-		*_count << " [Elapsed time = " << elapsedTime * 0.001f << " seg]" << endl;
-
-		// Line jump after BEGIN/END
-		if (!_depth) {
-			*_count << "---------------------------------------------------------------------" << endl;
-		}
-
-		break;
-	}
+            // Ok
+        default: //NO BREAK ON PURPOSE!
+        case(LogHeaderOk): {
+            // Line
+            *_count << "          ";
+            *_count << " [  OK   ] ";
+            advance();
+            *_count << pTextString.c_str() << endl;
+            
+            break;
+        }
+            // Error
+        case(LogHeaderError): {
+            // Line
+            *_count << "          ";
+            *_count << " [ ERROR ] ";
+            advance();
+            *_count << pTextString.c_str() << endl;
+            
+            // If we are inside a BEGIN / END, we go out
+            if (_depth > 0) {
+                // Going back
+                _depth -= ESP;
+                // Close bracket
+                *_count << "                     ";
+                advance();
+                *_count << "}" << endl;
+                
+                // Line
+                writeTime();
+                *_count << " [  END  ] ";
+                advance();
+                *_count << "Error occurred";
+                
+                // Measure the time between BEGIN and END
+                double elapsedTime = _timer.getTicks() - _tableTime [(_depth + ESP) / ESP];
+                if (elapsedTime < 0) elapsedTime = 0; // Medida de seguridad
+                *_count << " [Elaped time = " << elapsedTime * 0.001f << " seg]" << endl;
+                
+                // Line jump after BEGIN/END
+                if (!_depth) {
+                    *_count << "---------------------------------------------------------------------" << endl;
+                }
+            }
+            
+            break;
+            
+        }
+            // Info
+            // Info dosen't make a line jump in order DataChar and DataInt could write just after that line
+        case(LogHeaderInfo): {
+            // Line
+            *_count << "          ";
+            *_count << " [ INFO  ] ";
+            advance();
+            *_count << pTextString.c_str();
+            
+            break;
+        }
+            // Warning
+        case(LogHeaderWarning): {
+            // Line
+            *_count << "          ";
+            *_count << " [WARNING] ";
+            advance();
+            *_count << pTextString.c_str() << endl;
+            
+            break;
+        }
+            // Begin
+        case(LogHeaderBegin): {
+            // Line
+            writeTime();
+            *_count << " [ BEGIN ] ";
+            advance();
+            *_count << "-- " << pTextString.c_str() << " --" << endl;
+            
+            // Open brackets
+            *_count << "                     ";
+            advance();
+            *_count << "{" << endl;
+            
+            // Advance
+            _depth += ESP;
+            
+            // Store the current time in the time table
+            _tableTime [_depth / ESP] = _timer.getTicks();
+            
+            break;
+        }
+            // End
+        case(LogHeaderEnd): {
+            // Going back
+            _depth -= ESP;
+            // Close bracket
+            *_count << "                     ";
+            advance();
+            *_count << "}" << endl;
+            
+            // Line
+            writeTime();
+            *_count << " [  END  ] ";
+            advance();
+            *_count << pTextString.c_str();
+            
+            // Measure the time between BEGIN and END
+            double elapsedTime = _timer.getTicks() - _tableTime [(_depth + ESP) / ESP];
+            if (elapsedTime < 0) elapsedTime = 0; // Security Measure
+            *_count << " [Elapsed time = " << elapsedTime * 0.001f << " seg]" << endl;
+            
+            // Line jump after BEGIN/END
+            if (!_depth) {
+                *_count << "---------------------------------------------------------------------" << endl;
+            }
+            
+            break;
+        }
 	}
 }
 

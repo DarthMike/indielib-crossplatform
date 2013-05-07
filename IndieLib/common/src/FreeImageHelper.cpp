@@ -258,7 +258,7 @@ FIBITMAP* FreeImageHelper::convertColorFormat(FIBITMAP* pHandle, int pNewFormat)
 			break;
 
 		default:
-			g_debug->header("INCORRECT TEXTURE COLOR FORMAT SPECIFIED TO CONVERT TO", 2);
+			g_debug->header("INCORRECT TEXTURE COLOR FORMAT SPECIFIED TO CONVERT TO", DebugApi::LogHeaderError);
 			break;
 	}
 

@@ -400,11 +400,19 @@
 				Name="2d"
 				>
 				<File
+					RelativePath="..\tests\unittests\FontManager.cpp"
+					>
+				</File>
+				<File
 					RelativePath="..\tests\unittests\Image.cpp"
 					>
 				</File>
 				<File
 					RelativePath="..\tests\unittests\ImageManager.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\tests\unittests\SurfaceManager.cpp"
 					>
 				</File>
 			</Filter>

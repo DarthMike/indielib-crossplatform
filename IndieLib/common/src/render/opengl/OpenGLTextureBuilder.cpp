@@ -62,7 +62,7 @@ bool OpenGLTextureBuilder::createNewTexture(IND_Surface  *pNewSurface,
     GLboolean enabled;
     glGetBooleanv(GL_TEXTURE_2D,&enabled);
     if (GL_FALSE == enabled){
-        g_debug->header("GL Textures not enabled!!", 2);
+        g_debug->header("GL Textures not enabled!!", DebugApi::LogHeaderError);
         return false;
     }
 #endif	
@@ -93,7 +93,7 @@ bool OpenGLTextureBuilder::createNewTexture(IND_Surface  *pNewSurface,
     
     GLenum glerror = glGetError();
     if (glerror) {
-		g_debug->header("OpenGL error while creating textures ", 2);
+		g_debug->header("OpenGL error while creating textures ", DebugApi::LogHeaderError);
         return false;
     }
 	
@@ -206,11 +206,6 @@ bool OpenGLTextureBuilder::createNewTexture(IND_Surface  *pNewSurface,
 
 			// We create a texture using the cut bitmap block
 			glBindTexture(GL_TEXTURE_2D,pNewSurface->_surface->_texturesArray[mCont]);
-			glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 			glTexImage2D(GL_TEXTURE_2D,
 						0,
 						mInternalFormat,
@@ -226,7 +221,7 @@ bool OpenGLTextureBuilder::createNewTexture(IND_Surface  *pNewSurface,
 
 			GLenum glerror = glGetError();
 			if (glerror) {
-				g_debug->header("OpenGL error while assigning texture to buffer", 2);
+				g_debug->header("OpenGL error while assigning texture to buffer", DebugApi::LogHeaderError);
 				//TODO: Test error and mem. leaks 
 				return false;
 			}
@@ -308,7 +303,7 @@ void OpenGLTextureBuilder::getGLFormat(IND_Surface *pNewSurface, IND_Image* pIma
 				*pGLInternalFormat = GL_NONE;
 				*pGLFormat = GL_NONE;
 				*pGLType = GL_NONE;
-				g_debug->header("Not supported format of image! texture not loaded" , 4);
+				g_debug->header("Not supported format of image! texture not loaded" , DebugApi::LogHeaderWarning);
                 }
 
 			break;
@@ -327,7 +322,7 @@ void OpenGLTextureBuilder::getGLFormat(IND_Surface *pNewSurface, IND_Image* pIma
 					*pGLInternalFormat = GL_NONE;
 					*pGLFormat = GL_NONE;
 					*pGLType = GL_NONE;
-					g_debug->header("Not supported format of image! texture not loaded" , 4);
+					g_debug->header("Not supported format of image! texture not loaded" , DebugApi::LogHeaderWarning);
             }
 			} else if (32 == bpp) {
 				//FreeImage loads channel order differently depending on processor endianess (24 and 32 bits).
@@ -341,7 +336,7 @@ void OpenGLTextureBuilder::getGLFormat(IND_Surface *pNewSurface, IND_Image* pIma
 				*pGLInternalFormat = GL_NONE;
 				*pGLFormat = GL_NONE;
 				*pGLType = GL_NONE;
-				g_debug->header("Not supported format of image! texture not loaded" , 4);
+				g_debug->header("Not supported format of image! texture not loaded" , DebugApi::LogHeaderWarning);
                 }
 			break;
 		case (IND_RGBA): 
@@ -362,7 +357,7 @@ void OpenGLTextureBuilder::getGLFormat(IND_Surface *pNewSurface, IND_Image* pIma
 				*pGLInternalFormat = GL_NONE;
 				*pGLFormat = GL_NONE;
 				*pGLType = GL_NONE;
-				g_debug->header("Not supported format of image! texture not loaded" , 4);
+				g_debug->header("Not supported format of image! texture not loaded" , DebugApi::LogHeaderWarning);
             }
 
             break;
@@ -371,7 +366,7 @@ void OpenGLTextureBuilder::getGLFormat(IND_Surface *pNewSurface, IND_Image* pIma
 			*pGLInternalFormat = GL_NONE;
             *pGLFormat = GL_NONE;
 			*pGLType = GL_NONE;
-            g_debug->header("Not supported format of image! texture not loaded" , 4);
+            g_debug->header("Not supported format of image! texture not loaded" , DebugApi::LogHeaderWarning);
             break;
     }        
 }

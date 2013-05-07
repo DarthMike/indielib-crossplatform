@@ -64,7 +64,6 @@
 		E75EB188159CADF900693F41 /* RenderTransform3dOpenGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAB0A159CADEF00693F41 /* RenderTransform3dOpenGL.cpp */; };
 		E75EB189159CADF900693F41 /* RenderTransformCommonOpenGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAB0B159CADEF00693F41 /* RenderTransformCommonOpenGL.cpp */; };
 		E75EB2AB159CAF1100693F41 /* IND_Camera3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EB2AA159CAF1100693F41 /* IND_Camera3d.cpp */; };
-		E793C03516C964BC002F9867 /* IndieVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = E793C03416C964BC002F9867 /* IndieVersion.h */; };
 		E793C03816C9654B002F9867 /* IndieVersion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E793C03616C9654B002F9867 /* IndieVersion.cpp */; };
 		E793C04716CAEDAF002F9867 /* libiconv.2.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E793C04616CAEDAF002F9867 /* libiconv.2.4.0.dylib */; };
 		E7DBCA5C159B10E900C8B2D9 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCA5B159B10E900C8B2D9 /* CoreFoundation.framework */; };
@@ -200,6 +199,7 @@
 		E793C03416C964BC002F9867 /* IndieVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndieVersion.h; sourceTree = "<group>"; };
 		E793C03616C9654B002F9867 /* IndieVersion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IndieVersion.cpp; sourceTree = "<group>"; };
 		E793C04616CAEDAF002F9867 /* libiconv.2.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.4.0.dylib; path = usr/lib/libiconv.2.4.0.dylib; sourceTree = SDKROOT; };
+		E79B1FB01730637800B4ADFB /* IND_Object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IND_Object.h; path = "../../../../../../softwaredev/projects/indielib-crossplatform/IndieLib/common/include/IND_Object.h"; sourceTree = "<group>"; };
 		E7DBCA5B159B10E900C8B2D9 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		E7DBCA5D159B10F900C8B2D9 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		E7DBCA5F159B117500C8B2D9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -328,6 +328,7 @@
 				E75EAA9F159CADEF00693F41 /* CollisionParser.h */,
 				E75EAAA0159CADEF00693F41 /* Defines.h */,
 				E75EAAA1159CADEF00693F41 /* ImageCutter.h */,
+				E79B1FB01730637800B4ADFB /* IND_Object.h */,
 				E75EAAA2159CADEF00693F41 /* IND_3dMesh.h */,
 				E75EAAA3159CADEF00693F41 /* IND_3dMeshManager.h */,
 				E75EAAA4159CADEF00693F41 /* IND_Animation.h */,
@@ -467,9 +468,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E793C03516C964BC002F9867 /* IndieVersion.h in Headers */,
-				4CC1EA891732E70300A31689 /* IND_SpriterEntity.h in Headers */,
-				4CC1EA8A1732E70300A31689 /* IND_SpriterManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

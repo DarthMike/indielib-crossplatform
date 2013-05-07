@@ -59,7 +59,7 @@ Suite 330, Boston, MA 02111-1307 USA
 
 IND_Window* DirectXRender::initRenderAndWindow(IND_WindowProperties& props) {
 	if(props._bpp <= 0 || props._height <= 0 || props._width <= 0) {
-		g_debug->header("Error resetting window: Invalid parameters provided", 2);
+		g_debug->header("Error resetting window: Invalid parameters provided", DebugApi::LogHeaderError);
 		return 0;
 	}
 
@@ -87,7 +87,7 @@ IND_Window* DirectXRender::initRenderAndWindow(IND_WindowProperties& props) {
 }
 
 bool DirectXRender::init(LPDIRECT3D9 pDirect3d, IDirect3DDevice9 *pD3dDevice) {
-	g_debug->header("Initializing Direct3D", 5);
+	g_debug->header("Initializing Direct3D", DebugApi::LogHeaderBegin);
 
 	// Fill Info
 	_info._direct3d = pDirect3d;
@@ -116,14 +116,14 @@ bool DirectXRender::init(LPDIRECT3D9 pDirect3d, IDirect3DDevice9 *pD3dDevice) {
 	//setCamera2d(&mCamera2d);
 	clearViewPort(0, 0, 0);
 
-	g_debug->header("Direct3D OK", 6);
+	g_debug->header("Direct3D OK", DebugApi::LogHeaderEnd);
 
 	return _ok;
 }
 
 bool DirectXRender::reset(IND_WindowProperties& props) {
 	if(props._bpp <= 0 || props._height <= 0 || props._width <= 0) {
-		g_debug->header("Error resetting window: Invalid parameters provided", 2);
+		g_debug->header("Error resetting window: Invalid parameters provided", DebugApi::LogHeaderError);
 		return 0;
 	}
 
@@ -197,9 +197,9 @@ void DirectXRender::getNumDiscardedObjectsString(char* pBuffer)      {
 
 void DirectXRender::end() {
 	if (_ok) {
-		g_debug->header("Finalizing Direct3D", 5);
+		g_debug->header("Finalizing Direct3D", DebugApi::LogHeaderBegin);
 		freeVars();
-		g_debug->header("Direct3D finalized ", 6);
+		g_debug->header("Direct3D finalized ", DebugApi::LogHeaderEnd);
 		_ok = false;
 	}
 }
@@ -221,10 +221,10 @@ bool DirectXRender::Direct3Dinit(int pWidth,
 	// Direct3D creation
 	LPDIRECT3D9 direct3d = Direct3DCreate9(D3D_SDK_VERSION);
 	if (!direct3d) {
-		g_debug->header("Error creating D3D object", 2);
+		g_debug->header("Error creating D3D object", DebugApi::LogHeaderError);
 		return 0;
 	} else {
-		g_debug->header("Creating D3D object", 1);
+		g_debug->header("Creating D3D object", DebugApi::LogHeaderOk);
 		_info._direct3d = direct3d;
 	}
 
@@ -232,7 +232,7 @@ bool DirectXRender::Direct3Dinit(int pWidth,
 
 	// We try to create the device using hardware vertex processing, if it is not possible
 	// we use software vertex processing
-	g_debug->header("Creating the device (D3DCREATE_HARDWARE_VERTEXPROCESSING)", 1);
+	g_debug->header("Creating the device (D3DCREATE_HARDWARE_VERTEXPROCESSING)", DebugApi::LogHeaderOk);
 
 	if ((_info._direct3d->CreateDevice(D3DADAPTER_DEFAULT,
 	                                   D3DDEVTYPE_HAL,
@@ -240,8 +240,8 @@ bool DirectXRender::Direct3Dinit(int pWidth,
 	                                   D3DCREATE_HARDWARE_VERTEXPROCESSING,
 	                                   &mPresentParameters,
 	                                   &_info._device)) != D3D_OK) {
-		g_debug->header("Not possible to create the device (D3DCREATE_HARDWARE_VERTEXPROCESSING)", 1);
-		g_debug->header("Creating the device (D3DCREATE_SOFTWARE_VERTEXPROCESSING) instead", 1);
+		g_debug->header("Not possible to create the device (D3DCREATE_HARDWARE_VERTEXPROCESSING)", DebugApi::LogHeaderOk);
+		g_debug->header("Creating the device (D3DCREATE_SOFTWARE_VERTEXPROCESSING) instead", DebugApi::LogHeaderOk);
 
 		if ((_info._direct3d->CreateDevice(D3DADAPTER_DEFAULT,
 		                                   D3DDEVTYPE_HAL,
@@ -249,7 +249,7 @@ bool DirectXRender::Direct3Dinit(int pWidth,
 		                                   D3DCREATE_SOFTWARE_VERTEXPROCESSING,
 		                                   &mPresentParameters,
 		                                   &_info._device)) != D3D_OK) {
-			g_debug->header("Error creating the Device (D3DCREATE_SOFTWARE_VERTEXPROCESSING)", 2);
+			g_debug->header("Error creating the Device (D3DCREATE_SOFTWARE_VERTEXPROCESSING)", DebugApi::LogHeaderError);
 			return 0;
 		} else {
 			_info._softwareVertexProcessing = 1;
@@ -265,7 +265,7 @@ bool DirectXRender::Direct3Dinit(int pWidth,
 	_info._fbHeight = pHeight;
 
 	// Video mode
-	g_debug->header("Video mode:", 3);
+	g_debug->header("Video mode:", DebugApi::LogHeaderInfo);
 	g_debug->dataInt(pWidth, 0);
 	g_debug->dataChar("x", 0);
 	g_debug->dataInt(pHeight, 0);
@@ -292,7 +292,7 @@ bool DirectXRender::Direct3dReset(int pWidth,
                                   int pBpp,
                                   bool pVsync,
                                   bool pFullscreen) {
-	g_debug->header("Reseting Direct3D", 5);
+	g_debug->header("Reseting Direct3D", DebugApi::LogHeaderBegin);
 
 	if (!fillPresentParameters(pWidth,pHeight,pBpp,pVsync,pFullscreen)) return 0;
 
@@ -327,14 +327,14 @@ bool DirectXRender::Direct3dReset(int pWidth,
 	clearViewPort(0, 0, 0);
 
 	// Video mode
-	g_debug->header("Video mode:", 3);
+	g_debug->header("Video mode:", DebugApi::LogHeaderInfo);
 	g_debug->dataInt(pWidth, 0);
 	g_debug->dataChar("x", 0);
 	g_debug->dataInt(pHeight, 0);
 	g_debug->dataChar("x", 0);
 	g_debug->dataInt(pBpp, 1);
 
-	g_debug->header("Direct3D reseted", 6);
+	g_debug->header("Direct3D reseted", DebugApi::LogHeaderEnd);
 
 	// Reset timer
 	//FIXME: CHECK HOW TO BE CONSISTENT WITH FPS COUNT (NOT TOO IMPORTANT)
@@ -350,7 +350,7 @@ Creates the render
 ==================
 */
 bool DirectXRender::createRender(IND_Window* pWindow) {
-	g_debug->header("Initializing Direct3D", 5);
+	g_debug->header("Initializing Direct3D", DebugApi::LogHeaderBegin);
 
 	// If the window is correctly initialized
 	if (pWindow->isOK()) {
@@ -366,13 +366,13 @@ bool DirectXRender::createRender(IND_Window* pWindow) {
 
 		// Direct3d initialization
 		if (!Direct3Dinit(mWidthWin, mHeightWin, mBitsWin, mVsync, mFullscreen)) {
-			g_debug->header("Finalizing D3D", 5);
+			g_debug->header("Finalizing D3D", DebugApi::LogHeaderBegin);
 			freeVars();
-			g_debug->header("D3D finalized", 6);
+			g_debug->header("D3D finalized", DebugApi::LogHeaderEnd);
 			return 0;
 		}
 
-		g_debug->header("Direct3D OK", 6);
+		g_debug->header("Direct3D OK", DebugApi::LogHeaderEnd);
 
 		// Hardware information
 		writeInfo();
@@ -381,9 +381,9 @@ bool DirectXRender::createRender(IND_Window* pWindow) {
 	}
 
 	// Window error
-	g_debug->header("This operation can not be done:", 3);
+	g_debug->header("This operation can not be done:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar("", 1);
-	g_debug->header("Invalid Id or IND_Window not correctly initialized.", 2);
+	g_debug->header("Invalid Id or IND_Window not correctly initialized.", DebugApi::LogHeaderError);
 
 	return 0;
 }
@@ -457,26 +457,26 @@ Writes the information into the debug field
 ==================
 */
 void DirectXRender::writeInfo() {
-	g_debug->header("Hardware information" , 5);
+	g_debug->header("Hardware information" , DebugApi::LogHeaderBegin);
 
 	// ----- D3D version -----
 
-	g_debug->header("Direct3D version:" , 3);
+	g_debug->header("Direct3D version:" , DebugApi::LogHeaderInfo);
 	g_debug->dataChar(_info._version, 1);
 
 	// ----- Vendor -----
 
-	g_debug->header("Mark:" , 3);
+	g_debug->header("Mark:" , DebugApi::LogHeaderInfo);
 	g_debug->dataChar(_info._vendor, 1);
 
 	// ----- Renderer -----
 
-	g_debug->header("Chip:" , 3);
+	g_debug->header("Chip:" , DebugApi::LogHeaderInfo);
 	g_debug->dataChar(_info._renderer, 1);
 
 	// ----- Antialiasing -----
 
-	g_debug->header("Primitive antialising (D3DRS_ANTIALIASEDLINEENABLE):", 3);
+	g_debug->header("Primitive antialising (D3DRS_ANTIALIASEDLINEENABLE):", DebugApi::LogHeaderInfo);
 	if (_info._antialiasing)
 		g_debug->dataChar("Yes", 1);
 	else
@@ -484,14 +484,14 @@ void DirectXRender::writeInfo() {
 
 	// ----- Max texture size -----
 
-	g_debug->header("Maximum texture size:" , 3);
+	g_debug->header("Maximum texture size:" , DebugApi::LogHeaderInfo);
 	g_debug->dataInt(_info._maxTextureSize, 0);
 	g_debug->dataChar("x", 0);
 	g_debug->dataInt(_info._maxTextureSize, 1);
 
 	// ----- Vertex Shader version  -----
 
-	g_debug->header("Vertex Shader:" , 3);
+	g_debug->header("Vertex Shader:" , DebugApi::LogHeaderInfo);
 	g_debug->dataInt(D3DSHADER_VERSION_MAJOR(_info._vertexShaderVersion), 0);
 	g_debug->dataChar(".", 0);
 	g_debug->dataInt(D3DSHADER_VERSION_MINOR(_info._vertexShaderVersion), 0);
@@ -503,12 +503,12 @@ void DirectXRender::writeInfo() {
 
 	// ----- Pixel Shader version -----
 
-	g_debug->header("Pixel Shader:" , 3);
+	g_debug->header("Pixel Shader:" , DebugApi::LogHeaderInfo);
 	g_debug->dataInt(D3DSHADER_VERSION_MAJOR(_info._pixelShaderVersion), 0);
 	g_debug->dataChar(".", 0);
 	g_debug->dataInt(D3DSHADER_VERSION_MINOR(_info._pixelShaderVersion), 1);
 
-	g_debug->header("Hardware Ok" , 6);
+	g_debug->header("Hardware Ok" , DebugApi::LogHeaderEnd);
 }
 
 
@@ -525,10 +525,10 @@ int DirectXRender::fillPresentParameters(int pWidth,
 	// Windowed
 	if (!pFullscreen) {
 		if ((_info._direct3d->GetAdapterDisplayMode(D3DADAPTER_DEFAULT, &mDisplayMode)) != D3D_OK) {
-			g_debug->header("Error obtaining the adapter", 2);
+			g_debug->header("Error obtaining the adapter", DebugApi::LogHeaderError);
 			return 0;
 		} else
-			g_debug->header("Obtaining the adapter", 1);
+			g_debug->header("Obtaining the adapter", DebugApi::LogHeaderOk);
 	} else
 		// Full screen
 	{
@@ -541,7 +541,7 @@ int DirectXRender::fillPresentParameters(int pWidth,
 		else
 			mDisplayMode.Format = D3DFMT_R5G6B5;
 
-		g_debug->header("Obtaining the adapter", 1);
+		g_debug->header("Obtaining the adapter", DebugApi::LogHeaderOk);
 	}
 
 	ZeroMemory(&mPresentParameters, sizeof(mPresentParameters));
@@ -580,7 +580,7 @@ int DirectXRender::fillPresentParameters(int pWidth,
 	                                                            D3DMULTISAMPLE_2_SAMPLES,
 	                                                            &mQualityLevels)))
 	{
-	    g_debug->Header ("Iniciando Antialiasing", 1);
+	    g_debug->Header ("Iniciando Antialiasing", DebugApi::LogHeaderOk);
 	    mPresentParameters.MultiSampleType = D3DMULTISAMPLE_2_SAMPLES;
 	    mPresentParameters.MultiSampleQuality = mQualityLevels;
 	}
@@ -602,13 +602,13 @@ void DirectXRender::DestroyD3DWindow() {
 	if (_info._device)
 		_info._device->Release();
 	_info._device = NULL;
-	g_debug ->header("Finalizing the Device", 1);
+	g_debug ->header("Finalizing the Device", DebugApi::LogHeaderOk);
 
 	// Free D3D object
 	if (_info._direct3d)
 		_info._direct3d->Release();
 	_info._direct3d = NULL;
-	g_debug ->header("Finalizing D3D object", 1);
+	g_debug ->header("Finalizing D3D object", DebugApi::LogHeaderOk);
 }
 
 /*

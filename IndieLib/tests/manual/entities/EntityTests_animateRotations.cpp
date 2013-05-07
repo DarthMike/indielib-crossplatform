@@ -143,10 +143,10 @@ void EntityTests_animateRotations::init() {
 
 	//Create underlying entities
 	for (int i = 0; i < _testedEntities; ++i) {
-		_animations[i] = new IND_Animation();
-		_entities[i] = new IND_Entity2d();
-		_fonts[i] = new IND_Font();
-		_surfaces[i] = new IND_Surface();
+		_animations[i] = IND_Animation::newAnimation();
+		_entities[i] = IND_Entity2d::newEntity2d();
+		_fonts[i] = IND_Font::newFont();
+		_surfaces[i] = IND_Surface::newSurface();
 	}
 }
 

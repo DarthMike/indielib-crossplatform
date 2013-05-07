@@ -21,26 +21,7 @@ echo "TUTORIALS RELATIVE DIR: $TUTORIALSDIR"
 echo "DESTINATION DIRECTORY: $DESTDIR"
 
 #build dependencies
-cd $DEPSDIR
-
-#builds static + shared. Will delete shared to link statically
-cd ./FreeImage
-make clean
-make
-rm Dist/*.dylib
-
-#build static SDL lib only
-cd ../SDL-2.0
-./configure --disable-shared --enable-static --prefix=`pwd`/osx
-make clean
-make
-make install
-
-#builds static + shared. Will delete shared to link statically
-cd ../glew-1.9.0
-make clean
-make
-rm lib/*.dylib
+./builddependencies.sh
 
 #clean all targets first
 cd $RUNDIR

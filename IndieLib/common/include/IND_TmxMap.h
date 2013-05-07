@@ -14,6 +14,8 @@ comment goes here
 #include <string.h>
 #endif
 
+#include "IND_Object.h"
+
 #include "dependencies/TmxParser/Tmx.h"
 
 // ----- Forward declarations ------
@@ -33,8 +35,11 @@ IND_Image class managed by IND_ImageManager for loading, saving and applying fil
 /*!
 \b IND_Image is an image object from the class ::IND_ImageManager. Read the explanation in ::IND_ImageManager for more details.
 */
-class LIB_EXP IND_TmxMap {
+class LIB_EXP IND_TmxMap : IND_Object {
 public:
+    
+    static IND_TmxMap* newTmxMap();
+    virtual void destroy();
 
 	// ----- Public methods ------
 
@@ -62,6 +67,9 @@ public:
 
 private:
 	/** @cond DOCUMENT_PRIVATEAPI */
+    IND_TmxMap() {}
+    virtual ~IND_TmxMap() {}
+    
 	// ----- Structures ------
 
 	//TYPE

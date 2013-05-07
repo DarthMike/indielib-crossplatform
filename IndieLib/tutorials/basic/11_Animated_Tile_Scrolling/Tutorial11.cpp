@@ -27,13 +27,13 @@ int IndieLib()
 	// ----- Animations loading -----
 
 	// Sun animation
-	IND_Animation *mAnimationSun = new IND_Animation();
+	IND_Animation *mAnimationSun = IND_Animation::newAnimation();
 	if (!mI->_animationManager->addToSurface(mAnimationSun, "../../resources/animations/sun.xml", IND_OPAQUE, IND_32)) return 0;
 
 	// ----- Set the surface and animations into 2d entities -----
 
 	// Sun
-	IND_Entity2d *mSun = new IND_Entity2d();
+	IND_Entity2d *mSun = IND_Entity2d::newEntity2d();
 	mI->_entity2dManager->add(mSun);			// Entity adding
 	mSun->setAnimation(mAnimationSun);			// Set the animation into the entity
 

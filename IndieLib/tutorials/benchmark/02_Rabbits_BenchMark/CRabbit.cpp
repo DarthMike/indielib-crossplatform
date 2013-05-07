@@ -38,7 +38,7 @@ void CRabbit::init(IND_Surface *pSurfaceRabbit, int pZ)
 	mZ = pZ;
 
 	// Add the entity
-	mRabbit = new IND_Entity2d();
+	mRabbit = IND_Entity2d::newEntity2d();
 	mI->_entity2dManager->add(mRabbit);	
 	mRabbit->setSurface(pSurfaceRabbit);
 

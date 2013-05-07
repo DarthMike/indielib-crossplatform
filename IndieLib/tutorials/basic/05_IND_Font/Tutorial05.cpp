@@ -29,45 +29,45 @@ int IndieLib()
 	// ----- Surface and font loading -----
 
 	// Loading Background
-	IND_Surface *mSurfaceBack = new IND_Surface();
+	IND_Surface *mSurfaceBack = IND_Surface::newSurface();
 	if (!mI->_surfaceManager->add(mSurfaceBack, "../../resources/blue_background.jpg", IND_OPAQUE, IND_32)) return 0;
 
 	// Loading tip page
-	IND_Surface *mSurfaceTip = new IND_Surface();
+	IND_Surface *mSurfaceTip = IND_Surface::newSurface();
 	if (!mI->_surfaceManager->add(mSurfaceTip, "../../resources/tip.png", IND_ALPHA, IND_32)) return 0;
 
 	// Font 1
-	IND_Font *mFontSmall = new IND_Font();
+	IND_Font *mFontSmall = IND_Font::newFont();
 	if (!mI->_fontManager->add(mFontSmall, "../../resources/font_small.png", "../../resources/font_small.xml", IND_ALPHA, IND_32)) return 0;
 
 	// Font 2
-	IND_Font *mFontBig = new IND_Font();
+	IND_Font *mFontBig = IND_Font::newFont();
 	if (!mI->_fontManager->add(mFontBig, "../../resources/font_big.png", "../../resources/font_big.xml", IND_ALPHA, IND_32)) return 0;
 
 	// ----- Set the surfaces and fonts into 2d entities -----
 
 	// Creating 2d entity for the background
-	IND_Entity2d *mBack = new IND_Entity2d();					
+	IND_Entity2d *mBack = IND_Entity2d::newEntity2d();					
 	mI->_entity2dManager->add(mBack);				// Entity adding
 	mBack->setSurface(mSurfaceBack);				// Set the surface into the entity
 
 	// Creating 2d entity for the tips page
-	IND_Entity2d *mTip = new IND_Entity2d();					
+	IND_Entity2d *mTip = IND_Entity2d::newEntity2d();					
 	mI->_entity2dManager->add(mTip);				// Entity adding
 	mTip->setSurface(mSurfaceTip);					// Set the surface into the entity
 
 	// Title text
-	IND_Entity2d *mTextTitle = new IND_Entity2d();					
+	IND_Entity2d *mTextTitle = IND_Entity2d::newEntity2d();					
 	mI->_entity2dManager->add(mTextTitle);				// Entity adding
 	mTextTitle->setFont(mFontBig);					// Set the font into the entity
 
 	// Text small black
-	IND_Entity2d *mTextSmallBlack = new IND_Entity2d();					
+	IND_Entity2d *mTextSmallBlack = IND_Entity2d::newEntity2d();					
 	mI->_entity2dManager->add(mTextSmallBlack);			// Entity adding
 	mTextSmallBlack->setFont(mFontSmall);				// Set the font into the entity
 
 	// Text small white
-	IND_Entity2d *mTextSmallWhite = new IND_Entity2d();					
+	IND_Entity2d *mTextSmallWhite = IND_Entity2d::newEntity2d();					
 	mI->_entity2dManager->add(mTextSmallWhite);			// Entity adding
 	mTextSmallWhite->setFont(mFontSmall);				// Set the font into the entity
 

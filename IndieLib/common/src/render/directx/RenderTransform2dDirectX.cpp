@@ -95,7 +95,8 @@ void DirectXRender::setCamera2d(IND_Camera2d *pCamera2d) {
 	D3DXMatrixMultiply(&mMatView,&mMatView,&mMatPointPixel);
 
     //Buffer D3DVec3 structs from our camera 3d vectors
-    D3DXVECTOR3 d3dpos (pCamera2d->_pos._x,pCamera2d->_pos._y,pCamera2d->_pos._z);
+	// -0.5f due to pixel to texel conversion. Done in camera to make less calculations (only on camera instead than on every vertex)
+    D3DXVECTOR3 d3dpos (pCamera2d->_pos._x-0.5f,pCamera2d->_pos._y-0.5f,pCamera2d->_pos._z);
     D3DXVECTOR3 d3dlook (pCamera2d->_look._x,pCamera2d->_look._y, pCamera2d->_look._z);
     D3DXVECTOR3 d3dup (pCamera2d->_up._x,pCamera2d->_up._y, pCamera2d->_up._z);
     D3DXVECTOR3 d3dright (pCamera2d->_right._x,pCamera2d->_right._y, pCamera2d->_right._z);
@@ -121,6 +122,7 @@ void DirectXRender::setCamera2d(IND_Camera2d *pCamera2d) {
 	D3DXVECTOR3 d3dAt (d3dpos.x + d3dlook.x,d3dpos.y + d3dlook.y,d3dpos.z + d3dlook.z);
 	D3DXMatrixLookAtLH(&mMatLookAt,&d3dpos,&d3dAt,&d3dup);
 	D3DXMatrixMultiply(&mMatView, &mMatView, &mMatLookAt);
+ 
 
 	// ---- Zoom ----
 	if (pCamera2d->_zoom != 1.0f)

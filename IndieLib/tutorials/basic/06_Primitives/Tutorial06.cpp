@@ -27,14 +27,14 @@ int IndieLib()
 	// ----- Set the primitives into 2d entities -----
 
 	// Pixel
-	IND_Entity2d *mPixel = new IND_Entity2d();					
+	IND_Entity2d *mPixel = IND_Entity2d::newEntity2d();					
 	mI->_entity2dManager->add(mPixel);			
 	mPixel->setPrimitive2d(IND_PIXEL);
 	mPixel->setPosition(200, 75, 0);
 	mPixel->setTint(255, 255, 255);
 	
 	// Regular poly
-	IND_Entity2d *mRegularPoly = new IND_Entity2d();					
+	IND_Entity2d *mRegularPoly = IND_Entity2d::newEntity2d();					
 	mI->_entity2dManager->add(mRegularPoly);			
 	mRegularPoly->setPrimitive2d(IND_REGULAR_POLY);		
 	mRegularPoly->setPosition(200, 75, 0);									
@@ -43,21 +43,21 @@ int IndieLib()
 	mRegularPoly->setTint(255, 0, 0);
 
 	// Line
-	IND_Entity2d *mLine  = new IND_Entity2d();					
+	IND_Entity2d *mLine  = IND_Entity2d::newEntity2d();					
 	mI->_entity2dManager->add(mLine);			
 	mLine->setPrimitive2d (IND_LINE);
 	mLine->setLine(100, 100, 50, 50);
 	mLine->setTint(0, 255, 0);
 
 	// Rectangle
-	IND_Entity2d *mRectangle = new IND_Entity2d();					
+	IND_Entity2d *mRectangle = IND_Entity2d::newEntity2d();					
 	mI->_entity2dManager->add(mRectangle);			
 	mRectangle->setPrimitive2d(IND_RECTANGLE);
 	mRectangle->setRectangle(350, 50, 400, 100);
 	mRectangle->setTint(0, 0, 255);
 
 	// Filled rectangle
-	IND_Entity2d *mFillRectangle = new IND_Entity2d();					
+	IND_Entity2d *mFillRectangle = IND_Entity2d::newEntity2d();					
 	mI->_entity2dManager->add(mFillRectangle);			
 	mFillRectangle->setPrimitive2d(IND_FILL_RECTANGLE);
 	mFillRectangle->setRectangle(550, 40, 650, 110);
@@ -65,7 +65,7 @@ int IndieLib()
 	mFillRectangle->setTransparency(50);
 
 	// 2d Poly
-	IND_Entity2d *mPoly2d  = new IND_Entity2d();					
+	IND_Entity2d *mPoly2d  = IND_Entity2d::newEntity2d();					
 	mI->_entity2dManager->add(mPoly2d);			
 	mPoly2d->setPrimitive2d(IND_POLY2D);
 	IND_Point mVertPoly2 [] = { {440, 200},  {480, 100},  {450, 10},  {470, 220} };		// Poly points

@@ -31,21 +31,24 @@ Node::Node (int pX, int pY, int pZ, int pId, int pLayer, IND_Surface *pSurface)
 	// Get IndieLib instante
 	mI = CIndieLib::instance();
 
+	// Entity 
+	mEntity = IND_Entity2d::newEntity2d();
+
 	// Surface id
 	mId = pId;
 
 	// First, we have to add the entity to the manager
-	mI->_entity2dManager->add (pLayer, &mEntity);
+	mI->_entity2dManager->add (pLayer, mEntity);
 
-	mEntity.setSurface (pSurface); 						// Set the surface into the entity
-	mEntity.setHotSpot (0.5f, 0.5f); 					// Set the hotspot (pivot point) centered
-	mEntity.setPosition ((float) pX, (float) pY, pZ);	// Set the position
+	mEntity->setSurface (pSurface); 						// Set the surface into the entity
+	mEntity->setHotSpot (0.5f, 0.5f); 					// Set the hotspot (pivot point) centered
+	mEntity->setPosition ((float) pX, (float) pY, pZ);	// Set the position
 	mLayer = pLayer;									// Layer where it is created
 		
 	// Set a collision bounding rectangle. This is used for checking collisions between the mouse pointer
 	// and the entity, in order to interact with it
-	mEntity.setBoundingRectangle ("editor", 0, 0, pSurface->getWidth(), pSurface->getHeight());
-	mEntity.showGridAreas (false);
+	mEntity->setBoundingRectangle ("editor", 0, 0, pSurface->getWidth(), pSurface->getHeight());
+	mEntity->showGridAreas (false);
 }
 
 
@@ -56,5 +59,5 @@ End
 */
 Node::~Node() 
 {
-	mI->_entity2dManager->remove (&mEntity);
+	mI->_entity2dManager->remove (mEntity);
 }

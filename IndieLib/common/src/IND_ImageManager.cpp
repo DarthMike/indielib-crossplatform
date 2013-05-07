@@ -46,17 +46,18 @@ bool IND_ImageManager::init() {
 	end();
 	initVars();
 
-	g_debug->header("Initializing ImageManager", 5);
-	g_debug->header("Preparing ImageManager", 1);
+	g_debug->header("Initializing ImageManager", DebugApi::LogHeaderBegin);
+	g_debug->header("Preparing ImageManager", DebugApi::LogHeaderOk);
 	_ok = true;
 
 	FreeImage_Initialise();
 	const char* freeImageVer = FreeImage_GetVersion();
 	const char* freeImageCopyright = FreeImage_GetCopyrightMessage();
-	g_debug->header("Using FreeImage ver:",1);
-	g_debug->header(freeImageVer,1);
-	g_debug->header(freeImageCopyright,1);
-	g_debug->header("ImageManager OK", 6);
+	g_debug->header("Using FreeImage version: ",DebugApi::LogHeaderInfo);
+	g_debug->dataChar(freeImageVer, true);
+    g_debug->header("Copyright: ", DebugApi::LogHeaderInfo);
+    g_debug->dataChar(freeImageCopyright, true);
+	g_debug->header("ImageManager Initialised", DebugApi::LogHeaderEnd);
 	
 	//TODO: REGISTER ERROR HANDLERS FOR FREEIMAGE
 
@@ -68,12 +69,12 @@ bool IND_ImageManager::init() {
  */
 void IND_ImageManager::end() {
 	if (_ok) {
-		g_debug->header("Finalizing ImageManager", 5);
-		g_debug->header("Freeing images" , 5);
+		g_debug->header("Finalizing ImageManager", DebugApi::LogHeaderBegin);
+		g_debug->header("Freeing images" , DebugApi::LogHeaderBegin);
 		freeVars();
 		FreeImage_DeInitialise();
-		g_debug->header("Images freed", 6);
-		g_debug->header("ImageManager finalized", 6);
+		g_debug->header("Images freed", DebugApi::LogHeaderEnd);
+		g_debug->header("ImageManager finalized", DebugApi::LogHeaderEnd);
 
 		_ok = false;
 	}
@@ -103,14 +104,14 @@ bool IND_ImageManager::add(IND_Image *pNewImage, const char *pName) {
 	// TODO: clean up documentation, maybe create and refer to a method in FreeimageHelper that returns
 	//       a stringarray of all Indielib supported types..
 
-	g_debug->header("Loading Image", 5);
+	g_debug->header("Loading Image", DebugApi::LogHeaderBegin);
 	
 	if(!pName) {
-		g_debug->header("Invalid File name provided (null)",2);
+		g_debug->header("Invalid File name provided (null)",DebugApi::LogHeaderError);
 		return 0;
 	}
 
-	g_debug->header("File name:", 3);
+	g_debug->header("File name:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(pName, 1);
 
 	if (!_ok) {
@@ -124,10 +125,10 @@ bool IND_ImageManager::add(IND_Image *pNewImage, const char *pName) {
 	getExtensionFromName(pName,ext);
 	if (checkExtImage(ext)) {
 		pNewImage->setExtension(ext);
-		g_debug->header("Extension:", 3);
+		g_debug->header("Extension:", DebugApi::LogHeaderInfo);
 		g_debug->dataChar(ext, 1);
 	} else {
-		g_debug->header("Unknown extension", 2);
+		g_debug->header("Unknown extension", DebugApi::LogHeaderError);
 		return 0;
 	}
 
@@ -136,12 +137,12 @@ bool IND_ImageManager::add(IND_Image *pNewImage, const char *pName) {
 	// ----- Load image -----
 	FREE_IMAGE_FORMAT imgFormat =  FreeImage_GetFileType(pName, 0);
 	if (FIF_UNKNOWN == imgFormat) {
-		g_debug->header("Image not found", 2);
+		g_debug->header("Image not found", DebugApi::LogHeaderError);
 		return 0;
 	}
 	FIBITMAP* image = FreeImage_Load(imgFormat, pName, 0);
 	if (!image) {
-		g_debug->header("Image could not be loaded", 2);
+		g_debug->header("Image could not be loaded", DebugApi::LogHeaderError);
 		return 0;
 	}
 	
@@ -162,18 +163,18 @@ bool IND_ImageManager::add(IND_Image *pNewImage, const char *pName) {
 
 	// ----- g_debug -----
 
-	g_debug->header("Size:", 3);
+	g_debug->header("Size:", DebugApi::LogHeaderInfo);
 	g_debug->dataInt(pNewImage->getWidth(), 0);
 	g_debug->dataChar("x", 0);
 	g_debug->dataInt(pNewImage->getHeight(), 1);
 
-	g_debug->header("Bpp:", 3);
+	g_debug->header("Bpp:", DebugApi::LogHeaderInfo);
 	g_debug->dataInt(pNewImage->getBytespp(), 1);
 
-	g_debug->header("Format:", 3);
+	g_debug->header("Format:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(pNewImage->getFormatString(), 1);
 
-	g_debug->header("Image loaded", 6);
+	g_debug->header("Image loaded", DebugApi::LogHeaderEnd);
 
 	return 1;
 }
@@ -184,14 +185,14 @@ bool IND_ImageManager::add(IND_Image *pNewImage, const char *pName) {
  * @param pName						Pointer to name of the image file to load.
  */
 FIBITMAP* IND_ImageManager::load(const char *pName) {
-		g_debug->header("Loading Image", 5);
+		g_debug->header("Loading Image", DebugApi::LogHeaderBegin);
 	
 	if(!pName) {
-		g_debug->header("Invalid File name provided (null)",2);
+		g_debug->header("Invalid File name provided (null)",DebugApi::LogHeaderError);
 		return NULL;
 	}
 
-	g_debug->header("File name:", 3);
+	g_debug->header("File name:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(pName, 1);
 
 	if (!_ok) {
@@ -204,22 +205,22 @@ FIBITMAP* IND_ImageManager::load(const char *pName) {
 	char ext [128];
 	getExtensionFromName(pName,ext);
 	if (!checkExtImage(ext)){
-		g_debug->header("Unknown extension", 2);
+		g_debug->header("Unknown extension", DebugApi::LogHeaderError);
 		return NULL;
 	}
 
-	g_debug->header("Extension:", 3);
+	g_debug->header("Extension:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(ext, 1);
 
 	// ----- Load image -----
 	FREE_IMAGE_FORMAT imgFormat =  FreeImage_GetFileType(pName, 0);
 	if (FIF_UNKNOWN == imgFormat) {
-		g_debug->header("Image not found", 2);
+		g_debug->header("Image not found", DebugApi::LogHeaderError);
 		return NULL;
 	}
 	FIBITMAP* image = FreeImage_Load(imgFormat, pName, 0);
 	if (!image) {
-		g_debug->header("Image could not be loaded", 2);
+		g_debug->header("Image could not be loaded", DebugApi::LogHeaderError);
 		return NULL;
 	}
 
@@ -234,11 +235,11 @@ FIBITMAP* IND_ImageManager::load(const char *pName) {
  */
 bool IND_ImageManager::add(IND_Image *pNewImage, FIBITMAP *pImageToBeCopied) {
 	if (!_ok || !pImageToBeCopied) {
-		g_debug->header("FIBITMAP not supplied", 2);
+		g_debug->header("FIBITMAP not supplied", DebugApi::LogHeaderError);
 		return 0;
 	}
 
-	g_debug->header("Cloning Image", 5);
+	g_debug->header("Cloning Image", DebugApi::LogHeaderBegin);
 
 	// ----- Image creation using FreeImage -----
 
@@ -246,7 +247,7 @@ bool IND_ImageManager::add(IND_Image *pNewImage, FIBITMAP *pImageToBeCopied) {
 
 	FIBITMAP* pImage = FreeImage_Clone(pImageToBeCopied);
 	if (!pImage) {
-		g_debug->header("Image could not be cloned", 2);
+		g_debug->header("Image could not be cloned", DebugApi::LogHeaderError);
 		return 0;
 	}
 	
@@ -267,18 +268,18 @@ bool IND_ImageManager::add(IND_Image *pNewImage, FIBITMAP *pImageToBeCopied) {
 
 	// ----- g_debug -----
 
-	g_debug->header("Size:", 3);
+	g_debug->header("Size:", DebugApi::LogHeaderInfo);
 	g_debug->dataInt(pNewImage->getWidth(), 0);
 	g_debug->dataChar("x", 0);
 	g_debug->dataInt(pNewImage->getHeight(), 1);
 
-	g_debug->header("Bpp:", 3);
+	g_debug->header("Bpp:", DebugApi::LogHeaderInfo);
 	g_debug->dataInt(pNewImage->getBytespp(), 1);
 
-	g_debug->header("Format:", 3);
+	g_debug->header("Format:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(pNewImage->getFormatString(), 1);
 
-	g_debug->header("Image cloned and added", 6);
+	g_debug->header("Image cloned and added", DebugApi::LogHeaderEnd);
 
 	return 1;
 }
@@ -294,7 +295,7 @@ bool IND_ImageManager::add(IND_Image *pNewImage, FIBITMAP *pImageToBeCopied) {
  * @param pColorFormat				New image format. See ::IND_ColorFormat.
  */
 bool IND_ImageManager::add(IND_Image *pNewImage, int pWidth, int pHeight, IND_ColorFormat pColorFormat) {
-	g_debug->header("Creating Image", 5);
+	g_debug->header("Creating Image", DebugApi::LogHeaderBegin);
 
 	if (!_ok) {
 		writeMessage();
@@ -307,7 +308,7 @@ bool IND_ImageManager::add(IND_Image *pNewImage, int pWidth, int pHeight, IND_Co
 
 	FIBITMAP* pImage = FreeImage_Allocate(pWidth, pHeight, bpp);
 	if (!pImage) {
-		g_debug->header("Image could not be created", 2);
+		g_debug->header("Image could not be created", DebugApi::LogHeaderError);
 		return 0;
 	}
 
@@ -343,7 +344,7 @@ bool IND_ImageManager::add(IND_Image *pNewImage, int pWidth, int pHeight, IND_Co
  * @param pIm						Pointer to an image object.
  */
 bool IND_ImageManager::remove(IND_Image *pIm) {
-	g_debug->header("Freeing image", 5);
+	g_debug->header("Freeing image", DebugApi::LogHeaderBegin);
 
 	if (!_ok || !pIm) {
 		writeMessage();
@@ -370,7 +371,7 @@ bool IND_ImageManager::remove(IND_Image *pIm) {
 
 	// ----- Free object -----
 
-	g_debug->header("File name:", 3);
+	g_debug->header("File name:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(pIm->getName(), 1);
 
     // Free image
@@ -379,7 +380,7 @@ bool IND_ImageManager::remove(IND_Image *pIm) {
 	// Quit from list
 	delFromlist(pIm);
 
-	g_debug->header("Ok", 6);
+	g_debug->header("Ok", DebugApi::LogHeaderEnd);
 
 	return 1;
 }
@@ -391,7 +392,7 @@ bool IND_ImageManager::remove(IND_Image *pIm) {
  * @param pOldImage					Pointer to the image that is to be cloned.
  */
 bool IND_ImageManager::clone(IND_Image *pNewImage, IND_Image *pOldImage) {
-	g_debug->header("Cloning Image", 5);
+	g_debug->header("Cloning Image", DebugApi::LogHeaderBegin);
 
 	if (!_ok || !pNewImage || !pOldImage || !pOldImage->getFreeImageHandle()) {
 		writeMessage();
@@ -405,7 +406,7 @@ bool IND_ImageManager::clone(IND_Image *pNewImage, IND_Image *pOldImage) {
 
 	FIBITMAP* image = FreeImage_Clone(pOldImage->getFreeImageHandle());
 	if (!image) {
-		g_debug->header("Image could not be cloned", 2);
+		g_debug->header("Image could not be cloned", DebugApi::LogHeaderError);
 		return 0;
 	}
 	
@@ -429,9 +430,9 @@ bool IND_ImageManager::clone(IND_Image *pNewImage, IND_Image *pOldImage) {
 
 	// ----- g_debug -----
 
-	g_debug->header("File name:", 3);
+	g_debug->header("File name:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(pOldImage->getName(), 1);
-	g_debug->header("Image cloned", 6);
+	g_debug->header("Image cloned", DebugApi::LogHeaderEnd);
 
 	return 1;
 }
@@ -445,7 +446,7 @@ bool IND_ImageManager::clone(IND_Image *pNewImage, IND_Image *pOldImage) {
  * @param pName						Image name.
  */
 bool IND_ImageManager::save(IND_Image *pIm, const char *pName) {
-	g_debug->header("Saving image", 5);
+	g_debug->header("Saving image", DebugApi::LogHeaderBegin);
 
 	if (!_ok || !pIm || !pIm->isImageLoaded()) {
 		writeMessage();
@@ -459,26 +460,26 @@ bool IND_ImageManager::save(IND_Image *pIm, const char *pName) {
 	//if (checkExtImage(_ext)) {
 	//	pIm->setExtension(_ext);
 	//} else {
-	//	g_debug->header("Unknown extension", 2);
+	//	g_debug->header("Unknown extension", DebugApi::LogHeaderError);
 	//	return 0;
 	//}
 
-	//g_debug->header("Image type:", 3);
+	//g_debug->header("Image type:", DebugApi::LogHeaderInfo);
 	//g_debug->dataChar(_ext, 1);
 
 	//ilBindImage(pIm->getDevilId());
 
-	//g_debug->header("File name:", 3);
+	//g_debug->header("File name:", DebugApi::LogHeaderInfo);
 	//g_debug->dataChar(pName, 1);
 
-	//g_debug->header("Size:", 3);
+	//g_debug->header("Size:", DebugApi::LogHeaderInfo);
 	//g_debug->dataInt(pIm->getWidth(), 0);
 	//g_debug->dataChar("x", 0);
 	//g_debug->dataInt(pIm->getHeight(), 1);
 
 	//ilSaveImage(pName);
 
-	//g_debug->header("Ok", 6);
+	//g_debug->header("Ok", DebugApi::LogHeaderEnd);
 	return 1;
 }
 
@@ -540,7 +541,7 @@ Deletes object from the manager
 */
 void IND_ImageManager::delFromlist(IND_Image *pIm) {
 	_listImages->remove(pIm);
-    DISPOSE(pIm);
+    DISPOSEMANAGED(pIm);
 }
 
 /*
@@ -549,9 +550,9 @@ Initialization error message
 ==================
 */
 void IND_ImageManager::writeMessage() {
-	g_debug->header("This operation can not be done", 3);
+	g_debug->header("This operation can not be done", DebugApi::LogHeaderInfo);
 	g_debug->dataChar("", 1);
-	g_debug->header("Invalid Id or IND_ImageManager not correctly initialized", 2);
+	g_debug->header("Invalid Id or IND_ImageManager not correctly initialized", DebugApi::LogHeaderError);
 }
 
 /*
@@ -586,13 +587,13 @@ void IND_ImageManager::freeVars() {
 	        mImageListIter++) {
 			FIBITMAP* handle = (*mImageListIter)->getFreeImageHandle();
 		if (handle) {
-			g_debug->header("Freeing image:", 3);
+			g_debug->header("Freeing image:", DebugApi::LogHeaderInfo);
 			g_debug->dataChar((*mImageListIter)->getName(), 1);
 
 			// Free image
 			FreeImage_Unload(handle);
             (*mImageListIter)->setFreeImageHandle(NULL);
-            DISPOSE(*mImageListIter);
+            DISPOSEMANAGED((*mImageListIter));
 		}
 	}
 

@@ -113,11 +113,11 @@ private:
 
 	// ----- Containers -----
 
-	list <IND_Font *> *_listFonts;
+	std::list <IND_Font *> *_listFonts;
 
 	// ----- Private methods -----
 
-	bool                parseFont(IND_Font *pNewFont, char *pFontName);
+	bool                parseFont(IND_Font *pNewFont,const char *pFontName);
 
 	void                addToList(IND_Font *pNewFont);
 	void                delFromlist(IND_Font *pFo);

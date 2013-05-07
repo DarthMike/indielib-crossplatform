@@ -12,6 +12,7 @@ config.log
 *.slo
 *.lo
 *.o
+*.obj
 
 # Compiled Dynamic libraries
 *.so
@@ -29,6 +30,11 @@ config.log
 *.idb
 *.pdb
 *.user
+*.manifest
+*.exe
+*.pdb
+*.idb
+*.lib
 
 ### Mac specific
 xcschememanagement.plist
@@ -66,3 +72,4 @@ IndieLib/tutorials/mac/IndielibTutorials.xcodeproj/project.xcworkspace/xcuserdat
 IndieLib/common/dependencies/glew-1.9.0/lib
 IndieLib/common/dependencies/SDL-2.0/osx
 IndieLib/bin/mac
+Breakpoints.xcbkptlist

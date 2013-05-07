@@ -45,21 +45,21 @@ bool IND_FontManager::init(IND_ImageManager *pImageManager, IND_SurfaceManager *
 	end();
 	initVars();
 
-	g_debug->header("Initializing FontManager", 5);
+	g_debug->header("Initializing FontManager", DebugApi::LogHeaderBegin);
 
 	// Checking IND_SurfaceManager
 	if (pSurfaceManager->isOK()) {
-		g_debug->header("SurfaceManager Ok", 1);
+		g_debug->header("SurfaceManager Ok", DebugApi::LogHeaderOk);
 		_surfaceManager = pSurfaceManager;
 
-		g_debug->header("ImageManager Ok", 1);
+		g_debug->header("ImageManager Ok", DebugApi::LogHeaderOk);
 		_imageManager = pImageManager;
 
 		_ok = true;
 
-		g_debug->header("FontManager OK", 6);
+		g_debug->header("FontManager OK", DebugApi::LogHeaderEnd);
 	} else {
-		g_debug->header("SurfaceManager is not correctly initalized", 2);
+		g_debug->header("SurfaceManager is not correctly initalized", DebugApi::LogHeaderError);
 		_ok = false;
 	}
 
@@ -72,11 +72,11 @@ bool IND_FontManager::init(IND_ImageManager *pImageManager, IND_SurfaceManager *
 void IND_FontManager::end() {
 	if (_ok) {
 		// If the object is loaded, we free it
-		g_debug->header("Finalizing FontManager", 5);
-		g_debug->header("Freeing fonts" , 5);
+		g_debug->header("Finalizing FontManager", DebugApi::LogHeaderBegin);
+		g_debug->header("Freeing fonts" , DebugApi::LogHeaderBegin);
 		freeVars();
-		g_debug->header("Fonts freed", 6);
-		g_debug->header("FontManager finalized", 6);
+		g_debug->header("Fonts freed", DebugApi::LogHeaderEnd);
+		g_debug->header("FontManager finalized", DebugApi::LogHeaderEnd);
 
 		_ok = false;
 	}
@@ -111,24 +111,23 @@ bool IND_FontManager::add(IND_Font		*pNewFont,
                           IND_Type		pType,
                           IND_Quality	pQuality) {
 	// Image loading
-	IND_Image *mNewImage = new IND_Image;
+	IND_Image *mNewImage = IND_Image::newImage();
+    bool noImgError = _imageManager->add(mNewImage, pName);
+    if (!noImgError) {
+        DISPOSEMANAGED(mNewImage);
+    }
     
-    bool noError(true);
-    noError = _imageManager->add(mNewImage, pName);
+    bool noError(noImgError);
 
 	// IND_Surface creation
 	if (noError) {
-        add(pNewFont, mNewImage, pFile, pType, pQuality);
-    }
-
-	// Free the image
-    if (!noError) {
-        DISPOSE(mNewImage);
+        noError = add(pNewFont, mNewImage, pFile, pType, pQuality);
     }
     
-	_imageManager->remove(mNewImage);
+    if (noImgError) {
+        _imageManager->remove(mNewImage);
+    }
 
-    
 	return noError;
 }
 
@@ -153,8 +152,8 @@ bool IND_FontManager::add(IND_Font		*pNewFont,
                           const char	*pFile,
                           IND_Type		pType,
                           IND_Quality	pQuality) {
-	g_debug->header("Parsing and loading font", 5);
-	g_debug->header("File name:", 3);
+	g_debug->header("Parsing and loading font", DebugApi::LogHeaderBegin);
+	g_debug->header("File name:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(pFile, 1);
 
 	if (!_ok) {
@@ -162,24 +161,30 @@ bool IND_FontManager::add(IND_Font		*pNewFont,
 		return 0;
 	}
 
-	char stringTemp[128];
-	char *pFileCharTemp = strcpy(stringTemp, pFile);
-
 	// ----- Width and height of the bitmap font MUST be power of two -----
 
 	IND_Math mMath;
 
 	if (!mMath.isPowerOfTwo(pImage->getWidth()) ||
 	        !mMath.isPowerOfTwo(pImage->getHeight())) {
-		g_debug->header("This operation can not be done", 3);
+		g_debug->header("This operation can not be done", DebugApi::LogHeaderInfo);
 		g_debug->dataChar("", 1);
-		g_debug->header("The height and width of the font must be power of 2", 2);
+		g_debug->header("The height and width of the font must be power of 2", DebugApi::LogHeaderError);
 		return 0;
 	}
+    
+    // ----- XML font parsing -----
+    
+	if (!parseFont(pNewFont, pFile)) {
+		g_debug->header("Fatal error, cannot load the font xml file", DebugApi::LogHeaderError);
+		return 0;
+	}
+    
+	pNewFont->setFileName(pFile);
 
 	// ----- Bitmap (IND_Surface object) creation -----
 
-	IND_Surface *mNewSurface = new IND_Surface;
+	IND_Surface *mNewSurface = IND_Surface::newSurface();
 	if (!_surfaceManager->add(mNewSurface, pImage, pType, pQuality))
 		return 0;
 
@@ -191,22 +196,13 @@ bool IND_FontManager::add(IND_Font		*pNewFont,
 
 	pNewFont->setSurface(mNewSurface);
 
-	// ----- XML font parsing -----	
-
-	if (!parseFont(pNewFont, pFileCharTemp)) {
-		g_debug->header("Fatal error, cannot load the font xml file", 2);
-		return 0;
-	}
-
-	pNewFont->setFileName(pFileCharTemp);
-
 	// ----- Puts the object into the manager -----
 
 	addToList(pNewFont);
 
 	// ----- g_debug -----
 
-	g_debug->header("Font parsed and loaded", 6);
+	g_debug->header("Font parsed and loaded", DebugApi::LogHeaderEnd);
 
 	return 1;
 }
@@ -217,7 +213,7 @@ bool IND_FontManager::add(IND_Font		*pNewFont,
  * @param pFo						Pointer to font object type 1
  */
 bool IND_FontManager::remove(IND_Font  *pFo) {
-	g_debug->header("Freeing font", 5);
+	g_debug->header("Freeing font", DebugApi::LogHeaderBegin);
 
 	if (!_ok) {
 		writeMessage();
@@ -244,16 +240,13 @@ bool IND_FontManager::remove(IND_Font  *pFo) {
 
 	// ----- Free object -----
 
-	g_debug->header("File name:", 3);
+	g_debug->header("File name:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(pFo->getFileName(), 1);
-
-    // Free bitmap IND_Surface
-	_surfaceManager->remove(pFo->getSurface());
     
 	// Quit from list
 	delFromlist(pFo);
 
-	g_debug->header("Ok", 6);
+	g_debug->header("Ok", DebugApi::LogHeaderEnd);
 
 	return 1;
 }
@@ -270,7 +263,7 @@ Parses and XML font file
 Uses Tinyxml
 ==================
 */
-bool IND_FontManager::parseFont(IND_Font *pNewFont, char *pFontName) {
+bool IND_FontManager::parseFont(IND_Font *pNewFont,const char *pFontName) {
 	TiXmlDocument   *mXmlDoc = new TiXmlDocument(pFontName);
 
 	// Fatal error, cannot load
@@ -284,17 +277,17 @@ bool IND_FontManager::parseFont(IND_Font *pNewFont, char *pFontName) {
 	mXFont = mXmlDoc->FirstChildElement("font");
 
 	if (!mXFont) {
-		g_debug->header("Invalid name for document root, should be <font>", 2);
+		g_debug->header("Invalid name for document root, should be <font>", DebugApi::LogHeaderError);
 		mXmlDoc->Clear();
 		delete mXmlDoc;
 		return 0;
 	}
 
 	if (mXFont->Attribute("num_characters")) {
-		pNewFont->_font._numChars = atoi(mXFont->Attribute("num_characters"));
+		pNewFont->setNumChars(atoi(mXFont->Attribute("num_characters")));
 		pNewFont->setLetters(new IND_Font::LETTER [pNewFont->getNumChars()]);
 	} else {
-		g_debug->header("The font doesn't have a \"num_characters\" attribute", 2);
+		g_debug->header("The font doesn't have a \"num_characters\" attribute", DebugApi::LogHeaderError);
 		mXmlDoc->Clear();
 		delete mXmlDoc;
 		return 0;
@@ -304,7 +297,7 @@ bool IND_FontManager::parseFont(IND_Font *pNewFont, char *pFontName) {
 	mXChar = mXFont->FirstChildElement("char");
 
 	if (!mXChar) {
-		g_debug->header("There are no chars to parse", 2);
+		g_debug->header("There are no chars to parse", DebugApi::LogHeaderError);
 		mXmlDoc->Clear();
 		delete mXmlDoc;
 		return 0;
@@ -317,7 +310,7 @@ bool IND_FontManager::parseFont(IND_Font *pNewFont, char *pFontName) {
 		if (mXChar->Attribute("id")) {
 			pNewFont->getLetters() [mCont]._letter = static_cast<unsigned char>(atoi(mXChar->Attribute("id")));
 		} else {
-			g_debug->header("The char doesn't have a \"id\" attribute", 2);
+			g_debug->header("The char doesn't have a \"id\" attribute", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();
 			delete mXmlDoc;
 			return 0;
@@ -327,7 +320,7 @@ bool IND_FontManager::parseFont(IND_Font *pNewFont, char *pFontName) {
 		if (mXChar->Attribute("x")) {
 			pNewFont->getLetters() [mCont]._offsetX = atoi(mXChar->Attribute("x"));
 		} else {
-			g_debug->header("The char doesn't have a \"x\" attribute", 2);
+			g_debug->header("The char doesn't have a \"x\" attribute", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();
 			delete mXmlDoc;
 			return 0;
@@ -337,7 +330,7 @@ bool IND_FontManager::parseFont(IND_Font *pNewFont, char *pFontName) {
 		if (mXChar->Attribute("y")) {
 			pNewFont->getLetters() [mCont]._offsetY = atoi(mXChar->Attribute("y"));
 		} else {
-			g_debug->header("The char doesn't have a \"y\" attribute", 2);
+			g_debug->header("The char doesn't have a \"y\" attribute", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();
 			delete mXmlDoc;
 			return 0;
@@ -347,7 +340,7 @@ bool IND_FontManager::parseFont(IND_Font *pNewFont, char *pFontName) {
 		if (mXChar->Attribute("width")) {
 			pNewFont->getLetters() [mCont]._widthChar = atoi(mXChar->Attribute("width"));
 		} else {
-			g_debug->header("The char doesn't have a \"width\" attribute", 2);
+			g_debug->header("The char doesn't have a \"width\" attribute", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();
 			delete mXmlDoc;
 			return 0;
@@ -357,7 +350,7 @@ bool IND_FontManager::parseFont(IND_Font *pNewFont, char *pFontName) {
 		if (mXChar->Attribute("height")) {
 			pNewFont->getLetters() [mCont]._heightChar = atoi(mXChar->Attribute("height"));
 		} else {
-			g_debug->header("The char doesn't have a \"height\" attribute", 2);
+			g_debug->header("The char doesn't have a \"height\" attribute", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();
 			delete mXmlDoc;
 			return 0;
@@ -390,8 +383,10 @@ Deletes object from the manager
 ==================
 */
 void IND_FontManager::delFromlist(IND_Font *pFo) {
+    // Free bitmap IND_Surface
+	_surfaceManager->remove(pFo->getSurface());
 	_listFonts->remove(pFo);
-	DISPOSE(pFo);
+	DISPOSEMANAGED(pFo);
 }
 
 
@@ -401,9 +396,9 @@ Initialization error message
 ==================
 */
 void IND_FontManager::writeMessage() {
-	g_debug->header("This operation can not be done", 3);
+	g_debug->header("This operation can not be done", DebugApi::LogHeaderInfo);
 	g_debug->dataChar("", 1);
-	g_debug->header("Invalid Id or FontManager not correctly initialized", 2);
+	g_debug->header("Invalid Id or FontManager not correctly initialized", DebugApi::LogHeaderError);
 }
 
 /*
@@ -426,13 +421,14 @@ void IND_FontManager::freeVars() {
 	for (mFontListIter  = _listFonts->begin();
 	        mFontListIter != _listFonts->end();
 	        mFontListIter++) {
-		g_debug->header("Freeing font:", 3);
+		g_debug->header("Freeing font:", DebugApi::LogHeaderInfo);
 		g_debug->dataChar((*mFontListIter)->getFileName(), 1);
 
 		// Free bitmap IND_Surface
 		_surfaceManager->remove((*mFontListIter)->getSurface());
-
-        DISPOSE(*mFontListIter);
+        
+        // Free font
+        DISPOSEMANAGED((*mFontListIter));
 	}
 
 	// Clear list

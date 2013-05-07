@@ -33,28 +33,28 @@ int IndieLib()
 	// ----- Surface loading -----
 
 	// Loading tile for the terrain
-	IND_Surface *mSurfaceBack = new IND_Surface();
+	IND_Surface *mSurfaceBack = IND_Surface::newSurface();
 	if (!mI->_surfaceManager->add(mSurfaceBack, "../../resources/twist.jpg", IND_OPAQUE, IND_32)) return 0;
 	
 	// Loading beetle
-	IND_Surface *mSurfaceBeetle = new IND_Surface();
+	IND_Surface *mSurfaceBeetle = IND_Surface::newSurface();
 	if (!mI->_surfaceManager->add(mSurfaceBeetle, "../../resources/beetleship.png", IND_ALPHA, IND_32)) return 0;
 	
 	// Loading octopus
-	IND_Surface *mSurfaceOctopus = new IND_Surface();
+	IND_Surface *mSurfaceOctopus = IND_Surface::newSurface();
 	if (!mI->_surfaceManager->add(mSurfaceOctopus, "../../resources/octopus.png", IND_ALPHA, IND_32)) return 0;
 
 	// Loading bug
-	IND_Surface *mSurfaceBug = new IND_Surface();
+	IND_Surface *mSurfaceBug = IND_Surface::newSurface();
 	if (!mI->_surfaceManager->add(mSurfaceBug, "../../resources/Enemy Bug.png", IND_ALPHA, IND_32)) return 0;
 
 	// Font
-	IND_Font *mFontSmall = new IND_Font();
+	IND_Font *mFontSmall = IND_Font::newFont();
 	if (!mI->_fontManager->add(mFontSmall, "../../resources/font_small.png", "../../resources/font_small.xml", IND_ALPHA, IND_32)) return 0;
 
 	// ----- Font creation -----
 
-	IND_Entity2d *mTextSmallWhite = new IND_Entity2d();					
+	IND_Entity2d *mTextSmallWhite = IND_Entity2d::newEntity2d();					
 	mI->_entity2dManager->add(mTextSmallWhite);			// Entity adding
 	mTextSmallWhite->setFont(mFontSmall);				// Set the font into the entity
 	mTextSmallWhite->setLineSpacing(18);
@@ -65,26 +65,26 @@ int IndieLib()
 	// ----- Entities -----
 
 	// Terrain
-	IND_Entity2d *mTerrain = new IND_Entity2d();
+	IND_Entity2d *mTerrain = IND_Entity2d::newEntity2d();
 	mI->_entity2dManager->add(mTerrain);
 	mTerrain->setSurface(mSurfaceBack);
 
 	// Beetle
-	IND_Entity2d *mBeetle = new IND_Entity2d();
+	IND_Entity2d *mBeetle = IND_Entity2d::newEntity2d();
 	mI->_entity2dManager->add(mBeetle);
 	mBeetle->setSurface(mSurfaceBeetle);
 	mBeetle->setHotSpot(0.5f, 0.5f);
 	mBeetle->setPosition(150, 150, 2);
 
 	// Octopus
-	IND_Entity2d *mOctopus = new IND_Entity2d();
+	IND_Entity2d *mOctopus = IND_Entity2d::newEntity2d();
 	mI->_entity2dManager->add(mOctopus);
 	mOctopus->setSurface(mSurfaceOctopus);
 	mOctopus->setHotSpot(0.5f, 0.5f);
 	mOctopus->setPosition(450, 150, 2);
 
-	// Bug
-	IND_Entity2d *mBug = new IND_Entity2d();
+	// But
+	IND_Entity2d *mBug = IND_Entity2d::newEntity2d();
 	mI->_entity2dManager->add(mBug);
 	mBug->setSurface(mSurfaceBug);
 	mBug->setHotSpot(0.5f, 0.5f);

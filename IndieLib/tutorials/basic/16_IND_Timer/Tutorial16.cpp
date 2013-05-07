@@ -46,22 +46,22 @@ int IndieLib()
 	// ----- Surface loading -----
 
 	// Font
-	IND_Font *mFontBig = new IND_Font();
+	IND_Font *mFontBig = IND_Font::newFont();
 	if (!mI->_fontManager->add(mFontBig, "../../resources/font_big.png", "../../resources/font_big.xml", IND_ALPHA, IND_32)) return 0;
 
 	// Loading draco
-	IND_Surface *mSurfaceDraco = new IND_Surface();
+	IND_Surface *mSurfaceDraco = IND_Surface::newSurface();
 	if (!mI->_surfaceManager->add(mSurfaceDraco, "../../resources/draco.png", IND_ALPHA, IND_32)) return 0;
 
 	// ----- Entities -----
 
 	// Title text
-	IND_Entity2d *mTextTime = new IND_Entity2d();					
+	IND_Entity2d *mTextTime = IND_Entity2d::newEntity2d();					
 	mI->_entity2dManager->add(mTextTime);						// Entity adding
 	mTextTime->setFont(mFontBig);							// Set the font into the entity
 
 	// Creating 2d entity for the draco
-	IND_Entity2d *mDraco = new IND_Entity2d();					
+	IND_Entity2d *mDraco = IND_Entity2d::newEntity2d();					
 	mI->_entity2dManager->add(mDraco);						// Entity adding
 	mDraco->setSurface(mSurfaceDraco);						// Set the surface into the entity
 	mDraco->setHotSpot(0.5f, 0.5f);

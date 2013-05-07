@@ -69,6 +69,53 @@ class OSOpenGLManager;
 // ----- Defines ------
 #define MAX_PIXELS 2048
 
+struct InfoStruct {
+    InfoStruct():
+    _fbWidth(0),
+    _fbHeight(0),
+    _viewPortX(0),
+    _viewPortY(0),
+    _viewPortWidth(0),
+    _viewPortHeight(0),
+    _viewPortApectRatio(0.0f),
+    _antialiasing(0),
+    _maxTextureSize(0),
+    _textureUnits(0),
+    _pointPixelScale(1.0f){
+        strcpy(_version, "NO DATA");
+        strcpy(_vendor, "NO DATA");
+        strcpy(_renderer, "NO DATA");
+    }
+    int _fbWidth;
+    int _fbHeight;
+    int _viewPortX;
+    int _viewPortY;
+    int _viewPortWidth;
+    int _viewPortHeight;
+    float _viewPortApectRatio;
+    bool _antialiasing;
+    char _version [1024] ;
+    char _vendor [1024];
+    char _renderer [1024];
+    int _maxTextureSize;
+    int _textureUnits;
+    float _pointPixelScale;
+};
+
+struct TextureSamplerState {
+    TextureSamplerState() :
+    minFilter(GL_NEAREST),
+    magFilter(GL_NEAREST),
+    wrapS(GL_CLAMP_TO_EDGE),
+    wrapT(GL_CLAMP_TO_EDGE)
+    {}
+    
+    GLint minFilter;
+    GLint magFilter;
+    GLint wrapS;
+    GLint wrapT;
+};
+
 /** @cond DOCUMENT_PRIVATEAPI */
 
 // --------------------------------------------------------------------------------
@@ -410,7 +457,15 @@ private:
 
 	//Setup helper
 	bool resetViewport(int pWitdh, int pHeight);
+    
+    //GL state helpers
+    void setDefaultGLState();
+    
+    void setGLClientStateToPrimitive();
+    void setGLClientStateToTexturing();
 
+    void setGLBoundTextureParams();
+    
 	// ----- Collisions -----
 	void blitCollisionCircle(int pPosX, int pPosY, int pRadius, float pScale, BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pWorldMatrix);
 	void blitCollisionLine(int pPosX1, int pPosY1, int pPosX2, int pPosY2,  BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pIndWorldMatrix);
@@ -440,39 +495,10 @@ private:
 
 	bool _doubleBuffer;
 
-	struct infoStruct {
-		infoStruct():
-			_fbWidth(0),
-			_fbHeight(0),
-			_viewPortX(0),
-			_viewPortY(0),
-			_viewPortWidth(0),
-			_viewPortHeight(0),
-            _viewPortApectRatio(0.0f),
-			_antialiasing(0),
-			_maxTextureSize(0),
-            _textureUnits(0),
-            _pointPixelScale(1.0f){
-			strcpy(_version, "NO DATA");
-			strcpy(_vendor, "NO DATA");
-			strcpy(_renderer, "NO DATA");
-		}
-		int _fbWidth;
-		int _fbHeight;
-		int _viewPortX;
-		int _viewPortY;
-		int _viewPortWidth;
-		int _viewPortHeight;
-        float _viewPortApectRatio;
-		bool _antialiasing;
-		char _version [1024] ;
-		char _vendor [1024];
-		char _renderer [1024];
-		int _maxTextureSize;
-		int _textureUnits;
-        float _pointPixelScale;
-	};
-	struct infoStruct _info;
+	
+	struct InfoStruct _info;
+    
+    struct TextureSamplerState _tex2dState;
 
 	//Current 'model-to-world' matrix
 	IND_Matrix _modelToWorld;

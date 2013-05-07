@@ -159,7 +159,7 @@ private:
 	TextureBuilder *_textureBuilder;
 	// ----- Containers -----
 
-	list <IND_Surface *> *_listSurfaces;
+    std::list <IND_Surface *> *_listSurfaces;
 
 	// ----- Private methods -----
 

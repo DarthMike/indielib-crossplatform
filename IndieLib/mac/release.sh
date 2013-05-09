@@ -53,4 +53,6 @@ zip -r -X $ARCHIVENAME.zip Indielib/common/include
 zip -r -X $ARCHIVENAME.zip Indielib/resources
 zip -r -X $ARCHIVENAME.zip Indielib/tutorials --exclude "Indielib/tutorials/win/*" "Indielib/tutorials/linux/*"
 zip -r -X $ARCHIVENAME.zip Indielib/docs --exclude "Indielib/docs/Doxygen/Doxyfile" "Indielib/docs/wiki/*"
-#zip $ARCHIVENAME.zip Indielib/LICENSE
+zip -X $ARCHIVENAME.zip Indielib/LICENSE
+zip -X $ARCHIVENAME.zip Indielib/CHANGELOG
+zip -X $ARCHIVENAME.zip Indielib/TODO

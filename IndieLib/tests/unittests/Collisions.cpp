@@ -1,6 +1,6 @@
 
 #include "dependencies/unittest++/src/UnitTest++.h"
-#include "CIndieLib_vc2008.h"
+#include "CIndieLib.h"
 
 TEST(pointToLineHorizontalDistanceFromMiddleIsSegment) {
 	IND_Vector2 a (10.0f, 10.0f);

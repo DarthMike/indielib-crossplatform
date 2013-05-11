@@ -13,7 +13,7 @@
  */
 
 #include "dependencies/unittest++/src/UnitTest++.h"
-#include "CIndieLib_vc2008.h"
+#include "CIndieLib.h"
 #include "IND_Image.h"
 
 TEST(add1) {

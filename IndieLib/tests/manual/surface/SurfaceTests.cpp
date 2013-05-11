@@ -20,7 +20,7 @@ this library; if not, write to the Free Software Foundation, Inc., 59 Temple Pla
 Suite 330, Boston, MA 02111-1307 USA
 */
 
-#include "CIndieLib_vc2008.h"
+#include "CIndieLib.h"
 #include "SurfaceTests.h"
 #include "IND_Surface.h"
 #include "IND_Entity2d.h"

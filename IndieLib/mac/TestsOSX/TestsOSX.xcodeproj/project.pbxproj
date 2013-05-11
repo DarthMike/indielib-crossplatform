@@ -19,7 +19,7 @@
 		E7DBCB1D159C78F600C8B2D9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */; };
 		E7DBCB27159C78F600C8B2D9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E7DBCB25159C78F600C8B2D9 /* InfoPlist.strings */; };
 		E7DBCB2D159C78F600C8B2D9 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E7DBCB2B159C78F600C8B2D9 /* Credits.rtf */; };
-		E7DBCBA3159C7A8D00C8B2D9 /* CIndieLib_vc2008.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7DBCB78159C7A8C00C8B2D9 /* CIndieLib_vc2008.cpp */; };
+		E7DBCBA3159C7A8D00C8B2D9 /* CIndieLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7DBCB78159C7A8C00C8B2D9 /* CIndieLib.cpp */; };
 		E7DBCBA4159C7A8D00C8B2D9 /* AnimationTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7DBCB7C159C7A8D00C8B2D9 /* AnimationTests.cpp */; };
 		E7DBCBA5159C7A8D00C8B2D9 /* Camera2dTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7DBCB7F159C7A8D00C8B2D9 /* Camera2dTests.cpp */; };
 		E7DBCBA6159C7A8D00C8B2D9 /* FontTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7DBCB82159C7A8D00C8B2D9 /* FontTests.cpp */; };
@@ -91,8 +91,8 @@
 		E7DBCB26159C78F600C8B2D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E7DBCB2A159C78F600C8B2D9 /* IndielibTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IndielibTests-Prefix.pch"; sourceTree = "<group>"; };
 		E7DBCB2C159C78F600C8B2D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		E7DBCB78159C7A8C00C8B2D9 /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CIndieLib_vc2008.cpp; path = ../../../tests/CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
-		E7DBCB79159C7A8C00C8B2D9 /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CIndieLib_vc2008.h; path = ../../../tests/CIndieLib_vc2008.h; sourceTree = "<group>"; };
+		E7DBCB78159C7A8C00C8B2D9 /* CIndieLib.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CIndieLib.cpp; path = ../../../tests/CIndieLib.cpp; sourceTree = "<group>"; };
+		E7DBCB79159C7A8C00C8B2D9 /* CIndieLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CIndieLib.h; path = ../../../tests/CIndieLib.h; sourceTree = "<group>"; };
 		E7DBCB7C159C7A8D00C8B2D9 /* AnimationTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationTests.cpp; sourceTree = "<group>"; };
 		E7DBCB7D159C7A8D00C8B2D9 /* AnimationTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationTests.h; sourceTree = "<group>"; };
 		E7DBCB7F159C7A8D00C8B2D9 /* Camera2dTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera2dTests.cpp; sourceTree = "<group>"; };
@@ -206,8 +206,8 @@
 		E7DBCB22159C78F600C8B2D9 /* IndielibTests */ = {
 			isa = PBXGroup;
 			children = (
-				E7DBCB78159C7A8C00C8B2D9 /* CIndieLib_vc2008.cpp */,
-				E7DBCB79159C7A8C00C8B2D9 /* CIndieLib_vc2008.h */,
+				E7DBCB78159C7A8C00C8B2D9 /* CIndieLib.cpp */,
+				E7DBCB79159C7A8C00C8B2D9 /* CIndieLib.h */,
 				E7071234159F057900BF34D9 /* WorkingPath.h */,
 				E7071232159EFEC500BF34D9 /* WorkingPath.cpp */,
 				E7DBCB7A159C7A8D00C8B2D9 /* manual */,
@@ -405,7 +405,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7DBCBA3159C7A8D00C8B2D9 /* CIndieLib_vc2008.cpp in Sources */,
+				E7DBCBA3159C7A8D00C8B2D9 /* CIndieLib.cpp in Sources */,
 				E7DBCBA4159C7A8D00C8B2D9 /* AnimationTests.cpp in Sources */,
 				E7DBCBA5159C7A8D00C8B2D9 /* Camera2dTests.cpp in Sources */,
 				E7DBCBA6159C7A8D00C8B2D9 /* FontTests.cpp in Sources */,

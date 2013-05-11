@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E744869615EA480100DDE3BF /* libIndielib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E744863F15EA3E3D00DDE3BF /* libIndielib.dylib */; };
-		E744869715EA481C00DDE3BF /* CIndieLib_vc2008.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E744866115EA412A00DDE3BF /* CIndieLib_vc2008.cpp */; };
+		E744869715EA481C00DDE3BF /* CIndieLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E744866115EA412A00DDE3BF /* CIndieLib.cpp */; };
 		E744869815EA482200DDE3BF /* Collisions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E744866415EA412A00DDE3BF /* Collisions.cpp */; };
 		E744869915EA482500DDE3BF /* Math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E744866715EA412A00DDE3BF /* Math.cpp */; };
 		E744869B15EA482A00DDE3BF /* UnitTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E744866815EA412A00DDE3BF /* UnitTests.cpp */; };
@@ -114,8 +114,8 @@
 		E707129515A09A2E00BF34D9 /* XmlTestReporter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XmlTestReporter.cpp; sourceTree = "<group>"; };
 		E707129615A09A2E00BF34D9 /* XmlTestReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlTestReporter.h; sourceTree = "<group>"; };
 		E744863A15EA3E3C00DDE3BF /* Indielib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Indielib.xcodeproj; path = ../IndieLib/Indielib.xcodeproj; sourceTree = "<group>"; };
-		E744866115EA412A00DDE3BF /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CIndieLib_vc2008.cpp; path = ../../tests/CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
-		E744866215EA412A00DDE3BF /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CIndieLib_vc2008.h; path = ../../tests/CIndieLib_vc2008.h; sourceTree = "<group>"; };
+		E744866115EA412A00DDE3BF /* CIndieLib.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CIndieLib.cpp; path = ../../tests/CIndieLib.cpp; sourceTree = "<group>"; };
+		E744866215EA412A00DDE3BF /* CIndieLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CIndieLib.h; path = ../../tests/CIndieLib.h; sourceTree = "<group>"; };
 		E744866415EA412A00DDE3BF /* Collisions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Collisions.cpp; sourceTree = "<group>"; };
 		E744866515EA412A00DDE3BF /* Image.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Image.cpp; sourceTree = "<group>"; };
 		E744866615EA412A00DDE3BF /* ImageManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImageManager.cpp; sourceTree = "<group>"; };
@@ -247,8 +247,8 @@
 			children = (
 				E74486D215EA5C1500DDE3BF /* WorkingPath.cpp */,
 				E74486D315EA5C1500DDE3BF /* WorkingPath.h */,
-				E744866115EA412A00DDE3BF /* CIndieLib_vc2008.cpp */,
-				E744866215EA412A00DDE3BF /* CIndieLib_vc2008.h */,
+				E744866115EA412A00DDE3BF /* CIndieLib.cpp */,
+				E744866215EA412A00DDE3BF /* CIndieLib.h */,
 				E744866315EA412A00DDE3BF /* unittests */,
 			);
 			name = src;
@@ -356,7 +356,7 @@
 				E74486BC15EA488900DDE3BF /* TestResults.cpp in Sources */,
 				E74486BE15EA488900DDE3BF /* TestRunner.cpp in Sources */,
 				E74486C515EA488900DDE3BF /* XmlTestReporter.cpp in Sources */,
-				E744869715EA481C00DDE3BF /* CIndieLib_vc2008.cpp in Sources */,
+				E744869715EA481C00DDE3BF /* CIndieLib.cpp in Sources */,
 				E744869815EA482200DDE3BF /* Collisions.cpp in Sources */,
 				E744869915EA482500DDE3BF /* Math.cpp in Sources */,
 				E744869B15EA482A00DDE3BF /* UnitTests.cpp in Sources */,

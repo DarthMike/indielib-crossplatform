@@ -2,7 +2,7 @@
  * Desc: Tutorial b) 02 Blitting 2d directly
  *****************************************************************************************/
 
-#include "CIndieLib_vc2008.h"
+#include "CIndieLib.h"
 #include "IND_Surface.h"
 #include "IND_Animation.h"
 //#include "IND_Matrix.h"

@@ -2,7 +2,7 @@
  * Desc: Tutorials b) 06 Spriter
  *****************************************************************************************/
 
-#include "CIndieLib_vc2008.h"
+#include "CIndieLib.h"
 #include "IND_Entity2D.h"
 #include "IND_Font.h"
 #include "../../WorkingPath.h"

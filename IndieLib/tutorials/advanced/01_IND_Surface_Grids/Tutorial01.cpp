@@ -2,7 +2,7 @@
  * Desc: Tutorials b) 01 IND_Surface grids
  *****************************************************************************************/
 
-#include "CIndieLib_vc2008.h"
+#include "CIndieLib.h"
 #include "IND_Surface.h"
 #include "IND_Font.h"
 #include "IND_Entity2d.h"

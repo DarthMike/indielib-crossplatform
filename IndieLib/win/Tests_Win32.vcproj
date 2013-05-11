@@ -211,11 +211,11 @@
 			Name="IndieLibMgr"
 			>
 			<File
-				RelativePath="..\Tests\CIndieLib_vc2008.cpp"
+				RelativePath="..\tests\CIndieLib.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\Tests\CIndieLib_vc2008.h"
+				RelativePath="..\tests\CIndieLib.h"
 				>
 			</File>
 		</Filter>

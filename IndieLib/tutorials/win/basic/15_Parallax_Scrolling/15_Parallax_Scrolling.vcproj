@@ -202,11 +202,7 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\..\..\..\tutorials\basic\15_Parallax_Scrolling\CIndieLib_vc2008.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\..\tutorials\basic\15_Parallax_Scrolling\CIndieLib_vc2008.h"
+				RelativePath="..\..\..\basic\15_Parallax_Scrolling\CIndieLib.cpp"
 				>
 			</File>
 			<File
@@ -222,6 +218,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath="..\..\..\basic\15_Parallax_Scrolling\CIndieLib.h"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

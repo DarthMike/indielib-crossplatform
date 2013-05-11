@@ -202,11 +202,11 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\..\..\..\tutorials\benchmark\02_Rabbits_BenchMark\CIndieLib_vc2008.cpp"
+				RelativePath="..\..\..\benchmark\02_Rabbits_BenchMark\CIndieLib.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\tutorials\benchmark\02_Rabbits_BenchMark\CIndieLib_vc2008.h"
+				RelativePath="..\..\..\benchmark\02_Rabbits_BenchMark\CIndieLib.h"
 				>
 			</File>
 			<File

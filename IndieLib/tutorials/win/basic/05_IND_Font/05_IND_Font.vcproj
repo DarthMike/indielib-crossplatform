@@ -201,11 +201,11 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\..\..\..\tutorials\basic\05_IND_Font\CIndieLib_vc2008.cpp"
+				RelativePath="..\..\..\basic\05_IND_Font\CIndieLib.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\tutorials\basic\05_IND_Font\CIndieLib_vc2008.h"
+				RelativePath="..\..\..\basic\05_IND_Font\CIndieLib.h"
 				>
 			</File>
 			<File

@@ -201,11 +201,11 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\..\..\..\tutorials\advanced\02_Blitting_2d_Directly\CIndieLib_vc2008.cpp"
+				RelativePath="..\..\..\advanced\02_Blitting_2d_Directly\CIndieLib.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\tutorials\advanced\02_Blitting_2d_Directly\CIndieLib_vc2008.h"
+				RelativePath="..\..\..\advanced\02_Blitting_2d_Directly\CIndieLib.h"
 				>
 			</File>
 			<File

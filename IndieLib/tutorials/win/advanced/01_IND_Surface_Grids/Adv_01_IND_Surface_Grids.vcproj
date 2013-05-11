@@ -201,11 +201,11 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\..\..\..\tutorials\advanced\01_IND_Surface_Grids\CIndieLib_vc2008.cpp"
+				RelativePath="..\..\..\advanced\01_IND_Surface_Grids\CIndieLib.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\..\tutorials\advanced\01_IND_Surface_Grids\CIndieLib_vc2008.h"
+				RelativePath="..\..\..\advanced\01_IND_Surface_Grids\CIndieLib.h"
 				>
 			</File>
 			<File

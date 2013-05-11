@@ -16,37 +16,76 @@
 #include "CIndieLib_vc2008.h"
 #include "IND_Image.h"
 
-TEST(add1) {
-	CIndieLib *iLib = CIndieLib::instance();
-	iLib->init();
+struct fixture {
+    fixture() {
+        iLib = CIndieLib::instance();
+        iLib->init();
+		testImage = IND_Image::newImage();
+    }
+    ~fixture() {
+        iLib->end();
+        
+    }
+	IND_Image* testImage;
+    CIndieLib* iLib;
+};
 
-	IND_Image *mImageBug = IND_Image::newImage();
-	CHECK(iLib->_imageManager->add(mImageBug, "../../resources/Enemy Bug.png"));
+TEST_FIXTURE(fixture,ImageManager_addFromFile) {
+	CHECK(iLib->_imageManager->add(testImage, "../../resources/Enemy Bug.png"));
 }
 
-TEST(remove) {
-	CIndieLib *iLib = CIndieLib::instance();
-	
-	IND_Image *mImageBug = IND_Image::newImage();
-	iLib->_imageManager->add(mImageBug, "../../resources/Enemy Bug.png");
-	
-	CHECK(iLib->_imageManager->remove(mImageBug));
+TEST_FIXTURE(fixture,ImageManager_AddProcedural_RGBA) {
+	CHECK(iLib->_imageManager->add(testImage,800,600,IND_RGBA));
+	CHECK_EQUAL(32,testImage->getBpp());
 }
 
-TEST(clone) {
-	CIndieLib *iLib = CIndieLib::instance();
-	
-	IND_Image *mImageBug = IND_Image::newImage();
-	IND_Image *mImageClone = IND_Image::newImage();
-	iLib->_imageManager->add(mImageBug, "../../resources/Enemy Bug.png");
-	
-	CHECK(iLib->_imageManager->clone(mImageClone,mImageBug));
-	CHECK(mImageClone->getFreeImageHandle() != NULL);
+TEST_FIXTURE(fixture,ImageManager_AddProcedural_RGB) {
+	CHECK(iLib->_imageManager->add(testImage,800,600,IND_RGB));
+	CHECK_EQUAL(24,testImage->getBpp());
 }
 
-TEST(load) {
-	CIndieLib *iLib = CIndieLib::instance();
+TEST_FIXTURE(fixture,ImageManager_AddProcedural_COLOURINDEX) {
+	CHECK(iLib->_imageManager->add(testImage,800,600,IND_COLOUR_INDEX));
+	CHECK_EQUAL(16,testImage->getBpp());
+}
 
+TEST_FIXTURE(fixture,ImageManager_AddProcedural_LUMINANCE) {
+	CHECK(iLib->_imageManager->add(testImage,800,600,IND_LUMINANCE));
+	CHECK_EQUAL(8,testImage->getBpp());
+}
+
+TEST_FIXTURE(fixture,ImageManager_addCopying) {
+	iLib->_imageManager->add(testImage, "../../resources/Enemy Bug.png");
+	
+	IND_Image *copied = IND_Image::newImage();
+	CHECK(iLib->_imageManager->add(copied,testImage->getFreeImageHandle()));
+	CHECK(copied->getFreeImageHandle() != NULL);
+}
+
+TEST_FIXTURE(fixture,Image_Paste) {
+	iLib->_imageManager->add(testImage, "../../resources/Enemy Bug.png");
+	
+	IND_Image *pastedTo = IND_Image::newImage();
+	iLib->_imageManager->add(pastedTo,testImage->getWidth(),testImage->getHeight(),IND_RGBA);
+	pastedTo->clear(0,0,0,0);
+	CHECK(testImage->pasteImage(pastedTo,0,0,255));
+}
+
+TEST_FIXTURE(fixture,ImageManager_remove) {	
+	iLib->_imageManager->add(testImage, "../../resources/Enemy Bug.png");
+	
+	CHECK(iLib->_imageManager->remove(testImage));
+}
+
+TEST_FIXTURE(fixture,ImageManager_clone) {	
+	IND_Image *testClone = IND_Image::newImage();
+	iLib->_imageManager->add(testImage, "../../resources/Enemy Bug.png");
+	
+	CHECK(iLib->_imageManager->clone(testClone,testImage));
+	CHECK(testClone->getFreeImageHandle() != NULL);
+}
+
+TEST_FIXTURE(fixture,ImageManager_load) {
 	FIBITMAP* bitmap = iLib->_imageManager->load("../../resources/Enemy Bug.png");
 	CHECK(bitmap != NULL);
 }

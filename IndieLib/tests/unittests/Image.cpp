@@ -14,13 +14,22 @@
 
 #include "dependencies/unittest++/src/UnitTest++.h"
 #include "CIndieLib_vc2008.h"
+#include "IND_Image.h"
 
+struct fixture {
+    fixture() {
+        iLib = CIndieLib::instance();
+        iLib->init();
+		testImage = IND_Image::newImage();
+    }
+    ~fixture() {
+        iLib->end();
+        
+    }
+	IND_Image* testImage;
+    CIndieLib* iLib;
+};
 
-/*
+TEST_FIXTURE(fixture,clone) {
 
- Public methods tested goes here...
-
-*/
-TEST(TODO) {
-	//CIndieLib *iLib = CIndieLib::instance();
 }

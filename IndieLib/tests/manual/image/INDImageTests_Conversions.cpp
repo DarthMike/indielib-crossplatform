@@ -42,6 +42,9 @@ void INDImageTests_Conversions::prepareTests() {
 	iLib->_imageManager->add(_images[10], const_cast<char *>("../../resources/rabbit.png"));
 	iLib->_imageManager->add(_images[11], const_cast<char *>("../../resources/rabbit.png"));
 	iLib->_imageManager->add(_images[12], const_cast<char *>("../../resources/rabbit.png"));
+	iLib->_imageManager->add(_images[13],"../../resources/rabbit.png");
+	iLib->_imageManager->add(_images[14],150,150,IND_RGBA);
+	iLib->_imageManager->add(_images[15],150,150,IND_RGBA);
 
 	// ----- Surfaces loading -----
 	//No conversion
@@ -82,6 +85,16 @@ void INDImageTests_Conversions::prepareTests() {
 	//Convert image - Scale (smaller)
 	_images[12]->scale(50, 50);
 	iLib->_surfaceManager->add(_surfaces[12], _images[12], IND_ALPHA, IND_32);
+
+	//No conversion
+	iLib->_surfaceManager->add(_surfaces[13], _images[13], IND_ALPHA, IND_32);
+	//Show a procedurally-generated image (red)
+	_images[14]->clear(255,0,0,255);
+	iLib->_surfaceManager->add(_surfaces[14], _images[14], IND_ALPHA, IND_32);
+	//Paste an image into the target
+	_images[15]->clear(0,255,0,255);
+	_images[15]->pasteImage(_images[13],0,0,100);
+	iLib->_surfaceManager->add(_surfaces[15], _images[15], IND_ALPHA, IND_32);
 }
 
 
@@ -121,6 +134,10 @@ void INDImageTests_Conversions::setActive(bool active){
 		_entities[0]->setPosition(0.0f,0.0f,0);
 		_entities[1]->setPosition(static_cast<float>(_entities[0]->getSurface()->getWidth()),static_cast<float>(_entities[0]->getPosY()),0);
 
+		_entities[13]->setPosition(static_cast<float>(_entities[1]->getPosX() + _entities[1]->getSurface()->getWidth()),static_cast<float>(_entities[1]->getPosY()) , 0);
+		_entities[14]->setPosition(static_cast<float>(_entities[13]->getPosX() + _entities[13]->getSurface()->getWidth()),static_cast<float>(_entities[13]->getPosY()) , 0);
+		_entities[15]->setPosition(static_cast<float>(_entities[14]->getPosX() + _entities[14]->getSurface()->getWidth()),static_cast<float>(_entities[14]->getPosY()) , 0);
+
 		_entities[2]->setPosition(0.0f,static_cast<float>(_entities[0]->getPosY() + _entities[0]->getSurface()->getHeight()),0);
 		_entities[3]->setPosition(static_cast<float>(_entities[2]->getPosX() + _entities[2]->getSurface()->getWidth()) ,static_cast<float>(_entities[2]->getPosY()),0);
 
@@ -147,7 +164,7 @@ void INDImageTests_Conversions::setActive(bool active){
 
 void INDImageTests_Conversions::init() {
 
-	_testedEntities = 14;
+	_testedEntities = 16;
 
 	_images = new IND_Image*[_testedEntities];
 	_surfaces = new IND_Surface*[_testedEntities];

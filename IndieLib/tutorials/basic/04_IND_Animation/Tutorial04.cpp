@@ -2,7 +2,7 @@
 /* Desc: Tutorial a) 04 IND_Animation
 /*****************************************************************************************/
 
-#include "CIndieLib_vc2008.h"
+#include "CIndieLib.h"
 
 #include "IND_Surface.h"
 #include "IND_Animation.h"

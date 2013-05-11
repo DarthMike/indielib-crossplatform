@@ -2,7 +2,7 @@
  * Desc: Test c) 02 Rabbits BenchMark
  *****************************************************************************************/
 
-#include "CIndieLib_vc2008.h"
+#include "CIndieLib.h"
 #include "CRabbit.h"
 
 #include "IND_Surface.h"

@@ -10,7 +10,7 @@ CFLAGS = -Wall -O2
 
 COMPILE = $(CC) $(CFLAGS) -c
 
-OBJFILES = ../../../tests/CIndieLib_vc2008.o simple.o
+OBJFILES = ../../../tests/CIndieLib.o simple.o
 
 
 
@@ -23,4 +23,4 @@ step1: $(OBJFILES)
 	$(CC) -o simple $(OBJFILES) $(LIBS)
 
 clean:
-	\rm *.o *.log ../../../tests/CIndieLib_vc2008.o simple
+	\rm *.o *.log ../../../tests/CIndieLib.o simple

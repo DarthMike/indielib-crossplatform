@@ -2,7 +2,7 @@
  * Desc: Tutorials a) 16 IND_Timer
  *****************************************************************************************/
 
-#include "CIndieLib_vc2008.h"
+#include "CIndieLib.h"
 
 #include "IND_Font.h"
 #include "IND_Surface.h"

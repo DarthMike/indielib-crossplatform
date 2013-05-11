@@ -2,7 +2,7 @@
  * Desc: IndieLib singleton initialization class
  *****************************************************************************************/
 
-#include "CIndieLib_vc2008.h"
+#include "CIndieLib.h"
 
 //#ifdef PLATFORM_WIN32
 //#include "TCHAR.h"
@@ -45,9 +45,8 @@ bool CIndieLib::init() {
 	_entity2dManager     =   new     IND_Entity2dManager;
 	//_entity3dManager       =   new     IND_Entity3dManager;
 	_math                =   new     IND_Math;
-	_tmxMapManager       =   new     IND_TmxMapManager;
 
-	IND_WindowProperties props ("IndieLib", 1920, 1080, 32, 0, 0, 1);
+	IND_WindowProperties props ("IndieLib", 800, 600, 32, 0, 0, 1);
 	
 	
 	_window = _render        ->initRenderAndWindow(props);                                 
@@ -64,8 +63,6 @@ bool CIndieLib::init() {
 	//if (!_meshManager      ->init (_render))                                    return 0;
 	if (!_input              ->init(_render))                                    return 0;
 	if (!_math               ->init())                                           return 0;
-	if (!_tmxMapManager      ->init())                                           return 0;
-
 
 	return 1;
 }
@@ -90,7 +87,6 @@ void CIndieLib::end() {
 	_imageManager        ->end();
 	//_lightManager      ->end();
 	_render              ->end();
-	_tmxMapManager       ->end();
 
 	DISPOSE(_math);
 	//DISPOSE(_meshManager);
@@ -103,7 +99,6 @@ void CIndieLib::end() {
     	DISPOSE(_imageManager);
 	//DISPOSE(_lightManager);
 	DISPOSE(_render);
-	DISPOSE(_tmxMapManager);
 
 	IndieLib::end();
 

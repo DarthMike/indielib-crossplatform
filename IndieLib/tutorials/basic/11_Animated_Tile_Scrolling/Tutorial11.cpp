@@ -2,7 +2,7 @@
  * Desc: Tutorial a) 11 Animated Tile Scrolling
  *****************************************************************************************/
 
-#include "CIndieLib_vc2008.h"
+#include "CIndieLib.h"
 #include "IND_Animation.h"
 #include "IND_Entity2d.h"
 #include "../../WorkingPath.h"

@@ -2,7 +2,7 @@
  * Desc: Tutorial a) 01 Installing
  *****************************************************************************************/
  
-#include "CIndieLib_vc2008.h"
+#include "CIndieLib.h"
 #include "../../../common/include/IND_Render.h"
  
 /*

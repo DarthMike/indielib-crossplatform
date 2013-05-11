@@ -2,7 +2,7 @@
  * Desc: Tutorials a) 13 2d Camera
  *****************************************************************************************/
 
-#include "CIndieLib_vc2008.h"
+#include "CIndieLib.h"
 #include "IND_Surface.h"
 #include "IND_Font.h"
 #include "IND_Entity2d.h"

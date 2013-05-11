@@ -1,6 +1,6 @@
 
 #include "dependencies/unittest++/src/UnitTest++.h"
-#include "CIndieLib_vc2008.h"
+#include "CIndieLib.h"
 
 TEST(LengthSimple) {
 	IND_Vector2 simple (1.0f,0.0f);

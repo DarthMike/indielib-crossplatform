@@ -25,7 +25,7 @@
  All relative loading paths will take into account that premise.
  *****************************************************************************************/
 
-#include "CIndieLib_vc2008.h"
+#include "CIndieLib.h"
 #include <vector>
 
 //Leaks control

@@ -2,7 +2,7 @@
  * Desc: IndieLib singleton initialization class
  *****************************************************************************************/
 
-#include "CIndieLib_vc2008.h"
+#include "CIndieLib.h"
 
 /*
 ==================

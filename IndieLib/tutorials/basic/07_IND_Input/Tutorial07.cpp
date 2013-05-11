@@ -2,7 +2,7 @@
  * Desc: Tutorial a) 07 IND_Input
  *****************************************************************************************/
 
-#include "CIndieLib_vc2008.h"
+#include "CIndieLib.h"
 
 #include "IND_Surface.h"
 #include "IND_Entity2d.h"

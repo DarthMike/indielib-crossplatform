@@ -2,7 +2,7 @@
  * Desc: Tutorial a) 06 Primitives
  *****************************************************************************************/
 
-#include "CIndieLib_vc2008.h"
+#include "CIndieLib.h"
 
 #include "IND_Entity2d.h"
 #include "../../WorkingPath.h"

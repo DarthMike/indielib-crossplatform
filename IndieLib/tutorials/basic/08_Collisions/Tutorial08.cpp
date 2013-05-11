@@ -2,7 +2,7 @@
  * Desc: Tutorials a) 08 Collisions
  *****************************************************************************************/
 
-#include "CIndieLib_vc2008.h"
+#include "CIndieLib.h"
 
 #include "IND_Surface.h"
 #include "IND_Animation.h"

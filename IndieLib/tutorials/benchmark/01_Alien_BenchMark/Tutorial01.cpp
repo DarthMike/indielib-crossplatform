@@ -2,7 +2,7 @@
  * Desc: Test c) 01 Alien BenchMark
  *****************************************************************************************/
 
-#include "CIndieLib_vc2008.h"
+#include "CIndieLib.h"
 #include "CTerrain.h"
 #include "CUfo.h"
 

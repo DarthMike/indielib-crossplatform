@@ -91,11 +91,11 @@ bool IND_Image::clear(BYTE pR, BYTE pG, BYTE pB, BYTE pA) {
 					} else if (IND_LUMINANCE == colorFormat) {
 						assert (8 == bpp); //The bpp for IND_LUMINANCE should be 8 for this image type
 						*bits = pA;
-		}
+					}
 					 
 					if (IND_RGBA == colorFormat) {
 						bits[FI_RGBA_ALPHA] = pA;
-	}
+					}
 
 					// jump to next pixel
 					bits += bytespp;
@@ -309,7 +309,7 @@ bool IND_Image::setAlpha(BYTE pR, BYTE pG, BYTE pB) {
 		int targetbpp (32);
 		if (IND_RGB == getFormatInt()) {
 			targetbpp = (getBpp()* 4 )/ 3;
-	}
+		}
 
 		success = convert(IND_RGBA,targetbpp);
 	} 
@@ -322,20 +322,18 @@ bool IND_Image::setAlpha(BYTE pR, BYTE pG, BYTE pB) {
 }
 
 /**
- * Alpha blend or combine a sub part image with the current dib image.
- * For images of type FITBITMAP only: The bit depth of the dst bitmap must be greater than or
- * equal to the bit depth of the src. Upper promotion of src is done internally, without modifying
- * src. Supported dst bit depth equals to 1, 4, 8, 16, 24 or 32.
+ * Alpha blend or combine a sub part image with the current image.
  *
- * For any other image type: The image type of the dst bitmap must be equal to the image type
- * of the src. The alpha parameter is always ignored and the source image is combined to the
- * destination image.
+ * Be aware that Bpp of the image will change, if needed, to acomodate the pasting. i.e. you have a 24 bit RGB image, 
+ * (or IND_RGB), and you paste a part of a 32 bit RGBA image. Your target image will be converted to 32 bit RGBA.
+ * 
+ * Alpha blending is done by combining the origin and source.
  *
  * The function returns TRUE if successful, FALSE otherwise (including if the one or both images is not loaded).
  * @param pIm               Pointer to an image object, that is going to be pasted (Alpha blended and/or combined with the current image)
- * @param pX                X Coordenate
- * @param pY                Y Coordenate
- * @param pAlpha            Alpha value on the destination image
+ * @param pX                X Position to get 
+ * @param pY                Y Coordinate
+ * @param pAlpha            Alpha blend factor. The source and destination images are alpha blended if alpha=0..255. If alpha > 255, then the source image is combined to the destination image.
  */
 bool IND_Image::pasteImage(IND_Image *pIm, int pX, int pY, int pAlpha) {
 	// No image loaded

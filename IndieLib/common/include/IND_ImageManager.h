@@ -101,6 +101,7 @@ private:
 
 	// ----- Private Methods -----
 
+	int defaultBppForColorFormat(IND_ColorFormat format);
 	void getExtensionFromName(const char *pName, char* pExtImage);
 	bool checkExtImage(const char *pExtImage);
 

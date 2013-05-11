@@ -33,7 +33,7 @@ Suite 330, Boston, MA 02111-1307 USA
 #include <stdlib.h>
 #endif
 
-
+unsigned int g_ImageManager_AddedCount = 0;
 // --------------------------------------------------------------------------------
 //							  Initialization / Destruction
 // --------------------------------------------------------------------------------
@@ -101,9 +101,6 @@ bool IND_ImageManager::isOK() const {
  * @param pName						Image name.
  */
 bool IND_ImageManager::add(IND_Image *pNewImage, const char *pName) {
-	// TODO: clean up documentation, maybe create and refer to a method in FreeimageHelper that returns
-	//       a stringarray of all Indielib supported types..
-
 	g_debug->header("Loading Image", DebugApi::LogHeaderBegin);
 	
 	if(!pName) {
@@ -303,8 +300,7 @@ bool IND_ImageManager::add(IND_Image *pNewImage, int pWidth, int pHeight, IND_Co
 	}
 
 	// ----- Creating image using FreeImage -----
-
-	int bpp = 2; //FIXME: this is very wrong, somehow we need to use the supplied "pColorFormat" instead.
+	int bpp = defaultBppForColorFormat(pColorFormat);
 
 	FIBITMAP* pImage = FreeImage_Allocate(pWidth, pHeight, bpp);
 	if (!pImage) {
@@ -323,18 +319,15 @@ bool IND_ImageManager::add(IND_Image *pNewImage, int pWidth, int pHeight, IND_Co
 	pNewImage->setFreeImageHandle(pImage);
 
 	// Name
-	char name[] = "Image Procedural";
+	char name [MAX_TOKEN];	
+	sprintf(name,"indielib_img_%i",g_ImageManager_AddedCount);
 	pNewImage->setName(name);
 
 	// ----- Puts the object into the manager -----
 
 	addToList(pNewImage);
 
-
-	// ----- g_debug -----
-
-	// TODO, add debugging here.......
-
+	g_debug->header("Image Created", DebugApi::LogHeaderEnd);
 	return 1;
 }
 
@@ -488,6 +481,30 @@ bool IND_ImageManager::save(IND_Image *pIm, const char *pName) {
 // --------------------------------------------------------------------------------
 
 /** @cond DOCUMENT_PRIVATEAPI */
+
+int IND_ImageManager::defaultBppForColorFormat(IND_ColorFormat format) {
+	int bpp = 0;
+	switch(format) {
+		case IND_LUMINANCE:
+			bpp = 8;
+			break;
+		case IND_COLOUR_INDEX:
+			bpp = 16;
+			break;
+		case IND_RGB:
+			bpp = 24;
+			break;
+		case IND_RGBA:
+			bpp = 32;
+			break;
+		case IND_UNKNOWN:
+		default:
+			bpp = -1;  //Make any method depending on this fail because of bad param
+			break;
+	}
+
+	return bpp;
+}
 
 /*
 ==================

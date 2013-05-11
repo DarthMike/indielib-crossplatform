@@ -25,15 +25,16 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "IND_Surface.h"
 #include "IND_Entity2d.h"
 
+int g_columns = 4;
+int g_rows = 4;
+
 void SurfaceTests_layout::prepareTests() {
 	// ----- Surface loading -----
 
     CIndieLib* iLib = CIndieLib::instance();
-	char path [MAX_TOKEN];
 
 	for (int i=0;i<_testedEntities;++i) {
-		sprintf(path,"../../resources/layouting/pic_%04d.bmp",i);
-		iLib->_surfaceManager->add(_surfaces[i], path, IND_ALPHA, IND_32);
+		iLib->_surfaceManager->add(_surfaces[i], "../../resources/layouting/tile1.bmp", IND_ALPHA, IND_32);
 	}
 }
 
@@ -72,7 +73,9 @@ void SurfaceTests_layout::setActive(bool active){
 	
 		// ----- Layout all entities to form a single surface ----
 		for (int i=0;i<_testedEntities;++i) {
-			_entities[i]->setPosition((i%4)*320.f,(i/4)*240.f,0);
+			float width (static_cast<float>(_surfaces[i]->getWidth()));
+			float height (static_cast<float>(_surfaces[i]->getHeight()));
+			_entities[i]->setPosition((i%g_columns)*width,(i/g_rows)*height,0);
 		}
 
     } else { //Inactive
@@ -86,7 +89,7 @@ void SurfaceTests_layout::setActive(bool active){
 //-----------------------------------PRIVATE METHODS----------------------------
 
 void SurfaceTests_layout::init() {
-	_testedEntities = 16;
+	_testedEntities = g_columns * g_rows;
 	_surfaces = new IND_Surface*[_testedEntities];
 	_entities = new IND_Entity2d*[_testedEntities];
 

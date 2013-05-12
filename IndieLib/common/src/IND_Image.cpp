@@ -331,8 +331,8 @@ bool IND_Image::setAlpha(BYTE pR, BYTE pG, BYTE pB) {
  *
  * The function returns TRUE if successful, FALSE otherwise (including if the one or both images is not loaded).
  * @param pIm               Pointer to an image object, that is going to be pasted (Alpha blended and/or combined with the current image)
- * @param pX                X Position to get 
- * @param pY                Y Coordinate
+ * @param pX                X Position in target image to start pasting
+ * @param pY                Y Position in target image to start pasting
  * @param pAlpha            Alpha blend factor. The source and destination images are alpha blended if alpha=0..255. If alpha > 255, then the source image is combined to the destination image.
  */
 bool IND_Image::pasteImage(IND_Image *pIm, int pX, int pY, int pAlpha) {

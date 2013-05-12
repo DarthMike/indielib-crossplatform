@@ -93,7 +93,7 @@ void INDImageTests_Conversions::prepareTests() {
 	iLib->_surfaceManager->add(_surfaces[14], _images[14], IND_ALPHA, IND_32);
 	//Paste an image into the target
 	_images[15]->clear(0,255,0,255);
-	_images[15]->pasteImage(_images[13],0,0,100);
+	_images[15]->pasteImage(_images[13],20,20,100);
 	iLib->_surfaceManager->add(_surfaces[15], _images[15], IND_ALPHA, IND_32);
 }
 

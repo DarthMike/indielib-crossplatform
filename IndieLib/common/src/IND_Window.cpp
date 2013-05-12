@@ -146,6 +146,10 @@ bool IND_Window::create(IND_WindowProperties& props) {
 	else
 		g_debug->dataChar("Full screen", 1);
 
+	// Puts mouse on the center of the window. Prevents weird behaviours when running in windowed mode
+	SDL_WarpMouseInWindow(_attributes._sdlWindow,getWidth()/2,getHeight()/2);
+
+
 	g_debug->header("Window OK", DebugApi::LogHeaderEnd);
 
 	_ok = true;

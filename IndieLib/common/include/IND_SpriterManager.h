@@ -57,6 +57,9 @@ public:
 	}
 
 	// ----- Public methods -----
+    
+    bool addSpriterFile2(list<IND_SpriterEntity*> *pNewSpriterEntityList,const char *pSCMLFileName);
+
 
 	bool addSpriterFile(list<IND_SpriterEntity*> *pNewSpriterEntityList,const char *pSCMLFileName);	
 

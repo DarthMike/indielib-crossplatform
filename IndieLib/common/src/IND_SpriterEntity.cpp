@@ -71,4 +71,12 @@ void IND_SpriterEntity::initAttrib() {
 	_name   = NULL;
 }
 
+void IND_SpriterEntity::addImage(const char *folderId, const char *fileId, IND_Image *pImage) {
+    Fileref ref;
+    ref.first = static_cast<unsigned int>(*folderId);
+    ref.second = static_cast<unsigned int>(*fileId);
+    
+    _images->insert(make_pair(ref, pImage));
+}
+
 /** @endcond */

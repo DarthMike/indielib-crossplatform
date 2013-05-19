@@ -59,8 +59,9 @@ private:
 	
 	// ----- Structures ------
 
-	typedef std::pair<int, int> Fileref;	// Filref consist of a (folder, file) combo.
+	typedef std::pair<unsigned int, unsigned int> Fileref;	// Filref consist of a (folder, file) combo.
 
+    
     map<Fileref, IND_Image *> *_images;		// list of images used in animations
 	const char *_id;						// Entity ID
 	const char *_name;						// Entity name
@@ -72,6 +73,7 @@ private:
 
 	// ----- Private methods -----
     void initAttrib();
+    void addImage(const char *folderId, const char *fileId, IND_Image *pImage);
     
 	// ----- Friends -----
 	friend class IND_SpriterManager;

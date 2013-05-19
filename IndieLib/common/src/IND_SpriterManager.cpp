@@ -83,18 +83,6 @@ bool IND_SpriterManager::remove(IND_SpriterEntity *pEn) {
 	return 0;
 }
 
-bool IND_SpriterManager::addSpriterFile2(list<IND_SpriterEntity*> *pNewSpriterEntityList, const char *pSCMLFileName){
-	if (parseSpriterData(pNewSpriterEntityList,pSCMLFileName)){
-		return 1;
-	}
-	
-	return 0;
-}
-
-
-
-
-
 bool IND_SpriterManager::addSpriterFile(list<IND_SpriterEntity*> *pNewSpriterEntityList, const char *pSCMLFileName){
 	if (parseSpriterData(pNewSpriterEntityList,pSCMLFileName)){
 		return 1;
@@ -156,6 +144,10 @@ bool IND_SpriterManager::parseSpriterData(list<IND_SpriterEntity*> *pNewSpriterE
 	}
 
 	// ----------------- Parse folders and create the images -----------------
+    
+      
+    IND_SpriterEntity sEnt = *IND_SpriterEntity::newSpriterEntity();
+    
 
 	TiXmlElement *eFolder = 0;
 	eFolder = eSpriter_data->FirstChildElement("folder");
@@ -206,6 +198,9 @@ bool IND_SpriterManager::parseSpriterData(list<IND_SpriterEntity*> *pNewSpriterE
 		delete eXmlDoc;
 		return 0;
 	}
+    
+    sEnt._id = eEntity->Attribute("id");
+    sEnt._name = eEntity->Attribute("name");
 
 	while (eEntity) {
 

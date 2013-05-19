@@ -13,7 +13,9 @@ something about license here.....
 
 // ----- Includes -----
 
-
+#include "IND_object.h"
+#include "IND_Image.h"
+#include <map>
 
 // ----- Forward declarations -----
 
@@ -22,51 +24,57 @@ something about license here.....
 //									IND_SpriterEntity
 // --------------------------------------------------------------------------------
 
-class LIB_EXP IND_SpriterEntity {
+class LIB_EXP IND_SpriterEntity : public IND_Object {
 public:
 
+	// ----- Init -----
+
+    static IND_SpriterEntity* newSpriterEntity();
+
+    void destroy();
+
+
 	// ----- Public methods ------
+    
+    
 
 	// ----- Public gets ------
+	
+    const char* getId() {
+        return _id;
+    }
+	
+    const char* getName() {
+        return _name;
+    }
+	
 
 private:
-
+	IND_SpriterEntity();
+	virtual ~IND_SpriterEntity();
 
 	// ----- Containers -----
 
-	//list <IND_Image *> *_listImages;
+	
 	
 	// ----- Structures ------
 
-	struct structSpriterEntity {
-		int  *_id;		
-		char *_name;                                 // Entity name
-		list <IND_Image *> *_listImage;            // images referenced by animations
-		//vector <SpriterAnimation *> *_listAnimation; // Entity animation list
-		
-		structSpriterEntity() { 
-			_id = 0;
-			_name = new char [128];
-			_listImage = new list <IND_Image *>;
-			//_listAnimation(NULL) {}
-		}
-		
-		~structSpriterEntity() {
-			DISPOSEARRAY(_listImage);
-		}
-		
-	};
-	typedef struct structSpriterEntity SPRITERENTITY;
+	typedef std::pair<int, int> Fileref;	// Filref consist of a (folder, file) combo.
 
-	SPRITERENTITY _spriterEntity;
+    map<Fileref, IND_Image *> *_images;		// list of images used in animations
+	const char *_id;						// Entity ID
+	const char *_name;						// Entity name
 
-
-
+    
 	// ----- Private sets ------
+	
+
 
 	// ----- Private methods -----
-
+    void initAttrib();
+    
 	// ----- Friends -----
+	friend class IND_SpriterManager;
 
 };
 

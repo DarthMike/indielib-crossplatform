@@ -146,7 +146,7 @@ bool IND_SurfaceManager::isOK() {
 This function returns 1 (true) if the parameter surface object exists and it is added
 by loading the image directly from the file.
 
-Graphic formats supported (Thanks to http://openil.sourceforge.net):
+Graphic formats supported (Thanks to http://freeimage.sourceforge.net ):
 bmp, png, tga, jpg and pcx.
 */
 bool IND_SurfaceManager::add(IND_Surface    *pNewSurface,
@@ -216,7 +216,7 @@ This function returns 1 (true) if the parameter surface object exists and it is 
 satisfactory loading the image directly from the file and all the colors equal to RGB=(pR, pG, pB), will
 become transparent.
 
-Graphic formats supported (Thanks to http://openil.sourceforge.net):
+Graphic formats supported (Thanks to http://freeimage.sourceforge.net/ ):
 bmp, png, tga, jpg and pcx.
 */
 bool IND_SurfaceManager::add(IND_Surface    *pNewSurface,
@@ -341,7 +341,7 @@ This function returns 1 (true) if the parameter surface object exists and it is 
 to the manager loading the image directly from a file. This method is useful for creating scrolls because we
 can specify the width of the block. Blocks outside the viewport will be automatically discarded.
 
-Graphic formats supported (Thanks to http://openil.sourceforge.net):
+Graphic formats supported (Thanks to http://freeimage.sourceforge.net ):
 bmp, png, tga, jpg and pcx.
 */
 bool IND_SurfaceManager::add(IND_Surface    *pNewSurface,

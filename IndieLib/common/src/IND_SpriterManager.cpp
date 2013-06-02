@@ -209,10 +209,13 @@ bool IND_SpriterManager::parseSpriterData(list<IND_SpriterEntity*> *pNewSpriterE
 		eAnimation = eEntity->FirstChildElement("animation");
 
 		while(eAnimation){
-			//printf("  id     : %s\n", eAnimation->Attribute("id"));
-			//printf("  name   : %s\n", eAnimation->Attribute("name"));
-			//printf("  length : %s\n", eAnimation->Attribute("length"));
-			//printf("  looping: %s\n", eAnimation->Attribute("looping"));
+			
+            Animation *sAnim = sEnt.addAnimation(atoi(eAnimation->Attribute("id")),
+                                                 eAnimation->Attribute("name"),
+                                                 atoi(eAnimation->Attribute("length")),
+                                                 eAnimation->Attribute("looping"),
+                                                 atoi(eAnimation->Attribute("loop_to"))
+                                                );
 			
 			TiXmlElement *eMainline = 0;
 			eMainline = eAnimation->FirstChildElement("mainline");
@@ -224,52 +227,81 @@ bool IND_SpriterManager::parseSpriterData(list<IND_SpriterEntity*> *pNewSpriterE
 				return 0;
 			}
 			
-			TiXmlElement *eMKey = 0;
+            
+            TiXmlElement *eMKey = 0;
 			eMKey = eMainline->FirstChildElement("key");
 
 			while (eMKey){
-				//printf(" id: %s", eMKey->Attribute("id"));
-				//printf(" time: %s\n", eMKey->Attribute("time"));
-
+                
+                MainlineKey *sMKey = sAnim->getMainline()->addKey(atoi(eMKey->Attribute("id")),
+                                                                  atoi(eMKey->Attribute("time"))
+                                                                 );
+				
 				TiXmlElement *eObject_ref = 0;
 				eObject_ref = eMKey->FirstChildElement("object_ref");
 				
 				while (eObject_ref){
-					//printf(" id: %s",        eObject_ref->Attribute("id"));
-					//printf(" timeline: %s",  eObject_ref->Attribute("timeline"));
-					//printf(" key: %s",       eObject_ref->Attribute("key"));
-					//printf(" z_index: %s\n", eObject_ref->Attribute("z_index"));
-				
+                    sMKey->addObjectref(atoi(eObject_ref->Attribute("id")),
+                                        atoi(eObject_ref->Attribute("timeline")),
+                                        atoi(eObject_ref->Attribute("key")),
+                                        atoi(eObject_ref->Attribute("z_index"))
+                                       );
+					
 					eObject_ref = eObject_ref->NextSiblingElement("object_ref");
 				}
 
+                //TODO : insert loop over mainline.key.object here....
+                
 				eMKey = eMKey->NextSiblingElement("key");
+                                
 			}
 
 			TiXmlElement *eTimeline = 0;
 			eTimeline = eAnimation->FirstChildElement("timeline");
 
 			while (eTimeline){
-				//printf("timeline id: %s\n", eTimeline->Attribute("id"));
+                
+                Timeline *sTimeline = sAnim->addTimeline(atoi(eTimeline->Attribute("id")),
+                                                         eTimeline->Attribute("name"),
+                                                         eTimeline->Attribute("object_type"),
+                                                         eTimeline->Attribute("variable_type"),
+                                                         eTimeline->Attribute("usage")
+                                                        );
 				
 				TiXmlElement *eTKey = 0;
 				eTKey = eTimeline->FirstChildElement("key");
 				
 				while (eTKey){
-					//printf(" id: %s", eTKey->Attribute("id"));
-				    //printf(" spin: %s\n", eTKey->Attribute("spin"));
+                    
+                    TimelineKey *sTKey = sTimeline->addKey(atoi(eTKey->Attribute("id")),
+                                                           atoi(eTKey->Attribute("time")),
+                                                           atoi(eTKey->Attribute("spin"))
+                                                          );
+                    
 
-					//TiXmlElement *eObject = 0;
-					//eObject = eTKey->FirstChildElement("object"); // asumption: there is only one "object" element under the key....					
+					TiXmlElement *eTimelineObject = 0;
+					eTimelineObject = eTKey->FirstChildElement("object");
 					
-					//printf(" folder: %s", eObject->Attribute("folder"));
-					//printf(" file: %s", eObject->Attribute("file"));
-					//printf(" x: %s", eObject->Attribute("x"));
-					//printf(" y: %s", eObject->Attribute("y"));
-					//printf(" pivot_x: %s", eObject->Attribute("pivot_x"));
-					//printf(" pivot_y: %s", eObject->Attribute("pivot_y"));
-					//printf(" angle: %s\n", eObject->Attribute("angle"));
+                    while (eTimelineObject) {
+                    
+                        sTKey->addTimelineObject(atoi(eTimelineObject->Attribute("folder")),
+                                                 atoi(eTimelineObject->Attribute("file")),
+                                                 atoi(eTimelineObject->Attribute("x")),
+                                                 atoi(eTimelineObject->Attribute("y")),
+                                                 atoi(eTimelineObject->Attribute("pivot_x")),
+                                                 atoi(eTimelineObject->Attribute("pivot_y")),
+                                                 atoi(eTimelineObject->Attribute("angle")),
+                                                 atoi(eTimelineObject->Attribute("scale_x")),
+                                                 atoi(eTimelineObject->Attribute("scale_y")),
+                                                 atoi(eTimelineObject->Attribute("a"))
+                                                );
+                        
+                        
+                        eTimelineObject = eTimelineObject->NextSiblingElement("object");
 
+                    }
+                    
+                    
 					eTKey = eTimeline->NextSiblingElement("key");
 
 				}

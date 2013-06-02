@@ -24,6 +24,13 @@ Suite 330, Boston, MA 02111-1307 USA
 
 // ----- Includes -----
 
+#include "../dependencies/SpriterParser/Animation.h"
+#include "../dependencies/SpriterParser/Mainline.h"
+#include "../dependencies/SpriterParser/Timeline.h"
+//#include "../dependencies/SpriterParser/MainlineKey.h"
+//#include "../dependencies/SpriterParser/TimelineKey.h"
+
+
 #include <list>
 #include <vector>
 

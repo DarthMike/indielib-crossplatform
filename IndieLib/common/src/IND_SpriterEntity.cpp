@@ -11,6 +11,7 @@
 
 #include "Global.h"
 #include "IND_SpriterEntity.h"
+#include "dependencies/SpriterParser/Animation.h"
 
 
 // --------------------------------------------------------------------------------
@@ -67,16 +68,27 @@ Attributes initialization
 ==================
 */
 void IND_SpriterEntity::initAttrib() {
-    _id     = NULL;
-	_name   = NULL;
+    _id         = NULL;
+	_name       = NULL;
+    _images     = new map<Fileref*, IND_Image *>();
+    _animations = new std::vector<Animation *>();
 }
 
 void IND_SpriterEntity::addImage(const char *folderId, const char *fileId, IND_Image *pImage) {
-    Fileref ref;
-    ref.first = static_cast<unsigned int>(*folderId);
-    ref.second = static_cast<unsigned int>(*fileId);
+    Fileref* ref = new Fileref();
+    ref->first = static_cast<unsigned int>(*folderId);
+    ref->second = static_cast<unsigned int>(*fileId);
     
     _images->insert(make_pair(ref, pImage));
 }
+
+Animation* IND_SpriterEntity::addAnimation(int id, const char* name, int length, const char* looping, int loop_to) {
+    Animation *aniPtr = new Animation(id, name, length, looping, loop_to);
+    _animations->push_back(aniPtr);
+    
+    return aniPtr;
+}
+
+
 
 /** @endcond */

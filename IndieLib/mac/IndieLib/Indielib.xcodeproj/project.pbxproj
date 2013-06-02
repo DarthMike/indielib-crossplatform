@@ -7,9 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C7AF05F175B73F7004F4821 /* Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C7AF052175B73F7004F4821 /* Animation.cpp */; };
+		4C7AF060175B73F7004F4821 /* Animation.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C7AF053175B73F7004F4821 /* Animation.h */; };
+		4C7AF061175B73F7004F4821 /* Mainline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C7AF054175B73F7004F4821 /* Mainline.cpp */; };
+		4C7AF062175B73F7004F4821 /* Mainline.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C7AF055175B73F7004F4821 /* Mainline.h */; };
+		4C7AF063175B73F7004F4821 /* MainlineKey.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C7AF056175B73F7004F4821 /* MainlineKey.cpp */; };
+		4C7AF064175B73F7004F4821 /* MainlineKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C7AF057175B73F7004F4821 /* MainlineKey.h */; };
+		4C7AF065175B73F7004F4821 /* MainlineObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C7AF058175B73F7004F4821 /* MainlineObject.h */; };
+		4C7AF066175B73F7004F4821 /* MainlineObjectref.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C7AF059175B73F7004F4821 /* MainlineObjectref.h */; };
+		4C7AF067175B73F7004F4821 /* Timeline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C7AF05A175B73F7004F4821 /* Timeline.cpp */; };
+		4C7AF068175B73F7004F4821 /* Timeline.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C7AF05B175B73F7004F4821 /* Timeline.h */; };
+		4C7AF069175B73F7004F4821 /* TimelineKey.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C7AF05C175B73F7004F4821 /* TimelineKey.cpp */; };
+		4C7AF06A175B73F7004F4821 /* TimelineKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C7AF05D175B73F7004F4821 /* TimelineKey.h */; };
+		4C7AF06B175B73F7004F4821 /* TimelineObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C7AF05E175B73F7004F4821 /* TimelineObject.h */; };
+		4C7F4379174926A9009403C5 /* IND_SpriterEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C7F4378174926A9009403C5 /* IND_SpriterEntity.cpp */; };
 		4CC1EA861732E6EE00A31689 /* IND_SpriterManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CC1EA851732E6EE00A31689 /* IND_SpriterManager.cpp */; };
-		4CC1EA891732E70300A31689 /* IND_SpriterEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CC1EA871732E70300A31689 /* IND_SpriterEntity.h */; };
-		4CC1EA8A1732E70300A31689 /* IND_SpriterManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CC1EA881732E70300A31689 /* IND_SpriterManager.h */; };
 		E72BA060158CC7BB0003C431 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E72BA05F158CC7BB0003C431 /* OpenGL.framework */; };
 		E75EB0D5159CADF800693F41 /* tinystr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAA49159CADEF00693F41 /* tinystr.cpp */; };
 		E75EB0D7159CADF800693F41 /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAA4B159CADEF00693F41 /* tinyxml.cpp */; };
@@ -77,6 +89,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C7AF052175B73F7004F4821 /* Animation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Animation.cpp; sourceTree = "<group>"; };
+		4C7AF053175B73F7004F4821 /* Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animation.h; sourceTree = "<group>"; };
+		4C7AF054175B73F7004F4821 /* Mainline.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mainline.cpp; sourceTree = "<group>"; };
+		4C7AF055175B73F7004F4821 /* Mainline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mainline.h; sourceTree = "<group>"; };
+		4C7AF056175B73F7004F4821 /* MainlineKey.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainlineKey.cpp; sourceTree = "<group>"; };
+		4C7AF057175B73F7004F4821 /* MainlineKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainlineKey.h; sourceTree = "<group>"; };
+		4C7AF058175B73F7004F4821 /* MainlineObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainlineObject.h; sourceTree = "<group>"; };
+		4C7AF059175B73F7004F4821 /* MainlineObjectref.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainlineObjectref.h; sourceTree = "<group>"; };
+		4C7AF05A175B73F7004F4821 /* Timeline.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Timeline.cpp; sourceTree = "<group>"; };
+		4C7AF05B175B73F7004F4821 /* Timeline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Timeline.h; sourceTree = "<group>"; };
+		4C7AF05C175B73F7004F4821 /* TimelineKey.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TimelineKey.cpp; sourceTree = "<group>"; };
+		4C7AF05D175B73F7004F4821 /* TimelineKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimelineKey.h; sourceTree = "<group>"; };
+		4C7AF05E175B73F7004F4821 /* TimelineObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimelineObject.h; sourceTree = "<group>"; };
+		4C7F4378174926A9009403C5 /* IND_SpriterEntity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IND_SpriterEntity.cpp; sourceTree = "<group>"; };
 		4CC1EA851732E6EE00A31689 /* IND_SpriterManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IND_SpriterManager.cpp; sourceTree = "<group>"; };
 		4CC1EA871732E70300A31689 /* IND_SpriterEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IND_SpriterEntity.h; sourceTree = "<group>"; };
 		4CC1EA881732E70300A31689 /* IND_SpriterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IND_SpriterManager.h; sourceTree = "<group>"; };
@@ -246,17 +272,38 @@
 				E7DBCA5D159B10F900C8B2D9 /* AppKit.framework */,
 				E7DBCA5B159B10E900C8B2D9 /* CoreFoundation.framework */,
 				E72BA05F158CC7BB0003C431 /* OpenGL.framework */,
-				E75E9DEE159CADEA00693F41 /* dependencies */,
 				E75EAA9E159CADEF00693F41 /* include */,
 				E75EAAC2159CADEF00693F41 /* src */,
 				E75EB2B5159CB1BF00693F41 /* Products */,
+				E75E9DEE159CADEA00693F41 /* dependencies */,
 				E75EB2B4159CB02400693F41 /* libIndielib.dylib */,
 			);
+			sourceTree = "<group>";
+		};
+		4C7AF051175B73F7004F4821 /* SpriterParser */ = {
+			isa = PBXGroup;
+			children = (
+				4C7AF052175B73F7004F4821 /* Animation.cpp */,
+				4C7AF053175B73F7004F4821 /* Animation.h */,
+				4C7AF054175B73F7004F4821 /* Mainline.cpp */,
+				4C7AF055175B73F7004F4821 /* Mainline.h */,
+				4C7AF056175B73F7004F4821 /* MainlineKey.cpp */,
+				4C7AF057175B73F7004F4821 /* MainlineKey.h */,
+				4C7AF058175B73F7004F4821 /* MainlineObject.h */,
+				4C7AF059175B73F7004F4821 /* MainlineObjectref.h */,
+				4C7AF05A175B73F7004F4821 /* Timeline.cpp */,
+				4C7AF05B175B73F7004F4821 /* Timeline.h */,
+				4C7AF05C175B73F7004F4821 /* TimelineKey.cpp */,
+				4C7AF05D175B73F7004F4821 /* TimelineKey.h */,
+				4C7AF05E175B73F7004F4821 /* TimelineObject.h */,
+			);
+			path = SpriterParser;
 			sourceTree = "<group>";
 		};
 		E75E9DEE159CADEA00693F41 /* dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				4C7AF051175B73F7004F4821 /* SpriterParser */,
 				E75EAA48159CADEF00693F41 /* tinyxml */,
 				E75EAA4F159CADEF00693F41 /* TmxParser */,
 			);
@@ -367,6 +414,7 @@
 		E75EAAC2159CADEF00693F41 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				4C7F4378174926A9009403C5 /* IND_SpriterEntity.cpp */,
 				4CC1EA851732E6EE00A31689 /* IND_SpriterManager.cpp */,
 				E75EAAC3159CADEF00693F41 /* CollisionParser.cpp */,
 				E75EAAC4159CADEF00693F41 /* DebugApi.cpp */,
@@ -468,6 +516,14 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C7AF060175B73F7004F4821 /* Animation.h in Headers */,
+				4C7AF062175B73F7004F4821 /* Mainline.h in Headers */,
+				4C7AF064175B73F7004F4821 /* MainlineKey.h in Headers */,
+				4C7AF065175B73F7004F4821 /* MainlineObject.h in Headers */,
+				4C7AF066175B73F7004F4821 /* MainlineObjectref.h in Headers */,
+				4C7AF068175B73F7004F4821 /* Timeline.h in Headers */,
+				4C7AF06A175B73F7004F4821 /* TimelineKey.h in Headers */,
+				4C7AF06B175B73F7004F4821 /* TimelineObject.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -577,6 +633,12 @@
 				E75EB2AB159CAF1100693F41 /* IND_Camera3d.cpp in Sources */,
 				E793C03816C9654B002F9867 /* IndieVersion.cpp in Sources */,
 				4CC1EA861732E6EE00A31689 /* IND_SpriterManager.cpp in Sources */,
+				4C7F4379174926A9009403C5 /* IND_SpriterEntity.cpp in Sources */,
+				4C7AF05F175B73F7004F4821 /* Animation.cpp in Sources */,
+				4C7AF061175B73F7004F4821 /* Mainline.cpp in Sources */,
+				4C7AF063175B73F7004F4821 /* MainlineKey.cpp in Sources */,
+				4C7AF067175B73F7004F4821 /* Timeline.cpp in Sources */,
+				4C7AF069175B73F7004F4821 /* TimelineKey.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,6 +1,6 @@
 
 advanced 01: IND Surface Grids
-In this tutorial, Draco the dragon is placed on blue rotating background.A small blue / white text is located in the left upper corner. Draco is moved by a timespecific wavefunction that manipulates the surface. To display this grid you can toggle it on / off by pressing space. Press escape to exit.
+In this tutorial, Draco the dragon is placed on blue rotating background.A small blue / white text is located in the left upper corner. Draco is moved by a timespecific wavefunction that manipulates the surface. To display a grid you can toggle it on / off by pressing space. Press escape to exit.
 
 advanced 02: Blitting 2d Directly
 TODO: describtion..

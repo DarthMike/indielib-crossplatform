@@ -2,6 +2,7 @@ TODO: describe for each basic tutorial what is the tutorial about + what keys ar
 
 
 basic 01: Installing
+This is the very bare tutorial, where  all the components that sum up Indielib is instantiated and a very basic gameloop is created. When this tutorial is exexcuted a blank gamewindow is presented. Press escape or mouseclick on the close button to exit.
 
 
 basic 02: IND_Surface

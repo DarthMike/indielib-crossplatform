@@ -30,7 +30,7 @@ Timeline::Timeline(int id, const char* name, const char* object_type, const char
 }
 
 Timeline::~Timeline() {
-//TODO: delete the array
+    delete [] _keyList;
 }
 
 // --------------------------------------------------------------------------------
@@ -39,7 +39,7 @@ Timeline::~Timeline() {
 
 TimelineKey* Timeline::addKey(int id, int time, int spin) {
 	TimelineKey *keyPtr = new TimelineKey(id, time, spin);
-    _keyList->push_back(keyPtr);	// TODO : use index instead
+    _keyList->insert(_keyList->begin() + id, keyPtr);
     
     return keyPtr;
 }

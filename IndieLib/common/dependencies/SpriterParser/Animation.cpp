@@ -22,17 +22,18 @@
 // --------------------------------------------------------------------------------
 
 Animation::Animation(int id, const char* name, int length, const char* looping, int loop_to) {
-    _id			= id;
-    _name		= const_cast<char *>(name);
-    _length		= length;
-    _looping	= const_cast<char *>(looping);
-    _loop_to	= loop_to;
-    _mainline	= new Mainline();
-    _timelines	= new std::vector <Timeline *>;
+    _id             = id;
+    _name           = const_cast<char *>(name);
+    _length         = length;
+    _looping        = const_cast<char *>(looping);
+    _loop_to        = loop_to;
+    _mainline       = new Mainline();
+    _timelineList   = new std::vector <Timeline *>;
 }
 
 Animation::~Animation() {
-//TODO: delete the one (two) arrays ...
+    delete _mainline;
+    delete [] _timelineList;
 }
 
 // --------------------------------------------------------------------------------
@@ -40,8 +41,8 @@ Animation::~Animation() {
 // --------------------------------------------------------------------------------
 
 Timeline* Animation::addTimeline(int id, const char* name, const char* object_type, const char* variable_type, const char* usage) {
-	Timeline *line = new Timeline(id, name, object_type, variable_type, usage);
-	_timelines->push_back(line);  // TODO: use index instead
+	Timeline *timelinePtr = new Timeline(id, name, object_type, variable_type, usage);
+	_timelineList->insert(_timelineList->begin() + id, timelinePtr);
 	
-	return line;
+	return timelinePtr;
 }

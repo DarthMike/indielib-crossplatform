@@ -24,7 +24,7 @@ struct MainlineObject {
 	float	x;
 	float	y;
 	float	pivot_x;
-    float   pivit_y;
+    float   pivot_y;
 	float	angle;
 	float	scale_x;
 	float	scale_y;

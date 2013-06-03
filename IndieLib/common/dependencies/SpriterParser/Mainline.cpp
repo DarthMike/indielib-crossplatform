@@ -20,12 +20,13 @@
 // --------------------------------------------------------------------------------
 //							  Initialization / Destruction
 // --------------------------------------------------------------------------------
+
 Mainline::Mainline() {
     _keyList = new std::vector <MainlineKey *>;
 }
 
 Mainline::~Mainline() {
-//TODO: delete the array
+    delete [] _keyList;
 }
 
 // --------------------------------------------------------------------------------
@@ -34,7 +35,7 @@ Mainline::~Mainline() {
 
 MainlineKey* Mainline::addKey(int id, int time) {
 	MainlineKey *keyPtr = new MainlineKey(id, time);
-    _keyList->push_back(keyPtr);		// TODO : use index instead
+   _keyList->insert(_keyList->begin() + id, keyPtr);
     
     return keyPtr;
 }

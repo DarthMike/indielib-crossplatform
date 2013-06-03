@@ -29,7 +29,8 @@ MainlineKey::MainlineKey(int id, int time) {
 }
 
 MainlineKey::~MainlineKey() {
-//TODO: delete the two arrays ...
+    delete [] _objectrefList;
+    delete [] _objectList;
 }
 
 // --------------------------------------------------------------------------------
@@ -37,9 +38,29 @@ MainlineKey::~MainlineKey() {
 // --------------------------------------------------------------------------------
 
 void MainlineKey::addObjectref(int id, int timeline, int key, int z_index) {
-//TODO: create Objectref and append it to the list
+	MainlineObjectref *mainlineObjectrefPtr = new MainlineObjectref();
+    mainlineObjectrefPtr->id = id;
+    mainlineObjectrefPtr->timeline = timeline;
+    mainlineObjectrefPtr->key = key;
+    mainlineObjectrefPtr->z_index = z_index;
+    
+    _objectrefList->insert(_objectrefList->begin() + id, mainlineObjectrefPtr);
 }
 
 void MainlineKey::addObject(int id, char* object_type, int folder, int file, float x, float y, float pivot_x, float pivot_y, float angle, float scale_x, float scale_y, float a) {
-//TODO: create Object and append it to the list
+    MainlineObject *mainlineObjectPtr = new MainlineObject();
+    mainlineObjectPtr->id = id;
+    mainlineObjectPtr->object_type = object_type;
+    mainlineObjectPtr->folder = folder;
+    mainlineObjectPtr->file = file;
+    mainlineObjectPtr->x = x;
+    mainlineObjectPtr->y = y;
+    mainlineObjectPtr->pivot_x = pivot_x;
+    mainlineObjectPtr->pivot_y = pivot_y;
+    mainlineObjectPtr->angle = angle;
+    mainlineObjectPtr->scale_x = scale_x;
+    mainlineObjectPtr->scale_y = scale_y;
+    mainlineObjectPtr->a = a;
+    
+    _objectList->insert(_objectList->begin() + id, mainlineObjectPtr);
 }

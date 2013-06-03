@@ -42,7 +42,7 @@ Animation(int id, const char* name, int length, const char* looping, int loop_to
  }
  
 std::vector <Timeline *>* getTimeLines(){
- 	return _timelines;
+ 	return _timelineList;
  }
 
 
@@ -60,7 +60,7 @@ private:
  char*                       _looping;
  int                         _loop_to;
  Mainline                    *_mainline;
- std::vector <Timeline *>    *_timelines;
+ std::vector <Timeline *>    *_timelineList;
 
 };
 

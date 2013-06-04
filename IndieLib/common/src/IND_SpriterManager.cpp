@@ -146,7 +146,7 @@ bool IND_SpriterManager::parseSpriterData(list<IND_SpriterEntity*> *pNewSpriterE
 	// ----------------- Parse folders and create the images -----------------
     
        
-    IND_SpriterEntity sEnt = *IND_SpriterEntity::newSpriterEntity();                        // TODO: remember, the filestructure shouldn't be placed on the spriter entity
+    IND_SpriterEntity *sEnt = IND_SpriterEntity::newSpriterEntity();                        // TODO: remember, the filestructure shouldn't be placed on the spriter entity
                                                                                             //       since it can contain images used by multiple entities... but for now it's ok
     
 	TiXmlElement *eFolder = 0;
@@ -175,7 +175,7 @@ bool IND_SpriterManager::parseSpriterData(list<IND_SpriterEntity*> *pNewSpriterE
 				delete eXmlDoc;
 				return 0;
 			}
-            sEnt.addImage(eFolder->Attribute("id"), eFile->Attribute("id"), imageTemp);     // TODO : this is wrong, - we store a ref to an image object located in the imagehandler
+            sEnt->addImage(eFolder->Attribute("id"), eFile->Attribute("id"), imageTemp);     // TODO : this is wrong, - we store a ref to an image object located in the imagehandler
                                                                                             //        therefore we have no private ownership =(
 
 			eFile = eFile->NextSiblingElement("file");
@@ -196,8 +196,8 @@ bool IND_SpriterManager::parseSpriterData(list<IND_SpriterEntity*> *pNewSpriterE
 		return 0;
 	}
     
-    sEnt._id = eEntity->Attribute("id");
-    sEnt._name = eEntity->Attribute("name");
+    sEnt->_id = eEntity->Attribute("id");
+    sEnt->_name = eEntity->Attribute("name");
 
 	while (eEntity) {
 
@@ -210,7 +210,7 @@ bool IND_SpriterManager::parseSpriterData(list<IND_SpriterEntity*> *pNewSpriterE
 
 		while(eAnimation){
 			
-            Animation *sAnim = sEnt.addAnimation(atoi(eAnimation->Attribute("id")),
+            Animation *sAnim = sEnt->addAnimation(atoi(eAnimation->Attribute("id")),
                                                  eAnimation->Attribute("name"),
                                                  atoi(eAnimation->Attribute("length")),
                                                  eAnimation->Attribute("looping"),

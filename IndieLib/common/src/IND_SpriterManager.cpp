@@ -210,12 +210,12 @@ bool IND_SpriterManager::parseSpriterData(list<IND_SpriterEntity*> *pNewSpriterE
 
 		while(eAnimation){
 			
-            Animation *sAnim = sEnt->addAnimation(atoi(eAnimation->Attribute("id")),
-                                                 eAnimation->Attribute("name"),
-                                                 atoi(eAnimation->Attribute("length")),
-                                                 eAnimation->Attribute("looping"),
-                                                 atoi(eAnimation->Attribute("loop_to"))
-                                                );
+            Animation *sAnim = sEnt->addAnimation(atoi(notNull(eAnimation->Attribute("id"))),
+                                                  eAnimation->Attribute("name"),
+                                                  atoi(notNull(eAnimation->Attribute("length"))),
+                                                  eAnimation->Attribute("looping"),
+                                                  atoi(notNull(eAnimation->Attribute("loop_to")))
+                                                 );
 			
 			TiXmlElement *eMainline = 0;
 			eMainline = eAnimation->FirstChildElement("mainline");
@@ -233,18 +233,18 @@ bool IND_SpriterManager::parseSpriterData(list<IND_SpriterEntity*> *pNewSpriterE
 
 			while (eMKey){
                 
-                MainlineKey *sMKey = sAnim->getMainline()->addKey(atoi(eMKey->Attribute("id")),
-                                                                  atoi(eMKey->Attribute("time"))
+                MainlineKey *sMKey = sAnim->getMainline()->addKey(atoi(notNull(eMKey->Attribute("id"))),
+                                                                  atoi(notNull(eMKey->Attribute("time")))
                                                                  );
 				
 				TiXmlElement *eObject_ref = 0;
 				eObject_ref = eMKey->FirstChildElement("object_ref");
 				
 				while (eObject_ref){
-                    sMKey->addObjectref(atoi(eObject_ref->Attribute("id")),
-                                        atoi(eObject_ref->Attribute("timeline")),
-                                        atoi(eObject_ref->Attribute("key")),
-                                        atoi(eObject_ref->Attribute("z_index"))
+                    sMKey->addObjectref(atoi(notNull(eObject_ref->Attribute("id"))),
+                                        atoi(notNull(eObject_ref->Attribute("timeline"))),
+                                        atoi(notNull(eObject_ref->Attribute("key"))),
+                                        atoi(notNull(eObject_ref->Attribute("z_index")))
                                        );
 					
 					eObject_ref = eObject_ref->NextSiblingElement("object_ref");
@@ -261,7 +261,7 @@ bool IND_SpriterManager::parseSpriterData(list<IND_SpriterEntity*> *pNewSpriterE
 
 			while (eTimeline){
                 
-                Timeline *sTimeline = sAnim->addTimeline(atoi(eTimeline->Attribute("id")),
+                Timeline *sTimeline = sAnim->addTimeline(atoi(notNull(eTimeline->Attribute("id"))),
                                                          eTimeline->Attribute("name"),
                                                          eTimeline->Attribute("object_type"),
                                                          eTimeline->Attribute("variable_type"),
@@ -273,9 +273,9 @@ bool IND_SpriterManager::parseSpriterData(list<IND_SpriterEntity*> *pNewSpriterE
 				
 				while (eTKey){
                     
-                    TimelineKey *sTKey = sTimeline->addKey(atoi(eTKey->Attribute("id")),
-                                                           atoi(eTKey->Attribute("time")),
-                                                           atoi(eTKey->Attribute("spin"))
+                    TimelineKey *sTKey = sTimeline->addKey(atoi(notNull(eTKey->Attribute("id"))),
+                                                           atoi(notNull(eTKey->Attribute("time"))),
+                                                           atoi(notNull(eTKey->Attribute("spin")))
                                                           );
                     
 
@@ -284,16 +284,16 @@ bool IND_SpriterManager::parseSpriterData(list<IND_SpriterEntity*> *pNewSpriterE
 					
                     while (eTimelineObject) {
                     
-                        sTKey->addTimelineObject(atoi(eTimelineObject->Attribute("folder")),
-                                                 atoi(eTimelineObject->Attribute("file")),
-                                                 atoi(eTimelineObject->Attribute("x")),
-                                                 atoi(eTimelineObject->Attribute("y")),
-                                                 atoi(eTimelineObject->Attribute("pivot_x")),
-                                                 atoi(eTimelineObject->Attribute("pivot_y")),
-                                                 atoi(eTimelineObject->Attribute("angle")),
-                                                 atoi(eTimelineObject->Attribute("scale_x")),
-                                                 atoi(eTimelineObject->Attribute("scale_y")),
-                                                 atoi(eTimelineObject->Attribute("a"))
+                        sTKey->addTimelineObject(atoi(notNull(eTimelineObject->Attribute("folder"))),
+                                                 atoi(notNull(eTimelineObject->Attribute("file"))),
+                                                 atoi(notNull(eTimelineObject->Attribute("x"))),
+                                                 atoi(notNull(eTimelineObject->Attribute("y"))),
+                                                 atoi(notNull(eTimelineObject->Attribute("pivot_x"))),
+                                                 atoi(notNull(eTimelineObject->Attribute("pivot_y"))),
+                                                 atoi(notNull(eTimelineObject->Attribute("angle"))),
+                                                 atoi(notNull(eTimelineObject->Attribute("scale_x"))),
+                                                 atoi(notNull(eTimelineObject->Attribute("scale_y"))),
+                                                 atoi(notNull(eTimelineObject->Attribute("a")))
                                                 );
                         
                         
@@ -397,3 +397,14 @@ void IND_SpriterManager::freeVars() {
 */
 }
 
+
+const char* IND_SpriterManager::notNull(const char* input) {
+    
+    if ( input ){
+        return input;
+    }
+    
+    return "0";
+    
+}
+    

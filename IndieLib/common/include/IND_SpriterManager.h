@@ -96,6 +96,7 @@ private:
 
 	bool        parseSpriterData(list<IND_SpriterEntity*> *pNewSpriterEntityList,const char *pSCMLFileName);
 
+    const char* notNull(const char* input);
 	void        writeMessage();
 	void        initVars();
 	void        freeVars();

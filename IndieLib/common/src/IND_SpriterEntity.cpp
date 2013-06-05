@@ -83,7 +83,7 @@ void IND_SpriterEntity::addImage(const char *folderId, const char *fileId, IND_I
 }
 
 Animation* IND_SpriterEntity::addAnimation(int id, const char* name, int length, const char* looping, int loop_to) {
-    Animation *aniPtr = new Animation(id, name, length, looping, loop_to);
+    Animation* aniPtr = new Animation(id, name, length, looping, loop_to);
     _animations->push_back(aniPtr);
     
     return aniPtr;

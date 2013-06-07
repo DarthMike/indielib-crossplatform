@@ -65,7 +65,7 @@ public:
 
 	// ----- Public methods -----
     
-	bool addSpriterFile(list<IND_SpriterEntity*> *pNewSpriterEntityList,const char *pSCMLFileName);	
+	bool addSpriterFile(list<IND_SpriterEntity*> *pSpriterEntityList,const char *pSCMLFileName);	
 	bool remove(IND_SpriterEntity *pSen);
 
 
@@ -96,7 +96,8 @@ private:
 
 	bool        parseSpriterData(list<IND_SpriterEntity*> *pNewSpriterEntityList,const char *pSCMLFileName);
 
-    const char* notNull(const char* input);
+    int         toInt(const char* input);
+    float       toFloat(const char* input);
 	void        writeMessage();
 	void        initVars();
 	void        freeVars();

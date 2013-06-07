@@ -43,10 +43,13 @@ int IndieLib()
     
 
 	// ----- Spriter animation loading -----
+    
+    
+    list<IND_SpriterEntity*> *mSpriterEntityList = new list<IND_SpriterEntity*>();
 
-	if (!mI->_spriterManager->addSpriterFile(NULL,"../../resources/Spriter/monster/Example.SCML")){
+	if (!mI->_spriterManager->addSpriterFile(mSpriterEntityList,"../../resources/Spriter/monster/Example.SCML")){
         
-        //return 0;
+        return 0;
 
     }
     

@@ -38,7 +38,7 @@ public:
     // ----- Public Sets ------
     
     void addObjectref(int id, int timeline, int key, int z_index);
-    void addObject(int id, char* object_type, int folder, int file, float x, float y, float pivot_x, float pivot_y, float angle, float scale_x, float scale_y, float a);
+    void addObject(int id, const char* object_type, int folder, int file, float x, float y, float pivot_x, float pivot_y, float angle, float scale_x, float scale_y, float a);
     
     // ----- Public Gets ------
     

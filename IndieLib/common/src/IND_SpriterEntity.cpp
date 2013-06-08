@@ -4,8 +4,13 @@
  *****************************************************************************************/
 
 /*
- .... something about license
-*/
+ * ----------------------------------------------------------------------------
+ * "THE BEER-WARE LICENSE" (Revision 42):
+ * <michael@visualdesign.dk> wrote this file. As long as you retain this notice you
+ * can do whatever you want with this stuff. If we meet some day, and you think
+ * this stuff is worth it, you can buy me a beer in return Michael Fogh Kristensen
+ * ----------------------------------------------------------------------------
+ */
 
 // ----- Includes -----
 
@@ -44,16 +49,28 @@ IND_SpriterEntity::~IND_SpriterEntity() {
 }
 
 
-
 // --------------------------------------------------------------------------------
 //									 Public methods
 // --------------------------------------------------------------------------------
 
+void IND_SpriterEntity::playAnimation(int animation) { // TODO: MFK maybe animation name instead?
+    _currentAnimation   = animation;
+    _currentKey         = 0;
+    _currentTime        = 0;
+}
 
 
+void IND_SpriterEntity::update(int deltaTime) {
+    // TODO: MFK, implement this
+}
 
+void  IND_SpriterEntity::draw(float x, float y, float angle, float scale_x, float scale_y) {
+    // TODO: MFK, implement this
+}
 
-
+void  IND_SpriterEntity::stopAnimation() {
+    // TODO: MFK, implement this
+}
 
 
 // --------------------------------------------------------------------------------

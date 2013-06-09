@@ -47,10 +47,11 @@ public:
     
     void playAnimation(int animation); // TODO maybe input parameter animationname instead??
     void update(int deltaTime);
-    void draw(float x, float y, float angle, float scale_x, float scale_y) ;
+    void draw(float x, float y, float angle, float scale_x, float scale_y);
     void stopAnimation();
 
 	// ----- Public gets ------
+
 	
     const char* getId() {
         return _id;
@@ -66,7 +67,8 @@ public:
 	
 
 private:
-	IND_SpriterEntity();
+	
+    IND_SpriterEntity();
 	virtual ~IND_SpriterEntity();
 
 	// ----- Containers -----
@@ -75,26 +77,37 @@ private:
 	
 	// ----- Structures ------
 
-	const char                  *_id;               // Entity ID
-	const char                  *_name;             // Entity name
-    map<Fileref*, IND_Image*>   *_images;           // map of images used in animations
-    std::vector <Animation *>   *_animations;       // vector of animations
     
-    int                         _currentAnimation;  // current animation playing
-    int                         _currentKey;        // current key of animation playing
-    int                         _currentTime;       // current time of the animation
+	const char                  *_id;                   // Entity ID
+	const char                  *_name;                 // Entity name
+    map<Fileref*, IND_Image*>   *_images;               // map of images used in animations
+    std::vector <Animation *>   *_animations;           // vector of animations
+    
+    int                         _currentAnimation;      // current animation playing
+    int                         _currentKey;            // current key of animation playing
+    int                         _currentTime;           // current time of the animation
+    
+    bool                        _drawBones;             // TODO: support this in a later version
+    bool                        _drawObjectpositions;   // TODO: support this in a later version
+
 
 	// ----- Private sets ------
 	
 
 
 	// ----- Private methods -----
+    
+    void drawTransientObject(float x, float y, float angle, float scale_x, float scale_y);
+    void drawPersistentObject(float x, float y, float angle, float scale_x, float scale_y);
+    
     void initAttrib();
     void addImage(const char *folderId, const char *fileId, IND_Image *pImage);
     Animation* addAnimation(int id, const char* name, int length, const char* looping, int loop_to);
     
 	// ----- Friends -----
-	friend class IND_SpriterManager;
+
+	
+    friend class IND_SpriterManager;
 
 };
 

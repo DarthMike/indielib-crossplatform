@@ -89,7 +89,30 @@ void IND_SpriterEntity::initAttrib() {
 	_name       = NULL;
     _images     = new map<Fileref*, IND_Image *>();
     _animations = new std::vector<Animation *>();
+    
+    _currentAnimation       = -1;       // TODO: ??
+    _currentKey             = -1;       // TODO: ??
+    _currentTime            = 0;        // TODO: ??
+    
+    _drawBones              = false;    // TODO: support this in a later version
+    _drawObjectpositions    = false;    // TODO: support this in a later version
 }
+
+
+// ----- Rendering -----
+
+
+void  IND_SpriterEntity::drawTransientObject(float x, float y, float angle, float scale_x, float scale_y) {
+    // TODO: MFK, implement this
+}
+
+void  IND_SpriterEntity::drawPersistentObject(float x, float y, float angle, float scale_x, float scale_y) {
+    // TODO: MFK, implement this
+}
+
+
+// ----- Parsing -----
+
 
 void IND_SpriterEntity::addImage(const char *folderId, const char *fileId, IND_Image *pImage) {
     Fileref* ref = new Fileref();

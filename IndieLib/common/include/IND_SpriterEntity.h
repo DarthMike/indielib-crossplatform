@@ -99,6 +99,7 @@ private:
     
     void drawTransientObject(float x, float y, float angle, float scale_x, float scale_y);
     void drawPersistentObject(float x, float y, float angle, float scale_x, float scale_y);
+    void drawBone(float x, float y, float angle, float scale_x, float scale_y);             // TODO: support this in a later version
     
     void initAttrib();
     void addImage(const char *folderId, const char *fileId, IND_Image *pImage);

@@ -57,6 +57,10 @@ int IndieLib()
     char mText [2048];
 	mText [0] = 0;
 
+    IND_Timer *mTimer = new IND_Timer();
+	mTimer->start();
+    float mT;
+    
 	while (!mI->_input->onKeyPress(IND_ESCAPE) && !mI->_input->quit())
 	{
 		// ----- Input update ----

@@ -110,7 +110,11 @@ void  IND_SpriterEntity::drawPersistentObject(float x, float y, float angle, flo
     // TODO: MFK, implement this
 }
 
+void IND_SpriterEntity::drawBone(float x, float y, float angle, float scale_x, float scale_y) {
+    // TODO: support this in a later version
+}
 
+    
 // ----- Parsing -----
 
 

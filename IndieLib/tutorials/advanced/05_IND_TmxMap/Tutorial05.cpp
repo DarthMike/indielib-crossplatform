@@ -15,6 +15,7 @@
 
 void renderIsometricMap(CIndieLib *mI, IND_TmxMap *map,IND_Surface *mSurfaceTiles, int kMapCenterOffset);
 void renderOrthogonalMap(CIndieLib *mI, IND_TmxMap *orthogonalMap,IND_Surface *mSurfaceOrthogonalTiles, int kMapCenterOffset);
+void renderStaggeredMap(CIndieLib *mI, IND_TmxMap *staggeredMap,IND_Surface *mSurfaceStaggeredTiles, int kMapCenterOffset);
 
 /*
 ==================
@@ -79,7 +80,7 @@ int IndieLib()
 		mI->_input->update();
         
         if (mI->_input->onKeyPress(IND_SPACE))
-		{
+		{                                       // TODO: MFK implement 3 map switching ...
 			if (mShowIsometric){
 				mShowIsometric = false;
 			}else{
@@ -307,3 +308,9 @@ void renderIsometricMap(CIndieLib *mI, IND_TmxMap *isometricMap,IND_Surface *mSu
         }
     }
 }
+
+
+void renderStaggeredMap(CIndieLib *mI, IND_TmxMap *staggeredMap,IND_Surface *mSurfaceStaggeredTiles, int kMapCenterOffset){
+    //TODO: MFK implement this
+}
+

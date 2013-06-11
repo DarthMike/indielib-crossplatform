@@ -65,7 +65,21 @@ void IND_SpriterEntity::update(int deltaTime) {
 }
 
 void  IND_SpriterEntity::draw(float x, float y, float angle, float scale_x, float scale_y) {
-    // TODO: MFK, implement this
+    
+    if (_currentAnimation < 0 || _currentKey < 0 || _currentTime < 0 ){
+        return;
+    }
+    
+    //ARRAY: MainlineObject *mainlineObjectArray = getAnimations()->at(_currentAnimation)->getMainline()-> ... keylist ... objectlist
+    
+    //ARRAY: MainlineObjectRefs *mainlineObjectRefArray = getAnimations()->at(_currentAnimation)->getMainline()-> ... keylist ... objectreflist
+
+    
+    //for (unsigned i=0; i < myvector.size(); i++) {
+    //
+    //
+    //}
+
 }
 
 void  IND_SpriterEntity::stopAnimation() {

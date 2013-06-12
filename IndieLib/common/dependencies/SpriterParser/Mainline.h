@@ -29,17 +29,28 @@ class Mainline {
 
 public:
 
-Mainline();
-~Mainline();
-        
-MainlineKey* addKey(int id, int time);
-
+    Mainline();
+    ~Mainline();
+    
+    // ----- Public Sets ------
+    
+    
+    MainlineKey* addKey(int id, int time);
+    
+    
+    // ----- Public Gets ------
+    
+    
+    std::vector <MainlineKey *>* getKeys() {
+        return _keyList;
+    }
+    
 
 private:
 
-// ----- Entity attributes -----
+    // ----- Entity attributes -----
 
-std::vector <MainlineKey *>	*_keyList;
+    std::vector <MainlineKey *>	*_keyList;
 
 };
 

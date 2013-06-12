@@ -70,15 +70,20 @@ void  IND_SpriterEntity::draw(float x, float y, float angle, float scale_x, floa
         return;
     }
     
-    //ARRAY: MainlineObject *mainlineObjectArray = getAnimations()->at(_currentAnimation)->getMainline()-> ... keylist ... objectlist
+    std::vector <MainlineObject *> *mainlineObjects = getAnimations()->at(_currentAnimation)->getMainline()->getKeys()->at(_currentKey)->getObjects();
     
-    //ARRAY: MainlineObjectRefs *mainlineObjectRefArray = getAnimations()->at(_currentAnimation)->getMainline()-> ... keylist ... objectreflist
+    std::vector <MainlineObjectref *> *mainlineObjectrefs = getAnimations()->at(_currentAnimation)->getMainline()->getKeys()->at(_currentKey)->getObjectrefs();
 
     
-    //for (unsigned i=0; i < myvector.size(); i++) {
-    //
-    //
-    //}
+    for (unsigned i=0; i < mainlineObjects->size(); i++) {
+        // TODO : MFK, implement this
+    }
+    
+    
+    for (unsigned i=0; i < mainlineObjectrefs->size(); i++) {
+        // TODO: MFK implement this
+    }
+    
 
 }
 

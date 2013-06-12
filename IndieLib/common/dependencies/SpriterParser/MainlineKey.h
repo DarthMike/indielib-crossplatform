@@ -50,6 +50,16 @@ public:
         return _time;
     }
     
+    std::vector <MainlineObjectref *>* getObjectrefs(){
+        return _objectrefList;
+    }
+    
+    std::vector <MainlineObject *>* getObjects(){
+        return _objectList;
+    }
+
+    
+    
 private:
 
     // ----- Entity attributes -----

@@ -59,7 +59,7 @@ public:
 
 	// ----- Public methods -----
     
-	bool addSpriterFile(list<IND_SpriterEntity*> *pSpriterEntityList,const char *pSCMLFileName);	
+	bool addSpriterFile(vector<IND_SpriterEntity*> *pSpriterEntityList,const char *pSCMLFileName);
 	bool remove(IND_SpriterEntity *pSen);
 
 
@@ -78,7 +78,7 @@ private:
 
 	// ----- Containers -----
 
-	list <IND_SpriterEntity *> *_listSpriterEntity;
+	vector <IND_SpriterEntity *> *_listSpriterEntity;
 
 	// ----- Private methods -----
 
@@ -88,7 +88,7 @@ private:
 	IND_Image   *loadImage(char *pName);
 	bool        remove(IND_SpriterEntity *pEn, bool pType);
 
-	bool        parseSpriterData(list<IND_SpriterEntity*> *pNewSpriterEntityList,const char *pSCMLFileName);
+	bool        parseSpriterData(vector<IND_SpriterEntity*> *pNewSpriterEntityList,const char *pSCMLFileName);
 
     int         toInt(const char* input);
     float       toFloat(const char* input);

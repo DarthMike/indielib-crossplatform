@@ -30,10 +30,23 @@ class Timeline {
 
 public:
 
- Timeline(int id, const char* name, const char* object_type, const char* variable_type, const char* usage);
- ~Timeline();
+    Timeline(int id, const char* name, const char* object_type, const char* variable_type, const char* usage);
+    ~Timeline();
+    
+    
+    // ----- Public Sets ------
 
- TimelineKey* addKey(int id, int time, int spin);
+
+    TimelineKey* addKey(int id, int time, int spin);
+
+
+    // ----- Public Gets ------
+    
+    
+    std::vector <TimelineKey *>* getKeys() {
+        return _keyList;
+    }
+    
 
 
 private:

@@ -97,9 +97,12 @@ private:
 
 	// ----- Private methods -----
     
-    void drawTransientObject(float x, float y, float angle, float scale_x, float scale_y);
+    void drawTransientObject(float x, float y, float angle, float scale_x, float scale_y,  MainlineObjectref *mObjectref);
     void drawPersistentObject(float x, float y, float angle, float scale_x, float scale_y);
     void drawBone(float x, float y, float angle, float scale_x, float scale_y);             // TODO: support this in a later version
+    
+    TimelineObject* getTimelineObject(int timelineId, int keyId);
+    IND_Image* getImage(int folderId, int fileId);
     
     void initAttrib();
     void addImage(const char *folderId, const char *fileId, IND_Image *pImage);

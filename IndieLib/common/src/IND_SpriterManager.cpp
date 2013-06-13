@@ -88,7 +88,7 @@ bool IND_SpriterManager::remove(IND_SpriterEntity *pEn) {
 	return 0;
 }
 
-bool IND_SpriterManager::addSpriterFile(list<IND_SpriterEntity*> *pNewSpriterEntityList, const char *pSCMLFileName){
+bool IND_SpriterManager::addSpriterFile(vector<IND_SpriterEntity*> *pNewSpriterEntityList, const char *pSCMLFileName){
 	if (parseSpriterData(pNewSpriterEntityList,pSCMLFileName)){
 		return 1;
 	}
@@ -109,7 +109,7 @@ bool IND_SpriterManager::addSpriterFile(list<IND_SpriterEntity*> *pNewSpriterEnt
  * @param pNewSpriterAnimations		TODO describtion.
  * @param pSCMLFileName				TODO describtion.
  */
-bool IND_SpriterManager::parseSpriterData(list<IND_SpriterEntity*> *pSpriterEntityList,const char *pSCMLFileName) {
+bool IND_SpriterManager::parseSpriterData(vector<IND_SpriterEntity*> *pSpriterEntityList,const char *pSCMLFileName) {
 	
     g_debug->header("Start parsing Spriter SGML file", 5);
     
@@ -371,7 +371,7 @@ void IND_SpriterManager::addToList(IND_SpriterEntity *pNewEntity) {
  * @param pAn					The animation that is to be removed from the manager.
  */
 void IND_SpriterManager::delFromlist(IND_SpriterEntity *pEn) {
-	_listSpriterEntity->remove(pEn);
+	//_listSpriterEntity->remove(pEn); //TODO .....
 	pEn = NULL;
 }
 
@@ -390,7 +390,7 @@ void IND_SpriterManager::writeMessage() {
  * Init manager variables.
  */
 void IND_SpriterManager::initVars() {
-	_listSpriterEntity = new list <IND_SpriterEntity *>;
+	_listSpriterEntity = new vector <IND_SpriterEntity *>;
     _imageManager = new IND_ImageManager();
 	_imageManager->init();
 }

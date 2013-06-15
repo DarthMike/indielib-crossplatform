@@ -63,7 +63,7 @@ private:
 			i = 0;
 			_isActive = 0;
 			_width = _height = _numFrames =  0;
-			_listFrames = new vector <FRAME_TIME *>; // TODO: MFK: valgrind states that this line generates garbage in basic tutorial 11
+			_listFrames = new vector <FRAME_TIME *>;
 		}
         
         ~structSequence() {

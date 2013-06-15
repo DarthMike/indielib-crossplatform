@@ -446,33 +446,47 @@ bool IND_ImageManager::save(IND_Image *pIm, const char *pName) {
 		return 0;
 	}
 
-	// ----- Checking extension -----
+    
+    // ----- Obtaining and checking file extension -----
+    
+    char ext [128];
+	getExtensionFromName(pName,ext);
+	if (checkExtImage(ext)) {
+		pIm->setExtension(ext);
+	} else {
+		g_debug->header("Unknown extension", DebugApi::LogHeaderError);
+		return 0;
+	}
 
-	//TODO: implement using FREEIMAGE
-	//char *_ext = getExtensionFromName(pName);
-	//if (checkExtImage(_ext)) {
-	//	pIm->setExtension(_ext);
-	//} else {
-	//	g_debug->header("Unknown extension", DebugApi::LogHeaderError);
-	//	return 0;
-	//}
+	g_debug->header("Image type:", DebugApi::LogHeaderInfo);
+	g_debug->dataChar(ext, 1);
 
-	//g_debug->header("Image type:", DebugApi::LogHeaderInfo);
-	//g_debug->dataChar(_ext, 1);
+	
+	g_debug->header("File name:", DebugApi::LogHeaderInfo);
+	g_debug->dataChar(pName, 1);
 
-	//ilBindImage(pIm->getDevilId());
+	g_debug->header("Size:", DebugApi::LogHeaderInfo);
+	g_debug->dataInt(pIm->getWidth(), 0);
+	g_debug->dataChar("x", 0);
+	g_debug->dataInt(pIm->getHeight(), 1);
 
-	//g_debug->header("File name:", DebugApi::LogHeaderInfo);
-	//g_debug->dataChar(pName, 1);
+	FREE_IMAGE_FORMAT fif =  FreeImage_GetFIFFromFormat(ext);
+    
+    if(fif != FIF_UNKNOWN) {
 
-	//g_debug->header("Size:", DebugApi::LogHeaderInfo);
-	//g_debug->dataInt(pIm->getWidth(), 0);
-	//g_debug->dataChar("x", 0);
-	//g_debug->dataInt(pIm->getHeight(), 1);
+        if(!FreeImage_Save(fif, pIm->getFreeImageHandle(), pName)) {
+            g_debug->header("Unable to save image file", DebugApi::LogHeaderError);
+            return 0;
+        }
+            
 
-	//ilSaveImage(pName);
+    } else {
+        g_debug->header("Unable to get Free Image Format (FIF) from extension", DebugApi::LogHeaderError);
+		return 0;
+    }
+    
 
-	//g_debug->header("Ok", DebugApi::LogHeaderEnd);
+	g_debug->header("Ok", DebugApi::LogHeaderEnd);
 	return 1;
 }
 

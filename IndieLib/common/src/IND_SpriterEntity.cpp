@@ -177,10 +177,10 @@ IND_Image* IND_SpriterEntity::getImage(int folderId, int fileId) {
 // ----- Parsing -----
 
 
-void IND_SpriterEntity::addImage(const char *folderId, const char *fileId, IND_Image *pImage) {
+void IND_SpriterEntity::addImage(int folderId, int fileId, IND_Image *pImage) {
     Fileref* ref = new Fileref();
-    ref->first = static_cast<unsigned int>(*folderId);
-    ref->second = static_cast<unsigned int>(*fileId);
+    ref->first = static_cast<unsigned int>(folderId);
+    ref->second = static_cast<unsigned int>(fileId);
     
     _images->insert(make_pair(ref, pImage));
 }

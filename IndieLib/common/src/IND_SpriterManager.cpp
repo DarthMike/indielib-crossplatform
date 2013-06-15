@@ -180,7 +180,9 @@ bool IND_SpriterManager::parseSpriterData(vector<IND_SpriterEntity*> *pSpriterEn
 				delete eXmlDoc;
 				return 0;
 			}
-            sEnt->addImage(eFolder->Attribute("id"), eFile->Attribute("id"), imageTemp);     // TODO : this is wrong, - we store a ref to an image object located in the imagehandler
+            sEnt->addImage(toInt(eFolder->Attribute("id")),
+                           toInt(eFile->Attribute("id")),
+                                 imageTemp);                                                // TODO : this is wrong, - we store a ref to an image object located in the imagehandler
                                                                                             //        therefore we have no private ownership =(
 
 			eFile = eFile->NextSiblingElement("file");

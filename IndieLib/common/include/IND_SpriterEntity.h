@@ -105,7 +105,7 @@ private:
     IND_Image* getImage(int folderId, int fileId);
     
     void initAttrib();
-    void addImage(const char *folderId, const char *fileId, IND_Image *pImage);
+    void addImage(int folderId, int fileId, IND_Image *pImage);
     Animation* addAnimation(int id, const char* name, int length, const char* looping, int loop_to);
     
 	// ----- Friends -----

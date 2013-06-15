@@ -526,7 +526,7 @@ Init at construction time
 */
 void IND_Surface::init() {
     if (!_surface) {
-    	_surface = new SURFACE(1,1); // TODO: MFK: valgrind states that this line generates garbage in basic tutorial 11
+    	_surface = new SURFACE(1,1);
     }
 }
 

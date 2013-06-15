@@ -4,8 +4,13 @@
  *****************************************************************************************/
 
 /*
-Something about license goes here ;)
-*/
+ * ----------------------------------------------------------------------------
+ * "THE BEER-WARE LICENSE" (Revision 42):
+ * <michael@visualdesign.dk> wrote this file. As long as you retain this notice you
+ * can do whatever you want with this stuff. If we meet some day, and you think
+ * this stuff is worth it, you can buy me a beer in return Michael Fogh Kristensen
+ * ----------------------------------------------------------------------------
+ */
 
 // ----- Includes -----
 
@@ -83,7 +88,7 @@ bool IND_SpriterManager::remove(IND_SpriterEntity *pEn) {
 	return 0;
 }
 
-bool IND_SpriterManager::addSpriterFile(list<IND_SpriterEntity*> *pNewSpriterEntityList, const char *pSCMLFileName){
+bool IND_SpriterManager::addSpriterFile(vector<IND_SpriterEntity*> *pNewSpriterEntityList, const char *pSCMLFileName){
 	if (parseSpriterData(pNewSpriterEntityList,pSCMLFileName)){
 		return 1;
 	}
@@ -104,7 +109,7 @@ bool IND_SpriterManager::addSpriterFile(list<IND_SpriterEntity*> *pNewSpriterEnt
  * @param pNewSpriterAnimations		TODO describtion.
  * @param pSCMLFileName				TODO describtion.
  */
-bool IND_SpriterManager::parseSpriterData(list<IND_SpriterEntity*> *pNewSpriterEntityList,const char *pSCMLFileName) {
+bool IND_SpriterManager::parseSpriterData(vector<IND_SpriterEntity*> *pSpriterEntityList,const char *pSCMLFileName) {
 	
     g_debug->header("Start parsing Spriter SGML file", 5);
     
@@ -175,7 +180,9 @@ bool IND_SpriterManager::parseSpriterData(list<IND_SpriterEntity*> *pNewSpriterE
 				delete eXmlDoc;
 				return 0;
 			}
-            sEnt->addImage(eFolder->Attribute("id"), eFile->Attribute("id"), imageTemp);     // TODO : this is wrong, - we store a ref to an image object located in the imagehandler
+            sEnt->addImage(toInt(eFolder->Attribute("id")),
+                           toInt(eFile->Attribute("id")),
+                                 imageTemp);                                                // TODO : this is wrong, - we store a ref to an image object located in the imagehandler
                                                                                             //        therefore we have no private ownership =(
 
 			eFile = eFile->NextSiblingElement("file");
@@ -201,20 +208,18 @@ bool IND_SpriterManager::parseSpriterData(list<IND_SpriterEntity*> *pNewSpriterE
 
 	while (eEntity) {
 
-		//IND_SpriterEntity *entityTemp = new IND_SpriterEntity(); TODO: use....
-
-		//printf("Entity id: %s\n", eEntity->Attribute("id"));
+		//IND_SpriterEntity *sEnt = IND_SpriterEntity::newSpriterEntity();                  // TODO use this one, when filestructure is not placed on the entity..
 
 		TiXmlElement *eAnimation = 0;
 		eAnimation = eEntity->FirstChildElement("animation");
 
 		while(eAnimation){
 			
-            Animation *sAnim = sEnt->addAnimation(atoi(notNull(eAnimation->Attribute("id"))),
-                                                  eAnimation->Attribute("name"),
-                                                  atoi(notNull(eAnimation->Attribute("length"))),
-                                                  eAnimation->Attribute("looping"),
-                                                  atoi(notNull(eAnimation->Attribute("loop_to")))
+            Animation *sAnim = sEnt->addAnimation(toInt(eAnimation->Attribute("id")),
+                                                        eAnimation->Attribute("name"),
+                                                  toInt(eAnimation->Attribute("length")),
+                                                        eAnimation->Attribute("looping"),
+                                                  toInt(eAnimation->Attribute("loop_to"))
                                                  );
 			
 			TiXmlElement *eMainline = 0;
@@ -233,39 +238,60 @@ bool IND_SpriterManager::parseSpriterData(list<IND_SpriterEntity*> *pNewSpriterE
 
 			while (eMKey){
                 
-                MainlineKey *sMKey = sAnim->getMainline()->addKey(atoi(notNull(eMKey->Attribute("id"))),
-                                                                  atoi(notNull(eMKey->Attribute("time")))
+                MainlineKey *sMKey = sAnim->getMainline()->addKey(toInt(eMKey->Attribute("id")),
+                                                                  toInt(eMKey->Attribute("time"))
                                                                  );
 				
 				TiXmlElement *eObject_ref = 0;
 				eObject_ref = eMKey->FirstChildElement("object_ref");
 				
 				while (eObject_ref){
-                    sMKey->addObjectref(atoi(notNull(eObject_ref->Attribute("id"))),
-                                        atoi(notNull(eObject_ref->Attribute("timeline"))),
-                                        atoi(notNull(eObject_ref->Attribute("key"))),
-                                        atoi(notNull(eObject_ref->Attribute("z_index")))
+                    sMKey->addObjectref(toInt(eObject_ref->Attribute("id")),
+                                        toInt(eObject_ref->Attribute("timeline")),
+                                        toInt(eObject_ref->Attribute("key")),
+                                        toInt(eObject_ref->Attribute("z_index"))
                                        );
 					
 					eObject_ref = eObject_ref->NextSiblingElement("object_ref");
 				}
 
-                //TODO : insert loop over mainline.key.object here....
+                
+                TiXmlElement *eObject = 0;
+				eObject = eMKey->FirstChildElement("object");
+				
+				while (eObject){
+                    sMKey->addObject(  toInt(eObject_ref->Attribute("id")),
+                                             eObject_ref->Attribute("object_type"),
+                                       toInt(eObject_ref->Attribute("folder")),
+                                       toInt(eObject_ref->Attribute("file")),
+                                     toFloat(eObject_ref->Attribute("x")),
+                                     toFloat(eObject_ref->Attribute("y")),
+                                     toFloat(eObject_ref->Attribute("pivot_x")),
+                                     toFloat(eObject_ref->Attribute("pivot_y")),
+                                     toFloat(eObject_ref->Attribute("angle")),
+                                     toFloat(eObject_ref->Attribute("scale_x")),
+                                     toFloat(eObject_ref->Attribute("scale_y")),
+                                     toFloat(eObject_ref->Attribute("a"))
+                                    );
+					
+					eObject = eObject->NextSiblingElement("object");
+				}
+                
                 
 				eMKey = eMKey->NextSiblingElement("key");
-                                
+                
 			}
-
+            
 			TiXmlElement *eTimeline = 0;
 			eTimeline = eAnimation->FirstChildElement("timeline");
 
 			while (eTimeline){
                 
-                Timeline *sTimeline = sAnim->addTimeline(atoi(notNull(eTimeline->Attribute("id"))),
-                                                         eTimeline->Attribute("name"),
-                                                         eTimeline->Attribute("object_type"),
-                                                         eTimeline->Attribute("variable_type"),
-                                                         eTimeline->Attribute("usage")
+                Timeline *sTimeline = sAnim->addTimeline(toInt(eTimeline->Attribute("id")),
+                                                               eTimeline->Attribute("name"),
+                                                               eTimeline->Attribute("object_type"),
+                                                               eTimeline->Attribute("variable_type"),
+                                                               eTimeline->Attribute("usage")
                                                         );
 				
 				TiXmlElement *eTKey = 0;
@@ -273,9 +299,9 @@ bool IND_SpriterManager::parseSpriterData(list<IND_SpriterEntity*> *pNewSpriterE
 				
 				while (eTKey){
                     
-                    TimelineKey *sTKey = sTimeline->addKey(atoi(notNull(eTKey->Attribute("id"))),
-                                                           atoi(notNull(eTKey->Attribute("time"))),
-                                                           atoi(notNull(eTKey->Attribute("spin")))
+                    TimelineKey *sTKey = sTimeline->addKey(toInt(eTKey->Attribute("id")),
+                                                           toInt(eTKey->Attribute("time")),
+                                                           toInt(eTKey->Attribute("spin"))
                                                           );
                     
 
@@ -284,16 +310,16 @@ bool IND_SpriterManager::parseSpriterData(list<IND_SpriterEntity*> *pNewSpriterE
 					
                     while (eTimelineObject) {
                     
-                        sTKey->addTimelineObject(atoi(notNull(eTimelineObject->Attribute("folder"))),
-                                                 atoi(notNull(eTimelineObject->Attribute("file"))),
-                                                 atoi(notNull(eTimelineObject->Attribute("x"))),
-                                                 atoi(notNull(eTimelineObject->Attribute("y"))),
-                                                 atoi(notNull(eTimelineObject->Attribute("pivot_x"))),
-                                                 atoi(notNull(eTimelineObject->Attribute("pivot_y"))),
-                                                 atoi(notNull(eTimelineObject->Attribute("angle"))),
-                                                 atoi(notNull(eTimelineObject->Attribute("scale_x"))),
-                                                 atoi(notNull(eTimelineObject->Attribute("scale_y"))),
-                                                 atoi(notNull(eTimelineObject->Attribute("a")))
+                        sTKey->addTimelineObject(toInt(eTimelineObject->Attribute("folder")),
+                                                 toInt(eTimelineObject->Attribute("file")),
+                                                 toInt(eTimelineObject->Attribute("x")),
+                                                 toInt(eTimelineObject->Attribute("y")),
+                                                 toInt(eTimelineObject->Attribute("pivot_x")),
+                                                 toInt(eTimelineObject->Attribute("pivot_y")),
+                                                 toInt(eTimelineObject->Attribute("angle")),
+                                                 toInt(eTimelineObject->Attribute("scale_x")),
+                                                 toInt(eTimelineObject->Attribute("scale_y")),
+                                                 toInt(eTimelineObject->Attribute("a"))
                                                 );
                         
                         
@@ -316,10 +342,9 @@ bool IND_SpriterManager::parseSpriterData(list<IND_SpriterEntity*> *pNewSpriterE
 		}
 
 
-
+        pSpriterEntityList->push_back(sEnt);
 
 		eEntity = eEntity->NextSiblingElement("entity");
-
 
 	}
 
@@ -348,7 +373,7 @@ void IND_SpriterManager::addToList(IND_SpriterEntity *pNewEntity) {
  * @param pAn					The animation that is to be removed from the manager.
  */
 void IND_SpriterManager::delFromlist(IND_SpriterEntity *pEn) {
-	_listSpriterEntity->remove(pEn);
+	//_listSpriterEntity->remove(pEn); //TODO .....
 	pEn = NULL;
 }
 
@@ -367,7 +392,7 @@ void IND_SpriterManager::writeMessage() {
  * Init manager variables.
  */
 void IND_SpriterManager::initVars() {
-	_listSpriterEntity = new list <IND_SpriterEntity *>;
+	_listSpriterEntity = new vector <IND_SpriterEntity *>;
     _imageManager = new IND_ImageManager();
 	_imageManager->init();
 }
@@ -398,13 +423,12 @@ void IND_SpriterManager::freeVars() {
 }
 
 
-const char* IND_SpriterManager::notNull(const char* input) {
-    
-    if ( input ){
-        return input;
-    }
-    
-    return "0";
-    
+int IND_SpriterManager::toInt(const char* input) {
+        return ( input ) ? atoi(input) : 0;
 }
+    
+float IND_SpriterManager::toFloat(const char* input) {
+        return ( input ) ? atof(input) : 0;
+}
+    
     

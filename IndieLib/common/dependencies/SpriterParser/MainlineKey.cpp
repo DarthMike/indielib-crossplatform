@@ -47,10 +47,10 @@ void MainlineKey::addObjectref(int id, int timeline, int key, int z_index) {
     _objectrefList->insert(_objectrefList->begin() + id, mainlineObjectrefPtr);
 }
 
-void MainlineKey::addObject(int id, char* object_type, int folder, int file, float x, float y, float pivot_x, float pivot_y, float angle, float scale_x, float scale_y, float a) {
+void MainlineKey::addObject(int id, const char* object_type, int folder, int file, float x, float y, float pivot_x, float pivot_y, float angle, float scale_x, float scale_y, float a) {
     MainlineObject *mainlineObjectPtr = new MainlineObject();
     mainlineObjectPtr->id = id;
-    mainlineObjectPtr->object_type = object_type;
+    mainlineObjectPtr->object_type = const_cast<char *>(object_type);
     mainlineObjectPtr->folder = folder;
     mainlineObjectPtr->file = file;
     mainlineObjectPtr->x = x;

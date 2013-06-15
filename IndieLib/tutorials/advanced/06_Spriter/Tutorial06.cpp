@@ -4,6 +4,7 @@
 
 #include "CIndieLib.h"
 #include "IND_Entity2D.h"
+#include "IND_Spriterentity.h"
 #include "IND_Font.h"
 #include "../../WorkingPath.h"
 
@@ -43,10 +44,13 @@ int IndieLib()
     
 
 	// ----- Spriter animation loading -----
+    
+    
+    vector<IND_SpriterEntity*> *mSpriterEntityList = new vector<IND_SpriterEntity*>();
 
-	if (!mI->_spriterManager->addSpriterFile(NULL,"../../resources/Spriter/monster/Example.SCML")){
+	if (!mI->_spriterManager->addSpriterFile(mSpriterEntityList,"../../resources/Spriter/monster/Example.SCML")){
         
-        //return 0;
+        return 0;
 
     }
     
@@ -54,6 +58,15 @@ int IndieLib()
     char mText [2048];
 	mText [0] = 0;
 
+    IND_Timer *mTimer = new IND_Timer();
+	mTimer->start();
+    float mT;
+    
+    
+    //mI->_spriterManager->
+    IND_SpriterEntity *sEnt = mSpriterEntityList->at(0); // TODO: MFK move this into loop later
+    sEnt->playAnimation(0);
+    
 	while (!mI->_input->onKeyPress(IND_ESCAPE) && !mI->_input->quit())
 	{
 		// ----- Input update ----

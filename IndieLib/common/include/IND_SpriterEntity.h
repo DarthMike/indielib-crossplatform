@@ -3,10 +3,14 @@
  * Desc: Object that holds a spriter entity object.
  *****************************************************************************************/
 
-
 /*
-something about license here.....
-*/
+ * ----------------------------------------------------------------------------
+ * "THE BEER-WARE LICENSE" (Revision 42):
+ * <michael@visualdesign.dk> wrote this file. As long as you retain this notice you
+ * can do whatever you want with this stuff. If we meet some day, and you think
+ * this stuff is worth it, you can buy me a beer in return Michael Fogh Kristensen
+ * ----------------------------------------------------------------------------
+ */
 
 #ifndef _IND_SPRITERENTITY_
 #define _IND_SPRITERENTITY_
@@ -41,9 +45,13 @@ public:
 
 	// ----- Public methods ------
     
-    
+    void playAnimation(int animation); // TODO maybe input parameter animationname instead??
+    void update(int deltaTime);
+    void draw(float x, float y, float angle, float scale_x, float scale_y);
+    void stopAnimation();
 
 	// ----- Public gets ------
+
 	
     const char* getId() {
         return _id;
@@ -59,7 +67,8 @@ public:
 	
 
 private:
-	IND_SpriterEntity();
+	
+    IND_SpriterEntity();
 	virtual ~IND_SpriterEntity();
 
 	// ----- Containers -----
@@ -68,22 +77,41 @@ private:
 	
 	// ----- Structures ------
 
-	const char                  *_id;           // Entity ID
-	const char                  *_name;         // Entity name
-    map<Fileref*, IND_Image*>   *_images;       // map of images used in animations
-    std::vector <Animation *>   *_animations;    // vector of animations
     
+	const char                  *_id;                   // Entity ID
+	const char                  *_name;                 // Entity name
+    map<Fileref*, IND_Image*>   *_images;               // map of images used in animations
+    std::vector <Animation *>   *_animations;           // vector of animations
+    
+    int                         _currentAnimation;      // current animation playing
+    int                         _currentKey;            // current key of animation playing
+    int                         _currentTime;           // current time of the animation
+    
+    bool                        _drawBones;             // TODO: support this in a later version
+    bool                        _drawObjectpositions;   // TODO: support this in a later version
+
+
 	// ----- Private sets ------
 	
 
 
 	// ----- Private methods -----
+    
+    void drawTransientObject(float x, float y, float angle, float scale_x, float scale_y,  MainlineObjectref *mObjectref);
+    void drawPersistentObject(float x, float y, float angle, float scale_x, float scale_y);
+    void drawBone(float x, float y, float angle, float scale_x, float scale_y);             // TODO: support this in a later version
+    
+    TimelineObject* getTimelineObject(int timelineId, int keyId);
+    IND_Image* getImage(int folderId, int fileId);
+    
     void initAttrib();
-    void addImage(const char *folderId, const char *fileId, IND_Image *pImage);
+    void addImage(int folderId, int fileId, IND_Image *pImage);
     Animation* addAnimation(int id, const char* name, int length, const char* looping, int loop_to);
     
 	// ----- Friends -----
-	friend class IND_SpriterManager;
+
+	
+    friend class IND_SpriterManager;
 
 };
 

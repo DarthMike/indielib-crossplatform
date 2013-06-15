@@ -69,9 +69,7 @@ using namespace std;
 #include "IND_Vector3.h"
 
 // Tmx Maps
-#if defined (PLATFORM_LINUX) || defined (PLATFORM_OSX)  //FIXME: Should add compile settings to all platforms when support is fully completed
 #include "IND_TmxMapManager.h"
-#endif
 
 // Spriter animations
 #if defined (PLATFORM_LINUX) || defined (PLATFORM_OSX)  //FIXME: Should add compile settings to all platforms when support is fully completed

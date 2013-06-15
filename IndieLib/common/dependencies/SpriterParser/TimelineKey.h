@@ -22,7 +22,7 @@
 
 
 // --------------------------------------------------------------------------------
-//									 MainlineKey
+//									 TimelineKey
 // --------------------------------------------------------------------------------
 
 
@@ -46,6 +46,10 @@ public:
     
     int getTime(){
         return _time;
+    }
+    
+    std::vector <TimelineObject *>* getObjects(){
+        return _objectList;
     }
     
 private:

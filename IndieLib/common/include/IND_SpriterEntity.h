@@ -29,8 +29,13 @@
 
 
 struct Fileref {
-    int folderId;
-    int fileId;
+    unsigned int folderId;
+    unsigned int fileId;
+    
+    Fileref(unsigned int folderid, unsigned int fileid) {
+        folderId = folderid;
+        fileId = fileid;
+    }
     
     // Provide a "<" operator that orders keys.
     // The way it orders them doesn't matter, all that matters is that
@@ -106,7 +111,7 @@ private:
     
 	const char                  *_id;                   // Entity ID
 	const char                  *_name;                 // Entity name
-    map<Fileref*, IND_Image*>   *_images;               // map of images used in animations
+    map <Fileref, IND_Image*>   *_images;               // map of images used in animations
     std::vector <Animation *>   *_animations;           // vector of animations
     
     int                         _currentAnimation;      // current animation playing

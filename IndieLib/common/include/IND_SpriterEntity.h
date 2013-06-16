@@ -27,7 +27,33 @@
 
 // ----- Forward declarations -----
 
-typedef std::pair<unsigned int, unsigned int> Fileref;	// Filref consist of a (folder, file) combo.
+
+struct Fileref {
+    int folderId;
+    int fileId;
+    
+    // Provide a "<" operator that orders keys.
+    // The way it orders them doesn't matter, all that matters is that
+    // it orders them consistently.
+    bool operator<(Fileref const& other) const {
+        if (folderId < other.folderId) return true; else
+            if (folderId == other.folderId) {
+                if (fileId < other.fileId) return true; else
+                    if (fileId == other.fileId) {
+                        // We should never reach this point
+                        
+                    }
+            }
+        
+        return false;
+    }
+};
+
+
+
+//typedef std::pair<unsigned int, unsigned int> Fileref;	// Filref consist of a (folder, file) combo.
+
+
 
 // --------------------------------------------------------------------------------
 //									IND_SpriterEntity

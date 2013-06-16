@@ -145,29 +145,21 @@ void IND_SpriterEntity::drawBone(float x, float y, float angle, float scale_x, f
 
 
 TimelineObject* IND_SpriterEntity::getTimelineObject(int timelineId, int keyId) {
-    return getAnimations()->at(_currentAnimation)->getTimeLines()->at(timelineId)->getKeys()->at(keyId)->getObjects()->at(0); // TODO : is there allways one obejct here? ( we're using an array )
+    return getAnimations()->at(_currentAnimation)->getTimeLines()->at(timelineId)->getKeys()->at(keyId)->getObjects()->at(0); // TODO : is there allways one object here? ( we're using an array )
 }
 
 IND_Image* IND_SpriterEntity::getImage(int folderId, int fileId) {
     Fileref* ref = new Fileref();
-    ref->first = static_cast<unsigned int>(folderId);  // TODO: this is probably wrong ... compare with insert
-    ref->second = static_cast<unsigned int>(fileId);   // TODO: this is probably wrong ... compare with insert
+    ref->folderId = static_cast<unsigned int>(folderId);
+    ref->fileId = static_cast<unsigned int>(fileId);
     
+    // Find the first matching key. (we should only have one)
     auto res = _images->find(ref);
     
-    // Find the first matching key.
-    //itr = mmp.find(n);
-    
     if(res != _images->end()) {
-        //cout << "the numbers for " << n << ": " << endl;
-        //do {
-        //    cout << " " << itr->second << endl;
-        //    ++itr;
-        //} while (itr != mmp.upper_bound(n));
         return res->second;
     }
     else {
-        //cout << "No entry for " << n << " found." << endl;
         return 0;
     }
 }
@@ -179,8 +171,12 @@ IND_Image* IND_SpriterEntity::getImage(int folderId, int fileId) {
 
 void IND_SpriterEntity::addImage(int folderId, int fileId, IND_Image *pImage) {
     Fileref* ref = new Fileref();
-    ref->first = static_cast<unsigned int>(folderId);
-    ref->second = static_cast<unsigned int>(fileId);
+    ref->folderId = static_cast<unsigned int>(folderId);
+    ref->fileId = static_cast<unsigned int>(fileId);
+    
+    //_images[ref] = pImage;
+    
+    // http://stackoverflow.com/questions/2311881/c-how-to-insert-pair-into-map
     
     _images->insert(make_pair(ref, pImage));
 }

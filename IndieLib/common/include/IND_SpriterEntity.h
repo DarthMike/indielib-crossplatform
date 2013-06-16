@@ -108,10 +108,11 @@ private:
 	
 	// ----- Structures ------
 
+    typedef map <Fileref, IND_Image*> ImageToFileMap;
     
 	const char                  *_id;                   // Entity ID
 	const char                  *_name;                 // Entity name
-    map <Fileref, IND_Image*>   *_images;               // map of images used in animations
+    ImageToFileMap  *_images;               // map of images used in animations
     std::vector <Animation *>   *_animations;           // vector of animations
     
     int                         _currentAnimation;      // current animation playing

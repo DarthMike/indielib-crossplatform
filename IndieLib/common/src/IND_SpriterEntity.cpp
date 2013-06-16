@@ -111,7 +111,7 @@ Attributes initialization
 void IND_SpriterEntity::initAttrib() {
     _id         = NULL;
 	_name       = NULL;
-    _images     = new map<Fileref, IND_Image *>();
+    _images     = new ImageToFileMap;
     _animations = new std::vector<Animation *>();
     
     _currentAnimation       = -1;       // TODO: ??
@@ -149,16 +149,16 @@ TimelineObject* IND_SpriterEntity::getTimelineObject(int timelineId, int keyId) 
 }
 
 IND_Image* IND_SpriterEntity::getImage(int folderId, int fileId) {
-    Fileref *ref = new Fileref(static_cast<unsigned int>(folderId), static_cast<unsigned int>(fileId));
+    Fileref ref = Fileref(static_cast<unsigned int>(folderId), static_cast<unsigned int>(fileId));
     
     // Find the first matching key. (we should only have one)
-    auto res = _images->find(*ref);
+    ImageToFileMap::iterator res = _images->find(ref);
     
     if(res != _images->end()) {
         return res->second;
     }
     else {
-        return 0;
+        return NULL;
     }
 }
 

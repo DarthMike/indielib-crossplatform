@@ -773,8 +773,8 @@
 				);
 				"OTHER_LDFLAGS[arch=*]" = (
 					"-lSDL2",
-					"\"$(SRCROOT)/../../common/dependencies/FreeImage/Dist/libfreeImage.a\"",
-					"\"$(SRCROOT)/../../common/dependencies/glew-1.9.0/lib/libGLEW.a\"",
+					"-lfreeImage",
+					"-lGLEW",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

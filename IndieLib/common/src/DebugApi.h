@@ -22,13 +22,14 @@ Suite 330, Boston, MA 02111-1307 USA
 #ifndef _DEBUGAPI_H_
 #define _DEBUGAPI_H_
 
-#include "IND_Timer.h"
 #include <time.h>
 #include "Defines.h"
 
 #define ESP 3
 
 #include <fstream>
+
+class IND_Timer;
 using namespace std;
 
 /** @cond DOCUMENT_PRIVATEAPI */
@@ -39,7 +40,7 @@ public:
  
 	// ----- Init/End -----
 
-	DebugApi(): _ok(false)  { }
+	DebugApi(): _ok(false)  {}
 	~DebugApi()              {
 		end();
 	}
@@ -96,7 +97,7 @@ private:
 	void initVars();
 	void freeVars();
 
-	IND_Timer _timer;
+	IND_Timer* _timer;
 };
 
 /** @endcond */

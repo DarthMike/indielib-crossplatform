@@ -24,6 +24,7 @@ Suite 330, Boston, MA 02111-1307 USA
 #include <string.h>
 #include "DebugApi.h"
 #include "IndieVersion.h"
+#include "IND_Timer.h"
 
 const int DebugApi::LogHeaderOk = 1;
 const int DebugApi::LogHeaderError = 2;
@@ -80,7 +81,7 @@ bool DebugApi::init() {
 	*_count << days [mPetm->tm_wday].c_str() << ", " << mPetm->tm_mday << " of " << months [mPetm->tm_mon].c_str() << " " << mPetm->tm_year + 1900 << ")" << endl << endl;
 
 	//Start timer
-	_timer.start();
+	_timer->start();
 
 	_ok = true;
 
@@ -94,6 +95,7 @@ bool DebugApi::init() {
 void DebugApi::end() {
 	if (_ok) {
 		_count->close();
+        _timer->stop();
 		freeVars();
 		_ok = false;
 	}
@@ -149,7 +151,7 @@ void DebugApi::header(string pTextString, int pType) {
                 *_count << "Error occurred";
                 
                 // Measure the time between BEGIN and END
-                double elapsedTime = _timer.getTicks() - _tableTime [(_depth + ESP) / ESP];
+                double elapsedTime = _timer->getTicks() - _tableTime [(_depth + ESP) / ESP];
                 if (elapsedTime < 0) elapsedTime = 0; // Medida de seguridad
                 *_count << " [Elaped time = " << elapsedTime * 0.001f << " seg]" << endl;
                 
@@ -200,7 +202,7 @@ void DebugApi::header(string pTextString, int pType) {
             _depth += ESP;
             
             // Store the current time in the time table
-            _tableTime [_depth / ESP] = _timer.getTicks();
+            _tableTime [_depth / ESP] = _timer->getTicks();
             
             break;
         }
@@ -220,7 +222,7 @@ void DebugApi::header(string pTextString, int pType) {
             *_count << pTextString.c_str();
             
             // Measure the time between BEGIN and END
-            double elapsedTime = _timer.getTicks() - _tableTime [(_depth + ESP) / ESP];
+            double elapsedTime = _timer->getTicks() - _tableTime [(_depth + ESP) / ESP];
             if (elapsedTime < 0) elapsedTime = 0; // Security Measure
             *_count << " [Elapsed time = " << elapsedTime * 0.001f << " seg]" << endl;
             
@@ -350,7 +352,7 @@ void DebugApi::advance() {
  * Start measuring the time.
  */
 void DebugApi::start() {
-	_timer.start();
+	_timer->start();
 }
 
 
@@ -358,8 +360,8 @@ void DebugApi::start() {
  * Stop measuring the time.
  */
 void DebugApi::stop() {
-	double elapsedTime = _timer.getTicks();
-	_timer.stop();
+	double elapsedTime = _timer->getTicks();
+	_timer->stop();
 	if (elapsedTime < 0) elapsedTime = 0;
 	elapsedTime = elapsedTime * 0.001;
 	*_count << elapsedTime << endl;
@@ -382,7 +384,7 @@ void DebugApi::allFont() {
 void DebugApi::initVars() {
 	_depth = 0;
 	_time = 0;
-
+    _timer = new IND_Timer();
 	for (int i = 0; i < 16; i++)
 		_tableTime [i] = 0;
 }
@@ -393,6 +395,7 @@ void DebugApi::initVars() {
  */
 void DebugApi::freeVars() {
 	DISPOSE(_count);
+    DISPOSE(_timer);
 }
 
 /*** @endcond */

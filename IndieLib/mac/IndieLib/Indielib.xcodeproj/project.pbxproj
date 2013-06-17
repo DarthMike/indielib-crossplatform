@@ -681,6 +681,12 @@
 					"\"/usr/X11/include\"",
 				);
 				INCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../common/dependencies/FreeImage/Dist\"",
+					"\"$(SRCROOT)/../../common/dependencies/glew-1.9.0/lib\"",
+					"\"$(SRCROOT)/../../common/dependencies/SDL-2.0/osx/lib\"",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
@@ -718,6 +724,12 @@
 					"\"$(SRCROOT)/../../common/src\"",
 					"\"/usr/X11/include\"",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../common/dependencies/FreeImage/Dist\"",
+					"\"$(SRCROOT)/../../common/dependencies/glew-1.9.0/lib\"",
+					"\"$(SRCROOT)/../../common/dependencies/SDL-2.0/osx/lib\"",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_LDFLAGS = "";
 				OTHER_TEST_FLAGS = "";
@@ -738,12 +750,6 @@
 				EXECUTABLE_PREFIX = lib;
 				INSTALL_PATH = /mac;
 				LD_DYLIB_INSTALL_NAME = "@loader_path/$(EXECUTABLE_NAME)";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../common/dependencies/FreeImage/Dist\"",
-					"\"$(SRCROOT)/../../common/dependencies/glew-1.9.0/lib\"",
-					"\"$(SRCROOT)/../../common/dependencies/SDL-2.0/osx/lib\"/**",
-				);
 				"OTHER_LDFLAGS[arch=*]" = (
 					"-lGLEW",
 					"-lSDL2",
@@ -765,12 +771,6 @@
 				EXECUTABLE_PREFIX = lib;
 				INSTALL_PATH = /mac;
 				LD_DYLIB_INSTALL_NAME = "@loader_path/$(EXECUTABLE_NAME)";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../common/dependencies/FreeImage/Dist\"",
-					"\"$(SRCROOT)/../../common/dependencies/glew-1.9.0/lib\"",
-					"\"$(SRCROOT)/../../common/dependencies/SDL-2.0/osx/lib\"/**",
-				);
 				"OTHER_LDFLAGS[arch=*]" = (
 					"-lSDL2",
 					"-lfreeImage",

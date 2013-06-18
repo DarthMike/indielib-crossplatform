@@ -8,6 +8,29 @@
 
 /* Begin PBXBuildFile section */
 		E7201087176E420E00D14384 /* IND_Math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7201086176E420E00D14384 /* IND_Math.cpp */; };
+		E72010C21770FF4200D14384 /* CollisionParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E72010A71770FF4200D14384 /* CollisionParser.cpp */; };
+		E72010C31770FF4200D14384 /* DebugApi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E72010A81770FF4200D14384 /* DebugApi.cpp */; };
+		E72010C41770FF4200D14384 /* FreeImageHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E72010AA1770FF4200D14384 /* FreeImageHelper.cpp */; };
+		E72010C51770FF4200D14384 /* Global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E72010AC1770FF4200D14384 /* Global.cpp */; };
+		E72010C61770FF4200D14384 /* IND_Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E72010AE1770FF4200D14384 /* IND_Animation.cpp */; };
+		E72010C71770FF4200D14384 /* IND_Camera2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E72010AF1770FF4200D14384 /* IND_Camera2d.cpp */; };
+		E72010C81770FF4200D14384 /* IND_Entity2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E72010B01770FF4200D14384 /* IND_Entity2d.cpp */; };
+		E72010C91770FF4200D14384 /* IND_Entity2dManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E72010B11770FF4200D14384 /* IND_Entity2dManager.cpp */; };
+		E72010CA1770FF4200D14384 /* IND_FontManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E72010B21770FF4200D14384 /* IND_FontManager.cpp */; };
+		E72010CB1770FF4200D14384 /* IND_Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E72010B31770FF4200D14384 /* IND_Image.cpp */; };
+		E72010CC1770FF4200D14384 /* IND_ImageManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E72010B41770FF4200D14384 /* IND_ImageManager.cpp */; };
+		E72010CD1770FF4200D14384 /* IND_Input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E72010B51770FF4200D14384 /* IND_Input.cpp */; };
+		E72010CE1770FF4200D14384 /* IND_Render.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E72010B61770FF4200D14384 /* IND_Render.cpp */; };
+		E72010CF1770FF4200D14384 /* IND_Surface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E72010B71770FF4200D14384 /* IND_Surface.cpp */; };
+		E72010D01770FF4200D14384 /* IND_SurfaceManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E72010B81770FF4200D14384 /* IND_SurfaceManager.cpp */; };
+		E72010D11770FF4200D14384 /* IND_Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E72010B91770FF4200D14384 /* IND_Timer.cpp */; };
+		E72010D21770FF4200D14384 /* IND_TmxMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E72010BA1770FF4200D14384 /* IND_TmxMap.cpp */; };
+		E72010D31770FF4200D14384 /* IND_TmxMapManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E72010BB1770FF4200D14384 /* IND_TmxMapManager.cpp */; };
+		E72010D41770FF4200D14384 /* IND_Window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E72010BC1770FF4200D14384 /* IND_Window.cpp */; };
+		E72010D51770FF4200D14384 /* IndieLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E72010BD1770FF4200D14384 /* IndieLib.cpp */; };
+		E72010D61770FF4200D14384 /* IndieVersion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E72010BE1770FF4200D14384 /* IndieVersion.cpp */; };
+		E72010D71770FF4200D14384 /* PrecissionTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E72010BF1770FF4200D14384 /* PrecissionTimer.cpp */; };
+		E75BD9531771093400C5185F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E75BD9521771093400C5185F /* OpenGLES.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,6 +50,66 @@
 		E7201085176E420000D14384 /* IND_Math.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IND_Math.h; path = ../../common/include/IND_Math.h; sourceTree = "<group>"; };
 		E7201086176E420E00D14384 /* IND_Math.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IND_Math.cpp; path = ../../common/src/IND_Math.cpp; sourceTree = "<group>"; };
 		E7201088176E4B2500D14384 /* Defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Defines.h; path = ../../common/include/Defines.h; sourceTree = "<group>"; };
+		E72010891770FEFF00D14384 /* CollisionParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollisionParser.h; path = ../../common/include/CollisionParser.h; sourceTree = "<group>"; };
+		E720108A1770FEFF00D14384 /* ImageCutter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageCutter.h; path = ../../common/include/ImageCutter.h; sourceTree = "<group>"; };
+		E720108B1770FEFF00D14384 /* IND_Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IND_Animation.h; path = ../../common/include/IND_Animation.h; sourceTree = "<group>"; };
+		E720108C1770FEFF00D14384 /* IND_AnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IND_AnimationManager.h; path = ../../common/include/IND_AnimationManager.h; sourceTree = "<group>"; };
+		E720108D1770FEFF00D14384 /* IND_Camera2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IND_Camera2d.h; path = ../../common/include/IND_Camera2d.h; sourceTree = "<group>"; };
+		E720108E1770FEFF00D14384 /* IND_Entity2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IND_Entity2d.h; path = ../../common/include/IND_Entity2d.h; sourceTree = "<group>"; };
+		E720108F1770FEFF00D14384 /* IND_Entity2dManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IND_Entity2dManager.h; path = ../../common/include/IND_Entity2dManager.h; sourceTree = "<group>"; };
+		E72010901770FEFF00D14384 /* IND_Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IND_Font.h; path = ../../common/include/IND_Font.h; sourceTree = "<group>"; };
+		E72010911770FEFF00D14384 /* IND_FontManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IND_FontManager.h; path = ../../common/include/IND_FontManager.h; sourceTree = "<group>"; };
+		E72010921770FEFF00D14384 /* IND_Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IND_Frame.h; path = ../../common/include/IND_Frame.h; sourceTree = "<group>"; };
+		E72010931770FEFF00D14384 /* IND_Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IND_Image.h; path = ../../common/include/IND_Image.h; sourceTree = "<group>"; };
+		E72010941770FEFF00D14384 /* IND_ImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IND_ImageManager.h; path = ../../common/include/IND_ImageManager.h; sourceTree = "<group>"; };
+		E72010951770FEFF00D14384 /* IND_Input.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IND_Input.h; path = ../../common/include/IND_Input.h; sourceTree = "<group>"; };
+		E72010961770FEFF00D14384 /* IND_Light.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IND_Light.h; path = ../../common/include/IND_Light.h; sourceTree = "<group>"; };
+		E72010971770FEFF00D14384 /* IND_LightManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IND_LightManager.h; path = ../../common/include/IND_LightManager.h; sourceTree = "<group>"; };
+		E72010981770FEFF00D14384 /* IND_Object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IND_Object.h; path = ../../common/include/IND_Object.h; sourceTree = "<group>"; };
+		E72010991770FEFF00D14384 /* IND_Render.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IND_Render.h; path = ../../common/include/IND_Render.h; sourceTree = "<group>"; };
+		E720109A1770FEFF00D14384 /* IND_Sequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IND_Sequence.h; path = ../../common/include/IND_Sequence.h; sourceTree = "<group>"; };
+		E720109B1770FEFF00D14384 /* IND_Surface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IND_Surface.h; path = ../../common/include/IND_Surface.h; sourceTree = "<group>"; };
+		E720109C1770FEFF00D14384 /* IND_SurfaceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IND_SurfaceManager.h; path = ../../common/include/IND_SurfaceManager.h; sourceTree = "<group>"; };
+		E720109D1770FEFF00D14384 /* IND_Timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IND_Timer.h; path = ../../common/include/IND_Timer.h; sourceTree = "<group>"; };
+		E720109E1770FEFF00D14384 /* IND_TmxMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IND_TmxMap.h; path = ../../common/include/IND_TmxMap.h; sourceTree = "<group>"; };
+		E720109F1770FEFF00D14384 /* IND_TmxMapManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IND_TmxMapManager.h; path = ../../common/include/IND_TmxMapManager.h; sourceTree = "<group>"; };
+		E72010A01770FEFF00D14384 /* IND_Vector2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IND_Vector2.h; path = ../../common/include/IND_Vector2.h; sourceTree = "<group>"; };
+		E72010A11770FEFF00D14384 /* IND_Vector3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IND_Vector3.h; path = ../../common/include/IND_Vector3.h; sourceTree = "<group>"; };
+		E72010A21770FEFF00D14384 /* IND_Window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IND_Window.h; path = ../../common/include/IND_Window.h; sourceTree = "<group>"; };
+		E72010A31770FEFF00D14384 /* Indie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Indie.h; path = ../../common/include/Indie.h; sourceTree = "<group>"; };
+		E72010A41770FEFF00D14384 /* IndieLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IndieLib.h; path = ../../common/include/IndieLib.h; sourceTree = "<group>"; };
+		E72010A51770FEFF00D14384 /* IndiePlatforms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IndiePlatforms.h; path = ../../common/include/IndiePlatforms.h; sourceTree = "<group>"; };
+		E72010A61770FEFF00D14384 /* IndieVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IndieVersion.h; path = ../../common/include/IndieVersion.h; sourceTree = "<group>"; };
+		E72010A71770FF4200D14384 /* CollisionParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CollisionParser.cpp; path = ../../common/src/CollisionParser.cpp; sourceTree = "<group>"; };
+		E72010A81770FF4200D14384 /* DebugApi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DebugApi.cpp; path = ../../common/src/DebugApi.cpp; sourceTree = "<group>"; };
+		E72010A91770FF4200D14384 /* DebugApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DebugApi.h; path = ../../common/src/DebugApi.h; sourceTree = "<group>"; };
+		E72010AA1770FF4200D14384 /* FreeImageHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FreeImageHelper.cpp; path = ../../common/src/FreeImageHelper.cpp; sourceTree = "<group>"; };
+		E72010AB1770FF4200D14384 /* FreeImageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FreeImageHelper.h; path = ../../common/src/FreeImageHelper.h; sourceTree = "<group>"; };
+		E72010AC1770FF4200D14384 /* Global.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Global.cpp; path = ../../common/src/Global.cpp; sourceTree = "<group>"; };
+		E72010AD1770FF4200D14384 /* Global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Global.h; path = ../../common/src/Global.h; sourceTree = "<group>"; };
+		E72010AE1770FF4200D14384 /* IND_Animation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IND_Animation.cpp; path = ../../common/src/IND_Animation.cpp; sourceTree = "<group>"; };
+		E72010AF1770FF4200D14384 /* IND_Camera2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IND_Camera2d.cpp; path = ../../common/src/IND_Camera2d.cpp; sourceTree = "<group>"; };
+		E72010B01770FF4200D14384 /* IND_Entity2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IND_Entity2d.cpp; path = ../../common/src/IND_Entity2d.cpp; sourceTree = "<group>"; };
+		E72010B11770FF4200D14384 /* IND_Entity2dManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IND_Entity2dManager.cpp; path = ../../common/src/IND_Entity2dManager.cpp; sourceTree = "<group>"; };
+		E72010B21770FF4200D14384 /* IND_FontManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IND_FontManager.cpp; path = ../../common/src/IND_FontManager.cpp; sourceTree = "<group>"; };
+		E72010B31770FF4200D14384 /* IND_Image.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IND_Image.cpp; path = ../../common/src/IND_Image.cpp; sourceTree = "<group>"; };
+		E72010B41770FF4200D14384 /* IND_ImageManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IND_ImageManager.cpp; path = ../../common/src/IND_ImageManager.cpp; sourceTree = "<group>"; };
+		E72010B51770FF4200D14384 /* IND_Input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IND_Input.cpp; path = ../../common/src/IND_Input.cpp; sourceTree = "<group>"; };
+		E72010B61770FF4200D14384 /* IND_Render.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IND_Render.cpp; path = ../../common/src/IND_Render.cpp; sourceTree = "<group>"; };
+		E72010B71770FF4200D14384 /* IND_Surface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IND_Surface.cpp; path = ../../common/src/IND_Surface.cpp; sourceTree = "<group>"; };
+		E72010B81770FF4200D14384 /* IND_SurfaceManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IND_SurfaceManager.cpp; path = ../../common/src/IND_SurfaceManager.cpp; sourceTree = "<group>"; };
+		E72010B91770FF4200D14384 /* IND_Timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IND_Timer.cpp; path = ../../common/src/IND_Timer.cpp; sourceTree = "<group>"; };
+		E72010BA1770FF4200D14384 /* IND_TmxMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IND_TmxMap.cpp; path = ../../common/src/IND_TmxMap.cpp; sourceTree = "<group>"; };
+		E72010BB1770FF4200D14384 /* IND_TmxMapManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IND_TmxMapManager.cpp; path = ../../common/src/IND_TmxMapManager.cpp; sourceTree = "<group>"; };
+		E72010BC1770FF4200D14384 /* IND_Window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IND_Window.cpp; path = ../../common/src/IND_Window.cpp; sourceTree = "<group>"; };
+		E72010BD1770FF4200D14384 /* IndieLib.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IndieLib.cpp; path = ../../common/src/IndieLib.cpp; sourceTree = "<group>"; };
+		E72010BE1770FF4200D14384 /* IndieVersion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IndieVersion.cpp; path = ../../common/src/IndieVersion.cpp; sourceTree = "<group>"; };
+		E72010BF1770FF4200D14384 /* PrecissionTimer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PrecissionTimer.cpp; path = ../../common/src/PrecissionTimer.cpp; sourceTree = "<group>"; };
+		E72010C01770FF4200D14384 /* PrecissionTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrecissionTimer.h; path = ../../common/src/PrecissionTimer.h; sourceTree = "<group>"; };
+		E72010C11770FF4200D14384 /* TextureBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextureBuilder.h; path = ../../common/src/TextureBuilder.h; sourceTree = "<group>"; };
+		E72010D81770FF5600D14384 /* TextureDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextureDefinitions.h; path = ../../common/src/TextureDefinitions.h; sourceTree = "<group>"; };
+		E75BD9511771085100C5185F /* OpenGLES2Render.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenGLES2Render.h; path = ../../common/src/render/gles/ios/OpenGLES2Render.h; sourceTree = "<group>"; };
+		E75BD9521771093400C5185F /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,6 +117,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E75BD9531771093400C5185F /* OpenGLES.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +127,7 @@
 		E7201067176E3DF000D14384 = {
 			isa = PBXGroup;
 			children = (
+				E75BD9521771093400C5185F /* OpenGLES.framework */,
 				E7201083176E41DC00D14384 /* include */,
 				E7201084176E41E100D14384 /* src */,
 				E7201075176E3DF000D14384 /* indielibios */,
@@ -84,6 +169,36 @@
 		E7201083176E41DC00D14384 /* include */ = {
 			isa = PBXGroup;
 			children = (
+				E72010891770FEFF00D14384 /* CollisionParser.h */,
+				E720108A1770FEFF00D14384 /* ImageCutter.h */,
+				E720108B1770FEFF00D14384 /* IND_Animation.h */,
+				E720108C1770FEFF00D14384 /* IND_AnimationManager.h */,
+				E720108D1770FEFF00D14384 /* IND_Camera2d.h */,
+				E720108E1770FEFF00D14384 /* IND_Entity2d.h */,
+				E720108F1770FEFF00D14384 /* IND_Entity2dManager.h */,
+				E72010901770FEFF00D14384 /* IND_Font.h */,
+				E72010911770FEFF00D14384 /* IND_FontManager.h */,
+				E72010921770FEFF00D14384 /* IND_Frame.h */,
+				E72010931770FEFF00D14384 /* IND_Image.h */,
+				E72010941770FEFF00D14384 /* IND_ImageManager.h */,
+				E72010951770FEFF00D14384 /* IND_Input.h */,
+				E72010961770FEFF00D14384 /* IND_Light.h */,
+				E72010971770FEFF00D14384 /* IND_LightManager.h */,
+				E72010981770FEFF00D14384 /* IND_Object.h */,
+				E72010991770FEFF00D14384 /* IND_Render.h */,
+				E720109A1770FEFF00D14384 /* IND_Sequence.h */,
+				E720109B1770FEFF00D14384 /* IND_Surface.h */,
+				E720109C1770FEFF00D14384 /* IND_SurfaceManager.h */,
+				E720109D1770FEFF00D14384 /* IND_Timer.h */,
+				E720109E1770FEFF00D14384 /* IND_TmxMap.h */,
+				E720109F1770FEFF00D14384 /* IND_TmxMapManager.h */,
+				E72010A01770FEFF00D14384 /* IND_Vector2.h */,
+				E72010A11770FEFF00D14384 /* IND_Vector3.h */,
+				E72010A21770FEFF00D14384 /* IND_Window.h */,
+				E72010A31770FEFF00D14384 /* Indie.h */,
+				E72010A41770FEFF00D14384 /* IndieLib.h */,
+				E72010A51770FEFF00D14384 /* IndiePlatforms.h */,
+				E72010A61770FEFF00D14384 /* IndieVersion.h */,
 				E7201088176E4B2500D14384 /* Defines.h */,
 				E7201085176E420000D14384 /* IND_Math.h */,
 			);
@@ -93,7 +208,36 @@
 		E7201084176E41E100D14384 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				E72010D81770FF5600D14384 /* TextureDefinitions.h */,
+				E72010A71770FF4200D14384 /* CollisionParser.cpp */,
+				E72010A81770FF4200D14384 /* DebugApi.cpp */,
+				E72010A91770FF4200D14384 /* DebugApi.h */,
+				E72010AA1770FF4200D14384 /* FreeImageHelper.cpp */,
+				E72010AB1770FF4200D14384 /* FreeImageHelper.h */,
+				E72010AC1770FF4200D14384 /* Global.cpp */,
+				E72010AD1770FF4200D14384 /* Global.h */,
+				E72010AE1770FF4200D14384 /* IND_Animation.cpp */,
+				E72010AF1770FF4200D14384 /* IND_Camera2d.cpp */,
+				E72010B01770FF4200D14384 /* IND_Entity2d.cpp */,
+				E72010B11770FF4200D14384 /* IND_Entity2dManager.cpp */,
+				E72010B21770FF4200D14384 /* IND_FontManager.cpp */,
+				E72010B31770FF4200D14384 /* IND_Image.cpp */,
+				E72010B41770FF4200D14384 /* IND_ImageManager.cpp */,
+				E72010B51770FF4200D14384 /* IND_Input.cpp */,
+				E72010B61770FF4200D14384 /* IND_Render.cpp */,
+				E72010B71770FF4200D14384 /* IND_Surface.cpp */,
+				E72010B81770FF4200D14384 /* IND_SurfaceManager.cpp */,
+				E72010B91770FF4200D14384 /* IND_Timer.cpp */,
+				E72010BA1770FF4200D14384 /* IND_TmxMap.cpp */,
+				E72010BB1770FF4200D14384 /* IND_TmxMapManager.cpp */,
+				E72010BC1770FF4200D14384 /* IND_Window.cpp */,
+				E72010BD1770FF4200D14384 /* IndieLib.cpp */,
+				E72010BE1770FF4200D14384 /* IndieVersion.cpp */,
+				E72010BF1770FF4200D14384 /* PrecissionTimer.cpp */,
+				E72010C01770FF4200D14384 /* PrecissionTimer.h */,
+				E72010C11770FF4200D14384 /* TextureBuilder.h */,
 				E7201086176E420E00D14384 /* IND_Math.cpp */,
+				E75BD9511771085100C5185F /* OpenGLES2Render.h */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -150,6 +294,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				E7201087176E420E00D14384 /* IND_Math.cpp in Sources */,
+				E72010C21770FF4200D14384 /* CollisionParser.cpp in Sources */,
+				E72010C31770FF4200D14384 /* DebugApi.cpp in Sources */,
+				E72010C41770FF4200D14384 /* FreeImageHelper.cpp in Sources */,
+				E72010C51770FF4200D14384 /* Global.cpp in Sources */,
+				E72010C61770FF4200D14384 /* IND_Animation.cpp in Sources */,
+				E72010C71770FF4200D14384 /* IND_Camera2d.cpp in Sources */,
+				E72010C81770FF4200D14384 /* IND_Entity2d.cpp in Sources */,
+				E72010C91770FF4200D14384 /* IND_Entity2dManager.cpp in Sources */,
+				E72010CA1770FF4200D14384 /* IND_FontManager.cpp in Sources */,
+				E72010CB1770FF4200D14384 /* IND_Image.cpp in Sources */,
+				E72010CC1770FF4200D14384 /* IND_ImageManager.cpp in Sources */,
+				E72010CD1770FF4200D14384 /* IND_Input.cpp in Sources */,
+				E72010CE1770FF4200D14384 /* IND_Render.cpp in Sources */,
+				E72010CF1770FF4200D14384 /* IND_Surface.cpp in Sources */,
+				E72010D01770FF4200D14384 /* IND_SurfaceManager.cpp in Sources */,
+				E72010D11770FF4200D14384 /* IND_Timer.cpp in Sources */,
+				E72010D21770FF4200D14384 /* IND_TmxMap.cpp in Sources */,
+				E72010D31770FF4200D14384 /* IND_TmxMapManager.cpp in Sources */,
+				E72010D41770FF4200D14384 /* IND_Window.cpp in Sources */,
+				E72010D51770FF4200D14384 /* IndieLib.cpp in Sources */,
+				E72010D61770FF4200D14384 /* IndieVersion.cpp in Sources */,
+				E72010D71770FF4200D14384 /* PrecissionTimer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,8 +326,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++98";
+				CLANG_CXX_LIBRARY = "libstdc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -209,8 +375,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++98";
+				CLANG_CXX_LIBRARY = "libstdc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -286,6 +452,7 @@
 				E7201080176E3DF000D14384 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

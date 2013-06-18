@@ -26,9 +26,16 @@ Suite 330, Boston, MA 02111-1307 USA
 
 #include "Defines.h"
 #include "TextureBuilder.h"
-#include "OpenGLRender.h"
 #include "IND_Render.h"
 
+#ifdef INDIERENDER_OPENGL
+#include "dependencies/glew-1.9.0/include/GL/glew.h" //Extension loading facilites library
+#endif
+
+
+#ifdef INDIERENDER_GLES_IOS
+#include <OpenGLES/ES2/gl.h>
+#endif
 /** @cond DOCUMENT_PRIVATEAPI */
 
 class IND_Image;

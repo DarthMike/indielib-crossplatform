@@ -61,9 +61,6 @@ class IND_Camera3d;
 class OSOpenGLManager;
 
 // ----- Libs -----
-
-//#include "dependencies/SDL-2.0/include/SDL.h"
-//#include "dependencies/SDL-2.0/include/SDL_opengl.h"
 #include "dependencies/glew-1.9.0/include/GL/glew.h" //Extension loading facilites library
 
 // ----- Defines ------

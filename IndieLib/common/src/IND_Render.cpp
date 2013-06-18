@@ -36,7 +36,7 @@ Suite 330, Boston, MA 02111-1307 USA
 #endif
 
 #ifdef INDIERENDER_GLES_IOS
-#include "OpenGLES_iOS_Render.h"
+#include "render/gles/ios/OpenGLES2Render.h"
 #endif
 
 #ifdef INDIERENDER_OPENGL

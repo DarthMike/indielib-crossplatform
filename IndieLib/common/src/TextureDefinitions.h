@@ -38,7 +38,8 @@ Suite 330, Boston, MA 02111-1307 USA
 	};
 #endif
 
-#ifdef INDIRENDER_GLES_IOS
+#ifdef INDIERENDER_GLES_IOS
+#include "render/gles/ios/OpenGLES2Render.h"
 	typedef GLuint TEXTURE;
 #endif
 

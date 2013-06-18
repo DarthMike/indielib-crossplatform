@@ -277,7 +277,7 @@ typedef unsigned char BYTE;    // HACK: Fixes some code regarding surfaces, BYTE
  * @ingroup Types
  */
 /**@{*/
-//DirectX
+
 #ifdef INDIERENDER_DIRECTX
 //!Pixel - When not rendering textures
 struct structPixel {
@@ -291,7 +291,6 @@ typedef struct structPixel PIXEL;
 #define D3DFVF_PIXEL (D3DFVF_XYZ | D3DFVF_DIFFUSE)
 #endif
 
-//OPENGL
 #ifdef INDIERENDER_OPENGL
 //!Pixel - When not rendering textures
 struct structPixelPos {
@@ -308,7 +307,22 @@ struct structPixelPos {
 typedef struct structPixelPos PIXEL;
 #endif
 
-//Win32 (DirectX used)
+#ifdef INDIERENDER_GLES_IOS
+//!Pixel - When not rendering textures
+struct structPixelPos {
+	float _x; ///< Point position x
+    float _y; ///< Point position y
+    float _z; ///< Point position z
+	//Color
+	float _colorR; ///< Point color R
+    float _colorG; ///< Point color G
+    float _colorB; ///< Point color B
+    float _colorA; ///< Point color A
+};
+//! Alias for the pixel structure
+typedef struct structPixelPos PIXEL;
+#endif
+
 #ifdef INDIERENDER_DIRECTX
 //!Vertex - When rendering with textures
 struct structVertex2d {
@@ -325,6 +339,19 @@ typedef struct structVertex2d CUSTOMVERTEX2D;
 #endif
 
 #ifdef INDIERENDER_OPENGL
+//!Vertex - When rendering with textures
+struct structVertex2d {
+	float _x; ///< Point position x
+    float _y; ///< Point position y
+    float _z; ///< Point position z
+	float _u; ///< Texture mapping coordinate u
+    float _v; ///< Texture mapping coordinate v
+};
+//! Alias for the 2d vertex structure
+typedef struct structVertex2d CUSTOMVERTEX2D;
+#endif
+
+#ifdef INDIERENDER_GLES_IOS
 //!Vertex - When rendering with textures
 struct structVertex2d {
 	float _x; ///< Point position x

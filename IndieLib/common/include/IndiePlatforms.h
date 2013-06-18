@@ -39,19 +39,16 @@ Suite 330, Boston, MA 02111-1307 USA
 #define NOMINMAX //Min max definitions conflicting with std::min and std::max
 #endif
 
-// IOS
-#if defined (__APPLE__)
-#include "TargetConditionals.h"
-#if defined (TARGET_OS_IPHONE) || defined (TARGET_IPHONE_SIMULATOR)
-#define PLATFORM_IOS
-#endif
-#endif
 
-// OSX
-#if defined (__APPLE__) && defined (__MACH__)
-#include "AvailabilityMacros.h"
+// OSX vs. iOS:
+// http://sealiesoftware.com/blog/archive/2010/8/16/TargetConditionalsh.html
+#ifdef __APPLE__
 #include "TargetConditionals.h"
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+#define PLATFORM_IOS
+#else
 #define PLATFORM_OSX
+#endif
 #endif
 
 // Linux

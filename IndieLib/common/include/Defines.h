@@ -172,7 +172,6 @@ users for really concrete purposes.
 #ifdef INDIERENDER_OPENGL
 #undef INDIERENDER_DIRECTX
 #undef INDIERENDER_GLES_IOS
-#undef PLATFORM_IOS			//We need this as iOS is a subset of MAC in apple terms (both defined)
 #endif //INDIERENDER_OPENGL
 
 #ifdef INDIERENDER_DIRECTX
@@ -183,7 +182,6 @@ users for really concrete purposes.
 #ifdef INDIERENDER_GLES_IOS
 #undef INDIERENDER_OPENGL
 #undef INDIERENDER_DIRECTX
-#undef PLATFORM_OSX          //We need this as iOS is a subset of MAC in apple terms (both defined)
 #endif //INDIERENDER_GLES_IOS
 //****************************************
 
@@ -216,30 +214,23 @@ users for really concrete purposes.
 
 #define LIB_EXP DLL_EXP
 #define IndieLib() WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+
 #endif //PLATFORM_WIN32
 
-#ifdef PLATFORM_IOS
+#if defined(PLATFORM_IOS) || defined(PLATFORM_OSX)
 typedef unsigned char BYTE;    // HACK: Fixes some code regarding surfaces, fixes same problem as in Linux.
-#if defined (__GNUC__) && __GNUC__ >= 4
-#define LIB_EXP __attribute__ ((visibility("default")))
-#else
-#define LIB_EXP
-#endif
-#define IndieLib() main(int argc, char **argv)
-#endif //PLATFORM_IOS
-
-#ifdef PLATFORM_OSX
-typedef unsigned char BYTE;    // HACK: Fixes some code regarding surfaces, fixes same problem as in Linux.
-#if defined (__GNUC__) && __GNUC__ >= 4
-#define LIB_EXP __attribute__ ((visibility("default")))
-#else
-#define LIB_EXP
-#endif
 #define IndieLib() main(int argc, char **argv)
 #endif //PLATFORM_OSX
 
-#ifdef PLATFORM_LINUX
+#if defined (__GNUC__) && __GNUC__ >= 4
+#define LIB_EXP __attribute__ ((visibility("default")))
+#else
 #define LIB_EXP
+#endif // __GNUC__
+
+
+
+#ifdef PLATFORM_LINUX
 typedef unsigned char BYTE;    // HACK: Fixes some code regarding surfaces, BYTE is not defined in Linux (and remember Linux is case sensitive BYTE != byte )
 #define IndieLib() main(int argc, char * argv[])
 #endif //PLATFORM_LINUX

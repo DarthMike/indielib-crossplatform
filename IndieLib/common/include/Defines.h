@@ -224,11 +224,7 @@ typedef unsigned char BYTE;    // HACK: Fixes some code regarding surfaces, fixe
 
 #if defined (__GNUC__) && __GNUC__ >= 4
 #define LIB_EXP __attribute__ ((visibility("default")))
-#else
-#define LIB_EXP
 #endif // __GNUC__
-
-
 
 #ifdef PLATFORM_LINUX
 typedef unsigned char BYTE;    // HACK: Fixes some code regarding surfaces, BYTE is not defined in Linux (and remember Linux is case sensitive BYTE != byte )

@@ -1419,7 +1419,7 @@ IND_Window* IND_Render::createRender(IND_WindowProperties& windowProperties) {
 #endif
 
 #ifdef INDIERENDER_GLES_IOS
-	_wrappedRenderer = new OpenGLES_iOS_Render();
+	_wrappedRenderer = new OpenGLES2Render();
 #endif
 
 #ifdef INDIERENDER_OPENGL

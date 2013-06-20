@@ -37,7 +37,7 @@ class DirectXRender;
 #endif
 
 #ifdef INDIERENDER_GLES_IOS
-class OpenGLES_iOS_Render;
+class OpenGLES2Render;
 #endif
 
 #ifdef INDIERENDER_OPENGL
@@ -462,7 +462,7 @@ private:
 #endif
 
 #ifdef INDIERENDER_GLES_IOS
-	OpenGLES_iOS_Render *_wrappedRenderer;
+	OpenGLES2Render *_wrappedRenderer;
 #endif
 
 #ifdef INDIERENDER_OPENGL

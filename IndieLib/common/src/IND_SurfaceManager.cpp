@@ -85,7 +85,7 @@ bool IND_SurfaceManager::init(IND_ImageManager *pImageManager, IND_Render *pRend
 #endif
 
 #ifdef INDIERENDER_GLES_IOS
-		_textureBuilder = new GLESIOSTextureBuilder(pImageManager, _render);
+		_textureBuilder = new OpenGLTextureBuilder(pImageManager, _render);
 #endif
 
 #ifdef INDIERENDER_OPENGL

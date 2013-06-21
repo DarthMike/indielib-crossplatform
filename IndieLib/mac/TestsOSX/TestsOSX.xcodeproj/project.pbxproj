@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C85058F1773973400306A0E /* TmxmapTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C85058E1773973400306A0E /* TmxmapTests.cpp */; };
 		E7071233159EFEC500BF34D9 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7071232159EFEC500BF34D9 /* WorkingPath.cpp */; };
 		E744863615E8E48700DDE3BF /* CollisionTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E744863415E8E48700DDE3BF /* CollisionTests.cpp */; };
 		E74EAAD715FBD0AC009E948F /* EntityTests_interactions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E74EAAD515FBD0AC009E948F /* EntityTests_interactions.cpp */; };
@@ -67,6 +68,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4C85058D1773967600306A0E /* TmxmapTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TmxmapTests.h; sourceTree = "<group>"; };
+		4C85058E1773973400306A0E /* TmxmapTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TmxmapTests.cpp; sourceTree = "<group>"; };
 		E7071232159EFEC500BF34D9 /* WorkingPath.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = WorkingPath.cpp; path = ../../../tests/WorkingPath.cpp; sourceTree = "<group>"; };
 		E7071234159F057900BF34D9 /* WorkingPath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = WorkingPath.h; path = ../../../tests/WorkingPath.h; sourceTree = "<group>"; };
 		E744863415E8E48700DDE3BF /* CollisionTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CollisionTests.cpp; sourceTree = "<group>"; };
@@ -136,6 +139,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C85058C1773959700306A0E /* tmxmap */ = {
+			isa = PBXGroup;
+			children = (
+				4C85058D1773967600306A0E /* TmxmapTests.h */,
+				4C85058E1773973400306A0E /* TmxmapTests.cpp */,
+			);
+			name = tmxmap;
+			sourceTree = "<group>";
+		};
 		E744863315E8E48700DDE3BF /* collision */ = {
 			isa = PBXGroup;
 			children = (
@@ -241,6 +253,7 @@
 				E7DBCB93159C7A8D00C8B2D9 /* ManualTestsMain.cpp */,
 				E7DBCB94159C7A8D00C8B2D9 /* primitives */,
 				E7DBCB97159C7A8D00C8B2D9 /* surface */,
+				4C85058C1773959700306A0E /* tmxmap */,
 			);
 			name = manual;
 			path = ../../../tests/manual;
@@ -427,6 +440,7 @@
 				E74EAAD715FBD0AC009E948F /* EntityTests_interactions.cpp in Sources */,
 				E75FCB8C16D3C33700D4694F /* SurfaceTests_Filters.cpp in Sources */,
 				E7B4FEB01736EE40003E4489 /* SurfaceTests_layout.cpp in Sources */,
+				4C85058F1773973400306A0E /* TmxmapTests.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -39,6 +39,7 @@ bool CIndieLib::init() {
 	_entity2dManager     =   new     IND_Entity2dManager;
 	//_entity3dManager       =   new     IND_Entity3dManager;
 	_math                =   new     IND_Math;
+    _tmxMapManager       =   new     IND_TmxMapManager;
 
 	char windowPropsText[] = "IndieLib";
 	IND_WindowProperties props (windowPropsText, 800, 600, 32, 0, 0,1);
@@ -58,6 +59,7 @@ bool CIndieLib::init() {
 	//if (!_meshManager      ->init (_render))                                    return 0;
 	if (!_input              ->init(_render))                                    return 0;
 	if (!_math               ->init())                                           return 0;
+    if (!_tmxMapManager      ->init())                                           return 0;
 
 	return 1;
 }
@@ -91,9 +93,10 @@ void CIndieLib::end() {
 	DISPOSE(_fontManager);
 	DISPOSE(_animationManager);
 	DISPOSE(_surfaceManager);
-    	DISPOSE(_imageManager);
+    DISPOSE(_imageManager);
 	//DISPOSE(_lightManager);
 	DISPOSE(_render);
+    DISPOSE(_tmxMapManager);
 
 	IndieLib::end();
 

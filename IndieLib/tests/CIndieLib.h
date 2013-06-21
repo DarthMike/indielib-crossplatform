@@ -29,6 +29,7 @@ public:
 	IND_Entity2dManager     *_entity2dManager;
 	IND_Entity3dManager     *_entity3dManager;
 	IND_Math                *_math;
+    IND_TmxMapManager       *_tmxMapManager;
 
 protected:
 

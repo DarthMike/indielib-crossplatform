@@ -880,8 +880,6 @@ typedef int IND_Filter;
 #define IND_FILTER_LINEAR                   2
 /**@}*/
 
-#ifndef PLATFORM_IOS   //KEYS FOR DESKTOP OS
-
 /**
  * @defgroup IND_Key Input keys
  * @ingroup Types
@@ -1233,8 +1231,6 @@ typedef int IND_MouseButtonState;
 //! Button not pressed
 #define IND_MBUTTON_NOT_PRESSED 0
 /**@}*/
-
-#endif  //KEYS FOR DESKTOP OS
     
 /**
  * @defgroup IND_Debug Debug mode

@@ -150,8 +150,8 @@ users for really concrete purposes.
 //****Renderer choosing in static time****
 //YOU SHOULD CHANGE HERE THE DEFINITION OF WHICH RENDERER TO COMPILE WITH
 //#define INDIERENDER_DIRECTX
-#define INDIERENDER_OPENGL
-//#define INDIERENDER_GLES_IOS
+//#define INDIERENDER_OPENGL
+#define INDIERENDER_GLES_IOS
 
 // ----- Renderer set checkings -----
 //Only one render type per configuration!

@@ -1,6 +1,6 @@
 /*
   Simple DirectMedia Layer
-  Copyright (C) 1997-2012 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -34,9 +34,7 @@ WIN_GetDisplayMode(LPCTSTR deviceName, DWORD index, SDL_DisplayMode * mode)
 {
     SDL_DisplayModeData *data;
     DEVMODE devmode;
-#ifndef _WIN32_WCE
     HDC hdc;
-#endif
 
     devmode.dmSize = sizeof(devmode);
     devmode.dmDriverExtra = 0;
@@ -59,17 +57,7 @@ WIN_GetDisplayMode(LPCTSTR deviceName, DWORD index, SDL_DisplayMode * mode)
     mode->h = devmode.dmPelsHeight;
     mode->refresh_rate = devmode.dmDisplayFrequency;
     mode->driverdata = data;
-#ifdef _WIN32_WCE
-    /* In WinCE EnumDisplaySettings(ENUM_CURRENT_SETTINGS) doesn't take the user defined orientation
-       into account but GetSystemMetrics does. */
-    if (index == ENUM_CURRENT_SETTINGS) {
-        mode->w = GetSystemMetrics(SM_CXSCREEN);
-        mode->h = GetSystemMetrics(SM_CYSCREEN);
-    }
-#endif
 
-/* WinCE has no GetDIBits, therefore we can't use it to get the display format */
-#ifndef _WIN32_WCE
     if (index == ENUM_CURRENT_SETTINGS
         && (hdc = CreateDC(deviceName, NULL, NULL, NULL)) != NULL) {
         char bmi_data[sizeof(BITMAPINFOHEADER) + 256 * sizeof(RGBQUAD)];
@@ -105,9 +93,7 @@ WIN_GetDisplayMode(LPCTSTR deviceName, DWORD index, SDL_DisplayMode * mode)
         } else if (bmi->bmiHeader.biBitCount == 4) {
             mode->format = SDL_PIXELFORMAT_INDEX4LSB;
         }
-    } else
-#endif /* _WIN32_WCE */
-    {
+    } else {
         /* FIXME: Can we tell what this will be? */
         if ((devmode.dmFields & DM_BITSPERPEL) == DM_BITSPERPEL) {
             switch (devmode.dmBitsPerPel) {
@@ -141,6 +127,7 @@ WIN_AddDisplay(LPTSTR DeviceName)
     SDL_VideoDisplay display;
     SDL_DisplayData *displaydata;
     SDL_DisplayMode mode;
+    DISPLAY_DEVICE device;
 
 #ifdef DEBUG_MODES
     printf("Display: %s\n", WIN_StringToUTF8(DeviceName));
@@ -157,10 +144,15 @@ WIN_AddDisplay(LPTSTR DeviceName)
                sizeof(displaydata->DeviceName));
 
     SDL_zero(display);
+    device.cb = sizeof(device);
+    if (EnumDisplayDevices(DeviceName, 0, &device, 0)) {
+        display.name = WIN_StringToUTF8(device.DeviceString);
+    }
     display.desktop_mode = mode;
     display.current_mode = mode;
     display.driverdata = displaydata;
     SDL_AddVideoDisplay(&display);
+    SDL_free(display.name);
     return SDL_TRUE;
 }
 
@@ -222,8 +214,7 @@ WIN_InitModes(_THIS)
         }
     }
     if (_this->num_displays == 0) {
-        SDL_SetError("No displays available");
-        return -1;
+        return SDL_SetError("No displays available");
     }
     return 0;
 }
@@ -233,18 +224,11 @@ WIN_GetDisplayBounds(_THIS, SDL_VideoDisplay * display, SDL_Rect * rect)
 {
     SDL_DisplayModeData *data = (SDL_DisplayModeData *) display->current_mode.driverdata;
 
-#ifdef _WIN32_WCE
-    // WINCE: DEVMODE.dmPosition not found, or may be mingw32ce bug
-    rect->x = 0;
-    rect->y = 0;
-    rect->w = _this->windows->w;
-    rect->h = _this->windows->h;
-#else
     rect->x = (int)data->DeviceMode.dmPosition.x;
     rect->y = (int)data->DeviceMode.dmPosition.y;
     rect->w = data->DeviceMode.dmPelsWidth;
     rect->h = data->DeviceMode.dmPelsHeight;
-#endif
+
     return 0;
 }
 
@@ -261,12 +245,16 @@ WIN_GetDisplayModes(_THIS, SDL_VideoDisplay * display)
         }
         if (SDL_ISPIXELFORMAT_INDEXED(mode.format)) {
             /* We don't support palettized modes now */
+            SDL_free(mode.driverdata);
             continue;
         }
         if (mode.format != SDL_PIXELFORMAT_UNKNOWN) {
             if (!SDL_AddDisplayMode(display, &mode)) {
                 SDL_free(mode.driverdata);
             }
+        }
+        else {
+            SDL_free(mode.driverdata);
         }
     }
 }
@@ -277,14 +265,6 @@ WIN_SetDisplayMode(_THIS, SDL_VideoDisplay * display, SDL_DisplayMode * mode)
     SDL_DisplayData *displaydata = (SDL_DisplayData *) display->driverdata;
     SDL_DisplayModeData *data = (SDL_DisplayModeData *) mode->driverdata;
     LONG status;
-
-#ifdef _WIN32_WCE
-    /* TODO: implement correctly.
-       On my Asus MyPAL, if I execute the code below
-       I get DISP_CHANGE_BADFLAGS and the Titlebar of the fullscreen window stays
-       visible ... (SDL_RaiseWindow() would fix that one) */
-    return 0;
-#endif
 
     status =
         ChangeDisplaySettingsEx(displaydata->DeviceName, &data->DeviceMode,
@@ -305,8 +285,7 @@ WIN_SetDisplayMode(_THIS, SDL_VideoDisplay * display, SDL_DisplayMode * mode)
             reason = "DISP_CHANGE_FAILED";
             break;
         }
-        SDL_SetError("ChangeDisplaySettingsEx() failed: %s", reason);
-        return -1;
+        return SDL_SetError("ChangeDisplaySettingsEx() failed: %s", reason);
     }
     EnumDisplaySettings(displaydata->DeviceName, ENUM_CURRENT_SETTINGS, &data->DeviceMode);
     return 0;

@@ -26,13 +26,15 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
  * includes
  */
 #include <stdlib.h>
-#include "SDL.h"
-#include "SDL_haptic.h"
-
 #include <stdio.h>              /* printf */
 #include <string.h>             /* strstr */
 #include <ctype.h>              /* isdigit */
 
+#include "SDL.h"
+
+#ifndef SDL_HAPTIC_DISABLED
+
+#include "SDL_haptic.h"
 
 static SDL_Haptic *haptic;
 
@@ -143,7 +145,7 @@ main(int argc, char **argv)
     /* Now we'll try a SAWTOOTHUP */
     if (supported & SDL_HAPTIC_SAWTOOTHUP) {
         printf("   effect %d: Sawtooth Up\n", nefx);
-        efx[nefx].type = SDL_HAPTIC_SQUARE;
+        efx[nefx].type = SDL_HAPTIC_SAWTOOTHUP;
         efx[nefx].periodic.period = 500;
         efx[nefx].periodic.magnitude = 0x5000;
         efx[nefx].periodic.length = 5000;
@@ -286,3 +288,14 @@ HapticPrintSupported(SDL_Haptic * haptic)
     if (supported & SDL_HAPTIC_STATUS)
         printf("      status\n");
 }
+
+#else
+
+int
+main(int argc, char *argv[])
+{
+    fprintf(stderr, "SDL compiled without Haptic support.\n");
+    exit(1);
+}
+
+#endif

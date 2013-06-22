@@ -1,6 +1,6 @@
 /*
   Simple DirectMedia Layer
-  Copyright (C) 1997-2012 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -20,14 +20,14 @@
 */
 #include "SDL_config.h"
 
-/* 
+/*
    Code to load and save surfaces in Windows BMP format.
 
    Why support BMP format?  Well, it's a native format for Windows, and
    most image processing programs can read and write it.  It would be nice
    to be able to have at least one image format that we can natively load
    and save, and since PNG is so complex that it would bloat the library,
-   BMP is a good alternative. 
+   BMP is a good alternative.
 
    This code currently supports Win32 DIBs in uncompressed 8 and 24 bpp.
 */
@@ -40,10 +40,10 @@
 
 /* Compression encodings for BMP files */
 #ifndef BI_RGB
-#define BI_RGB		0
-#define BI_RLE8		1
-#define BI_RLE4		2
-#define BI_BITFIELDS	3
+#define BI_RGB      0
+#define BI_RLE8     1
+#define BI_RLE4     2
+#define BI_BITFIELDS    3
 #endif
 
 
@@ -51,7 +51,7 @@ SDL_Surface *
 SDL_LoadBMP_RW(SDL_RWops * src, int freesrc)
 {
     SDL_bool was_error;
-    long fp_offset = 0;
+    Sint64 fp_offset = 0;
     int bmpPitch;
     int i, pad;
     SDL_Surface *surface;
@@ -252,14 +252,20 @@ SDL_LoadBMP_RW(SDL_RWops * src, int freesrc)
                 SDL_RWread(src, &palette->colors[i].b, 1, 1);
                 SDL_RWread(src, &palette->colors[i].g, 1, 1);
                 SDL_RWread(src, &palette->colors[i].r, 1, 1);
-                palette->colors[i].unused = SDL_ALPHA_OPAQUE;
+                palette->colors[i].a = SDL_ALPHA_OPAQUE;
             }
         } else {
             for (i = 0; i < (int) biClrUsed; ++i) {
                 SDL_RWread(src, &palette->colors[i].b, 1, 1);
                 SDL_RWread(src, &palette->colors[i].g, 1, 1);
                 SDL_RWread(src, &palette->colors[i].r, 1, 1);
-                SDL_RWread(src, &palette->colors[i].unused, 1, 1);
+                SDL_RWread(src, &palette->colors[i].a, 1, 1);
+
+                /* According to Microsoft documentation, the fourth element
+                   is reserved and must be zero, so we shouldn't treat it as
+                   alpha.
+                */
+                palette->colors[i].a = SDL_ALPHA_OPAQUE;
             }
         }
     }
@@ -371,7 +377,7 @@ SDL_LoadBMP_RW(SDL_RWops * src, int freesrc)
 int
 SDL_SaveBMP_RW(SDL_Surface * saveme, SDL_RWops * dst, int freedst)
 {
-    long fp_offset;
+    Sint64 fp_offset;
     int i, pad;
     SDL_Surface *surface;
     Uint8 *bits;
@@ -433,7 +439,7 @@ SDL_SaveBMP_RW(SDL_Surface * saveme, SDL_RWops * dst, int freedst)
             /* If the surface has a colorkey or alpha channel we'll save a
                32-bit BMP with alpha channel, otherwise save a 24-bit BMP. */
             if (save32bit) {
-                SDL_InitFormat(&format, 
+                SDL_InitFormat(&format,
 #if SDL_BYTEORDER == SDL_LIL_ENDIAN
                                SDL_PIXELFORMAT_ARGB8888
 #else
@@ -510,12 +516,12 @@ SDL_SaveBMP_RW(SDL_Surface * saveme, SDL_RWops * dst, int freedst)
                 SDL_RWwrite(dst, &colors[i].b, 1, 1);
                 SDL_RWwrite(dst, &colors[i].g, 1, 1);
                 SDL_RWwrite(dst, &colors[i].r, 1, 1);
-                SDL_RWwrite(dst, &colors[i].unused, 1, 1);
+                SDL_RWwrite(dst, &colors[i].a, 1, 1);
             }
         }
 
         /* Write the bitmap offset */
-        bfOffBits = SDL_RWtell(dst) - fp_offset;
+        bfOffBits = (Uint32)(SDL_RWtell(dst) - fp_offset);
         if (SDL_RWseek(dst, fp_offset + 10, RW_SEEK_SET) < 0) {
             SDL_Error(SDL_EFSEEK);
         }
@@ -542,7 +548,7 @@ SDL_SaveBMP_RW(SDL_Surface * saveme, SDL_RWops * dst, int freedst)
         }
 
         /* Write the BMP file size */
-        bfSize = SDL_RWtell(dst) - fp_offset;
+        bfSize = (Uint32)(SDL_RWtell(dst) - fp_offset);
         if (SDL_RWseek(dst, fp_offset + 2, RW_SEEK_SET) < 0) {
             SDL_Error(SDL_EFSEEK);
         }

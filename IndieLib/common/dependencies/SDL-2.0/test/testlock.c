@@ -10,7 +10,7 @@
   freely.
 */
 
-/* Test the thread and mutex locking functions 
+/* Test the thread and mutex locking functions
    Also exercises the system's signal/thread interaction
 */
 
@@ -69,14 +69,14 @@ Run(void *data)
         signal(SIGTERM, closemutex);
     while (!doterminate) {
         printf("Process %lu ready to work\n", SDL_ThreadID());
-        if (SDL_mutexP(mutex) < 0) {
+        if (SDL_LockMutex(mutex) < 0) {
             fprintf(stderr, "Couldn't lock mutex: %s", SDL_GetError());
             exit(1);
         }
         printf("Process %lu, working!\n", SDL_ThreadID());
         SDL_Delay(1 * 1000);
         printf("Process %lu, done!\n", SDL_ThreadID());
-        if (SDL_mutexV(mutex) < 0) {
+        if (SDL_UnlockMutex(mutex) < 0) {
             fprintf(stderr, "Couldn't unlock mutex: %s", SDL_GetError());
             exit(1);
         }

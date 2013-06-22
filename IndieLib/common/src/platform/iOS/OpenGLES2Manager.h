@@ -1,6 +1,6 @@
 /*****************************************************************************************
- * File: RenderObject3dOpenGL.cpp
- * Desc: Blitting of 3d objects using OpenGL
+ * File: OpenGLES2Manager.h
+ * Desc: OS initializer for OpenGL ES 2. 
  *****************************************************************************************/
 
 /*
@@ -20,35 +20,63 @@ You should have received a copy of the GNU Lesser General Public License along w
 this library; if not, write to the Free Software Foundation, Inc., 59 Temple Place,
 Suite 330, Boston, MA 02111-1307 USA
 */
-#include "Defines.h"
 
-#ifdef INDIERENDER_GLES_IOS
+
+#ifndef _OPENGLES2MANAGER_H_
+#define _OPENGLES2MANAGER_H_
+
 // ----- Includes -----
 
-#include "Global.h"
-#include "IND_SurfaceManager.h"
-#include "OpenGLES2Render.h"
+#include "Defines.h"
+#include "platform/OSOpenGLManager.h"
+
+// ----- Forward declarations -----
+class IND_Window;
+struct SDL_Window;
+
+// --------------------------------------------------------------------------------
+//									  OpenGLES2Manager
+// --------------------------------------------------------------------------------
 
 /** @cond DOCUMENT_PRIVATEAPI */
 
-// --------------------------------------------------------------------------------
-//							         Public methods
-// --------------------------------------------------------------------------------
+/*
+This class manages all OpenGL context creation for OS. Generally, as we use SDL we don't need to subclass this
+to support different OS.
+*/
+class OpenGLES2Manager : public OSOpenGLManager {
+public:
+
+	// ----- Init/End -----
+    OpenGLES2Manager (IND_Window* window) : OSOpenGLManager(window){}
+
+	virtual ~OpenGLES2Manager() {
+	}
+
+    // ----- Public methods -----
+	//Inits OpenGL context (SDL Properties)
+	virtual void setOpenGLContextParams(IND_ColorFormat colorFormat, int numBitsPerColor, int numDepthBits, int numStencilBits, bool doublebuffer);
+    
+	//Verifies properties set (call this after window is created)
+	virtual bool checkOpenGLSDLContextProps();
+    
+	//Creates an SDL openGL context
+	virtual bool createOpenGLSDLContext();
+    
+	//Ends OpenGL context
+	virtual void endOpenGLContext();
+    
+	//Performs buffer swapping or buffer drawing
+	virtual void presentBuffer();
+protected:
+
+	// ----- Private methods -----
+	void _init();
+	void _end();
 
 
-void OpenGLES2Render::blit3dMesh(IND_3dMesh *) {
-//TODO
-}
-
-void OpenGLES2Render::set3dMeshSequence(IND_3dMesh *, unsigned int ) {
-//TODO
-}
-
-
-// --------------------------------------------------------------------------------
-//							         Private methods
-// --------------------------------------------------------------------------------
+};
 
 /** @endcond */
 
-#endif //INDIERENDER_GLES_IOS
+#endif // _OPENGLES2MANAGER_H_

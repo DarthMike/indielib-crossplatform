@@ -43,7 +43,15 @@ static RESOLUTION g_possibleRes[g_numTestedRes] = {RESOLUTION(480, 320),
 												   RESOLUTION(1440, 900),
 												   RESOLUTION(1280,960),
 												   RESOLUTION(1920, 1200)};
-#endif
+#endif //defined (PLATFORM_WIN32) || defined (PLATFORM_LINUX) || defined (PLATFORM_OSX)
+
+//Phone platforms
+#if defined (PLATFORM_IOS)
+static const int g_numTestedRes = 1;
+static RESOLUTION g_possibleRes[g_numTestedRes] = {
+    RESOLUTION(1024, 768)
+};
+#endif //defined (PLATFORM_IOS)
 
 void FunctionalityTests::performTests(float dt) {
 

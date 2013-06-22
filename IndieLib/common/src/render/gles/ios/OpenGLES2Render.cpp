@@ -22,13 +22,13 @@ Suite 330, Boston, MA 02111-1307 USA
 */
 #include "Defines.h"
 
-#ifdef INDIERENDER_OPENGL
+#ifdef INDIERENDER_GLES_IOS
 
 // ----- Includes -----
 
 #include "Global.h"
 #include "IND_Math.h"
-#include "OpenGLRender.h"
+#include "OpenGLES2Render.h"
 #include "IND_Window.h"
 #include "IND_FontManager.h"
 #include "IND_SurfaceManager.h"
@@ -38,7 +38,7 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "IND_Font.h"
 #include "IND_Animation.h"
 #include "IND_Camera2d.h"
-#include "platform/OSOpenGLManager.h"
+#include "platform/iOS/OpenGLES2Manager.h"
 
 //Constants
 #define MINIMUM_OPENGL_VERSION_STRING "GL_VERSION_1_5"  //The minimum GL version supported by this renderer  
@@ -48,7 +48,7 @@ Suite 330, Boston, MA 02111-1307 USA
 //							  Initialization / Destruction
 // --------------------------------------------------------------------------------
 
-IND_Window* OpenGLRender::initRenderAndWindow(IND_WindowProperties& props) {
+IND_Window* OpenGLES2Render::initRenderAndWindow(IND_WindowProperties& props) {
 	if(props._bpp <= 0 || props._height <= 0 || props._width <= 0) {
 		g_debug->header("Error initializing window: Invalid parameters provided", DebugApi::LogHeaderError);
 		return 0;
@@ -75,7 +75,7 @@ IND_Window* OpenGLRender::initRenderAndWindow(IND_WindowProperties& props) {
     g_debug->dataInt(props._doubleBuffer, true);
 	
 	if(!_osOpenGLMgr) {
-		_osOpenGLMgr = new OSOpenGLManager(_window);  
+		_osOpenGLMgr = new OpenGLES2Manager(_window);
 	}
 	_doubleBuffer = props._doubleBuffer;
     
@@ -94,7 +94,7 @@ IND_Window* OpenGLRender::initRenderAndWindow(IND_WindowProperties& props) {
 	}
 
 	g_debug->header("Creating OpenGL Render", DebugApi::LogHeaderBegin);
-	_ok = initializeOpenGLRender();
+	_ok = initializeOpenGLES2Render();
 	if (!_ok) {
 		g_debug->header("Finalizing OpenGL", DebugApi::LogHeaderWarning);
 		freeVars();
@@ -115,7 +115,7 @@ IND_Window* OpenGLRender::initRenderAndWindow(IND_WindowProperties& props) {
 	return _window;
 }
 
-bool OpenGLRender::reset(IND_WindowProperties& props) {
+bool OpenGLES2Render::reset(IND_WindowProperties& props) {
 	if(props._bpp <= 0 || props._height <= 0 || props._width <= 0) {
 		g_debug->header("Error resetting window: Invalid parameters provided", DebugApi::LogHeaderError);
 		return 0;
@@ -139,7 +139,7 @@ bool OpenGLRender::reset(IND_WindowProperties& props) {
     return ok;
 }
 
-bool OpenGLRender::toggleFullScreen() {
+bool OpenGLES2Render::toggleFullScreen() {
 
 	g_debug->header("Changing To/From Full Screen", DebugApi::LogHeaderBegin);
 
@@ -148,7 +148,7 @@ bool OpenGLRender::toggleFullScreen() {
 	return true;
 }
 
-void OpenGLRender::beginScene() {
+void OpenGLES2Render::beginScene() {
 
 	if (!_ok)
 		return;
@@ -158,7 +158,7 @@ void OpenGLRender::beginScene() {
 	glClear(GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 }
 
-void OpenGLRender::endScene() {
+void OpenGLES2Render::endScene() {
 	if (!_ok)
 		return;
 
@@ -174,25 +174,25 @@ void OpenGLRender::endScene() {
 #endif	
 }
 
-void OpenGLRender::showFpsInWindowTitle(char *pFPSString) {
+void OpenGLES2Render::showFpsInWindowTitle(char *pFPSString) {
 	if (!_ok)   return;
 
 	_window->setTitle(pFPSString);
 }
 
-void OpenGLRender::setPointPixelScale (float pNewScale) {
+void OpenGLES2Render::setPointPixelScale (float pNewScale) {
     _info._pointPixelScale = pNewScale;
 }
 
-void OpenGLRender::getNumrenderedObjectsString(char *pBuffer)      {
+void OpenGLES2Render::getNumrenderedObjectsString(char *pBuffer)      {
 	IND_Math::itoa(_numrenderedObjects, pBuffer);
 }
 
-void OpenGLRender::getNumDiscardedObjectsString(char *pBuffer)      {
+void OpenGLES2Render::getNumDiscardedObjectsString(char *pBuffer)      {
 	IND_Math::itoa(_numDiscardedObjects, pBuffer);
 }
 
-void OpenGLRender::end() {
+void OpenGLES2Render::end() {
 	if (_ok) {
 		g_debug->header("Finalizing OpenGL", DebugApi::LogHeaderBegin);
 		_osOpenGLMgr->endOpenGLContext();
@@ -211,7 +211,7 @@ void OpenGLRender::end() {
 Init vars
 ==================
 */
-void OpenGLRender::initVars() {
+void OpenGLES2Render::initVars() {
 	_numrenderedObjects = 0;
 	_numDiscardedObjects = 0;
 	_window = NULL;
@@ -225,7 +225,7 @@ void OpenGLRender::initVars() {
 Init OpenGL
 ==================
 */
-bool OpenGLRender::initializeOpenGLRender() {
+bool OpenGLES2Render::initializeOpenGLES2Render() {
 
 	//Check dependency of window initialization
 	if (!_window->isOK()) {
@@ -260,21 +260,9 @@ bool OpenGLRender::initializeOpenGLRender() {
 Check OpenGL extensions
 ==================
 */
-bool OpenGLRender::checkGLExtensions() {
+bool OpenGLES2Render::checkGLExtensions() {
 
-	GLenum err = glewInit();
-	if (GLEW_OK != err) {
-		g_debug->header("Extensions loading (GLEW) failed!", DebugApi::LogHeaderError);
-		return false;
-	}
-
-	//Check system support for minimum targeted version of library
-	if (!glewIsSupported(MINIMUM_OPENGL_VERSION_STRING)) {
-		g_debug->header("Minimum OPENGL version is not available!", DebugApi::LogHeaderError);
-		return false;
-	}
-
-	strcpy(_info._version, MINIMUM_OPENGL_VERSION_STRING);
+    //TODO : GLES 2
 
 	//TODO: Other extensions
 
@@ -286,7 +274,7 @@ bool OpenGLRender::checkGLExtensions() {
 Free memory
 ==================
 */
-void OpenGLRender::freeVars() {
+void OpenGLES2Render::freeVars() {
 	DISPOSE(_osOpenGLMgr);
 	DISPOSE(_window);
 	_ok = false;
@@ -297,7 +285,7 @@ void OpenGLRender::freeVars() {
 Hardware information
 ==================
 */
-void OpenGLRender::getInfo() {
+void OpenGLES2Render::getInfo() {
 
     GLint maxTextureSize;
     glGetIntegerv(GL_MAX_TEXTURE_SIZE,&maxTextureSize);
@@ -311,7 +299,7 @@ void OpenGLRender::getInfo() {
 Write hardware information to debug log
 ==================
 */
-void OpenGLRender::writeInfo() {
+void OpenGLES2Render::writeInfo() {
 	g_debug->header("Hardware information" , DebugApi::LogHeaderBegin);
 
 	// ----- D3D version -----
@@ -374,7 +362,7 @@ void OpenGLRender::writeInfo() {
 Resets the viewport to all window width/height
 ==================
 */
-bool OpenGLRender::resetViewport(int pWitdh, int pHeight) {
+bool OpenGLES2Render::resetViewport(int pWitdh, int pHeight) {
     if (pHeight == 0 || pWitdh == 0) return false;
     
 	if (!setViewPort2d(0, 0, pWitdh, pHeight))
@@ -388,4 +376,4 @@ bool OpenGLRender::resetViewport(int pWitdh, int pHeight) {
 	return true;
 }
 /** @endcond */
-#endif //INDIERENDER_OPENGL
+#endif //INDIERENDER_GLES_IOS

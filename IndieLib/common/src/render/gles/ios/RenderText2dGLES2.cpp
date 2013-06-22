@@ -22,7 +22,7 @@ Suite 330, Boston, MA 02111-1307 USA
 */
 #include "Defines.h"
 
-#ifdef INDIERENDER_OPENGL
+#ifdef INDIERENDER_GLES_IOS
 // ----- Includes -----
 
 #include "Global.h"
@@ -205,4 +205,4 @@ int OpenGLES2Render::getLongInPixels(IND_Font *pFo, char *pText, int pPos, int p
 	return mWidthSentence;
 }
 /** @endcond */
-#endif //INDIERENDER_OPENGL
+#endif //INDIERENDER_GLES_IOS

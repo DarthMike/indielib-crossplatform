@@ -22,7 +22,7 @@ Suite 330, Boston, MA 02111-1307 USA
 */
 #include "Defines.h"
 
-#ifdef INDIERENDER_OPENGL
+#if defined (INDIERENDER_OPENGL) || defined (INDIERENDER_GLES_IOS) 
 
 #include "dependencies/FreeImage/Dist/FreeImage.h"
 
@@ -32,6 +32,8 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "TextureDefinitions.h"
 #include "IND_Image.h"
 #include "ImageCutter.h"
+
+
 
 /** @cond DOCUMENT_PRIVATEAPI */
 
@@ -438,4 +440,4 @@ void OpenGLTextureBuilder::push4Vertices(CUSTOMVERTEX2D *pVertices,
 	           0.0f);
 }
 /** @endcond */
-#endif //INDIERENDER_OPENGL
+#endif // defined (INDIERENDER_OPENGL) || defined (INDIERENDER_GLES_IOS)

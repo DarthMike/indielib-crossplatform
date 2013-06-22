@@ -35,6 +35,9 @@ Suite 330, Boston, MA 02111-1307 USA
 
 #ifdef INDIERENDER_GLES_IOS
 #include <OpenGLES/ES2/gl.h>
+// Define inverted G-B pixel types, only available in desktop
+#define GL_BGR GL_RGB
+#define GL_BGRA GL_RGBA
 #endif
 /** @cond DOCUMENT_PRIVATEAPI */
 

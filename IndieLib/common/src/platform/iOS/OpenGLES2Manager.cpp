@@ -1,5 +1,5 @@
 /*****************************************************************************************
- * File: OSOpenGLManager.cpp
+ * File: OpenGLES2Manager.cpp
  * Desc: OS initializer for OpenGL. Provides interface and default implementation for OpenGL (desktop)
  *       May need to be subclassed is a new system is supported, to add different initialization
  *       parameters, etc.
@@ -24,20 +24,20 @@ Suite 330, Boston, MA 02111-1307 USA
 */
 #include "Defines.h"
 
-#if defined (INDIERENDER_OPENGL) || defined (INDIERENDER_GLES_IOS)
+#if defined (INDIERENDER_GLES_IOS)
 // ----- Libs -----
 #include "dependencies/SDL-2.0/include/SDL.h"
 #include "dependencies/SDL-2.0/include/SDL_video.h"
 // ----- Includes -----
 #include "Global.h"
-#include "OSOpenGLManager.h"
+#include "OpenGLES2Manager.h"
 #include "IND_Window.h"
 
 // --------------------------------------------------------------------------------
 //							  Initialization / Destruction
 // --------------------------------------------------------------------------------
 
-void OSOpenGLManager::setOpenGLContextParams(IND_ColorFormat colorFormat, int numBitsPerColor, int numDepthBits, int numStencilBits, bool doublebuffer) {
+void OpenGLES2Manager::setOpenGLContextParams(IND_ColorFormat colorFormat, int numBitsPerColor, int numDepthBits, int numStencilBits, bool doublebuffer) {
 	g_debug->header("Initiating OpenGL SDL Context Parameters", DebugApi::LogHeaderOk);
 	
 	if (IND_RGBA == colorFormat) {
@@ -70,7 +70,7 @@ void OSOpenGLManager::setOpenGLContextParams(IND_ColorFormat colorFormat, int nu
 	g_debug->header("OpenGL Context Parameters Initated", DebugApi::LogHeaderOk);
 }
 
-bool OSOpenGLManager::checkOpenGLSDLContextProps() {
+bool OpenGLES2Manager::checkOpenGLSDLContextProps() {
 	int contextRSize;
 	int contextGSize;
 	int contextBSize;
@@ -133,7 +133,7 @@ bool OSOpenGLManager::checkOpenGLSDLContextProps() {
 	return true;
 }
 
-bool OSOpenGLManager::createOpenGLSDLContext() {
+bool OpenGLES2Manager::createOpenGLSDLContext() {
 	g_debug->header("Creating OpenGL context", DebugApi::LogHeaderOk);
   
 	_sdlWindow = _window->getSDLWindow();
@@ -148,7 +148,7 @@ bool OSOpenGLManager::createOpenGLSDLContext() {
 	return true;
 }
 
-void OSOpenGLManager::endOpenGLContext() {
+void OpenGLES2Manager::endOpenGLContext() {
 	if (_glContext) {
 		g_debug->header("Destroying OpenGL Context", DebugApi::LogHeaderOk);
 		SDL_GL_DeleteContext(_glContext);
@@ -156,9 +156,9 @@ void OSOpenGLManager::endOpenGLContext() {
 	}
 }
 
-void OSOpenGLManager::presentBuffer() {
+void OpenGLES2Manager::presentBuffer() {
 	assert(_sdlWindow);
 	SDL_GL_SwapWindow(_sdlWindow);
 }
 
-#endif //defined (INDIERENDER_OPENGL) || defined (INDIERENDER_GLES_IOS)
+#endif //INDIERENDER_GLES_IOS

@@ -23,7 +23,7 @@ Suite 330, Boston, MA 02111-1307 USA
 */
 #include "Defines.h"
 
-#ifdef INDIERENDER_OPENGL
+#ifdef INDIERENDER_GLES_IOS
 // ----- Includes -----
 
 #include "Global.h"
@@ -510,4 +510,4 @@ void OpenGLES2Render::blitCollisionLine(int pPosX1, int pPosY1, int pPosX2, int 
 
 /** @endcond */
 
-#endif //INDIERENDER_OPENGL
+#endif //INDIERENDER_GLES_IOS

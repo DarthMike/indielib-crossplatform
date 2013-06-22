@@ -30,7 +30,16 @@
 		E72010D51770FF4200D14384 /* IndieLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E72010BD1770FF4200D14384 /* IndieLib.cpp */; };
 		E72010D61770FF4200D14384 /* IndieVersion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E72010BE1770FF4200D14384 /* IndieVersion.cpp */; };
 		E72010D71770FF4200D14384 /* PrecissionTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E72010BF1770FF4200D14384 /* PrecissionTimer.cpp */; };
-		E75BD9531771093400C5185F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E75BD9521771093400C5185F /* OpenGLES.framework */; };
+		E75522FD17761C8A005B7F34 /* tinystr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75522F717761C8A005B7F34 /* tinystr.cpp */; };
+		E75522FE17761C8A005B7F34 /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75522F917761C8A005B7F34 /* tinyxml.cpp */; };
+		E75522FF17761C8A005B7F34 /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75522FB17761C8A005B7F34 /* tinyxmlerror.cpp */; };
+		E755230017761C8A005B7F34 /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75522FC17761C8A005B7F34 /* tinyxmlparser.cpp */; };
+		E755230317771464005B7F34 /* IND_Camera3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E755230217771463005B7F34 /* IND_Camera3d.cpp */; };
+		E75523071777262B005B7F34 /* OpenGLES2Manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75523061777262A005B7F34 /* OpenGLES2Manager.cpp */; };
+		E755230A177766EC005B7F34 /* OSOpenGLManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7552309177766EC005B7F34 /* OSOpenGLManager.cpp */; };
+		E755230C17776774005B7F34 /* ImageCutter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E755230B17776774005B7F34 /* ImageCutter.cpp */; };
+		E755230F1777679C005B7F34 /* OpenGLTextureBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E755230E1777679B005B7F34 /* OpenGLTextureBuilder.cpp */; };
+		E755231117776904005B7F34 /* IND_AnimationManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E755231017776904005B7F34 /* IND_AnimationManager.cpp */; };
 		E75BD9611772624100C5185F /* RenderTransformCommonGLES2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75BD9561772624100C5185F /* RenderTransformCommonGLES2.cpp */; };
 		E75BD9621772624100C5185F /* RenderTransform3dGLES2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75BD9571772624100C5185F /* RenderTransform3dGLES2.cpp */; };
 		E75BD9631772624100C5185F /* RenderTransform2dGLES2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75BD9581772624100C5185F /* RenderTransform2dGLES2.cpp */; };
@@ -117,8 +126,25 @@
 		E72010C01770FF4200D14384 /* PrecissionTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrecissionTimer.h; path = ../../common/src/PrecissionTimer.h; sourceTree = "<group>"; };
 		E72010C11770FF4200D14384 /* TextureBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextureBuilder.h; path = ../../common/src/TextureBuilder.h; sourceTree = "<group>"; };
 		E72010D81770FF5600D14384 /* TextureDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextureDefinitions.h; path = ../../common/src/TextureDefinitions.h; sourceTree = "<group>"; };
+		E75522E817761B68005B7F34 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		E75522EA17761B6F005B7F34 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		E75522F717761C8A005B7F34 /* tinystr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinystr.cpp; sourceTree = "<group>"; };
+		E75522F817761C8A005B7F34 /* tinystr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinystr.h; sourceTree = "<group>"; };
+		E75522F917761C8A005B7F34 /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
+		E75522FA17761C8A005B7F34 /* tinyxml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinyxml.h; sourceTree = "<group>"; };
+		E75522FB17761C8A005B7F34 /* tinyxmlerror.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxmlerror.cpp; sourceTree = "<group>"; };
+		E75522FC17761C8A005B7F34 /* tinyxmlparser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxmlparser.cpp; sourceTree = "<group>"; };
+		E75523011777141F005B7F34 /* IND_Camera3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IND_Camera3d.h; path = ../../common/include/IND_Camera3d.h; sourceTree = "<group>"; };
+		E755230217771463005B7F34 /* IND_Camera3d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IND_Camera3d.cpp; path = ../../common/src/IND_Camera3d.cpp; sourceTree = "<group>"; };
+		E75523051777262A005B7F34 /* OpenGLES2Manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenGLES2Manager.h; path = ../../common/src/platform/iOS/OpenGLES2Manager.h; sourceTree = "<group>"; };
+		E75523061777262A005B7F34 /* OpenGLES2Manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OpenGLES2Manager.cpp; path = ../../common/src/platform/iOS/OpenGLES2Manager.cpp; sourceTree = "<group>"; };
+		E7552308177766EC005B7F34 /* OSOpenGLManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OSOpenGLManager.h; path = ../../common/src/platform/OSOpenGLManager.h; sourceTree = "<group>"; };
+		E7552309177766EC005B7F34 /* OSOpenGLManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OSOpenGLManager.cpp; path = ../../common/src/platform/OSOpenGLManager.cpp; sourceTree = "<group>"; };
+		E755230B17776774005B7F34 /* ImageCutter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ImageCutter.cpp; path = ../../common/src/ImageCutter.cpp; sourceTree = "<group>"; };
+		E755230D1777679B005B7F34 /* OpenGLTextureBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenGLTextureBuilder.h; path = ../../common/src/render/opengl/OpenGLTextureBuilder.h; sourceTree = "<group>"; };
+		E755230E1777679B005B7F34 /* OpenGLTextureBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OpenGLTextureBuilder.cpp; path = ../../common/src/render/opengl/OpenGLTextureBuilder.cpp; sourceTree = "<group>"; };
+		E755231017776904005B7F34 /* IND_AnimationManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IND_AnimationManager.cpp; path = ../../common/src/IND_AnimationManager.cpp; sourceTree = "<group>"; };
 		E75BD9511771085100C5185F /* OpenGLES2Render.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenGLES2Render.h; path = ../../common/src/render/gles/ios/OpenGLES2Render.h; sourceTree = "<group>"; };
-		E75BD9521771093400C5185F /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		E75BD9561772624100C5185F /* RenderTransformCommonGLES2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderTransformCommonGLES2.cpp; path = ../../common/src/render/gles/ios/RenderTransformCommonGLES2.cpp; sourceTree = "<group>"; };
 		E75BD9571772624100C5185F /* RenderTransform3dGLES2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderTransform3dGLES2.cpp; path = ../../common/src/render/gles/ios/RenderTransform3dGLES2.cpp; sourceTree = "<group>"; };
 		E75BD9581772624100C5185F /* RenderTransform2dGLES2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderTransform2dGLES2.cpp; path = ../../common/src/render/gles/ios/RenderTransform2dGLES2.cpp; sourceTree = "<group>"; };
@@ -135,7 +161,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E75BD9531771093400C5185F /* OpenGLES.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,7 +170,9 @@
 		E7201067176E3DF000D14384 = {
 			isa = PBXGroup;
 			children = (
-				E75BD9521771093400C5185F /* OpenGLES.framework */,
+				E75522F617761C8A005B7F34 /* tinyxml */,
+				E75522EA17761B6F005B7F34 /* UIKit.framework */,
+				E75522E817761B68005B7F34 /* OpenGLES.framework */,
 				E7201083176E41DC00D14384 /* include */,
 				E7201084176E41E100D14384 /* src */,
 				E7201075176E3DF000D14384 /* indielibios */,
@@ -191,6 +218,7 @@
 				E720108A1770FEFF00D14384 /* ImageCutter.h */,
 				E720108B1770FEFF00D14384 /* IND_Animation.h */,
 				E720108C1770FEFF00D14384 /* IND_AnimationManager.h */,
+				E75523011777141F005B7F34 /* IND_Camera3d.h */,
 				E720108D1770FEFF00D14384 /* IND_Camera2d.h */,
 				E720108E1770FEFF00D14384 /* IND_Entity2d.h */,
 				E720108F1770FEFF00D14384 /* IND_Entity2dManager.h */,
@@ -231,12 +259,15 @@
 				E72010A71770FF4200D14384 /* CollisionParser.cpp */,
 				E72010A81770FF4200D14384 /* DebugApi.cpp */,
 				E72010A91770FF4200D14384 /* DebugApi.h */,
+				E755230B17776774005B7F34 /* ImageCutter.cpp */,
 				E72010AA1770FF4200D14384 /* FreeImageHelper.cpp */,
 				E72010AB1770FF4200D14384 /* FreeImageHelper.h */,
 				E72010AC1770FF4200D14384 /* Global.cpp */,
 				E72010AD1770FF4200D14384 /* Global.h */,
 				E72010AE1770FF4200D14384 /* IND_Animation.cpp */,
+				E755231017776904005B7F34 /* IND_AnimationManager.cpp */,
 				E72010AF1770FF4200D14384 /* IND_Camera2d.cpp */,
+				E755230217771463005B7F34 /* IND_Camera3d.cpp */,
 				E72010B01770FF4200D14384 /* IND_Entity2d.cpp */,
 				E72010B11770FF4200D14384 /* IND_Entity2dManager.cpp */,
 				E72010B21770FF4200D14384 /* IND_FontManager.cpp */,
@@ -260,6 +291,20 @@
 			name = src;
 			sourceTree = "<group>";
 		};
+		E75522F617761C8A005B7F34 /* tinyxml */ = {
+			isa = PBXGroup;
+			children = (
+				E75522F717761C8A005B7F34 /* tinystr.cpp */,
+				E75522F817761C8A005B7F34 /* tinystr.h */,
+				E75522F917761C8A005B7F34 /* tinyxml.cpp */,
+				E75522FA17761C8A005B7F34 /* tinyxml.h */,
+				E75522FB17761C8A005B7F34 /* tinyxmlerror.cpp */,
+				E75522FC17761C8A005B7F34 /* tinyxmlparser.cpp */,
+			);
+			name = tinyxml;
+			path = ../../common/dependencies/tinyxml;
+			sourceTree = "<group>";
+		};
 		E75BD96B1772624800C5185F /* ios */ = {
 			isa = PBXGroup;
 			children = (
@@ -280,6 +325,12 @@
 		E75BD96C1772625D00C5185F /* gles */ = {
 			isa = PBXGroup;
 			children = (
+				E755230D1777679B005B7F34 /* OpenGLTextureBuilder.h */,
+				E755230E1777679B005B7F34 /* OpenGLTextureBuilder.cpp */,
+				E7552308177766EC005B7F34 /* OSOpenGLManager.h */,
+				E7552309177766EC005B7F34 /* OSOpenGLManager.cpp */,
+				E75523051777262A005B7F34 /* OpenGLES2Manager.h */,
+				E75523061777262A005B7F34 /* OpenGLES2Manager.cpp */,
 				E75BD96B1772624800C5185F /* ios */,
 			);
 			name = gles;
@@ -368,6 +419,16 @@
 				E75BD9671772624100C5185F /* RenderObject2dGLES2.cpp in Sources */,
 				E75BD9681772624100C5185F /* RenderCullingGLES2.cpp in Sources */,
 				E75BD96A1772624100C5185F /* OpenGLES2Render.cpp in Sources */,
+				E75522FD17761C8A005B7F34 /* tinystr.cpp in Sources */,
+				E75522FE17761C8A005B7F34 /* tinyxml.cpp in Sources */,
+				E75522FF17761C8A005B7F34 /* tinyxmlerror.cpp in Sources */,
+				E755230017761C8A005B7F34 /* tinyxmlparser.cpp in Sources */,
+				E755230317771464005B7F34 /* IND_Camera3d.cpp in Sources */,
+				E75523071777262B005B7F34 /* OpenGLES2Manager.cpp in Sources */,
+				E755230A177766EC005B7F34 /* OSOpenGLManager.cpp in Sources */,
+				E755230C17776774005B7F34 /* ImageCutter.cpp in Sources */,
+				E755230F1777679C005B7F34 /* OpenGLTextureBuilder.cpp in Sources */,
+				E755231117776904005B7F34 /* IND_AnimationManager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,8 +439,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++98";
-				CLANG_CXX_LIBRARY = "libstdc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -414,7 +475,7 @@
 					"-lSDL2",
 					"-lfreeimage-iphone",
 				);
-				"OTHER_LDFLAGS[sdk=iphonesimulator*][arch=armv7]" = (
+				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
 					"-lSDL2",
 					"-lfreeimage-simulator",
 				);
@@ -427,8 +488,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++98";
-				CLANG_CXX_LIBRARY = "libstdc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;

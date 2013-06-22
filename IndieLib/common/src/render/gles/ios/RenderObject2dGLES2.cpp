@@ -23,7 +23,7 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "Defines.h"
 #include <stdio.h>
 
-#ifdef INDIERENDER_OPENGL
+#ifdef INDIERENDER_GLES_IOS
 // ----- Includes -----
 
 #include "Global.h"
@@ -362,7 +362,7 @@ void OpenGLES2Render::fillVertex2d(CUSTOMVERTEX2D *pVertex2d,
 	pVertex2d->_v       = pV;
 }
 /** @endcond */
-#endif //INDIERENDER_OPENGL
+#endif //INDIERENDER_GLES_IOS
 
 
 

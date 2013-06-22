@@ -58,10 +58,10 @@ class IND_3dMesh;
 class IND_Animation;
 class IND_Camera2d;
 class IND_Camera3d;
-class OSOpenGLManager;
+class OpenGLES2Manager;
 
 // ----- Libs -----
-#include <OpenGLES/ES2/gl.h>
+#include <OpenGLES/ES1/gl.h>
 
 // ----- Defines ------
 #define MAX_PIXELS 2048
@@ -480,7 +480,7 @@ private:
 	// ----- Objects -----
 	IND_Math _math;
 	IND_Window *_window;
-	OSOpenGLManager *_osOpenGLMgr;
+	OpenGLES2Manager *_osOpenGLMgr;
 
 	FRUSTRUMPLANES _frustrumPlanes;
 

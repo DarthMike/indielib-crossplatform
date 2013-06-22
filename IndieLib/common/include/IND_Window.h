@@ -175,6 +175,7 @@ private:
 	//Creation of window by renderer
 	friend class OpenGLRender;
 	friend class DirectXRender;
+    friend class OpenGLES2Render;
     /** @endcond */
     
 };

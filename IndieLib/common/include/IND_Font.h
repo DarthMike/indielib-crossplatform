@@ -142,6 +142,7 @@ private:
 	friend class IND_FontManager;
 	friend class DirectXRender;
 	friend class OpenGLRender;
+    friend class OpenGLES2Render;
     /** @endcond */
 };
 /**@}*/

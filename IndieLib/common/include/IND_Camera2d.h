@@ -116,6 +116,7 @@ private:
 
 	friend class DirectXRender;
 	friend class OpenGLRender;
+    friend class OpenGLES2Render;
     /** @endcond */
 };
 

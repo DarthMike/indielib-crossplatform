@@ -40,6 +40,7 @@ bool CIndieLib::init() {
 	//_entity3dManager       =   new     IND_Entity3dManager;
 	_math                =   new     IND_Math;
     _tmxMapManager       =   new     IND_TmxMapManager;
+    _spriterManager      =   new     IND_SpriterManager;
 
 	char windowPropsText[] = "IndieLib";
 	IND_WindowProperties props (windowPropsText, 800, 600, 32, 0, 0,1);
@@ -60,7 +61,8 @@ bool CIndieLib::init() {
 	if (!_input              ->init(_render))                                    return 0;
 	if (!_math               ->init())                                           return 0;
     if (!_tmxMapManager      ->init())                                           return 0;
-
+    if (!_spriterManager     ->init())                                           return 0;
+    
 	return 1;
 }
 
@@ -84,6 +86,8 @@ void CIndieLib::end() {
 	_imageManager        ->end();
 	//_lightManager      ->end();
 	_render              ->end();
+    _tmxMapManager       ->end();
+    _spriterManager      ->end();
 
 	DISPOSE(_math);
 	//DISPOSE(_meshManager);
@@ -97,8 +101,11 @@ void CIndieLib::end() {
 	//DISPOSE(_lightManager);
 	DISPOSE(_render);
     DISPOSE(_tmxMapManager);
+    DISPOSE(_spriterManager);
 
 	IndieLib::end();
 
     DISPOSE(_pinstance);
 }
+
+

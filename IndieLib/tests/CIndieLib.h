@@ -30,6 +30,7 @@ public:
 	IND_Entity3dManager     *_entity3dManager;
 	IND_Math                *_math;
     IND_TmxMapManager       *_tmxMapManager;
+    IND_SpriterManager      *_spriterManager;
 
 protected:
 

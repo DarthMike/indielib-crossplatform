@@ -23,7 +23,7 @@ Suite 330, Boston, MA 02111-1307 USA
 #define _IND_INPUT_
 
 // ----- Includes -----
-
+#include "Defines.h"
 #include "IND_Timer.h"
 
 // ----- Forward declarations -----

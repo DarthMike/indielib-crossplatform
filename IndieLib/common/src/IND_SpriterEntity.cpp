@@ -139,8 +139,16 @@ void  IND_SpriterEntity::drawTransientObject(float x, float y, float angle, floa
     IND_Matrix *mMatrix = new IND_Matrix();
     
     
-    _render->setTransform2d(tObject->x,                     // x pos  note: we start in 0,0 (corner of screen)
-                                tObject->y,                      // y pos
+    int tempx = tObject->x + 300;
+    int tempy = (-tObject->y)  + 400; // SDL uses the inverse y-value
+    
+    std:cout << "xvalue "  << tempx << " , yvalue " << tempy << '\n';
+    
+    
+    
+    
+    _render->setTransform2d(    tempx,                      // x pos  note: we start in 0,0 (corner of screen)
+                                tempy,                      // y pos
                                 0,                          // Angle x
                                 0,                          // Angle y
                                 0,                          // Angle z

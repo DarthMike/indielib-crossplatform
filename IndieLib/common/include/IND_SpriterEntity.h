@@ -18,7 +18,8 @@
 // ----- Includes -----
 
 #include "IND_object.h"
-#include "IND_Image.h"
+#include "IND_Surface.h"
+#include "IND_Render.h"
 #include "../dependencies/SpriterParser/Animation.h"
 #include "../dependencies/SpriterParser/Mainline.h"
 #include "../dependencies/SpriterParser/Timeline.h"
@@ -76,7 +77,7 @@ public:
 
 	// ----- Public methods ------
     
-    void playAnimation(int animation); // TODO maybe input parameter animationname instead??
+    void playAnimation(int animation, IND_Render *render); // TODO maybe input parameter animationname instead??
     void update(int deltaTime);
     void draw(float x, float y, float angle, float scale_x, float scale_y);
     void stopAnimation();
@@ -108,11 +109,11 @@ private:
 	
 	// ----- Structures ------
 
-    typedef map <Fileref, IND_Image*> ImageToFileMap;
+    typedef map <Fileref, IND_Surface*> SurfaceToFileMap;
     
 	const char                  *_id;                   // Entity ID
 	const char                  *_name;                 // Entity name
-    ImageToFileMap  *_images;               // map of images used in animations
+    SurfaceToFileMap            *_surfaces;             // map of surfaces used in animations
     std::vector <Animation *>   *_animations;           // vector of animations
     
     int                         _currentAnimation;      // current animation playing
@@ -121,6 +122,8 @@ private:
     
     bool                        _drawBones;             // TODO: support this in a later version
     bool                        _drawObjectpositions;   // TODO: support this in a later version
+    
+    IND_Render                  *_render;               // render where the direct blitting is handled
 
 
 	// ----- Private sets ------
@@ -134,10 +137,10 @@ private:
     void drawBone(float x, float y, float angle, float scale_x, float scale_y);             // TODO: support this in a later version
     
     TimelineObject* getTimelineObject(int timelineId, int keyId);
-    IND_Image* getImage(int folderId, int fileId);
+    IND_Surface* getSurface(int folderId, int fileId);
     
     void initAttrib();
-    void addImage(int folderId, int fileId, IND_Image *pImage);
+    void addSurface(int folderId, int fileId, IND_Surface *pSurface);
     Animation* addAnimation(int id, const char* name, int length, const char* looping, int loop_to);
     
 	// ----- Friends -----

@@ -19,8 +19,8 @@
 #include "dependencies/tinyxml/tinyxml.h"
 #include "IND_SpriterManager.h"
 #include "IND_SpriterEntity.h"
-#include "IND_Image.h"
-#include "IND_ImageManager.h"
+#include "IND_Surface.h"
+#include "IND_SurfaceManager.h"
 //#ifdef linux
 #include <string>
 //#endif
@@ -39,16 +39,26 @@
  * Init the manager. returns 1 (true) if successfully initialized.
  * Must be called before using any method.
  */
-bool IND_SpriterManager::init() {
+bool IND_SpriterManager::init(IND_SurfaceManager *pSurfaceManager) {
 	end();
 	initVars();
+    
+    g_debug->header("Initializing SpriterManager", DebugApi::LogHeaderBegin);
+    
+    
+	// Checking IND_SurfaceManager
+	if (pSurfaceManager->isOK()) {
+		g_debug->header("Checking IND_SurfaceManager", DebugApi::LogHeaderOk);
+		_surfaceManager = pSurfaceManager;
 
-	g_debug->header("Initializing SpriterManager", 5);
-
-	_ok = true;
-
-	g_debug->header("SpriterManager OK", 6);
-
+		_ok = true;
+        
+		g_debug->header("SurfaceManager OK", DebugApi::LogHeaderEnd);
+	} else {
+		g_debug->header("SurfaceManager is not correctly initialized", DebugApi::LogHeaderError);
+		_ok = false;
+	}
+    
 	return _ok;
 }
 
@@ -173,16 +183,25 @@ bool IND_SpriterManager::parseSpriterData(vector<IND_SpriterEntity*> *pSpriterEn
 
 			string result = spriterTopPath + string(eFile->Attribute("name"));
 			
-			IND_Image *imageTemp = IND_Image::newImage();                                   //
-			if (!_imageManager->add(imageTemp, result.c_str())){                            //
-                g_debug->header("Unable to add Spriter image", 2);                          // TODO : figure out what is the "right" place to store the images ...
-                eXmlDoc->Clear();                                                           
-				delete eXmlDoc;
-				return 0;
-			}
-            sEnt->addImage(toInt(eFolder->Attribute("id")),
+			//IND_Image *imageTemp = IND_Image::newImage();                                   //
+			//if (!_imageManager->add(imageTemp, result.c_str())){                            //
+            //    g_debug->header("Unable to add Spriter image", 2);                          // TODO : figure out what is the "right" place to store the images ...
+            //    eXmlDoc->Clear();
+			//	delete eXmlDoc;
+			//	return 0;
+			//}
+            IND_Surface *surfaceTemp = IND_Surface::newSurface();
+            if (!_surfaceManager->add(surfaceTemp, result.c_str(), IND_ALPHA, IND_32)) {
+                g_debug->header("Unable to add Spriter surface", 2);
+                eXmlDoc->Clear();
+                delete eXmlDoc;
+                return 0;
+            }
+            
+            
+            sEnt->addSurface(toInt(eFolder->Attribute("id")),
                            toInt(eFile->Attribute("id")),
-                                 imageTemp);                                                // TODO : this is wrong, - we store a ref to an image object located in the imagehandler
+                                 surfaceTemp);                                                // TODO : this is wrong, - we store a ref to an image object located in the imagehandler
                                                                                             //        therefore we have no private ownership =(
 
 			eFile = eFile->NextSiblingElement("file");
@@ -393,8 +412,6 @@ void IND_SpriterManager::writeMessage() {
  */
 void IND_SpriterManager::initVars() {
 	_listSpriterEntity = new vector <IND_SpriterEntity *>;
-    _imageManager = new IND_ImageManager();
-	_imageManager->init();
 }
 
 

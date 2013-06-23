@@ -65,7 +65,7 @@ int IndieLib()
     
     //mI->_spriterManager->
     IND_SpriterEntity *sEnt = mSpriterEntityList->at(0); // TODO: MFK move this into loop later
-    sEnt->playAnimation(0);
+    sEnt->playAnimation(0, mI->_render);
     
 	while (!mI->_input->onKeyPress(IND_ESCAPE) && !mI->_input->quit())
 	{
@@ -94,6 +94,7 @@ int IndieLib()
 		mI->_render->beginScene();
 		mI->_render->clearViewPort(0, 0, 0);
 		mI->_entity2dManager->renderEntities2d();
+        sEnt->update(0);
 		mI->_render->endScene();	
 	}
 

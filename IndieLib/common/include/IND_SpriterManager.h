@@ -30,11 +30,12 @@
 
 // ----- Forward declarations -----
 class IND_SurfaceManager;
-class IND_ImageManager;
+//class IND_ImageManager;
 class IND_Image;
 class IND_Timer;
 class CollisionParser;
 class IND_SpriterEntity;
+class IND_Render;
 
 
 // --------------------------------------------------------------------------------
@@ -51,7 +52,7 @@ public:
 		end();
 	}
 
-	bool    init();
+	bool    init(IND_SurfaceManager *pSurfaceManager);
 	void    end();
 	bool    isOK() {
 		return _ok;
@@ -73,8 +74,8 @@ private:
 
 
 	// ----- Objects -----
-
-	IND_ImageManager *_imageManager;
+    
+	IND_SurfaceManager *_surfaceManager;
 
 	// ----- Containers -----
 

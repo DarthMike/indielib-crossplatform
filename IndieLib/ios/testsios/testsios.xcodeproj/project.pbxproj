@@ -540,6 +540,7 @@
 					"\"$(SRCROOT)/../../common\"",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				LD_NO_PIE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -570,6 +571,7 @@
 					"\"$(SRCROOT)/../../common\"",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				LD_NO_PIE = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -77,7 +77,7 @@ bool OpenGLES2Manager::checkOpenGLSDLContextProps() {
 	int contextASize;
 	
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 1);
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 5);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
 
 	SDL_GL_GetAttribute(SDL_GL_RED_SIZE,&contextRSize);
 	SDL_GL_GetAttribute(SDL_GL_GREEN_SIZE,&contextGSize);

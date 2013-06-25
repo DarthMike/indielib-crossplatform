@@ -16,7 +16,6 @@
 		E796D45A15F88AD900724FBD /* EntityTests_animateRotations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E796D45615F88AD900724FBD /* EntityTests_animateRotations.cpp */; };
 		E796D45B15F88AD900724FBD /* EntityTests_animateScale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E796D45815F88AD900724FBD /* EntityTests_animateScale.cpp */; };
 		E7B4FEB01736EE40003E4489 /* SurfaceTests_layout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7B4FEAE1736EE40003E4489 /* SurfaceTests_layout.cpp */; };
-		E7DBCB1D159C78F600C8B2D9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */; };
 		E7DBCB27159C78F600C8B2D9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E7DBCB25159C78F600C8B2D9 /* InfoPlist.strings */; };
 		E7DBCB2D159C78F600C8B2D9 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E7DBCB2B159C78F600C8B2D9 /* Credits.rtf */; };
 		E7DBCBA3159C7A8D00C8B2D9 /* CIndieLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7DBCB78159C7A8C00C8B2D9 /* CIndieLib.cpp */; };
@@ -83,10 +82,6 @@
 		E7B4FEAE1736EE40003E4489 /* SurfaceTests_layout.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SurfaceTests_layout.cpp; sourceTree = "<group>"; };
 		E7B4FEAF1736EE40003E4489 /* SurfaceTests_layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurfaceTests_layout.h; sourceTree = "<group>"; };
 		E7DBCB18159C78F600C8B2D9 /* IndielibTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IndielibTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		E7DBCB1F159C78F600C8B2D9 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		E7DBCB20159C78F600C8B2D9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		E7DBCB21159C78F600C8B2D9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E7DBCB24159C78F600C8B2D9 /* IndielibTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "IndielibTests-Info.plist"; sourceTree = "<group>"; };
 		E7DBCB26159C78F600C8B2D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E7DBCB2A159C78F600C8B2D9 /* IndielibTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IndielibTests-Prefix.pch"; sourceTree = "<group>"; };
@@ -129,7 +124,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E75EB2B6159CB25100693F41 /* libIndielib.dylib in Frameworks */,
-				E7DBCB1D159C78F600C8B2D9 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,20 +181,8 @@
 		E7DBCB1B159C78F600C8B2D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */,
-				E7DBCB1E159C78F600C8B2D9 /* Other Frameworks */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		E7DBCB1E159C78F600C8B2D9 /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				E7DBCB1F159C78F600C8B2D9 /* AppKit.framework */,
-				E7DBCB20159C78F600C8B2D9 /* CoreData.framework */,
-				E7DBCB21159C78F600C8B2D9 /* Foundation.framework */,
-			);
-			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
 		E7DBCB22159C78F600C8B2D9 /* IndielibTests */ = {

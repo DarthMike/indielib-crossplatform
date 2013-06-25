@@ -40,11 +40,6 @@
 		E755230C17776774005B7F34 /* ImageCutter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E755230B17776774005B7F34 /* ImageCutter.cpp */; };
 		E755230F1777679C005B7F34 /* OpenGLTextureBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E755230E1777679B005B7F34 /* OpenGLTextureBuilder.cpp */; };
 		E755231117776904005B7F34 /* IND_AnimationManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E755231017776904005B7F34 /* IND_AnimationManager.cpp */; };
-		E75523151777722C005B7F34 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E75522EA17761B6F005B7F34 /* UIKit.framework */; };
-		E755231617777234005B7F34 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E75522E817761B68005B7F34 /* OpenGLES.framework */; };
-		E755231D1777726A005B7F34 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E755231B17777258005B7F34 /* CoreGraphics.framework */; };
-		E755231E1777726A005B7F34 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E75523191777724D005B7F34 /* AudioToolbox.framework */; };
-		E755231F1777726A005B7F34 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E75523171777723D005B7F34 /* Foundation.framework */; };
 		E75BD9611772624100C5185F /* RenderTransformCommonGLES2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75BD9561772624100C5185F /* RenderTransformCommonGLES2.cpp */; };
 		E75BD9621772624100C5185F /* RenderTransform3dGLES2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75BD9571772624100C5185F /* RenderTransform3dGLES2.cpp */; };
 		E75BD9631772624100C5185F /* RenderTransform2dGLES2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75BD9581772624100C5185F /* RenderTransform2dGLES2.cpp */; };
@@ -131,8 +126,6 @@
 		E72010C01770FF4200D14384 /* PrecissionTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrecissionTimer.h; path = ../../common/src/PrecissionTimer.h; sourceTree = "<group>"; };
 		E72010C11770FF4200D14384 /* TextureBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextureBuilder.h; path = ../../common/src/TextureBuilder.h; sourceTree = "<group>"; };
 		E72010D81770FF5600D14384 /* TextureDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextureDefinitions.h; path = ../../common/src/TextureDefinitions.h; sourceTree = "<group>"; };
-		E75522E817761B68005B7F34 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		E75522EA17761B6F005B7F34 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E75522F717761C8A005B7F34 /* tinystr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinystr.cpp; sourceTree = "<group>"; };
 		E75522F817761C8A005B7F34 /* tinystr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinystr.h; sourceTree = "<group>"; };
 		E75522F917761C8A005B7F34 /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
@@ -149,9 +142,6 @@
 		E755230D1777679B005B7F34 /* OpenGLTextureBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenGLTextureBuilder.h; path = ../../common/src/render/opengl/OpenGLTextureBuilder.h; sourceTree = "<group>"; };
 		E755230E1777679B005B7F34 /* OpenGLTextureBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OpenGLTextureBuilder.cpp; path = ../../common/src/render/opengl/OpenGLTextureBuilder.cpp; sourceTree = "<group>"; };
 		E755231017776904005B7F34 /* IND_AnimationManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IND_AnimationManager.cpp; path = ../../common/src/IND_AnimationManager.cpp; sourceTree = "<group>"; };
-		E75523171777723D005B7F34 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		E75523191777724D005B7F34 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		E755231B17777258005B7F34 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		E75BD9511771085100C5185F /* OpenGLES2Render.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenGLES2Render.h; path = ../../common/src/render/gles/ios/OpenGLES2Render.h; sourceTree = "<group>"; };
 		E75BD9561772624100C5185F /* RenderTransformCommonGLES2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderTransformCommonGLES2.cpp; path = ../../common/src/render/gles/ios/RenderTransformCommonGLES2.cpp; sourceTree = "<group>"; };
 		E75BD9571772624100C5185F /* RenderTransform3dGLES2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderTransform3dGLES2.cpp; path = ../../common/src/render/gles/ios/RenderTransform3dGLES2.cpp; sourceTree = "<group>"; };
@@ -169,11 +159,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E755231D1777726A005B7F34 /* CoreGraphics.framework in Frameworks */,
-				E755231E1777726A005B7F34 /* AudioToolbox.framework in Frameworks */,
-				E755231F1777726A005B7F34 /* Foundation.framework in Frameworks */,
-				E75523151777722C005B7F34 /* UIKit.framework in Frameworks */,
-				E755231617777234005B7F34 /* OpenGLES.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,11 +188,6 @@
 		E7201072176E3DF000D14384 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E755231B17777258005B7F34 /* CoreGraphics.framework */,
-				E75523191777724D005B7F34 /* AudioToolbox.framework */,
-				E75523171777723D005B7F34 /* Foundation.framework */,
-				E75522EA17761B6F005B7F34 /* UIKit.framework */,
-				E75522E817761B68005B7F34 /* OpenGLES.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -455,6 +435,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = armv7;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -479,21 +460,16 @@
 					"\"$(SRCROOT)/../../common\"",
 					"\"$(SRCROOT)/../../common/src\"",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../common/dependencies/FreeImage/Dist\"",
 					"\"$(SRCROOT)/../../common/dependencies/SDL-2.0/build/ios/lib\"",
 				);
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-lSDL2";
-				"OTHER_LDFLAGS[arch=*]" = (
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
 					"-lSDL2",
-					"-lfreeimage-iphone",
-				);
-				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
-					"-lSDL2",
-					"-lfreeimage-iphonesimulator",
+					"-lfreeimage",
 				);
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../common\" \"$(SRCROOT)/../../common/src\"";
@@ -504,6 +480,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = armv7;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -521,20 +498,16 @@
 					"\"$(SRCROOT)/../../common\"",
 					"\"$(SRCROOT)/../../common/src\"",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../common/dependencies/FreeImage/Dist\"",
 					"\"$(SRCROOT)/../../common/dependencies/SDL-2.0/build/ios/lib\"",
 				);
-				OTHER_LDFLAGS = "-lSDL2";
-				"OTHER_LDFLAGS[arch=*]" = (
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
 					"-lSDL2",
-					"-lfreeimage-iphone",
-				);
-				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
-					"-lSDL2",
-					"-lfreeimage-iphonesimulator",
+					"-lfreeimage",
 				);
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../common\" \"$(SRCROOT)/../../common/src\"";

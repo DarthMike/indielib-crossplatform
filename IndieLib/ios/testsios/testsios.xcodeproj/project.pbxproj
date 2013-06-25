@@ -48,14 +48,13 @@
 		E75522D1177616AF005B7F34 /* SurfaceTests_textBlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75522A1177616AF005B7F34 /* SurfaceTests_textBlock.cpp */; };
 		E75522D2177616AF005B7F34 /* SurfaceTests_wrap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75522A3177616AF005B7F34 /* SurfaceTests_wrap.cpp */; };
 		E75522D3177616AF005B7F34 /* CIndieLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75522A6177616AF005B7F34 /* CIndieLib.cpp */; };
-		E75522E317761B13005B7F34 /* libindielibios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E75522E217761A5B005B7F34 /* libindielibios.a */; };
-		E75522EC17761B95005B7F34 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E75522D817761856005B7F34 /* OpenGLES.framework */; };
-		E75522ED17761BB3005B7F34 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E720104A176E3D9400D14384 /* UIKit.framework */; };
-		E75522EF17761BD5005B7F34 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E75522EE17761BD5005B7F34 /* QuartzCore.framework */; };
-		E75522F017761BDD005B7F34 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E720104C176E3D9400D14384 /* Foundation.framework */; };
-		E75522F217761BE6005B7F34 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E75522F117761BE6005B7F34 /* AudioToolbox.framework */; };
-		E75522F317761BEF005B7F34 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E720104E176E3D9400D14384 /* CoreGraphics.framework */; };
-		E75522F517761C47005B7F34 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E75522F417761C47005B7F34 /* libstdc++.6.0.9.dylib */; };
+		E7552521178066D6005B7F34 /* libindielibios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E75522E217761A5B005B7F34 /* libindielibios.a */; };
+		E755253017806751005B7F34 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E755252E17806728005B7F34 /* AudioToolbox.framework */; };
+		E755253117806751005B7F34 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E755252C1780671F005B7F34 /* libstdc++.6.0.9.dylib */; };
+		E755253217806751005B7F34 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E755252817806709005B7F34 /* QuartzCore.framework */; };
+		E755253317806751005B7F34 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E755252617806700005B7F34 /* CoreGraphics.framework */; };
+		E755253417806751005B7F34 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7552524178066F5005B7F34 /* OpenGLES.framework */; };
+		E755253517806751005B7F34 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7552522178066E9005B7F34 /* UIKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,13 +65,17 @@
 			remoteGlobalIDString = E7201070176E3DF000D14384;
 			remoteInfo = indielibios;
 		};
+		E755251F178066B1005B7F34 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E75522DD17761A5A005B7F34 /* indielibios.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E720106F176E3DF000D14384;
+			remoteInfo = indielibios;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		E7201047176E3D9400D14384 /* testsios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testsios.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E720104A176E3D9400D14384 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		E720104C176E3D9400D14384 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		E720104E176E3D9400D14384 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		E7201052176E3D9400D14384 /* testsios-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "testsios-Info.plist"; sourceTree = "<group>"; };
 		E7201054176E3D9400D14384 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E7201058176E3D9400D14384 /* testsios-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "testsios-Prefix.pch"; sourceTree = "<group>"; };
@@ -138,11 +141,13 @@
 		E75522A4177616AF005B7F34 /* SurfaceTests_wrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurfaceTests_wrap.h; sourceTree = "<group>"; };
 		E75522A5177616AF005B7F34 /* CIndieLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CIndieLib.h; path = ../../../tests/CIndieLib.h; sourceTree = "<group>"; };
 		E75522A6177616AF005B7F34 /* CIndieLib.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CIndieLib.cpp; path = ../../../tests/CIndieLib.cpp; sourceTree = "<group>"; };
-		E75522D817761856005B7F34 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		E75522DD17761A5A005B7F34 /* indielibios.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = indielibios.xcodeproj; path = ../indielibios/indielibios.xcodeproj; sourceTree = "<group>"; };
-		E75522EE17761BD5005B7F34 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		E75522F117761BE6005B7F34 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		E75522F417761C47005B7F34 /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
+		E7552522178066E9005B7F34 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		E7552524178066F5005B7F34 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		E755252617806700005B7F34 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		E755252817806709005B7F34 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		E755252C1780671F005B7F34 /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
+		E755252E17806728005B7F34 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,14 +155,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E75522F517761C47005B7F34 /* libstdc++.6.0.9.dylib in Frameworks */,
-				E75522F317761BEF005B7F34 /* CoreGraphics.framework in Frameworks */,
-				E75522F217761BE6005B7F34 /* AudioToolbox.framework in Frameworks */,
-				E75522F017761BDD005B7F34 /* Foundation.framework in Frameworks */,
-				E75522EF17761BD5005B7F34 /* QuartzCore.framework in Frameworks */,
-				E75522ED17761BB3005B7F34 /* UIKit.framework in Frameworks */,
-				E75522EC17761B95005B7F34 /* OpenGLES.framework in Frameworks */,
-				E75522E317761B13005B7F34 /* libindielibios.a in Frameworks */,
+				E7552521178066D6005B7F34 /* libindielibios.a in Frameworks */,
+				E755253017806751005B7F34 /* AudioToolbox.framework in Frameworks */,
+				E755253117806751005B7F34 /* libstdc++.6.0.9.dylib in Frameworks */,
+				E755253217806751005B7F34 /* QuartzCore.framework in Frameworks */,
+				E755253317806751005B7F34 /* CoreGraphics.framework in Frameworks */,
+				E755253417806751005B7F34 /* OpenGLES.framework in Frameworks */,
+				E755253517806751005B7F34 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,7 +171,6 @@
 		E720103E176E3D9400D14384 = {
 			isa = PBXGroup;
 			children = (
-				E75522F417761C47005B7F34 /* libstdc++.6.0.9.dylib */,
 				E75522DD17761A5A005B7F34 /* indielibios.xcodeproj */,
 				E7201050176E3D9400D14384 /* testsios */,
 				E7201049176E3D9400D14384 /* Frameworks */,
@@ -186,12 +189,12 @@
 		E7201049176E3D9400D14384 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E75522F117761BE6005B7F34 /* AudioToolbox.framework */,
-				E75522EE17761BD5005B7F34 /* QuartzCore.framework */,
-				E75522D817761856005B7F34 /* OpenGLES.framework */,
-				E720104A176E3D9400D14384 /* UIKit.framework */,
-				E720104C176E3D9400D14384 /* Foundation.framework */,
-				E720104E176E3D9400D14384 /* CoreGraphics.framework */,
+				E755252E17806728005B7F34 /* AudioToolbox.framework */,
+				E755252C1780671F005B7F34 /* libstdc++.6.0.9.dylib */,
+				E755252817806709005B7F34 /* QuartzCore.framework */,
+				E755252617806700005B7F34 /* CoreGraphics.framework */,
+				E7552524178066F5005B7F34 /* OpenGLES.framework */,
+				E7552522178066E9005B7F34 /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -388,6 +391,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				E7552520178066B1005B7F34 /* PBXTargetDependency */,
 			);
 			name = testsios;
 			productName = testsios;
@@ -496,6 +500,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E7552520178066B1005B7F34 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = indielibios;
+			targetProxy = E755251F178066B1005B7F34 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		E7201053176E3D9400D14384 /* InfoPlist.strings */ = {

@@ -10,10 +10,13 @@ cd $DEPSDIR
 cd ./FreeImage
 make clean
 make -f Makefile.iphone
+echo "Creating FreeImage fat Binary.."
+lipo -create Dist/libFreeimage-iphonesimulator.a Dist/libFreeimage-iphone.a -output Dist/libFreeimage.a
+echo "Created FreeImage fat Binary"
 
 #build static SDL lib only
 cd ../SDL-2.0
-export MIN_OS_VERSION=5.0
+export MIN_OS_VERSION=6.0
 ./build-scripts/iosbuild.sh clean
 ./build-scripts/iosbuild.sh configure-armv7 
 ./build-scripts/iosbuild.sh make-armv7 

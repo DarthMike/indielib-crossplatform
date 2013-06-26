@@ -38,7 +38,7 @@ Timeline::~Timeline() {
 // --------------------------------------------------------------------------------
 
 TimelineKey* Timeline::addKey(int id, int time, int spin) {
-	TimelineKey *keyPtr = new TimelineKey(id, time, spin);
+	TimelineKey *keyPtr = new TimelineKey(id, time, (spin == 0 ? 1 : spin));
     _keyList->insert(_keyList->begin() + id, keyPtr);
     
     return keyPtr;

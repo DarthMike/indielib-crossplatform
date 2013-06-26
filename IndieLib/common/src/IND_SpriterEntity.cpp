@@ -142,6 +142,23 @@ void  IND_SpriterEntity::drawTransientObject(float x, float y, float angle, floa
     int tempx = tObject->x + 300;
     int tempy = (-tObject->y)  + 400; // SDL uses the inverse y-value
     
+    int axisCalX = (int)(tObject->pivot_x * surface->getWidth() * -1);
+    int axisCalY = (int)(tObject->pivot_y * surface->getHeight() * -1);
+    
+    
+    
+    TimelineKey *tKey = getAnimations()->at(_currentAnimation)->getTimeLines()->at(mObjectref->timeline)->getKeys()->at(mObjectref->key);
+    
+    float newangle = 0;
+    
+    if (tKey->getSpin() == -1) {
+        newangle = tObject->angle - 360;
+    } else {
+        newangle = tObject->angle;
+    }
+    
+    
+    
     std:cout << "xvalue "  << tempx << " , yvalue " << tempy << '\n';
     
     
@@ -151,11 +168,11 @@ void  IND_SpriterEntity::drawTransientObject(float x, float y, float angle, floa
                                 tempy,                      // y pos
                                 0,                          // Angle x
                                 0,                          // Angle y
-                                0,                          // Angle z
+                                newangle,                          // Angle z
                                 1,                          // Scale x
                                 1,                          // Scale y
-                                0,                          // Axis cal x
-                                0,                          // Axis cal y
+                                axisCalX,                   // Axis cal x
+                                axisCalY,                   // Axis cal y
                                 0,                          // Mirror x
                                 0,                          // Mirror y
                                 0,                          // Width

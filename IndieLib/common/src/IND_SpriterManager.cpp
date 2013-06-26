@@ -347,7 +347,7 @@ bool IND_SpriterManager::parseSpriterData(vector<IND_SpriterEntity*> *pSpriterEn
                     }
                     
                     
-					eTKey = eTimeline->NextSiblingElement("key");
+					eTKey = eTKey->NextSiblingElement("key");
 
 				}
 				

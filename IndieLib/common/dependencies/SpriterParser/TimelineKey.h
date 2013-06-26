@@ -48,6 +48,10 @@ public:
         return _time;
     }
     
+    int getSpin(){
+        return _spin;
+    }
+    
     std::vector <TimelineObject *>* getObjects(){
         return _objectList;
     }

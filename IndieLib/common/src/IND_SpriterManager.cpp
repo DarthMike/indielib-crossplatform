@@ -331,14 +331,14 @@ bool IND_SpriterManager::parseSpriterData(vector<IND_SpriterEntity*> *pSpriterEn
                     
                         sTKey->addTimelineObject(toInt(eTimelineObject->Attribute("folder")),
                                                  toInt(eTimelineObject->Attribute("file")),
-                                                 toInt(eTimelineObject->Attribute("x")),
-                                                 toInt(eTimelineObject->Attribute("y")),
-                                                 toInt(eTimelineObject->Attribute("pivot_x")),
-                                                 toInt(eTimelineObject->Attribute("pivot_y")),
-                                                 toInt(eTimelineObject->Attribute("angle")),
-                                                 toInt(eTimelineObject->Attribute("scale_x")),
-                                                 toInt(eTimelineObject->Attribute("scale_y")),
-                                                 toInt(eTimelineObject->Attribute("a"))
+                                                 toFloat(eTimelineObject->Attribute("x")),
+                                                 toFloat(eTimelineObject->Attribute("y")),
+                                                 toFloat(eTimelineObject->Attribute("pivot_x")),
+                                                 toFloat(eTimelineObject->Attribute("pivot_y")),
+                                                 toFloat(eTimelineObject->Attribute("angle")),
+                                                 toFloat(eTimelineObject->Attribute("scale_x")),
+                                                 toFloat(eTimelineObject->Attribute("scale_y")),
+                                                 toFloat(eTimelineObject->Attribute("a"))
                                                 );
                         
                         
@@ -347,7 +347,7 @@ bool IND_SpriterManager::parseSpriterData(vector<IND_SpriterEntity*> *pSpriterEn
                     }
                     
                     
-					eTKey = eTKey->NextSiblingElement("key");
+					eTKey = eTimeline->NextSiblingElement("key");
 
 				}
 				

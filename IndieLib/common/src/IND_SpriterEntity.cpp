@@ -143,25 +143,29 @@ void  IND_SpriterEntity::drawTransientObject(float x, float y, float angle, floa
     int tempy = (-tObject->y)  + 400; // SDL uses the inverse y-value
     
     int axisCalX = (int)(tObject->pivot_x * surface->getWidth() * -1);
-    int axisCalY = (int)(tObject->pivot_y * surface->getHeight() * -1);
+    int axisCalY = (int)(tObject->pivot_y * surface->getHeight() * 1);
     
     
     
-    TimelineKey *tKey = getAnimations()->at(_currentAnimation)->getTimeLines()->at(mObjectref->timeline)->getKeys()->at(mObjectref->key);
+    //TimelineKey *tKey = getAnimations()->at(_currentAnimation)->getTimeLines()->at(mObjectref->timeline)->getKeys()->at(mObjectref->key);
+
     
-    float newangle = 0;
-    
-    if (tKey->getSpin() == -1) {
-        newangle = tObject->angle - 360;
-    } else {
-        newangle = tObject->angle;
-    }
+    float newangle = tObject->angle;
     
     
+//    float newangle = 0;
+//
+//    if (tKey->getSpin() == -1) {
+//        newangle = tObject->angle - 360;
+//    } else {
+//        newangle = tObject->angle;
+//    }
     
-    std:cout << "xvalue "  << tempx << " , yvalue " << tempy << '\n';
     
     
+//    std:cout << "xvalue "  << tempx << " , yvalue " << tempy << " , newangle " << newangle << '\n';
+    
+//    std:cout << "tObject->pivot_x "  << tObject->pivot_x << " , tObject->pivot_y " << tObject->pivot_y <<  '\n';
     
     
     _render->setTransform2d(    tempx,                      // x pos  note: we start in 0,0 (corner of screen)

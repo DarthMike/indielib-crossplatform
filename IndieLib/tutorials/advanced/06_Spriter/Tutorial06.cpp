@@ -92,7 +92,7 @@ int IndieLib()
 		// ----- Render  -----
 
 		mI->_render->beginScene();
-		mI->_render->clearViewPort(0, 0, 0);
+		mI->_render->clearViewPort(127, 127, 127);
 		mI->_entity2dManager->renderEntities2d();
         sEnt->update(0);
 		mI->_render->endScene();	

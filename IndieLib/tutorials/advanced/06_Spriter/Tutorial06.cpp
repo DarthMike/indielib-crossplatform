@@ -75,7 +75,7 @@ int IndieLib()
 
 		// ----- Text -----
 
-		strcpy(mText, "This is the unfinished Spriter support tutorial, - currently there is nothing to see, so move along please =)");
+		strcpy(mText, "This is the unfinished Spriter support tutorial, - currently there is nothing to see, so move along please =)  \nCroshair coords (x,y) = 400,500");
 		mTextSmallWhite->setText(mText);
 
 		// ----- Input ----
@@ -93,6 +93,9 @@ int IndieLib()
 
 		mI->_render->beginScene();
 		mI->_render->clearViewPort(127, 127, 127);
+        mI->_render->blitLine(400,50, 400, 550, 255, 255, 255, 255);
+        mI->_render->blitLine(50,500, 750, 500, 255, 255, 255, 255);
+        mI->_render->blitPixel(400, 500, 0, 0, 0, 255); // crosshair center point 
 		mI->_entity2dManager->renderEntities2d();
         sEnt->update(0);
 		mI->_render->endScene();	

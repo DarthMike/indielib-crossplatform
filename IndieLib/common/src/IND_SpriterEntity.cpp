@@ -83,7 +83,7 @@ void  IND_SpriterEntity::draw(float x, float y, float angle, float scale_x, floa
     
     
     for (unsigned i=0; i < mainlineObjectrefs->size(); i++) {
-        drawTransientObject(x, y, angle, scale_x, scale_y, mainlineObjectrefs->at(i));
+            drawTransientObject(x, y, angle, scale_x, scale_y, mainlineObjectrefs->at(i));
     }
     
 
@@ -134,45 +134,44 @@ void  IND_SpriterEntity::drawTransientObject(float x, float y, float angle, floa
     
     IND_Surface *surface = getSurface(tObject->folder, tObject->file);
     
-    g_debug->header(surface->getTypeString(), DebugApi::LogHeaderError); //TODO: MFK continue from here....
+    g_debug->header(surface->getTypeString(), DebugApi::LogHeaderError);
     
     IND_Matrix *mMatrix = new IND_Matrix();
     
     
-    int tempx = tObject->x + 300;
-    int tempy = (-tObject->y)  + 400; // SDL uses the inverse y-value
+    float tempx = (tObject->x + 400.0f);
+    float tempy;
     
-    int axisCalX = (int)(tObject->pivot_x * surface->getWidth() * -1);
-    int axisCalY = (int)(tObject->pivot_y * surface->getHeight() * 1);
+    if ( tObject->y <= 0.0f) {
+        tempy = (500.0f + tObject->y ); // SDL uses the inverse y-value
+    } else {
+        tempy = (500.0f + (tObject->y * -1.000000f) );
+    }
     
-    
+    float axisCalX = (tObject->pivot_x * ((float)surface->getWidth())  * -1.0f );
+    float axisCalY = ((1 - tObject->pivot_y) * ((float)surface->getHeight()) * -1.0f );
     
     //TimelineKey *tKey = getAnimations()->at(_currentAnimation)->getTimeLines()->at(mObjectref->timeline)->getKeys()->at(mObjectref->key);
 
+    float newangle;
     
-    float newangle = tObject->angle;
-    
-    
-//    float newangle = 0;
-//
-//    if (tKey->getSpin() == -1) {
-//        newangle = tObject->angle - 360;
-//    } else {
-//        newangle = tObject->angle;
-//    }
+    if ( tObject->angle < 0.0f) {
+        newangle = tObject->angle + 360.0f;
+    } else {
+        newangle = 360.0f - tObject->angle;
+    }
     
     
-    
-//    std:cout << "xvalue "  << tempx << " , yvalue " << tempy << " , newangle " << newangle << '\n';
-    
-//    std:cout << "tObject->pivot_x "  << tObject->pivot_x << " , tObject->pivot_y " << tObject->pivot_y <<  '\n';
+    cout << "tObject->x"  << tObject->x << " , tObject->y " << tObject->y << " ";
+    cout << "tObject->pivot_x "  << tObject->pivot_x << " , tObject->pivot_y " << tObject->pivot_y <<  " ";
+    cout << "axisCalX "  << axisCalX << " , axisCalY " << axisCalY << '\n';
     
     
     _render->setTransform2d(    tempx,                      // x pos  note: we start in 0,0 (corner of screen)
                                 tempy,                      // y pos
                                 0,                          // Angle x
                                 0,                          // Angle y
-                                newangle,                          // Angle z
+                                newangle,                   // Angle z
                                 1,                          // Scale x
                                 1,                          // Scale y
                                 axisCalX,                   // Axis cal x
@@ -183,9 +182,11 @@ void  IND_SpriterEntity::drawTransientObject(float x, float y, float angle, floa
                                 0,                          // Height
                                 mMatrix);                   // Matrix in wich the transformation will be applied (optional)
     
+    
+    
     // We apply the color, blending and culling transformations.
     _render->setRainbow2d(IND_ALPHA,                    // IND_Type
-                              1,                            // Back face culling 0/1 => off / on
+                              0,                            // Back face culling 0/1 => off / on
                               0,                            // Mirror x
                               0,                            // Mirror y
                               IND_FILTER_LINEAR,            // IND_Filter
@@ -204,7 +205,7 @@ void  IND_SpriterEntity::drawTransientObject(float x, float y, float angle, floa
     
     // Blit the IND_Surface
     _render->blitRegionSurface(surface, 0, 0, surface->getWidth(), surface->getHeight());
-    
+
     
     delete mMatrix; // TODO : optimize this...
     

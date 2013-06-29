@@ -21,8 +21,6 @@
 #include "../dependencies/SpriterParser/Animation.h"
 #include "../dependencies/SpriterParser/Mainline.h"
 #include "../dependencies/SpriterParser/Timeline.h"
-//#include "../dependencies/SpriterParser/MainlineKey.h"
-//#include "../dependencies/SpriterParser/TimelineKey.h"
 
 
 #include <list>
@@ -30,12 +28,12 @@
 
 // ----- Forward declarations -----
 class IND_SurfaceManager;
-//class IND_ImageManager;
 class IND_Image;
 class IND_Timer;
 class CollisionParser;
 class IND_SpriterEntity;
 class IND_Render;
+class IND_Surface;
 
 
 // --------------------------------------------------------------------------------
@@ -52,7 +50,7 @@ public:
 		end();
 	}
 
-	bool    init(IND_SurfaceManager *pSurfaceManager);
+	bool    init(IND_SurfaceManager *pSurfaceManager, IND_Render *pRender);
 	void    end();
 	bool    isOK() {
 		return _ok;
@@ -60,9 +58,15 @@ public:
 
 	// ----- Public methods -----
     
-	bool addSpriterFile(vector<IND_SpriterEntity*> *pSpriterEntityList,const char *pSCMLFileName);
+	bool addSpriterFile(const char *pSCMLFileName);
 	bool remove(IND_SpriterEntity *pSen);
+    
+    vector <IND_SpriterEntity *>* getEntities() {
+        return _listSpriterEntity;
+    }
 
+    void renderEntities();
+    
 
 private:
 
@@ -75,6 +79,7 @@ private:
 
 	// ----- Objects -----
     
+    IND_Render * _render;
 	IND_SurfaceManager *_surfaceManager;
 
 	// ----- Containers -----
@@ -86,14 +91,25 @@ private:
 
 	void        addToList(IND_SpriterEntity *pNewEntity);
 	void        delFromlist(IND_SpriterEntity *pEn);
-	IND_Image   *loadImage(char *pName);
+	IND_Image*  loadImage(char *pName);
 	bool        remove(IND_SpriterEntity *pEn, bool pType);
 
-	bool        parseSpriterData(vector<IND_SpriterEntity*> *pNewSpriterEntityList,const char *pSCMLFileName);
-
+    // ----- render methods -----
+    void        draw(IND_SpriterEntity *ent);
+    void        drawTransientObject(IND_SpriterEntity *ent, MainlineObjectref *mObjectref);
+    void        drawPersistentObject(IND_SpriterEntity *ent, MainlineObjectref *mObjectref);
+    void        drawBone(IND_SpriterEntity *ent, MainlineObjectref *mObjectref);
+    
+    TimelineObject* getTimelineObject(IND_SpriterEntity *ent,int timelineId, int keyId);
+    IND_Surface*    getSurface(IND_SpriterEntity *ent, int folderId, int fileId);
+    
+    
+    // ----- parser methods -----
+	bool        parseSpriterData(const char *pSCMLFileName);
     int         toInt(const char* input);
     float       toFloat(const char* input);
-	void        writeMessage();
+	
+    void        writeMessage();
 	void        initVars();
 	void        freeVars();
 };

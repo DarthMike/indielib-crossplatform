@@ -46,9 +46,7 @@ int IndieLib()
 	// ----- Spriter animation loading -----
     
     
-    vector<IND_SpriterEntity*> *mSpriterEntityList = new vector<IND_SpriterEntity*>();
-
-	if (!mI->_spriterManager->addSpriterFile(mSpriterEntityList,"../../resources/Spriter/monster/Example.SCML")){
+	if (!mI->_spriterManager->addSpriterFile("../../resources/Spriter/monster/Example.SCML")){
         
         return 0;
 
@@ -64,8 +62,8 @@ int IndieLib()
     
     
     //mI->_spriterManager->
-    IND_SpriterEntity *sEnt = mSpriterEntityList->at(0); // TODO: MFK move this into loop later
-    sEnt->playAnimation(0, mI->_render);
+    IND_SpriterEntity *sEnt = mI->_spriterManager->getEntities()->at(0);
+    sEnt->playAnimation(0);
     
 	while (!mI->_input->onKeyPress(IND_ESCAPE) && !mI->_input->quit())
 	{
@@ -97,7 +95,7 @@ int IndieLib()
         mI->_render->blitLine(50,500, 750, 500, 255, 255, 255, 255);
         mI->_render->blitPixel(400, 500, 0, 0, 0, 255); // crosshair center point 
 		mI->_entity2dManager->renderEntities2d();
-        sEnt->update(0);
+        mI->_spriterManager->renderEntities();
 		mI->_render->endScene();	
 	}
 

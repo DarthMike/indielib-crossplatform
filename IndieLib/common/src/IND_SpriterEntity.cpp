@@ -53,48 +53,18 @@ IND_SpriterEntity::~IND_SpriterEntity() {
 //									 Public methods
 // --------------------------------------------------------------------------------
 
-void IND_SpriterEntity::playAnimation(int animation, IND_Render *render) { // TODO: MFK maybe animation name instead?
+
+void IND_SpriterEntity::playAnimation(int animation/*, IND_Render *render*/) { // TODO: MFK maybe animation name instead?
     _currentAnimation   = animation;
     _currentKey         = 0;
     _currentTime        = 0;
-    _render             = render;
-    update(0); // we need to handle timing later...
 }
 
-
-void IND_SpriterEntity::update(int deltaTime) {
-    draw(1.0f, 1.0f, 1.0f, 1.0f, 1.0f); // TODO: parameters not used yet
-}
-
-void  IND_SpriterEntity::draw(float x, float y, float angle, float scale_x, float scale_y) {
-    
-    if (_currentAnimation < 0 || _currentKey < 0 || _currentTime < 0 ){
-        return;
-    }
-    
-    std::vector <MainlineObject *> *mainlineObjects = getAnimations()->at(_currentAnimation)->getMainline()->getKeys()->at(_currentKey)->getObjects();
-    
-    std::vector <MainlineObjectref *> *mainlineObjectrefs = getAnimations()->at(_currentAnimation)->getMainline()->getKeys()->at(_currentKey)->getObjectrefs();
-
-    
-    for (unsigned i=0; i < mainlineObjects->size(); i++) {
-        drawPersistentObject(x, y, angle, scale_x, scale_y);
-    }
-    
-    
-    for (unsigned i=0; i < mainlineObjectrefs->size(); i++) {
-            drawTransientObject(x, y, angle, scale_x, scale_y, mainlineObjectrefs->at(i));
-    }
-    
-
-}
 
 void IND_SpriterEntity::stopAnimation() {
     _currentAnimation   = -1;
     _currentKey         = -1;
     _currentTime        = -1;
-    _render             = NULL;
-
 }
 
 
@@ -121,125 +91,7 @@ void IND_SpriterEntity::initAttrib() {
     
     _drawBones              = false;    // TODO: support this in a later version
     _drawObjectpositions    = false;    // TODO: support this in a later version
-    
-    _render                 = NULL;
 }
-
-
-// ----- Rendering -----
-
-
-void  IND_SpriterEntity::drawTransientObject(float x, float y, float angle, float scale_x, float scale_y, MainlineObjectref *mObjectref) {
-    TimelineObject *tObject = getTimelineObject(mObjectref->timeline, mObjectref->key);
-    
-    IND_Surface *surface = getSurface(tObject->folder, tObject->file);
-    
-    g_debug->header(surface->getTypeString(), DebugApi::LogHeaderError);
-    
-    IND_Matrix *mMatrix = new IND_Matrix();
-    
-    
-    float tempx = (tObject->x + 400.0f);
-    float tempy;
-    
-    if ( tObject->y <= 0.0f) {
-        tempy = (500.0f + tObject->y ); // SDL uses the inverse y-value
-    } else {
-        tempy = (500.0f + (tObject->y * -1.000000f) );
-    }
-    
-    float axisCalX = (tObject->pivot_x * ((float)surface->getWidth())  * -1.0f );
-    float axisCalY = ((1 - tObject->pivot_y) * ((float)surface->getHeight()) * -1.0f );
-    
-    //TimelineKey *tKey = getAnimations()->at(_currentAnimation)->getTimeLines()->at(mObjectref->timeline)->getKeys()->at(mObjectref->key);
-
-    float newangle;
-    
-    if ( tObject->angle < 0.0f) {
-        newangle = tObject->angle + 360.0f;
-    } else {
-        newangle = 360.0f - tObject->angle;
-    }
-    
-    
-    cout << "tObject->x"  << tObject->x << " , tObject->y " << tObject->y << " ";
-    cout << "tObject->pivot_x "  << tObject->pivot_x << " , tObject->pivot_y " << tObject->pivot_y <<  " ";
-    cout << "axisCalX "  << axisCalX << " , axisCalY " << axisCalY << '\n';
-    
-    
-    _render->setTransform2d(    tempx,                      // x pos  note: we start in 0,0 (corner of screen)
-                                tempy,                      // y pos
-                                0,                          // Angle x
-                                0,                          // Angle y
-                                newangle,                   // Angle z
-                                1,                          // Scale x
-                                1,                          // Scale y
-                                axisCalX,                   // Axis cal x
-                                axisCalY,                   // Axis cal y
-                                0,                          // Mirror x
-                                0,                          // Mirror y
-                                0,                          // Width
-                                0,                          // Height
-                                mMatrix);                   // Matrix in wich the transformation will be applied (optional)
-    
-    
-    
-    // We apply the color, blending and culling transformations.
-    _render->setRainbow2d(IND_ALPHA,                    // IND_Type
-                              0,                            // Back face culling 0/1 => off / on
-                              0,                            // Mirror x
-                              0,                            // Mirror y
-                              IND_FILTER_LINEAR,            // IND_Filter
-                              255,                          // R Component	for tinting
-                              255,                          // G Component	for tinting
-                              255,                          // B Component	for tinting
-                              255,                          // A Component	for tinting
-                              0,                            // R Component	for fading to a color
-                              0,                            // G Component	for fading to a color
-                              0,                            // B Component	for fading to a color
-                              255,                          // Amount of fading
-                              IND_SRCALPHA,                 // IND_BlendingType (source)
-                              IND_INVSRCALPHA);             // IND_BlendingType (destination)
-    
-    
-    
-    // Blit the IND_Surface
-    _render->blitRegionSurface(surface, 0, 0, surface->getWidth(), surface->getHeight());
-
-    
-    delete mMatrix; // TODO : optimize this...
-    
-    
-    
-}
-
-void  IND_SpriterEntity::drawPersistentObject(float x, float y, float angle, float scale_x, float scale_y) {
-    // TODO: MFK, implement this
-}
-
-void IND_SpriterEntity::drawBone(float x, float y, float angle, float scale_x, float scale_y) {
-    // TODO: support this in a later version
-}
-
-
-TimelineObject* IND_SpriterEntity::getTimelineObject(int timelineId, int keyId) {
-    return getAnimations()->at(_currentAnimation)->getTimeLines()->at(timelineId)->getKeys()->at(keyId)->getObjects()->at(0); // TODO : is there allways one object here? ( we're using an array )
-}
-
-IND_Surface* IND_SpriterEntity::getSurface(int folderId, int fileId) {
-    Fileref ref = Fileref(static_cast<unsigned int>(folderId), static_cast<unsigned int>(fileId));
-    
-    // Find the first matching key. (we should only have one)
-    SurfaceToFileMap::iterator res = _surfaces->find(ref);
-    
-    if(res != _surfaces->end()) {
-        return res->second;
-    }
-    else {
-        return NULL;
-    }
-}
-
 
     
 // ----- Parsing -----

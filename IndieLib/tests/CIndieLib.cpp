@@ -51,17 +51,17 @@ bool CIndieLib::init() {
 		return 0;
 
 	//if (!_lightManager     ->init (_render))                                    return 0;
-	if (!_imageManager       ->init())                                           return 0;
-	if (!_surfaceManager     ->init(_imageManager, _render))                     return 0;
-	if (!_animationManager   ->init(_imageManager, _surfaceManager))             return 0;
-	if (!_fontManager        ->init(_imageManager, _surfaceManager))             return 0;
-	if (!_entity2dManager    ->init(_render))                                    return 0;
+	if (!_imageManager       ->init())                                          return 0;
+	if (!_surfaceManager     ->init(_imageManager, _render))                    return 0;
+	if (!_animationManager   ->init(_imageManager, _surfaceManager))            return 0;
+	if (!_fontManager        ->init(_imageManager, _surfaceManager))            return 0;
+	if (!_entity2dManager    ->init(_render))                                   return 0;
 	//if (!_entity3dManager  ->init (_render))                                    return 0;
 	//if (!_meshManager      ->init (_render))                                    return 0;
-	if (!_input              ->init(_render))                                    return 0;
-	if (!_math               ->init())                                           return 0;
+	if (!_input              ->init(_render))                                   return 0;
+	if (!_math               ->init())                                          return 0;
     if (!_tmxMapManager      ->init())                                          return 0;
-    if (!_spriterManager     ->init(_surfaceManager))                           return 0;
+    if (!_spriterManager     ->init(_surfaceManager, _render))                  return 0;
     
 	return 1;
 }

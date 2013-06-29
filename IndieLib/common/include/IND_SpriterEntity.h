@@ -19,7 +19,6 @@
 
 #include "IND_object.h"
 #include "IND_Surface.h"
-#include "IND_Render.h"
 #include "../dependencies/SpriterParser/Animation.h"
 #include "../dependencies/SpriterParser/Mainline.h"
 #include "../dependencies/SpriterParser/Timeline.h"
@@ -57,10 +56,6 @@ struct Fileref {
 
 
 
-//typedef std::pair<unsigned int, unsigned int> Fileref;	// Filref consist of a (folder, file) combo.
-
-
-
 // --------------------------------------------------------------------------------
 //									IND_SpriterEntity
 // --------------------------------------------------------------------------------
@@ -77,9 +72,7 @@ public:
 
 	// ----- Public methods ------
     
-    void playAnimation(int animation, IND_Render *render); // TODO maybe input parameter animationname instead??
-    void update(int deltaTime);
-    void draw(float x, float y, float angle, float scale_x, float scale_y);
+    void playAnimation(int animation); // TODO maybe input parameter animationname instead??
     void stopAnimation();
 
 	// ----- Public gets ------
@@ -122,8 +115,6 @@ private:
     
     bool                        _drawBones;             // TODO: support this in a later version
     bool                        _drawObjectpositions;   // TODO: support this in a later version
-    
-    IND_Render                  *_render;               // render where the direct blitting is handled
 
 
 	// ----- Private sets ------
@@ -132,9 +123,6 @@ private:
 
 	// ----- Private methods -----
     
-    void drawTransientObject(float x, float y, float angle, float scale_x, float scale_y,  MainlineObjectref *mObjectref);
-    void drawPersistentObject(float x, float y, float angle, float scale_x, float scale_y);
-    void drawBone(float x, float y, float angle, float scale_x, float scale_y);             // TODO: support this in a later version
     
     TimelineObject* getTimelineObject(int timelineId, int keyId);
     IND_Surface* getSurface(int folderId, int fileId);

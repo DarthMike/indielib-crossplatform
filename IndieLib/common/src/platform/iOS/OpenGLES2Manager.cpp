@@ -61,6 +61,9 @@ void OpenGLES2Manager::setOpenGLContextParams(IND_ColorFormat colorFormat, int n
 	} else {
 		SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 0 ) ;
 	}
+    
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 1);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
 
 	_numBitsPerColor = numBitsPerColor;
 	_numDepthBits = numDepthBits;
@@ -75,9 +78,6 @@ bool OpenGLES2Manager::checkOpenGLSDLContextProps() {
 	int contextGSize;
 	int contextBSize;
 	int contextASize;
-	
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 1);
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
 
 	SDL_GL_GetAttribute(SDL_GL_RED_SIZE,&contextRSize);
 	SDL_GL_GetAttribute(SDL_GL_GREEN_SIZE,&contextGSize);

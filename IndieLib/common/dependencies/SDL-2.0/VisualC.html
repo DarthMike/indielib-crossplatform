@@ -20,6 +20,12 @@
 			Go into the VisualC directory and double-click on the Visual Studio solution for your version of Visual Studio, e.g. <CODE>SDL_VS2008.sln</CODE> This should open up the IDE.
 		</P>
 		<P>
+			There are different solution files for the various
+			versions of the IDE. Please use the appropiate version
+			2008, 2010 or 2012; the 2010EE and 2012EE files
+			should be used with the "Express Edition" releases.
+		</P>
+		<P>
 			Build the <CODE>.dll</CODE> and <CODE>.lib</CODE> files.
 		</P>
 		<P>
@@ -65,8 +71,8 @@
 					add the include and library directories to the list that VC7 keeps. Do this by 
 					selecting Tools|Options|Projects|VC++ Directories and under the "Show 
 					Directories For:" dropbox select "Include Files", and click the "New Directory 
-					Icon" and add the [SDLROOT]\include directory (ex. If you installed to 
-					c:\SDL-1.2.5\ add c:\SDL-1.2.5\include).&nbsp;Proceed to&nbsp;change the 
+					Icon" and add the [SDLROOT]\include directory (e.g. If you installed to 
+					c:\SDL\ add c:\SDL\include).&nbsp;Proceed to&nbsp;change the 
 					dropbox selection to "Library Files" and add [SDLROOT]\lib.</FONT></STRONG>
 		</P>
 			<P>
@@ -99,7 +105,7 @@
 					desireable to add them to the linker options: Project|Properties|Linker|Command 
 					Line and type the names of the libraries to link with in the "Additional 
 					Options:" box.&nbsp; Note: This must be done&nbsp;for&nbsp;each&nbsp;build 
-					configuration (eg. Release,Debug).</FONT></STRONG></P>
+					configuration (e.g. Release,Debug).</FONT></STRONG></P>
 		<H3>
 			SDL 101, First Day of Class
 		</H3>
@@ -107,7 +113,7 @@
 			Now create the basic body of your project. The body of your program should take 
 			the following form: <CODE>
 				<PRE>
-#include "SDL2.h"
+#include "SDL.h"
 
 int main( int argc, char* argv[] )
 {

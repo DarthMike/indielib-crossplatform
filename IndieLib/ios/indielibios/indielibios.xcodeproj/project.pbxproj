@@ -51,6 +51,23 @@
 		E75BD96A1772624100C5185F /* OpenGLES2Render.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75BD9601772624100C5185F /* OpenGLES2Render.cpp */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		E755254D178612E4005B7F34 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E7552548178612E3005B7F34 /* SDL.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FD6526630DE8FCCB002AD96B;
+			remoteInfo = libSDL;
+		};
+		E755254F17861328005B7F34 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E7552548178612E3005B7F34 /* SDL.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = FD6526620DE8FCCB002AD96B;
+			remoteInfo = libSDL;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		E720106E176E3DF000D14384 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -142,6 +159,7 @@
 		E755230D1777679B005B7F34 /* OpenGLTextureBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenGLTextureBuilder.h; path = ../../common/src/render/opengl/OpenGLTextureBuilder.h; sourceTree = "<group>"; };
 		E755230E1777679B005B7F34 /* OpenGLTextureBuilder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OpenGLTextureBuilder.cpp; path = ../../common/src/render/opengl/OpenGLTextureBuilder.cpp; sourceTree = "<group>"; };
 		E755231017776904005B7F34 /* IND_AnimationManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IND_AnimationManager.cpp; path = ../../common/src/IND_AnimationManager.cpp; sourceTree = "<group>"; };
+		E7552548178612E3005B7F34 /* SDL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDL.xcodeproj; path = "../../common/dependencies/SDL-2.0/Xcode-iOS/SDL/SDL.xcodeproj"; sourceTree = "<group>"; };
 		E75BD9511771085100C5185F /* OpenGLES2Render.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenGLES2Render.h; path = ../../common/src/render/gles/ios/OpenGLES2Render.h; sourceTree = "<group>"; };
 		E75BD9561772624100C5185F /* RenderTransformCommonGLES2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderTransformCommonGLES2.cpp; path = ../../common/src/render/gles/ios/RenderTransformCommonGLES2.cpp; sourceTree = "<group>"; };
 		E75BD9571772624100C5185F /* RenderTransform3dGLES2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderTransform3dGLES2.cpp; path = ../../common/src/render/gles/ios/RenderTransform3dGLES2.cpp; sourceTree = "<group>"; };
@@ -168,6 +186,7 @@
 		E7201067176E3DF000D14384 = {
 			isa = PBXGroup;
 			children = (
+				E7552548178612E3005B7F34 /* SDL.xcodeproj */,
 				E75522F617761C8A005B7F34 /* tinyxml */,
 				E7201083176E41DC00D14384 /* include */,
 				E7201084176E41E100D14384 /* src */,
@@ -301,6 +320,14 @@
 			path = ../../common/dependencies/tinyxml;
 			sourceTree = "<group>";
 		};
+		E7552549178612E3005B7F34 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E755254E178612E4005B7F34 /* libSDL2.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		E75BD96B1772624800C5185F /* ios */ = {
 			isa = PBXGroup;
 			children = (
@@ -346,6 +373,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				E755255017861328005B7F34 /* PBXTargetDependency */,
 			);
 			name = indielibios;
 			productName = indielibios;
@@ -371,12 +399,28 @@
 			mainGroup = E7201067176E3DF000D14384;
 			productRefGroup = E7201071176E3DF000D14384 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = E7552549178612E3005B7F34 /* Products */;
+					ProjectRef = E7552548178612E3005B7F34 /* SDL.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				E720106F176E3DF000D14384 /* indielibios */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		E755254E178612E4005B7F34 /* libSDL2.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSDL2.a;
+			remoteRef = E755254D178612E4005B7F34 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E720106C176E3DF000D14384 /* Sources */ = {
@@ -429,6 +473,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E755255017861328005B7F34 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = libSDL;
+			targetProxy = E755254F17861328005B7F34 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		E720107C176E3DF000D14384 /* Debug */ = {

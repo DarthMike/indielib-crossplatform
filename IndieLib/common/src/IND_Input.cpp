@@ -42,11 +42,6 @@ bool IND_Input::init(IND_Render *pRender) {
 	initVars();
     
 	_ok = true;
-    
-	if(0 != SDL_InitSubSystem(SDL_INIT_JOYSTICK)){
-		g_debug->header("Unable to initialize SDL joystick subsystem!", DebugApi::LogHeaderError);
-		return 0;
-	}
 
 	_render = pRender;
     

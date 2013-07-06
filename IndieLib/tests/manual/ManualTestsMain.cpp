@@ -147,7 +147,7 @@ void releaseTests() {
     g_permanenttests.clear();
 }
 
-int IndieLib() {
+IndieLib_Main() {
 #ifdef PLATFORM_WIN32
 	//memory leaks for win32 creation
 	FINDMEMLEAK(-1);    //When you find a mem. leak, refer to the number displayed in the console and put it here to break when it is created

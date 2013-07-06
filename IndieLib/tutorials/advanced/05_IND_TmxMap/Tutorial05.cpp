@@ -22,7 +22,7 @@ void renderStaggeredMap(CIndieLib *mI, IND_TmxMap *staggeredMap,IND_Surface *mSu
 Main
 ==================
 */
-int IndieLib()			
+IndieLib_Main()			
 {
     //Sets the working path as the 'exe' directory. All resource paths are relative to this directory
 	if (!WorkingPathSetup::setWorkingPathFromExe(NULL)) {

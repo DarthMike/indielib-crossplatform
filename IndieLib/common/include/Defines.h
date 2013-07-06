@@ -213,23 +213,28 @@ users for really concrete purposes.
 #endif //INDIELIB_DLLBUILD
 
 #define LIB_EXP DLL_EXP
-#define IndieLib() WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+#define IndieLib_Main() int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 
 #endif //PLATFORM_WIN32
 
-#if defined(PLATFORM_IOS) || defined(PLATFORM_OSX)
+#if defined(PLATFORM_OSX)
 typedef unsigned char BYTE;    // HACK: Fixes some code regarding surfaces, fixes same problem as in Linux.
-#define IndieLib() main(int argc, char **argv)
+#define IndieLib_Main() int main(int argc, char * argv[])
 #endif //PLATFORM_OSX
+
+#if defined(PLATFORM_IOS)
+typedef unsigned char BYTE;    // HACK: Fixes some code regarding surfaces, fixes same problem as in Linux.
+#define IndieLib_Main() extern "C" int SDL_main(int argc, char *argv[])
+#endif //PLATFORM_OSX
+
+#ifdef PLATFORM_LINUX
+typedef unsigned char BYTE;    // HACK: Fixes some code regarding surfaces, BYTE is not defined in Linux (and remember Linux is case sensitive BYTE != byte )
+#define IndieLib_Main() int main(int argc, char * argv[])
+#endif //PLATFORM_LINUX
 
 #if defined (__GNUC__) && __GNUC__ >= 4
 #define LIB_EXP __attribute__ ((visibility("default")))
 #endif // __GNUC__
-
-#ifdef PLATFORM_LINUX
-typedef unsigned char BYTE;    // HACK: Fixes some code regarding surfaces, BYTE is not defined in Linux (and remember Linux is case sensitive BYTE != byte )
-#define IndieLib() main(int argc, char * argv[])
-#endif //PLATFORM_LINUX
 
 // ----- Const -----
 

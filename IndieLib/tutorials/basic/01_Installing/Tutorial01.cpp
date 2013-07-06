@@ -9,7 +9,7 @@
 Main
 ==================
 */
-int IndieLib()		
+IndieLib_Main()
 {
 	// ----- IndieLib intialization -----
 

@@ -55,8 +55,12 @@ Suite 330, Boston, MA 02111-1307 USA
 @b Operation:
 
  Creates a render and window, with supplied window params. Window params need to be compatible with platform
- running on, as engine will not try to fit display params to something 'similar'. i.e. running in an iPhone 4 and asking for a
- screen with 800x600 will just fail.
+ running on, as engine will not try to fit display params to something 'similar'. 
+ 
+ 
+ If device does not support given resolution, specially important for mobile platforms (running in an iPad and asking for a
+ screen with 800x600), will still create a full screen window, but the draw area will be bigger or smaller, to accomodate what you
+ asked.
  
   This function returns a pointer to correctly created window if success. NULL if failed
 */

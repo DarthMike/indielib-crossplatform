@@ -181,7 +181,9 @@ int IndieLib() {
 	double ticks = g_mainTimer.getTicks();
 	double pastticks = g_mainTimer.getTicks();
     testsvectoriterator currentTest = g_tests.begin();
-    (*currentTest)->setActive(true);
+    if (currentTest != g_tests.end()) {
+        (*currentTest)->setActive(true);
+    }
 
 	while (!mI->_input->onKeyPress(IND_ESCAPE) && !mI->_input->quit()) {
 		// ----- Input Update ----

@@ -45,8 +45,11 @@ bool DebugApi::init() {
 	initVars();
 
 	// File
-	_count = new ofstream("debug.log", ios::out);
-
+#if LOG_REDIRECT_TO_CONSOLE
+	_count = &std::cout;
+#else
+    _count = new ofstream("debug.log", ios::out);
+#endif //LOG_REDIRECT_TO_CONSOLE
 	// Time
 	time_t mT;							
 	time(&mT);							 
@@ -94,7 +97,9 @@ bool DebugApi::init() {
  */
 void DebugApi::end() {
 	if (_ok) {
+#if !defined (LOG_REDIRECT_TO_CONSOLE)
 		_count->close();
+#endif
         _timer->stop();
 		freeVars();
 		_ok = false;

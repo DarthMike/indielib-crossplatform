@@ -34,6 +34,9 @@ using namespace std;
 
 /** @cond DOCUMENT_PRIVATEAPI */
 
+#if !defined (_DEBUG)
+#define LOG_REDIRECT_TO_CONSOLE 1
+#endif
 
 class DebugApi {
 public:
@@ -74,7 +77,11 @@ private:
 	bool _ok;
 
 	// Output debug file
-	ofstream *_count;
+#if LOG_REDIRECT_TO_CONSOLE
+	ostream *_count;
+#else
+    ofstream *_count;
+#endif //LOG_REDIRECT_TO_CONSOLE
 
 	// Depeth (increases with each  "{" and go down with each "}")
 	int _depth;

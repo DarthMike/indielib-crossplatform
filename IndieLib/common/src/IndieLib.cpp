@@ -41,7 +41,7 @@ Suite 330, Boston, MA 02111-1307 USA
  * Initializes IndieLib.
  * @param pMode						::IND_InitializationMode. See ::IND_InitializationMode.
  */
-void IndieLib::init(IND_InitializationMode pMode) {
+bool IndieLib::init(IND_InitializationMode pMode) {
 #ifdef PLATFORM_WIN32
 	#ifdef _DEBUG
 	RedirectIOToConsole();
@@ -58,12 +58,16 @@ void IndieLib::init(IND_InitializationMode pMode) {
 
 	// SDL initialization
 	if(0 != SDL_Init(SDL_INIT_VIDEO)) {
-		g_debug->header("Unable to initialize SDL!", DebugApi::LogHeaderError);
+        g_debug->header(SDL_GetError(), DebugApi::LogHeaderError);
+        return false;
 	}
 
 	if(0 != SDL_InitSubSystem(SDL_INIT_TIMER) ){
-		g_debug->header("Unable to initialize SDL timer subsystem", DebugApi::LogHeaderError);
+        g_debug->header(SDL_GetError(), DebugApi::LogHeaderError);
+        return false;
 	}
+    
+    return true;
 }
 
 /**

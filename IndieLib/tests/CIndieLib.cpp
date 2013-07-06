@@ -26,7 +26,7 @@ bool CIndieLib::init() {
 	//resetCurrentDirectory_W();
 
 	// IndieLib Initialization, a debug.log file will be created.
-	IndieLib::init(IND_DEBUG_MODE);
+	if (!IndieLib::init(IND_DEBUG_MODE)) return false;
 
 	_input               =   new     IND_Input;
 	_render              =   new     IND_Render;
@@ -46,20 +46,20 @@ bool CIndieLib::init() {
 	
 	_window = _render        ->initRenderAndWindow(props);                                 
 	if(!_window)
-		return 0;
+		return false;
 
-	//if (!_lightManager     ->init (_render))                                    return 0;
-	if (!_imageManager       ->init())                                           return 0;
-	if (!_surfaceManager     ->init(_imageManager, _render))                     return 0;
-	if (!_animationManager   ->init(_imageManager, _surfaceManager))             return 0;
-	if (!_fontManager        ->init(_imageManager, _surfaceManager))             return 0;
-	if (!_entity2dManager    ->init(_render))                                    return 0;
-	//if (!_entity3dManager  ->init (_render))                                    return 0;
-	//if (!_meshManager      ->init (_render))                                    return 0;
-	if (!_input              ->init(_render))                                    return 0;
-	if (!_math               ->init())                                           return 0;
+	//if (!_lightManager     ->init (_render))                                    return false;
+	if (!_imageManager       ->init())                                           return false;
+	if (!_surfaceManager     ->init(_imageManager, _render))                     return false;
+	if (!_animationManager   ->init(_imageManager, _surfaceManager))             return false;
+	if (!_fontManager        ->init(_imageManager, _surfaceManager))             return false;
+	if (!_entity2dManager    ->init(_render))                                    return false;
+	//if (!_entity3dManager  ->init (_render))                                    return false;
+	//if (!_meshManager      ->init (_render))                                    return false;
+	if (!_input              ->init(_render))                                    return false;
+	if (!_math               ->init())                                           return false;
 
-	return 1;
+	return true;
 }
 
 

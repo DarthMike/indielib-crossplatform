@@ -286,12 +286,15 @@ Hardware information
 ==================
 */
 void OpenGLES2Render::getInfo() {
-
-    GLint maxTextureSize;
-    glGetIntegerv(GL_MAX_TEXTURE_SIZE,&maxTextureSize);
+    const GLubyte* vendor = glGetString(GL_VENDOR);
+    strcpy(_info._vendor,(char*)vendor);
+    const GLubyte* renderer = glGetString(GL_RENDERER);
+    strcpy(_info._vendor,(char*)renderer);
+    const GLubyte* version = glGetString(GL_VERSION);
+    strcpy (_info._version,(char*)version);
+    
+    glGetIntegerv(GL_MAX_TEXTURE_SIZE,&_info._maxTextureSize);
 	glGetIntegerv(GL_MAX_TEXTURE_UNITS, &_info._textureUnits);
-    _info._maxTextureSize = maxTextureSize;
-
 }
 
 /*
@@ -302,7 +305,7 @@ Write hardware information to debug log
 void OpenGLES2Render::writeInfo() {
 	g_debug->header("Hardware information" , DebugApi::LogHeaderBegin);
 
-	// ----- D3D version -----
+	// ----- version -----
 
 	g_debug->header("OpenGL version:" , DebugApi::LogHeaderInfo);
 	g_debug->dataChar(_info._version, 1);

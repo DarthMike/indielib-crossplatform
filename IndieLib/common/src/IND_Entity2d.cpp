@@ -175,9 +175,9 @@ void IND_Entity2d::setSequence(unsigned int pSequence) {
 	if (_an) {
 		_an->setActualFramePos(_sequence, 0);
 		_an->setIsActive(_sequence, false); //Reset
+        _sequence = pSequence;
+        _an->setIsActive(_sequence, true); //Set
 	}
-	_sequence = pSequence;
-	_an->setIsActive(_sequence, true); //Set
 }
 
 /**

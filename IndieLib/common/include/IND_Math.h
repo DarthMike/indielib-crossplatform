@@ -290,7 +290,6 @@ public:
 			}
 
 			if (pFrustrum._planes[i].distanceToPoint(mMaxExtreme) < 0.0f) {
-				mIntersect = 0;
 				mResult = 0;
 				return mResult;
 			}

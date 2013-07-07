@@ -37,14 +37,14 @@ void EntityTests_interactions::prepareTests() {
     CIndieLib* iLib = CIndieLib::instance();
 
     //Surfaces
-    iLib->_surfaceManager->add(_surfaces[0], const_cast<char *>("../../resources/tiled_terrain.png"), IND_ALPHA, IND_32);
+    iLib->_surfaceManager->add(_surfaces[0], const_cast<char *>("tiled_terrain.png"), IND_ALPHA, IND_32);
     
     //Animations
 	//Animation with no offsets, with color key to surface, conversion to IND_16 image. Will repeat animation only 5 times
-	iLib->_animationManager->addToSurface(_animations[0], const_cast<char *>("../../resources/animations/dust.xml"), IND_ALPHA, IND_16, 255, 0, 255);
+	iLib->_animationManager->addToSurface(_animations[0], const_cast<char *>("animations/dust.xml"), IND_ALPHA, IND_16, 255, 0, 255);
 
 	//Fonts
-	iLib->_fontManager->add(_fonts[0], const_cast<char *>("../../resources/font_big.png"), const_cast<char *>("../../resources/font_big.xml"), IND_ALPHA, IND_32);
+	iLib->_fontManager->add(_fonts[0], const_cast<char *>("font_big.png"), const_cast<char *>("font_big.xml"), IND_ALPHA, IND_32);
 }
 
 void EntityTests_interactions::performTests(float dt) {

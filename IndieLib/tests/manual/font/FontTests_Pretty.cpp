@@ -31,16 +31,16 @@ void FontTests_Pretty::prepareTests() {
 	CIndieLib* iLib = CIndieLib::instance();
 
 	// Loading Background
-	iLib->_surfaceManager->add(_surfaceBack, const_cast<char *>("../../resources/blue_background.jpg"), IND_OPAQUE, IND_32);
+	iLib->_surfaceManager->add(_surfaceBack, const_cast<char *>("blue_background.jpg"), IND_OPAQUE, IND_32);
 
 	// Loading tip page
-	iLib->_surfaceManager->add(_surfaceTip, const_cast<char *>("../../resources/tip.png"), IND_ALPHA, IND_32);
+	iLib->_surfaceManager->add(_surfaceTip, const_cast<char *>("tip.png"), IND_ALPHA, IND_32);
 
 	// Font 1
-	iLib->_fontManager->add(_fontSmall, const_cast<char *>("../../resources/font_small.png"), const_cast<char *>("../../resources/font_small.xml"), IND_ALPHA, IND_32);
+	iLib->_fontManager->add(_fontSmall, const_cast<char *>("font_small.png"), const_cast<char *>("font_small.xml"), IND_ALPHA, IND_32);
 
 	// Font 2
-	iLib->_fontManager->add(_fontBig, const_cast<char *>("../../resources/font_big.png"), const_cast<char *>("../../resources/font_big.xml"), IND_ALPHA, IND_32);
+	iLib->_fontManager->add(_fontBig, const_cast<char *>("font_big.png"), const_cast<char *>("font_big.xml"), IND_ALPHA, IND_32);
 }
 
 void FontTests_Pretty::performTests(float dt) {

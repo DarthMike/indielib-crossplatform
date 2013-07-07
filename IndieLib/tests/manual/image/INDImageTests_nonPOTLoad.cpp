@@ -32,11 +32,11 @@ void INDImageTests_nonPOTLoad::prepareTests() {
 
 	// ----- Images loading -----
 
-	iLib->_imageManager->add(_images[0], const_cast<char *>("../../resources/twist.jpg"));
+	iLib->_imageManager->add(_images[0], const_cast<char *>("twist.jpg"));
 
-	iLib->_imageManager->add(_images[1], const_cast<char *>("../../resources/octopus_small.png"));
+	iLib->_imageManager->add(_images[1], const_cast<char *>("octopus_small.png"));
 
-	iLib->_imageManager->add(_images[2], const_cast<char *>("../../resources/planet.png"));
+	iLib->_imageManager->add(_images[2], const_cast<char *>("planet.png"));
 
 	// ----- Surfaces loading -----
 

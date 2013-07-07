@@ -55,7 +55,7 @@
 		E755253317806751005B7F34 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E755252617806700005B7F34 /* CoreGraphics.framework */; };
 		E755253417806751005B7F34 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7552524178066F5005B7F34 /* OpenGLES.framework */; };
 		E755253517806751005B7F34 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7552522178066E9005B7F34 /* UIKit.framework */; };
-		E7CD1AC21789759C00A6306F /* resources in CopyFiles */ = {isa = PBXBuildFile; fileRef = E7CD1ABF1789755A00A6306F /* resources */; };
+		E7CD1AEA1789919B00A6306F /* resources in Resources */ = {isa = PBXBuildFile; fileRef = E7CD1AE91789919B00A6306F /* resources */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,19 +74,6 @@
 			remoteInfo = indielibios;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		E7CD1AC11789758A00A6306F /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 7;
-			files = (
-				E7CD1AC21789759C00A6306F /* resources in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		E7201047176E3D9400D14384 /* testsios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testsios.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -162,7 +149,7 @@
 		E755252817806709005B7F34 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E755252C1780671F005B7F34 /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
 		E755252E17806728005B7F34 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		E7CD1ABF1789755A00A6306F /* resources */ = {isa = PBXFileReference; lastKnownFileType = folder; name = resources; path = ../../resources; sourceTree = "<group>"; };
+		E7CD1AE91789919B00A6306F /* resources */ = {isa = PBXFileReference; lastKnownFileType = folder; name = resources; path = ../../resources; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,7 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				E75522DD17761A5A005B7F34 /* indielibios.xcodeproj */,
-				E7CD1ABF1789755A00A6306F /* resources */,
+				E7CD1AE91789919B00A6306F /* resources */,
 				E7201050176E3D9400D14384 /* testsios */,
 				E7201049176E3D9400D14384 /* Frameworks */,
 				E7201048176E3D9400D14384 /* Products */,
@@ -403,7 +390,6 @@
 				E7201043176E3D9400D14384 /* Sources */,
 				E7201044176E3D9400D14384 /* Frameworks */,
 				E7201045176E3D9400D14384 /* Resources */,
-				E7CD1AC11789758A00A6306F /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -481,6 +467,7 @@
 				E75522BC177616AF005B7F34 /* manual_screenshot_part_12.png in Resources */,
 				E75522BD177616AF005B7F34 /* unittests_console_output.txt in Resources */,
 				E75522BE177616AF005B7F34 /* unittests_describtion.txt in Resources */,
+				E7CD1AEA1789919B00A6306F /* resources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

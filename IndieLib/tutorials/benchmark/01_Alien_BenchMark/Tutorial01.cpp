@@ -31,8 +31,8 @@ Main
 */
 IndieLib_Main()			
 {
-    //Sets the working path as the 'exe' directory. All resource paths are relative to this directory
-	if (!WorkingPathSetup::setWorkingPathFromExe(NULL)) {
+    //Sets the working path at the resources directory. Resources paths are relative to that directory
+	if (!WorkingPathSetup::setWorkingPath(WorkingPathSetup::resourcesDirectory())) {
 		std::cout<<"\nUnable to Set the working path !";
 	}
 	
@@ -46,33 +46,33 @@ IndieLib_Main()
 
 	// Loading cursor
 	IND_Surface *mSurfaceCursor = IND_Surface::newSurface();
-	if (!mI->_surfaceManager->add(mSurfaceCursor, "../../resources/cursor.png", IND_ALPHA, IND_32))
+	if (!mI->_surfaceManager->add(mSurfaceCursor, "cursor.png", IND_ALPHA, IND_32))
 		return 0;
 
 	// Loading tile for the terrain
 	IND_Surface *mSurfaceTerrain = IND_Surface::newSurface();
-	if (!mI->_surfaceManager->add(mSurfaceTerrain, "../../resources/tiled_terrain.png", IND_OPAQUE, IND_32))
+	if (!mI->_surfaceManager->add(mSurfaceTerrain, "tiled_terrain.png", IND_OPAQUE, IND_32))
 		return 0;
 
 	// Loading alien hole 1
 	IND_Surface *mSurfaceHole1 = IND_Surface::newSurface();
-	if (!mI->_surfaceManager->add(mSurfaceHole1, "../../resources/hole1.png", IND_ALPHA, IND_32)) 
+	if (!mI->_surfaceManager->add(mSurfaceHole1, "hole1.png", IND_ALPHA, IND_32)) 
 		return 0;
 	
 	// Loading alien hole 2
 	IND_Surface *mSurfaceHole2 = IND_Surface::newSurface();
-	if (!mI->_surfaceManager->add(mSurfaceHole2, "../../resources/hole2.png", IND_ALPHA, IND_32)) 
+	if (!mI->_surfaceManager->add(mSurfaceHole2, "hole2.png", IND_ALPHA, IND_32)) 
 		return 0;
 
 	// Font
 	IND_Font *mFontSmall = IND_Font::newFont();
-	if (!mI->_fontManager->add(mFontSmall, "../../resources/font_small.png", "../../resources/font_small.xml", IND_ALPHA, IND_32)) 
+	if (!mI->_fontManager->add(mFontSmall, "font_small.png", "font_small.xml", IND_ALPHA, IND_32)) 
 		return 0;
 
 	// ----- Animation loading -----
 
 	IND_Animation *mAnimationUfo = IND_Animation::newAnimation();
-	if (!mI->_animationManager->addToSurface(mAnimationUfo, "../../resources/animations/ufo.xml", IND_ALPHA, IND_32)) 
+	if (!mI->_animationManager->addToSurface(mAnimationUfo, "animations/ufo.xml", IND_ALPHA, IND_32)) 
 		return 0;
 
 	// ----- Cursor creation -----

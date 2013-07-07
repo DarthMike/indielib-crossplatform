@@ -157,8 +157,9 @@ IndieLib_Main() {
 	CIndieLib *mI = CIndieLib::instance();
 	if (!mI->init()) return 0;
     
-    //Sets the working path as the 'exe' directory. All resource paths are relative to this directory
-	if (!WorkingPathSetup::setWorkingPathFromExe(NULL)) {
+    //Sets the working path to the resources directory. All paths are relative to it
+    const char* resourcesPath = WorkingPathSetup::resourcesDirectory();
+	if (!WorkingPathSetup::setWorkingPath(resourcesPath)) {
 		std::cout<<"\nUnable to Set the working path !";
 	}
 	

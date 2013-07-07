@@ -16,8 +16,8 @@ Main
 */
 IndieLib_Main()			
 {
-    //Sets the working path as the 'exe' directory. All resource paths are relative to this directory
-	if (!WorkingPathSetup::setWorkingPathFromExe(NULL)) {
+    //Sets the working path at the resources directory. Resources paths are relative to that directory
+	if (!WorkingPathSetup::setWorkingPath(WorkingPathSetup::resourcesDirectory())) {
 		std::cout<<"\nUnable to Set the working path !";
 	}
 	
@@ -30,19 +30,19 @@ IndieLib_Main()
 
 	// Loading Background
 	IND_Surface *mSurfaceBack = IND_Surface::newSurface();
-	if (!mI->_surfaceManager->add(mSurfaceBack, "../../resources/blue_background.jpg", IND_OPAQUE, IND_32)) return 0;
+	if (!mI->_surfaceManager->add(mSurfaceBack, "blue_background.jpg", IND_OPAQUE, IND_32)) return 0;
 
 	// Loading tip page
 	IND_Surface *mSurfaceTip = IND_Surface::newSurface();
-	if (!mI->_surfaceManager->add(mSurfaceTip, "../../resources/tip.png", IND_ALPHA, IND_32)) return 0;
+	if (!mI->_surfaceManager->add(mSurfaceTip, "tip.png", IND_ALPHA, IND_32)) return 0;
 
 	// Font 1
 	IND_Font *mFontSmall = IND_Font::newFont();
-	if (!mI->_fontManager->add(mFontSmall, "../../resources/font_small.png", "../../resources/font_small.xml", IND_ALPHA, IND_32)) return 0;
+	if (!mI->_fontManager->add(mFontSmall, "font_small.png", "font_small.xml", IND_ALPHA, IND_32)) return 0;
 
 	// Font 2
 	IND_Font *mFontBig = IND_Font::newFont();
-	if (!mI->_fontManager->add(mFontBig, "../../resources/font_big.png", "../../resources/font_big.xml", IND_ALPHA, IND_32)) return 0;
+	if (!mI->_fontManager->add(mFontBig, "font_big.png", "font_big.xml", IND_ALPHA, IND_32)) return 0;
 
 	// ----- Set the surfaces and fonts into 2d entities -----
 

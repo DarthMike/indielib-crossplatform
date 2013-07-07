@@ -29,20 +29,20 @@ Suite 330, Boston, MA 02111-1307 USA
 void INDImageTests_Conversions::prepareTests() {
 	CIndieLib *iLib = CIndieLib::instance();
 	// ----- Images loading -----
-	iLib->_imageManager->add(_images[0],  const_cast<char *>("../../resources/gem_squared_noalpha.jpg"));
-	iLib->_imageManager->add(_images[1],  const_cast<char *>("../../resources/gem_squared_noalpha.jpg"));
-	iLib->_imageManager->add(_images[2],  const_cast<char *>("../../resources/gem_squared.png"));
-	iLib->_imageManager->add(_images[3],  const_cast<char *>("../../resources/gem_squared.png"));
-	iLib->_imageManager->add(_images[4],  const_cast<char *>("../../resources/star.png"));
-	iLib->_imageManager->add(_images[5],  const_cast<char *>("../../resources/star.png"));
-	iLib->_imageManager->add(_images[6],  const_cast<char *>("../../resources/rabbit.png"));
-	iLib->_imageManager->add(_images[7],  const_cast<char *>("../../resources/rabbit.png"));
-	iLib->_imageManager->add(_images[8],  const_cast<char *>("../../resources/rabbit.png"));
-	iLib->_imageManager->add(_images[9],  const_cast<char *>("../../resources/rabbit.png"));
-	iLib->_imageManager->add(_images[10], const_cast<char *>("../../resources/rabbit.png"));
-	iLib->_imageManager->add(_images[11], const_cast<char *>("../../resources/rabbit.png"));
-	iLib->_imageManager->add(_images[12], const_cast<char *>("../../resources/rabbit.png"));
-	iLib->_imageManager->add(_images[13],"../../resources/rabbit.png");
+	iLib->_imageManager->add(_images[0],  const_cast<char *>("gem_squared_noalpha.jpg"));
+	iLib->_imageManager->add(_images[1],  const_cast<char *>("gem_squared_noalpha.jpg"));
+	iLib->_imageManager->add(_images[2],  const_cast<char *>("gem_squared.png"));
+	iLib->_imageManager->add(_images[3],  const_cast<char *>("gem_squared.png"));
+	iLib->_imageManager->add(_images[4],  const_cast<char *>("star.png"));
+	iLib->_imageManager->add(_images[5],  const_cast<char *>("star.png"));
+	iLib->_imageManager->add(_images[6],  const_cast<char *>("rabbit.png"));
+	iLib->_imageManager->add(_images[7],  const_cast<char *>("rabbit.png"));
+	iLib->_imageManager->add(_images[8],  const_cast<char *>("rabbit.png"));
+	iLib->_imageManager->add(_images[9],  const_cast<char *>("rabbit.png"));
+	iLib->_imageManager->add(_images[10], const_cast<char *>("rabbit.png"));
+	iLib->_imageManager->add(_images[11], const_cast<char *>("rabbit.png"));
+	iLib->_imageManager->add(_images[12], const_cast<char *>("rabbit.png"));
+	iLib->_imageManager->add(_images[13],"rabbit.png");
 	iLib->_imageManager->add(_images[14],150,150,IND_RGBA);
 	iLib->_imageManager->add(_images[15],150,150,IND_RGBA);
 

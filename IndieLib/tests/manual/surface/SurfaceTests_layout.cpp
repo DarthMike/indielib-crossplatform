@@ -34,7 +34,7 @@ void SurfaceTests_layout::prepareTests() {
     CIndieLib* iLib = CIndieLib::instance();
 
 	for (int i=0;i<_testedEntities;++i) {
-		iLib->_surfaceManager->add(_surfaces[i], "../../resources/layouting/tile1.bmp", IND_ALPHA, IND_32);
+		iLib->_surfaceManager->add(_surfaces[i], "layouting/tile1.bmp", IND_ALPHA, IND_32);
 	}
 }
 

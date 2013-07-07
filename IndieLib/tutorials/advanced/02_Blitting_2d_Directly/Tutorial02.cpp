@@ -15,8 +15,8 @@ Main
 */
 IndieLib_Main()
 {
-    //Sets the working path as the 'exe' directory. All resource paths are relative to this directory
-	if (!WorkingPathSetup::setWorkingPathFromExe(NULL)) {
+    //Sets the working path at the resources directory. Resources paths are relative to that directory
+	if (!WorkingPathSetup::setWorkingPath(WorkingPathSetup::resourcesDirectory())) {
 		std::cout<<"\nUnable to Set the working path !";
 	}
 	
@@ -29,20 +29,20 @@ IndieLib_Main()
 
 	// Loading draco
 	IND_Surface *mSurfaceDraco = IND_Surface::newSurface();
-	if (!mI->_surfaceManager->add(mSurfaceDraco, "../../resources/draco.png", IND_ALPHA, IND_32)) return 0;
+	if (!mI->_surfaceManager->add(mSurfaceDraco, "draco.png", IND_ALPHA, IND_32)) return 0;
 
 	// Loading gem (this image has a blue rectangle surronding it)
 	IND_Surface *mSurfaceGem = IND_Surface::newSurface();
-	if (!mI->_surfaceManager->add(mSurfaceGem, "../../resources/gem_squared.png", IND_ALPHA, IND_32)) return 0;
+	if (!mI->_surfaceManager->add(mSurfaceGem, "gem_squared.png", IND_ALPHA, IND_32)) return 0;
 
 	// Loading bug
 	IND_Surface *mSurfaceBug = IND_Surface::newSurface();
-	if (!mI->_surfaceManager->add(mSurfaceBug, "../../resources/Enemy Bug.png", IND_ALPHA, IND_32)) return 0;
+	if (!mI->_surfaceManager->add(mSurfaceBug, "Enemy Bug.png", IND_ALPHA, IND_32)) return 0;
 
 	// ----- Animation loading -----
 
 	IND_Animation *mAnimationUfo = IND_Animation::newAnimation();
-	if (!mI->_animationManager->addToSurface(mAnimationUfo, "../../resources/animations/ufo.xml", IND_ALPHA, IND_32)) return 0;
+	if (!mI->_animationManager->addToSurface(mAnimationUfo, "animations/ufo.xml", IND_ALPHA, IND_32)) return 0;
 
 	// ----- Main Loop -----
 

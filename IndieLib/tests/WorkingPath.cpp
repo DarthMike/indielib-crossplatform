@@ -23,26 +23,41 @@
 #include <stdio.h>
 #endif //PLATFORM_LINUX
 
-static const int appDirChars = 8042;
+static const int appDirChars = 16084;
 static char g_appDir[appDirChars];
+static char g_resourcesDir[appDirChars];
 
-bool WorkingPathSetup::setWorkingPathFromExe(const char* relpathFromExe) {
+const char* WorkingPathSetup::resourcesDirectory() {
     
-    //Fetch in global variable the exe directory
-    if (!readExeDirectory()) return false;
+    if (!WorkingPathSetup::readExeDirectory(g_appDir)) {
+        return NULL;
+    }
     
+    strcpy(g_resourcesDir, g_appDir);
+    
+#ifdef PLATFORM_IOS
+    // Bundle in iOS apps is flattened, meaning exe is in root, and added dirs start from there
+    strcat(g_resourcesDir, "/resources");
+#endif
+    
+#ifdef PLATFORM_OSX
+    // Bundle in OSX apps is not flattened, because executable directory can contain plugins
+    // There is a Resources directory, where our files will be copied
+    strcat(g_resourcesDir, "/../Resources/resources");
+#endif
+    
+#if defined (PLATFORM_WIN32) || defined (PLATFORM_LINUX)
+    strcat(g_resourcesDir, "/../../resources");
+#endif
+    
+    return g_resourcesDir;
+}
+
+bool WorkingPathSetup::setWorkingPath(const char* absPath) {
     bool success = false;
     
-    //TODO: Check correctness in path formatting for 'relpath'
-    //1. Should start with // or .
-    //2. Should concatenate correctly with g_appDir 
-    char totalPath [8042];
-    strcpy(totalPath, g_appDir);
-    if (relpathFromExe) {
-        strcat(totalPath, relpathFromExe);
-    }
 #ifdef PLATFORM_WIN32
-	if (SetCurrentDirectory(g_appDir)) {
+	if (SetCurrentDirectory(absPath)) {
 		success = true;
 	} else {
 		success = false;
@@ -51,7 +66,7 @@ bool WorkingPathSetup::setWorkingPathFromExe(const char* relpathFromExe) {
     
     
 #ifdef PLATFORM_LINUX
-    if ( 0 == chdir(totalPath)) {
+    if ( 0 == chdir(absPath)) {
 		success = true;
 	} else {
 		success = false;
@@ -60,7 +75,7 @@ bool WorkingPathSetup::setWorkingPathFromExe(const char* relpathFromExe) {
     
 #ifdef __APPLE__
     
-    NSString* workingpath = [[NSString alloc] initWithUTF8String:totalPath];
+    NSString* workingpath = [[NSString alloc] initWithUTF8String:absPath];
     if ([[NSFileManager defaultManager] changeCurrentDirectoryPath:workingpath]) {
         success = true;
     } else {
@@ -70,17 +85,16 @@ bool WorkingPathSetup::setWorkingPathFromExe(const char* relpathFromExe) {
 #endif
     
     if (success) {
-        printf("Working path changed to: %s\n",totalPath);
+        printf("Working path changed to: %s\n",absPath);
     }
     
     return success;
 }
 
-
-bool WorkingPathSetup::readExeDirectory() {
-    bool success = false;
+bool WorkingPathSetup::readExeDirectory(char* exePath) {
 	
-
+    bool success = false;
+    
 #ifdef PLATFORM_WIN32
 	TCHAR app_path[MAX_PATH] = _T("");
 	DWORD size_in_tchars = sizeof(app_path)/sizeof(TCHAR);
@@ -91,48 +105,61 @@ bool WorkingPathSetup::readExeDirectory() {
 	TCHAR* app_dir = _tcsrchr(app_path, _T('\\'));
 	if (app_dir) {
 		app_dir += 1;
-		if (app_dir) { 
-			*app_dir = '\0'; 
-			strcpy(g_appDir,app_path);
+		if (app_dir) {
+			*app_dir = '\0';
+			strcpy(exePath,app_path);
 			success = true;
 		}
 	}
-
+    
 	if (!app_dir) {
-		strcpy(g_appDir,"");
+		strcpy(exePath,"");
 	}
-
-
+    
+    
 #endif
     
 #ifdef PLATFORM_LINUX
-    if (getcwd(g_appDir,sizeof(g_appDir))) {
+    if (getcwd(exePath,sizeof(exePath))) {
         success = true;
     } else {
-        strcpy(g_appDir,"");
+        strcpy(exePath,"");
         success = false;
     }
     
 #endif
     
-#ifdef PLATFORM_OSX
+#ifdef __APPLE__
     @autoreleasepool {
         //Note that in OSX, bundle is in the place of 'exe' for other platforms
         //Exe file will be inside the bundle.
-    	NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
-        NSString *exeDir = bundlePath;
+    	NSString *exePath = [[NSBundle mainBundle] executablePath];
+        NSString *exeDir = [exePath stringByDeletingLastPathComponent];
         
-        //Handle case when app is not bundled. In this case bundle path is the same as executable directory
-        if (NSNotFound != [bundlePath rangeOfString:@".app"].location) {
-            exeDir = [bundlePath stringByDeletingLastPathComponent];
-        }
-        
-    	if (exeDir && [exeDir length]) {
+    	if ([exeDir length]) {
         	strcpy(g_appDir, [exeDir cStringUsingEncoding:NSUTF8StringEncoding]);
         	success = true;
     	}
     }
 #endif
+    
+    size_t length = strlen(g_appDir);
+    
+    // Replace windows style path characters with unix ones. Windows supports both.
+    for (size_t i = 0; i < length; ++i) {
+        if ('\\' == g_appDir[i]) {
+            g_appDir[i] = '/';
+        }
+        
+        // Remove last path separator in case any API returned a path ending in separator
+        if (i == (length - 1)) {
+            if ('/' == g_appDir[i]) {
+                g_appDir[i] = '\0';
+            }
+        }
+    }
+    
+    
     return success;
 }
 

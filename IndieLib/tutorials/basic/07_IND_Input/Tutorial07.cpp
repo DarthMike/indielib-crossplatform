@@ -17,8 +17,8 @@ Main
 */
 IndieLib_Main()			
 {
-    //Sets the working path as the 'exe' directory. All resource paths are relative to this directory
-	if (!WorkingPathSetup::setWorkingPathFromExe(NULL)) {
+    //Sets the working path at the resources directory. Resources paths are relative to that directory
+	if (!WorkingPathSetup::setWorkingPath(WorkingPathSetup::resourcesDirectory())) {
 		std::cout<<"\nUnable to Set the working path !";
 	}
 	
@@ -31,23 +31,23 @@ IndieLib_Main()
 
 	// Loading Background
 	IND_Surface *mSurfaceBack = IND_Surface::newSurface();
-	if (!mI->_surfaceManager->add(mSurfaceBack, "../../resources/twist.jpg", IND_OPAQUE, IND_32)) return 0;
+	if (!mI->_surfaceManager->add(mSurfaceBack, "twist.jpg", IND_OPAQUE, IND_32)) return 0;
 
 	// Loading Beettleship
 	IND_Surface *mSurfaceBeetleship = IND_Surface::newSurface();
-	if (!mI->_surfaceManager->add(mSurfaceBeetleship, "../../resources/beetleship.png", IND_ALPHA, IND_32)) return 0;
+	if (!mI->_surfaceManager->add(mSurfaceBeetleship, "beetleship.png", IND_ALPHA, IND_32)) return 0;
 
 	// Loading Octopus
 	IND_Surface *mSurfaceOctopus = IND_Surface::newSurface();
-	if (!mI->_surfaceManager->add(mSurfaceOctopus, "../../resources/octopus.png", IND_ALPHA, IND_32)) return 0;
+	if (!mI->_surfaceManager->add(mSurfaceOctopus, "octopus.png", IND_ALPHA, IND_32)) return 0;
 
 	// Loading Planet
 	IND_Surface *mSurfacePlanet = IND_Surface::newSurface();
-	if (!mI->_surfaceManager->add(mSurfacePlanet, "../../resources/planet.png", IND_ALPHA, IND_32)) return 0;
+	if (!mI->_surfaceManager->add(mSurfacePlanet, "planet.png", IND_ALPHA, IND_32)) return 0;
 
 	// Font
 	IND_Font *mFontSmall = IND_Font::newFont() ;
-	if (!mI->_fontManager->add(mFontSmall, "../../resources/font_small.png", "../../resources/font_small.xml", IND_ALPHA, IND_32)) return 0;
+	if (!mI->_fontManager->add(mFontSmall, "font_small.png", "font_small.xml", IND_ALPHA, IND_32)) return 0;
 
 	// ----- Font creation -----
 

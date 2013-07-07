@@ -124,6 +124,25 @@
 		E7B4FECB17381356003E4489 /* CIndieLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7B4FEC6173812FF003E4489 /* CIndieLib.cpp */; };
 		E7B4FECC17381356003E4489 /* Tutorial06.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7B4FEC8173812FF003E4489 /* Tutorial06.cpp */; };
 		E7B4FECD173813FD003E4489 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7DFACA0165C1A86004507C5 /* WorkingPath.cpp */; };
+		E7CD1AD0178990FE00A6306F /* resources in Resources */ = {isa = PBXBuildFile; fileRef = E7CD1ACF178990FE00A6306F /* resources */; };
+		E7CD1AD1178990FE00A6306F /* resources in Resources */ = {isa = PBXBuildFile; fileRef = E7CD1ACF178990FE00A6306F /* resources */; };
+		E7CD1AD2178990FE00A6306F /* resources in Resources */ = {isa = PBXBuildFile; fileRef = E7CD1ACF178990FE00A6306F /* resources */; };
+		E7CD1AD3178990FE00A6306F /* resources in Resources */ = {isa = PBXBuildFile; fileRef = E7CD1ACF178990FE00A6306F /* resources */; };
+		E7CD1AD4178990FE00A6306F /* resources in Resources */ = {isa = PBXBuildFile; fileRef = E7CD1ACF178990FE00A6306F /* resources */; };
+		E7CD1AD5178990FE00A6306F /* resources in Resources */ = {isa = PBXBuildFile; fileRef = E7CD1ACF178990FE00A6306F /* resources */; };
+		E7CD1AD6178990FE00A6306F /* resources in Resources */ = {isa = PBXBuildFile; fileRef = E7CD1ACF178990FE00A6306F /* resources */; };
+		E7CD1AD7178990FE00A6306F /* resources in Resources */ = {isa = PBXBuildFile; fileRef = E7CD1ACF178990FE00A6306F /* resources */; };
+		E7CD1AD8178990FE00A6306F /* resources in Resources */ = {isa = PBXBuildFile; fileRef = E7CD1ACF178990FE00A6306F /* resources */; };
+		E7CD1AD9178990FE00A6306F /* resources in Resources */ = {isa = PBXBuildFile; fileRef = E7CD1ACF178990FE00A6306F /* resources */; };
+		E7CD1ADA178990FE00A6306F /* resources in Resources */ = {isa = PBXBuildFile; fileRef = E7CD1ACF178990FE00A6306F /* resources */; };
+		E7CD1ADB178990FE00A6306F /* resources in Resources */ = {isa = PBXBuildFile; fileRef = E7CD1ACF178990FE00A6306F /* resources */; };
+		E7CD1ADC178990FE00A6306F /* resources in Resources */ = {isa = PBXBuildFile; fileRef = E7CD1ACF178990FE00A6306F /* resources */; };
+		E7CD1ADD178990FE00A6306F /* resources in Resources */ = {isa = PBXBuildFile; fileRef = E7CD1ACF178990FE00A6306F /* resources */; };
+		E7CD1ADE178990FE00A6306F /* resources in Resources */ = {isa = PBXBuildFile; fileRef = E7CD1ACF178990FE00A6306F /* resources */; };
+		E7CD1ADF178990FE00A6306F /* resources in Resources */ = {isa = PBXBuildFile; fileRef = E7CD1ACF178990FE00A6306F /* resources */; };
+		E7CD1AE0178990FE00A6306F /* resources in Resources */ = {isa = PBXBuildFile; fileRef = E7CD1ACF178990FE00A6306F /* resources */; };
+		E7CD1AE1178990FE00A6306F /* resources in Resources */ = {isa = PBXBuildFile; fileRef = E7CD1ACF178990FE00A6306F /* resources */; };
+		E7CD1AE2178990FE00A6306F /* resources in Resources */ = {isa = PBXBuildFile; fileRef = E7CD1ACF178990FE00A6306F /* resources */; };
 		E7DBCB1D159C78F600C8B2D9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */; };
 		E7DFACA2165C1A86004507C5 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7DFACA0165C1A86004507C5 /* WorkingPath.cpp */; };
 		E7DFACA3165C1A86004507C5 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7DFACA0165C1A86004507C5 /* WorkingPath.cpp */; };
@@ -405,6 +424,7 @@
 		E7B4FEC6173812FF003E4489 /* CIndieLib.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib.cpp; sourceTree = "<group>"; };
 		E7B4FEC7173812FF003E4489 /* CIndieLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIndieLib.h; sourceTree = "<group>"; };
 		E7B4FEC8173812FF003E4489 /* Tutorial06.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial06.cpp; sourceTree = "<group>"; };
+		E7CD1ACF178990FE00A6306F /* resources */ = {isa = PBXFileReference; lastKnownFileType = folder; name = resources; path = ../../resources; sourceTree = "<group>"; };
 		E7DBCB18159C78F600C8B2D9 /* Tutorial01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial01.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		E7DBCB1F159C78F600C8B2D9 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -828,6 +848,7 @@
 		E7DBCAAE159C432500C8B2D9 = {
 			isa = PBXGroup;
 			children = (
+				E7CD1ACF178990FE00A6306F /* resources */,
 				E7DBCB22159C78F600C8B2D9 /* IndielibTutorials */,
 				E7DFACA0165C1A86004507C5 /* WorkingPath.cpp */,
 				E7DFACA1165C1A86004507C5 /* WorkingPath.h */,
@@ -1319,6 +1340,7 @@
 				E73EAF2315E6BF7E00B95FE4 /* IndielibTutorials-Info.plist in Resources */,
 				E73EAF2415E6BF7E00B95FE4 /* Credits.rtf in Resources */,
 				E73EAF2515E6BF7E00B95FE4 /* InfoPlist.strings in Resources */,
+				E7CD1AD1178990FE00A6306F /* resources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1329,6 +1351,7 @@
 				E73EAF4215E6C7B400B95FE4 /* IndielibTutorials-Info.plist in Resources */,
 				E73EAF4315E6C7B400B95FE4 /* Credits.rtf in Resources */,
 				E73EAF4415E6C7B400B95FE4 /* InfoPlist.strings in Resources */,
+				E7CD1AD2178990FE00A6306F /* resources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1339,6 +1362,7 @@
 				E73EAF5D15E6C9DA00B95FE4 /* IndielibTutorials-Info.plist in Resources */,
 				E73EAF5E15E6C9DA00B95FE4 /* Credits.rtf in Resources */,
 				E73EAF5F15E6C9DA00B95FE4 /* InfoPlist.strings in Resources */,
+				E7CD1AD3178990FE00A6306F /* resources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1349,6 +1373,7 @@
 				E73EAF7715E6CB3900B95FE4 /* IndielibTutorials-Info.plist in Resources */,
 				E73EAF7815E6CB3900B95FE4 /* Credits.rtf in Resources */,
 				E73EAF7915E6CB3900B95FE4 /* InfoPlist.strings in Resources */,
+				E7CD1AD4178990FE00A6306F /* resources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1359,6 +1384,7 @@
 				E73EAF9115E6CE5D00B95FE4 /* IndielibTutorials-Info.plist in Resources */,
 				E73EAF9215E6CE5D00B95FE4 /* Credits.rtf in Resources */,
 				E73EAF9315E6CE5D00B95FE4 /* InfoPlist.strings in Resources */,
+				E7CD1AD6178990FE00A6306F /* resources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1369,6 +1395,7 @@
 				E73EAFAB15E6D07000B95FE4 /* IndielibTutorials-Info.plist in Resources */,
 				E73EAFAC15E6D07000B95FE4 /* Credits.rtf in Resources */,
 				E73EAFAD15E6D07000B95FE4 /* InfoPlist.strings in Resources */,
+				E7CD1AD5178990FE00A6306F /* resources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1379,6 +1406,7 @@
 				E73EAFC515E6D1F100B95FE4 /* IndielibTutorials-Info.plist in Resources */,
 				E73EAFC615E6D1F100B95FE4 /* Credits.rtf in Resources */,
 				E73EAFC715E6D1F100B95FE4 /* InfoPlist.strings in Resources */,
+				E7CD1AD7178990FE00A6306F /* resources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1389,6 +1417,7 @@
 				E73EAFDF15E6D35300B95FE4 /* IndielibTutorials-Info.plist in Resources */,
 				E73EAFE015E6D35300B95FE4 /* Credits.rtf in Resources */,
 				E73EAFE115E6D35300B95FE4 /* InfoPlist.strings in Resources */,
+				E7CD1AD8178990FE00A6306F /* resources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1399,6 +1428,7 @@
 				E73EAFF915E6D46A00B95FE4 /* IndielibTutorials-Info.plist in Resources */,
 				E73EAFFA15E6D46A00B95FE4 /* Credits.rtf in Resources */,
 				E73EAFFB15E6D46A00B95FE4 /* InfoPlist.strings in Resources */,
+				E7CD1AD9178990FE00A6306F /* resources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1409,6 +1439,7 @@
 				E73EB01315E6D51800B95FE4 /* IndielibTutorials-Info.plist in Resources */,
 				E73EB01415E6D51800B95FE4 /* Credits.rtf in Resources */,
 				E73EB01515E6D51800B95FE4 /* InfoPlist.strings in Resources */,
+				E7CD1ADA178990FE00A6306F /* resources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1419,6 +1450,7 @@
 				E73EB02D15E6D66300B95FE4 /* IndielibTutorials-Info.plist in Resources */,
 				E73EB02E15E6D66300B95FE4 /* Credits.rtf in Resources */,
 				E73EB02F15E6D66300B95FE4 /* InfoPlist.strings in Resources */,
+				E7CD1ADB178990FE00A6306F /* resources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1429,6 +1461,7 @@
 				E744859715E7E9B600DDE3BF /* IndielibTutorials-Info.plist in Resources */,
 				E744859815E7E9B600DDE3BF /* Credits.rtf in Resources */,
 				E744859915E7E9B600DDE3BF /* InfoPlist.strings in Resources */,
+				E7CD1ADC178990FE00A6306F /* resources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1439,6 +1472,7 @@
 				E74485B315E7EA2400DDE3BF /* IndielibTutorials-Info.plist in Resources */,
 				E74485B415E7EA2400DDE3BF /* Credits.rtf in Resources */,
 				E74485B515E7EA2400DDE3BF /* InfoPlist.strings in Resources */,
+				E7CD1ADD178990FE00A6306F /* resources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1449,6 +1483,7 @@
 				E74485CC15E7EA5900DDE3BF /* IndielibTutorials-Info.plist in Resources */,
 				E74485CD15E7EA5900DDE3BF /* Credits.rtf in Resources */,
 				E74485CE15E7EA5900DDE3BF /* InfoPlist.strings in Resources */,
+				E7CD1ADE178990FE00A6306F /* resources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1459,6 +1494,7 @@
 				E74485E515E7EAF100DDE3BF /* IndielibTutorials-Info.plist in Resources */,
 				E74485E615E7EAF100DDE3BF /* Credits.rtf in Resources */,
 				E74485E715E7EAF100DDE3BF /* InfoPlist.strings in Resources */,
+				E7CD1ADF178990FE00A6306F /* resources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1469,6 +1505,7 @@
 				E74485FF15E7EBF900DDE3BF /* IndielibTutorials-Info.plist in Resources */,
 				E744860015E7EBF900DDE3BF /* Credits.rtf in Resources */,
 				E744860115E7EBF900DDE3BF /* InfoPlist.strings in Resources */,
+				E7CD1AE1178990FE00A6306F /* resources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1479,6 +1516,7 @@
 				E744862015E7EC2900DDE3BF /* IndielibTutorials-Info.plist in Resources */,
 				E744862115E7EC2900DDE3BF /* Credits.rtf in Resources */,
 				E744862215E7EC2900DDE3BF /* InfoPlist.strings in Resources */,
+				E7CD1AE2178990FE00A6306F /* resources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1489,6 +1527,7 @@
 				E7B4FEBB17381286003E4489 /* IndielibTutorials-Info.plist in Resources */,
 				E7B4FEBC17381286003E4489 /* Credits.rtf in Resources */,
 				E7B4FEBD17381286003E4489 /* InfoPlist.strings in Resources */,
+				E7CD1AE0178990FE00A6306F /* resources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1499,6 +1538,7 @@
 				E72ECCA615E6B5FF00250CEE /* IndielibTutorials-Info.plist in Resources */,
 				E72ECCAD15E6B67800250CEE /* Credits.rtf in Resources */,
 				E72ECCAE15E6B67800250CEE /* InfoPlist.strings in Resources */,
+				E7CD1AD0178990FE00A6306F /* resources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

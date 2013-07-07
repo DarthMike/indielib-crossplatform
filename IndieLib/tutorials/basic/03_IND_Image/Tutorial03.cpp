@@ -16,8 +16,8 @@ Main
 */
 IndieLib_Main()		
 {
-    //Sets the working path as the 'exe' directory. All resource paths are relative to this directory
-	if (!WorkingPathSetup::setWorkingPathFromExe(NULL)) {
+    //Sets the working path at the resources directory. Resources paths are relative to that directory
+	if (!WorkingPathSetup::setWorkingPath(WorkingPathSetup::resourcesDirectory())) {
 		std::cout<<"\nUnable to Set the working path !";
 	}
 	
@@ -29,7 +29,7 @@ IndieLib_Main()
 	// ----- Loading of the original image and making 4 duplicates -----
 
 	IND_Image *mImageBugOriginal = IND_Image::newImage();
-	if (!mI->_imageManager->add(mImageBugOriginal, "../../resources/Enemy Bug.png")) return 0;
+	if (!mI->_imageManager->add(mImageBugOriginal, "Enemy Bug.png")) return 0;
 
 	IND_Image *mImageBugGaussian = IND_Image::newImage();
 	if (!mI->_imageManager->clone(mImageBugGaussian, mImageBugOriginal)) return 0;
@@ -50,7 +50,7 @@ IndieLib_Main()
 
 	// Loading Background
 	IND_Surface *mSurfaceBack = IND_Surface::newSurface();
-	if (!mI->_surfaceManager->add(mSurfaceBack, "../../resources/blue_background.jpg", IND_OPAQUE, IND_32)) return 0;
+	if (!mI->_surfaceManager->add(mSurfaceBack, "blue_background.jpg", IND_OPAQUE, IND_32)) return 0;
 
 	// Creating the "Original Bug" surface from the IND_Image
 	IND_Surface *mOriginalSurface = IND_Surface::newSurface();

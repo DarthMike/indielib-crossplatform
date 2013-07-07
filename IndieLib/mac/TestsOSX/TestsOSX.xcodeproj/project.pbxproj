@@ -16,6 +16,7 @@
 		E796D45A15F88AD900724FBD /* EntityTests_animateRotations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E796D45615F88AD900724FBD /* EntityTests_animateRotations.cpp */; };
 		E796D45B15F88AD900724FBD /* EntityTests_animateScale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E796D45815F88AD900724FBD /* EntityTests_animateScale.cpp */; };
 		E7B4FEB01736EE40003E4489 /* SurfaceTests_layout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7B4FEAE1736EE40003E4489 /* SurfaceTests_layout.cpp */; };
+		E7CD1AE61789916E00A6306F /* resources in Resources */ = {isa = PBXBuildFile; fileRef = E7CD1AE51789916E00A6306F /* resources */; };
 		E7DBCB27159C78F600C8B2D9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E7DBCB25159C78F600C8B2D9 /* InfoPlist.strings */; };
 		E7DBCB2D159C78F600C8B2D9 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E7DBCB2B159C78F600C8B2D9 /* Credits.rtf */; };
 		E7DBCBA3159C7A8D00C8B2D9 /* CIndieLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7DBCB78159C7A8C00C8B2D9 /* CIndieLib.cpp */; };
@@ -81,6 +82,7 @@
 		E796D45915F88AD900724FBD /* EntityTests_animateScale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntityTests_animateScale.h; path = entities/EntityTests_animateScale.h; sourceTree = "<group>"; };
 		E7B4FEAE1736EE40003E4489 /* SurfaceTests_layout.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SurfaceTests_layout.cpp; sourceTree = "<group>"; };
 		E7B4FEAF1736EE40003E4489 /* SurfaceTests_layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurfaceTests_layout.h; sourceTree = "<group>"; };
+		E7CD1AE51789916E00A6306F /* resources */ = {isa = PBXFileReference; lastKnownFileType = folder; name = resources; path = ../../resources; sourceTree = "<group>"; };
 		E7DBCB18159C78F600C8B2D9 /* IndielibTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IndielibTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7DBCB24159C78F600C8B2D9 /* IndielibTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "IndielibTests-Info.plist"; sourceTree = "<group>"; };
 		E7DBCB26159C78F600C8B2D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 		E7DBCAAE159C432500C8B2D9 = {
 			isa = PBXGroup;
 			children = (
+				E7CD1AE51789916E00A6306F /* resources */,
 				E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */,
 				E7DBCB22159C78F600C8B2D9 /* IndielibTests */,
 				E7DBCB1B159C78F600C8B2D9 /* Frameworks */,
@@ -377,6 +380,7 @@
 			files = (
 				E7DBCB27159C78F600C8B2D9 /* InfoPlist.strings in Resources */,
 				E7DBCB2D159C78F600C8B2D9 /* Credits.rtf in Resources */,
+				E7CD1AE61789916E00A6306F /* resources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -29,17 +29,17 @@ Suite 330, Boston, MA 02111-1307 USA
 void INDImageTests_POTLoad::prepareTests() {
 	CIndieLib *iLib = CIndieLib::instance();
 	// ----- Images loading -----
-	iLib->_imageManager->add(_images[0],  const_cast<char *>("../../resources/blue_background_square_1024.jpg"));
+	iLib->_imageManager->add(_images[0],  const_cast<char *>("blue_background_square_1024.jpg"));
 
-	iLib->_imageManager->add(_images[1],  const_cast<char *>("../../resources/gem_squared.png"));
+	iLib->_imageManager->add(_images[1],  const_cast<char *>("gem_squared.png"));
 
-	iLib->_imageManager->add(_images[2],  const_cast<char *>("../../resources/hole1.png"));
+	iLib->_imageManager->add(_images[2],  const_cast<char *>("hole1.png"));
 
-	iLib->_imageManager->add(_images[3],  const_cast<char *>("../../resources/hole2.png"));
+	iLib->_imageManager->add(_images[3],  const_cast<char *>("hole2.png"));
 
-	iLib->_imageManager->add(_images[4],  const_cast<char *>("../../resources/rabbit.png"));
+	iLib->_imageManager->add(_images[4],  const_cast<char *>("rabbit.png"));
 
-	iLib->_imageManager->add(_images[5],  const_cast<char *>("../../resources/draco.png"));
+	iLib->_imageManager->add(_images[5],  const_cast<char *>("draco.png"));
 
 	
 

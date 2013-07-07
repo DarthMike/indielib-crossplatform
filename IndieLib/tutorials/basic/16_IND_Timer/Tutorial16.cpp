@@ -33,8 +33,8 @@ string convert(int number)
 IndieLib_Main()			
 
 {
-    //Sets the working path as the 'exe' directory. All resource paths are relative to this directory
-	if (!WorkingPathSetup::setWorkingPathFromExe(NULL)) {
+    //Sets the working path at the resources directory. Resources paths are relative to that directory
+	if (!WorkingPathSetup::setWorkingPath(WorkingPathSetup::resourcesDirectory())) {
 		std::cout<<"\nUnable to Set the working path !";
 	}
 	
@@ -47,11 +47,11 @@ IndieLib_Main()
 
 	// Font
 	IND_Font *mFontBig = IND_Font::newFont();
-	if (!mI->_fontManager->add(mFontBig, "../../resources/font_big.png", "../../resources/font_big.xml", IND_ALPHA, IND_32)) return 0;
+	if (!mI->_fontManager->add(mFontBig, "font_big.png", "font_big.xml", IND_ALPHA, IND_32)) return 0;
 
 	// Loading draco
 	IND_Surface *mSurfaceDraco = IND_Surface::newSurface();
-	if (!mI->_surfaceManager->add(mSurfaceDraco, "../../resources/draco.png", IND_ALPHA, IND_32)) return 0;
+	if (!mI->_surfaceManager->add(mSurfaceDraco, "draco.png", IND_ALPHA, IND_32)) return 0;
 
 	// ----- Entities -----
 

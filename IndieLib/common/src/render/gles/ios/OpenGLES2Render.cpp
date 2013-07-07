@@ -82,8 +82,8 @@ IND_Window* OpenGLES2Render::initRenderAndWindow(IND_WindowProperties& props) {
 	//Initialize OpenGL parameters for SDL before creating the window for OpenGL
 	_osOpenGLMgr->setOpenGLContextParams(IND_RGBA, //Color format. HARDCODED, AND HAS TO MATCH WINDOW HARDCODED FORMAT!
 										 props._bpp/4, //Color depth (Bpp) /  num colors
-	                                     2, //Depth Buffer bits
-	                                     1,  //Stencil Buffer bits
+	                                     24, //Depth Buffer bits
+	                                     8,  //Stencil Buffer bits
 	                                     props._doubleBuffer //Double buffering
 	                                    );
 
@@ -92,11 +92,26 @@ IND_Window* OpenGLES2Render::initRenderAndWindow(IND_WindowProperties& props) {
 		freeVars();
 		return NULL;
 	}
+    
+    if (_window->getWidth() != props._width) {
+        g_debug->header("Window width ignored. Set to:", DebugApi::LogHeaderInfo);
+        g_debug->dataInt(_window->getWidth(),true);
+    }
+    
+    if (_window->getHeight() != props._height) {
+        g_debug->header("Window height ignored. Set to:", DebugApi::LogHeaderInfo);
+        g_debug->dataInt(_window->getHeight(),true);
+    }
+    
+    if (_window->isFullScreen()!= props._fullscreen) {
+        g_debug->header("Window fullscreen ignored. Set to:", DebugApi::LogHeaderInfo);
+        g_debug->dataInt(_window->isFullScreen(),true);
+    }
 
-	g_debug->header("Creating OpenGL Render", DebugApi::LogHeaderBegin);
+	g_debug->header("Creating OpenGL ES 2 Render", DebugApi::LogHeaderBegin);
 	_ok = initializeOpenGLES2Render();
 	if (!_ok) {
-		g_debug->header("Finalizing OpenGL", DebugApi::LogHeaderWarning);
+		g_debug->header("Finalizing OpenGL ES 2", DebugApi::LogHeaderWarning);
 		freeVars();
 		g_debug->header("OpenGL finalized", DebugApi::LogHeaderEnd);
 		return NULL;

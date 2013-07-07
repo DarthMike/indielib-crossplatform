@@ -111,12 +111,22 @@ bool IND_Window::create(IND_WindowProperties& props) {
 										  _attributes._width, 
 										 _attributes._height, 
 										  windowFlags);
+    
 	if (!_attributes._sdlWindow) {
 		g_debug->header("Error creating SDL window", DebugApi::LogHeaderError);
 		g_debug->header(std::string(SDL_GetError()),DebugApi::LogHeaderError);
 		return 0;
 	}
-
+    
+    // Read created window properties
+    Uint32 flags = SDL_GetWindowFlags(_attributes._sdlWindow);
+    _attributes._fullscreen = ((flags & SDL_WINDOW_FULLSCREEN) == SDL_WINDOW_FULLSCREEN) || ((flags & SDL_WINDOW_FULLSCREEN_DESKTOP) == SDL_WINDOW_FULLSCREEN_DESKTOP);
+    
+    SDL_DisplayMode displayMode;
+    SDL_GetWindowDisplayMode(_attributes._sdlWindow, &displayMode);
+    _attributes._width = displayMode.w;
+    _attributes._height = displayMode.h;
+    
 	if (!reset(props)) {
 		g_debug->header("Error setting SDL window params", DebugApi::LogHeaderError);
 		g_debug->header(std::string(SDL_GetError()),DebugApi::LogHeaderError);
@@ -198,20 +208,28 @@ bool IND_Window::reset(IND_WindowProperties& props) {
 	dMode.refresh_rate = 0;
 	
 	if (props._bpp != 32) {
-		g_debug->header("Error creating SDL window", DebugApi::LogHeaderError);
-		g_debug->header(std::string(SDL_GetError()),DebugApi::LogHeaderError);
+		g_debug->header("Error resetting SDL window", DebugApi::LogHeaderError);
+		g_debug->header("Unsupported pixel format", DebugApi::LogHeaderError);
 		return 0;
 	}
 
+    Uint32 flags = SDL_GetWindowFlags(_attributes._sdlWindow);
+    
+    // Read created window flags, as in some systems they can be ignored due to platform incompatibilities
+    bool canResize = (flags & SDL_WINDOW_RESIZABLE) == SDL_WINDOW_RESIZABLE;
+    
     //When in fullscreen, window size can't be changed.
     //Need to switch not to fullscreen, change size and go back to fullscreen
     bool wasFullScreen (isFullScreen());
-    if (wasFullScreen) {
+    if (wasFullScreen && canResize) {
         toggleFullScreen();
     }
     
     //The actual size change
-    SDL_SetWindowSize(getSDLWindow(),props._width,props._height);
+    if (canResize) {
+        SDL_SetWindowSize(getSDLWindow(),props._width,props._height);
+    }
+    
     //Format is hardcoded to rgba, this is also hardcoded on render creation.
 	dMode.format = static_cast<Uint32>(SDL_PIXELFORMAT_RGBA4444);
 
@@ -220,12 +238,12 @@ bool IND_Window::reset(IND_WindowProperties& props) {
 		return false;
 	}
     
-	_attributes._width = props._width;
-	_attributes._height = props._height;
+	// Store the window size to our attributes
+    SDL_GetWindowSize(_attributes._sdlWindow, &_attributes._width, &_attributes._height);
     
     //When in fullscreen, window size can't be changed.
     //Need to switch not to fullscreen, change size and go back to fullscreen
-    if (wasFullScreen) {
+    if (wasFullScreen && canResize) {
         toggleFullScreen();
     }
     

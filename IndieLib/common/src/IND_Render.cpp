@@ -59,8 +59,7 @@ Suite 330, Boston, MA 02111-1307 USA
  
  
  If device does not support given resolution, specially important for mobile platforms (running in an iPad and asking for a
- screen with 800x600), will still create a full screen window, but the draw area will be bigger or smaller, to accomodate what you
- asked.
+ screen with 800x600), will still create a full screen window, and ignore the supplied width and height.
  
   This function returns a pointer to correctly created window if success. NULL if failed
 */

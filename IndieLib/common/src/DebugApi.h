@@ -34,7 +34,7 @@ using namespace std;
 
 /** @cond DOCUMENT_PRIVATEAPI */
 
-#if !defined (_DEBUG)
+#if defined (DEBUG)
 #define LOG_REDIRECT_TO_CONSOLE 1
 #endif
 

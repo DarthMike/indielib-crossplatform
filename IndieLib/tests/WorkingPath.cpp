@@ -58,7 +58,7 @@ bool WorkingPathSetup::setWorkingPathFromExe(const char* relpathFromExe) {
 	}
 #endif
     
-#ifdef PLATFORM_OSX
+#ifdef __APPLE__
     
     NSString* workingpath = [[NSString alloc] initWithUTF8String:totalPath];
     if ([[NSFileManager defaultManager] changeCurrentDirectoryPath:workingpath]) {
@@ -67,7 +67,6 @@ bool WorkingPathSetup::setWorkingPathFromExe(const char* relpathFromExe) {
         success = false;
     }
     
-    [workingpath release];
 #endif
     
     if (success) {

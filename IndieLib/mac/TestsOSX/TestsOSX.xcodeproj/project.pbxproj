@@ -445,6 +445,7 @@
 		E7DBCAB5159C432500C8B2D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../../common/include\"",
 					"\"$(SRCROOT)/../../tests\"",
@@ -457,6 +458,7 @@
 		E7DBCAB6159C432500C8B2D9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../../common/include\"",
 					"\"$(SRCROOT)/../../tests\"",

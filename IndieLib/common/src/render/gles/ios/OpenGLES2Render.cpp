@@ -62,17 +62,6 @@ IND_Window* OpenGLES2Render::initRenderAndWindow(IND_WindowProperties& props) {
 		freeVars();
 		return NULL;
 	}
-    
-    g_debug->header("Requested Window Height:", DebugApi::LogHeaderInfo);
-    g_debug->dataInt(props._height, true);
-    g_debug->header("Requested Window Width: ", DebugApi::LogHeaderInfo);
-    g_debug->dataInt(props._width, true);
-    g_debug->header("Requested Window Bpp: ", DebugApi::LogHeaderInfo);
-    g_debug->dataInt(props._bpp, true);
-    g_debug->header("Requested Window FullScreen: ", DebugApi::LogHeaderInfo);
-    g_debug->dataInt(props._fullscreen, true);
-    g_debug->header("Requested Window Double buffer: ", DebugApi::LogHeaderInfo);
-    g_debug->dataInt(props._doubleBuffer, true);
 	
 	if(!_osOpenGLMgr) {
 		_osOpenGLMgr = new OpenGLES2Manager(_window);

@@ -171,6 +171,9 @@ private:
 
 	void initVars();
 	void freeVars();
+    
+    void logRequestedWindowProps(IND_WindowProperties& props);
+    void logCreatedWindowAtts(structAttributes& atts);
 
 	//Creation of window by renderer
 	friend class OpenGLRender;

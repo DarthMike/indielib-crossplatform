@@ -74,6 +74,8 @@ bool IND_Window::create(IND_WindowProperties& props) {
 		return 0;
 	}
 	
+    logRequestedWindowProps(props);
+    
 	char stringTemp[128];
 
 	_attributes._width      = props._width;
@@ -82,7 +84,7 @@ bool IND_Window::create(IND_WindowProperties& props) {
 	_attributes._vsync      = props._vsync;
 	_attributes._fullscreen = props._fullscreen;
 	_attributes._title      = strcpy(stringTemp, props._title);
-	
+    
 	Uint32 windowFlags = SDL_WINDOW_SHOWN;
 	if (_attributes._fullscreen) {
 		windowFlags = windowFlags | SDL_WINDOW_FULLSCREEN;
@@ -126,6 +128,8 @@ bool IND_Window::create(IND_WindowProperties& props) {
     SDL_GetWindowDisplayMode(_attributes._sdlWindow, &displayMode);
     _attributes._width = displayMode.w;
     _attributes._height = displayMode.h;
+    
+    logCreatedWindowAtts(_attributes);
     
 	if (!reset(props)) {
 		g_debug->header("Error setting SDL window params", DebugApi::LogHeaderError);
@@ -302,6 +306,30 @@ Free memory
 */
 void IND_Window::freeVars() {
 	destroyIndieLibWindow();
+}
+
+void IND_Window::logRequestedWindowProps(IND_WindowProperties &props) {
+    g_debug->header("Requested Window Height:", DebugApi::LogHeaderInfo);
+    g_debug->dataInt(props._height, true);
+    g_debug->header("Requested Window Width: ", DebugApi::LogHeaderInfo);
+    g_debug->dataInt(props._width, true);
+    g_debug->header("Requested Window Bpp: ", DebugApi::LogHeaderInfo);
+    g_debug->dataInt(props._bpp, true);
+    g_debug->header("Requested Window FullScreen: ", DebugApi::LogHeaderInfo);
+    g_debug->dataInt(props._fullscreen, true);
+    g_debug->header("Requested Window Double buffer: ", DebugApi::LogHeaderInfo);
+    g_debug->dataInt(props._doubleBuffer, true);
+}
+
+void IND_Window::logCreatedWindowAtts(structAttributes& atts) {
+    g_debug->header("Created Window Height:", DebugApi::LogHeaderInfo);
+    g_debug->dataInt(atts._height, true);
+    g_debug->header("Created Window Width: ", DebugApi::LogHeaderInfo);
+    g_debug->dataInt(atts._width, true);
+    g_debug->header("Created Window Bpp: ", DebugApi::LogHeaderInfo);
+    g_debug->dataInt(atts._bits, true);
+    g_debug->header("Created Window FullScreen: ", DebugApi::LogHeaderInfo);
+    g_debug->dataInt(atts._fullscreen, true);
 }
 
 /** @endcond */

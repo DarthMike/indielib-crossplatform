@@ -348,8 +348,8 @@ bool IND_SpriterManager::parseSpriterData(const char *pSCMLFileName) {
 					
                     while (eTimelineObject) {
                     
-                        sTKey->addTimelineObject(toInt(eTimelineObject->Attribute("folder")),
-                                                 toInt(eTimelineObject->Attribute("file")),
+                        sTKey->addTimelineObject(  toInt(eTimelineObject->Attribute("folder")),
+                                                   toInt(eTimelineObject->Attribute("file")),
                                                  toFloat(eTimelineObject->Attribute("x")),
                                                  toFloat(eTimelineObject->Attribute("y")),
                                                  toFloat(eTimelineObject->Attribute("pivot_x")),
@@ -473,8 +473,15 @@ float IND_SpriterManager::toFloat(const char* input) {
  */
 
 void IND_SpriterManager::renderEntities() {
+    
+    // TODO: MFK, update timer here, so that all entities use the same delta time value...
+    
     for (unsigned i=0; i < _listSpriterEntity->size(); i++) {
-        draw(_listSpriterEntity->at(i)); // TODO: update a timer here
+        
+        updateCurrentTime(_listSpriterEntity->at(i));
+        updateCurrentKey(_listSpriterEntity->at(i));
+        
+        draw(_listSpriterEntity->at(i));
         
     }
 
@@ -581,6 +588,13 @@ void IND_SpriterManager::drawBone(IND_SpriterEntity *ent, MainlineObjectref *mOb
     // TODO: support this in a later version
 }
 
+void IND_SpriterManager::updateCurrentTime(IND_SpriterEntity *ent) {
+    // TODO: MFK, implement this
+}
+
+void IND_SpriterManager::updateCurrentKey(IND_SpriterEntity *ent) {
+    // TODO: MFK, implement this
+}
 
 TimelineObject* IND_SpriterManager::getTimelineObject(IND_SpriterEntity *ent,int timelineId, int keyId) {
     return ent->getAnimations()->at(ent->_currentAnimation)->getTimeLines()->at(timelineId)->getKeys()->at(keyId)->getObjects()->at(0); // TODO : is there allways one object here? ( we're using an array )

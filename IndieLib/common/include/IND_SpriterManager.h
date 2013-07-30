@@ -100,6 +100,8 @@ private:
     void        drawPersistentObject(IND_SpriterEntity *ent, MainlineObjectref *mObjectref);
     void        drawBone(IND_SpriterEntity *ent, MainlineObjectref *mObjectref);
     
+    void        updateCurrentTime(IND_SpriterEntity *ent);
+    void        updateCurrentKey(IND_SpriterEntity *ent);
     TimelineObject* getTimelineObject(IND_SpriterEntity *ent,int timelineId, int keyId);
     IND_Surface*    getSurface(IND_SpriterEntity *ent, int folderId, int fileId);
     

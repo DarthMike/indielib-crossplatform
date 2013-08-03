@@ -50,6 +50,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="0"
 				AdditionalIncludeDirectories="..\..\include;&quot;$(DXSDK_DIR)Include&quot;"
 				PreprocessorDefinitions="_DEBUG;_WINDOWS"
@@ -216,6 +217,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				InlineFunctionExpansion="1"
 				EnableIntrinsicFunctions="false"
 				AdditionalIncludeDirectories="..\..\include;&quot;$(DXSDK_DIR)Include&quot;"

@@ -39,9 +39,9 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="0"
 				AdditionalIncludeDirectories="&quot;$(ProjectDir)\..\IndieLib\common\include&quot;"
-				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				WarningLevel="3"
@@ -109,6 +109,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
 				AdditionalIncludeDirectories="&quot;$(ProjectDir)\..\IndieLib\common\include&quot;"

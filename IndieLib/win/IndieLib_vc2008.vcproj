@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="IndieLib"
 	ProjectGUID="{EC5DB2F1-5096-430A-B62F-65859F497E5D}"
 	RootNamespace="IndieLib_vc2008"
@@ -42,10 +42,11 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../Common/;../Common/include/;../Common/src/"
+				AdditionalIncludeDirectories="../Common/;../Common/include/;../Common/src/;&quot;$(DXSDK_DIR)Include&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;INDIELIB_DLLBUILD"
 				RuntimeLibrary="2"
 				BufferSecurityCheck="false"
@@ -67,7 +68,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories=""
+				AdditionalLibraryDirectories="&quot;$(DXSDK_DIR)Lib\x86&quot;"
 				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -121,14 +122,14 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="0"
 				InlineFunctionExpansion="0"
 				EnableIntrinsicFunctions="false"
 				FavorSizeOrSpeed="0"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../Common/;../Common/include/;../Common/src/"
+				AdditionalIncludeDirectories="../Common/;../Common/include/;../Common/src/;&quot;$(DXSDK_DIR)Include&quot;"
 				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;INDIELIB_DLLBUILD"
-				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				BufferSecurityCheck="false"
@@ -151,7 +152,7 @@
 				Name="VCLinkerTool"
 				OutputFile="$(OutDir)\$(ProjectName)d.dll"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories=""
+				AdditionalLibraryDirectories="&quot;$(DXSDK_DIR)Lib\x86&quot;"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(TargetDir)$(TargetName).pdb"
 				SubSystem="2"

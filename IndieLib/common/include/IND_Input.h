@@ -25,6 +25,7 @@ Suite 330, Boston, MA 02111-1307 USA
 // ----- Includes -----
 #include "Defines.h"
 #include "IND_Timer.h"
+#include <map>
 
 // ----- Forward declarations -----
 class IND_Render;
@@ -160,17 +161,37 @@ public:
 
 /** @endcond */
 
+/**
+ @defgroup Touches
+ @ingroup Input
+ 
+ Touches data is always used in devices with touch screen, like iOS.
+ */
+/**@{*/
+typedef enum {
+    IND_TouchStateDown,
+    IND_TouchStateMoved,
+    IND_TouchStateUp
+} IND_TouchState;
+typedef struct IND_Touch{
+public:
+    
+    IND_Touch() : position(0,0){
+        
+    }
+    
+    unsigned int identifier;
+    IND_Point position;
+    IND_TouchState state;
+} IND_Touch;
 
-// --------------------------------------------------------------------------------
-//									 IND_Input
-// --------------------------------------------------------------------------------
+/**@}*/
 
 /**
 @defgroup IND_Input IND_Input
 @ingroup Input
 IND_Input class for having input from keyboard and mouse. Click in IND_Input to see all the methods of this class.
 */
-/**@{*/
 
 /**
 @b IND_Input is a wrapper class of SDL input functions for giving IndieLib the possibility of
@@ -181,7 +202,7 @@ public:
 
 	// ----- Init/End -----
 
-	IND_Input(): _ok(false)                      { }
+	IND_Input(): _ok(false), _keyboardActive(true) { }
 	~IND_Input()                                  {
 		end();
 	}
@@ -204,6 +225,9 @@ public:
 	*
 	*/
 	/**@{*/
+    void beginKeyboardEvents();
+    void endKeyboardEvents();
+    bool isAcceptingKeyboardEvents();
 	bool onKeyPress(IND_Key pKey);
 	bool onKeyRelease(IND_Key pKey);
 	bool isKeyPressed(IND_Key pKey);
@@ -226,6 +250,18 @@ public:
 	bool isMouseButtonPressed(IND_MouseButton pMouseButton);
 	bool isMouseButtonPressed(IND_MouseButton pMouseButton, unsigned long pTime);
 	/**@}*/
+    
+    /** @name Touches
+     *
+     */
+	/**@{*/
+    
+    typedef std::map<unsigned int,IND_Touch*> TouchesMap;
+    typedef TouchesMap::iterator TouchesMapIterator;
+    IND_Touch* touchWithIdentifier(unsigned int identifier);
+    TouchesMap touchesWithState(IND_TouchState state);
+    
+	/**@}*/
 
 private:
 	/** @cond DOCUMENT_PRIVATEAPI */
@@ -234,17 +270,22 @@ private:
 	IND_Render *_render;
 	bool _ok;
 	bool _quit;
+    bool _keyboardActive;
 
 	// ----- Objects -----
 
 	CKey _keys [132];
 	CMouse _mouse;
+    TouchesMap _touches;
+    TouchesMap _oldTouches;
 
 	// ----- Private methods -----
 
-	void                initFlags();
-	void                initVars();
-	void                freeVars();
+	void initFlags();
+	void initVars();
+	void freeVars();
+    void clearOldTouches();
+
     /** @endcond */
 };
 /**@}*/

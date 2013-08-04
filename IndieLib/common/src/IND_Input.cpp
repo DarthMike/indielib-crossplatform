@@ -42,6 +42,7 @@ bool IND_Input::init(IND_Render *pRender) {
 	initVars();
     
 	_ok = true;
+    _keyboardActive = false;
 
 	_render = pRender;
     
@@ -95,6 +96,10 @@ void IND_Input::update() {
 	_mouse._mouseScroll = false;
 	_mouse._mouseScrollX = 0;
 	_mouse._mouseScrollY = 0;
+    
+    // Touches marked for deletion from previous update, to be removed
+    clearOldTouches();
+    
 	// ----- Update -----
     
 	while (SDL_PollEvent(&mEvent)) {
@@ -103,10 +108,19 @@ void IND_Input::update() {
 		SDL_GetMouseState(&_mouse._mouseX, &_mouse._mouseY);
                 
 		switch (mEvent.type) {
-                // ----- Window closed ------
+                // ----- Window status ------
                 
-            case SDL_QUIT:
+            case SDL_QUIT:  //Window closed.
                 _quit = 1;
+                break;
+                // ----- App states ------
+                // TODO: App states
+            case SDL_APP_TERMINATING:
+            case SDL_APP_LOWMEMORY:
+            case SDL_APP_WILLENTERBACKGROUND:
+            case SDL_APP_DIDENTERBACKGROUND:
+            case SDL_APP_WILLENTERFOREGROUND:
+            case SDL_APP_DIDENTERFOREGROUND:
                 break;
                 
                 // ----- Window focus changed -----
@@ -130,32 +144,40 @@ void IND_Input::update() {
                 // ----- Mouse buttons -----
                 
             case SDL_MOUSEBUTTONDOWN:
-                switch (mEvent.button.button) {
-                    case SDL_BUTTON_LEFT:
-                        _mouse._mouseButtons [IND_MBUTTON_LEFT].setState(IND_MBUTTON_PRESSED);
-                        break;
-                    case SDL_BUTTON_RIGHT:
-                        _mouse._mouseButtons [IND_MBUTTON_RIGHT].setState(IND_MBUTTON_PRESSED);
-                        break;
-                    case SDL_BUTTON_MIDDLE:
-                        _mouse._mouseButtons [IND_MBUTTON_MIDDLE].setState(IND_MBUTTON_PRESSED);
-                        break;
-                        
+                // SDL sends a mousebuton down when a touchscreen fingerdown is triggered.
+                // We don't want double events, so we must distinguish it from a 'real' mouse event
+                if (mEvent.button.which != SDL_TOUCH_MOUSEID) {
+                    switch (mEvent.button.button) {
+                        case SDL_BUTTON_LEFT:
+                            _mouse._mouseButtons [IND_MBUTTON_LEFT].setState(IND_MBUTTON_PRESSED);
+                            break;
+                        case SDL_BUTTON_RIGHT:
+                            _mouse._mouseButtons [IND_MBUTTON_RIGHT].setState(IND_MBUTTON_PRESSED);
+                            break;
+                        case SDL_BUTTON_MIDDLE:
+                            _mouse._mouseButtons [IND_MBUTTON_MIDDLE].setState(IND_MBUTTON_PRESSED);
+                            break;
+                            
+                    }
                 }
                 break;
                 
             case SDL_MOUSEBUTTONUP:
-                switch (mEvent.button.button) {
-                    case SDL_BUTTON_LEFT:
-                        _mouse._mouseButtons [IND_MBUTTON_LEFT].setState(IND_MBUTTON_NOT_PRESSED);
-                        break;
-                    case SDL_BUTTON_RIGHT:
-                        _mouse._mouseButtons [IND_MBUTTON_RIGHT].setState(IND_MBUTTON_NOT_PRESSED);
-                        break;
-                    case SDL_BUTTON_MIDDLE:
-                        _mouse._mouseButtons [IND_MBUTTON_MIDDLE].setState(IND_MBUTTON_NOT_PRESSED);
-                        break;
-                        
+                // SDL sends a mousebuton down when a touchscreen fingerup is triggered.
+                // We don't want double events, so we must distinguish it from a 'real' mouse event
+                if ( mEvent.button.which != SDL_TOUCH_MOUSEID) {
+                    switch (mEvent.button.button) {
+                        case SDL_BUTTON_LEFT:
+                            _mouse._mouseButtons [IND_MBUTTON_LEFT].setState(IND_MBUTTON_NOT_PRESSED);
+                            break;
+                        case SDL_BUTTON_RIGHT:
+                            _mouse._mouseButtons [IND_MBUTTON_RIGHT].setState(IND_MBUTTON_NOT_PRESSED);
+                            break;
+                        case SDL_BUTTON_MIDDLE:
+                            _mouse._mouseButtons [IND_MBUTTON_MIDDLE].setState(IND_MBUTTON_NOT_PRESSED);
+                            break;
+                            
+                    }
                 }
                 break;
                 
@@ -165,13 +187,36 @@ void IND_Input::update() {
 				_mouse._mouseScrollY = mEvent.wheel.y;
 
                 break;
-            	//TODO: There is a lot of states that we don't check, maybe we should either: 
-                //A) write to debug in the default case or B) use ALL the missing cases with a single break;
+            
+            case SDL_FINGERDOWN: {
+                IND_Touch* touch = new IND_Touch();
+                touch->identifier = mEvent.tfinger.touchId;
+                touch->state = IND_TouchStateDown;
+                touch->position = IND_Point(mEvent.tfinger.x,mEvent.tfinger.y);
+                _touches[touch->identifier] = touch;
+            }
+                break;
+            case SDL_FINGERMOTION: {
+                TouchesMapIterator it = _touches.find(mEvent.tfinger.touchId);
+                if (it != _touches.end()) {
+                    (*it).second->state = IND_TouchStateMoved;
+                    (*it).second->position = IND_Point(mEvent.tfinger.x,mEvent.tfinger.y);
+                }
+            }
+                break;
+            case SDL_FINGERUP: {
+                TouchesMapIterator it = _touches.find(mEvent.tfinger.touchId);
+                if (it != _touches.end()) {
+                    (*it).second->state = IND_TouchStateUp;
+                    (*it).second->position = IND_Point(mEvent.tfinger.x,mEvent.tfinger.y);
+                    _oldTouches[(*it).second->identifier] = (*it).second;
+                }
+            }
+                break;
                 
-                //TODO: Touch handling
-                //TODO: Keyboard focus
+            default: {
                 
-            default:
+            }
                 break;
                 
 		}
@@ -594,6 +639,39 @@ bool IND_Input::quit() {
 }
 
 /**
+ * Used for touch screen devices. 
+ * 
+ * If the system does not have on-screen keyboards, this is ignored. Use it if you want to show the keyboard 
+ * on screen, for example in iOS
+ */
+void IND_Input::beginKeyboardEvents() {
+    SDL_StartTextInput();
+    _keyboardActive = true;
+}
+
+/**
+ * Used for touch screen devices.
+ *
+ * If the system does not have on-screen keyboards, this is ignored. Use it to dismiss on-screen keyboard
+ * Use it for on-screen compatible keyboards, like iOS
+ */
+void IND_Input::endKeyboardEvents() {
+    SDL_StopTextInput();
+    _keyboardActive = false;
+}
+
+/**
+ * Queries if a call to beginKeyboardEvents was done, and not rest by endKeyboardEvents
+ * 
+ * Use this to track your calls to begin/end keyboardEvents API. In no way it reflects if the system is actually receiving
+ * keyboard events. Many devices can share a keyboard + a touch screen, so it is wise you don't abstract this and consider into
+ * your app design how you handle those.
+ */
+bool IND_Input::isAcceptingKeyboardEvents() {
+    return _keyboardActive;
+}
+
+/**
  * Returns true if the key passed as @b pKey parameter is pressed.
  * @param pKey						Key that we want to check. See ::IND_Key.
  */
@@ -725,6 +803,43 @@ bool IND_Input::isMouseButtonPressed(IND_MouseButton pMouseButton, unsigned long
 	return 0;
 }
 
+/**
+ * Returns Returns any active touch from a finger, having the identifier as requested
+ * @param pIdentifier               Identifier of the touch to search for
+ * @return A valid touch, if existing, or NULL in case no touch is found
+ */
+IND_Touch* IND_Input::touchWithIdentifier(unsigned int pIdentifier) {
+    
+    TouchesMapIterator it = _touches.find(pIdentifier);
+    
+    if (it != _touches.end()) {
+        return it->second;
+    }
+    
+    return NULL;
+}
+
+/**
+ * Returns Returns a map containing a set of touches, queryable by id, and having the state requested
+ *
+ * Do not delete the touches contained in the map, as they are owned by IND_Input
+ * @param pState The state the touches are
+ * @return Always returns a map, which may be empty if no touches with that state are found
+ */
+IND_Input::TouchesMap IND_Input::touchesWithState(IND_TouchState pState) {
+    
+    TouchesMap toReturn;
+    
+    TouchesMapIterator it;
+    for (it = _touches.begin(); it != _touches.end() ; ++it) {
+        if (it->second->state == pState) {
+            toReturn[it->first] = it->second;
+        }
+    }
+    return toReturn;
+    
+}
+
 // --------------------------------------------------------------------------------
 //									 Private methods
 // --------------------------------------------------------------------------------
@@ -770,6 +885,16 @@ void IND_Input::initVars() {
 */
 void IND_Input::freeVars() {
     
+}
+
+void IND_Input::clearOldTouches() {
+    TouchesMapIterator it;
+    for (it = _oldTouches.begin(); it != _oldTouches.end(); ++it) {
+        _touches.erase((*it).first);
+        DISPOSE((*it).second);
+    }
+    
+    _oldTouches.clear();
 }
 
 /** @endcond */

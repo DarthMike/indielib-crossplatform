@@ -546,6 +546,16 @@ typedef struct structMatrix IND_Matrix;
 
 //! 2d Point 2d\n (x, y)
 struct structPoint {
+    
+    structPoint() {
+        x = 0;
+        y = 0;
+    }
+    
+    structPoint(int newX, int newY) {
+        x = newX;
+        y = newY;
+    }
 	int x;      //!< Coordinate x
     int y;      //!< Coordinate y
 };

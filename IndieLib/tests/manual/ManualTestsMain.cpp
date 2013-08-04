@@ -214,7 +214,7 @@ IndieLib_Main() {
 		ticks += g_mainTimer.getTicks();
 
         //Perform next test setup (if needed) Arrow keys change current temporary test using
-        if (mI->_input->onKeyPress(IND_KEYRIGHT) && !mI->_input->onKeyPress(IND_KEYLEFT)){
+        if (mI->_input->onKeyRelease(IND_M)) {
             //Current test is not active
             (*currentTest)->setActive(false);
             currentTest++;
@@ -226,7 +226,7 @@ IndieLib_Main() {
             
             //Next test is active
             (*currentTest)->setActive(true);
-        } else if (mI->_input->onKeyPress(IND_KEYLEFT) && !mI->_input->onKeyPress(IND_KEYRIGHT)){
+        } else if (mI->_input->onKeyRelease(IND_N)){
             //Current test is not active
             (*currentTest)->setActive(false);
           

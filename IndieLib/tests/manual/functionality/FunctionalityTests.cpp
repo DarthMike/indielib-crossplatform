@@ -56,24 +56,23 @@ static RESOLUTION g_possibleRes[g_numTestedRes] = {
 void FunctionalityTests::performTests(float dt) {
 
 	_keyTimer += dt;
-	//if (_timer > g_testingInterval) {
-		//Only perform 1 test
-		_timer = 0.0f;
-		if (fullScreenToggle())
-			return;
-
-		if (resetParameters())
-			return;
-
-		if (changeViewPortColor())
-			return;
+    _timer = 0.0f;
+    if (fullScreenToggle())
+        return;
     
-        if (pixelPointScaleChange()) {
-            return;
-        }
-	//} else {
-	//	_timer += dt;
-	//}
+    if (resetParameters())
+        return;
+    
+    if (changeViewPortColor())
+        return;
+    
+    if (pixelPointScaleChange()) {
+        return;
+    }
+    
+    if (keyboardFocus()) {
+        return ;
+    }
 }
 
 //Default implementation
@@ -144,5 +143,15 @@ bool FunctionalityTests::changeViewPortColor() {
 		return true;
 	}
 
+	return false;
+}
+
+bool FunctionalityTests::keyboardFocus() {
+   	CIndieLib *mI = CIndieLib::instance();
+	if (mI->_input->touchesWithState(IND_TouchStateUp).size()) {
+        mI->_input->isAcceptingKeyboardEvents() ? mI->_input->endKeyboardEvents() : mI->_input->beginKeyboardEvents();
+		return true;
+	}
+    
 	return false;
 }

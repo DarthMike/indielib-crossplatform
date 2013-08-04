@@ -37,17 +37,17 @@ const char* WorkingPathSetup::resourcesDirectory() {
     
 #ifdef PLATFORM_IOS
     // Bundle in iOS apps is flattened, meaning exe is in root, and added dirs start from there
-    strcat(g_resourcesDir, "/resources");
+    strcat(g_resourcesDir, "/assets");
 #endif
     
 #ifdef PLATFORM_OSX
     // Bundle in OSX apps is not flattened, because executable directory can contain plugins
     // There is a Resources directory, where our files will be copied
-    strcat(g_resourcesDir, "/../Resources/resources");
+    strcat(g_resourcesDir, "/../Resources/assets");
 #endif
     
 #if defined (PLATFORM_WIN32) || defined (PLATFORM_LINUX)
-    strcat(g_resourcesDir, "/../../resources");
+    strcat(g_resourcesDir, "/../../assets");
 #endif
     
     return g_resourcesDir;

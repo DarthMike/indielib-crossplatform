@@ -1,0 +1,6 @@
+Debug/
+Release/
+/FreeImage/Wrapper/FreeImagePlus/dist
+/SDL-2.0/VisualC/tests/*/icon.bmp
+/SDL-2.0/VisualC/tests/*/sample.bmp
+/glew-1.9.0/build/vc9/static/

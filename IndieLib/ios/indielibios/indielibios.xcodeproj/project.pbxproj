@@ -570,20 +570,22 @@
 		E720107F176E3DF000D14384 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DSTROOT = /tmp/indielibios.dst;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				INSTALL_PATH = /ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
 		E7201080176E3DF000D14384 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DSTROOT = /tmp/indielibios.dst;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				INSTALL_PATH = /ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};

@@ -55,13 +55,19 @@ int IndieLib()
     
     char mText [2048];
 	mText [0] = 0;
+    
+    char mTimeString[128];
+	mTimeString[0] = 0;
+	char mTempTime[1024];
+    
 
     IND_Timer *mTimer = new IND_Timer();
 	mTimer->start();
-    float mT;
+    int deltaTime = 0;
+    int lastTime = 0;
+    int mSecond = 0;
     
     
-    //mI->_spriterManager->
     IND_SpriterEntity *sEnt = mI->_spriterManager->getEntities()->at(0);
     sEnt->playAnimation(0);
     
@@ -71,32 +77,58 @@ int IndieLib()
 
 		mI->_input->update();
 
-		// ----- Text -----
-
-		strcpy(mText, "This is the unfinished Spriter support tutorial, - currently there is nothing to see, so move along please =)  \nCroshair coords (x,y) = 400,500");
-		mTextSmallWhite->setText(mText);
 
 		// ----- Input ----
 
-		// for future use ...
+		// Pause / Restart time when pressing space
 		if (mI->_input->onKeyPress(IND_SPACE))
 		{
-
+			if (mTimer->isPaused()){
+				mTimer->unpause();
+			}
+			else{
+				mTimer->pause();
+			}
 		}
 
 		// ----- Updating entities attributes  -----
+        
+        mSecond = (int) (mTimer->getTicks() / 1000.0f);
+        
+        deltaTime = mSecond - lastTime;
+        
+        lastTime = mSecond;
+        
+        
+        if ( deltaTime > 0 ) { // TODO: MFK, move timer functionality into spriter manager, and let it have full control.
+        
+            // ----- Text -----
+            
+        
+            strcpy(mText, "This is the unfinished Spriter support tutorial, - currently there is nothing to see, so move along please =)  \nCroshair coords (x,y) = 400,500 \nTime ");
+            
+            // Show the time passing in seconds
+            mI->_math->itoa(mSecond,mTempTime);
+
+            strcat (mText, mTempTime);
+            
+            
+            mTextSmallWhite->setText(mText);
 
 
-		// ----- Render  -----
+            // ----- Render  -----
 
-		mI->_render->beginScene();
-		mI->_render->clearViewPort(127, 127, 127);
-        mI->_render->blitLine(400,50, 400, 550, 255, 255, 255, 255);
-        mI->_render->blitLine(50,500, 750, 500, 255, 255, 255, 255);
-        mI->_render->blitPixel(400, 500, 0, 0, 0, 255); // crosshair center point 
-		mI->_entity2dManager->renderEntities2d();
-        mI->_spriterManager->renderEntities();
-		mI->_render->endScene();	
+            mI->_render->beginScene();
+            mI->_render->clearViewPort(127, 127, 127);
+            mI->_render->blitLine(400,50, 400, 550, 255, 255, 255, 255);
+            mI->_render->blitLine(50,500, 750, 500, 255, 255, 255, 255);
+            mI->_render->blitPixel(400, 500, 0, 0, 0, 255); // crosshair center point
+            mI->_entity2dManager->renderEntities2d();
+            mI->_spriterManager->renderEntities();
+            mI->_render->endScene();
+        
+        }
+            
 	}
 
 	// ----- Free -----

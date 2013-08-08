@@ -366,7 +366,7 @@ bool IND_SpriterManager::parseSpriterData(const char *pSCMLFileName) {
                     }
                     
                     
-					eTKey = eTimeline->NextSiblingElement("key");
+					eTKey = eTKey->NextSiblingElement("key");
 
 				}
 				
@@ -506,6 +506,7 @@ void  IND_SpriterManager::draw(IND_SpriterEntity *ent) {
     for (unsigned i=0; i < mainlineObjectrefs->size(); i++) {
         drawTransientObject(ent, mainlineObjectrefs->at(i));
     }
+    
 }
 
 
@@ -593,7 +594,18 @@ void IND_SpriterManager::updateCurrentTime(IND_SpriterEntity *ent) {
 }
 
 void IND_SpriterManager::updateCurrentKey(IND_SpriterEntity *ent) {
-    // TODO: MFK, implement this
+    
+    // TODO: MFK the body of this method should be completely rewritten;
+    
+    int size = ent->getAnimations()->at(ent->_currentAnimation)->getMainline()->getKeys()->size();
+
+    ent->_currentKey = ent->_currentKey + 1;
+    
+    if (! (ent->_currentKey < size)) {
+        ent->_currentKey = 0;
+     }
+    
+
 }
 
 TimelineObject* IND_SpriterManager::getTimelineObject(IND_SpriterEntity *ent,int timelineId, int keyId) {

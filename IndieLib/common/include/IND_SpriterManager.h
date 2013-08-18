@@ -34,6 +34,7 @@ class CollisionParser;
 class IND_SpriterEntity;
 class IND_Render;
 class IND_Surface;
+class IND_Timer;
 
 
 // --------------------------------------------------------------------------------
@@ -81,6 +82,7 @@ private:
     
     IND_Render * _render;
 	IND_SurfaceManager *_surfaceManager;
+    IND_Timer * _timer;
 
 	// ----- Containers -----
 

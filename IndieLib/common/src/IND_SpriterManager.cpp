@@ -411,7 +411,7 @@ void IND_SpriterManager::addToList(IND_SpriterEntity *pNewEntity) {
  * @param pAn					The animation that is to be removed from the manager.
  */
 void IND_SpriterManager::delFromlist(IND_SpriterEntity *pEn) {
-	//_listSpriterEntity->remove(pEn); //TODO .....
+	//_listSpriterEntity->remove(pEn); //TODO : and we probably have to stop the animation if playing, - also we have to handle that the manager is playlooping the list while we try to delete from it ...
 	pEn = NULL;
 }
 
@@ -431,6 +431,8 @@ void IND_SpriterManager::writeMessage() {
  */
 void IND_SpriterManager::initVars() {
 	_listSpriterEntity = new vector <IND_SpriterEntity *>;
+    _timer = new IND_Timer();
+    _timer->start();
 }
 
 
@@ -456,6 +458,8 @@ void IND_SpriterManager::freeVars() {
 	// Free list
 	DISPOSE(_listAnimations);
 */
+    _timer->stop();
+    DISPOSE(_timer);
 }
 
 

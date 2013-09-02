@@ -56,16 +56,16 @@ int IndieLib()
     char mText [2048];
 	mText [0] = 0;
     
-    char mTimeString[128];
-	mTimeString[0] = 0;
-	char mTempTime[1024];
+    //char mTimeString[128];
+	//mTimeString[0] = 0;
+	//char mTempTime[1024];
     
 
-    IND_Timer *mTimer = new IND_Timer();
-	mTimer->start();
-    int deltaTime = 0;
-    int lastTime = 0;
-    int mSecond = 0;
+    //IND_Timer *mTimer = new IND_Timer();
+	//mTimer->start();
+    //int deltaTime = 0;
+    //int lastTime = 0;
+    //int mSecond = 0;
     
     
     IND_SpriterEntity *sEnt = mI->_spriterManager->getEntities()->at(0);
@@ -81,26 +81,26 @@ int IndieLib()
 		// ----- Input ----
 
 		// Pause / Restart time when pressing space
-		if (mI->_input->onKeyPress(IND_SPACE))
-		{
-			if (mTimer->isPaused()){
-				mTimer->unpause();
-			}
-			else{
-				mTimer->pause();
-			}
-		}
+		//if (mI->_input->onKeyPress(IND_SPACE))
+		//{
+		//	if (mTimer->isPaused()){
+		//		mTimer->unpause();
+		//	}
+		//	else{
+		//		mTimer->pause();
+		//	}
+		//}
 
 		// ----- Updating entities attributes  -----
         
-        mSecond = (int) (mTimer->getTicks() / 1000.0f);
+        //mSecond = (int) (mTimer->getTicks() / 1000.0f);
         
-        deltaTime = mSecond - lastTime;
+        //deltaTime = mSecond - lastTime;
         
-        lastTime = mSecond;
+        //lastTime = mSecond;
         
         
-        if ( deltaTime > 0 ) { // TODO: MFK, move timer functionality into spriter manager, and let it have full control.
+        //if ( deltaTime > 0 ) { // TODO: MFK, move timer functionality into spriter manager, and let it have full control.
         
             // ----- Text -----
             
@@ -108,9 +108,9 @@ int IndieLib()
             strcpy(mText, "This is the unfinished Spriter support tutorial, - currently there is nothing to see, so move along please =)  \nCroshair coords (x,y) = 400,500 \nTime ");
             
             // Show the time passing in seconds
-            mI->_math->itoa(mSecond,mTempTime);
+            //mI->_math->itoa(mSecond,mTempTime);
 
-            strcat (mText, mTempTime);
+            //strcat (mText, mTempTime);
             
             
             mTextSmallWhite->setText(mText);
@@ -127,7 +127,7 @@ int IndieLib()
             mI->_spriterManager->renderEntities();
             mI->_render->endScene();
         
-        }
+        //}
             
 	}
 

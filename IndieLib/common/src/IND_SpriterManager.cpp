@@ -433,6 +433,8 @@ void IND_SpriterManager::initVars() {
 	_listSpriterEntity = new vector <IND_SpriterEntity *>;
     _timer = new IND_Timer();
     _timer->start();
+    _deltaTime = 0.0;
+    _lastTime = 0.0;
 }
 
 
@@ -478,11 +480,16 @@ float IND_SpriterManager::toFloat(const char* input) {
 
 void IND_SpriterManager::renderEntities() {
     
-    // TODO: MFK, update timer here, so that all entities use the same delta time value...
+    double currentTime = _timer->getTicks();
+    
+    _deltaTime = ( currentTime - _lastTime );
+    
+    _lastTime = currentTime;
+    
     
     for (unsigned i=0; i < _listSpriterEntity->size(); i++) {
         
-        updateCurrentTime(_listSpriterEntity->at(i));
+        updateCurrentTime(_listSpriterEntity->at(i), _deltaTime);
         updateCurrentKey(_listSpriterEntity->at(i));
         
         draw(_listSpriterEntity->at(i));
@@ -593,21 +600,22 @@ void IND_SpriterManager::drawBone(IND_SpriterEntity *ent, MainlineObjectref *mOb
     // TODO: support this in a later version
 }
 
-void IND_SpriterManager::updateCurrentTime(IND_SpriterEntity *ent) {
-    // TODO: MFK, implement this
+void IND_SpriterManager::updateCurrentTime(IND_SpriterEntity *ent, double deltaTime) {
+    ent->_currentTime = ent->_currentTime + deltaTime; // TODO: is it ok to do the double to int cast here? ... and what about if we have passed the duration of the animation?
 }
 
 void IND_SpriterManager::updateCurrentKey(IND_SpriterEntity *ent) {
+     std::vector <MainlineKey *> *mainlineKeys = ent->getAnimations()->at(ent->_currentAnimation)->getMainline()->getKeys();
     
-    // TODO: MFK the body of this method should be completely rewritten;
-    
-    int size = ent->getAnimations()->at(ent->_currentAnimation)->getMainline()->getKeys()->size();
+    for (unsigned i=0; i < mainlineKeys->size(); i++) {
+        if (mainlineKeys->at(i)->getTime() <= ent->_currentTime) {     // TODO: here again with the messy cast....
+            ent->_currentKey = i;
+        }
+        else {
+            break;
+        }
 
-    ent->_currentKey = ent->_currentKey + 1;
-    
-    if (! (ent->_currentKey < size)) {
-        ent->_currentKey = 0;
-     }
+    }
     
 
 }

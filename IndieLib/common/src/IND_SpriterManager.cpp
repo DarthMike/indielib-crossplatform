@@ -528,7 +528,7 @@ void  IND_SpriterManager::drawTransientObject(IND_SpriterEntity *ent, MainlineOb
     
     g_debug->header(surface->getTypeString(), DebugApi::LogHeaderError);
     
-    IND_Matrix *mMatrix = new IND_Matrix();
+    IND_Matrix *mMatrix = new IND_Matrix(); // TODO: do we need this?
     
     
     float tempx = (tObject->x + 400.0f);
@@ -600,18 +600,26 @@ void IND_SpriterManager::drawBone(IND_SpriterEntity *ent, MainlineObjectref *mOb
     // TODO: support this in a later version
 }
 
+
 void IND_SpriterManager::updateCurrentTime(IND_SpriterEntity *ent, double deltaTime) {
     ent->_currentTime = ent->_currentTime + deltaTime; // TODO: is it ok to do the double to int cast here? ... and what about if we have passed the duration of the animation?
 }
 
+
 void IND_SpriterManager::updateCurrentKey(IND_SpriterEntity *ent) {
-     std::vector <MainlineKey *> *mainlineKeys = ent->getAnimations()->at(ent->_currentAnimation)->getMainline()->getKeys();
+    std::vector <MainlineKey *> *mainlineKeys = ent->getAnimations()->at(ent->_currentAnimation)->getMainline()->getKeys();
     
     for (unsigned i=0; i < mainlineKeys->size(); i++) {
         if (mainlineKeys->at(i)->getTime() <= ent->_currentTime) {     // TODO: here again with the messy cast....
             ent->_currentKey = i;
         }
         else {
+            cout << "(mainlinkeytime, currentimemessured) : ";
+            cout << mainlineKeys->at(i)->getTime();
+            cout << " , ";
+            cout << ent->_currentTime;
+            cout << "  ." << endl;
+            
             break;
         }
 

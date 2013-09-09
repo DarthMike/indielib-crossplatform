@@ -320,6 +320,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4CD86C0B17DE36CB00DB911B /* CIndieLib.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = CIndieLib.cpp; path = ../basic/17_IND_TTF_Font/CIndieLib.cpp; sourceTree = "<group>"; };
+		4CD86C0C17DE36CB00DB911B /* CIndieLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CIndieLib.h; path = ../basic/17_IND_TTF_Font/CIndieLib.h; sourceTree = "<group>"; };
+		4CD86C0D17DE36CB00DB911B /* Tutorial17.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Tutorial17.cpp; path = ../basic/17_IND_TTF_Font/Tutorial17.cpp; sourceTree = "<group>"; };
 		E72ECCA415E6B5FF00250CEE /* IndielibTutorials-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "IndielibTutorials-Info.plist"; path = "IndielibTutorials/IndielibTutorials-Info.plist"; sourceTree = SOURCE_ROOT; };
 		E72ECCA515E6B5FF00250CEE /* IndielibTutorials-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "IndielibTutorials-Prefix.pch"; path = "IndielibTutorials/IndielibTutorials-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		E72ECCAA15E6B67800250CEE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = IndielibTutorials/en.lproj/Credits.rtf; sourceTree = SOURCE_ROOT; };
@@ -570,6 +573,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4CD86C0A17DE358B00DB911B /* 17_IND_TTF_Font */ = {
+			isa = PBXGroup;
+			children = (
+				4CD86C0B17DE36CB00DB911B /* CIndieLib.cpp */,
+				4CD86C0C17DE36CB00DB911B /* CIndieLib.h */,
+				4CD86C0D17DE36CB00DB911B /* Tutorial17.cpp */,
+			);
+			name = 17_IND_TTF_Font;
+			sourceTree = "<group>";
+		};
 		E72ECCB715E6BBC300250CEE /* 01_Installing */ = {
 			isa = PBXGroup;
 			children = (
@@ -688,7 +701,7 @@
 				E73EB01F15E6D54D00B95FE4 /* Tutorial15.cpp */,
 			);
 			name = 15_Parallax_Scrolling;
-			path = ../../tutorials/basic/15_Parallax_Scrolling;
+			path = ../basic/15_Parallax_Scrolling;
 			sourceTree = "<group>";
 		};
 		E73EB03615E6D6D000B95FE4 /* 16_IND_Timer */ = {
@@ -699,7 +712,7 @@
 				E73EB03B15E6D6D000B95FE4 /* Tutorial16.cpp */,
 			);
 			name = 16_IND_Timer;
-			path = ../../tutorials/basic/16_IND_Timer;
+			path = ../basic/16_IND_Timer;
 			sourceTree = "<group>";
 		};
 		E74485A215E7E9EC00DDE3BF /* 01_IND_Surface_Grids */ = {
@@ -728,6 +741,7 @@
 				E73EB00215E6D4A300B95FE4 /* 13_2d_Camera */,
 				E73EB01C15E6D54D00B95FE4 /* 15_Parallax_Scrolling */,
 				E73EB03615E6D6D000B95FE4 /* 16_IND_Timer */,
+				4CD86C0A17DE358B00DB911B /* 17_IND_TTF_Font */,
 			);
 			name = Basic;
 			sourceTree = "<group>";

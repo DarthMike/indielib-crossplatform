@@ -1,18 +1,32 @@
-/*****************************************************************************************************/
-/* This software is a freeware.
-/* In no event will the authors be held liable for any damages arising from the use of this software. 
-/* You can use this class ANY way you like unless you keep the following information
-/* 
-/* Created by Joel Gao a.k.a venomJ (joel_gao@yahoo.com)
-/* 
+/*****************************************************************************************
+ * File: IND_TTF_Font.h
+ * Desc: TrueType Fontobject
+ *****************************************************************************************/
+
 /*
-/* V0.15Beta	Feb 17, 2009
-/*				All basic features added.
-/*****************************************************************************************************/
+ Created by Joel Gao a.k.a venomJ (joel_gao@yahoo.com), Feb 17, 2009 and with his
+ blessing added to:
+ 
+ IndieLib 2d library Copyright (C) 2005 Javier LÛpez LÛpez (info@pixelartgames.com)
+ 
+ This library is free software; you can redistribute it and/or modify it under the
+ terms of the GNU Lesser General Public License as published by the Free Software
+ Foundation; either version 2.1 of the License, or (at your option) any later version.
+ 
+ This library is distributed in the hope that it will be useful, but WITHOUT ANY
+ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+ PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License along with
+ this library; if not, write to the Free Software Foundation, Inc., 59 Temple Place,
+ Suite 330, Boston, MA 02111-1307 USA
+ */
+
+
 #ifndef IND_TTF_FONT_H
 #define IND_TTF_FONT_H
 
-#include "../../common/LibHeaders/Indie.h"
+#include "Indie.h"
 
 #include <ft2build.h>
 #include FT_FREETYPE_H

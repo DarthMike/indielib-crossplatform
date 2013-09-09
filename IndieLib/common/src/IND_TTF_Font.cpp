@@ -1,3 +1,27 @@
+/*****************************************************************************************
+ * File: IND_TTF_Font.cpp
+ * Desc: TrueType Fontobject
+ *****************************************************************************************/
+
+/*
+ Created by Joel Gao a.k.a venomJ (joel_gao@yahoo.com), Feb 17, 2009 and with his
+ blessing added to:
+ 
+ IndieLib 2d library Copyright (C) 2005 Javier LÛpez LÛpez (info@pixelartgames.com)
+ 
+ This library is free software; you can redistribute it and/or modify it under the
+ terms of the GNU Lesser General Public License as published by the Free Software
+ Foundation; either version 2.1 of the License, or (at your option) any later version.
+ 
+ This library is distributed in the hope that it will be useful, but WITHOUT ANY
+ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+ PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License along with
+ this library; if not, write to the Free Software Foundation, Inc., 59 Temple Place,
+ Suite 330, Boston, MA 02111-1307 USA
+ */
+
 #include "IND_TTF_Font.h"
 
 #include "freetype\ttunpat.h"

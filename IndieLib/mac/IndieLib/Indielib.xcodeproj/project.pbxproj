@@ -22,6 +22,10 @@
 		4C7AF06B175B73F7004F4821 /* TimelineObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C7AF05E175B73F7004F4821 /* TimelineObject.h */; };
 		4C7F4379174926A9009403C5 /* IND_SpriterEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C7F4378174926A9009403C5 /* IND_SpriterEntity.cpp */; };
 		4CC1EA861732E6EE00A31689 /* IND_SpriterManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CC1EA851732E6EE00A31689 /* IND_SpriterManager.cpp */; };
+		4CD86C1217DE38F300DB911B /* IND_TTF_Font.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CD86C1017DE38F300DB911B /* IND_TTF_Font.h */; };
+		4CD86C1317DE38F300DB911B /* IND_TTF_FontManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CD86C1117DE38F300DB911B /* IND_TTF_FontManager.h */; };
+		4CD86C1617DE395700DB911B /* IND_TTF_Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CD86C1417DE395700DB911B /* IND_TTF_Font.cpp */; };
+		4CD86C1717DE395700DB911B /* IND_TTF_FontManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CD86C1517DE395700DB911B /* IND_TTF_FontManager.cpp */; };
 		E72BA060158CC7BB0003C431 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E72BA05F158CC7BB0003C431 /* OpenGL.framework */; };
 		E75EB0D5159CADF800693F41 /* tinystr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAA49159CADEF00693F41 /* tinystr.cpp */; };
 		E75EB0D7159CADF800693F41 /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAA4B159CADEF00693F41 /* tinyxml.cpp */; };
@@ -106,6 +110,10 @@
 		4CC1EA851732E6EE00A31689 /* IND_SpriterManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IND_SpriterManager.cpp; sourceTree = "<group>"; };
 		4CC1EA871732E70300A31689 /* IND_SpriterEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IND_SpriterEntity.h; sourceTree = "<group>"; };
 		4CC1EA881732E70300A31689 /* IND_SpriterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IND_SpriterManager.h; sourceTree = "<group>"; };
+		4CD86C1017DE38F300DB911B /* IND_TTF_Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IND_TTF_Font.h; sourceTree = "<group>"; };
+		4CD86C1117DE38F300DB911B /* IND_TTF_FontManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IND_TTF_FontManager.h; sourceTree = "<group>"; };
+		4CD86C1417DE395700DB911B /* IND_TTF_Font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IND_TTF_Font.cpp; sourceTree = "<group>"; };
+		4CD86C1517DE395700DB911B /* IND_TTF_FontManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IND_TTF_FontManager.cpp; sourceTree = "<group>"; };
 		E72BA05F158CC7BB0003C431 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		E744863815E952D100DDE3BF /* IND_Vector2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IND_Vector2.h; sourceTree = "<group>"; };
 		E75EAA49159CADEF00693F41 /* tinystr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinystr.cpp; sourceTree = "<group>"; };
@@ -396,6 +404,8 @@
 				E75EAAB7159CADEF00693F41 /* IND_Surface.h */,
 				E75EAAB8159CADEF00693F41 /* IND_SurfaceManager.h */,
 				E75EAAB9159CADEF00693F41 /* IND_Timer.h */,
+				4CD86C1017DE38F300DB911B /* IND_TTF_Font.h */,
+				4CD86C1117DE38F300DB911B /* IND_TTF_FontManager.h */,
 				E75EAABA159CADEF00693F41 /* IND_TmxMap.h */,
 				E75EAABB159CADEF00693F41 /* IND_TmxMapManager.h */,
 				E75EAABC159CADEF00693F41 /* IND_Vector3.h */,
@@ -439,6 +449,8 @@
 				E75EAADD159CADEF00693F41 /* IND_Surface.cpp */,
 				E75EAADE159CADEF00693F41 /* IND_SurfaceManager.cpp */,
 				E75EAADF159CADEF00693F41 /* IND_Timer.cpp */,
+				4CD86C1417DE395700DB911B /* IND_TTF_Font.cpp */,
+				4CD86C1517DE395700DB911B /* IND_TTF_FontManager.cpp */,
 				E75EAAE0159CADEF00693F41 /* IND_TmxMap.cpp */,
 				E75EAAE1159CADEF00693F41 /* IND_TmxMapManager.cpp */,
 				E75EAAE2159CADEF00693F41 /* IND_Window.cpp */,
@@ -524,6 +536,8 @@
 				4C7AF068175B73F7004F4821 /* Timeline.h in Headers */,
 				4C7AF06A175B73F7004F4821 /* TimelineKey.h in Headers */,
 				4C7AF06B175B73F7004F4821 /* TimelineObject.h in Headers */,
+				4CD86C1217DE38F300DB911B /* IND_TTF_Font.h in Headers */,
+				4CD86C1317DE38F300DB911B /* IND_TTF_FontManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -639,6 +653,8 @@
 				4C7AF063175B73F7004F4821 /* MainlineKey.cpp in Sources */,
 				4C7AF067175B73F7004F4821 /* Timeline.cpp in Sources */,
 				4C7AF069175B73F7004F4821 /* TimelineKey.cpp in Sources */,
+				4CD86C1617DE395700DB911B /* IND_TTF_Font.cpp in Sources */,
+				4CD86C1717DE395700DB911B /* IND_TTF_FontManager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

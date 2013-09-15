@@ -15,8 +15,9 @@ lipo -create Dist/libFreeimage-iphonesimulator.a Dist/libFreeimage-iphone.a -out
 echo "Created FreeImage fat Binary"
 
 #build static SDL lib only
-cd ../SDL-2.0
-make clean
+#SDL built by project dependency on XCode
+#cd ../SDL-2.0
+#make clean
 #export MIN_OS_VERSION=6.0
 #./build-scripts/iosbuild.sh clean
 #./build-scripts/iosbuild.sh configure-armv7 

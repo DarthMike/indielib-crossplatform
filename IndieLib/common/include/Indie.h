@@ -23,6 +23,7 @@ this library; if not, write to the Free Software Foundation, Inc., 59 Temple Pla
 Suite 330, Boston, MA 02111-1307 USA
 */
 
+
 /*
     MODIFICATIONS FROM ORIGINAL:
         - IND_RENDER METHOD: BlitTriangleList Added
@@ -40,6 +41,7 @@ Suite 330, Boston, MA 02111-1307 USA
         - IND_RenderText2d: Method BlitText() Changed it to be able to scale the related entity and make the text bigger as it
                                               should be. Before scale didnt affect to text
 */
+
 
 // Namespace
 #include <fstream>

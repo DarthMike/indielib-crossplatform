@@ -1,6 +1,6 @@
 /*****************************************************************************************
  * File: Defines.h
- * Desc: Types, defines, modos, etc
+ * Desc: Types, defines, modes, etc
  *****************************************************************************************/
 
 /*
@@ -19,6 +19,7 @@ You should have received a copy of the GNU Lesser General Public License along w
 this library; if not, write to the Free Software Foundation, Inc., 59 Temple Place,
 Suite 330, Boston, MA 02111-1307 USA
 */
+
 
 /**
 @mainpage

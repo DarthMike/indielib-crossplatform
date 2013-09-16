@@ -74,3 +74,6 @@ IndieLib/common/dependencies/glew-1.9.0/lib
 IndieLib/common/dependencies/SDL-2.0/osx
 IndieLib/bin/mac
 Breakpoints.xcbkptlist
+IndieLib/common/dependencies/freetype-2.5.0.1/osx
+IndieLib/common/dependencies/freetype-2.5.0.1/builds
+IndieLib/common/dependencies/freetype-2.5.0.1/objs

@@ -25,4 +25,11 @@ make clean
 make
 rm lib/*.dylib
 
+#build static freetype
+cd ../freetype-2.5.0.1
+./configure --disable-shared --enable-static --prefix=`pwd`/osx
+make clean
+make
+make install
+
 cd $RUNDIR

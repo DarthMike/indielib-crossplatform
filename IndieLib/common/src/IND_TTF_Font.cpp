@@ -24,8 +24,8 @@
 
 #include "IND_TTF_Font.h"
 
-#include "freetype\ttunpat.h"
-#include "freetype\ftoutln.h"
+#include "freetype/ttunpat.h"
+#include "freetype/ftoutln.h"
 
 IND_TTF_Font::IND_TTF_Font(FT_Library ftlib, IND_Render *pIndieRender, IND_ImageManager *pIndieImageManager, 
 							IND_SurfaceManager *pIndieSurfaceManager)
@@ -565,7 +565,7 @@ bool IND_TTF_Font::_BuildCharCache(wchar_t charCode)
 
 	// build an image
 	IND_Image *pImage = new IND_Image;
-	_ASSERT(pImage);
+	assert(pImage);
 
 	// render the glyph image to IND_Image
 	if(!_RenderGlyph(&m_Face->glyph->bitmap, pImage))

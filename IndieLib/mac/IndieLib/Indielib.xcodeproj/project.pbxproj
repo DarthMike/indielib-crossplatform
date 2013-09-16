@@ -695,6 +695,7 @@
 					"\"$(SRCROOT)/../../common\"",
 					"\"$(SRCROOT)/../../common/src\"",
 					"\"/usr/X11/include\"",
+					"\"$(SRCROOT)/../../common/dependencies/freetype-2.5.0.1/include\"",
 				);
 				INCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
@@ -733,6 +734,7 @@
 					"\"$(SRCROOT)/../../common\"",
 					"\"$(SRCROOT)/../../common/src\"",
 					"\"/usr/X11/include\"",
+					"\"$(SRCROOT)/../../common/dependencies/freetype-2.5.0.1/include\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_LDFLAGS = "";
@@ -759,6 +761,7 @@
 					"\"$(SRCROOT)/../../common/dependencies/FreeImage/Dist\"",
 					"\"$(SRCROOT)/../../common/dependencies/glew-1.9.0/lib\"",
 					"\"$(SRCROOT)/../../common/dependencies/SDL-2.0/osx/lib\"/**",
+					"\"$(SRCROOT)/../../common/dependencies/freetype-2.5.0.1/osx/lib\"",
 				);
 				"OTHER_LDFLAGS[arch=*]" = (
 					"-lGLEW",
@@ -786,6 +789,7 @@
 					"\"$(SRCROOT)/../../common/dependencies/FreeImage/Dist\"",
 					"\"$(SRCROOT)/../../common/dependencies/glew-1.9.0/lib\"",
 					"\"$(SRCROOT)/../../common/dependencies/SDL-2.0/osx/lib\"/**",
+					"\"$(SRCROOT)/../../common/dependencies/freetype-2.5.0.1/osx/lib\"",
 				);
 				"OTHER_LDFLAGS[arch=*]" = (
 					"-lSDL2",

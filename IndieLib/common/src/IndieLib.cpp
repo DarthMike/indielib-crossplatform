@@ -28,6 +28,7 @@ Suite 330, Boston, MA 02111-1307 USA
 #ifdef PLATFORM_WIN32
 #include "platform/win32/guicon.h"
 #endif
+
 // ----- Header -----
 
 #include "IndieLib.h"

@@ -12,6 +12,7 @@
  * ----------------------------------------------------------------------------
  */
 
+
 #ifndef _MAINLINEOBJECTREF_
 #define _MAINLINEOBJECTREF_
 

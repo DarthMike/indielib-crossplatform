@@ -1,7 +1,6 @@
 /*****************************************************************************************
  * File: IND_Entity2dManager.h
- * Desc: Manager de entidades. Una entidad contiene el un objeto gráfico y gestiona
- * sus atributos. Además, facilitan el uso de animaciones.
+ * Desc: Manager of 2D entities. Contains the graphic objects and manages their attributes.
  *****************************************************************************************/
 
 /*

@@ -22,7 +22,9 @@
  Suite 330, Boston, MA 02111-1307 USA
  */
 
+#include "Global.h"
 #include "IND_TTF_FontManager.h"
+#include <assert.h>
 
 //#include <ft2build.h>
 //#include FT_FREETYPE_H
@@ -40,16 +42,46 @@ IND_TTF_FontManager::~IND_TTF_FontManager(void)
 	End();
 }
 
-bool IND_TTF_FontManager::Init(IND_Render *pIndieRender, IND_ImageManager *pIndieImageManager, IND_SurfaceManager *pIndieSurfaceManager)
+bool IND_TTF_FontManager::Init(IND_Render *pRender, IND_ImageManager *pImageManager, IND_SurfaceManager *pSurfaceManager)
 {
-	_ASSERT(pIndieRender);
-	_ASSERT(pIndieImageManager);
-	_ASSERT(pIndieSurfaceManager);
+    
+    g_debug->header("Initializing TTF FontManager", DebugApi::LogHeaderBegin);
+    
+	// Checking IND_Render
+	if (pRender->isOK()) {
+		g_debug->header("Checking IND_Render", DebugApi::LogHeaderOk);
+		m_pIndieRender = pRender;
+	}
+    else {
+		g_debug->header("IND_Render is not correctly initialized", DebugApi::LogHeaderError);
+		m_bInit = false;
+		return m_bInit;
+	}
+    
+    
+	// Checking IND_ImageManager
+	if (pImageManager->isOK()) {
+		g_debug->header("Checking IND_ImageManager", DebugApi::LogHeaderOk);
+		m_pIndieImageManager = pImageManager;
+    }
+    else {
+		g_debug->header("IND_ImageManager is not correctly initialized", DebugApi::LogHeaderError);
+		m_bInit = false;
+		return m_bInit;
+	}
 
-	m_pIndieRender			= pIndieRender;
-	m_pIndieImageManager	= pIndieImageManager;
-	m_pIndieSurfaceManager	= pIndieSurfaceManager;
+    // Checking IND_SurfaceManager
+	if (pSurfaceManager->isOK()) {
+		g_debug->header("Checking IND_SurfaceManager", DebugApi::LogHeaderOk);
+		m_pIndieSurfaceManager = pSurfaceManager;
+    }
+    else {
+		g_debug->header("IND_SurfaceManager is not correctly initialized", DebugApi::LogHeaderError);
+		m_bInit = false;
+		return m_bInit;
+	}
 
+    
 	if(m_bInit)
 		return true;
 
@@ -154,10 +186,10 @@ void IND_TTF_FontManager::DrawText(	uint32_t uiIndex, const std::string strFontN
 	va_list ArgPtr;
 
 	va_start(ArgPtr, format);
-	std::size_t Length = _vscwprintf(format, ArgPtr) + 1;
+	std::size_t Length = vwprintf(format, ArgPtr) + 1;
 	std::wstring m_WBuffer;
 	m_WBuffer.resize(Length);
-	vswprintf_s(&m_WBuffer[0], Length, format, ArgPtr);
+	vswprintf(&m_WBuffer[0], Length, format, ArgPtr);
 		
 	va_end(ArgPtr);
 
@@ -174,7 +206,7 @@ void IND_TTF_FontManager::DrawText(uint32_t uiIndex, const std::string strFontNa
 	if(it == m_DTRList.end())
 	{
 		pNewReq = new DrawTextRequestNode;
-		_ASSERT(pNewReq);
+		assert(pNewReq);
 	}
 	else
 	{
@@ -256,7 +288,7 @@ void IND_TTF_FontManager::DrawTextEx(uint32_t uiIndex, const std::string& strFon
 	if(it == m_DTRList.end())
 	{
 		pNewReq = new DrawTextRequestNode;
-		_ASSERT(pNewReq);
+		assert(pNewReq);
 	}
 	else
 	{

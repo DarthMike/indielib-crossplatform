@@ -24,6 +24,7 @@
 
 #include "IND_TTF_Font.h"
 
+
 #include "freetype/ttunpat.h"
 #include "freetype/ftoutln.h"
 
@@ -128,8 +129,8 @@ void IND_TTF_Font::ClearAllCache(void)
 		// delete surface object firstly
 		if(pNode->pSurface)
 		{
-			m_pIndieSurfaceManager->Delete(pNode->pSurface);
-			delete pNode->pSurface;
+			m_pIndieSurfaceManager->remove(pNode->pSurface);
+			DISPOSEMANAGED(pNode->pSurface);
 		}
 				
 		delete pNode;
@@ -243,7 +244,7 @@ int IND_TTF_Font::DrawTextEx(const std::wstring& sText, float fLeft, float fTop,
 		r = clrBack & 0xFF;
 		g = (clrBack >> 8) & 0xFF;
 		b = (clrBack >> 16) & 0xFF;
-		m_pIndieRender->BlitFillRectangle(
+		m_pIndieRender->blitFillRectangle(
 											(int)fLeft, 
 											(int)fTop,
 											(int)fRight,
@@ -423,7 +424,7 @@ int IND_TTF_Font::DrawTextEx(const std::wstring& sText, float fLeft, float fTop,
 		r = clrBorder & 0xFF;
 		g = (clrBorder >> 8) & 0xFF;
 		b = (clrBorder >> 16) & 0xFF;
-		m_pIndieRender->BlitRectangle(
+		m_pIndieRender->blitRectangle(
 											(int)(fLeft - 1), 
 											(int)(fTop - 1),
 											(int)(fRight + 1),
@@ -460,8 +461,8 @@ bool IND_TTF_Font::_RenderChar(wchar_t charCode, float x, float y, uint32_t clrF
 	// If you want to recieve the transformation in a single matrix you can pass
 	// and IND_Matrix object by reference.
 
-	int mWidth = pNode->pSurface->GetWidth();
-	int mHeight = pNode->pSurface->GetHeight();
+	int mWidth = pNode->pSurface->getWidth();
+	int mHeight = pNode->pSurface->getHeight();
 
 	/*
 	if( (x + mWidth  <= 0) || (y + mHeight <= 0) ||
@@ -471,7 +472,7 @@ bool IND_TTF_Font::_RenderChar(wchar_t charCode, float x, float y, uint32_t clrF
 	//
 	IND_Matrix mMatrix;
 	// We want the start position (x,y) to be the top left corner 
-	m_pIndieRender->SetTransform2d(
+	m_pIndieRender->setTransform2d(
 									(int)(x + m_fXHotSpot * mWidth),		// x pos
 									(int)(y + m_fYHotSpot * mHeight),		// y pos
 									0,					// Angle x	
@@ -494,7 +495,7 @@ bool IND_TTF_Font::_RenderChar(wchar_t charCode, float x, float y, uint32_t clrF
 	g = (clrFont >> 8) & 0xFF;
 	b = (clrFont >> 16) & 0xFF;
 
-	m_pIndieRender->SetRainbow2d(
+	m_pIndieRender->setRainbow2d(
 									IND_ALPHA,			// IND_Type
 									1,					// Back face culling 0/1 => off / on
 									bFlipX,					// Mirror x
@@ -515,7 +516,7 @@ bool IND_TTF_Font::_RenderChar(wchar_t charCode, float x, float y, uint32_t clrF
 
 	// 3) Blit the IND_Surface
 	//m_pIndieLib->Render->BlitRegionSurface(theGlyph->pSurface, (int)x, (int)y, mWidth,mHeight);
-	m_pIndieRender->BlitSurface(pNode->pSurface);
+	m_pIndieRender->blitSurface(pNode->pSurface);
 	
 	return true;
 }
@@ -564,7 +565,7 @@ bool IND_TTF_Font::_BuildCharCache(wchar_t charCode)
 	}
 
 	// build an image
-	IND_Image *pImage = new IND_Image;
+	IND_Image *pImage = IND_Image::newImage();
 	assert(pImage);
 
 	// render the glyph image to IND_Image
@@ -572,16 +573,16 @@ bool IND_TTF_Font::_BuildCharCache(wchar_t charCode)
 		return false;
 		
 	//building the surface from image
-	pNode->pSurface = new IND_Surface;
+	pNode->pSurface = IND_Surface::newSurface();
 
 	bool bOK = true;
-	if (!m_pIndieSurfaceManager->Add (pNode->pSurface, pImage, IND_ALPHA, IND_32)) 
+	if (!m_pIndieSurfaceManager->add (pNode->pSurface, pImage, IND_ALPHA, IND_32))
 	{
 		bOK = false;
 	}
 	// free the image
-	m_pIndieImageManager->Delete(pImage);
-	delete pImage;
+	m_pIndieImageManager->remove(pImage);
+	DISPOSEMANAGED(pImage);
 
 	if(!bOK)
 	{
@@ -616,7 +617,7 @@ bool IND_TTF_Font::_RenderGlyph(FT_Bitmap* ftBMP, IND_Image *pImage)
 	if (glyphWidth == 0 || glyphHeight == 0)
 		return false;
 
-	m_pIndieImageManager->Add(pImage, glyphWidth, glyphHeight, IND_RGBA);
+	m_pIndieImageManager->add(pImage, glyphWidth, glyphHeight, IND_RGBA);
 	if(pImage == NULL)
 		return false;
 
@@ -636,16 +637,16 @@ bool IND_TTF_Font::_RenderGlyph(FT_Bitmap* ftBMP, IND_Image *pImage)
 			{
 				case FT_PIXEL_MODE_GRAY:
 					//pImage->PutPixel(x, y, r,g,b,pSrc[y * glyphWidth + x]);
-					pImage->PutPixel(x, y, 255,255,255,pSrc[y * glyphWidth + x]);
+					pImage->putPixel(x, y, 255,255,255,pSrc[y * glyphWidth + x]);
 					break;
 				case FT_PIXEL_MODE_MONO:
 					pSrc = ftBMP->buffer + (y * ftBMP->pitch);
 					if((pSrc [x / 8] & (0x80 >> (x & 7))))
 						//pImage->PutPixel(x, y, r,g,b,0xFF);
-						pImage->PutPixel(x, y, 255,255,255,0xFF);
+						pImage->putPixel(x, y, 255,255,255,0xFF);
 					else
 						//pImage->PutPixel(x, y, r,g,b,0x00);
-						pImage->PutPixel(x, y, 255,255,255,0x00);
+						pImage->putPixel(x, y, 255,255,255,0x00);
 					break;
 				default:
 					break;
@@ -956,7 +957,7 @@ void IND_TTF_Font::_DoDrawBorder(float fX_s, float fX_e, float fY, uint32_t clr,
 	r = clr & 0xFF;
 	g = (clr >> 8) & 0xFF;
 	b = (clr >> 16) & 0xFF;
-	m_pIndieRender->BlitLine((int)(fX_s), 
+	m_pIndieRender->blitLine((int)(fX_s),
 							(int)(fY),
 							(int)(fX_e),
 							(int)(fY),

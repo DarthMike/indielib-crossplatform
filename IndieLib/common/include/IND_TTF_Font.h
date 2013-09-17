@@ -27,11 +27,14 @@
 #define IND_TTF_FONT_H
 
 #include "Indie.h"
+#include "IND_Image.h"
+#include "IND_Surface.h"
 
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
 #include <map>
+
 
 // NOTE: This class uses STL, the perfermance will be a lot better in Release version.
 

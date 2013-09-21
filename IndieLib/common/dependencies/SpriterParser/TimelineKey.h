@@ -12,6 +12,7 @@
  * ----------------------------------------------------------------------------
  */
 
+
 #ifndef _TIMELINEKEY_
 #define _TIMELINEKEY_
 
@@ -46,6 +47,10 @@ public:
     
     int getTime(){
         return _time;
+    }
+    
+    int getSpin(){
+        return _spin;
     }
     
     std::vector <TimelineObject *>* getObjects(){

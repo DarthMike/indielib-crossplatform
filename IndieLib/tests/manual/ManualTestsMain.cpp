@@ -58,6 +58,7 @@
 #include "entities/EntityTests_interactions.h"
 #include "surface/SurfaceTests_Filters.h"
 #include "surface/SurfaceTests_layout.h"
+#include "TmxmapTests.h"
 
 /*
 ==================
@@ -125,6 +126,9 @@ void initTests() {
     g_tests.push_back(filters);
 	SurfaceTests_layout* layout = new SurfaceTests_layout();
 	g_tests.push_back(layout);
+    TmxmapTests* tmxmap = new TmxmapTests();
+	g_tests.push_back(tmxmap);
+
 
 }
 

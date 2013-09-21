@@ -53,47 +53,18 @@ IND_SpriterEntity::~IND_SpriterEntity() {
 //									 Public methods
 // --------------------------------------------------------------------------------
 
-void IND_SpriterEntity::playAnimation(int animation) { // TODO: MFK maybe animation name instead?
+
+void IND_SpriterEntity::playAnimation(int animation/*, IND_Render *render*/) { // TODO: MFK maybe animation name instead?
     _currentAnimation   = animation;
     _currentKey         = 0;
     _currentTime        = 0;
-    
-    update(0); // we need to handle timing later...
 }
 
-
-void IND_SpriterEntity::update(int deltaTime) {
-    draw(1.0f, 1.0f, 1.0f, 1.0f, 1.0f); // TODO: parameters not used yet
-}
-
-void  IND_SpriterEntity::draw(float x, float y, float angle, float scale_x, float scale_y) {
-    
-    if (_currentAnimation < 0 || _currentKey < 0 || _currentTime < 0 ){
-        return;
-    }
-    
-    std::vector <MainlineObject *> *mainlineObjects = getAnimations()->at(_currentAnimation)->getMainline()->getKeys()->at(_currentKey)->getObjects();
-    
-    std::vector <MainlineObjectref *> *mainlineObjectrefs = getAnimations()->at(_currentAnimation)->getMainline()->getKeys()->at(_currentKey)->getObjectrefs();
-
-    
-    for (unsigned i=0; i < mainlineObjects->size(); i++) {
-        drawPersistentObject(x, y, angle, scale_x, scale_y);
-    }
-    
-    
-    for (unsigned i=0; i < mainlineObjectrefs->size(); i++) {
-        drawTransientObject(x, y, angle, scale_x, scale_y, mainlineObjectrefs->at(i));
-    }
-    
-
-}
 
 void IND_SpriterEntity::stopAnimation() {
     _currentAnimation   = -1;
     _currentKey         = -1;
     _currentTime        = -1;
-
 }
 
 
@@ -111,7 +82,7 @@ Attributes initialization
 void IND_SpriterEntity::initAttrib() {
     _id         = NULL;
 	_name       = NULL;
-    _images     = new ImageToFileMap;
+    _surfaces   = new SurfaceToFileMap;
     _animations = new std::vector<Animation *>();
     
     _currentAnimation       = -1;       // TODO: ??
@@ -122,55 +93,14 @@ void IND_SpriterEntity::initAttrib() {
     _drawObjectpositions    = false;    // TODO: support this in a later version
 }
 
-
-// ----- Rendering -----
-
-
-void  IND_SpriterEntity::drawTransientObject(float x, float y, float angle, float scale_x, float scale_y, MainlineObjectref *mObjectref) {
-    TimelineObject *tObject = getTimelineObject(mObjectref->timeline, mObjectref->key);
-    
-    IND_Image *image = getImage(tObject->folder, tObject->file);
-    
-    g_debug->header(image->getName(), DebugApi::LogHeaderError); //TODO: MFK continue from here.... currently we are missing the images in the list, and whoops we get an acces vialation ... need to look at the image parsing
-    
-}
-
-void  IND_SpriterEntity::drawPersistentObject(float x, float y, float angle, float scale_x, float scale_y) {
-    // TODO: MFK, implement this
-}
-
-void IND_SpriterEntity::drawBone(float x, float y, float angle, float scale_x, float scale_y) {
-    // TODO: support this in a later version
-}
-
-
-TimelineObject* IND_SpriterEntity::getTimelineObject(int timelineId, int keyId) {
-    return getAnimations()->at(_currentAnimation)->getTimeLines()->at(timelineId)->getKeys()->at(keyId)->getObjects()->at(0); // TODO : is there allways one object here? ( we're using an array )
-}
-
-IND_Image* IND_SpriterEntity::getImage(int folderId, int fileId) {
-    Fileref ref = Fileref(static_cast<unsigned int>(folderId), static_cast<unsigned int>(fileId));
-    
-    // Find the first matching key. (we should only have one)
-    ImageToFileMap::iterator res = _images->find(ref);
-    
-    if(res != _images->end()) {
-        return res->second;
-    }
-    else {
-        return NULL;
-    }
-}
-
-
     
 // ----- Parsing -----
 
 
-void IND_SpriterEntity::addImage(int folderId, int fileId, IND_Image *pImage) {
+void IND_SpriterEntity::addSurface(int folderId, int fileId, IND_Surface *pSurface) {
     Fileref ref(static_cast<unsigned int>(folderId),static_cast<unsigned int>(fileId));
     
-    _images->insert(make_pair(ref, pImage));
+    _surfaces->insert(make_pair(ref, pSurface));
 }
 
 Animation* IND_SpriterEntity::addAnimation(int id, const char* name, int length, const char* looping, int loop_to) {

@@ -1,12 +1,13 @@
+/****************************************************************************************************************
+ *   File: PrecissionTimer.h
+ *   Desc: Class to encapsulate a precission timer (if hardware permits it)
+ ****************************************************************************************************************/
+
 /*
-    Filename: PrecissionTimer.h
-    Copyright: Miguel Angel Quiñones (2011) (mail:m.quinones.garcia@gmail.com / mikeskywalker007@gmail.com)
-    Description: Class to encapsulate a precission timer (if hardware permits it)
-    Comments: Supported native platforms are Windows and iOS (MacOS)
-    Attribution:
-    License: You are free to use as you want... but it can destroy your computer, so dont blame me about it ;)
-             Nevertheless it would be nice if you tell me you are using something I made, just for curiosity
-*/
+ Copyright: Miguel Angel Quiñones (2011) (mail:m.quinones.garcia@gmail.com / mikeskywalker007@gmail.com)
+ Comments : You are free to use as you want... but it can destroy your computer, so dont blame me about it ;)
+ Nevertheless it would be nice if you tell me you are using something I made, just for curiosity
+ */
 
 #ifndef _PRECISSIONTIMER
 #define _PRECISSIONTIMER

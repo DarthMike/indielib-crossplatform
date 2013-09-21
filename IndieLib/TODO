@@ -67,9 +67,6 @@ CODE RELATED
 * Consider change buildprocedure from autotools to CMake
 
 
-other thing to look at => http://sourceforge.net/tracker/?func=detail&aid=3357768&group_id=67586&atid=523274
-
-
 SIZE RELATED
 The Compiled libIndieLib.a is about 1.5 mb, there should be way to optimize size
 * (look at the -s in the makefile, and look at the gcc check in define.h) to strip the symbols

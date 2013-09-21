@@ -1,6 +1,6 @@
 /*
   Simple DirectMedia Layer
-  Copyright (C) 1997-2012 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -189,8 +189,7 @@ static int GLES2_LoadFunctions(GLES2_DriverContext * data)
     do { \
         data->func = SDL_GL_GetProcAddress(#func); \
         if ( ! data->func ) { \
-            SDL_SetError("Couldn't load GLES2 function %s: %s\n", #func, SDL_GetError()); \
-            return -1; \
+            return SDL_SetError("Couldn't load GLES2 function %s: %s\n", #func, SDL_GetError()); \
         } \
     } while ( 0 );
 #endif /* _SDL_NOGETPROCADDR_ */
@@ -272,6 +271,26 @@ GLES2_UpdateViewport(SDL_Renderer * renderer)
 
     if (rdata->current_program) {
         GLES2_SetOrthographicProjection(renderer);
+    }
+    return 0;
+}
+
+static int
+GLES2_UpdateClipRect(SDL_Renderer * renderer)
+{
+    GLES2_DriverContext *rdata = (GLES2_DriverContext *)renderer->driverdata;
+    const SDL_Rect *rect = &renderer->clip_rect;
+
+    if (SDL_CurrentContext != rdata->context) {
+        /* We'll update the clip rect after we rebind the context */
+        return 0;
+    }
+
+    if (!SDL_RectEmpty(rect)) {
+        rdata->glEnable(GL_SCISSOR_TEST);
+        rdata->glScissor(rect->x, renderer->viewport.h - rect->y - rect->h, rect->w, rect->h);
+    } else {
+        rdata->glDisable(GL_SCISSOR_TEST);
     }
     return 0;
 }
@@ -372,16 +391,13 @@ GLES2_CreateTexture(SDL_Renderer *renderer, SDL_Texture *texture)
         type = GL_UNSIGNED_BYTE;
         break;
     default:
-        SDL_SetError("Texture format not supported");
-        return -1;
+        return SDL_SetError("Texture format not supported");
     }
 
     /* Allocate a texture struct */
     tdata = (GLES2_TextureData *)SDL_calloc(1, sizeof(GLES2_TextureData));
-    if (!tdata)
-    {
-        SDL_OutOfMemory();
-        return -1;
+    if (!tdata) {
+        return SDL_OutOfMemory();
     }
     tdata->texture = 0;
     tdata->texture_type = GL_TEXTURE_2D;
@@ -390,21 +406,22 @@ GLES2_CreateTexture(SDL_Renderer *renderer, SDL_Texture *texture)
     scaleMode = GetScaleQuality();
 
     /* Allocate a blob for image data */
-    if (texture->access == SDL_TEXTUREACCESS_STREAMING)
-    {
+    if (texture->access == SDL_TEXTUREACCESS_STREAMING) {
         tdata->pitch = texture->w * SDL_BYTESPERPIXEL(texture->format);
         tdata->pixel_data = SDL_calloc(1, tdata->pitch * texture->h);
-        if (!tdata->pixel_data)
-        {
-            SDL_OutOfMemory();
+        if (!tdata->pixel_data) {
             SDL_free(tdata);
-            return -1;
+            return SDL_OutOfMemory();
         }
     }
 
     /* Allocate the texture */
     rdata->glGetError();
     rdata->glGenTextures(1, &tdata->texture);
+    if (rdata->glGetError() != GL_NO_ERROR) {
+        SDL_free(tdata);
+        return SDL_SetError("Texture creation failed in glGenTextures()");
+    }
     rdata->glActiveTexture(GL_TEXTURE0);
     rdata->glBindTexture(tdata->texture_type, tdata->texture);
     rdata->glTexParameteri(tdata->texture_type, GL_TEXTURE_MIN_FILTER, scaleMode);
@@ -412,12 +429,10 @@ GLES2_CreateTexture(SDL_Renderer *renderer, SDL_Texture *texture)
     rdata->glTexParameteri(tdata->texture_type, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     rdata->glTexParameteri(tdata->texture_type, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     rdata->glTexImage2D(tdata->texture_type, 0, format, texture->w, texture->h, 0, format, type, NULL);
-    if (rdata->glGetError() != GL_NO_ERROR)
-    {
-        SDL_SetError("Texture creation failed");
+    if (rdata->glGetError() != GL_NO_ERROR) {
         rdata->glDeleteTextures(1, &tdata->texture);
         SDL_free(tdata);
-        return -1;
+        return SDL_SetError("Texture creation failed");
     }
     texture->driverdata = tdata;
 
@@ -497,13 +512,10 @@ GLES2_UpdateTexture(SDL_Renderer *renderer, SDL_Texture *texture, const SDL_Rect
     /* Reformat the texture data into a tightly packed array */
     srcPitch = rect->w * SDL_BYTESPERPIXEL(texture->format);
     src = (Uint8 *)pixels;
-    if (pitch != srcPitch)
-    {
+    if (pitch != srcPitch) {
         blob = (Uint8 *)SDL_malloc(srcPitch * rect->h);
-        if (!blob)
-        {
-            SDL_OutOfMemory();
-            return -1;
+        if (!blob) {
+            return SDL_OutOfMemory();
         }
         src = blob;
         for (y = 0; y < rect->h; ++y)
@@ -533,10 +545,8 @@ GLES2_UpdateTexture(SDL_Renderer *renderer, SDL_Texture *texture, const SDL_Rect
         SDL_free(blob);
     }
 
-    if (rdata->glGetError() != GL_NO_ERROR)
-    {
-        SDL_SetError("Failed to update texture");
-        return -1;
+    if (rdata->glGetError() != GL_NO_ERROR) {
+        return SDL_SetError("Failed to update texture");
     }
     return 0;
 }
@@ -558,8 +568,7 @@ GLES2_SetRenderTarget(SDL_Renderer * renderer, SDL_Texture * texture)
         /* Check FBO status */
         status = data->glCheckFramebufferStatus(GL_FRAMEBUFFER);
         if (status != GL_FRAMEBUFFER_COMPLETE) {
-            SDL_SetError("glFramebufferTexture2D() failed");
-            return -1;
+            return SDL_SetError("glFramebufferTexture2D() failed");
         }
     }
     return 0;
@@ -636,9 +645,9 @@ GLES2_CacheProgram(SDL_Renderer *renderer, GLES2_ShaderCacheEntry *vertex,
     rdata->glGetProgramiv(entry->id, GL_LINK_STATUS, &linkSuccessful);
     if (rdata->glGetError() != GL_NO_ERROR || !linkSuccessful)
     {
-        SDL_SetError("Failed to link shader program");
         rdata->glDeleteProgram(entry->id);
         SDL_free(entry);
+        SDL_SetError("Failed to link shader program");
         return NULL;
     }
 
@@ -900,6 +909,10 @@ GLES2_SetOrthographicProjection(SDL_Renderer *renderer)
     GLfloat projection[4][4];
     GLuint locProjection;
 
+    if (!renderer->viewport.w || !renderer->viewport.h) {
+        return 0;
+    }
+
     /* Prepare an orthographic projection */
     projection[0][0] = 2.0f / renderer->viewport.w;
     projection[0][1] = 0.0f;
@@ -930,10 +943,8 @@ GLES2_SetOrthographicProjection(SDL_Renderer *renderer)
     locProjection = rdata->current_program->uniform_locations[GLES2_UNIFORM_PROJECTION];
     rdata->glGetError();
     rdata->glUniformMatrix4fv(locProjection, 1, GL_FALSE, (GLfloat *)projection);
-    if (rdata->glGetError() != GL_NO_ERROR)
-    {
-        SDL_SetError("Failed to set orthographic projection");
-        return -1;
+    if (rdata->glGetError() != GL_NO_ERROR) {
+        return SDL_SetError("Failed to set orthographic projection");
     }
     return 0;
 }
@@ -945,16 +956,16 @@ GLES2_SetOrthographicProjection(SDL_Renderer *renderer)
 static const float inv255f = 1.0f / 255.0f;
 
 static int GLES2_RenderClear(SDL_Renderer *renderer);
-static int GLES2_RenderDrawPoints(SDL_Renderer *renderer, const SDL_Point *points, int count);
-static int GLES2_RenderDrawLines(SDL_Renderer *renderer, const SDL_Point *points, int count);
-static int GLES2_RenderFillRects(SDL_Renderer *renderer, const SDL_Rect *rects, int count);
+static int GLES2_RenderDrawPoints(SDL_Renderer *renderer, const SDL_FPoint *points, int count);
+static int GLES2_RenderDrawLines(SDL_Renderer *renderer, const SDL_FPoint *points, int count);
+static int GLES2_RenderFillRects(SDL_Renderer *renderer, const SDL_FRect *rects, int count);
 static int GLES2_RenderCopy(SDL_Renderer *renderer, SDL_Texture *texture, const SDL_Rect *srcrect,
-                            const SDL_Rect *dstrect);
+                            const SDL_FRect *dstrect);
+static int GLES2_RenderCopyEx(SDL_Renderer * renderer, SDL_Texture * texture,
+                         const SDL_Rect * srcrect, const SDL_FRect * dstrect,
+                         const double angle, const SDL_FPoint *center, const SDL_RendererFlip flip);
 static int GLES2_RenderReadPixels(SDL_Renderer * renderer, const SDL_Rect * rect,
                     Uint32 pixel_format, void * pixels, int pitch);
-static int GLES2_RenderCopyEx(SDL_Renderer * renderer, SDL_Texture * texture,
-                         const SDL_Rect * srcrect, const SDL_Rect * dstrect,
-                         const double angle, const SDL_Point *center, const SDL_RendererFlip flip);
 static void GLES2_RenderPresent(SDL_Renderer *renderer);
 
 
@@ -986,15 +997,15 @@ GLES2_SetBlendMode(GLES2_DriverContext *rdata, int blendMode)
             break;
         case SDL_BLENDMODE_BLEND:
             rdata->glEnable(GL_BLEND);
-            rdata->glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+            rdata->glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
             break;
         case SDL_BLENDMODE_ADD:
             rdata->glEnable(GL_BLEND);
-            rdata->glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+            rdata->glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE, GL_ZERO, GL_ONE);
             break;
         case SDL_BLENDMODE_MOD:
             rdata->glEnable(GL_BLEND);
-            rdata->glBlendFunc(GL_ZERO, GL_SRC_COLOR);
+            rdata->glBlendFuncSeparate(GL_ZERO, GL_SRC_COLOR, GL_ZERO, GL_ONE);
             break;
         }
         rdata->current.blendMode = blendMode;
@@ -1054,7 +1065,7 @@ GLES2_SetDrawingState(SDL_Renderer * renderer)
 }
 
 static int
-GLES2_RenderDrawPoints(SDL_Renderer *renderer, const SDL_Point *points, int count)
+GLES2_RenderDrawPoints(SDL_Renderer *renderer, const SDL_FPoint *points, int count)
 {
     GLES2_DriverContext *rdata = (GLES2_DriverContext *)renderer->driverdata;
     GLfloat *vertices;
@@ -1066,10 +1077,9 @@ GLES2_RenderDrawPoints(SDL_Renderer *renderer, const SDL_Point *points, int coun
 
     /* Emit the specified vertices as points */
     vertices = SDL_stack_alloc(GLfloat, count * 2);
-    for (idx = 0; idx < count; ++idx)
-    {
-        GLfloat x = (GLfloat)points[idx].x + 0.5f;
-        GLfloat y = (GLfloat)points[idx].y + 0.5f;
+    for (idx = 0; idx < count; ++idx) {
+        GLfloat x = points[idx].x + 0.5f;
+        GLfloat y = points[idx].y + 0.5f;
 
         vertices[idx * 2] = x;
         vertices[(idx * 2) + 1] = y;
@@ -1078,16 +1088,14 @@ GLES2_RenderDrawPoints(SDL_Renderer *renderer, const SDL_Point *points, int coun
     rdata->glVertexAttribPointer(GLES2_ATTRIBUTE_POSITION, 2, GL_FLOAT, GL_FALSE, 0, vertices);
     rdata->glDrawArrays(GL_POINTS, 0, count);
     SDL_stack_free(vertices);
-    if (rdata->glGetError() != GL_NO_ERROR)
-    {
-        SDL_SetError("Failed to render lines");
-        return -1;
+    if (rdata->glGetError() != GL_NO_ERROR) {
+        return SDL_SetError("Failed to render points");
     }
     return 0;
 }
 
 static int
-GLES2_RenderDrawLines(SDL_Renderer *renderer, const SDL_Point *points, int count)
+GLES2_RenderDrawLines(SDL_Renderer *renderer, const SDL_FPoint *points, int count)
 {
     GLES2_DriverContext *rdata = (GLES2_DriverContext *)renderer->driverdata;
     GLfloat *vertices;
@@ -1099,10 +1107,9 @@ GLES2_RenderDrawLines(SDL_Renderer *renderer, const SDL_Point *points, int count
 
     /* Emit a line strip including the specified vertices */
     vertices = SDL_stack_alloc(GLfloat, count * 2);
-    for (idx = 0; idx < count; ++idx)
-    {
-        GLfloat x = (GLfloat)points[idx].x + 0.5f;
-        GLfloat y = (GLfloat)points[idx].y + 0.5f;
+    for (idx = 0; idx < count; ++idx) {
+        GLfloat x = points[idx].x + 0.5f;
+        GLfloat y = points[idx].y + 0.5f;
 
         vertices[idx * 2] = x;
         vertices[(idx * 2) + 1] = y;
@@ -1117,16 +1124,14 @@ GLES2_RenderDrawLines(SDL_Renderer *renderer, const SDL_Point *points, int count
         rdata->glDrawArrays(GL_POINTS, count-1, 1);
     }
     SDL_stack_free(vertices);
-    if (rdata->glGetError() != GL_NO_ERROR)
-    {
-        SDL_SetError("Failed to render lines");
-        return -1;
+    if (rdata->glGetError() != GL_NO_ERROR) {
+        return SDL_SetError("Failed to render lines");
     }
     return 0;
 }
 
 static int
-GLES2_RenderFillRects(SDL_Renderer *renderer, const SDL_Rect *rects, int count)
+GLES2_RenderFillRects(SDL_Renderer *renderer, const SDL_FRect *rects, int count)
 {
     GLES2_DriverContext *rdata = (GLES2_DriverContext *)renderer->driverdata;
     GLfloat vertices[8];
@@ -1139,12 +1144,12 @@ GLES2_RenderFillRects(SDL_Renderer *renderer, const SDL_Rect *rects, int count)
     /* Emit a line loop for each rectangle */
     rdata->glGetError();
     for (idx = 0; idx < count; ++idx) {
-        const SDL_Rect *rect = &rects[idx];
+        const SDL_FRect *rect = &rects[idx];
 
-        GLfloat xMin = (GLfloat)rect->x;
-        GLfloat xMax = (GLfloat)(rect->x + rect->w);
-        GLfloat yMin = (GLfloat)rect->y;
-        GLfloat yMax = (GLfloat)(rect->y + rect->h);
+        GLfloat xMin = rect->x;
+        GLfloat xMax = (rect->x + rect->w);
+        GLfloat yMin = rect->y;
+        GLfloat yMax = (rect->y + rect->h);
 
         vertices[0] = xMin;
         vertices[1] = yMin;
@@ -1157,17 +1162,15 @@ GLES2_RenderFillRects(SDL_Renderer *renderer, const SDL_Rect *rects, int count)
         rdata->glVertexAttribPointer(GLES2_ATTRIBUTE_POSITION, 2, GL_FLOAT, GL_FALSE, 0, vertices);
         rdata->glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     }
-    if (rdata->glGetError() != GL_NO_ERROR)
-    {
-        SDL_SetError("Failed to render lines");
-        return -1;
+    if (rdata->glGetError() != GL_NO_ERROR) {
+        return SDL_SetError("Failed to render filled rects");
     }
     return 0;
 }
 
 static int
 GLES2_RenderCopy(SDL_Renderer *renderer, SDL_Texture *texture, const SDL_Rect *srcrect,
-                 const SDL_Rect *dstrect)
+                 const SDL_FRect *dstrect)
 {
     GLES2_DriverContext *rdata = (GLES2_DriverContext *)renderer->driverdata;
     GLES2_TextureData *tdata = (GLES2_TextureData *)texture->driverdata;
@@ -1241,7 +1244,7 @@ GLES2_RenderCopy(SDL_Renderer *renderer, SDL_Texture *texture, const SDL_Rect *s
                 break;
             }
         }
-        else sourceType = GLES2_IMAGESOURCE_TEXTURE_ABGR;   // Texture formats match, use the non color mapping shader (even if the formats are not ABGR)
+        else sourceType = GLES2_IMAGESOURCE_TEXTURE_ABGR;   /* Texture formats match, use the non color mapping shader (even if the formats are not ABGR) */
     }
     else {
         switch (texture->format)
@@ -1258,6 +1261,8 @@ GLES2_RenderCopy(SDL_Renderer *renderer, SDL_Texture *texture, const SDL_Rect *s
             case SDL_PIXELFORMAT_RGB888:
                 sourceType = GLES2_IMAGESOURCE_TEXTURE_RGB;
                 break;
+            default:
+                return -1;
         }
     }
     if (GLES2_SelectProgram(renderer, sourceType, blendMode) < 0)
@@ -1294,14 +1299,14 @@ GLES2_RenderCopy(SDL_Renderer *renderer, SDL_Texture *texture, const SDL_Rect *s
     GLES2_SetTexCoords(rdata, SDL_TRUE);
 
     /* Emit the textured quad */
-    vertices[0] = (GLfloat)dstrect->x;
-    vertices[1] = (GLfloat)dstrect->y;
-    vertices[2] = (GLfloat)(dstrect->x + dstrect->w);
-    vertices[3] = (GLfloat)dstrect->y;
-    vertices[4] = (GLfloat)dstrect->x;
-    vertices[5] = (GLfloat)(dstrect->y + dstrect->h);
-    vertices[6] = (GLfloat)(dstrect->x + dstrect->w);
-    vertices[7] = (GLfloat)(dstrect->y + dstrect->h);
+    vertices[0] = dstrect->x;
+    vertices[1] = dstrect->y;
+    vertices[2] = (dstrect->x + dstrect->w);
+    vertices[3] = dstrect->y;
+    vertices[4] = dstrect->x;
+    vertices[5] = (dstrect->y + dstrect->h);
+    vertices[6] = (dstrect->x + dstrect->w);
+    vertices[7] = (dstrect->y + dstrect->h);
     rdata->glVertexAttribPointer(GLES2_ATTRIBUTE_POSITION, 2, GL_FLOAT, GL_FALSE, 0, vertices);
     texCoords[0] = srcrect->x / (GLfloat)texture->w;
     texCoords[1] = srcrect->y / (GLfloat)texture->h;
@@ -1313,17 +1318,15 @@ GLES2_RenderCopy(SDL_Renderer *renderer, SDL_Texture *texture, const SDL_Rect *s
     texCoords[7] = (srcrect->y + srcrect->h) / (GLfloat)texture->h;
     rdata->glVertexAttribPointer(GLES2_ATTRIBUTE_TEXCOORD, 2, GL_FLOAT, GL_FALSE, 0, texCoords);
     rdata->glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-    if (rdata->glGetError() != GL_NO_ERROR)
-    {
-        SDL_SetError("Failed to render texture");
-        return -1;
+    if (rdata->glGetError() != GL_NO_ERROR) {
+        return SDL_SetError("Failed to render texture");
     }
     return 0;
 }
 
 static int
 GLES2_RenderCopyEx(SDL_Renderer *renderer, SDL_Texture *texture, const SDL_Rect *srcrect,
-                 const SDL_Rect *dstrect, const double angle, const SDL_Point *center, const SDL_RendererFlip flip)
+                 const SDL_FRect *dstrect, const double angle, const SDL_FPoint *center, const SDL_RendererFlip flip)
 {
     GLES2_DriverContext *rdata = (GLES2_DriverContext *)renderer->driverdata;
     GLES2_TextureData *tdata = (GLES2_TextureData *)texture->driverdata;
@@ -1338,13 +1341,13 @@ GLES2_RenderCopyEx(SDL_Renderer *renderer, SDL_Texture *texture, const SDL_Rect 
     GLfloat tmp;
 
     GLES2_ActivateRenderer(renderer);
-    
+
     rdata->glEnableVertexAttribArray(GLES2_ATTRIBUTE_CENTER);
     rdata->glEnableVertexAttribArray(GLES2_ATTRIBUTE_ANGLE);
-    fAngle[0] = fAngle[1] = fAngle[2] = fAngle[3] = (GLfloat)angle;
+    fAngle[0] = fAngle[1] = fAngle[2] = fAngle[3] = (GLfloat)(360.0f - angle);
     /* Calculate the center of rotation */
-    translate[0] = translate[2] = translate[4] = translate[6] = (GLfloat)(center->x + dstrect->x);
-    translate[1] = translate[3] = translate[5] = translate[7] = (GLfloat)(center->y + dstrect->y);
+    translate[0] = translate[2] = translate[4] = translate[6] = (center->x + dstrect->x);
+    translate[1] = translate[3] = translate[5] = translate[7] = (center->y + dstrect->y);
 
     /* Activate an appropriate shader and set the projection matrix */
     blendMode = texture->blendMode;
@@ -1407,7 +1410,7 @@ GLES2_RenderCopyEx(SDL_Renderer *renderer, SDL_Texture *texture, const SDL_Rect 
                 break;
             }
         }
-        else sourceType = GLES2_IMAGESOURCE_TEXTURE_ABGR;   // Texture formats match, use the non color mapping shader (even if the formats are not ABGR)
+        else sourceType = GLES2_IMAGESOURCE_TEXTURE_ABGR;   /* Texture formats match, use the non color mapping shader (even if the formats are not ABGR) */
     }
     else {
         switch (texture->format)
@@ -1424,6 +1427,8 @@ GLES2_RenderCopyEx(SDL_Renderer *renderer, SDL_Texture *texture, const SDL_Rect 
             case SDL_PIXELFORMAT_RGB888:
                 sourceType = GLES2_IMAGESOURCE_TEXTURE_RGB;
                 break;
+            default:
+                return -1;
         }
     }
     if (GLES2_SelectProgram(renderer, sourceType, blendMode) < 0)
@@ -1460,14 +1465,14 @@ GLES2_RenderCopyEx(SDL_Renderer *renderer, SDL_Texture *texture, const SDL_Rect 
     GLES2_SetTexCoords(rdata, SDL_TRUE);
 
     /* Emit the textured quad */
-    vertices[0] = (GLfloat)dstrect->x;
-    vertices[1] = (GLfloat)dstrect->y;
-    vertices[2] = (GLfloat)(dstrect->x + dstrect->w);
-    vertices[3] = (GLfloat)dstrect->y;
-    vertices[4] = (GLfloat)dstrect->x;
-    vertices[5] = (GLfloat)(dstrect->y + dstrect->h);
-    vertices[6] = (GLfloat)(dstrect->x + dstrect->w);
-    vertices[7] = (GLfloat)(dstrect->y + dstrect->h);
+    vertices[0] = dstrect->x;
+    vertices[1] = dstrect->y;
+    vertices[2] = (dstrect->x + dstrect->w);
+    vertices[3] = dstrect->y;
+    vertices[4] = dstrect->x;
+    vertices[5] = (dstrect->y + dstrect->h);
+    vertices[6] = (dstrect->x + dstrect->w);
+    vertices[7] = (dstrect->y + dstrect->h);
     if (flip & SDL_FLIP_HORIZONTAL) {
         tmp = vertices[0];
         vertices[0] = vertices[4] = vertices[2];
@@ -1478,7 +1483,7 @@ GLES2_RenderCopyEx(SDL_Renderer *renderer, SDL_Texture *texture, const SDL_Rect 
         vertices[1] = vertices[3] = vertices[5];
         vertices[5] = vertices[7] = tmp;
     }
-    
+
     rdata->glVertexAttribPointer(GLES2_ATTRIBUTE_ANGLE, 1, GL_FLOAT, GL_FALSE, 0, &fAngle);
     rdata->glVertexAttribPointer(GLES2_ATTRIBUTE_CENTER, 2, GL_FLOAT, GL_FALSE, 0, translate);
     rdata->glVertexAttribPointer(GLES2_ATTRIBUTE_POSITION, 2, GL_FLOAT, GL_FALSE, 0, vertices);
@@ -1495,10 +1500,8 @@ GLES2_RenderCopyEx(SDL_Renderer *renderer, SDL_Texture *texture, const SDL_Rect 
     rdata->glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     rdata->glDisableVertexAttribArray(GLES2_ATTRIBUTE_CENTER);
     rdata->glDisableVertexAttribArray(GLES2_ATTRIBUTE_ANGLE);
-    if (rdata->glGetError() != GL_NO_ERROR)
-    {
-        SDL_SetError("Failed to render texture");
-        return -1;
+    if (rdata->glGetError() != GL_NO_ERROR) {
+        return SDL_SetError("Failed to render texture");
     }
     return 0;
 }
@@ -1508,7 +1511,6 @@ GLES2_RenderReadPixels(SDL_Renderer * renderer, const SDL_Rect * rect,
                     Uint32 pixel_format, void * pixels, int pitch)
 {
     GLES2_DriverContext *rdata = (GLES2_DriverContext *)renderer->driverdata;
-    SDL_Window *window = renderer->window;
     Uint32 temp_format = SDL_PIXELFORMAT_ABGR8888;
     void *temp_pixels;
     int temp_pitch;
@@ -1521,11 +1523,10 @@ GLES2_RenderReadPixels(SDL_Renderer * renderer, const SDL_Rect * rect,
     temp_pitch = rect->w * SDL_BYTESPERPIXEL(temp_format);
     temp_pixels = SDL_malloc(rect->h * temp_pitch);
     if (!temp_pixels) {
-        SDL_OutOfMemory();
-        return -1;
+        return SDL_OutOfMemory();
     }
 
-    SDL_GetWindowSize(window, &w, &h);
+    SDL_GetRendererOutputSize(renderer, &w, &h);
 
     rdata->glPixelStorei(GL_PACK_ALIGNMENT, 1);
 
@@ -1563,6 +1564,37 @@ GLES2_RenderPresent(SDL_Renderer *renderer)
     /* Tell the video driver to swap buffers */
     SDL_GL_SwapWindow(renderer->window);
 }
+
+
+/*************************************************************************************************
+ * Bind/unbinding of textures
+ *************************************************************************************************/
+static int GLES2_BindTexture (SDL_Renderer * renderer, SDL_Texture *texture, float *texw, float *texh);
+static int GLES2_UnbindTexture (SDL_Renderer * renderer, SDL_Texture *texture);
+
+static int GLES2_BindTexture (SDL_Renderer * renderer, SDL_Texture *texture, float *texw, float *texh) {
+    GLES2_DriverContext *data = (GLES2_DriverContext *)renderer->driverdata;
+    GLES2_TextureData *texturedata = (GLES2_TextureData *)texture->driverdata;
+    GLES2_ActivateRenderer(renderer);
+
+    data->glBindTexture(texturedata->texture_type, texturedata->texture);
+
+    if(texw) *texw = 1.0;
+    if(texh) *texh = 1.0;
+
+    return 0;
+}
+
+static int GLES2_UnbindTexture (SDL_Renderer * renderer, SDL_Texture *texture) {
+    GLES2_DriverContext *data = (GLES2_DriverContext *)renderer->driverdata;
+    GLES2_TextureData *texturedata = (GLES2_TextureData *)texture->driverdata;
+    GLES2_ActivateRenderer(renderer);
+
+    data->glBindTexture(texturedata->texture_type, 0);
+
+    return 0;
+}
+
 
 /*************************************************************************************************
  * Renderer instantiation                                                                        *
@@ -1702,16 +1734,19 @@ GLES2_CreateRenderer(SDL_Window *window, Uint32 flags)
     renderer->UnlockTexture       = &GLES2_UnlockTexture;
     renderer->SetRenderTarget     = &GLES2_SetRenderTarget;
     renderer->UpdateViewport      = &GLES2_UpdateViewport;
+    renderer->UpdateClipRect      = &GLES2_UpdateClipRect;
     renderer->RenderClear         = &GLES2_RenderClear;
     renderer->RenderDrawPoints    = &GLES2_RenderDrawPoints;
     renderer->RenderDrawLines     = &GLES2_RenderDrawLines;
     renderer->RenderFillRects     = &GLES2_RenderFillRects;
     renderer->RenderCopy          = &GLES2_RenderCopy;
-    renderer->RenderReadPixels    = &GLES2_RenderReadPixels;
     renderer->RenderCopyEx        = &GLES2_RenderCopyEx;
+    renderer->RenderReadPixels    = &GLES2_RenderReadPixels;
     renderer->RenderPresent       = &GLES2_RenderPresent;
     renderer->DestroyTexture      = &GLES2_DestroyTexture;
     renderer->DestroyRenderer     = &GLES2_DestroyRenderer;
+    renderer->GL_BindTexture      = &GLES2_BindTexture;
+    renderer->GL_UnbindTexture    = &GLES2_UnbindTexture;
 
     GLES2_ResetState(renderer);
 

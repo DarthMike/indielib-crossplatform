@@ -1,6 +1,6 @@
 /*
   Simple DirectMedia Layer
-  Copyright (C) 1997-2012 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -29,6 +29,10 @@
 #include "SDL_audio.h"
 #include "../SDL_audio_c.h"
 #include "SDL_directsound.h"
+
+#ifndef WAVE_FORMAT_IEEE_FLOAT
+#define WAVE_FORMAT_IEEE_FLOAT 0x0003
+#endif
 
 /* DirectX function pointers for audio */
 static void* DSoundDLL = NULL;
@@ -95,7 +99,7 @@ utf16_to_utf8(const WCHAR *S)
                             (SDL_wcslen(S)+1)*sizeof(WCHAR));
 }
 
-static void
+static int
 SetDSerror(const char *function, int code)
 {
     static const char *error;
@@ -145,8 +149,7 @@ SetDSerror(const char *function, int code)
         SDL_snprintf(errbuf, SDL_arraysize(errbuf), "%s: %s", function,
                      error);
     }
-    SDL_SetError("%s", errbuf);
-    return;
+    return SDL_SetError("%s", errbuf);
 }
 
 
@@ -343,7 +346,7 @@ DSOUND_CloseDevice(_THIS)
    number of audio chunks available in the created buffer.
 */
 static int
-CreateSecondary(_THIS, HWND focus, WAVEFORMATEX * wavefmt)
+CreateSecondary(_THIS, HWND focus)
 {
     LPDIRECTSOUND sndObj = this->hidden->sound;
     LPDIRECTSOUNDBUFFER *sndbuf = &this->hidden->mixbuf;
@@ -353,6 +356,24 @@ CreateSecondary(_THIS, HWND focus, WAVEFORMATEX * wavefmt)
     DSBUFFERDESC format;
     LPVOID pvAudioPtr1, pvAudioPtr2;
     DWORD dwAudioBytes1, dwAudioBytes2;
+    WAVEFORMATEX wfmt;
+
+    SDL_zero(wfmt);
+
+    if (SDL_AUDIO_ISFLOAT(this->spec.format)) {
+        wfmt.wFormatTag = WAVE_FORMAT_IEEE_FLOAT;
+    } else {
+        wfmt.wFormatTag = WAVE_FORMAT_PCM;
+    }
+
+    wfmt.wBitsPerSample = SDL_AUDIO_BITSIZE(this->spec.format);
+    wfmt.nChannels = this->spec.channels;
+    wfmt.nSamplesPerSec = this->spec.freq;
+    wfmt.nBlockAlign = wfmt.nChannels * (wfmt.wBitsPerSample / 8);
+    wfmt.nAvgBytesPerSec = wfmt.nSamplesPerSec * wfmt.nBlockAlign;
+
+    /* Update the fragment size as size in bytes */
+    SDL_CalculateAudioSpec(&this->spec);
 
     /* Try to set primary mixing privileges */
     if (focus) {
@@ -364,12 +385,11 @@ CreateSecondary(_THIS, HWND focus, WAVEFORMATEX * wavefmt)
                                                   DSSCL_NORMAL);
     }
     if (result != DS_OK) {
-        SetDSerror("DirectSound SetCooperativeLevel", result);
-        return (-1);
+        return SetDSerror("DirectSound SetCooperativeLevel", result);
     }
 
     /* Try to create the secondary buffer */
-    SDL_memset(&format, 0, sizeof(format));
+    SDL_zero(format);
     format.dwSize = sizeof(format);
     format.dwFlags = DSBCAPS_GETCURRENTPOSITION2;
     if (!focus) {
@@ -380,18 +400,16 @@ CreateSecondary(_THIS, HWND focus, WAVEFORMATEX * wavefmt)
     format.dwBufferBytes = numchunks * chunksize;
     if ((format.dwBufferBytes < DSBSIZE_MIN) ||
         (format.dwBufferBytes > DSBSIZE_MAX)) {
-        SDL_SetError("Sound buffer size must be between %d and %d",
-                     DSBSIZE_MIN / numchunks, DSBSIZE_MAX / numchunks);
-        return (-1);
+        return SDL_SetError("Sound buffer size must be between %d and %d",
+                            DSBSIZE_MIN / numchunks, DSBSIZE_MAX / numchunks);
     }
     format.dwReserved = 0;
-    format.lpwfxFormat = wavefmt;
+    format.lpwfxFormat = &wfmt;
     result = IDirectSound_CreateSoundBuffer(sndObj, &format, sndbuf, NULL);
     if (result != DS_OK) {
-        SetDSerror("DirectSound CreateSoundBuffer", result);
-        return (-1);
+        return SetDSerror("DirectSound CreateSoundBuffer", result);
     }
-    IDirectSoundBuffer_SetFormat(*sndbuf, wavefmt);
+    IDirectSoundBuffer_SetFormat(*sndbuf, &wfmt);
 
     /* Silence the initial audio buffer */
     result = IDirectSoundBuffer_Lock(*sndbuf, 0, format.dwBufferBytes,
@@ -437,8 +455,8 @@ static int
 DSOUND_OpenDevice(_THIS, const char *devname, int iscapture)
 {
     HRESULT result;
-    WAVEFORMATEX waveformat;
-    int valid_format = 0;
+    SDL_bool valid_format = SDL_FALSE;
+    SDL_bool tried_format = SDL_FALSE;
     SDL_AudioFormat test_format = SDL_FirstAudioFormat(this->spec.format);
     FindDevGUIDData devguid;
     LPGUID guid = NULL;
@@ -452,8 +470,7 @@ DSOUND_OpenDevice(_THIS, const char *devname, int iscapture)
             pDirectSoundEnumerateW(FindDevGUID, &devguid);
 
         if (!devguid.found) {
-            SDL_SetError("DirectSound: Requested device not found");
-            return 0;
+            return SDL_SetError("DirectSound: Requested device not found");
         }
         guid = &devguid.guid;
     }
@@ -462,18 +479,29 @@ DSOUND_OpenDevice(_THIS, const char *devname, int iscapture)
     this->hidden = (struct SDL_PrivateAudioData *)
         SDL_malloc((sizeof *this->hidden));
     if (this->hidden == NULL) {
-        SDL_OutOfMemory();
-        return 0;
+        return SDL_OutOfMemory();
     }
     SDL_memset(this->hidden, 0, (sizeof *this->hidden));
+
+    /* Open the audio device */
+    result = pDirectSoundCreate8(guid, &this->hidden->sound, NULL);
+    if (result != DS_OK) {
+        DSOUND_CloseDevice(this);
+        return SetDSerror("DirectSoundCreate", result);
+    }
 
     while ((!valid_format) && (test_format)) {
         switch (test_format) {
         case AUDIO_U8:
         case AUDIO_S16:
         case AUDIO_S32:
+        case AUDIO_F32:
+            tried_format = SDL_TRUE;
             this->spec.format = test_format;
-            valid_format = 1;
+            this->hidden->num_buffers = CreateSecondary(this, NULL);
+            if (this->hidden->num_buffers > 0) {
+                valid_format = SDL_TRUE;
+            }
             break;
         }
         test_format = SDL_NextAudioFormat();
@@ -481,42 +509,16 @@ DSOUND_OpenDevice(_THIS, const char *devname, int iscapture)
 
     if (!valid_format) {
         DSOUND_CloseDevice(this);
-        SDL_SetError("DirectSound: Unsupported audio format");
-        return 0;
-    }
-
-    SDL_memset(&waveformat, 0, sizeof(waveformat));
-    waveformat.wFormatTag = WAVE_FORMAT_PCM;
-    waveformat.wBitsPerSample = SDL_AUDIO_BITSIZE(this->spec.format);
-    waveformat.nChannels = this->spec.channels;
-    waveformat.nSamplesPerSec = this->spec.freq;
-    waveformat.nBlockAlign =
-        waveformat.nChannels * (waveformat.wBitsPerSample / 8);
-    waveformat.nAvgBytesPerSec =
-        waveformat.nSamplesPerSec * waveformat.nBlockAlign;
-
-    /* Update the fragment size as size in bytes */
-    SDL_CalculateAudioSpec(&this->spec);
-
-    /* Open the audio device */
-    result = pDirectSoundCreate8(guid, &this->hidden->sound, NULL);
-    if (result != DS_OK) {
-        DSOUND_CloseDevice(this);
-        SetDSerror("DirectSoundCreate", result);
-        return 0;
-    }
-
-    /* Create the audio buffer to which we write */
-    this->hidden->num_buffers = CreateSecondary(this, NULL, &waveformat);
-    if (this->hidden->num_buffers < 0) {
-        DSOUND_CloseDevice(this);
-        return 0;
+        if (tried_format) {
+            return -1;  // CreateSecondary() should have called SDL_SetError().
+        }
+        return SDL_SetError("DirectSound: Unsupported audio format");
     }
 
     /* The buffer will auto-start playing in DSOUND_WaitDevice() */
     this->hidden->mixlen = this->spec.size;
 
-    return 1;                   /* good to go. */
+    return 0;                   /* good to go. */
 }
 
 

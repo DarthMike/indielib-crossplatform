@@ -1,6 +1,6 @@
 /*
  Simple DirectMedia Layer
- Copyright (C) 1997-2012 Sam Lantinga <slouken@libsdl.org>
+ Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
 
  This software is provided 'as-is', without any express or implied
  warranty.  In no event will the authors be held liable for any damages
@@ -31,8 +31,9 @@
 @property (readwrite) SDL_Window *window;
 
 - (id)initWithSDLWindow:(SDL_Window *)_window;
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orient;
 - (void)loadView;
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation;
+- (void)viewDidLayoutSubviews;
+- (NSUInteger)supportedInterfaceOrientations;
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orient;
 
 @end

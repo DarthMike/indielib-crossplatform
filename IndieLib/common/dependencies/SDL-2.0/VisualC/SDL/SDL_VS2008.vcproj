@@ -50,10 +50,10 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/MP"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\include;&quot;$(DXSDK_DIR)Include&quot;"
+				AdditionalIncludeDirectories="..\..\include"
 				PreprocessorDefinitions="_DEBUG;_WINDOWS"
+				ExceptionHandling="0"
 				RuntimeLibrary="3"
 				BufferSecurityCheck="false"
 				WarningLevel="3"
@@ -136,12 +136,13 @@
 				Optimization="0"
 				AdditionalIncludeDirectories="..\..\include"
 				PreprocessorDefinitions="_DEBUG;_WINDOWS"
+				ExceptionHandling="0"
 				RuntimeLibrary="2"
 				BufferSecurityCheck="false"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				Detect64BitPortabilityProblems="false"
-				DebugInformationFormat="3"
+				DebugInformationFormat="4"
 				CompileAs="0"
 			/>
 			<Tool
@@ -217,18 +218,19 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/MP"
 				InlineFunctionExpansion="1"
 				EnableIntrinsicFunctions="false"
-				AdditionalIncludeDirectories="..\..\include;&quot;$(DXSDK_DIR)Include&quot;"
+				AdditionalIncludeDirectories="..\..\include"
 				PreprocessorDefinitions="NDEBUG;_WINDOWS"
 				StringPooling="true"
+				ExceptionHandling="0"
 				RuntimeLibrary="2"
 				BufferSecurityCheck="false"
 				EnableFunctionLevelLinking="true"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				Detect64BitPortabilityProblems="false"
+				DebugInformationFormat="3"
 				CompileAs="0"
 			/>
 			<Tool
@@ -246,7 +248,10 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="winmm.lib imm32.lib version.lib"
 				IgnoreAllDefaultLibraries="true"
+				GenerateDebugInformation="true"
 				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -306,12 +311,14 @@
 				AdditionalIncludeDirectories="..\..\include"
 				PreprocessorDefinitions="NDEBUG;_WINDOWS"
 				StringPooling="true"
+				ExceptionHandling="0"
 				RuntimeLibrary="2"
 				BufferSecurityCheck="false"
 				EnableFunctionLevelLinking="true"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				Detect64BitPortabilityProblems="false"
+				DebugInformationFormat="3"
 				CompileAs="0"
 			/>
 			<Tool
@@ -329,7 +336,10 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="winmm.lib imm32.lib version.lib"
 				IgnoreAllDefaultLibraries="true"
+				GenerateDebugInformation="true"
 				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
 				TargetMachine="17"
 			/>
 			<Tool
@@ -378,6 +388,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\include\SDL_bits.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\include\SDL_blendmode.h"
 				>
 			</File>
@@ -414,6 +428,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\include\SDL_gamecontroller.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\include\SDL_gesture.h"
 				>
 			</File>
@@ -423,10 +441,6 @@
 			</File>
 			<File
 				RelativePath="..\..\include\SDL_hints.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\include\SDL_input.h"
 				>
 			</File>
 			<File
@@ -451,6 +465,10 @@
 			</File>
 			<File
 				RelativePath="..\..\include\SDL_main.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\SDL_messagebox.h"
 				>
 			</File>
 			<File
@@ -811,6 +829,14 @@
 			>
 		</File>
 		<File
+			RelativePath="..\..\src\events\SDL_dropevents.c"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\events\SDL_dropevents_c.h"
+			>
+		</File>
+		<File
 			RelativePath="..\..\src\audio\dummy\SDL_dummyaudio.c"
 			>
 		</File>
@@ -839,15 +865,11 @@
 			>
 		</File>
 		<File
-			RelativePath="..\..\src\SDL_fatal.c"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\SDL_fatal.h"
-			>
-		</File>
-		<File
 			RelativePath="..\..\src\video\SDL_fillrect.c"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\joystick\SDL_gamecontroller.c"
 			>
 		</File>
 		<File
@@ -1103,6 +1125,10 @@
 			>
 		</File>
 		<File
+			RelativePath="..\..\src\thread\windows\SDL_systls.c"
+			>
+		</File>
+		<File
 			RelativePath="..\..\src\thread\SDL_systhread.h"
 			>
 		</File>
@@ -1208,6 +1234,14 @@
 		</File>
 		<File
 			RelativePath="..\..\src\video\windows\SDL_windowskeyboard.h"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\video\windows\SDL_windowsmessagebox.c"
+			>
+		</File>
+		<File
+			RelativePath="..\..\src\video\windows\SDL_windowsmessagebox.h"
 			>
 		</File>
 		<File

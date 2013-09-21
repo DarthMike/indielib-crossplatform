@@ -1,6 +1,6 @@
 /* list of OpenGL functions sorted alphabetically
    If you need to use a GL function from the SDL video subsystem,
-   change it's entry from SDL_PROC_UNUSED to SDL_PROC and rebuild.
+   change its entry from SDL_PROC_UNUSED to SDL_PROC and rebuild.
 */
 #define SDL_PROC_UNUSED(ret,func,params)
 
@@ -15,6 +15,7 @@ SDL_PROC_UNUSED(void, glBitmap,
                 (GLsizei, GLsizei, GLfloat, GLfloat, GLfloat, GLfloat,
                  const GLubyte *))
 SDL_PROC(void, glBlendFunc, (GLenum, GLenum))
+SDL_PROC(void, glBlendFuncSeparate, (GLenum, GLenum, GLenum, GLenum))
 SDL_PROC_UNUSED(void, glCallList, (GLuint))
 SDL_PROC_UNUSED(void, glCallLists, (GLsizei, GLenum, const GLvoid *))
 SDL_PROC(void, glClear, (GLbitfield))
@@ -152,7 +153,7 @@ SDL_PROC_UNUSED(void, glGetMaterialiv,
 SDL_PROC_UNUSED(void, glGetPixelMapfv, (GLenum map, GLfloat * values))
 SDL_PROC_UNUSED(void, glGetPixelMapuiv, (GLenum map, GLuint * values))
 SDL_PROC_UNUSED(void, glGetPixelMapusv, (GLenum map, GLushort * values))
-SDL_PROC_UNUSED(void, glGetPointerv, (GLenum pname, GLvoid * *params))
+SDL_PROC(void, glGetPointerv, (GLenum pname, GLvoid * *params))
 SDL_PROC_UNUSED(void, glGetPolygonStipple, (GLubyte * mask))
 SDL_PROC(const GLubyte *, glGetString, (GLenum name))
 SDL_PROC_UNUSED(void, glGetTexEnvfv,
@@ -322,10 +323,10 @@ SDL_PROC(void, glReadPixels,
 SDL_PROC_UNUSED(void, glRectd,
                 (GLdouble x1, GLdouble y1, GLdouble x2, GLdouble y2))
 SDL_PROC_UNUSED(void, glRectdv, (const GLdouble * v1, const GLdouble * v2))
-SDL_PROC_UNUSED(void, glRectf,
+SDL_PROC(void, glRectf,
                 (GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2))
 SDL_PROC_UNUSED(void, glRectfv, (const GLfloat * v1, const GLfloat * v2))
-SDL_PROC(void, glRecti, (GLint x1, GLint y1, GLint x2, GLint y2))
+SDL_PROC_UNUSED(void, glRecti, (GLint x1, GLint y1, GLint x2, GLint y2))
 SDL_PROC_UNUSED(void, glRectiv, (const GLint * v1, const GLint * v2))
 SDL_PROC_UNUSED(void, glRects,
                 (GLshort x1, GLshort y1, GLshort x2, GLshort y2))

@@ -1,6 +1,6 @@
 /*
   Simple DirectMedia Layer
-  Copyright (C) 1997-2012 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -24,7 +24,29 @@
 
 #include "SDL_stdinc.h"
 
-#ifndef HAVE_MALLOC
+#if defined(HAVE_MALLOC)
+
+void *SDL_malloc(size_t size)
+{
+    return malloc(size);
+}
+
+void *SDL_calloc(size_t nmemb, size_t size)
+{
+    return calloc(nmemb, size);
+}
+
+void *SDL_realloc(void *ptr, size_t size)
+{
+    return realloc(ptr, size);
+}
+
+void SDL_free(void *ptr)
+{
+    free(ptr);
+}
+
+#else  /* the rest of this is a LOT of tapdancing to implement malloc. :) */
 
 #define LACKS_SYS_TYPES_H
 #define LACKS_STDIO_H
@@ -398,9 +420,9 @@ MALLINFO_FIELD_TYPE        default: size_t
   size_t. The value is used only if  HAVE_USR_INCLUDE_MALLOC_H is not set
 
 REALLOC_ZERO_BYTES_FREES    default: not defined
-  This should be set if a call to realloc with zero bytes should 
-  be the same as a call to free. Some people think it should. Otherwise, 
-  since this malloc returns a unique pointer for malloc(0), so does 
+  This should be set if a call to realloc with zero bytes should
+  be the same as a call to free. Some people think it should. Otherwise,
+  since this malloc returns a unique pointer for malloc(0), so does
   realloc(p, 0).
 
 LACKS_UNISTD_H, LACKS_FCNTL_H, LACKS_SYS_PARAM_H, LACKS_SYS_MMAN_H
@@ -608,12 +630,12 @@ DEFAULT_MMAP_THRESHOLD       default: 256K
 #define MALLINFO_FIELD_TYPE size_t
 #endif /* MALLINFO_FIELD_TYPE */
 
-#define memset	SDL_memset
-#define memcpy	SDL_memcpy
-#define malloc	SDL_malloc
-#define calloc	SDL_calloc
-#define realloc	SDL_realloc
-#define free	SDL_free
+#define memset  SDL_memset
+#define memcpy  SDL_memcpy
+#define malloc  SDL_malloc
+#define calloc  SDL_calloc
+#define realloc SDL_realloc
+#define free    SDL_free
 
 /*
   mallopt tuning options.  SVID/XPG defines four standard parameter
@@ -5228,7 +5250,7 @@ History:
     Trial version Fri Aug 28 13:14:29 1992  Doug Lea  (dl at g.oswego.edu)
       * Based loosely on libg++-1.2X malloc. (It retains some of the overall
          structure of old version,  but most details differ.)
- 
+
 */
 
 #endif /* !HAVE_MALLOC */

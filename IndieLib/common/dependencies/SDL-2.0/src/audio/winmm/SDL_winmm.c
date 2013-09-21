@@ -1,6 +1,6 @@
 /*
   Simple DirectMedia Layer
-  Copyright (C) 1997-2012 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -31,8 +31,9 @@
 #include "SDL_audio.h"
 #include "../SDL_audio_c.h"
 #include "SDL_winmm.h"
-#if defined(_WIN32_WCE) && (_WIN32_WCE < 300)
-#include "win_ce_semaphore.h"
+
+#ifndef WAVE_FORMAT_IEEE_FLOAT
+#define WAVE_FORMAT_IEEE_FLOAT 0x0003
 #endif
 
 #define DETECT_DEV_IMPL(typ, capstyp) \
@@ -75,11 +76,7 @@ CaptureSound(HWAVEIN hwi, UINT uMsg, DWORD_PTR dwInstance,
         return;
 
     /* Signal that we have a new buffer of data */
-#if defined(_WIN32_WCE) && (_WIN32_WCE < 300)
-    ReleaseSemaphoreCE(this->hidden->audio_sem, 1, NULL);
-#else
     ReleaseSemaphore(this->hidden->audio_sem, 1, NULL);
-#endif
 }
 
 
@@ -95,14 +92,10 @@ FillSound(HWAVEOUT hwo, UINT uMsg, DWORD_PTR dwInstance,
         return;
 
     /* Signal that we are done playing a buffer */
-#if defined(_WIN32_WCE) && (_WIN32_WCE < 300)
-    ReleaseSemaphoreCE(this->hidden->audio_sem, 1, NULL);
-#else
     ReleaseSemaphore(this->hidden->audio_sem, 1, NULL);
-#endif
 }
 
-static void
+static int
 SetMMerror(char *function, MMRESULT code)
 {
     size_t len;
@@ -116,18 +109,14 @@ SetMMerror(char *function, MMRESULT code)
     WideCharToMultiByte(CP_ACP, 0, werrbuf, -1, errbuf + len,
                         MAXERRORLENGTH - len, NULL, NULL);
 
-    SDL_SetError("%s", errbuf);
+    return SDL_SetError("%s", errbuf);
 }
 
 static void
 WINMM_WaitDevice(_THIS)
 {
     /* Wait for an audio chunk to finish */
-#if defined(_WIN32_WCE) && (_WIN32_WCE < 300)
-    WaitForSemaphoreCE(this->hidden->audio_sem, INFINITE);
-#else
     WaitForSingleObject(this->hidden->audio_sem, INFINITE);
-#endif
 }
 
 static Uint8 *
@@ -173,22 +162,8 @@ WINMM_CloseDevice(_THIS)
         int i;
 
         if (this->hidden->audio_sem) {
-#if defined(_WIN32_WCE) && (_WIN32_WCE < 300)
-            CloseSynchHandle(this->hidden->audio_sem);
-#else
             CloseHandle(this->hidden->audio_sem);
-#endif
             this->hidden->audio_sem = 0;
-        }
-
-        if (this->hidden->hin) {
-            waveInClose(this->hidden->hin);
-            this->hidden->hin = 0;
-        }
-
-        if (this->hidden->hout) {
-            waveOutClose(this->hidden->hout);
-            this->hidden->hout = 0;
         }
 
         /* Clean up mixing buffers */
@@ -207,8 +182,42 @@ WINMM_CloseDevice(_THIS)
             this->hidden->mixbuf = NULL;
         }
 
+        if (this->hidden->hin) {
+            waveInClose(this->hidden->hin);
+            this->hidden->hin = 0;
+        }
+
+        if (this->hidden->hout) {
+            waveOutClose(this->hidden->hout);
+            this->hidden->hout = 0;
+        }
+
         SDL_free(this->hidden);
         this->hidden = NULL;
+    }
+}
+
+static SDL_bool
+PrepWaveFormat(_THIS, UINT_PTR devId, WAVEFORMATEX *pfmt, const int iscapture)
+{
+    SDL_zerop(pfmt);
+
+    if (SDL_AUDIO_ISFLOAT(this->spec.format)) {
+        pfmt->wFormatTag = WAVE_FORMAT_IEEE_FLOAT;
+    } else {
+        pfmt->wFormatTag = WAVE_FORMAT_PCM;
+    }
+    pfmt->wBitsPerSample = SDL_AUDIO_BITSIZE(this->spec.format);
+
+    pfmt->nChannels = this->spec.channels;
+    pfmt->nSamplesPerSec = this->spec.freq;
+    pfmt->nBlockAlign = pfmt->nChannels * (pfmt->wBitsPerSample / 8);
+    pfmt->nAvgBytesPerSec = pfmt->nSamplesPerSec * pfmt->nBlockAlign;
+
+    if (iscapture) {
+        return (waveInOpen(0, devId, pfmt, 0, 0, WAVE_FORMAT_QUERY) == 0);
+    } else {
+        return (waveOutOpen(0, devId, pfmt, 0, 0, WAVE_FORMAT_QUERY) == 0);
     }
 }
 
@@ -253,8 +262,7 @@ WINMM_OpenDevice(_THIS, const char *devname, int iscapture)
         }
 
         if (devId == WAVE_MAPPER) {
-            SDL_SetError("Requested device not found");
-            return 0;
+            return SDL_SetError("Requested device not found");
         }
     }
 
@@ -262,8 +270,7 @@ WINMM_OpenDevice(_THIS, const char *devname, int iscapture)
     this->hidden = (struct SDL_PrivateAudioData *)
         SDL_malloc((sizeof *this->hidden));
     if (this->hidden == NULL) {
-        SDL_OutOfMemory();
-        return 0;
+        return SDL_OutOfMemory();
     }
     SDL_memset(this->hidden, 0, (sizeof *this->hidden));
 
@@ -271,17 +278,28 @@ WINMM_OpenDevice(_THIS, const char *devname, int iscapture)
     for (i = 0; i < NUM_BUFFERS; ++i)
         this->hidden->wavebuf[i].dwUser = 0xFFFF;
 
+    if (this->spec.channels > 2)
+        this->spec.channels = 2;        /* !!! FIXME: is this right? */
+
+    /* Check the buffer size -- minimum of 1/4 second (word aligned) */
+    if (this->spec.samples < (this->spec.freq / 4))
+        this->spec.samples = ((this->spec.freq / 4) + 3) & ~3;
+
     while ((!valid_datatype) && (test_format)) {
-        valid_datatype = 1;
-        this->spec.format = test_format;
         switch (test_format) {
         case AUDIO_U8:
         case AUDIO_S16:
         case AUDIO_S32:
-            break;              /* valid. */
+        case AUDIO_F32:
+            this->spec.format = test_format;
+            if (PrepWaveFormat(this, devId, &waveformat, iscapture)) {
+                valid_datatype = 1;
+            } else {
+                test_format = SDL_NextAudioFormat();
+            }
+            break;
 
         default:
-            valid_datatype = 0;
             test_format = SDL_NextAudioFormat();
             break;
         }
@@ -289,28 +307,8 @@ WINMM_OpenDevice(_THIS, const char *devname, int iscapture)
 
     if (!valid_datatype) {
         WINMM_CloseDevice(this);
-        SDL_SetError("Unsupported audio format");
-        return 0;
+        return SDL_SetError("Unsupported audio format");
     }
-
-    /* Set basic WAVE format parameters */
-    SDL_memset(&waveformat, '\0', sizeof(waveformat));
-    waveformat.wFormatTag = WAVE_FORMAT_PCM;
-    waveformat.wBitsPerSample = SDL_AUDIO_BITSIZE(this->spec.format);
-
-    if (this->spec.channels > 2)
-        this->spec.channels = 2;        /* !!! FIXME: is this right? */
-
-    waveformat.nChannels = this->spec.channels;
-    waveformat.nSamplesPerSec = this->spec.freq;
-    waveformat.nBlockAlign =
-        waveformat.nChannels * (waveformat.wBitsPerSample / 8);
-    waveformat.nAvgBytesPerSec =
-        waveformat.nSamplesPerSec * waveformat.nBlockAlign;
-
-    /* Check the buffer size -- minimum of 1/4 second (word aligned) */
-    if (this->spec.samples < (this->spec.freq / 4))
-        this->spec.samples = ((this->spec.freq / 4) + 3) & ~3;
 
     /* Update the fragment size as size in bytes */
     SDL_CalculateAudioSpec(&this->spec);
@@ -328,8 +326,7 @@ WINMM_OpenDevice(_THIS, const char *devname, int iscapture)
 
     if (result != MMSYSERR_NOERROR) {
         WINMM_CloseDevice(this);
-        SetMMerror("waveOutOpen()", result);
-        return 0;
+        return SetMMerror("waveOutOpen()", result);
     }
 #ifdef SOUND_DEBUG
     /* Check the sound device we retrieved */
@@ -340,8 +337,7 @@ WINMM_OpenDevice(_THIS, const char *devname, int iscapture)
                                    &caps, sizeof(caps));
         if (result != MMSYSERR_NOERROR) {
             WINMM_CloseDevice(this);
-            SetMMerror("waveOutGetDevCaps()", result);
-            return 0;
+            return SetMMerror("waveOutGetDevCaps()", result);
         }
         printf("Audio device: %s\n", caps.szPname);
     }
@@ -349,15 +345,10 @@ WINMM_OpenDevice(_THIS, const char *devname, int iscapture)
 
     /* Create the audio buffer semaphore */
     this->hidden->audio_sem =
-#if defined(_WIN32_WCE) && (_WIN32_WCE < 300)
-        CreateSemaphoreCE(NULL, NUM_BUFFERS - 1, NUM_BUFFERS, NULL);
-#else
         CreateSemaphore(NULL, NUM_BUFFERS - 1, NUM_BUFFERS, NULL);
-#endif
     if (this->hidden->audio_sem == NULL) {
         WINMM_CloseDevice(this);
-        SDL_SetError("Couldn't create semaphore");
-        return 0;
+        return SDL_SetError("Couldn't create semaphore");
     }
 
     /* Create the sound buffers */
@@ -365,8 +356,7 @@ WINMM_OpenDevice(_THIS, const char *devname, int iscapture)
         (Uint8 *) SDL_malloc(NUM_BUFFERS * this->spec.size);
     if (this->hidden->mixbuf == NULL) {
         WINMM_CloseDevice(this);
-        SDL_OutOfMemory();
-        return 0;
+        return SDL_OutOfMemory();
     }
     for (i = 0; i < NUM_BUFFERS; ++i) {
         SDL_memset(&this->hidden->wavebuf[i], 0,
@@ -380,12 +370,11 @@ WINMM_OpenDevice(_THIS, const char *devname, int iscapture)
                                       sizeof(this->hidden->wavebuf[i]));
         if (result != MMSYSERR_NOERROR) {
             WINMM_CloseDevice(this);
-            SetMMerror("waveOutPrepareHeader()", result);
-            return 0;
+            return SetMMerror("waveOutPrepareHeader()", result);
         }
     }
 
-    return 1;                   /* Ready to go! */
+    return 0;                   /* Ready to go! */
 }
 
 

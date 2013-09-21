@@ -1,6 +1,6 @@
 /*
   Simple DirectMedia Layer
-  Copyright (C) 1997-2012 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -67,7 +67,8 @@
     aBits:(int)aBits
     depthBits:(int)depthBits
     stencilBits:(int)stencilBits
-    majorVersion:(int)majorVersion;
+    majorVersion:(int)majorVersion
+    shareGroup:(EAGLSharegroup*)shareGroup;
 
 - (void)updateFrame;
 

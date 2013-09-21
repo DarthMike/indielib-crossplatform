@@ -1,6 +1,6 @@
 /*
   Simple DirectMedia Layer
-  Copyright (C) 1997-2012 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -33,7 +33,7 @@
 void *
 SDL_LoadObject(const char *sofile)
 {
-    void *handle = dlopen(sofile, RTLD_NOW);
+    void *handle = dlopen(sofile, RTLD_NOW|RTLD_LOCAL);
     const char *loaderror = (char *) dlerror();
     if (handle == NULL) {
         SDL_SetError("Failed loading %s: %s", sofile, loaderror);

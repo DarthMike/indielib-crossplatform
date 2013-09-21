@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 1997-2011 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -15,12 +15,13 @@
 #include <stdio.h>
 #include <time.h>
 
-#include "common.h"
+#include "SDL_test.h"
+#include "SDL_test_common.h"
 
 #define NUM_SPRITES    100
 #define MAX_SPEED     1
 
-static CommonState *state;
+static SDLTest_CommonState *state;
 static int num_sprites;
 static SDL_Texture **sprites;
 static SDL_bool cycle_color;
@@ -32,6 +33,10 @@ static SDL_Rect *positions;
 static SDL_Rect *velocities;
 static int sprite_w, sprite_h;
 static SDL_BlendMode blendMode = SDL_BLENDMODE_BLEND;
+
+/* Number of iterations to move sprites - used for visual tests. */
+/* -1: infinite random moves (default); >=0: enables N deterministic moves */
+static int iterations = -1;
 
 /* Call this instead of exit(), so we can clean up SDL: atexit() is evil. */
 static void
@@ -46,12 +51,12 @@ quit(int rc)
     if (velocities) {
         SDL_free(velocities);
     }
-    CommonQuit(state);
+    SDLTest_CommonQuit(state);
     exit(rc);
 }
 
 int
-LoadSprite(char *file)
+LoadSprite(const char *file)
 {
     int i;
     SDL_Surface *temp;
@@ -105,7 +110,7 @@ LoadSprite(char *file)
 void
 MoveSprites(SDL_Renderer * renderer, SDL_Texture * sprite)
 {
-    int i, n;
+    int i;
     SDL_Rect viewport, temp;
     SDL_Rect *position, *velocity;
 
@@ -191,22 +196,38 @@ MoveSprites(SDL_Renderer * renderer, SDL_Texture * sprite)
     SDL_RenderDrawLine(renderer, viewport.w-sprite_w-2, sprite_h,
                        sprite_w, viewport.h-sprite_h-2);
 
-    /* Move the sprite, bounce at the wall, and draw */
-    n = 0;
+    /* Conditionally move the sprites, bounce at the wall */
+    if (iterations == -1 || iterations > 0) {
+        for (i = 0; i < num_sprites; ++i) {
+            position = &positions[i];
+            velocity = &velocities[i];
+            position->x += velocity->x;
+            if ((position->x < 0) || (position->x >= (viewport.w - sprite_w))) {
+            	velocity->x = -velocity->x;
+            	position->x += velocity->x;
+            }
+            position->y += velocity->y;
+            if ((position->y < 0) || (position->y >= (viewport.h - sprite_h))) {
+            	velocity->y = -velocity->y;
+            	position->y += velocity->y;
+            }
+
+        }
+        
+        /* Countdown sprite-move iterations and disable color changes at iteration end - used for visual tests. */
+        if (iterations > 0) {
+            iterations--;
+            if (iterations == 0) {
+                cycle_alpha = SDL_FALSE;
+                cycle_color = SDL_FALSE;
+            }
+        }
+    }
+
+    /* Draw sprites */
     for (i = 0; i < num_sprites; ++i) {
         position = &positions[i];
-        velocity = &velocities[i];
-        position->x += velocity->x;
-        if ((position->x < 0) || (position->x >= (viewport.w - sprite_w))) {
-            velocity->x = -velocity->x;
-            position->x += velocity->x;
-        }
-        position->y += velocity->y;
-        if ((position->y < 0) || (position->y >= (viewport.h - sprite_h))) {
-            velocity->y = -velocity->y;
-            position->y += velocity->y;
-        }
-
+		
         /* Blit the sprite onto the screen */
         SDL_RenderCopy(renderer, sprite, NULL, position);
     }
@@ -221,12 +242,14 @@ main(int argc, char *argv[])
     int i, done;
     SDL_Event event;
     Uint32 then, now, frames;
+	Uint64 seed;
+    const char *icon = "icon.bmp";
 
     /* Initialize parameters */
     num_sprites = NUM_SPRITES;
 
     /* Initialize test framework */
-    state = CommonCreateState(argv, SDL_INIT_VIDEO);
+    state = SDLTest_CommonCreateState(argv, SDL_INIT_VIDEO);
     if (!state) {
         return 1;
     }
@@ -236,7 +259,7 @@ main(int argc, char *argv[])
     for (i = 1; i < argc;) {
         int consumed;
 
-        consumed = CommonArg(state, i);
+        consumed = SDLTest_CommonArg(state, i);
         if (consumed == 0) {
             consumed = -1;
             if (SDL_strcasecmp(argv[i], "--blend") == 0) {
@@ -255,6 +278,12 @@ main(int argc, char *argv[])
                         consumed = 2;
                     }
                 }
+            } else if (SDL_strcasecmp(argv[i], "--iterations") == 0) {
+                if (argv[i + 1]) {
+                    iterations = SDL_atoi(argv[i + 1]);
+                    if (iterations < -1) iterations = -1;
+                    consumed = 2;
+                }
             } else if (SDL_strcasecmp(argv[i], "--cyclecolor") == 0) {
                 cycle_color = SDL_TRUE;
                 consumed = 1;
@@ -264,17 +293,20 @@ main(int argc, char *argv[])
             } else if (SDL_isdigit(*argv[i])) {
                 num_sprites = SDL_atoi(argv[i]);
                 consumed = 1;
+            } else if (argv[i][0] != '-') {
+                icon = argv[i];
+                consumed = 1;
             }
         }
         if (consumed < 0) {
             fprintf(stderr,
-                    "Usage: %s %s [--blend none|blend|add|mod] [--cyclecolor] [--cyclealpha]\n",
-                    argv[0], CommonUsage(state));
+                    "Usage: %s %s [--blend none|blend|add|mod] [--cyclecolor] [--cyclealpha] [--iterations N] [num_sprites] [icon.bmp]\n",
+                    argv[0], SDLTest_CommonUsage(state));
             quit(1);
         }
         i += consumed;
     }
-    if (!CommonInit(state)) {
+    if (!SDLTest_CommonInit(state)) {
         quit(2);
     }
 
@@ -290,7 +322,7 @@ main(int argc, char *argv[])
         SDL_SetRenderDrawColor(renderer, 0xA0, 0xA0, 0xA0, 0xFF);
         SDL_RenderClear(renderer);
     }
-    if (LoadSprite("icon.bmp") < 0) {
+    if (LoadSprite(icon) < 0) {
         quit(2);
     }
 
@@ -301,17 +333,26 @@ main(int argc, char *argv[])
         fprintf(stderr, "Out of memory!\n");
         quit(2);
     }
-    srand((unsigned int)time(NULL));
+
+    /* Position sprites and set their velocities using the fuzzer */ 
+    if (iterations >= 0) {
+        /* Deterministic seed - used for visual tests */
+        seed = (Uint64)iterations;
+    } else {
+        /* Pseudo-random seed generated from the time */
+        seed = (Uint64)time(NULL);
+    }
+    SDLTest_FuzzerInit(seed);
     for (i = 0; i < num_sprites; ++i) {
-        positions[i].x = rand() % (state->window_w - sprite_w);
-        positions[i].y = rand() % (state->window_h - sprite_h);
+        positions[i].x = SDLTest_RandomIntegerInRange(0, state->window_w - sprite_w);
+        positions[i].y = SDLTest_RandomIntegerInRange(0, state->window_h - sprite_h);
         positions[i].w = sprite_w;
         positions[i].h = sprite_h;
         velocities[i].x = 0;
         velocities[i].y = 0;
         while (!velocities[i].x && !velocities[i].y) {
-            velocities[i].x = (rand() % (MAX_SPEED * 2 + 1)) - MAX_SPEED;
-            velocities[i].y = (rand() % (MAX_SPEED * 2 + 1)) - MAX_SPEED;
+            velocities[i].x = SDLTest_RandomIntegerInRange(-MAX_SPEED, MAX_SPEED);
+            velocities[i].y = SDLTest_RandomIntegerInRange(-MAX_SPEED, MAX_SPEED);
         }
     }
 
@@ -323,7 +364,7 @@ main(int argc, char *argv[])
         /* Check for events */
         ++frames;
         while (SDL_PollEvent(&event)) {
-            CommonEvent(state, &event, &done);
+            SDLTest_CommonEvent(state, &event, &done);
         }
         for (i = 0; i < state->num_windows; ++i) {
             MoveSprites(state->renderers[i], sprites[i]);

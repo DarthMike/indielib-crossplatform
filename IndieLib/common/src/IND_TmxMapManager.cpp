@@ -133,7 +133,7 @@ bool IND_TmxMapManager::add(IND_TmxMap *pNewTmxMap,const char *pName) {
     string imagePath;
     string s = string(pName);
     
-    unsigned int lastPosTemp = s.find_last_of("\\/");
+    size_t lastPosTemp = s.find_last_of("\\/");
     
     if(lastPosTemp == string::npos){
         tmxPath = "./";

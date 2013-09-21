@@ -125,7 +125,7 @@ bool IND_SpriterManager::parseSpriterData(vector<IND_SpriterEntity*> *pSpriterEn
 	string spriterTopPath;
     string s = string(pSCMLFileName);
 
-	unsigned int lastPosTemp = s.find_last_of("\\/");
+	size_t lastPosTemp = s.find_last_of("\\/");
 
 	if(lastPosTemp == string::npos){
 		spriterTopPath = "./";

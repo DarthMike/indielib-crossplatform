@@ -1,6 +1,6 @@
 /*
   Simple DirectMedia Layer
-  Copyright (C) 1997-2012 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -82,8 +82,7 @@ int
 SDL_CondSignal(SDL_cond * cond)
 {
     if (!cond) {
-        SDL_SetError("Passed a NULL condition variable");
-        return -1;
+        return SDL_SetError("Passed a NULL condition variable");
     }
 
     /* If there are waiting threads not already signalled, then
@@ -107,8 +106,7 @@ int
 SDL_CondBroadcast(SDL_cond * cond)
 {
     if (!cond) {
-        SDL_SetError("Passed a NULL condition variable");
-        return -1;
+        return SDL_SetError("Passed a NULL condition variable");
     }
 
     /* If there are waiting threads not already signalled, then
@@ -164,8 +162,7 @@ SDL_CondWaitTimeout(SDL_cond * cond, SDL_mutex * mutex, Uint32 ms)
     int retval;
 
     if (!cond) {
-        SDL_SetError("Passed a NULL condition variable");
-        return -1;
+        return SDL_SetError("Passed a NULL condition variable");
     }
 
     /* Obtain the protection mutex, and increment the number of waiters.
@@ -190,7 +187,7 @@ SDL_CondWaitTimeout(SDL_cond * cond, SDL_mutex * mutex, Uint32 ms)
        the signaler can race ahead and get the condition semaphore
        if we are stopped between the mutex unlock and semaphore wait,
        giving a deadlock.  See the following URL for details:
-       http://www-classic.be.com/aboutbe/benewsletter/volume_III/Issue40.html
+       http://web.archive.org/web/20010914175514/http://www-classic.be.com/aboutbe/benewsletter/volume_III/Issue40.html#Workshop
      */
     SDL_LockMutex(cond->lock);
     if (cond->signals > 0) {

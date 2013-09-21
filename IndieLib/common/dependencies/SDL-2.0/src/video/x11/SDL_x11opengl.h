@@ -1,6 +1,6 @@
 /*
   Simple DirectMedia Layer
-  Copyright (C) 1997-2012 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -29,9 +29,13 @@
 
 struct SDL_GLDriverData
 {
+    int errorBase, eventBase;
+
     SDL_bool HAS_GLX_EXT_visual_rating;
+    SDL_bool HAS_GLX_EXT_visual_info;
     SDL_bool HAS_GLX_EXT_swap_control_tear;
 
+    Bool (*glXQueryExtension) (Display*,int*,int*);
     void *(*glXGetProcAddress) (const GLubyte*);
     XVisualInfo *(*glXChooseVisual) (Display*,int,int*);
     GLXContext (*glXCreateContext) (Display*,XVisualInfo*,GLXContext,Bool);
@@ -39,7 +43,7 @@ struct SDL_GLDriverData
     Bool(*glXMakeCurrent) (Display*,GLXDrawable,GLXContext);
     void (*glXSwapBuffers) (Display*, GLXDrawable);
     void (*glXQueryDrawable) (Display*,GLXDrawable,int,unsigned int*);
-    int (*glXSwapIntervalEXT) (Display*,GLXDrawable,int);
+    void (*glXSwapIntervalEXT) (Display*,GLXDrawable,int);
     int (*glXSwapIntervalSGI) (int);
     int (*glXSwapIntervalMESA) (int);
     int (*glXGetSwapIntervalMESA) (void);

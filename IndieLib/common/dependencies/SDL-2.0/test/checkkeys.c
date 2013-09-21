@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 1997-2011 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -11,7 +11,7 @@
 */
 
 /* Simple program:  Loop, watching keystrokes
-   Note that you need to call SDL_PollEvent() or SDL_WaitEvent() to 
+   Note that you need to call SDL_PollEvent() or SDL_WaitEvent() to
    pump the event loop and catch keystrokes.
 */
 
@@ -105,37 +105,27 @@ PrintKey(SDL_Keysym * sym, SDL_bool pressed, SDL_bool repeat)
                 "Unknown Key (scancode %d = %s) %s ",
                 sym->scancode,
                 SDL_GetScancodeName(sym->scancode),
-                pressed ? "pressed" : "released");
-    }
-
-    /* Print the translated character, if one exists */
-    if (sym->unicode) {
-        /* Is it a control-character? */
-        if (sym->unicode < ' ') {
-            print_string(&spot, &left, " (^%c)", sym->unicode + '@');
-        } else {
-#ifdef UNICODE
-            print_string(&spot, &left, " (%c)", sym->unicode);
-#else
-            /* This is a Latin-1 program, so only show 8-bits */
-            if (!(sym->unicode & 0xFF00))
-                print_string(&spot, &left, " (%c)", sym->unicode);
-            else
-                print_string(&spot, &left, " (0x%X)", sym->unicode);
-#endif
-        }
+                pressed ? "pressed " : "released");
     }
     print_modifiers(&spot, &left);
     if (repeat) {
         print_string(&spot, &left, " (repeat)");
     }
-    SDL_Log("%s", message);
+    SDL_Log("%s\n", message);
 }
 
 static void
 PrintText(char *text)
 {
-    SDL_Log("Text: %s", text);
+    unsigned char *spot, expanded[1024];
+
+    expanded[0] = '\0';
+    for ( spot = text; *spot; ++spot )
+    {
+        size_t length = SDL_strlen(expanded);
+        SDL_snprintf(expanded + length, sizeof(expanded) - length, "\\x%.2x", *spot);
+    }
+    SDL_Log("Text (%s): \"%s%s\"\n", expanded, *text == '"' ? "\\" : "", text);
 }
 
 int
@@ -166,9 +156,7 @@ main(int argc, char *argv[])
     SDL_GL_CreateContext(window);
 #endif
 
-    if (SDL_HasScreenKeyboardSupport(window)) {
-        SDL_ShowScreenKeyboard(window);
-    }
+    SDL_StartTextInput();
 
     /* Watch keystrokes */
     done = 0;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0440"
+   LastUpgradeVersion = "0500"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E72B9F41158CBEF60003C431"
-               BuildableName = "libIndielib.dylib"
-               BlueprintName = "Indielib"
-               ReferencedContainer = "container:IndieLib/Indielib.xcodeproj">
+               BlueprintIdentifier = "E700A1B317EF0174001327E5"
+               BuildableName = "Tutorial17.app"
+               BlueprintName = "Tutorial17"
+               ReferencedContainer = "container:IndielibTutorials.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -29,6 +29,15 @@
       buildConfiguration = "Debug">
       <Testables>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "E700A1B317EF0174001327E5"
+            BuildableName = "Tutorial17.app"
+            BlueprintName = "Tutorial17"
+            ReferencedContainer = "container:IndielibTutorials.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -39,6 +48,15 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
+      <BuildableProductRunnable>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "E700A1B317EF0174001327E5"
+            BuildableName = "Tutorial17.app"
+            BlueprintName = "Tutorial17"
+            ReferencedContainer = "container:IndielibTutorials.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -48,6 +66,15 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
+      <BuildableProductRunnable>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "E700A1B317EF0174001327E5"
+            BuildableName = "Tutorial17.app"
+            BlueprintName = "Tutorial17"
+            ReferencedContainer = "container:IndielibTutorials.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

@@ -54,17 +54,25 @@
 #define DT_EX_BACKCOLOR	               0x00000400
 
 
-class IND_TTF_Font
-{
+// --------------------------------------------------------------------------------
+//									 IND_TTF_Font
+// --------------------------------------------------------------------------------
+
+
+class LIB_EXP IND_TTF_Font {
+
 public:
 	typedef unsigned char byte;
 	typedef unsigned int uint32_t;
 
-	// constructor
+	// ----- Init/End -----
+    
 	IND_TTF_Font(	FT_Library ftlib, IND_Render *pIndieRender, IND_ImageManager *pIndieImageManager, 
 					IND_SurfaceManager *pIndieSurfaceManager);
 	~IND_TTF_Font(void);
 
+    // ----- Public methods -----
+        
 	// load a TTF font from disk file
 	bool loadTTFFontFromDisk(	const std::string& strname, const std::string& strpath,
 								int iSize, bool bBold, bool bItalic);
@@ -122,6 +130,9 @@ public:
 	void setHotspot(float spot) {_fXHotSpot = _fYHotSpot = spot;}
 
 private:
+    
+    // ----- Structures ------
+    
 	// Struct for every cached character
 	// Finally character is cached in an IND_Surface for bliting
 	struct CharCacheNode
@@ -135,44 +146,47 @@ private:
 
 		IND_Surface *pSurface;						// where the glyph texture stored
 	};
+    typedef std::map<wchar_t, CharCacheNode*> CharCacheMap;
+    typedef CharCacheMap::iterator CharCacheMapIterator;
 
-	typedef std::map<wchar_t, CharCacheNode*> CharCacheMap;
-
-	typedef CharCacheMap::iterator CharCacheMapIterator;
-
-	//Number of spaces in a tab
+	// ----- Objects -----
+    
+    //Number of spaces in a tab
 	static const unsigned int nTabSize = 4;
 
-	FT_Library				_FTLib;			// freetype lib
-	FT_Face					_Face;			// THIS font face
+	FT_Library				_FTLib;                 // freetype lib
+	FT_Face					_Face;                  // THIS font face
 	float					_fFaceAscender;
 
 	IND_Render				*_pIndieRender;
 	IND_ImageManager		*_pIndieImageManager;
 	IND_SurfaceManager		*_pIndieSurfaceManager;
+        
+	std::string				_strName;               // font name
+	std::string				_strFilePath;           // TTF file path
+
+	int						_CharWidth;             // current font width
+	int						_CharHeight;            // current font height
+
+	bool					_bAutoCache;            // auto cache
+	bool					_bHasKerning;           // font face has kerning
 	
-	std::string				_strName;		// font name
-	std::string				_strFilePath;	// TTF file path
+	bool					_bBold;                 // bold
+	bool					_bItalic;               // italic
+	FT_Matrix				_matItalic;             // transformation matrix for italic
 
-	int						_CharWidth;		// current font width
-	int						_CharHeight;	// current font height
+	float					_fXScale;               // x scale for bliting
+	float					_fYScale;               // y scale for bliting
 
-	bool					_bAutoCache;	// auto cache
-	bool					_bHasKerning;	// font face has kerning
-	
-	bool					_bBold;			// bold
-	bool					_bItalic;		// italic
-	FT_Matrix				_matItalic;     // transformation matrix for italic
+	float					_fXHotSpot;             // x hotspot for bliting
+	float					_fYHotSpot;             // y hotspot for bliting
 
-	float					_fXScale;		// x scale for bliting
-	float					_fYScale;		// y scale for bliting
-
-	float					_fXHotSpot;		// x hotspot for bliting
-	float					_fYHotSpot;		// y hotspot for bliting
-
-	CharCacheMap			_FontCharCache;	// character cache map
+	CharCacheMap			_FontCharCache;         // character cache map
 
 private:
+    
+    // ----- Private methods -----
+    
 	// cache a single char
 	bool buildCharCache(wchar_t charCode);
 

@@ -22,12 +22,19 @@
  Suite 330, Boston, MA 02111-1307 USA
  */
 
+
+// ----- Includes -----
+
 #include "Global.h"
 #include "IND_TTF_FontManager.h"
 #include <assert.h>
 
 //#include <ft2build.h>
 //#include FT_FREETYPE_H
+
+// --------------------------------------------------------------------------------
+//							  Initialization / Destruction
+// --------------------------------------------------------------------------------
 
 IND_TTF_FontManager::IND_TTF_FontManager(void)
 : _bInit(false),
@@ -91,6 +98,10 @@ bool IND_TTF_FontManager::init(IND_Render *pRender, IND_ImageManager *pImageMana
 	return _bInit;
 }
 
+// --------------------------------------------------------------------------------
+//									Public methods
+// --------------------------------------------------------------------------------
+
 bool IND_TTF_FontManager::addFont(const std::string& strName, const std::string& strPath, int iSize, bool bBold, bool bItalic) {
 	if(iSize < 5)
 		return false; // too small
@@ -121,9 +132,9 @@ void IND_TTF_FontManager::end(void) {
 		return;
 
 	//free up
-	while (!m_DTRList.empty()) {
-		DrawTextRequestNode* pNode = m_DTRList.begin()->second;
-		m_DTRList.erase(m_DTRList.begin());
+	while (!_DTRList.empty()) {
+		DrawTextRequestNode* pNode = _DTRList.begin()->second;
+		_DTRList.erase(_DTRList.begin());
 				
 		delete pNode;
 	}
@@ -190,8 +201,8 @@ void IND_TTF_FontManager::drawText(uint32_t uiIndex, const std::string strFontNa
 								   byte btTrans, bool bKerning, bool bUnderl) {
 	DrawTextRequestNode *pNewReq = NULL;
 
-	DTRListIterator it = m_DTRList.find(uiIndex);
-	if(it == m_DTRList.end()){
+	DTRListIterator it = _DTRList.find(uiIndex);
+	if(it == _DTRList.end()){
 		pNewReq = new DrawTextRequestNode;
 		assert(pNewReq);
 	
@@ -214,8 +225,8 @@ void IND_TTF_FontManager::drawText(uint32_t uiIndex, const std::string strFontNa
 	pNewReq->bUnderline		= bUnderl;
 	
 
-	if(it == m_DTRList.end())
-		m_DTRList.insert(std::pair<uint32_t, DrawTextRequestNode*>(uiIndex, pNewReq));
+	if(it == _DTRList.end())
+		_DTRList.insert(std::pair<uint32_t, DrawTextRequestNode*>(uiIndex, pNewReq));
 }
 
 /*
@@ -264,8 +275,8 @@ void IND_TTF_FontManager::drawTextEx(uint32_t uiIndex, const std::string& strFon
 									float fZRotate, byte btTrans, bool bKerning, bool bUnderl) {
 	DrawTextRequestNode *pNewReq = NULL;
 
-	DTRListIterator it = m_DTRList.find(uiIndex);
-	if(it == m_DTRList.end()) {
+	DTRListIterator it = _DTRList.find(uiIndex);
+	if(it == _DTRList.end()) {
 		pNewReq = new DrawTextRequestNode;
 		assert(pNewReq);
 	
@@ -296,14 +307,14 @@ void IND_TTF_FontManager::drawTextEx(uint32_t uiIndex, const std::string& strFon
 	pNewReq->bUnderline		= bUnderl;
 	
 
-	if(it == m_DTRList.end())
-		m_DTRList.insert(std::pair<uint32_t, DrawTextRequestNode*>(uiIndex, pNewReq));
+	if(it == _DTRList.end())
+		_DTRList.insert(std::pair<uint32_t, DrawTextRequestNode*>(uiIndex, pNewReq));
 }
 
 void IND_TTF_FontManager::renderAllTexts(void) {
 	// render simple text from DrawText method
 	DrawTextRequestNode *pReq = NULL;
-	for(DTRListIterator it = m_DTRList.begin() ; it != m_DTRList.end() ; it++) {
+	for(DTRListIterator it = _DTRList.begin() ; it != _DTRList.end() ; it++) {
 		pReq = it->second;
 		if(pReq->bEx)
 			doDrawTextEx(	pReq->sFont, pReq->sText, pReq->xPos, pReq->yPos,
@@ -330,22 +341,22 @@ void IND_TTF_FontManager::renderAllTexts(void) {
 }
 
 void IND_TTF_FontManager::removeText(uint32_t uiIndex) {
-	DTRListIterator it = m_DTRList.find(uiIndex);
-	if(it != m_DTRList.end()) {
+	DTRListIterator it = _DTRList.find(uiIndex);
+	if(it != _DTRList.end()) {
 		DrawTextRequestNode *pNewReq = it->second;
-		m_DTRList.erase(it);
+		_DTRList.erase(it);
 		delete pNewReq;
 	}
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------------------------------------------
+//									Private methods
+// --------------------------------------------------------------------------------
+
 
 void IND_TTF_FontManager::doDrawText(const std::string& strFontName,const std::wstring& s, float x, float y,
 									  uint32_t clrFont,bool bFlipX, bool bFlipY, float fZRotate, byte btTrans, 
-									  bool bKerning, bool bUnderl)
-{
+									  bool bKerning, bool bUnderl) {
 	IND_TTF_Font *pFont = getFontByName(strFontName);
 	if(pFont)
 		pFont->drawText(s,x,y,clrFont, bFlipX,bFlipY,fZRotate,btTrans,bKerning,bUnderl);
@@ -355,8 +366,7 @@ int IND_TTF_FontManager::doDrawTextEx(const std::string& strFontName,const std::
 									float fLeft, float fTop, float fRight, float fBottom, 
 									uint32_t nFormat, uint32_t clrFont, uint32_t clrBorder, uint32_t clrBack,
 									byte btBorderTrans, byte btBackTrans, bool bFlipX, bool bFlipY, 
-									float fZRotate, byte btTrans, bool bKerning, bool bUnderl)
-{
+									float fZRotate, byte btTrans, bool bKerning, bool bUnderl) {
 	IND_TTF_Font *pFont = getFontByName(strFontName);
 	if(pFont)
 		pFont->drawTextEx(	sText, fLeft, fTop, fRight, fBottom, nFormat, clrFont, clrBorder,

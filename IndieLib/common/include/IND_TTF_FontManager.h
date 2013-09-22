@@ -22,25 +22,32 @@
  Suite 330, Boston, MA 02111-1307 USA
  */
 
+
 #ifndef IND_TTF_FONTMANAGER_H
 #define IND_TTF_FONTMANAGER_H
+
+
+// ----- Includes -----
 
 #include <string>
 #include <map>
 #include "IND_TTF_Font.h"
 
-// NOTE that this class uses STL, the perfermance will be a lot better in Release version 
+// NOTE that this class uses STL, the performance will be a lot better in Release version
 
-class IND_TTF_FontManager
-{
+class LIB_EXP IND_TTF_FontManager {
+
 public:
-	typedef unsigned char byte;
-	typedef unsigned int uint32_t;
+	typedef unsigned char byte;     // TODO : should be moved to the defines setup
+	typedef unsigned int uint32_t;  // TODO : should be moved to the defines setup
 
+	// ----- Init/End -----    
+    
 	IND_TTF_FontManager(void);
 	~IND_TTF_FontManager(void);
-public:
-	
+
+	// ----- Public methods -----	
+    
 	bool init(IND_Render *pIndieRender, IND_ImageManager *pIndieImageManager, IND_SurfaceManager *pIndieSurfaceManager);
 	void end(void);
 	bool isInitialized() {return _bInit;}
@@ -78,15 +85,17 @@ private:
 	typedef std::map<const std::string, IND_TTF_Font*> IND_TTF_FontList;
 	typedef IND_TTF_FontList::iterator IND_TTF_FontListIterator;
 
+    // ----- Objects -----
+    
 	IND_TTF_FontList		_FontList;
-
 	bool					_bInit;
 	FT_Library				_FTLib;
-	
 	IND_Render				*_pIndieRender;
 	IND_ImageManager		*_pIndieImageManager;
 	IND_SurfaceManager		*_pIndieSurfaceManager;
 
+    // ----- Structures ------
+    
 	// Struct for every cached draw text request
 	struct DrawTextRequestNode
 	{
@@ -115,9 +124,11 @@ private:
 	typedef std::map<const uint32_t, DrawTextRequestNode*> DTRList;
 	typedef DTRList::iterator DTRListIterator;
 
-	DTRList					m_DTRList;
+	DTRList					_DTRList;
 
-private:
+
+    // ----- Private methods -----
+    
 	void doDrawText(const std::string& strFontName,const std::wstring& s, float x, float y,
 					 uint32_t clrFont, bool bFlipX, bool bFlipY, float fZRotate, byte btTrans, 
 					 bool bKerning, bool bUnderl);

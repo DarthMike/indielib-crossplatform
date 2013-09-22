@@ -1,54 +1,48 @@
 /*****************************************************************************************
-/* Desc: IndieLib singleton initialization class
-/*****************************************************************************************/
+ * Desc: IndieLib singleton initialization class
+ *****************************************************************************************/
 
 #ifndef _CINDIELIB_
 #define _CINDIELIB_
 
-#pragma comment (lib, "../../common/IndieLib_vc2008.lib")
-#include "../../common/LibHeaders/Indie.h"
+#include "Indie.h"
+#include "IND_TTF_FontManager.h" // TODO: move this into the INDIELIB engine
 
-//Added by Joel Gao 
-//should be easily integrated into the engin
-#include "IND_TTF_FontManager.h"
-
-class CIndieLib 
-{
+class CIndieLib {
 public:
-	
-	static CIndieLib* Instance();
-
-	bool Init ();
-	void End ();
-
+    
+	static CIndieLib *instance();
+    
+	bool init();
+	void end();
+    
 	// ----- IndieLib objects -----
-
-	IND_3dMeshManager		*MeshManager;
-	IND_Input				*Input;
-	IND_Window				*Window;
-	IND_Render				*Render;
-	IND_LightManager		*LightManager;
-	IND_ImageManager		*ImageManager; 
-	IND_SurfaceManager		*SurfaceManager;
-	IND_AnimationManager	*AnimationManager;
-	IND_FontManager			*FontManager;
-	IND_Entity2dManager		*Entity2dManager;
-	IND_Entity3dManager		*Entity3dManager;
-	IND_Math				*Math;
-	//Added by Joel Gao 
-	IND_TTF_FontManager		*TTFFontManager;
-
+    
+	IND_3dMeshManager       *_meshManager;
+	IND_Input               *_input;
+	IND_Window              *_window;
+	IND_Render              *_render;
+	IND_LightManager        *_lightManager;
+	IND_ImageManager        *_imageManager;
+	IND_SurfaceManager      *_surfaceManager;
+	IND_AnimationManager    *_animationManager;
+	IND_FontManager         *_fontManager;
+	IND_Entity2dManager     *_entity2dManager;
+	IND_Entity3dManager     *_entity3dManager;
+	IND_Math                *_math;
+    IND_TTF_FontManager		*_TTFFontManager;
+    
 protected:
-
+    
 	CIndieLib()  {}
-	CIndieLib(const CIndieLib&);
-	CIndieLib& operator = (const CIndieLib&);
-
+	CIndieLib(const CIndieLib &);
+	CIndieLib &operator = (const CIndieLib &);
+    
 private:
-	static CIndieLib *pinstance;
-
-	void ResetCurrentDirectory_W( void );
-
+	static CIndieLib *_pinstance;
+    
+	//void resetCurrentDirectory_W(void);
+    
 };
 
 

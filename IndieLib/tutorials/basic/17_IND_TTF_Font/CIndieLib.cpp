@@ -1,142 +1,108 @@
 /*****************************************************************************************
-/* Desc: IndieLib singleton initialization class
-/*****************************************************************************************/
+ * Desc: IndieLib singleton initialization class
+ *****************************************************************************************/
 
-#include "CIndieLib_vc2008.h"
-
-/* === Windows === */
-#include "TCHAR.h"
+#include "CIndieLib.h"
 
 /*
-==================
-Init singleton
-==================
-*/
-CIndieLib* CIndieLib::pinstance = 0;// initialize pointer
-CIndieLib* CIndieLib::Instance () 
-{
-	if (pinstance == 0)  // is it the first call?
-	{  
-		pinstance = new CIndieLib; // create sole instance
+ ==================
+ Init singleton
+ ==================
+ */
+CIndieLib *CIndieLib::_pinstance = 0;// initialize pointer
+CIndieLib *CIndieLib::instance() {
+	if (_pinstance == 0) { // is it the first call?
+		_pinstance = new CIndieLib; // create sole instance
 	}
-	return pinstance; // address of sole instance
-}
-
-/*
-==================
-Sets working path to the directory of exe file (Windows)
-==================
-*/
-void CIndieLib::ResetCurrentDirectory_W( void )
-{
-	TCHAR app_path[MAX_PATH] = _T("");
-	DWORD size_in_tchars = sizeof(app_path)/sizeof(TCHAR);
-	// get full app path with the exe filename
-	GetModuleFileName( 0, app_path, size_in_tchars-1 );
-	// making app_path to end on dir char ('\\')
-	// _tcsrchr - search for char from the string's end
-	TCHAR* app_dir = _tcsrchr(app_path, _T('\\'));
-	if (app_dir) {
-		app_dir += 1;
-		if (app_dir) { 
-			*app_dir = 0; 
-			SetCurrentDirectory(app_path);
-			return;
-		}
-	}
-	// TODO. inform somehow that func is failed.
+	return _pinstance; // address of sole instance
 }
 
 
-/*
-==================
-Init IndieLib
-==================
-*/
-bool CIndieLib::Init()
-{
-	ResetCurrentDirectory_W();
 
+/*
+ ==================
+ Init IndieLib
+ ==================
+ */
+bool CIndieLib::init() {
+	//resetCurrentDirectory_W();
+    
 	// IndieLib Initialization, a debug.log file will be created.
-	IndieLib::Init (IND_DEBUG_MODE);
-		
-	Input				=   new		IND_Input;
-	Window				=	new		IND_Window;
-	Render				=	new		IND_Render;
-	LightManager		=	new		IND_LightManager;
-	ImageManager		=	new		IND_ImageManager;
-	SurfaceManager		=	new		IND_SurfaceManager;
-	MeshManager			=	new		IND_3dMeshManager;
-	AnimationManager	=	new		IND_AnimationManager;
-	FontManager			=	new		IND_FontManager;
-	Entity2dManager		=	new		IND_Entity2dManager;
-	Entity3dManager		=	new		IND_Entity3dManager;
-	Math				=	new		IND_Math;
-	//Added by Joel Gao 
-	TTFFontManager		=	new		IND_TTF_FontManager;
-
-	if (!Window				->Init ("", 800, 600, 32, 0, 0))					return 0;
-	if (!Render				->Init (Window))									return 0;
-	if (!LightManager		->Init (Render))									return 0;
-	if (!ImageManager		->Init ())											return 0;
-	if (!SurfaceManager		->Init (ImageManager, Render))						return 0;
-	if (!AnimationManager	->Init (ImageManager, SurfaceManager))				return 0;
-	if (!FontManager		->Init (ImageManager, SurfaceManager))				return 0;	
-	if (!Entity2dManager	->Init (Render))									return 0;
-	if (!Entity3dManager	->Init (Render))									return 0;
-	if (!MeshManager		->Init (Render))									return 0;
-	if (!Input				->Init (Render))									return 0;
-	if (!Math				->Init ())											return 0;
-	//Added by Joel Gao 
-	if (!TTFFontManager		->Init (Render, ImageManager, SurfaceManager))		return 0;
-
+	IndieLib::init(IND_DEBUG_MODE);
+    
+	_input               =   new     IND_Input;
+	_render              =   new     IND_Render;
+	//_lightManager      =   new     IND_LightManager;
+	_imageManager        =   new     IND_ImageManager;
+	_surfaceManager      =   new     IND_SurfaceManager;
+	//_meshManager           =   new     IND_3dMeshManager;
+	_animationManager    =   new     IND_AnimationManager;
+	_fontManager         =   new     IND_FontManager;
+	_entity2dManager     =   new     IND_Entity2dManager;
+	//_entity3dManager       =   new     IND_Entity3dManager;
+	_math                =   new     IND_Math;
+    _TTFFontManager      =   new     IND_TTF_FontManager;
+    
+    
+	IND_WindowProperties props ("IndieLib", 800, 600, 32, 0, 0, 1);
+	
+	
+	_window = _render        ->initRenderAndWindow(props);
+	if(!_window)
+		return 0;
+    
+	//if (!_lightManager     ->init (_render))                                    return 0;
+	if (!_imageManager       ->init())                                           return 0;
+	if (!_surfaceManager     ->init(_imageManager, _render))                     return 0;
+	if (!_animationManager   ->init(_imageManager, _surfaceManager))             return 0;
+	if (!_fontManager        ->init(_imageManager, _surfaceManager))             return 0;
+	if (!_entity2dManager    ->init(_render))                                    return 0;
+	//if (!_entity3dManager  ->init (_render))                                    return 0;
+	//if (!_meshManager      ->init (_render))                                    return 0;
+	if (!_input              ->init(_render))                                    return 0;
+	if (!_math               ->init())                                           return 0;
+    if (!_TTFFontManager     ->Init(_render, _imageManager, _surfaceManager))    return 0;
+    
 	return 1;
 }
 
 
 /*
-==================
-Free Indielib managers
-==================
-*/
-void CIndieLib::End()
-{
+ ==================
+ Free Indielib managers
+ ==================
+ */
+void CIndieLib::end() {
 	// ----- Freeing objects -----
-
-	//Added by Joel Gao 
-	TTFFontManager		->End();
-
-	Math				->End();
-	MeshManager			->End();
-	Input				->End();
-	Entity2dManager		->End();
-	Entity3dManager		->End();
-	FontManager			->End();
-	AnimationManager	->End();
-	SurfaceManager		->End();
-	ImageManager		->End();
-	LightManager		->End();
-	Render				->End();
-	Window				->End();
-
-	//Added by Joel Gao 
-	delete TTFFontManager;
-
-	delete Math; 
-	delete MeshManager; 
-	delete Input; 
-	delete Entity2dManager; 
-	delete Entity3dManager; 
-	delete FontManager; 
-	delete AnimationManager; 
-	delete SurfaceManager; 
-	delete ImageManager; 
-	delete LightManager; 
-	delete Render; 
-	delete Window; 
-
-	IndieLib::End ();
-
-	delete pinstance; 
-	pinstance = NULL; 
+    
+	_math                ->end();
+	_TTFFontManager      ->End();
+    //_meshManager           ->end();
+	_input               ->end();
+	_entity2dManager     ->end();
+	//_entity3dManager       ->end();
+	_fontManager         ->end();
+	_animationManager    ->end();
+	_surfaceManager      ->end();
+	_imageManager        ->end();
+	//_lightManager      ->end();
+	_render              ->end();
+    
+    
+	DISPOSE(_math);
+    DISPOSE(_TTFFontManager);
+	//DISPOSE(_meshManager);
+	DISPOSE(_input);
+	DISPOSE(_entity2dManager);
+	//DISPOSE(_entity3dManager);
+	DISPOSE(_fontManager);
+	DISPOSE(_animationManager);
+	DISPOSE(_surfaceManager);
+    DISPOSE(_imageManager);
+	//DISPOSE(_lightManager);
+	DISPOSE(_render);
+    
+	IndieLib::end();
+    
+    DISPOSE(_pinstance);
 }

@@ -102,6 +102,20 @@ bool IND_TTF_FontManager::init(IND_Render *pRender, IND_ImageManager *pImageMana
 //									Public methods
 // --------------------------------------------------------------------------------
 
+/**
+ * Returns true if the font is allready added to the manager, else
+ * tries to load the font and returns true if the font have been
+ * sucessfully added to the manager.
+ *
+ * Note: the iSize value nead to be bigger than 5.
+ *
+ *
+ * @param strName					Name of the font.
+ * @param strPath					Path of the font.
+ * @param iSize						Size of the font.
+ * @param bBold                     Bold true / false.
+ * @param bItalic					Italic true / false.
+ */
 bool IND_TTF_FontManager::addFont(const std::string& strName, const std::string& strPath, int iSize, bool bBold, bool bItalic) {
 	if(iSize < 5)
 		return false; // too small
@@ -122,12 +136,19 @@ bool IND_TTF_FontManager::addFont(const std::string& strName, const std::string&
     return true;
 }
 
+/**
+ * Returns true if the font is allready added to the manager.
+ *
+ * @param strName					Name of the font.
+ */
 bool IND_TTF_FontManager::isFontLoaded(const std::string& strName) {
 	return getFontByName(strName) != NULL;
 }
 
-
-void IND_TTF_FontManager::end(void) {
+/**
+ * Unloads and deletes all managed fonts.
+ */
+void IND_TTF_FontManager::end() {
 	if (!_bInit)
 		return;
 
@@ -152,6 +173,11 @@ void IND_TTF_FontManager::end(void) {
 	}
 }
 
+/**
+ * Unloads and delete font.
+ *
+ * @param strName					Name of the font.
+ */
 void IND_TTF_FontManager::unloadFont(const std::string& strName) {
 	if (!_bInit)
 		return;
@@ -169,6 +195,11 @@ void IND_TTF_FontManager::unloadFont(const std::string& strName) {
 	}
 }
 
+/**
+ * Returns an IND_TTF_Font if the search is sucessfull, otherwise NULL
+ *
+ * @param strName					Name of the font.
+ */
 IND_TTF_Font* IND_TTF_FontManager::getFontByName(const std::string& strName) {
 	if (!_bInit)
 		return NULL;

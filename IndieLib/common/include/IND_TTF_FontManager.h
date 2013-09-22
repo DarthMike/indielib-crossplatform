@@ -41,51 +41,51 @@ public:
 	~IND_TTF_FontManager(void);
 public:
 	
-	bool Init(IND_Render *pIndieRender, IND_ImageManager *pIndieImageManager, IND_SurfaceManager *pIndieSurfaceManager);
-	void End(void);
-	bool IsInitialized() {return m_bInit;}
+	bool init(IND_Render *pIndieRender, IND_ImageManager *pIndieImageManager, IND_SurfaceManager *pIndieSurfaceManager);
+	void end(void);
+	bool isInitialized() {return _bInit;}
 
-	bool AddFont(	const std::string& strName, const std::string& strPath, int iSize = 20, 
+	bool addFont(	const std::string& strName, const std::string& strPath, int iSize = 20,
 					bool bBold = false, bool bItalic = false);
-	bool IsFontLoaded(const std::string& strName);
-	void UnloadFont(const std::string& strName);
-	IND_TTF_Font* GetFontByName(const std::string& strName);
+	bool isFontLoaded(const std::string& strName);
+	void unloadFont(const std::string& strName);
+	IND_TTF_Font* getFontByName(const std::string& strName);
 
 	bool CacheFontString(const std::string& strFontName, const std::wstring& s);
 
-	void DrawText(	uint32_t uiIndex, const std::string strFontName, float x, float y, uint32_t clrFont,
+	void drawText(	uint32_t uiIndex, const std::string strFontName, float x, float y, uint32_t clrFont,
 					bool bFlipX, bool bFlipY, float fZRotate, byte btTrans, bool bKerning, 
 					bool bUnderl, const wchar_t* format, ...);
-	void DrawText(	uint32_t uiIndex, const std::string strFontName,const std::wstring s, float x, float y, 
+	void drawText(	uint32_t uiIndex, const std::string strFontName,const std::wstring s, float x, float y,
 					uint32_t clrFont = 0xFFFFFF,bool bFlipX = false, bool bFlipY = false, float fZRotate = 0, 
 					byte btTrans = 255, bool bKerning = false, bool bUnderl = false);
 
-	void DrawTextEx(uint32_t uiIndex, const std::string& strFontName,const std::wstring& sText, float fLeft, 
+	void drawTextEx(uint32_t uiIndex, const std::string& strFontName,const std::wstring& sText, float fLeft,
 					float fTop, float fRight, float fBottom, uint32_t nFormat = DT_EX_LEFT | DT_EX_TOP, 
 					uint32_t clrFont = 0xFFFFFF, uint32_t clrBorder = 0, uint32_t clrBack = 0,
 					byte btBorderTrans = 255, byte btBackTrans = 255, bool bFlipX = false, bool bFlipY = false, 
 					float fZRotate = 0, byte btTrans = 255, bool bKerning = false, bool bUnderl = false);
 
-	void RemoveText(uint32_t uiIndex);
+	void removeText(uint32_t uiIndex);
 
-	void RenderAllTexts(void);
+	void renderAllTexts(void);
 	
-	void SetFontAutoCache(const std::string& strFontName, bool ba);
-	void SetFontHotSpot(const std::string& strFontName, float hsx, float hsy);
-	void SetFontScale(const std::string& strFontName, float sx, float sy);
+	void setFontAutoCache(const std::string& strFontName, bool ba);
+	void setFontHotSpot(const std::string& strFontName, float hsx, float hsy);
+	void setFontScale(const std::string& strFontName, float sx, float sy);
 
 private:
 	typedef std::map<const std::string, IND_TTF_Font*> IND_TTF_FontList;
 	typedef IND_TTF_FontList::iterator IND_TTF_FontListIterator;
 
-	IND_TTF_FontList		m_FontList;
+	IND_TTF_FontList		_FontList;
 
-	bool					m_bInit;
-	FT_Library				m_FTLib;
+	bool					_bInit;
+	FT_Library				_FTLib;
 	
-	IND_Render				*m_pIndieRender;
-	IND_ImageManager		*m_pIndieImageManager;
-	IND_SurfaceManager		*m_pIndieSurfaceManager;
+	IND_Render				*_pIndieRender;
+	IND_ImageManager		*_pIndieImageManager;
+	IND_SurfaceManager		*_pIndieSurfaceManager;
 
 	// Struct for every cached draw text request
 	struct DrawTextRequestNode
@@ -118,11 +118,11 @@ private:
 	DTRList					m_DTRList;
 
 private:
-	void _DoDrawText(const std::string& strFontName,const std::wstring& s, float x, float y,
+	void doDrawText(const std::string& strFontName,const std::wstring& s, float x, float y,
 					 uint32_t clrFont, bool bFlipX, bool bFlipY, float fZRotate, byte btTrans, 
 					 bool bKerning, bool bUnderl);
 
-	int _DoDrawTextEx(	const std::string& strFontName,const std::wstring& sText, float fLeft, 
+	int doDrawTextEx(	const std::string& strFontName,const std::wstring& sText, float fLeft,
 					float fTop, float fRight, float fBottom, uint32_t nFormat = DT_EX_LEFT | DT_EX_TOP, 
 					uint32_t clrFont = 0xFFFFFF, uint32_t clrBorder = 0, uint32_t clrBack = 0,
 					byte btBorderTrans = 255, byte btBackTrans = 255, bool bFlipX = false, 

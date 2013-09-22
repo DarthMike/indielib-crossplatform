@@ -66,60 +66,60 @@ public:
 	~IND_TTF_Font(void);
 
 	// load a TTF font from disk file
-	bool LoadTTFFontFromDisk(	const std::string& strname, const std::string& strpath, 
+	bool loadTTFFontFromDisk(	const std::string& strname, const std::string& strpath,
 								int iSize, bool bBold, bool bItalic);
 
 	// unload the TTF font and free all variables
-	void UnloadFont(void);
+	void unloadFont(void);
 
 	// cache chars
-	bool BuildStringCache(const std::wstring& str);
+	bool buildStringCache(const std::wstring& str);
 
 	// is the character cached?
-	bool IsCharCached(wchar_t charCode);
+	bool isCharCached(wchar_t charCode);
 
 	// clear all the cache entries
-	void ClearAllCache(void);
+	void clearAllCache(void);
 
 	// draw a tring
-	bool DrawText(	const std::wstring& s, float x, float y, uint32_t clrFont,bool bFlipX, bool bFlipY, 
+	bool drawText(	const std::wstring& s, float x, float y, uint32_t clrFont,bool bFlipX, bool bFlipY,
 					float fZRotate, byte btTrans, bool bKerning, bool bUnderl);
 
 	// advanced draw text function
-	int DrawTextEx(	const std::wstring& sText, float fLeft, float fTop, float fRight, float fBottom, 
+	int drawTextEx(	const std::wstring& sText, float fLeft, float fTop, float fRight, float fBottom,
 					uint32_t nFormat, uint32_t clrFont, uint32_t clrBorder, uint32_t clrBack,byte btBorderTrans, 
 					byte btBackTrans,bool bFlipX, bool bFlipY, float fZRotate, byte btTrans, 
 					bool bKerning, bool bUnderl);
 
 	// get the font name 
-	const std::string GetFontName(void){return m_strName;}
+	const std::string getFontName(void){return _strName;}
 
 	// set auto cache status
-	void SetAutoCache(bool bautocache) {m_bAutoCache = bautocache;}
+	void setAutoCache(bool bautocache) {_bAutoCache = bautocache;}
 
 	// is auto cache enabled
-	bool IsAutoCache() {return m_bAutoCache;}
+	bool isAutoCache() {return _bAutoCache;}
 
 	// does font face has kerning
-	bool IsKerningSupportedByFace() {return m_bHasKerning;}
+	bool isKerningSupportedByFace() {return _bHasKerning;}
 
 	// set x scale when bliting
-	void SetXScale(float Scale) {m_fXScale = Scale;}
+	void setXScale(float Scale) {_fXScale = Scale;}
 
 	// set y scale when bliting
-	void SetYScale(float Scale) {m_fYScale = Scale;}
+	void setYScale(float Scale) {_fYScale = Scale;}
 
 	// set x/y scale when bliting
-	void SetScale(float Scale) {m_fXScale = m_fYScale = Scale;}
+	void setScale(float Scale) {_fXScale = _fYScale = Scale;}
 
 	// set x hotspot when bliting
-	void SetXHotspot(float spot) {m_fXHotSpot = spot;}
+	void setXHotspot(float spot) {_fXHotSpot = spot;}
 
 	// set y hotspot when bliting
-	void SetYHotspot(float spot) {m_fYHotSpot = spot;}
+	void setYHotspot(float spot) {_fYHotSpot = spot;}
 
 	// set x/y hotspot when bliting
-	void SetHotspot(float spot) {m_fXHotSpot = m_fYHotSpot = spot;}
+	void setHotspot(float spot) {_fXHotSpot = _fYHotSpot = spot;}
 
 private:
 	// Struct for every cached character
@@ -143,65 +143,65 @@ private:
 	//Number of spaces in a tab
 	static const unsigned int nTabSize = 4;
 
-	FT_Library				m_FTLib;			// freetype lib
-	FT_Face					m_Face;				// THIS font face
-	float					m_fFaceAscender;	
+	FT_Library				_FTLib;			// freetype lib
+	FT_Face					_Face;			// THIS font face
+	float					_fFaceAscender;
 
-	IND_Render				*m_pIndieRender;
-	IND_ImageManager		*m_pIndieImageManager;
-	IND_SurfaceManager		*m_pIndieSurfaceManager;
+	IND_Render				*_pIndieRender;
+	IND_ImageManager		*_pIndieImageManager;
+	IND_SurfaceManager		*_pIndieSurfaceManager;
 	
-	std::string				m_strName;			// font name
-	std::string				m_strFilePath;		// TTF file path
+	std::string				_strName;		// font name
+	std::string				_strFilePath;	// TTF file path
 
-	int						m_CharWidth;		// current font width
-	int						m_CharHeight;		// current font height
+	int						_CharWidth;		// current font width
+	int						_CharHeight;	// current font height
 
-	bool					m_bAutoCache;		// auto cache
-	bool					m_bHasKerning;		// font face has kerning
+	bool					_bAutoCache;	// auto cache
+	bool					_bHasKerning;	// font face has kerning
 	
-	bool					m_bBold;			// bold
-	bool					m_bItalic;			// italic
-	FT_Matrix				m_matItalic;        // transformation matrix for italic
+	bool					_bBold;			// bold
+	bool					_bItalic;		// italic
+	FT_Matrix				_matItalic;     // transformation matrix for italic
 
-	float					m_fXScale;			// x scale for bliting
-	float					m_fYScale;			// y scale for bliting
+	float					_fXScale;		// x scale for bliting
+	float					_fYScale;		// y scale for bliting
 
-	float					m_fXHotSpot;		// x hotspot for bliting
-	float					m_fYHotSpot;		// y hotspot for bliting
+	float					_fXHotSpot;		// x hotspot for bliting
+	float					_fYHotSpot;		// y hotspot for bliting
 
-	CharCacheMap			m_FontCharCache;	// character cache map
+	CharCacheMap			_FontCharCache;	// character cache map
 
 private:
 	// cache a single char
-	bool _BuildCharCache(wchar_t charCode);
+	bool buildCharCache(wchar_t charCode);
 
 	// render a single char
-	bool _RenderChar(	wchar_t charCode, float x, float y ,uint32_t clrFont, bool bFlipX, bool bFlipY, float fZRotate, 
+	bool renderChar(	wchar_t charCode, float x, float y ,uint32_t clrFont, bool bFlipX, bool bFlipY, float fZRotate,
 						byte btTrans, bool bKerning, bool bUnderl);
 
 	// get char cache entry
-	CharCacheNode* _GetCharCacheNode(wchar_t charCode);
+	CharCacheNode* getCharCacheNode(wchar_t charCode);
 
 	// render glyph to image
-	bool _RenderGlyph(FT_Bitmap* Glyph, IND_Image *pImage);
+	bool renderGlyph(FT_Bitmap* Glyph, IND_Image *pImage);
 
 	// advance with space 
-	uint32_t _GetSpaceAdvance();
+	uint32_t getSpaceAdvance();
 
 	// prepare for DrawTextEx
-	std::wstring _TextFormat(	const std::wstring& sText, float &fLineWidth, float &fTotalWidth, float &fTotalHeight,
+	std::wstring textFormat(	const std::wstring& sText, float &fLineWidth, float &fTotalWidth, float &fTotalHeight,
 								int &iTotalLineNum, bool bLineWrap,bool bFlipX, bool bFlipY, float fZRotate, byte btTrans, 
 								bool bKerning, bool bUnderl);
 
 	// get single line width
-	uint32_t _GetLineWidth( const std::wstring& sText, bool bFlipX, bool bFlipY, float fZRotate, bool bKerning);
+	uint32_t getLineWidth( const std::wstring& sText, bool bFlipX, bool bFlipY, float fZRotate, bool bKerning);
 
 	// draw a single text line
-	void _DrawTextLineEx(	const std::wstring& sText, float penX, float penY, float fL, float fT,
+	void drawTextLineEx(	const std::wstring& sText, float penX, float penY, float fL, float fT,
 							float fR, float fB, uint32_t clrFont, bool bVertical, bool bR2L,bool bFlipX, 
 							bool bFlipY, float fZRotate, byte btTrans, bool bKerning, bool bUnderl);
 
-	void _DoDrawBorder(float fX_s, float fX_e, float fY, uint32_t clr, byte btTrans);
+	void doDrawBorder(float fX_s, float fX_e, float fY, uint32_t clr, byte btTrans);
 };
 #endif

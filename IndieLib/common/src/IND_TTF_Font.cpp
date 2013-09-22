@@ -30,106 +30,106 @@
 
 IND_TTF_Font::IND_TTF_Font(FT_Library ftlib, IND_Render *pIndieRender, IND_ImageManager *pIndieImageManager, 
 							IND_SurfaceManager *pIndieSurfaceManager)
-:m_FTLib(ftlib),
-m_pIndieRender(pIndieRender),
-m_pIndieImageManager(pIndieImageManager),
-m_pIndieSurfaceManager(pIndieSurfaceManager),
-m_Face(NULL),
-m_CharWidth(20),
-m_CharHeight(20),
-m_bAutoCache(true),
-m_bHasKerning(false),
-m_fXScale(1.0f),
-m_fYScale(1.0f),
-m_fXHotSpot(0.5f),
-m_fYHotSpot(0.5f),
-m_bBold(false),
-m_bItalic(false)
+:_FTLib(ftlib),
+_pIndieRender(pIndieRender),
+_pIndieImageManager(pIndieImageManager),
+_pIndieSurfaceManager(pIndieSurfaceManager),
+_Face(NULL),
+_CharWidth(20),
+_CharHeight(20),
+_bAutoCache(true),
+_bHasKerning(false),
+_fXScale(1.0f),
+_fYScale(1.0f),
+_fXHotSpot(0.5f),
+_fYHotSpot(0.5f),
+_bBold(false),
+_bItalic(false)
 {
-	m_matItalic.xx = 1 << 16;
-	m_matItalic.xy = 0x5800;
-	m_matItalic.yx = 0;
-	m_matItalic.yy = 1 << 16;
+	_matItalic.xx = 1 << 16;
+	_matItalic.xy = 0x5800;
+	_matItalic.yx = 0;
+	_matItalic.yy = 1 << 16;
 }
 
 IND_TTF_Font::~IND_TTF_Font(void)
 {
-	UnloadFont();
+	unloadFont();
 }
 
-bool IND_TTF_Font::LoadTTFFontFromDisk(const std::string& strname, const std::string& strpath, 
+bool IND_TTF_Font::loadTTFFontFromDisk(const std::string& strname, const std::string& strpath,
 										int iSize, bool bBold, bool bItalic)
 {
-	UnloadFont();
+	unloadFont();
 
 	//create new face
-	if (FT_New_Face(m_FTLib, strpath.c_str(), 0, &m_Face) != 0)
+	if (FT_New_Face(_FTLib, strpath.c_str(), 0, &_Face) != 0)
 		return false;
 
-	if (!m_Face->charmap || !FT_IS_SCALABLE(m_Face))
+	if (!_Face->charmap || !FT_IS_SCALABLE(_Face))
 	{
-		FT_Done_Face(m_Face);
+		FT_Done_Face(_Face);
 		return false;
 	}
 
-	m_strFilePath = strpath;
-	if (FT_HAS_KERNING(m_Face))
-		m_bHasKerning = true;
+	_strFilePath = strpath;
+	if (FT_HAS_KERNING(_Face))
+		_bHasKerning = true;
 
-	m_CharWidth	= iSize;
-	m_CharHeight = iSize;
+	_CharWidth	= iSize;
+	_CharHeight = iSize;
 
-	if (FT_Set_Pixel_Sizes(m_Face, m_CharWidth, m_CharHeight) != 0)
+	if (FT_Set_Pixel_Sizes(_Face, _CharWidth, _CharHeight) != 0)
 		return false;
 
-    m_fFaceAscender = m_Face->ascender * m_Face->size->metrics.y_scale * float(1.0/64.0) * (1.0f/65536.0f);
+    _fFaceAscender = _Face->ascender * _Face->size->metrics.y_scale * float(1.0/64.0) * (1.0f/65536.0f);
 
-	m_bBold = bBold;
-	m_bItalic = bItalic;
+	_bBold = bBold;
+	_bItalic = bItalic;
 	
 	return true;
 }
 
-void IND_TTF_Font::UnloadFont(void)
+void IND_TTF_Font::unloadFont(void)
 {
-	ClearAllCache();
+	clearAllCache();
 
-	if (m_Face)
+	if (_Face)
 	{
-		FT_Done_Face(m_Face);
-		m_Face = NULL;
+		FT_Done_Face(_Face);
+		_Face = NULL;
 	}
 }
 
 
-bool IND_TTF_Font::BuildStringCache(const std::wstring& str)
+bool IND_TTF_Font::buildStringCache(const std::wstring& str)
 {
 	bool bRet = true;
 
 	for (std::size_t i = 0; i < str.length(); i++)
 	{
-		if (!_BuildCharCache(str[i]))
+		if (!buildCharCache(str[i]))
 			bRet = false;
 	}
 	return bRet;
 }
 
-bool IND_TTF_Font::IsCharCached(wchar_t charCode)
+bool IND_TTF_Font::isCharCached(wchar_t charCode)
 {
-	return _GetCharCacheNode(charCode) != NULL;
+	return getCharCacheNode(charCode) != NULL;
 }
 
-void IND_TTF_Font::ClearAllCache(void)
+void IND_TTF_Font::clearAllCache(void)
 {
-	while (!m_FontCharCache.empty())
+	while (!_FontCharCache.empty())
 	{
-		CharCacheNode* pNode = m_FontCharCache.begin()->second;
-		m_FontCharCache.erase(m_FontCharCache.begin());
+		CharCacheNode* pNode = _FontCharCache.begin()->second;
+		_FontCharCache.erase(_FontCharCache.begin());
 		
 		// delete surface object firstly
 		if(pNode->pSurface)
 		{
-			m_pIndieSurfaceManager->remove(pNode->pSurface);
+			_pIndieSurfaceManager->remove(pNode->pSurface);
 			DISPOSEMANAGED(pNode->pSurface);
 		}
 				
@@ -138,7 +138,7 @@ void IND_TTF_Font::ClearAllCache(void)
 }
 
 ///////////////////
-bool IND_TTF_Font::DrawText(const std::wstring& s, float x, float y, uint32_t clrFont, bool bFlipX, bool bFlipY, 
+bool IND_TTF_Font::drawText(const std::wstring& s, float x, float y, uint32_t clrFont, bool bFlipX, bool bFlipY,
 							float fZRotate, byte btTrans, bool bKerning, bool bUnderl)
 {
 	bool Ret = true;
@@ -147,7 +147,7 @@ bool IND_TTF_Font::DrawText(const std::wstring& s, float x, float y, uint32_t cl
 	FT_Vector Delta;
 	CharCacheNode* pNode = NULL;
 
-	int nSpace = _GetSpaceAdvance();
+	int nSpace = getSpaceAdvance();
 
 	//std::size_t Length = s.length();
 	float original_Pen_x = x;
@@ -169,19 +169,19 @@ bool IND_TTF_Font::DrawText(const std::wstring& s, float x, float y, uint32_t cl
 			// Draw underline
 			if(bUnderl)
 			{
-				_DoDrawBorder(original_Pen_x, penX, penY + m_CharHeight, clrFont, btTrans);
+				doDrawBorder(original_Pen_x, penX, penY + _CharHeight, clrFont, btTrans);
 			}
-			penY += m_CharHeight; 
+			penY += _CharHeight;
 			penX = x;	
 			original_Pen_x = x;
 			previousGlyph = 0; 
 			continue;
 		}
 
-		if (m_bAutoCache)
-			_BuildCharCache(s[i]);
+		if (_bAutoCache)
+			buildCharCache(s[i]);
 
-		pNode = _GetCharCacheNode(s[i]);
+		pNode = getCharCacheNode(s[i]);
 		if (!pNode)
 		{
 			Ret = false;
@@ -189,13 +189,13 @@ bool IND_TTF_Font::DrawText(const std::wstring& s, float x, float y, uint32_t cl
 			continue;
 		}
 		//Kerning
-		if (previousGlyph != 0 && m_bHasKerning && bKerning && !bFlipX && !bFlipY && fZRotate == 0)
+		if (previousGlyph != 0 && _bHasKerning && bKerning && !bFlipX && !bFlipY && fZRotate == 0)
 		{
-			FT_Get_Kerning(m_Face, previousGlyph, pNode->charGlyphIndex, FT_KERNING_DEFAULT, &Delta);
+			FT_Get_Kerning(_Face, previousGlyph, pNode->charGlyphIndex, FT_KERNING_DEFAULT, &Delta);
 			penX += Delta.x >> 6;
 			penY += Delta.y >> 6;
 		}
-		if (!_RenderChar(s[i], penX, penY, clrFont, bFlipX, bFlipY, fZRotate, btTrans, bKerning, bUnderl))
+		if (!renderChar(s[i], penX, penY, clrFont, bFlipX, bFlipY, fZRotate, btTrans, bKerning, bUnderl))
 			Ret = false;
 
 		penX += pNode->charAdvance;
@@ -205,7 +205,7 @@ bool IND_TTF_Font::DrawText(const std::wstring& s, float x, float y, uint32_t cl
 	// Draw underline
 	if(bUnderl && ((penX - original_Pen_x) > 0.1f))
 	{
-		_DoDrawBorder(original_Pen_x, penX, penY + m_CharHeight, clrFont, btTrans);
+		doDrawBorder(original_Pen_x, penX, penY + _CharHeight, clrFont, btTrans);
 	}
 	return Ret;
 }
@@ -217,7 +217,7 @@ bool IND_TTF_Font::DrawText(const std::wstring& s, float x, float y, uint32_t cl
 // -1	-	too small to draw
 // -2	-	format invalid
 // -3	-	vertical layout is not supported by current font face
-int IND_TTF_Font::DrawTextEx(const std::wstring& sText, float fLeft, float fTop, float fRight, float fBottom, 
+int IND_TTF_Font::drawTextEx(const std::wstring& sText, float fLeft, float fTop, float fRight, float fBottom,
 					uint32_t nFormat, uint32_t clrFont, uint32_t clrBorder, uint32_t clrBack,byte btBorderTrans, 
 					byte btBackTrans,bool bFlipX, bool bFlipY, float fZRotate, byte btTrans,bool bKerning, bool bUnderl)
 {
@@ -227,7 +227,7 @@ int IND_TTF_Font::DrawTextEx(const std::wstring& sText, float fLeft, float fTop,
 	float fAreaWidth = fRight - fLeft;
 	float fAreaHeight = fBottom - fTop;
 
-	if(fAreaWidth < m_CharWidth || fAreaHeight < m_CharHeight)
+	if(fAreaWidth < _CharWidth || fAreaHeight < _CharHeight)
 	{//
 		return -1;
 	}
@@ -244,7 +244,7 @@ int IND_TTF_Font::DrawTextEx(const std::wstring& sText, float fLeft, float fTop,
 		r = clrBack & 0xFF;
 		g = (clrBack >> 8) & 0xFF;
 		b = (clrBack >> 16) & 0xFF;
-		m_pIndieRender->blitFillRectangle(
+		_pIndieRender->blitFillRectangle(
 											(int)fLeft, 
 											(int)fTop,
 											(int)fRight,
@@ -258,7 +258,7 @@ int IND_TTF_Font::DrawTextEx(const std::wstring& sText, float fLeft, float fTop,
 	if(nFormat & DT_EX_VERTICAL)
 	{	// vertical layout 
 		// mainly for you guys speaking Chinese, Japanese and Korean
-		if(!FT_HAS_VERTICAL(m_Face))
+		if(!FT_HAS_VERTICAL(_Face))
 		{// ooops, font face doesn't support vertical layout
 			return -3;
 		}
@@ -283,7 +283,7 @@ int IND_TTF_Font::DrawTextEx(const std::wstring& sText, float fLeft, float fTop,
 	// 6. text format
 	float fTextWidth, fTextHeight;
 	int iTotalLines;
-	std::wstring sTarget = _TextFormat( sText, bVertical?fAreaHeight:fAreaWidth, fTextWidth, fTextHeight,
+	std::wstring sTarget = textFormat( sText, bVertical?fAreaHeight:fAreaWidth, fTextWidth, fTextHeight,
 										iTotalLines, bWrap,bFlipX, bFlipY, fZRotate, btTrans, bKerning,
 										bUnderl);
 	// determin the proper start point
@@ -351,11 +351,11 @@ int IND_TTF_Font::DrawTextEx(const std::wstring& sText, float fLeft, float fTop,
 		{
 			if(bR2L)
 			{
-				pen_X = start_X - m_CharWidth * line;
+				pen_X = start_X - _CharWidth * line;
 			}
 			else
 			{
-				pen_X = start_X + m_CharWidth * line;
+				pen_X = start_X + _CharWidth * line;
 			}
 
 			if(nFormat & DT_EX_TOP)
@@ -364,23 +364,23 @@ int IND_TTF_Font::DrawTextEx(const std::wstring& sText, float fLeft, float fTop,
 			}
 			else if(nFormat & DT_EX_VCENTER)
 			{
-				pen_Y = fTop  + (fAreaHeight - _GetLineWidth(curline, bFlipX, bFlipY, fZRotate, bKerning)) / 2;
+				pen_Y = fTop  + (fAreaHeight - getLineWidth(curline, bFlipX, bFlipY, fZRotate, bKerning)) / 2;
 			}
 			else if(nFormat & DT_EX_BOTTOM)
 			{
-				pen_Y = fTop  + fAreaHeight - _GetLineWidth(curline, bFlipX, bFlipY, fZRotate, bKerning);
+				pen_Y = fTop  + fAreaHeight - getLineWidth(curline, bFlipX, bFlipY, fZRotate, bKerning);
 			}
 		}
 		else
 		{
 			pen_X = fLeft;
-			pen_Y = start_Y + (float)(m_CharHeight * line);
+			pen_Y = start_Y + (float)(_CharHeight * line);
 
 			if(nFormat & DT_EX_LEFT)
 			{
 				if(bR2L)
 				{
-					pen_X = fRight - (fAreaWidth - _GetLineWidth(curline, bFlipX, bFlipY, fZRotate, bKerning));
+					pen_X = fRight - (fAreaWidth - getLineWidth(curline, bFlipX, bFlipY, fZRotate, bKerning));
 				}
 				else
 				{
@@ -391,28 +391,28 @@ int IND_TTF_Font::DrawTextEx(const std::wstring& sText, float fLeft, float fTop,
 			{
 				if(bR2L)
 				{
-					pen_X = fRight - (fAreaWidth - _GetLineWidth(curline, bFlipX, bFlipY, fZRotate, bKerning)) / 2;
+					pen_X = fRight - (fAreaWidth - getLineWidth(curline, bFlipX, bFlipY, fZRotate, bKerning)) / 2;
 				}
 				else
 				{
-					pen_X = fLeft + (fAreaWidth - _GetLineWidth(curline, bFlipX, bFlipY, fZRotate, bKerning)) / 2;
+					pen_X = fLeft + (fAreaWidth - getLineWidth(curline, bFlipX, bFlipY, fZRotate, bKerning)) / 2;
 				}
 			}
 			else if(nFormat & DT_EX_RIGHT)
 			{
 				if(bR2L)
 				{
-					pen_X = fRight - (fAreaWidth - _GetLineWidth(curline, bFlipX, bFlipY, fZRotate, bKerning));
+					pen_X = fRight - (fAreaWidth - getLineWidth(curline, bFlipX, bFlipY, fZRotate, bKerning));
 				}
 				else
 				{
-					pen_X = fLeft + fAreaWidth - _GetLineWidth(curline, bFlipX, bFlipY, fZRotate, bKerning);
+					pen_X = fLeft + fAreaWidth - getLineWidth(curline, bFlipX, bFlipY, fZRotate, bKerning);
 				}
 			}	
 		}
 
 		// draw this line
-		_DrawTextLineEx(curline, pen_X, pen_Y, fLeft, fTop, fRight, fBottom, clrFont, bVertical, bR2L, bFlipX, 
+		drawTextLineEx(curline, pen_X, pen_Y, fLeft, fTop, fRight, fBottom, clrFont, bVertical, bR2L, bFlipX,
 						bFlipY, fZRotate, btTrans, bKerning, bUnderl);
 		line++;
 	}
@@ -424,7 +424,7 @@ int IND_TTF_Font::DrawTextEx(const std::wstring& sText, float fLeft, float fTop,
 		r = clrBorder & 0xFF;
 		g = (clrBorder >> 8) & 0xFF;
 		b = (clrBorder >> 16) & 0xFF;
-		m_pIndieRender->blitRectangle(
+		_pIndieRender->blitRectangle(
 											(int)(fLeft - 1), 
 											(int)(fTop - 1),
 											(int)(fRight + 1),
@@ -439,13 +439,13 @@ int IND_TTF_Font::DrawTextEx(const std::wstring& sText, float fLeft, float fTop,
 ///////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-bool IND_TTF_Font::_RenderChar(wchar_t charCode, float x, float y, uint32_t clrFont, bool bFlipX, bool bFlipY, 
+bool IND_TTF_Font::renderChar(wchar_t charCode, float x, float y, uint32_t clrFont, bool bFlipX, bool bFlipY,
 							   float fZRotate, byte btTrans, bool bKerning, bool bUnderl)
 {
-	if (m_bAutoCache)
-		_BuildCharCache(charCode);
+	if (_bAutoCache)
+		buildCharCache(charCode);
 
-	CharCacheNode* pNode = _GetCharCacheNode(charCode);
+	CharCacheNode* pNode = getCharCacheNode(charCode);
 	if (!pNode || !pNode->pSurface)
 		return false;
 
@@ -454,7 +454,7 @@ bool IND_TTF_Font::_RenderChar(wchar_t charCode, float x, float y, uint32_t clrF
 	origin_y = y;
 
 	x += pNode->charLeftBearing;
-	y += m_fFaceAscender - pNode->charTopBearing;
+	y += _fFaceAscender - pNode->charTopBearing;
 	
 	//Bliting the font surfaces to screen
 	// 1) We apply the world space transformation (translation, rotation, scaling).
@@ -472,21 +472,21 @@ bool IND_TTF_Font::_RenderChar(wchar_t charCode, float x, float y, uint32_t clrF
 	//
 	IND_Matrix mMatrix;
 	// We want the start position (x,y) to be the top left corner 
-	m_pIndieRender->setTransform2d(
-									(int)(x + m_fXHotSpot * mWidth),		// x pos
-									(int)(y + m_fYHotSpot * mHeight),		// y pos
-									0,					// Angle x	
-									0,					// Angle y
-									fZRotate,			// Angle z
-									m_fXScale,			// Scale x
-									m_fYScale,			// Scale y
-									(int) (m_fXHotSpot * mWidth * -1),		// Axis cal x
-									(int) (m_fYHotSpot * mHeight * -1),		// Axis cal y
-									bFlipX,					// Mirror x
-									bFlipY,					// Mirror y
-									mWidth,				// Width
-									mHeight,			// Height
-									&mMatrix);			// Matrix in wich the transformation will be applied (optional)			
+	_pIndieRender->setTransform2d(
+									(int)(x + _fXHotSpot * mWidth),		// x pos
+									(int)(y + _fYHotSpot * mHeight),	// y pos
+									0,                                  // Angle x
+									0,                                  // Angle y
+									fZRotate,                           // Angle z
+									_fXScale,                           // Scale x
+									_fYScale,                           // Scale y
+									(int) (_fXHotSpot * mWidth * -1),	// Axis cal x
+									(int) (_fYHotSpot * mHeight * -1),	// Axis cal y
+									bFlipX,                             // Mirror x
+									bFlipY,                             // Mirror y
+									mWidth,                             // Width
+									mHeight,                            // Height
+									&mMatrix);                          // Matrix in wich the transformation will be applied (optional)			
  
 	//2) We apply the color, blending and culling transformations.
 	//modified by Joel Gao Mar,4th 2009
@@ -495,20 +495,20 @@ bool IND_TTF_Font::_RenderChar(wchar_t charCode, float x, float y, uint32_t clrF
 	g = (clrFont >> 8) & 0xFF;
 	b = (clrFont >> 16) & 0xFF;
 
-	m_pIndieRender->setRainbow2d(
+	_pIndieRender->setRainbow2d(
 									IND_ALPHA,			// IND_Type
 									1,					// Back face culling 0/1 => off / on
-									bFlipX,					// Mirror x
-									bFlipY,					// Mirror y
+									bFlipX,				// Mirror x
+									bFlipY,				// Mirror y
 									IND_FILTER_LINEAR,	// IND_Filter
-									r,				// R Component	for tinting
-									g,				// G Component	for tinting
-									b,				// B Component	for tinting			
-									btTrans,				// A Component	for tinting
+									r,                  // R Component	for tinting
+									g,                  // G Component	for tinting
+									b,                  // B Component	for tinting
+									btTrans,			// A Component	for tinting
 									0,					// R Component	for fading to a color		
 									0,					// G Component	for fading to a color		
 									0,					// B Component	for fading to a color			
-									255,//btTrans,				// Amount of fading	
+									255,//btTrans,		// Amount of fading
 									IND_SRCALPHA,		// IND_BlendingType (source)
 									IND_INVSRCALPHA);	// IND_BlendingType (destination)
 	//
@@ -516,15 +516,15 @@ bool IND_TTF_Font::_RenderChar(wchar_t charCode, float x, float y, uint32_t clrF
 
 	// 3) Blit the IND_Surface
 	//m_pIndieLib->Render->BlitRegionSurface(theGlyph->pSurface, (int)x, (int)y, mWidth,mHeight);
-	m_pIndieRender->blitSurface(pNode->pSurface);
+	_pIndieRender->blitSurface(pNode->pSurface);
 	
 	return true;
 }
 
 
-bool IND_TTF_Font::_BuildCharCache(wchar_t charCode)
+bool IND_TTF_Font::buildCharCache(wchar_t charCode)
 {
-	if (IsCharCached(charCode))
+	if (isCharCached(charCode))
 		return true;
 
 	CharCacheNode* pNode = new CharCacheNode;
@@ -533,7 +533,7 @@ bool IND_TTF_Font::_BuildCharCache(wchar_t charCode)
 	pNode->pSurface = NULL;
 	//////////
 	pNode->charCode = charCode;
-	pNode->charGlyphIndex = FT_Get_Char_Index(m_Face, charCode);
+	pNode->charGlyphIndex = FT_Get_Char_Index(_Face, charCode);
 
 	if (pNode->charGlyphIndex == 0)
 	{
@@ -541,24 +541,24 @@ bool IND_TTF_Font::_BuildCharCache(wchar_t charCode)
 		return false;
 	}
 
-	FT_Load_Char(m_Face, charCode, FT_LOAD_DEFAULT /*| FT_LOAD_NO_BITMAP*/);
+	FT_Load_Char(_Face, charCode, FT_LOAD_DEFAULT /*| FT_LOAD_NO_BITMAP*/);
 
 	//
-	if(m_bBold)
+	if(_bBold)
 	{
 		int strength = 1 << 6;
-		FT_Outline_Embolden(&m_Face->glyph->outline, strength);
+		FT_Outline_Embolden(&_Face->glyph->outline, strength);
 
 	}
 	//
-	if(m_bItalic)
+	if(_bItalic)
 	{
 		// set transformation 
-		FT_Outline_Transform(&m_Face->glyph->outline, &m_matItalic);
+		FT_Outline_Transform(&_Face->glyph->outline, &_matItalic);
 	}
 	//
 
-	if(FT_Render_Glyph(m_Face->glyph, FT_RENDER_MODE_NORMAL))
+	if(FT_Render_Glyph(_Face->glyph, FT_RENDER_MODE_NORMAL))
 	{
 		delete pNode;
 		return false;
@@ -569,19 +569,19 @@ bool IND_TTF_Font::_BuildCharCache(wchar_t charCode)
 	assert(pImage);
 
 	// render the glyph image to IND_Image
-	if(!_RenderGlyph(&m_Face->glyph->bitmap, pImage))
+	if(!renderGlyph(&_Face->glyph->bitmap, pImage))
 		return false;
 		
 	//building the surface from image
 	pNode->pSurface = IND_Surface::newSurface();
 
 	bool bOK = true;
-	if (!m_pIndieSurfaceManager->add (pNode->pSurface, pImage, IND_ALPHA, IND_32))
+	if (!_pIndieSurfaceManager->add (pNode->pSurface, pImage, IND_ALPHA, IND_32))
 	{
 		bOK = false;
 	}
 	// free the image
-	m_pIndieImageManager->remove(pImage);
+	_pIndieImageManager->remove(pImage);
 	DISPOSEMANAGED(pImage);
 
 	if(!bOK)
@@ -590,26 +590,26 @@ bool IND_TTF_Font::_BuildCharCache(wchar_t charCode)
 		return false;
 	}
 
-	pNode->charLeftBearing = m_Face->glyph->bitmap_left;
-	pNode->charTopBearing = m_Face->glyph->bitmap_top;
-	pNode->charAdvance = m_Face->glyph->advance.x / 64;
+	pNode->charLeftBearing = _Face->glyph->bitmap_left;
+	pNode->charTopBearing = _Face->glyph->bitmap_top;
+	pNode->charAdvance = _Face->glyph->advance.x / 64;
 	
-	m_FontCharCache.insert(std::pair<wchar_t, CharCacheNode*>(charCode, pNode));
+	_FontCharCache.insert(std::pair<wchar_t, CharCacheNode*>(charCode, pNode));
 
 	//cache entry built
 	return true;
 }
 
-IND_TTF_Font::CharCacheNode* IND_TTF_Font::_GetCharCacheNode(wchar_t charCode)
+IND_TTF_Font::CharCacheNode* IND_TTF_Font::getCharCacheNode(wchar_t charCode)
 {
-	CharCacheMapIterator it = m_FontCharCache.find(charCode);
-	if(it == m_FontCharCache.end())
+	CharCacheMapIterator it = _FontCharCache.find(charCode);
+	if(it == _FontCharCache.end())
 		return NULL;
 	else
 		return it->second;
 }
 
-bool IND_TTF_Font::_RenderGlyph(FT_Bitmap* ftBMP, IND_Image *pImage)
+bool IND_TTF_Font::renderGlyph(FT_Bitmap* ftBMP, IND_Image *pImage)
 {
 	uint32_t glyphWidth = ftBMP->width;
 	uint32_t glyphHeight = ftBMP->rows;
@@ -617,7 +617,7 @@ bool IND_TTF_Font::_RenderGlyph(FT_Bitmap* ftBMP, IND_Image *pImage)
 	if (glyphWidth == 0 || glyphHeight == 0)
 		return false;
 
-	m_pIndieImageManager->add(pImage, glyphWidth, glyphHeight, IND_RGBA);
+	_pIndieImageManager->add(pImage, glyphWidth, glyphHeight, IND_RGBA);
 	if(pImage == NULL)
 		return false;
 
@@ -660,18 +660,18 @@ bool IND_TTF_Font::_RenderGlyph(FT_Bitmap* ftBMP, IND_Image *pImage)
 	return true;
 }
 
-IND_TTF_Font::uint32_t IND_TTF_Font::_GetSpaceAdvance()
+IND_TTF_Font::uint32_t IND_TTF_Font::getSpaceAdvance()
 {
 	//We use the advance value of 'A' as the space value
-	_BuildCharCache(L'A');
-	CharCacheNode* pNode = _GetCharCacheNode(L'A');
+	buildCharCache(L'A');
+	CharCacheNode* pNode = getCharCacheNode(L'A');
 	if(pNode)
 		return pNode->charAdvance;
 	else// no 'A' in this face
-		return m_CharWidth / 2;
+		return _CharWidth / 2;
 }
 
-std::wstring IND_TTF_Font::_TextFormat(	const std::wstring& sText, float &fLineWidth, float &fTotalWidth, float &fTotalHeight,
+std::wstring IND_TTF_Font::textFormat(	const std::wstring& sText, float &fLineWidth, float &fTotalWidth, float &fTotalHeight,
 										int &iTotalLineNum, bool bLineWrap,bool bFlipX, bool bFlipY, float fZRotate, byte btTrans, 
 										bool bKerning, bool bUnderl)
 {
@@ -687,7 +687,7 @@ std::wstring IND_TTF_Font::_TextFormat(	const std::wstring& sText, float &fLineW
 
 	float fCurrentLineWidth = 0.0f;
 
-	uint32_t nSpace = _GetSpaceAdvance();
+	uint32_t nSpace = getSpaceAdvance();
 
 	std::wstring sRet = L"";
 	std::size_t nLength = sText.length();
@@ -737,18 +737,18 @@ std::wstring IND_TTF_Font::_TextFormat(	const std::wstring& sText, float &fLineW
 			previousGlyph = 0; 
 			continue;
 		}
-		if (m_bAutoCache)
-			_BuildCharCache(sText[i]);
+		if (_bAutoCache)
+			buildCharCache(sText[i]);
 
-		pNode = _GetCharCacheNode(sText[i]);
+		pNode = getCharCacheNode(sText[i]);
 		if (!pNode)
 		{
 			previousGlyph = 0;
 			continue;
 		}
-		if (previousGlyph != 0 && m_bHasKerning && bKerning && !bFlipX && !bFlipY && fZRotate == 0)
+		if (previousGlyph != 0 && _bHasKerning && bKerning && !bFlipX && !bFlipY && fZRotate == 0)
 		{
-			FT_Get_Kerning(m_Face, previousGlyph, pNode->charGlyphIndex, FT_KERNING_DEFAULT, &Delta);
+			FT_Get_Kerning(_Face, previousGlyph, pNode->charGlyphIndex, FT_KERNING_DEFAULT, &Delta);
 			fCurrentLineWidth += Delta.x >> 6;
 		}
 
@@ -773,11 +773,11 @@ std::wstring IND_TTF_Font::_TextFormat(	const std::wstring& sText, float &fLineW
 	if(fCurrentLineWidth > 0)
 		iTotalLineNum++;
 
-	fTotalHeight = (float)(m_CharHeight * iTotalLineNum);
+	fTotalHeight = (float)(_CharHeight * iTotalLineNum);
 	return sRet;
 }
 
-IND_TTF_Font::uint32_t IND_TTF_Font::_GetLineWidth(const std::wstring& sText, bool bFlipX, bool bFlipY, 
+IND_TTF_Font::uint32_t IND_TTF_Font::getLineWidth(const std::wstring& sText, bool bFlipX, bool bFlipY,
 												   float fZRotate, bool bKerning)
 {
 	CharCacheNode* pNode = NULL;
@@ -785,7 +785,7 @@ IND_TTF_Font::uint32_t IND_TTF_Font::_GetLineWidth(const std::wstring& sText, bo
 	FT_Vector Delta;
 	uint32_t previousGlyph = 0;
 	//
-	uint32_t nSpace = _GetSpaceAdvance();
+	uint32_t nSpace = getSpaceAdvance();
 	uint32_t nRet = 0;
 	std::size_t nLength = sText.length();
 
@@ -803,15 +803,15 @@ IND_TTF_Font::uint32_t IND_TTF_Font::_GetLineWidth(const std::wstring& sText, bo
 			continue;
 		}
 
-		pNode = _GetCharCacheNode(sText[i]);
+		pNode = getCharCacheNode(sText[i]);
 		if (!pNode)
 		{
 			previousGlyph = 0;
 			continue;
 		}
-		if (previousGlyph != 0 && m_bHasKerning  && bKerning && !bFlipX && !bFlipY && fZRotate == 0)
+		if (previousGlyph != 0 && _bHasKerning  && bKerning && !bFlipX && !bFlipY && fZRotate == 0)
 		{
-			FT_Get_Kerning(m_Face, previousGlyph, pNode->charGlyphIndex, FT_KERNING_DEFAULT, &Delta);
+			FT_Get_Kerning(_Face, previousGlyph, pNode->charGlyphIndex, FT_KERNING_DEFAULT, &Delta);
 			nRet += Delta.x >> 6;
 		}
 
@@ -822,7 +822,7 @@ IND_TTF_Font::uint32_t IND_TTF_Font::_GetLineWidth(const std::wstring& sText, bo
 	return nRet;
 }
 
-void IND_TTF_Font::_DrawTextLineEx(const std::wstring& sText, float penX, float penY, float fL, float fT,
+void IND_TTF_Font::drawTextLineEx(const std::wstring& sText, float penX, float penY, float fL, float fT,
 							  float fR, float fB, uint32_t clrFont,bool bVertical, bool bR2L,bool bFlipX, 
 							  bool bFlipY, float fZRotate, byte btTrans, bool bKerning, bool bUnderl)
 {
@@ -832,7 +832,7 @@ void IND_TTF_Font::_DrawTextLineEx(const std::wstring& sText, float penX, float 
 	CharCacheNode* pNode = NULL;
 	std::size_t nLength = sText.length();
 
-	uint32_t nSpace = _GetSpaceAdvance();
+	uint32_t nSpace = getSpaceAdvance();
 
 	float original_Pen_x = penX;
 
@@ -872,16 +872,16 @@ void IND_TTF_Font::_DrawTextLineEx(const std::wstring& sText, float penX, float 
 			continue;
 		}
 
-		pNode = _GetCharCacheNode(sText[i]);
+		pNode = getCharCacheNode(sText[i]);
 		if (!pNode)
 		{
 			previousGlyph = 0;
 			continue;
 		}
 		//Kerning
-		if (!bR2L && previousGlyph != 0 && m_bHasKerning  && bKerning && !bFlipX && !bFlipY && fZRotate == 0)
+		if (!bR2L && previousGlyph != 0 && _bHasKerning  && bKerning && !bFlipX && !bFlipY && fZRotate == 0)
 		{
-			FT_Get_Kerning(m_Face, previousGlyph, pNode->charGlyphIndex, FT_KERNING_DEFAULT, &Delta);
+			FT_Get_Kerning(_Face, previousGlyph, pNode->charGlyphIndex, FT_KERNING_DEFAULT, &Delta);
 			penX += Delta.x >> 6;
 			penY += Delta.y >> 6;
 		}
@@ -892,20 +892,20 @@ void IND_TTF_Font::_DrawTextLineEx(const std::wstring& sText, float penX, float 
 		{
 			if(bR2L)
 			{
-				if(	((penX - m_CharWidth) >= fL) && 
+				if(	((penX - _CharWidth) >= fL) && 
 					(penX <= fR) &&
 					(penY >= fT ) && 
 					((penY + pNode->charAdvance) <= fB))
-					_RenderChar(sText[i], penX - m_CharWidth, penY, clrFont, bFlipX, bFlipY, fZRotate, btTrans,
+					renderChar(sText[i], penX - _CharWidth, penY, clrFont, bFlipX, bFlipY, fZRotate, btTrans,
 								bKerning, bUnderl);
 			}
 			else
 			{
 				if(	(penX >= fL) && 
-					((penX + m_CharWidth) <= fR) &&
+					((penX + _CharWidth) <= fR) &&
 					(penY >= fT ) && 
 					((penY + pNode->charAdvance) <= fB))
-					_RenderChar(sText[i], penX, penY, clrFont, bFlipX, bFlipY, fZRotate, btTrans,
+					renderChar(sText[i], penX, penY, clrFont, bFlipX, bFlipY, fZRotate, btTrans,
 								bKerning, bUnderl);
 			}
 		}
@@ -916,17 +916,17 @@ void IND_TTF_Font::_DrawTextLineEx(const std::wstring& sText, float penX, float 
 				if(	((penX - pNode->charAdvance) >= fL) && 
 					(penX <= fR) &&
 					(penY >= fT ) && 
-					((penY + m_CharHeight) <= fB))
-					_RenderChar(sText[i], penX - pNode->charAdvance, penY, clrFont, bFlipX, bFlipY, fZRotate, btTrans,
+					((penY + _CharHeight) <= fB))
+					renderChar(sText[i], penX - pNode->charAdvance, penY, clrFont, bFlipX, bFlipY, fZRotate, btTrans,
 								bKerning, bUnderl);
 			}
 			else
 			{
 				if(	(penX >= fL) && 
 					((penX + pNode->charAdvance) <= fR) &&
-					(penY >= fT ) && 
-					((penY + m_CharHeight) <= fB))
-					_RenderChar(sText[i], penX, penY, clrFont, bFlipX, bFlipY, fZRotate, btTrans,
+					(penY >= fT ) &&
+					((penY + _CharHeight) <= fB))
+					renderChar(sText[i], penX, penY, clrFont, bFlipX, bFlipY, fZRotate, btTrans,
 								bKerning, bUnderl);
 			}
 		}		
@@ -947,17 +947,17 @@ void IND_TTF_Font::_DrawTextLineEx(const std::wstring& sText, float penX, float 
 	// Draw underline
 	if(bUnderl && !bVertical && ((penX - original_Pen_x) > 0.1f))
 	{
-		_DoDrawBorder(original_Pen_x, penX, penY + m_CharHeight, clrFont, btTrans);
+		doDrawBorder(original_Pen_x, penX, penY + _CharHeight, clrFont, btTrans);
 	}
 }
 
-void IND_TTF_Font::_DoDrawBorder(float fX_s, float fX_e, float fY, uint32_t clr, byte btTrans)
+void IND_TTF_Font::doDrawBorder(float fX_s, float fX_e, float fY, uint32_t clr, byte btTrans)
 {
 	byte r,g,b;
 	r = clr & 0xFF;
 	g = (clr >> 8) & 0xFF;
 	b = (clr >> 16) & 0xFF;
-	m_pIndieRender->blitLine((int)(fX_s),
+	_pIndieRender->blitLine((int)(fX_s),
 							(int)(fY),
 							(int)(fX_e),
 							(int)(fY),

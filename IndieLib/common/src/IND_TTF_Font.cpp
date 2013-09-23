@@ -51,7 +51,7 @@ _bItalic(false) {
 	_matItalic.yy = 1 << 16;
 }
 
-IND_TTF_Font::~IND_TTF_Font(void) {
+IND_TTF_Font::~IND_TTF_Font() {
 	unloadFont();
 }
 
@@ -86,7 +86,7 @@ bool IND_TTF_Font::loadTTFFontFromDisk(const std::string& strname, const std::st
 	return true;
 }
 
-void IND_TTF_Font::unloadFont(void) {
+void IND_TTF_Font::unloadFont() {
 	clearAllCache();
 
 	if (_Face) {
@@ -110,7 +110,7 @@ bool IND_TTF_Font::isCharCached(wchar_t charCode) {
 	return getCharCacheNode(charCode) != NULL;
 }
 
-void IND_TTF_Font::clearAllCache(void) {
+void IND_TTF_Font::clearAllCache() {
 	while (!_FontCharCache.empty()) {
 		CharCacheNode* pNode = _FontCharCache.begin()->second;
 		_FontCharCache.erase(_FontCharCache.begin());

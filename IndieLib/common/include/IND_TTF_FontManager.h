@@ -43,13 +43,13 @@ public:
 
 	// ----- Init/End -----    
     
-	IND_TTF_FontManager(void);
-	~IND_TTF_FontManager(void);
+	IND_TTF_FontManager();
+	~IND_TTF_FontManager();
 
 	// ----- Public methods -----	
     
 	bool init(IND_Render *pIndieRender, IND_ImageManager *pIndieImageManager, IND_SurfaceManager *pIndieSurfaceManager);
-	void end(void);
+	void end();
 	bool isInitialized() {return _bInit;}
 
 	bool addFont(	const std::string& strName, const std::string& strPath, int iSize = 20,
@@ -75,7 +75,7 @@ public:
 
 	void removeText(uint32_t uiIndex);
 
-	void renderAllTexts(void);
+	void renderAllTexts();
 	
 	void setFontAutoCache(const std::string& strFontName, bool ba);
 	void setFontHotSpot(const std::string& strFontName, float hsx, float hsy);

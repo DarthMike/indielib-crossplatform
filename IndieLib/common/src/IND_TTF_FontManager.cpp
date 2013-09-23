@@ -211,6 +211,22 @@ IND_TTF_Font* IND_TTF_FontManager::getFontByName(const std::string& strName) {
 		return it->second;
 }
 
+/**
+ * TODO:describtion
+ *
+ * @param uiIndex					TODO: describtion
+ * @param strFontName				Name of the font.
+ * @param x                         TODO: describtion
+ * @param y                         TODO: describtion
+ * @param clrFont					TODO: describtion
+ * @param bFlipX                    TODO: describtion
+ * @param bFlipY                    TODO: describtion
+ * @param fZRotate                  TODO: describtion
+ * @param btTrans                   TODO: describtion
+ * @param bKerning                  TODO: describtion
+ * @param bUnderl                   TODO: describtion
+ * @param format                    TODO: describtion
+ */
 void IND_TTF_FontManager::drawText(	uint32_t uiIndex, const std::string strFontName, float x, float y,
 									uint32_t clrFont,bool bFlipX, bool bFlipY, float fZRotate, byte btTrans, 
 									bool bKerning, bool bUnderl, const wchar_t* format, ...) {
@@ -227,6 +243,22 @@ void IND_TTF_FontManager::drawText(	uint32_t uiIndex, const std::string strFontN
 	drawText(uiIndex, strFontName, m_WBuffer, x, y, clrFont, bFlipX, bFlipY, fZRotate, btTrans, bKerning,bUnderl);
 }
 
+/**
+ * TODO:describtion
+ *
+ * @param uiIndex					TODO: describtion
+ * @param strFontName				Name of the font.
+ * @param s                         TODO: describtion
+ * @param x                         TODO: describtion
+ * @param y                         TODO: describtion
+ * @param clrFont					TODO: describtion
+ * @param bFlipX                    TODO: describtion
+ * @param bFlipY                    TODO: describtion
+ * @param fZRotate                  TODO: describtion
+ * @param btTrans                   TODO: describtion
+ * @param bKerning                  TODO: describtion
+ * @param bUnderl                   TODO: describtion
+ */
 void IND_TTF_FontManager::drawText(uint32_t uiIndex, const std::string strFontName,const std::wstring s,
 								   float x, float y, uint32_t clrFont,bool bFlipX, bool bFlipY, float fZRotate, 
 								   byte btTrans, bool bKerning, bool bUnderl) {
@@ -269,6 +301,12 @@ void IND_TTF_FontManager::SetFontColor(const std::string& strFontName, unsigned 
 }
 */
 
+/**
+ * TODO:describtion
+ *
+ * @param strFontName				Name of the font.
+ * @param s                         TODO: describtion
+ */
 bool IND_TTF_FontManager::CacheFontString(const std::string& strFontName, const std::wstring& s) {
 	IND_TTF_Font *pFont = getFontByName(strFontName);
 	if(pFont)
@@ -277,12 +315,25 @@ bool IND_TTF_FontManager::CacheFontString(const std::string& strFontName, const 
 	return false;
 }
 
+/**
+ * TODO:describtion
+ *
+ * @param strFontName				Name of the font.
+ * @param ba                        TODO: describtion
+ */
 void IND_TTF_FontManager::setFontAutoCache(const std::string& strFontName, bool ba) {
 	IND_TTF_Font *pFont = getFontByName(strFontName);
 	if(pFont)
 		pFont->setAutoCache(ba);
 }
 
+/**
+ * TODO:describtion
+ *
+ * @param strFontName				Name of the font.
+ * @param hsx                       TODO: describtion
+ * @param hsy                       TODO: describtion
+ */
 void IND_TTF_FontManager::setFontHotSpot(const std::string& strFontName, float hsx, float hsy) {
 	IND_TTF_Font *pFont = getFontByName(strFontName);
 	if(pFont) {
@@ -291,6 +342,13 @@ void IND_TTF_FontManager::setFontHotSpot(const std::string& strFontName, float h
 	}
 }
 
+/**
+ * TODO:describtion
+ *
+ * @param strFontName				Name of the font.
+ * @param sx                        TODO: describtion
+ * @param sy                        TODO: describtion
+ */
 void IND_TTF_FontManager::setFontScale(const std::string& strFontName, float sx, float sy) {
 	IND_TTF_Font *pFont = getFontByName(strFontName);
 	if(pFont) {
@@ -299,6 +357,29 @@ void IND_TTF_FontManager::setFontScale(const std::string& strFontName, float sx,
 	}
 }
 
+/**
+ * TODO:describtion
+ *
+ * @param uiIndex					TODO: describtion
+ * @param strFontName				Name of the font.
+ * @param sText                     TODO: describtion
+ * @param fLeft                     TODO: describtion
+ * @param fTop                      TODO: describtion
+ * @param fRight					TODO: describtion
+ * @param fBottom                   TODO: describtion
+ * @param nFormat                   TODO: describtion
+ * @param clrFont                   TODO: describtion
+ * @param clrBorder                 TODO: describtion
+ * @param clrBack                   TODO: describtion
+ * @param btBorderTrans             TODO: describtion
+ * @param btBackTrans               TODO: describtion
+ * @param bFlipX                    TODO: describtion
+ * @param bFlipY                    TODO: describtion
+ * @param fZRotate                  TODO: describtion
+ * @param btTrans                   TODO: describtion
+ * @param bKerning                  TODO: describtion
+ * @param bUnderl                   TODO: describtion
+ */
 void IND_TTF_FontManager::drawTextEx(uint32_t uiIndex, const std::string& strFontName,const std::wstring& sText,
 									float fLeft, float fTop, float fRight, float fBottom, 
 									uint32_t nFormat, uint32_t clrFont,uint32_t clrBorder, uint32_t clrBack,
@@ -342,7 +423,10 @@ void IND_TTF_FontManager::drawTextEx(uint32_t uiIndex, const std::string& strFon
 		_DTRList.insert(std::pair<uint32_t, DrawTextRequestNode*>(uiIndex, pNewReq));
 }
 
-void IND_TTF_FontManager::renderAllTexts(void) {
+/**
+ * TODO:describtion
+ */
+void IND_TTF_FontManager::renderAllTexts() {
 	// render simple text from DrawText method
 	DrawTextRequestNode *pReq = NULL;
 	for(DTRListIterator it = _DTRList.begin() ; it != _DTRList.end() ; it++) {
@@ -371,6 +455,11 @@ void IND_TTF_FontManager::renderAllTexts(void) {
 	
 }
 
+/**
+ * TODO:describtion
+ *
+ * @param uiIndex					TODO: describtion
+ */
 void IND_TTF_FontManager::removeText(uint32_t uiIndex) {
 	DTRListIterator it = _DTRList.find(uiIndex);
 	if(it != _DTRList.end()) {

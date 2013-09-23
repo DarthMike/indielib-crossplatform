@@ -62,14 +62,14 @@
 class LIB_EXP IND_TTF_Font {
 
 public:
-	typedef unsigned char byte;
-	typedef unsigned int uint32_t;
+	typedef unsigned char byte;             // TODO : should be moved to the defines setup
+	typedef unsigned int uint32_t;          // TODO : should be moved to the defines setup
 
 	// ----- Init/End -----
     
 	IND_TTF_Font(	FT_Library ftlib, IND_Render *pIndieRender, IND_ImageManager *pIndieImageManager, 
 					IND_SurfaceManager *pIndieSurfaceManager);
-	~IND_TTF_Font(void);
+	~IND_TTF_Font();
 
     // ----- Public methods -----
         
@@ -78,7 +78,7 @@ public:
 								int iSize, bool bBold, bool bItalic);
 
 	// unload the TTF font and free all variables
-	void unloadFont(void);
+	void unloadFont();
 
 	// cache chars
 	bool buildStringCache(const std::wstring& str);
@@ -87,7 +87,7 @@ public:
 	bool isCharCached(wchar_t charCode);
 
 	// clear all the cache entries
-	void clearAllCache(void);
+	void clearAllCache();
 
 	// draw a tring
 	bool drawText(	const std::wstring& s, float x, float y, uint32_t clrFont,bool bFlipX, bool bFlipY,
@@ -100,7 +100,7 @@ public:
 					bool bKerning, bool bUnderl);
 
 	// get the font name 
-	const std::string getFontName(void){return _strName;}
+	const std::string getFontName(){return _strName;}
 
 	// set auto cache status
 	void setAutoCache(bool bautocache) {_bAutoCache = bautocache;}

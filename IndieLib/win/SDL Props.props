@@ -9,7 +9,7 @@
   <ItemDefinitionGroup>
     <Link>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\common\dependencies\SDL-2.0\VisualC\SDLmain\Release;..\common\dependencies\SDL-2.0\VisualC\SDL\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\common\dependencies\SDL-2.0\VisualC\SDLmain\Win32\Release;..\common\dependencies\SDL-2.0\VisualC\SDL\Win32\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup />

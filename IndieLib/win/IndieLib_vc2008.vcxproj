@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="DevelopMent_Debug|Win32">
+      <Configuration>DevelopMent_Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>IndieLib</ProjectName>
+    <ProjectGuid>{EC5DB2F1-5096-430A-B62F-65859F497E5D}</ProjectGuid>
+    <RootNamespace>IndieLib_vc2008</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DevelopMent_Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DevelopMent_Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="DirectXProps.props" />
+    <Import Project="OpenGLProps.props" />
+    <Import Project="SDL Props_Debug.props" />
+    <Import Project="FreeLibProps_Debug.props" />
+    <Import Project="GLEWProps_debug.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="DirectXProps.props" />
+    <Import Project="SDL Props.props" />
+    <Import Project="OpenGLProps.props" />
+    <Import Project="FreeLibProps_Release.props" />
+    <Import Project="GLEWProps_Release.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>11.0.60610.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(ProjectDir)/../bin/win\</OutDir>
+    <IntDir>$(SolutionDir)/../build/$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DevelopMent_Debug|Win32'">
+    <OutDir>$(ProjectDir)/../bin/win\</OutDir>
+    <IntDir>$(SolutionDir)/../build/$(Configuration)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <AdditionalIncludeDirectories>../Common/;../Common/include/;../Common/src/;$(DXSDK_DIR)Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_WINDOWS;INDIELIB_DLLBUILD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <PrecompiledHeader />
+      <WarningLevel>Level4</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <DebugInformationFormat />
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DevelopMent_Debug|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>../Common/;../Common/include/;../Common/src/;$(DXSDK_DIR)Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;WIN32;_WINDOWS;INDIELIB_DLLBUILD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <ProgramDataBaseFileName>$(TargetDir)$(TargetName).pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(ProjectName)d.dll</OutputFile>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences />
+      <EnableCOMDATFolding />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Common\include\Defines.h" />
+    <ClInclude Include="..\Common\include\Indie.h" />
+    <ClInclude Include="..\Common\include\IndiePlatforms.h" />
+    <ClInclude Include="..\common\include\IndieVersion.h" />
+    <ClInclude Include="..\Common\src\DebugApi.h" />
+    <ClInclude Include="..\Common\src\Global.h" />
+    <ClInclude Include="..\Common\include\IndieLib.h" />
+    <ClInclude Include="..\Common\include\IND_Render.h" />
+    <ClInclude Include="..\Common\include\IND_Window.h" />
+    <ClInclude Include="..\common\src\Platform\OSOpenGLManager.h" />
+    <ClInclude Include="..\Common\src\Render\DirectX\DirectXRender.h" />
+    <ClInclude Include="..\Common\src\Render\OpenGL\OpenGLRender.h" />
+    <ClInclude Include="..\Common\include\IND_Timer.h" />
+    <ClInclude Include="..\Common\src\PrecissionTimer.h" />
+    <ClInclude Include="..\Common\include\IND_Entity2d.h" />
+    <ClInclude Include="..\Common\include\IND_Entity3d.h" />
+    <ClInclude Include="..\Common\include\IND_Entity2dManager.h" />
+    <ClInclude Include="..\Common\include\IND_Entity3dManager.h" />
+    <ClInclude Include="..\Common\include\CollisionParser.h" />
+    <ClInclude Include="..\common\src\FreeImageHelper.h" />
+    <ClInclude Include="..\Common\include\ImageCutter.h" />
+    <ClInclude Include="..\Common\src\TextureBuilder.h" />
+    <ClInclude Include="..\common\src\TextureDefinitions.h" />
+    <ClInclude Include="..\Common\src\Render\DirectX\DirectXTextureBuilder.h" />
+    <ClInclude Include="..\Common\src\Render\OpenGL\OpenGLTextureBuilder.h" />
+    <ClInclude Include="..\Common\include\IND_Animation.h" />
+    <ClInclude Include="..\Common\include\IND_Font.h" />
+    <ClInclude Include="..\Common\include\IND_Image.h" />
+    <ClInclude Include="..\Common\include\IND_Surface.h" />
+    <ClInclude Include="..\Common\include\IND_Frame.h" />
+    <ClInclude Include="..\Common\include\IND_Sequence.h" />
+    <ClInclude Include="..\Common\include\IND_AnimationManager.h" />
+    <ClInclude Include="..\Common\include\IND_FontManager.h" />
+    <ClInclude Include="..\Common\include\IND_ImageManager.h" />
+    <ClInclude Include="..\Common\include\IND_SurfaceManager.h" />
+    <ClInclude Include="..\Common\src\Render\DirectX\XMeshHierarchy.h" />
+    <ClInclude Include="..\Common\include\XMeshStructures.h" />
+    <ClInclude Include="..\Common\include\IND_3dMesh.h" />
+    <ClInclude Include="..\Common\include\IND_3dMeshManager.h" />
+    <ClInclude Include="..\Common\include\IND_LightManager.h" />
+    <ClInclude Include="..\Common\include\IND_Light.h" />
+    <ClInclude Include="..\Common\include\IND_Input.h" />
+    <ClInclude Include="..\Common\include\IND_Math.h" />
+    <ClInclude Include="..\common\include\IND_Vector2.h" />
+    <ClInclude Include="..\Common\include\IND_Vector3.h" />
+    <ClInclude Include="..\Common\include\IND_Camera2d.h" />
+    <ClInclude Include="..\Common\include\IND_Camera3d.h" />
+    <ClInclude Include="..\common\Dependencies\TinyXml\tinystr.h" />
+    <ClInclude Include="..\common\Dependencies\TinyXml\tinyxml.h" />
+    <ClInclude Include="..\common\src\platform\win32\guicon.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\common\src\IndieVersion.cpp" />
+    <ClCompile Include="..\Common\src\DebugApi.cpp" />
+    <ClCompile Include="..\Common\src\Global.cpp" />
+    <ClCompile Include="..\Common\src\IndieLib.cpp" />
+    <ClCompile Include="..\Common\src\IND_Render.cpp" />
+    <ClCompile Include="..\Common\src\IND_Window.cpp" />
+    <ClCompile Include="..\common\src\platform\OSOpenGLManager.cpp" />
+    <ClCompile Include="..\common\src\platform\win32\guicon.cpp" />
+    <ClCompile Include="..\Common\src\Render\DirectX\DirectXRender.cpp" />
+    <ClCompile Include="..\Common\src\Render\DirectX\RenderCullingDirectX.cpp" />
+    <ClCompile Include="..\Common\src\Render\DirectX\RenderObject2dDirectX.cpp" />
+    <ClCompile Include="..\Common\src\Render\DirectX\RenderObject3dDirectX.cpp" />
+    <ClCompile Include="..\Common\src\Render\DirectX\RenderPrimitive2dDirectX.cpp" />
+    <ClCompile Include="..\Common\src\Render\DirectX\RenderText2dDirectX.cpp" />
+    <ClCompile Include="..\Common\src\Render\DirectX\RenderTransform2dDirectX.cpp" />
+    <ClCompile Include="..\Common\src\Render\DirectX\RenderTransform3dDirectX.cpp" />
+    <ClCompile Include="..\Common\src\Render\DirectX\RenderTransformCommonDirectX.cpp" />
+    <ClCompile Include="..\Common\src\Render\OpenGL\OpenGLRender.cpp" />
+    <ClCompile Include="..\Common\src\Render\OpenGL\RenderCullingOpenGL.cpp" />
+    <ClCompile Include="..\Common\src\Render\OpenGL\RenderObject2dOpenGL.cpp" />
+    <ClCompile Include="..\Common\src\Render\OpenGL\RenderObject3dOpenGL.cpp" />
+    <ClCompile Include="..\Common\src\Render\OpenGL\RenderPrimitive2dOpenGL.cpp" />
+    <ClCompile Include="..\Common\src\Render\OpenGL\RenderText2dOpenGL.cpp" />
+    <ClCompile Include="..\Common\src\Render\OpenGL\RenderTransform2dOpenGL.cpp" />
+    <ClCompile Include="..\Common\src\Render\OpenGL\RenderTransform3dOpenGL.cpp" />
+    <ClCompile Include="..\Common\src\Render\OpenGL\RenderTransformCommonOpenGL.cpp" />
+    <ClCompile Include="..\Common\src\IND_Timer.cpp" />
+    <ClCompile Include="..\Common\src\PrecissionTimer.cpp" />
+    <ClCompile Include="..\Common\src\IND_Entity2d.cpp" />
+    <ClCompile Include="..\Common\src\IND_Entity3d.cpp" />
+    <ClCompile Include="..\Common\src\IND_Entity2dManager.cpp" />
+    <ClCompile Include="..\Common\src\IND_Entity3dManager.cpp" />
+    <ClCompile Include="..\Common\src\CollisionParser.cpp" />
+    <ClCompile Include="..\common\src\FreeImageHelper.cpp" />
+    <ClCompile Include="..\Common\src\ImageCutter.cpp" />
+    <ClCompile Include="..\Common\src\Render\DirectX\DirectXTextureBuilder.cpp" />
+    <ClCompile Include="..\Common\src\Render\OpenGL\OpenGLTextureBuilder.cpp" />
+    <ClCompile Include="..\Common\src\IND_Animation.cpp" />
+    <ClCompile Include="..\Common\src\IND_Image.cpp" />
+    <ClCompile Include="..\Common\src\IND_Surface.cpp" />
+    <ClCompile Include="..\Common\src\IND_AnimationManager.cpp" />
+    <ClCompile Include="..\Common\src\IND_FontManager.cpp" />
+    <ClCompile Include="..\Common\src\IND_ImageManager.cpp" />
+    <ClCompile Include="..\Common\src\IND_SurfaceManager.cpp" />
+    <ClCompile Include="..\Common\src\Render\DirectX\XMeshHierarchy.cpp" />
+    <ClCompile Include="..\Common\src\IND_3dMesh.cpp" />
+    <ClCompile Include="..\Common\src\IND_3dMeshManager.cpp" />
+    <ClCompile Include="..\Common\src\IND_LightManager.cpp" />
+    <ClCompile Include="..\Common\src\IND_Light.cpp" />
+    <ClCompile Include="..\Common\src\IND_Input.cpp" />
+    <ClCompile Include="..\Common\src\IND_Math.cpp" />
+    <ClCompile Include="..\Common\src\IND_Camera2d.cpp" />
+    <ClCompile Include="..\Common\src\IND_Camera3d.cpp" />
+    <ClCompile Include="..\common\Dependencies\TinyXml\tinystr.cpp" />
+    <ClCompile Include="..\common\Dependencies\TinyXml\tinyxml.cpp" />
+    <ClCompile Include="..\common\Dependencies\TinyXml\tinyxmlerror.cpp" />
+    <ClCompile Include="..\common\Dependencies\TinyXml\tinyxmlparser.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\CHANGELOG" />
+    <None Include="..\LICENSE" />
+    <None Include="..\..\README.md" />
+    <None Include="..\TODO" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -210,12 +210,11 @@ users for really concrete purposes.
 #ifdef PLATFORM_WIN32
 
 #ifdef INDIELIB_DLLBUILD
-#define DLL_EXP __declspec(dllexport)
+#define LIB_EXP __declspec(dllexport)
 #else
-#define DLL_EXP __declspec(dllimport)
+#define LIB_EXP __declspec(dllimport)
 #endif //INDIELIB_DLLBUILD
 
-#define LIB_EXP DLL_EXP
 #define IndieLib() WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 #endif //PLATFORM_WIN32
 
@@ -265,7 +264,7 @@ typedef unsigned char BYTE;    // HACK: Fixes some code regarding surfaces, BYTE
 #pragma warning (disable : 4089)
 // 'sprintf': This function or variable may be unsafe.
 #pragma warning (disable : 4996)
-//Disables 'unreferenced formal parameter'
+// Disables 'unreferenced formal parameter'
 #pragma warning( disable : 4100 )  
 #endif
 

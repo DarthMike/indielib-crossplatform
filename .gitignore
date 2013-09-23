@@ -36,6 +36,7 @@ config.log
 *.idb
 *.lib
 *.dll
+*.sdf
 
 ### Mac specific
 xcschememanagement.plist

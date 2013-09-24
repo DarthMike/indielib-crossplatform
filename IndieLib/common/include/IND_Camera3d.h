@@ -23,21 +23,9 @@ Suite 330, Boston, MA 02111-1307 USA
 #ifndef _IND_CAMERA3D_
 #define _IND_CAMERA3D_
 
-
 // ----- Includes -----
-
-#ifdef INDIERENDER_DIRECTX
-#include <d3d9.h>
-#include <d3dx9.h>
-#endif
-
-#ifdef INDIERENDER_OPENGL
-#include "Defines.h"
-#endif
-
-#ifdef INDIERENDER_GLES_IOS
-#include "Defines.h"
-#endif
+#include "IndiePlatforms.h"
+#include "IND_Vector3.h"
 
 // --------------------------------------------------------------------------------
 //									   IND_Camera

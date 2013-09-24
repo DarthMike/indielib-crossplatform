@@ -122,6 +122,12 @@
     <Filter Include="Platform\Win32">
       <UniqueIdentifier>{9ec1a28c-1151-4811-997e-d2dde46c1e11}</UniqueIdentifier>
     </Filter>
+    <Filter Include="IndieLib\TMX Maps">
+      <UniqueIdentifier>{56e37298-d644-4d94-b576-7562837b2855}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\TMXParser">
+      <UniqueIdentifier>{4951542c-f7a0-4f19-ab06-ac1c1dc97b85}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Common\include\Defines.h">
@@ -273,6 +279,54 @@
     </ClInclude>
     <ClInclude Include="..\common\src\platform\win32\guicon.h">
       <Filter>Platform\Win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\include\IND_TmxMap.h">
+      <Filter>IndieLib\TMX Maps</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\include\IND_TmxMapManager.h">
+      <Filter>IndieLib\TMX Maps</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\TmxParser\Tmx.h">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\TmxParser\TmxImage.h">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\TmxParser\TmxLayer.h">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\TmxParser\TmxMap.h">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\TmxParser\TmxMapTile.h">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\TmxParser\TmxObject.h">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\TmxParser\TmxObjectGroup.h">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\TmxParser\TmxPoint.h">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\TmxParser\TmxPolygon.h">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\TmxParser\TmxPolyline.h">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\TmxParser\TmxPropertySet.h">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\TmxParser\TmxTile.h">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\TmxParser\TmxTileset.h">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\TmxParser\TmxUtil.h">
+      <Filter>Dependencies\TMXParser</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -446,6 +500,45 @@
     </ClCompile>
     <ClCompile Include="..\common\src\platform\win32\guicon.cpp">
       <Filter>Platform\Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\src\IND_TmxMap.cpp">
+      <Filter>IndieLib\TMX Maps</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\src\IND_TmxMapManager.cpp">
+      <Filter>IndieLib\TMX Maps</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\dependencies\TmxParser\TmxImage.cpp">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\dependencies\TmxParser\TmxLayer.cpp">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\dependencies\TmxParser\TmxMap.cpp">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\dependencies\TmxParser\TmxObject.cpp">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\dependencies\TmxParser\TmxObjectGroup.cpp">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\dependencies\TmxParser\TmxPolygon.cpp">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\dependencies\TmxParser\TmxPolyline.cpp">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\dependencies\TmxParser\TmxPropertySet.cpp">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\dependencies\TmxParser\TmxTile.cpp">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\dependencies\TmxParser\TmxTileset.cpp">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\dependencies\TmxParser\TmxUtil.cpp">
+      <Filter>Dependencies\TMXParser</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

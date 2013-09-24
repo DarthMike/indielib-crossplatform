@@ -24,6 +24,8 @@ Suite 330, Boston, MA 02111-1307 USA
 #ifndef _IND_WINDOW_H_
 #define _IND_WINDOW_H_
 
+#include "IndiePlatforms.h"
+
 //Dependencies
 struct SDL_SysWMinfo;
 struct SDL_Window;

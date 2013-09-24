@@ -22,6 +22,7 @@ Suite 330, Boston, MA 02111-1307 USA
 
 // ----- Includes -----
 
+#include "Defines.h"
 #include "Global.h"
 #include "dependencies/FreeImage/Dist/FreeImage.h"
 #include "IND_ImageManager.h"

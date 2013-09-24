@@ -50,6 +50,11 @@ using namespace std;
 //Version defs
 #include "IndieVersion.h"
 
+// Math
+#include "IND_Math.h"
+#include "IND_Vector2.h"
+#include "IND_Vector3.h"
+
 // Defines and types
 #include "Defines.h"
 
@@ -65,18 +70,11 @@ using namespace std;
 // Timer
 #include "IND_Timer.h"
 
-// Math
-#include "IND_Math.h"
-#include "IND_Vector2.h"
-#include "IND_Vector3.h"
-
 // Tmx Maps
 #include "IND_TmxMapManager.h"
 
 // Spriter animations
-#if defined (PLATFORM_LINUX) || defined (PLATFORM_OSX)  //FIXME: Should add compile settings to all platforms when support is fully completed
 #include "IND_SpriterManager.h"
-#endif
 
 // Entities
 #include "IND_Entity2dManager.h"

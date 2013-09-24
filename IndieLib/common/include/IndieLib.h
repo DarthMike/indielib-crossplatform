@@ -23,6 +23,7 @@ Suite 330, Boston, MA 02111-1307 USA
 #ifndef _INDIELIB_H_
 #define _INDIELIB_H_
 
+#include "Defines.h"
 
 // --------------------------------------------------------------------------------
 //									  IndieLib

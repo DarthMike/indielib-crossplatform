@@ -22,7 +22,7 @@ Suite 330, Boston, MA 02111-1307 USA
 // ----- Includes -----
 
 #include "Global.h"
-#include "Defines.h"
+#include "IndiePlatforms.h"
 #include "IND_Camera2d.h"
 
 //TODO: THE CAMERA SHOULD MAINTAIN IT'S OWN TRANSFORMATION MATRIX. RENDERER CODE IS ACCESSING

@@ -23,6 +23,7 @@
 
 /** @cond DOCUMENT_PRIVATEAPI */
 
+#include "Defines.h"
 #include "Global.h"
 #include "dependencies/tinyxml/tinyxml.h"
 #include "CollisionParser.h"

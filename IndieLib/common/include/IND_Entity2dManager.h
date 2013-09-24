@@ -25,7 +25,7 @@ Suite 330, Boston, MA 02111-1307 USA
 #define _IND_ENTITY2DMANAGER_
 
 // ----- Includes -----
-
+#include "Defines.h"
 #include <algorithm>
 #include <vector>
 #include <list>

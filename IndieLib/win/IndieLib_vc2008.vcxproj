@@ -117,10 +117,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\common\dependencies\TmxParser\Tmx.h" />
+    <ClInclude Include="..\common\dependencies\TmxParser\TmxImage.h" />
+    <ClInclude Include="..\common\dependencies\TmxParser\TmxLayer.h" />
+    <ClInclude Include="..\common\dependencies\TmxParser\TmxMap.h" />
+    <ClInclude Include="..\common\dependencies\TmxParser\TmxMapTile.h" />
+    <ClInclude Include="..\common\dependencies\TmxParser\TmxObject.h" />
+    <ClInclude Include="..\common\dependencies\TmxParser\TmxObjectGroup.h" />
+    <ClInclude Include="..\common\dependencies\TmxParser\TmxPoint.h" />
+    <ClInclude Include="..\common\dependencies\TmxParser\TmxPolygon.h" />
+    <ClInclude Include="..\common\dependencies\TmxParser\TmxPolyline.h" />
+    <ClInclude Include="..\common\dependencies\TmxParser\TmxPropertySet.h" />
+    <ClInclude Include="..\common\dependencies\TmxParser\TmxTile.h" />
+    <ClInclude Include="..\common\dependencies\TmxParser\TmxTileset.h" />
+    <ClInclude Include="..\common\dependencies\TmxParser\TmxUtil.h" />
     <ClInclude Include="..\Common\include\Defines.h" />
     <ClInclude Include="..\Common\include\Indie.h" />
     <ClInclude Include="..\Common\include\IndiePlatforms.h" />
     <ClInclude Include="..\common\include\IndieVersion.h" />
+    <ClInclude Include="..\common\include\IND_TmxMap.h" />
+    <ClInclude Include="..\common\include\IND_TmxMapManager.h" />
     <ClInclude Include="..\Common\src\DebugApi.h" />
     <ClInclude Include="..\Common\src\Global.h" />
     <ClInclude Include="..\Common\include\IndieLib.h" />
@@ -169,11 +185,24 @@
     <ClInclude Include="..\common\src\platform\win32\guicon.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\common\dependencies\TmxParser\TmxImage.cpp" />
+    <ClCompile Include="..\common\dependencies\TmxParser\TmxLayer.cpp" />
+    <ClCompile Include="..\common\dependencies\TmxParser\TmxMap.cpp" />
+    <ClCompile Include="..\common\dependencies\TmxParser\TmxObject.cpp" />
+    <ClCompile Include="..\common\dependencies\TmxParser\TmxObjectGroup.cpp" />
+    <ClCompile Include="..\common\dependencies\TmxParser\TmxPolygon.cpp" />
+    <ClCompile Include="..\common\dependencies\TmxParser\TmxPolyline.cpp" />
+    <ClCompile Include="..\common\dependencies\TmxParser\TmxPropertySet.cpp" />
+    <ClCompile Include="..\common\dependencies\TmxParser\TmxTile.cpp" />
+    <ClCompile Include="..\common\dependencies\TmxParser\TmxTileset.cpp" />
+    <ClCompile Include="..\common\dependencies\TmxParser\TmxUtil.cpp" />
     <ClCompile Include="..\common\src\IndieVersion.cpp" />
     <ClCompile Include="..\Common\src\DebugApi.cpp" />
     <ClCompile Include="..\Common\src\Global.cpp" />
     <ClCompile Include="..\Common\src\IndieLib.cpp" />
     <ClCompile Include="..\Common\src\IND_Render.cpp" />
+    <ClCompile Include="..\common\src\IND_TmxMap.cpp" />
+    <ClCompile Include="..\common\src\IND_TmxMapManager.cpp" />
     <ClCompile Include="..\Common\src\IND_Window.cpp" />
     <ClCompile Include="..\common\src\platform\OSOpenGLManager.cpp" />
     <ClCompile Include="..\common\src\platform\win32\guicon.cpp" />

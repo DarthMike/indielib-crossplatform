@@ -25,6 +25,8 @@ Suite 330, Boston, MA 02111-1307 USA
 #ifndef _IND_VECTOR3_
 #define _IND_VECTOR3_
 
+#include "IndiePlatforms.h"
+
 //Libraries dependencies
 #include <math.h>
 #include <assert.h>
@@ -382,6 +384,7 @@ public:
     /**@}*/
     
     /** @name Public Values */
+	public:
     /**@{*/
 	float _x, _y, _z; ///< Values of vector
     /**@}*/

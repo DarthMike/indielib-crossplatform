@@ -14,6 +14,7 @@
 
 // ----- Includes -----
 
+#include "Defines.h"
 #include "Global.h"
 #include "dependencies/TmxParser/Tmx.h"
 #include "dependencies/FreeImage/Dist/FreeImage.h"

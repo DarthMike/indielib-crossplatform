@@ -20,8 +20,8 @@
 #include <string.h>
 #endif
 
+#include "Defines.h"
 #include "IND_Object.h"
-
 #include "dependencies/TmxParser/Tmx.h"
 
 // ----- Forward declarations ------

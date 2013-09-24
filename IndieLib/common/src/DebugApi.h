@@ -22,7 +22,7 @@ Suite 330, Boston, MA 02111-1307 USA
 #ifndef _DEBUGAPI_H_
 #define _DEBUGAPI_H_
 
-#include "Defines.h"
+#include "IndiePlatforms.h"
 #include <time.h>
 
 #define ESP 3

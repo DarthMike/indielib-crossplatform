@@ -61,7 +61,7 @@ bool CIndieLib::init() {
 	//if (!_meshManager      ->init (_render))                                    return 0;
 	if (!_input              ->init(_render))                                    return 0;
 	if (!_math               ->init())                                           return 0;
-    if (!_TTFFontManager     ->Init(_render, _imageManager, _surfaceManager))    return 0;
+    if (!_TTFFontManager     ->init(_render, _imageManager, _surfaceManager))    return 0;
     
 	return 1;
 }
@@ -76,7 +76,7 @@ void CIndieLib::end() {
 	// ----- Freeing objects -----
     
 	_math                ->end();
-	_TTFFontManager      ->End();
+	_TTFFontManager      ->end();
     //_meshManager           ->end();
 	_input               ->end();
 	_entity2dManager     ->end();

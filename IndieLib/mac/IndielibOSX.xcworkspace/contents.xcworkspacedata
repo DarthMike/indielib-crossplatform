@@ -10,16 +10,4 @@
    <FileRef
       location = "group:TestsOSX/TestsOSX.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:../CHANGELOG">
-   </FileRef>
-   <FileRef
-      location = "group:../LICENSE">
-   </FileRef>
-   <FileRef
-      location = "group:../TODO">
-   </FileRef>
-   <FileRef
-      location = "group:../../README.md">
-   </FileRef>
 </Workspace>

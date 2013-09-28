@@ -113,7 +113,7 @@ private:
     // ----- parser methods -----
 	bool        parseSpriterData(const char *pSCMLFileName);
     int         toInt(const char* input);
-    float       toFloat(const char* input);
+    float      toFloat(const char* input);
 	
     void        writeMessage();
 	void        initVars();

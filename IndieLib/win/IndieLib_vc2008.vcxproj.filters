@@ -128,6 +128,18 @@
     <Filter Include="Dependencies\TMXParser">
       <UniqueIdentifier>{4951542c-f7a0-4f19-ab06-ac1c1dc97b85}</UniqueIdentifier>
     </Filter>
+    <Filter Include="IndieLib\Spriter">
+      <UniqueIdentifier>{2a15353b-4459-463c-89d5-f97f599cc0eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndieLib\Spriter\Utilities">
+      <UniqueIdentifier>{34dd7783-3fd5-450e-9462-296a9e9c553f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\SpriterParser">
+      <UniqueIdentifier>{ba447a0c-4c67-44d5-b16d-6a8ec4bb3399}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\TMXParser\base64">
+      <UniqueIdentifier>{20c74dd7-5275-4b10-96e1-2864803dc656}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Common\include\Defines.h">
@@ -327,6 +339,39 @@
     </ClInclude>
     <ClInclude Include="..\common\dependencies\TmxParser\TmxUtil.h">
       <Filter>Dependencies\TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\include\IND_SpriterEntity.h">
+      <Filter>IndieLib\Spriter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\include\IND_SpriterManager.h">
+      <Filter>IndieLib\Spriter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\SpriterParser\Animation.h">
+      <Filter>Dependencies\SpriterParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\SpriterParser\Mainline.h">
+      <Filter>Dependencies\SpriterParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\SpriterParser\MainlineKey.h">
+      <Filter>Dependencies\SpriterParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\SpriterParser\MainlineObject.h">
+      <Filter>Dependencies\SpriterParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\SpriterParser\MainlineObjectref.h">
+      <Filter>Dependencies\SpriterParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\SpriterParser\Timeline.h">
+      <Filter>Dependencies\SpriterParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\SpriterParser\TimelineKey.h">
+      <Filter>Dependencies\SpriterParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\SpriterParser\TimelineObject.h">
+      <Filter>Dependencies\SpriterParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\TmxParser\base64\base64.h">
+      <Filter>Dependencies\TMXParser\base64</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -539,6 +584,30 @@
     </ClCompile>
     <ClCompile Include="..\common\dependencies\TmxParser\TmxUtil.cpp">
       <Filter>Dependencies\TMXParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\src\IND_SpriterEntity.cpp">
+      <Filter>IndieLib\Spriter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\src\IND_SpriterManager.cpp">
+      <Filter>IndieLib\Spriter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\dependencies\SpriterParser\Animation.cpp">
+      <Filter>Dependencies\SpriterParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\dependencies\SpriterParser\Mainline.cpp">
+      <Filter>Dependencies\SpriterParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\dependencies\SpriterParser\MainlineKey.cpp">
+      <Filter>Dependencies\SpriterParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\dependencies\SpriterParser\Timeline.cpp">
+      <Filter>Dependencies\SpriterParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\dependencies\SpriterParser\TimelineKey.cpp">
+      <Filter>Dependencies\SpriterParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\dependencies\TmxParser\base64\base64.cpp">
+      <Filter>Dependencies\TMXParser\base64</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

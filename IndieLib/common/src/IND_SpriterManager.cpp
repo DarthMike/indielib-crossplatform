@@ -470,7 +470,7 @@ int IND_SpriterManager::toInt(const char* input) {
 }
     
 float IND_SpriterManager::toFloat(const char* input) {
-        return ( input ) ? atof(input) : 0;
+        return ( input ) ? static_cast<float>(atoi(input)) : 0.f;
 }
 
 /* =======================================================================================================
@@ -530,9 +530,10 @@ void  IND_SpriterManager::drawTransientObject(IND_SpriterEntity *ent, MainlineOb
     
     IND_Matrix *mMatrix = new IND_Matrix(); // TODO: do we need this?
     
-    
-    float tempx = (tObject->x + 400.0f);
-    float tempy = (tObject->y <= 0.0f) ? (500.0f + tObject->y ) : (500.0f + (tObject->y * -1.000000f));
+	int objx = static_cast<int>(tObject->x);
+    int objy = static_cast<int>(tObject->y);
+    int tempx = objx + 400;
+    int tempy = objy <= 0 ? (500 + objy) : (500 - objy);
     
     float axisCalX = (tObject->pivot_x * ((float)surface->getWidth())  * -1.0f );
     float axisCalY = ((1 - tObject->pivot_y) * ((float)surface->getHeight()) * -1.0f );
@@ -549,15 +550,15 @@ void  IND_SpriterManager::drawTransientObject(IND_SpriterEntity *ent, MainlineOb
     
     _render->setTransform2d(tempx,                      // x pos  note: we start in 0,0 (corner of screen)
                             tempy,                      // y pos
-                            0,                          // Angle x
-                            0,                          // Angle y
+                            0.f,                          // Angle x
+                            0.f,                          // Angle y
                             newangle,                   // Angle z
-                            1,                          // Scale x
-                            1,                          // Scale y
-                            axisCalX,                   // Axis cal x
-                            axisCalY,                   // Axis cal y
-                            0,                          // Mirror x
-                            0,                          // Mirror y
+                            1.f,                          // Scale x
+                            1.f,                          // Scale y
+                            static_cast<int>(axisCalX),                   // Axis cal x
+                            static_cast<int>(axisCalY),                   // Axis cal y
+                            false,                          // Mirror x
+                            false,                          // Mirror y
                             0,                          // Width
                             0,                          // Height
                             mMatrix);                   // Matrix in wich the transformation will be applied (optional)

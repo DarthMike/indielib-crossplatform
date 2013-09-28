@@ -117,6 +117,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\common\dependencies\SpriterParser\Animation.h" />
+    <ClInclude Include="..\common\dependencies\SpriterParser\Mainline.h" />
+    <ClInclude Include="..\common\dependencies\SpriterParser\MainlineKey.h" />
+    <ClInclude Include="..\common\dependencies\SpriterParser\MainlineObject.h" />
+    <ClInclude Include="..\common\dependencies\SpriterParser\MainlineObjectref.h" />
+    <ClInclude Include="..\common\dependencies\SpriterParser\Timeline.h" />
+    <ClInclude Include="..\common\dependencies\SpriterParser\TimelineKey.h" />
+    <ClInclude Include="..\common\dependencies\SpriterParser\TimelineObject.h" />
+    <ClInclude Include="..\common\dependencies\TmxParser\base64\base64.h" />
     <ClInclude Include="..\common\dependencies\TmxParser\Tmx.h" />
     <ClInclude Include="..\common\dependencies\TmxParser\TmxImage.h" />
     <ClInclude Include="..\common\dependencies\TmxParser\TmxLayer.h" />
@@ -135,6 +144,8 @@
     <ClInclude Include="..\Common\include\Indie.h" />
     <ClInclude Include="..\Common\include\IndiePlatforms.h" />
     <ClInclude Include="..\common\include\IndieVersion.h" />
+    <ClInclude Include="..\common\include\IND_SpriterEntity.h" />
+    <ClInclude Include="..\common\include\IND_SpriterManager.h" />
     <ClInclude Include="..\common\include\IND_TmxMap.h" />
     <ClInclude Include="..\common\include\IND_TmxMapManager.h" />
     <ClInclude Include="..\Common\src\DebugApi.h" />
@@ -185,6 +196,12 @@
     <ClInclude Include="..\common\src\platform\win32\guicon.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\common\dependencies\SpriterParser\Animation.cpp" />
+    <ClCompile Include="..\common\dependencies\SpriterParser\Mainline.cpp" />
+    <ClCompile Include="..\common\dependencies\SpriterParser\MainlineKey.cpp" />
+    <ClCompile Include="..\common\dependencies\SpriterParser\Timeline.cpp" />
+    <ClCompile Include="..\common\dependencies\SpriterParser\TimelineKey.cpp" />
+    <ClCompile Include="..\common\dependencies\TmxParser\base64\base64.cpp" />
     <ClCompile Include="..\common\dependencies\TmxParser\TmxImage.cpp" />
     <ClCompile Include="..\common\dependencies\TmxParser\TmxLayer.cpp" />
     <ClCompile Include="..\common\dependencies\TmxParser\TmxMap.cpp" />
@@ -201,6 +218,8 @@
     <ClCompile Include="..\Common\src\Global.cpp" />
     <ClCompile Include="..\Common\src\IndieLib.cpp" />
     <ClCompile Include="..\Common\src\IND_Render.cpp" />
+    <ClCompile Include="..\common\src\IND_SpriterEntity.cpp" />
+    <ClCompile Include="..\common\src\IND_SpriterManager.cpp" />
     <ClCompile Include="..\common\src\IND_TmxMap.cpp" />
     <ClCompile Include="..\common\src\IND_TmxMapManager.cpp" />
     <ClCompile Include="..\Common\src\IND_Window.cpp" />

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2012 for Windows Desktop
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IndieLib", "IndieLib_vc2008.vcxproj", "{EC5DB2F1-5096-430A-B62F-65859F497E5D}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IndieLib", "IndieLib.vcxproj", "{EC5DB2F1-5096-430A-B62F-65859F497E5D}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tests_Win32", "Tests_Win32.vcxproj", "{6DEA187E-ACF6-4A55-AA2F-ABBFFAE5EBEE}"
 EndProject

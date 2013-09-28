@@ -134,6 +134,12 @@
     <ClInclude Include="..\..\common\dependencies\tinyxml\tinystr.h" />
     <ClInclude Include="..\..\common\dependencies\tinyxml\tinyxml.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="IndieLib.vcxproj">
+      <Project>{ec5db2f1-5096-430a-b62f-65859f497e5d}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

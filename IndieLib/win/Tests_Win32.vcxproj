@@ -148,7 +148,7 @@
     <ClCompile Include="..\tests\manual\entities\EntityTests_interactions.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="IndieLib_vc2008.vcxproj">
+    <ProjectReference Include="IndieLib.vcxproj">
       <Project>{ec5db2f1-5096-430a-b62f-65859f497e5d}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>

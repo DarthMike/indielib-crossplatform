@@ -18,7 +18,7 @@
 
 // ----- Includes -----
 
-#include "IND_object.h"
+#include "IND_Object.h"
 #include "IND_Surface.h"
 #include "../dependencies/SpriterParser/Animation.h"
 #include "../dependencies/SpriterParser/Mainline.h"

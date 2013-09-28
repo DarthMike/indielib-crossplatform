@@ -1,16 +1,36 @@
-/*******************************************************************************************************************
- *	File: LeaksVisualC.h
- *      Desc: Static detections of elements even in singleton objects. BUT, not static variables defined as
- *	      global constants (this object gets created later and deleted before them...).
- *            I.e. Static memory leaks detection using a singleton class.
- ********************************************************************************************************************/
+/*****************************************************************************************
+ * File: LeaksVisualC.h
+ * Desc: Static detections of elements even in singleton objects. BUT, not static
+ *       variables defined as global constants (this object gets created later and
+ *       deleted before them...).
+ *       I.e. Static memory leaks detection using a singleton class.
+ *****************************************************************************************/
 
-/* 
-	Copyright:   Miguel Angel Quinones (mikeskywalker007@gmail.com)
-	Attribution: FROM: http://cgempire.com/forum/tutorials-101/easy-memory-leak-detection-c-c-546.html
-  	License:     You are free to use as you want... but it can destroy your computer, so dont blame me about it ;)
-  	             Nevertheless it would be nice if you tell me you are using something I made, just for curiosity 
-*/
+/*********************************** The zlib License ************************************
+ *
+ * Copyright (c) 2013 Indielib-crossplatform Development Team
+ *
+ * This software is provided 'as-is', without any express or implied
+ * warranty. In no event will the authors be held liable for any damages
+ * arising from the use of this software.
+ *
+ * Permission is granted to anyone to use this software for any purpose,
+ * including commercial applications, and to alter it and redistribute it
+ * freely, subject to the following restrictions:
+ *
+ * 1. The origin of this software must not be misrepresented; you must not
+ * claim that you wrote the original software. If you use this software
+ * in a product, an acknowledgment in the product documentation would be
+ * appreciated but is not required.
+ *
+ * 2. Altered source versions must be plainly marked as such, and must not be
+ * misrepresented as being the original software.
+ *
+ * 3. This notice may not be removed or altered from any source
+ * distribution.
+ *
+ *****************************************************************************************/
+
 
 //Memory leaks detection
 #define _CRTDBG_MAP_ALLOC

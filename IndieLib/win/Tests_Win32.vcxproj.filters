@@ -34,6 +34,9 @@
     <Filter Include="Entities">
       <UniqueIdentifier>{cb259962-6d5c-4b8d-9b11-f5d20cc726a0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="TMX">
+      <UniqueIdentifier>{f61fedaa-b1a3-4868-81cd-69f097b99bd7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Tests\Manual\ManualTests.h">
@@ -102,6 +105,9 @@
     <ClInclude Include="..\tests\manual\entities\EntityTests_interactions.h">
       <Filter>Entities</Filter>
     </ClInclude>
+    <ClInclude Include="..\tests\manual\TmxmapTests.h">
+      <Filter>TMX</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Tests\Manual\ManualTestsMain.cpp">
@@ -169,6 +175,9 @@
     </ClCompile>
     <ClCompile Include="..\tests\manual\entities\EntityTests_interactions.cpp">
       <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\manual\TmxmapTests.cpp">
+      <Filter>TMX</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

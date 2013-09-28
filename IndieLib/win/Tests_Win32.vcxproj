@@ -94,10 +94,12 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\Tests\Manual\ManualTests.h" />
+    <ClInclude Include="..\tests\manual\TmxmapTests.h" />
     <ClInclude Include="..\tests\WorkingPath.h" />
     <ClInclude Include="..\Tests\Manual\Functionality\FunctionalityTests.h" />
     <ClInclude Include="..\tests\CIndieLib.h" />
@@ -122,6 +124,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Tests\Manual\ManualTestsMain.cpp" />
+    <ClCompile Include="..\tests\manual\TmxmapTests.cpp" />
     <ClCompile Include="..\tests\WorkingPath.cpp" />
     <ClCompile Include="..\Tests\Manual\Functionality\FunctionalityTests.cpp" />
     <ClCompile Include="..\tests\CIndieLib.cpp" />

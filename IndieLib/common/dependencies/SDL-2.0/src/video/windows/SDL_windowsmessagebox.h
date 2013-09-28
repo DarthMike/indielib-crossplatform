@@ -20,17 +20,10 @@
 */
 #include "SDL_config.h"
 
+#if SDL_VIDEO_DRIVER_WINDOWS
 
-void
-SDL_InstallParachute(void)
-{
-    return;
-}
+extern int WIN_ShowMessageBox(const SDL_MessageBoxData *messageboxdata, int *buttonid);
 
-void
-SDL_UninstallParachute(void)
-{
-    return;
-}
+#endif /* SDL_VIDEO_DRIVER_WINDOWS */
 
 /* vi: set ts=4 sw=4 expandtab: */

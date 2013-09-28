@@ -1,24 +1,33 @@
 /*****************************************************************************************
  * File: INDh
- * Dess: Math methods
+ * Desc: Math methods
  *****************************************************************************************/
 
-/*
-IndieLib 2d library Copyright (C) 2005 Javier López López (javierlopezpro@gmail.com)
-MODIFIED BY Miguel Angel Quiñones (2011) (mail:m.quinones.garcia@gmail.com / mikeskywalker007@gmail.com)
+/*********************************** The zlib License ************************************
+ *
+ * Copyright (c) 2013 Indielib-crossplatform Development Team
+ *
+ * This software is provided 'as-is', without any express or implied
+ * warranty. In no event will the authors be held liable for any damages
+ * arising from the use of this software.
+ *
+ * Permission is granted to anyone to use this software for any purpose,
+ * including commercial applications, and to alter it and redistribute it
+ * freely, subject to the following restrictions:
+ *
+ * 1. The origin of this software must not be misrepresented; you must not
+ * claim that you wrote the original software. If you use this software
+ * in a product, an acknowledgment in the product documentation would be
+ * appreciated but is not required.
+ *
+ * 2. Altered source versions must be plainly marked as such, and must not be
+ * misrepresented as being the original software.
+ *
+ * 3. This notice may not be removed or altered from any source
+ * distribution.
+ *
+ *****************************************************************************************/
 
-This library is free software; you can redistribute it and/or modify it under the
-terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2.1 of the License, or (at your option) any later version.
-
-This library is distributed in the hope that it will be useful, but WITHOUT ANY
-WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
-
-You should have received a copy of the GNU Lesser General Public License along with
-this library; if not, write to the Free Software Foundation, Inc., 59 Temple Place,
-Suite 330, Boston, MA 02111-1307 USA
-*/
 
 #ifndef _IND_MATH_
 #define _IND_MATH_
@@ -27,8 +36,10 @@ Suite 330, Boston, MA 02111-1307 USA
 #include <stdlib.h>
 #include <math.h>
 
+#include "IndiePlatforms.h"
 #include "Defines.h"
 #include "IND_Vector2.h"
+#include "IND_Vector3.h"
 
 // --------------------------------------------------------------------------------
 //									   IND_Math
@@ -51,6 +62,12 @@ Max macro
 Min macro
 */
 #define MIN(a, b)  (((a) < (b)) ? (a) : (b))
+
+/**
+You know what this is..
+*/
+#define PI 3.14159265358979323846f
+
 
 /**
  @brief Encapsulates common math operations used through the library

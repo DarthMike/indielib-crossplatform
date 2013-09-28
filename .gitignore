@@ -13,6 +13,8 @@ config.log
 *.lo
 *.o
 *.obj
+*.o-i386
+*.o-x86_64
 
 # Compiled Dynamic libraries
 *.so
@@ -35,6 +37,8 @@ config.log
 *.pdb
 *.idb
 *.lib
+*.dll
+*.sdf
 
 ### Mac specific
 xcschememanagement.plist

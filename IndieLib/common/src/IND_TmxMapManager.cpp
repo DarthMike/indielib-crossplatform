@@ -3,19 +3,42 @@
  * Desc: TmxMap manager
  *****************************************************************************************/
 
-/*
- 
- Here goes something about license ......
+/*********************************** The zlib License ************************************
+ *
+ * Copyright (c) 2013 Indielib-crossplatform Development Team
+ *
+ * This software is provided 'as-is', without any express or implied
+ * warranty. In no event will the authors be held liable for any damages
+ * arising from the use of this software.
+ *
+ * Permission is granted to anyone to use this software for any purpose,
+ * including commercial applications, and to alter it and redistribute it
+ * freely, subject to the following restrictions:
+ *
+ * 1. The origin of this software must not be misrepresented; you must not
+ * claim that you wrote the original software. If you use this software
+ * in a product, an acknowledgment in the product documentation would be
+ * appreciated but is not required.
+ *
+ * 2. Altered source versions must be plainly marked as such, and must not be
+ * misrepresented as being the original software.
+ *
+ * 3. This notice may not be removed or altered from any source
+ * distribution.
+ *
+ *****************************************************************************************/
 
-*/
 
 // ----- Includes -----
 
+#include "Defines.h"
 #include "Global.h"
 #include "dependencies/TmxParser/Tmx.h"
 #include "dependencies/FreeImage/Dist/FreeImage.h"
 #include "IND_TmxMapManager.h"
 #include "IND_TmxMap.h"
+#include "IND_Surface.h"
+#include "IND_Render.h" 
 
 #ifdef PLATFORM_LINUX
 #include <string.h>
@@ -30,12 +53,13 @@
 This function returns 1 (true) if the adminstrator is successfully initialized.
 Must be called before using any method.
 */
-bool IND_TmxMapManager::init() {
+bool IND_TmxMapManager::init(IND_Render* render) {
 	end();
 	initVars();
 
 	g_debug->header("Initializing TmxMapManager", DebugApi::LogHeaderBegin);
 	g_debug->header("Preparing TmxMapManager", DebugApi::LogHeaderOk);
+	_render = render;
 	_ok = true;
 
 	g_debug->header("TmxMapManager OK", 6);
@@ -133,7 +157,7 @@ bool IND_TmxMapManager::add(IND_TmxMap *pNewTmxMap,const char *pName) {
     string imagePath;
     string s = string(pName);
     
-    unsigned int lastPosTemp = s.find_last_of("\\/");
+    size_t lastPosTemp = s.find_last_of("\\/");
     
     if(lastPosTemp == string::npos){
         tmxPath = "./";
@@ -293,8 +317,222 @@ bool IND_TmxMapManager::clone(IND_TmxMap *pNewTmxMap, IND_TmxMap *pOldTmxMap) { 
 	return 1;
 }
 
+/**
+@b Parameters:
+
+@arg @b orthogonalMap           The map to render
+@arg @b mSurfaceOrthogonalTiles The surface to use when rendering
+
+@b Operation:
+
+Call this method to render a TMX map as ortogonal tiles. 
+*/
+void IND_TmxMapManager::renderOrthogonalMap(IND_TmxMap *orthogonalMap,IND_Surface *mSurfaceOrthogonalTiles, int kMapCenterOffset) {
+    
+    IND_Matrix *mMatrix = new IND_Matrix();
+    
+    // Iterate through the layers.
+    for (int i = 0; i < orthogonalMap->getTmxMapHandle()->GetNumLayers(); ++i) {
+        
+        const Tmx::Layer *layer = orthogonalMap->getTmxMapHandle()->GetLayer(i);
+        
+        int layerColumns = layer->GetWidth();
+        int layerRows = layer->GetHeight();
+        for (int x = 0; x < layerColumns; ++x)
+        {
+            for (int y = 0; y < layerRows; ++y)
+            {
+                // Get the tile's id.
+                int CurTile = layer->GetTileGid(x, y);
+                
+                // If gid is 0, means empty tile
+                if(CurTile == 0)
+                {
+                    continue;
+                }
+                
+				// This doesn't compile when we build DLL, as we must export a dependency class.
+                const Tmx::Tileset *tileset = orthogonalMap->getTmxMapHandle()->FindTileset(CurTile);
+                int tilesetColumns = (mSurfaceOrthogonalTiles->getWidth() - 2*tileset->GetMargin()) / tileset->GetTileWidth();
+                //int tilesetRows = (mSurfaceOrthogonalTiles->getHeight() - 2*tileset->GetMargin()) / tileset->GetTileHeight();
+                
+                // 0-based index (as valid gid starts from 1.)
+                CurTile--;
+                
+                int tileset_col = (CurTile % tilesetColumns);
+                int tileset_row = (CurTile / tilesetColumns);
+                
+                int sourceX = (tileset->GetMargin() + (tileset->GetTileWidth() + tileset->GetSpacing()) * tileset_col);
+                int sourceY = (tileset->GetMargin() + (tileset->GetTileHeight() + tileset->GetSpacing()) * tileset_row);
+                
+                int sourceWidth = tileset->GetTileWidth();
+                int sourceHeight = tileset->GetTileHeight();
+                
+                // int mirrorY = layer->IsTileFlippedVertically(x, y) ? 1 : 0;  // TODO : Add this parameter to one of the call below
+                // int mirrorX = layer->IsTileFlippedHorizontally(x, y) ? 1 : 0 // TODO : Add this parameter to one of the call below
+                // layer->IsTileFlippedDiagonally(x, y) ? 1 : 0;                // TODO : implement this in engine ?
+                
+                /*
+                 TMX orthogonal coordinates are specified starting from top (upper) corner, as 0,0 and continuing (x,y)
+                 Column, row . So the the next tile to the right from the statring tile will be 1,0 and the one just below the
+                 starting tile will be 0,1.
+                 */
+                
+                int destX = x * orthogonalMap->getTmxMapHandle()->GetTileWidth();
+                int destY = y * orthogonalMap->getTmxMapHandle()->GetTileHeight();
+                
+                
+                _render->setTransform2d(destX + kMapCenterOffset,   // x pos - Added center because we start in 0,0 (corner of screen)
+                                            destY,                      // y pos
+                                            0,                          // Angle x
+                                            0,                          // Angle y
+                                            0,                          // Angle z
+                                            1,                          // Scale x
+                                            1,                          // Scale y
+                                            0,                          // Axis cal x
+                                            0,                          // Axis cal y
+                                            0,                          // Mirror x
+                                            0,                          // Mirror y
+                                            0,                          // Width
+                                            0,                          // Height
+                                            mMatrix);                   // Matrix in wich the transformation will be applied (optional)
+                
+                // We apply the color, blending and culling transformations.
+                _render->setRainbow2d(IND_ALPHA,                    // IND_Type
+                                          1,                            // Back face culling 0/1 => off / on
+                                          0,                            // Mirror x
+                                          0,                            // Mirror y
+                                          IND_FILTER_LINEAR,            // IND_Filter
+                                          255,                          // R Component	for tinting
+                                          255,                          // G Component	for tinting
+                                          255,                          // B Component	for tinting
+                                          255,                          // A Component	for tinting
+                                          0,                            // R Component	for fading to a color
+                                          0,                            // G Component	for fading to a color
+                                          0,                            // B Component	for fading to a color
+                                          255,                          // Amount of fading
+                                          IND_SRCALPHA,                 // IND_BlendingType (source)
+                                          IND_INVSRCALPHA);             // IND_BlendingType (destination)
+                
+                
+                
+                // Blit the IND_Surface
+                _render->blitRegionSurface(mSurfaceOrthogonalTiles, sourceX, sourceY, sourceWidth, sourceHeight);
+            }
+        }
+    }
+    
+}
 
 
+/**
+@b Parameters:
+
+@arg @b isometricMap           The map to render
+@arg @b mSurfaceIsometricTiles The surface to use when rendering
+
+@b Operation:
+
+Call this method to render a TMX map as isometric tiles. 
+*/
+void IND_TmxMapManager::renderIsometricMap(IND_TmxMap *isometricMap,IND_Surface *mSurfaceIsometricTiles, int kMapCenterOffset) {
+    
+    IND_Matrix *mMatrix = new IND_Matrix();
+    
+    // Iterate through the layers.
+    for (int i = 0; i < isometricMap->getTmxMapHandle()->GetNumLayers(); ++i) {
+        
+        const Tmx::Layer *layer = isometricMap->getTmxMapHandle()->GetLayer(i);
+        
+        int layerColumns = layer->GetWidth();
+        int layerRows = layer->GetHeight();
+        for (int x = 0; x < layerColumns; ++x)
+        {
+            for (int y = 0; y < layerRows; ++y)
+            {
+                // Get the tile's id.
+                int CurTile = layer->GetTileGid(x, y);
+                
+                // If gid is 0, means empty tile
+                if(CurTile == 0)
+                {
+                    continue;
+                }
+                
+                const Tmx::Tileset *tileset = isometricMap->getTmxMapHandle()->FindTileset(CurTile);
+                int tilesetColumns = (mSurfaceIsometricTiles->getWidth() - 2*tileset->GetMargin()) / tileset->GetTileWidth();
+                //int tilesetRows = (mSurfaceIsometricTiles->getHeight() - 2*tileset->GetMargin()) / tileset->GetTileHeight();
+                
+                // 0-based index (as valid gid starts from 1.)
+                CurTile--;
+                
+                int tileset_col = (CurTile % tilesetColumns);
+                int tileset_row = (CurTile / tilesetColumns);
+                
+                int sourceX = (tileset->GetMargin() + (tileset->GetTileWidth() + tileset->GetSpacing()) * tileset_col);
+                int sourceY = (tileset->GetMargin() + (tileset->GetTileHeight() + tileset->GetSpacing()) * tileset_row);
+                
+                int sourceWidth = tileset->GetTileWidth();
+                int sourceHeight = tileset->GetTileHeight();
+                
+                // int mirrorY = layer->IsTileFlippedVertically(x, y) ? 1 : 0;  // TODO : Add this parameter to one of the call below
+                // int mirrorX = layer->IsTileFlippedHorizontally(x, y) ? 1 : 0 // TODO : Add this parameter to one of the call below
+                // layer->IsTileFlippedDiagonally(x, y) ? 1 : 0;                // TODO : implement this in engine ?
+                
+                /*
+                 TMX isometric coordinates are specified starting from top (upper) corner, as 0,0
+                 From there, 0,1 will be half tile width to the 'right', 1,0 will be half width to the 'left'
+                 */
+                
+                int destX = ( x * isometricMap->getTmxMapHandle()->GetTileWidth() / 2  ) - ( y * isometricMap->getTmxMapHandle()->GetTileWidth() / 2  );
+                int destY = ( y * isometricMap->getTmxMapHandle()->GetTileHeight() / 2 ) + ( x * isometricMap->getTmxMapHandle()->GetTileHeight() / 2 );
+                
+                
+                _render->setTransform2d(destX + kMapCenterOffset,   // x pos - Added center because we start in 0,0 (corner of screen)
+                                            destY,                      // y pos
+                                            0,                          // Angle x
+                                            0,                          // Angle y
+                                            0,                          // Angle z
+                                            1,                          // Scale x
+                                            1,                          // Scale y
+                                            0,                          // Axis cal x
+                                            0,                          // Axis cal y
+                                            0,                          // Mirror x
+                                            0,                          // Mirror y
+                                            0,                          // Width
+                                            0,                          // Height
+                                            mMatrix);                   // Matrix in wich the transformation will be applied (optional)
+                
+                // We apply the color, blending and culling transformations.
+                _render->setRainbow2d(IND_ALPHA,                    // IND_Type
+                                          1,                            // Back face culling 0/1 => off / on
+                                          0,                            // Mirror x
+                                          0,                            // Mirror y
+                                          IND_FILTER_LINEAR,            // IND_Filter
+                                          255,                          // R Component	for tinting
+                                          255,                          // G Component	for tinting
+                                          255,                          // B Component	for tinting
+                                          255,                          // A Component	for tinting
+                                          0,                            // R Component	for fading to a color
+                                          0,                            // G Component	for fading to a color
+                                          0,                            // B Component	for fading to a color
+                                          255,                          // Amount of fading
+                                          IND_SRCALPHA,                 // IND_BlendingType (source)
+                                          IND_INVSRCALPHA);             // IND_BlendingType (destination)
+                
+                
+                
+                // Blit the IND_Surface
+                _render->blitRegionSurface(mSurfaceIsometricTiles, sourceX, sourceY, sourceWidth, sourceHeight);
+            }
+        }
+    }
+}
+
+
+void IND_TmxMapManager::renderStaggeredMap(IND_TmxMap *staggeredMap,IND_Surface *mSurfaceStaggeredTiles, int kMapCenterOffset){
+    //TODO: MFK implement this
+}
 
 
 
@@ -381,6 +619,7 @@ Init manager vars
 ==================
 */
 void IND_TmxMapManager::initVars() {
+	_render = NULL;
 	_listMaps = new list <IND_TmxMap *>;
 
 	// Supported extensions

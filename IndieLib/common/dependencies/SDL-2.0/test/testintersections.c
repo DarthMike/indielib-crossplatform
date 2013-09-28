@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 1997-2011 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -98,7 +98,6 @@ void
 DrawLines(SDL_Renderer * renderer)
 {
     int i;
-    int x1, y1, x2, y2;
     SDL_Rect viewport;
 
     /* Query the sizes */

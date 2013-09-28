@@ -49,7 +49,7 @@ namespace Tmx
 		const Point &GetPoint(int index) const { return points[index]; }
 
 		// Get the number of vertices.
-		int GetNumPoints() const { return points.size(); }
+		int GetNumPoints() const { return (int)points.size(); }
 
 	private:
 		std::vector< Point > points;

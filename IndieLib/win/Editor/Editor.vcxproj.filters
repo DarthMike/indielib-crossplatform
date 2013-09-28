@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Main">
+      <UniqueIdentifier>{23a64c6b-c820-419e-9989-895af0511037}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Indielib">
+      <UniqueIdentifier>{11a9d506-25ba-43e0-8412-bd40f510df9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes">
+      <UniqueIdentifier>{16fff42b-ce1d-43fa-8ba9-b81c265a41be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies">
+      <UniqueIdentifier>{dd09e6c1-98a2-4ece-99a8-a6ac02c14db9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\TinyXml">
+      <UniqueIdentifier>{43a37fe2-3102-4022-8c90-dfa4ff4a9fca}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\tools\editor_tileless\Main.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\tools\editor_tileless\CIndieLib.cpp">
+      <Filter>Indielib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\tools\editor_tileless\Listener.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\tools\editor_tileless\Map.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\tools\editor_tileless\Node.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\tools\editor_tileless\Resources.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\dependencies\tinyxml\tinystr.cpp">
+      <Filter>Dependencies\TinyXml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\dependencies\tinyxml\tinyxml.cpp">
+      <Filter>Dependencies\TinyXml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\dependencies\tinyxml\tinyxmlerror.cpp">
+      <Filter>Dependencies\TinyXml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\dependencies\tinyxml\tinyxmlparser.cpp">
+      <Filter>Dependencies\TinyXml</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\tools\editor_tileless\CIndieLib.h">
+      <Filter>Indielib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\tools\editor_tileless\Defines.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\tools\editor_tileless\Listener.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\tools\editor_tileless\Map.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\tools\editor_tileless\Node.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\tools\editor_tileless\Resources.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\dependencies\tinyxml\tinystr.h">
+      <Filter>Dependencies\TinyXml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\dependencies\tinyxml\tinyxml.h">
+      <Filter>Dependencies\TinyXml</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

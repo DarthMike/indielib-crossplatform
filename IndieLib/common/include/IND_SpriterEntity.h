@@ -3,22 +3,39 @@
  * Desc: Object that holds a spriter entity object.
  *****************************************************************************************/
 
-/*
- * ----------------------------------------------------------------------------
- * "THE BEER-WARE LICENSE" (Revision 42):
- * <michael@visualdesign.dk> wrote this file. As long as you retain this notice you
- * can do whatever you want with this stuff. If we meet some day, and you think
- * this stuff is worth it, you can buy me a beer in return Michael Fogh Kristensen
- * ----------------------------------------------------------------------------
- */
+/*********************************** The zlib License ************************************
+ *
+ * Copyright (c) 2013 Indielib-crossplatform Development Team
+ *
+ * This software is provided 'as-is', without any express or implied
+ * warranty. In no event will the authors be held liable for any damages
+ * arising from the use of this software.
+ *
+ * Permission is granted to anyone to use this software for any purpose,
+ * including commercial applications, and to alter it and redistribute it
+ * freely, subject to the following restrictions:
+ *
+ * 1. The origin of this software must not be misrepresented; you must not
+ * claim that you wrote the original software. If you use this software
+ * in a product, an acknowledgment in the product documentation would be
+ * appreciated but is not required.
+ *
+ * 2. Altered source versions must be plainly marked as such, and must not be
+ * misrepresented as being the original software.
+ *
+ * 3. This notice may not be removed or altered from any source
+ * distribution.
+ *
+ *****************************************************************************************/
+
 
 #ifndef _IND_SPRITERENTITY_
 #define _IND_SPRITERENTITY_
 
 // ----- Includes -----
 
-#include "IND_object.h"
-#include "IND_Image.h"
+#include "IND_Object.h"
+#include "IND_Surface.h"
 #include "../dependencies/SpriterParser/Animation.h"
 #include "../dependencies/SpriterParser/Mainline.h"
 #include "../dependencies/SpriterParser/Timeline.h"
@@ -27,7 +44,34 @@
 
 // ----- Forward declarations -----
 
-typedef std::pair<unsigned int, unsigned int> Fileref;	// Filref consist of a (folder, file) combo.
+
+struct Fileref {
+    unsigned int folderId;
+    unsigned int fileId;
+    
+    Fileref(unsigned int folderid, unsigned int fileid) {
+        folderId = folderid;
+        fileId = fileid;
+    }
+    
+    // Provide a "<" operator that orders keys.
+    // The way it orders them doesn't matter, all that matters is that
+    // it orders them consistently.
+    bool operator<(Fileref const& other) const {
+        if (folderId < other.folderId) return true; else
+            if (folderId == other.folderId) {
+                if (fileId < other.fileId) return true; else
+                    if (fileId == other.fileId) {
+                        // We should never reach this point
+                        
+                    }
+            }
+        
+        return false;
+    }
+};
+
+
 
 // --------------------------------------------------------------------------------
 //									IND_SpriterEntity
@@ -46,8 +90,6 @@ public:
 	// ----- Public methods ------
     
     void playAnimation(int animation); // TODO maybe input parameter animationname instead??
-    void update(int deltaTime);
-    void draw(float x, float y, float angle, float scale_x, float scale_y);
     void stopAnimation();
 
 	// ----- Public gets ------
@@ -77,15 +119,16 @@ private:
 	
 	// ----- Structures ------
 
+    typedef map <Fileref, IND_Surface*> SurfaceToFileMap;
     
 	const char                  *_id;                   // Entity ID
 	const char                  *_name;                 // Entity name
-    map<Fileref*, IND_Image*>   *_images;               // map of images used in animations
+    SurfaceToFileMap            *_surfaces;             // map of surfaces used in animations
     std::vector <Animation *>   *_animations;           // vector of animations
     
     int                         _currentAnimation;      // current animation playing
     int                         _currentKey;            // current key of animation playing
-    int                         _currentTime;           // current time of the animation
+    double                         _currentTime;           // current time of the animation
     
     bool                        _drawBones;             // TODO: support this in a later version
     bool                        _drawObjectpositions;   // TODO: support this in a later version
@@ -97,12 +140,12 @@ private:
 
 	// ----- Private methods -----
     
-    void drawTransientObject(float x, float y, float angle, float scale_x, float scale_y);
-    void drawPersistentObject(float x, float y, float angle, float scale_x, float scale_y);
-    void drawBone(float x, float y, float angle, float scale_x, float scale_y);             // TODO: support this in a later version
+    
+    TimelineObject* getTimelineObject(int timelineId, int keyId);
+    IND_Surface* getSurface(int folderId, int fileId);
     
     void initAttrib();
-    void addImage(const char *folderId, const char *fileId, IND_Image *pImage);
+    void addSurface(int folderId, int fileId, IND_Surface *pSurface);
     Animation* addAnimation(int id, const char* name, int length, const char* looping, int loop_to);
     
 	// ----- Friends -----

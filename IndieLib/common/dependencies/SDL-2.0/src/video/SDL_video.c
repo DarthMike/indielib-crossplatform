@@ -360,23 +360,20 @@ SDL_DestroyWindowTexture(_THIS, SDL_Window * window)
 static int
 cmpmodes(const void *A, const void *B)
 {
-    SDL_DisplayMode a = *(const SDL_DisplayMode *) A;
-    SDL_DisplayMode b = *(const SDL_DisplayMode *) B;
-
-    if (a.w != b.w) {
-        return b.w - a.w;
-    }
-    if (a.h != b.h) {
-        return b.h - a.h;
-    }
-    if (SDL_BITSPERPIXEL(a.format) != SDL_BITSPERPIXEL(b.format)) {
-        return SDL_BITSPERPIXEL(b.format) - SDL_BITSPERPIXEL(a.format);
-    }
-    if (SDL_PIXELLAYOUT(a.format) != SDL_PIXELLAYOUT(b.format)) {
-        return SDL_PIXELLAYOUT(b.format) - SDL_PIXELLAYOUT(a.format);
-    }
-    if (a.refresh_rate != b.refresh_rate) {
-        return b.refresh_rate - a.refresh_rate;
+    const SDL_DisplayMode *a = (const SDL_DisplayMode *) A;
+    const SDL_DisplayMode *b = (const SDL_DisplayMode *) B;
+    if (a == b) {
+        return 0;
+    } else if (a->w != b->w) {
+        return b->w - a->w;
+    } else if (a->h != b->h) {
+        return b->h - a->h;
+    } else if (SDL_BITSPERPIXEL(a->format) != SDL_BITSPERPIXEL(b->format)) {
+        return SDL_BITSPERPIXEL(b->format) - SDL_BITSPERPIXEL(a->format);
+    } else if (SDL_PIXELLAYOUT(a->format) != SDL_PIXELLAYOUT(b->format)) {
+        return SDL_PIXELLAYOUT(b->format) - SDL_PIXELLAYOUT(a->format);
+    } else if (a->refresh_rate != b->refresh_rate) {
+        return b->refresh_rate - a->refresh_rate;
     }
     return 0;
 }
@@ -422,11 +419,10 @@ SDL_VideoInit(const char *driver_name)
 #endif
 
     /* Start the event loop */
-    if (SDL_StartEventLoop() < 0 ||
+    if (SDL_InitSubSystem(SDL_INIT_EVENTS) < 0 ||
         SDL_KeyboardInit() < 0 ||
         SDL_MouseInit() < 0 ||
-        SDL_TouchInit() < 0 ||
-        SDL_QuitInit() < 0) {
+        SDL_TouchInit() < 0) {
         return -1;
     }
 
@@ -500,6 +496,9 @@ SDL_VideoInit(const char *driver_name)
     _this->gl_config.flags = 0;
     _this->gl_config.profile_mask = 0;
     _this->gl_config.share_with_current_context = 0;
+
+    _this->current_glwin_tls = SDL_TLSCreate();
+    _this->current_glctx_tls = SDL_TLSCreate();
 
     /* Initialize the video subsystem */
     if (_this->VideoInit(_this) < 0) {
@@ -664,8 +663,8 @@ SDL_AddDisplayMode(SDL_VideoDisplay * display,  const SDL_DisplayMode * mode)
     /* Make sure we don't already have the mode in the list */
     modes = display->display_modes;
     nmodes = display->num_display_modes;
-    for (i = nmodes; i--;) {
-        if (SDL_memcmp(mode, &modes[i], sizeof(*mode)) == 0) {
+    for (i = 0; i < nmodes; ++i) {
+        if (cmpmodes(mode, &modes[i]) == 0) {
             return SDL_FALSE;
         }
     }
@@ -1213,6 +1212,10 @@ SDL_CreateWindow(const char *title, int x, int y, int w, int h, Uint32 flags)
         }
     }
     window = (SDL_Window *)SDL_calloc(1, sizeof(*window));
+    if (!window) {
+        SDL_OutOfMemory();
+        return NULL;
+    }
     window->magic = &_this->window_magic;
     window->id = _this->next_object_id++;
     window->x = x;
@@ -1268,6 +1271,10 @@ SDL_CreateWindowFrom(const void *data)
         return NULL;
     }
     window = (SDL_Window *)SDL_calloc(1, sizeof(*window));
+    if (!window) {
+        SDL_OutOfMemory();
+        return NULL;
+    }
     window->magic = &_this->window_magic;
     window->id = _this->next_object_id++;
     window->flags = SDL_WINDOW_FOREIGN;
@@ -1290,6 +1297,7 @@ int
 SDL_RecreateWindow(SDL_Window * window, Uint32 flags)
 {
     char *title = window->title;
+    SDL_Surface *icon = window->icon;
 
     if ((flags & SDL_WINDOW_OPENGL) && !_this->GL_CreateContext) {
         return SDL_SetError("No OpenGL support in video driver");
@@ -1328,6 +1336,7 @@ SDL_RecreateWindow(SDL_Window * window, Uint32 flags)
     }
 
     window->title = NULL;
+    window->icon = NULL;
     window->flags = ((flags & CREATE_FLAGS) | SDL_WINDOW_HIDDEN);
 
     if (_this->CreateWindow && !(flags & SDL_WINDOW_FOREIGN)) {
@@ -1342,6 +1351,10 @@ SDL_RecreateWindow(SDL_Window * window, Uint32 flags)
     if (title) {
         SDL_SetWindowTitle(window, title);
         SDL_free(title);
+    }
+    if (icon) {
+        SDL_SetWindowIcon(window, icon);
+        SDL_FreeSurface(icon);
     }
     SDL_FinishWindowCreation(window, flags);
 
@@ -1419,8 +1432,18 @@ SDL_SetWindowIcon(SDL_Window * window, SDL_Surface * icon)
         return;
     }
 
+    if (window->icon) {
+        SDL_FreeSurface(window->icon);
+    }
+
+    /* Convert the icon into ARGB8888 */
+    window->icon = SDL_ConvertSurfaceFormat(icon, SDL_PIXELFORMAT_ARGB8888, 0);
+    if (!window->icon) {
+        return;
+    }
+
     if (_this->SetWindowIcon) {
-        _this->SetWindowIcon(_this, window, icon);
+        _this->SetWindowIcon(_this, window, window->icon);
     }
 }
 
@@ -1732,6 +1755,8 @@ SDL_MaximizeWindow(SDL_Window * window)
     if (window->flags & SDL_WINDOW_MAXIMIZED) {
         return;
     }
+
+    // !!! FIXME: should this check if the window is resizable?
 
     if (_this->MaximizeWindow) {
         _this->MaximizeWindow(_this, window);
@@ -2088,8 +2113,8 @@ SDL_OnWindowFocusLost(SDL_Window * window)
     SDL_UpdateWindowGrab(window);
 
     /* If we're fullscreen and lose focus, minimize unless the hint tells us otherwise */
-     if ((window->flags & SDL_WINDOW_FULLSCREEN) && ShouldMinimizeOnFocusLoss() ) {
-            SDL_MinimizeWindow(window);
+    if ((window->flags & SDL_WINDOW_FULLSCREEN) && ShouldMinimizeOnFocusLoss()) {
+        SDL_MinimizeWindow(window);
     }
 }
 
@@ -2159,6 +2184,9 @@ SDL_DestroyWindow(SDL_Window * window)
     /* Free memory associated with the window */
     if (window->title) {
         SDL_free(window->title);
+    }
+    if (window->icon) {
+        SDL_FreeSurface(window->icon);
     }
     if (window->gamma) {
         SDL_free(window->gamma);
@@ -2233,10 +2261,10 @@ SDL_VideoQuit(void)
     }
 
     /* Halt event processing before doing anything else */
-    SDL_QuitQuit();
+    SDL_TouchQuit();
     SDL_MouseQuit();
     SDL_KeyboardQuit();
-    SDL_StopEventLoop();
+    SDL_QuitSubSystem(SDL_INIT_EVENTS);
 
     SDL_EnableScreenSaver();
 
@@ -2246,7 +2274,7 @@ SDL_VideoQuit(void)
     }
     _this->VideoQuit(_this);
 
-    for (i = _this->num_displays; i--;) {
+    for (i = 0; i < _this->num_displays; ++i) {
         SDL_VideoDisplay *display = &_this->displays[i];
         for (j = display->num_display_modes; j--;) {
             if (display->display_modes[j].driverdata) {
@@ -2729,9 +2757,12 @@ SDL_GL_CreateContext(SDL_Window * window)
     ctx = _this->GL_CreateContext(_this, window);
 
     /* Creating a context is assumed to make it current in the SDL driver. */
-    _this->current_glwin = window;
-    _this->current_glctx = ctx;
-
+    if (ctx) {
+        _this->current_glwin = window;
+        _this->current_glctx = ctx;
+        SDL_TLSSet(_this->current_glwin_tls, window, NULL);
+        SDL_TLSSet(_this->current_glctx_tls, ctx, NULL);
+    }
     return ctx;
 }
 
@@ -2739,6 +2770,12 @@ int
 SDL_GL_MakeCurrent(SDL_Window * window, SDL_GLContext ctx)
 {
     int retval;
+
+    if (window == SDL_GL_GetCurrentWindow() &&
+        ctx == SDL_GL_GetCurrentContext()) {
+        /* We're already current. */
+        return 0;
+    }
 
     if (!ctx) {
         window = NULL;
@@ -2750,17 +2787,34 @@ SDL_GL_MakeCurrent(SDL_Window * window, SDL_GLContext ctx)
         }
     }
 
-    if ((window == _this->current_glwin) && (ctx == _this->current_glctx)) {
-        retval = 0;  /* we're already current. */
-    } else {
-        retval = _this->GL_MakeCurrent(_this, window, ctx);
-        if (retval == 0) {
-            _this->current_glwin = window;
-            _this->current_glctx = ctx;
-        }
+    retval = _this->GL_MakeCurrent(_this, window, ctx);
+    if (retval == 0) {
+        _this->current_glwin = window;
+        _this->current_glctx = ctx;
+        SDL_TLSSet(_this->current_glwin_tls, window, NULL);
+        SDL_TLSSet(_this->current_glctx_tls, ctx, NULL);
     }
-
     return retval;
+}
+
+SDL_Window *
+SDL_GL_GetCurrentWindow(void)
+{
+    if (!_this) {
+        SDL_UninitializedVideo();
+        return NULL;
+    }
+    return (SDL_Window *)SDL_TLSGet(_this->current_glwin_tls);
+}
+
+SDL_GLContext
+SDL_GL_GetCurrentContext(void)
+{
+    if (!_this) {
+        SDL_UninitializedVideo();
+        return NULL;
+    }
+    return (SDL_GLContext)SDL_TLSGet(_this->current_glctx_tls);
 }
 
 int
@@ -2768,7 +2822,7 @@ SDL_GL_SetSwapInterval(int interval)
 {
     if (!_this) {
         return SDL_UninitializedVideo();
-    } else if (_this->current_glctx == NULL) {
+    } else if (SDL_GL_GetCurrentContext() == NULL) {
         return SDL_SetError("No OpenGL context has been made current");
     } else if (_this->GL_SetSwapInterval) {
         return _this->GL_SetSwapInterval(_this, interval);
@@ -2782,7 +2836,7 @@ SDL_GL_GetSwapInterval(void)
 {
     if (!_this) {
         return 0;
-    } else if (_this->current_glctx == NULL) {
+    } else if (SDL_GL_GetCurrentContext() == NULL) {
         return 0;
     } else if (_this->GL_GetSwapInterval) {
         return _this->GL_GetSwapInterval(_this);
@@ -2800,6 +2854,12 @@ SDL_GL_SwapWindow(SDL_Window * window)
         SDL_SetError("The specified window isn't an OpenGL window");
         return;
     }
+
+    if (SDL_GL_GetCurrentWindow() != window) {
+        SDL_SetError("The specified window has not been made current");
+        return;
+    }
+
     _this->GL_SwapWindow(_this, window);
 }
 
@@ -2810,7 +2870,7 @@ SDL_GL_DeleteContext(SDL_GLContext context)
         return;
     }
 
-    if (_this->current_glctx == context) {
+    if (SDL_GL_GetCurrentContext() == context) {
         SDL_GL_MakeCurrent(NULL, NULL);
     }
 
@@ -3019,53 +3079,83 @@ SDL_IsScreenKeyboardShown(SDL_Window *window)
 #include "x11/SDL_x11messagebox.h"
 #endif
 
+static SDL_bool SDL_MessageboxValidForDriver(const SDL_MessageBoxData *messageboxdata, SDL_SYSWM_TYPE drivertype)
+{
+    SDL_SysWMinfo info;
+    SDL_Window *window = messageboxdata->window;
+
+    if (!window) {
+        return SDL_TRUE;
+    }
+
+    SDL_VERSION(&info.version);
+    if (!SDL_GetWindowWMInfo(window, &info)) {
+        return SDL_TRUE;
+    } else {
+        return (info.subsystem == drivertype);
+    }
+}
+
 int
 SDL_ShowMessageBox(const SDL_MessageBoxData *messageboxdata, int *buttonid)
 {
     int dummybutton;
     int retval = -1;
-    SDL_bool relative_mode = SDL_GetRelativeMouseMode();
-    int show_cursor_prev = SDL_ShowCursor( 1 );
+    SDL_bool relative_mode;
+    int show_cursor_prev;
 
-    SDL_SetRelativeMouseMode( SDL_FALSE );
+    if (!messageboxdata) {
+        return SDL_InvalidParamError("messageboxdata");
+    }
+
+    relative_mode = SDL_GetRelativeMouseMode();
+    SDL_SetRelativeMouseMode(SDL_FALSE);
+    show_cursor_prev = SDL_ShowCursor(1);
 
     if (!buttonid) {
         buttonid = &dummybutton;
     }
+
     if (_this && _this->ShowMessageBox) {
-        if (_this->ShowMessageBox(_this, messageboxdata, buttonid) == 0) {
-            retval = 0;
-        }
+        retval = _this->ShowMessageBox(_this, messageboxdata, buttonid);
     }
 
     /* It's completely fine to call this function before video is initialized */
 #if SDL_VIDEO_DRIVER_WINDOWS
-    if ((retval == -1) && (WIN_ShowMessageBox(messageboxdata, buttonid) == 0)) {
+    if (retval == -1 &&
+        SDL_MessageboxValidForDriver(messageboxdata, SDL_SYSWM_WINDOWS) &&
+        WIN_ShowMessageBox(messageboxdata, buttonid) == 0) {
         retval = 0;
     }
 #endif
 #if SDL_VIDEO_DRIVER_COCOA
-    if ((retval == -1) && (Cocoa_ShowMessageBox(messageboxdata, buttonid) == 0)) {
+    if (retval == -1 &&
+        SDL_MessageboxValidForDriver(messageboxdata, SDL_SYSWM_COCOA) &&
+        Cocoa_ShowMessageBox(messageboxdata, buttonid) == 0) {
         retval = 0;
     }
 #endif
 #if SDL_VIDEO_DRIVER_UIKIT
-    if ((retval == -1) && (UIKit_ShowMessageBox(messageboxdata, buttonid) == 0)) {
+    if (retval == -1 &&
+        SDL_MessageboxValidForDriver(messageboxdata, SDL_SYSWM_UIKIT) &&
+        UIKit_ShowMessageBox(messageboxdata, buttonid) == 0) {
         retval = 0;
     }
 #endif
 #if SDL_VIDEO_DRIVER_X11
-    if ((retval == -1) && (X11_ShowMessageBox(messageboxdata, buttonid) == 0)) {
+    if (retval == -1 &&
+        SDL_MessageboxValidForDriver(messageboxdata, SDL_SYSWM_X11) &&
+        X11_ShowMessageBox(messageboxdata, buttonid) == 0) {
         retval = 0;
     }
 #endif
-
-    SDL_ShowCursor( show_cursor_prev );
-    SDL_SetRelativeMouseMode( relative_mode );
-
-    if(retval == -1) {
+    if (retval == -1) {
         SDL_SetError("No message system available");
     }
+
+    SDL_ShowCursor(show_cursor_prev);
+    SDL_SetRelativeMouseMode(relative_mode);
+
     return retval;
 }
 

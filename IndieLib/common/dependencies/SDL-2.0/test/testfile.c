@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 1997-2011 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -92,8 +92,8 @@ main(int argc, char *argv[])
         RWOP_ERR_QUIT(rwops);
     printf("test1 OK\n");
 
-/* test 2 : check that inexistant file is not successfully opened/created when required */
-/* modes : r, r+ implie that file MUST exist
+/* test 2 : check that inexistent file is not successfully opened/created when required */
+/* modes : r, r+ imply that file MUST exist
    modes : a, a+, w, w+ checks that it succeeds (file may not exists)
 
  */

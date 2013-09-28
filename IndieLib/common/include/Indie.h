@@ -3,27 +3,38 @@
  * Desc: Includes
  *****************************************************************************************/
 
+/*********************************** The zlib License ************************************
+ *
+ * Copyright (c) 2013 Indielib-crossplatform Development Team
+ *
+ * This software is provided 'as-is', without any express or implied
+ * warranty. In no event will the authors be held liable for any damages
+ * arising from the use of this software.
+ *
+ * Permission is granted to anyone to use this software for any purpose,
+ * including commercial applications, and to alter it and redistribute it
+ * freely, subject to the following restrictions:
+ *
+ * 1. The origin of this software must not be misrepresented; you must not
+ * claim that you wrote the original software. If you use this software
+ * in a product, an acknowledgment in the product documentation would be
+ * appreciated but is not required.
+ *
+ * 2. Altered source versions must be plainly marked as such, and must not be
+ * misrepresented as being the original software.
+ *
+ * 3. This notice may not be removed or altered from any source
+ * distribution.
+ *
+ *****************************************************************************************/
+
+
 #ifndef _INDIELIB_
 #define _INDIELIB_
 
 /*
-IndieLib 2d library Copyright (C) 2005 Javier López López (javierlopezpro@gmail.com)
-MODIFIED BY Miguel Angel Quiñones (2011) (mail:m.quinones.garcia@gmail.com / mikeskywalker007@gmail.com)
-
-This library is free software; you can redistribute it and/or modify it under the
-terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2.1 of the License, or (at your option) any later version.
-
-This library is distributed in the hope that it will be useful, but WITHOUT ANY
-WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
-
-You should have received a copy of the GNU Lesser General Public License along with
-this library; if not, write to the Free Software Foundation, Inc., 59 Temple Place,
-Suite 330, Boston, MA 02111-1307 USA
-*/
-
-/*
+    TODO: This documentation should probably be moved somewhere else...
+ 
     MODIFICATIONS FROM ORIGINAL:
         - IND_RENDER METHOD: BlitTriangleList Added
         - IND_RENDER: Method SetForPrimitive was not adding IND_ALPHA to make transparencies when blitting!
@@ -41,12 +52,18 @@ Suite 330, Boston, MA 02111-1307 USA
                                               should be. Before scale didnt affect to text
 */
 
+
 // Namespace
 #include <fstream>
 using namespace std;
 
 //Version defs
 #include "IndieVersion.h"
+
+// Math
+#include "IND_Math.h"
+#include "IND_Vector2.h"
+#include "IND_Vector3.h"
 
 // Defines and types
 #include "Defines.h"
@@ -63,18 +80,11 @@ using namespace std;
 // Timer
 #include "IND_Timer.h"
 
-// Math
-#include "IND_Math.h"
-#include "IND_Vector2.h"
-#include "IND_Vector3.h"
-
 // Tmx Maps
 #include "IND_TmxMapManager.h"
 
 // Spriter animations
-#if defined (PLATFORM_LINUX) || defined (PLATFORM_OSX)  //FIXME: Should add compile settings to all platforms when support is fully completed
 #include "IND_SpriterManager.h"
-#endif
 
 // Entities
 #include "IND_Entity2dManager.h"

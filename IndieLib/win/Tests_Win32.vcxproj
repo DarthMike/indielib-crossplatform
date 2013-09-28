@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Development_Debug|Win32">
+      <Configuration>Development_Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{6DEA187E-ACF6-4A55-AA2F-ABBFFAE5EBEE}</ProjectGuid>
+    <RootNamespace>Tests_Win32</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development_Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Development_Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>11.0.60610.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(ProjectDir)/../bin/win\</OutDir>
+    <IntDir>$(SolutionDir)/../build/$(Configuration)/$(ProjectName)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development_Debug|Win32'">
+    <OutDir>$(ProjectDir)/../bin/win\</OutDir>
+    <IntDir>$(SolutionDir)/../build/$(Configuration)/$(ProjectName)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <AdditionalIncludeDirectories>../Common/; ../Common/include/ ; ../Common/src/;../tests/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader />
+      <ProgramDataBaseFileName>$(TargetDir)$(TargetName).pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Development_Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../Common/; ../Common/include/ ; ../Common/src/;../tests/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <PrecompiledHeader />
+      <ProgramDataBaseFileName>$(TargetDir)$(TargetName).pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Tests\Manual\ManualTests.h" />
+    <ClInclude Include="..\tests\manual\TmxmapTests.h" />
+    <ClInclude Include="..\tests\WorkingPath.h" />
+    <ClInclude Include="..\Tests\Manual\Functionality\FunctionalityTests.h" />
+    <ClInclude Include="..\tests\CIndieLib.h" />
+    <ClInclude Include="..\Tests\Manual\Primitives\PrimitiveTests.h" />
+    <ClInclude Include="..\Tests\Manual\Camera2d\Camera2dTests.h" />
+    <ClInclude Include="..\tests\manual\surface\SurfaceTests.h" />
+    <ClInclude Include="..\tests\manual\surface\SurfaceTests_Filters.h" />
+    <ClInclude Include="..\tests\manual\surface\SurfaceTests_layout.h" />
+    <ClInclude Include="..\tests\manual\surface\SurfaceTests_textBlock.h" />
+    <ClInclude Include="..\tests\manual\surface\SurfaceTests_wrap.h" />
+    <ClInclude Include="..\tests\manual\image\INDImageTests_Conversions.h" />
+    <ClInclude Include="..\tests\manual\image\INDImageTests_Conversions_NonRGB.h" />
+    <ClInclude Include="..\tests\manual\image\INDImageTests_nonPOTLoad.h" />
+    <ClInclude Include="..\tests\manual\image\INDImageTests_POTLoad.h" />
+    <ClInclude Include="..\tests\manual\animation\AnimationTests.h" />
+    <ClInclude Include="..\tests\manual\font\FontTests.h" />
+    <ClInclude Include="..\tests\manual\font\FontTests_Pretty.h" />
+    <ClInclude Include="..\tests\manual\collision\CollisionTests.h" />
+    <ClInclude Include="..\tests\manual\entities\EntityTests_animateRotations.h" />
+    <ClInclude Include="..\tests\manual\entities\EntityTests_animateScale.h" />
+    <ClInclude Include="..\tests\manual\entities\EntityTests_interactions.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Tests\Manual\ManualTestsMain.cpp" />
+    <ClCompile Include="..\tests\manual\TmxmapTests.cpp" />
+    <ClCompile Include="..\tests\WorkingPath.cpp" />
+    <ClCompile Include="..\Tests\Manual\Functionality\FunctionalityTests.cpp" />
+    <ClCompile Include="..\tests\CIndieLib.cpp" />
+    <ClCompile Include="..\Tests\Manual\Primitives\PrimitiveTests.cpp" />
+    <ClCompile Include="..\Tests\Manual\Camera2d\Camera2dTests.cpp" />
+    <ClCompile Include="..\tests\manual\surface\SurfaceTests.cpp" />
+    <ClCompile Include="..\tests\manual\surface\SurfaceTests_Filters.cpp" />
+    <ClCompile Include="..\tests\manual\surface\SurfaceTests_layout.cpp" />
+    <ClCompile Include="..\tests\manual\surface\SurfaceTests_textBlock.cpp" />
+    <ClCompile Include="..\tests\manual\surface\SurfaceTests_wrap.cpp" />
+    <ClCompile Include="..\tests\manual\image\INDImageTests_Conversions.cpp" />
+    <ClCompile Include="..\tests\manual\image\INDImageTests_Conversions_NonRGB.cpp" />
+    <ClCompile Include="..\tests\manual\image\INDImageTests_nonPOTLoad.cpp" />
+    <ClCompile Include="..\tests\manual\image\INDImageTests_POTLoad.cpp" />
+    <ClCompile Include="..\tests\manual\animation\AnimationTests.cpp" />
+    <ClCompile Include="..\tests\manual\font\FontTests.cpp" />
+    <ClCompile Include="..\tests\manual\font\FontTests_Pretty.cpp" />
+    <ClCompile Include="..\tests\manual\collision\CollisionTests.cpp" />
+    <ClCompile Include="..\tests\manual\entities\EntityTests_animateRotations.cpp" />
+    <ClCompile Include="..\tests\manual\entities\EntityTests_animateScale.cpp" />
+    <ClCompile Include="..\tests\manual\entities\EntityTests_interactions.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="IndieLib.vcxproj">
+      <Project>{ec5db2f1-5096-430a-b62f-65859f497e5d}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="UnitTests.vcxproj">
+      <Project>{5e7f283c-5c0e-47b8-a057-1cdae313d18b}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

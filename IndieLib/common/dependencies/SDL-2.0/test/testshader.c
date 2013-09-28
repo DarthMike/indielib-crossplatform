@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 1997-2011 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -11,6 +11,7 @@
 */
 /* This is a simple example of using GLSL shaders with SDL */
 
+#include <stdio.h> /* for printf() */
 #include "SDL.h"
 
 #ifdef HAVE_OPENGL

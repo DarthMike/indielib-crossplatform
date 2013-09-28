@@ -1,7 +1,27 @@
-/*****************************************************************************************
- * Desc: IndieLib singleton initialization class
+/*********************************** The zlib License ************************************
+ *
+ * Copyright (c) 2013 Indielib-crossplatform Development Team
+ *
+ * This software is provided 'as-is', without any express or implied
+ * warranty. In no event will the authors be held liable for any damages
+ * arising from the use of this software.
+ *
+ * Permission is granted to anyone to use this software for any purpose,
+ * including commercial applications, and to alter it and redistribute it
+ * freely, subject to the following restrictions:
+ *
+ * 1. The origin of this software must not be misrepresented; you must not
+ * claim that you wrote the original software. If you use this software
+ * in a product, an acknowledgment in the product documentation would be
+ * appreciated but is not required.
+ *
+ * 2. Altered source versions must be plainly marked as such, and must not be
+ * misrepresented as being the original software.
+ *
+ * 3. This notice may not be removed or altered from any source
+ * distribution.
+ *
  *****************************************************************************************/
-
 #include "CIndieLib.h"
 
 /*
@@ -26,7 +46,7 @@ bool CIndieLib::init() {
 	//resetCurrentDirectory_W();
 
 	// IndieLib Initialization, a debug.log file will be created.
-	if (!IndieLib::init(IND_DEBUG_MODE)) return false;
+	IndieLib::init(IND_DEBUG_MODE);
 
 	_input               =   new     IND_Input;
 	_render              =   new     IND_Render;
@@ -39,6 +59,8 @@ bool CIndieLib::init() {
 	_entity2dManager     =   new     IND_Entity2dManager;
 	//_entity3dManager       =   new     IND_Entity3dManager;
 	_math                =   new     IND_Math;
+    _tmxMapManager       =   new     IND_TmxMapManager;
+    _spriterManager      =   new     IND_SpriterManager;
 
 	char windowPropsText[] = "IndieLib";
 	IND_WindowProperties props (windowPropsText, 800, 600, 32, 0, 0,1);
@@ -46,20 +68,22 @@ bool CIndieLib::init() {
 	
 	_window = _render        ->initRenderAndWindow(props);                                 
 	if(!_window)
-		return false;
+		return 0;
 
-	//if (!_lightManager     ->init (_render))                                    return false;
-	if (!_imageManager       ->init())                                           return false;
-	if (!_surfaceManager     ->init(_imageManager, _render))                     return false;
-	if (!_animationManager   ->init(_imageManager, _surfaceManager))             return false;
-	if (!_fontManager        ->init(_imageManager, _surfaceManager))             return false;
-	if (!_entity2dManager    ->init(_render))                                    return false;
-	//if (!_entity3dManager  ->init (_render))                                    return false;
-	//if (!_meshManager      ->init (_render))                                    return false;
-	if (!_input              ->init(_render))                                    return false;
-	if (!_math               ->init())                                           return false;
-
-	return true;
+	//if (!_lightManager     ->init (_render))                                    return 0;
+	if (!_imageManager       ->init())                                          return 0;
+	if (!_surfaceManager     ->init(_imageManager, _render))                    return 0;
+	if (!_animationManager   ->init(_imageManager, _surfaceManager))            return 0;
+	if (!_fontManager        ->init(_imageManager, _surfaceManager))            return 0;
+	if (!_entity2dManager    ->init(_render))                                   return 0;
+	//if (!_entity3dManager  ->init (_render))                                    return 0;
+	//if (!_meshManager      ->init (_render))                                    return 0;
+	if (!_input              ->init(_render))                                   return 0;
+	if (!_math               ->init())                                          return 0;
+    if (!_tmxMapManager      ->init(_render))                                          return 0;
+    if (!_spriterManager     ->init(_surfaceManager, _render))                  return 0;
+    
+	return 1;
 }
 
 
@@ -82,6 +106,8 @@ void CIndieLib::end() {
 	_imageManager        ->end();
 	//_lightManager      ->end();
 	_render              ->end();
+    _tmxMapManager       ->end();
+    _spriterManager      ->end();
 
 	DISPOSE(_math);
 	//DISPOSE(_meshManager);
@@ -91,11 +117,15 @@ void CIndieLib::end() {
 	DISPOSE(_fontManager);
 	DISPOSE(_animationManager);
 	DISPOSE(_surfaceManager);
-    	DISPOSE(_imageManager);
+    DISPOSE(_imageManager);
 	//DISPOSE(_lightManager);
 	DISPOSE(_render);
+    DISPOSE(_tmxMapManager);
+    DISPOSE(_spriterManager);
 
 	IndieLib::end();
 
     DISPOSE(_pinstance);
 }
+
+

@@ -25,6 +25,7 @@
 
 #include "SDL_messagebox.h"
 #include "SDL_shape.h"
+#include "SDL_thread.h"
 
 /* The SDL video driver */
 
@@ -72,6 +73,7 @@ struct SDL_Window
     const void *magic;
     Uint32 id;
     char *title;
+    SDL_Surface *icon;
     int x, y;
     int w, h;
     int min_w, min_h;
@@ -299,8 +301,13 @@ struct SDL_VideoDevice
 
     /* * * */
     /* Cache current GL context; don't call the OS when it hasn't changed. */
+    /* We have the global pointers here so Cocoa continues to work the way
+       it always has, and the thread-local storage for the general case.
+     */
     SDL_Window *current_glwin;
     SDL_GLContext current_glctx;
+    SDL_TLSID current_glwin_tls;
+    SDL_TLSID current_glctx_tls;
 
     /* * * */
     /* Data private to this driver */

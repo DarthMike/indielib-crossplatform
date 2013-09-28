@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 1997-2011 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -105,7 +105,7 @@ main(int argc, char *argv[])
     now = SDL_GetPerformanceCounter();
     printf("1 million iterations of ticktock took %f ms\n", (double)((now - start)*1000) / SDL_GetPerformanceFrequency());
 
-    printf("Performance counter frequency: %lld\n", SDL_GetPerformanceFrequency());
+    printf("Performance counter frequency: %llu\n", (unsigned long long) SDL_GetPerformanceFrequency());
     start32 = SDL_GetTicks();
     start = SDL_GetPerformanceCounter();
     SDL_Delay(1000);

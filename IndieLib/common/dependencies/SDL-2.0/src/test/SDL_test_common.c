@@ -930,8 +930,8 @@ SDLTest_CommonInit(SDLTest_CommonState * state)
 static void
 SDLTest_PrintEvent(SDL_Event * event)
 {
-    if (event->type == SDL_MOUSEMOTION) {
-        /* Mouse motion is really spammy */
+    if ((event->type == SDL_MOUSEMOTION) || (event->type == SDL_FINGERMOTION)) {
+        /* Mouse and finger motion are really spammy */
         return;
     }
 
@@ -1089,6 +1089,17 @@ SDLTest_PrintEvent(SDL_Event * event)
     case SDL_CLIPBOARDUPDATE:
         fprintf(stderr, "Clipboard updated");
         break;
+
+    case SDL_FINGERDOWN:
+    case SDL_FINGERUP:
+        fprintf(stderr, "Finger: %s touch=%lld, finger=%lld, x=%f, y=%f, dx=%f, dy=%f, pressure=%f",
+                (event->type == SDL_FINGERDOWN) ? "down" : "up",
+                (long long) event->tfinger.touchId,
+                (long long) event->tfinger.fingerId,
+                event->tfinger.x, event->tfinger.y,
+                event->tfinger.dx, event->tfinger.dy, event->tfinger.pressure);
+        break;
+
     case SDL_QUIT:
         fprintf(stderr, "Quit requested");
         break;
@@ -1198,7 +1209,7 @@ SDLTest_CommonEvent(SDLTest_CommonState * state, SDL_Event * event, int *done)
             break;
         case SDLK_EQUALS:
             if (event->key.keysym.mod & KMOD_CTRL) {
-                /* Ctrt-+ double the size of the window */
+                /* Ctrl-+ double the size of the window */
                 SDL_Window *window = SDL_GetWindowFromID(event->key.windowID);
                 if (window) {
                     int w, h;
@@ -1209,7 +1220,7 @@ SDLTest_CommonEvent(SDLTest_CommonState * state, SDL_Event * event, int *done)
             break;
         case SDLK_MINUS:
             if (event->key.keysym.mod & KMOD_CTRL) {
-                /* Ctrt-- double the size of the window */
+                /* Ctrl-- half the size of the window */
                 SDL_Window *window = SDL_GetWindowFromID(event->key.windowID);
                 if (window) {
                     int w, h;
@@ -1308,7 +1319,7 @@ SDLTest_CommonEvent(SDLTest_CommonState * state, SDL_Event * event, int *done)
                     }
                 }
             } else if (event->key.keysym.mod & KMOD_ALT) {
-                /* Ctrl-Enter toggle fullscreen desktop */
+                /* Alt-Enter toggle fullscreen desktop */
                 SDL_Window *window = SDL_GetWindowFromID(event->key.windowID);
                 if (window) {
                     Uint32 flags = SDL_GetWindowFlags(window);

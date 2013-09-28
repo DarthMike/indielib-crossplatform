@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 1997-2011 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -91,7 +91,7 @@ void RunBasicTest()
 /* Tests semantics of atomic operations.  Also a stress test
  * to see if they are really atomic.
  *
- * Serveral threads adding to the same variable.
+ * Several threads adding to the same variable.
  * at the end the value is compared with the expected
  * and with a non-atomic counter.
  */
@@ -498,7 +498,6 @@ static int FIFO_Writer(void* _data)
 {
     WriterData *data = (WriterData *)_data;
     SDL_EventQueue *queue = data->queue;
-    int index = data->index;
     int i;
     SDL_Event event;
 

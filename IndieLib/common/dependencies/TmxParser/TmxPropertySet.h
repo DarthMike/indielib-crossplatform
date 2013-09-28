@@ -52,7 +52,7 @@ namespace Tmx
 		std::string GetLiteralProperty(const std::string &name) const;
 
 		// Returns the amount of properties.
-		int GetSize() const { return properties.size(); }
+		int GetSize() const { return (int)properties.size(); }
 
 		// Returns the STL map of the properties.
 		std::map< std::string, std::string > GetList() const 

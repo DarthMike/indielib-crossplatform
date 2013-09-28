@@ -3,14 +3,30 @@
  * Desc: Spriter manager
  *****************************************************************************************/
 
-/*
- * ----------------------------------------------------------------------------
- * "THE BEER-WARE LICENSE" (Revision 42):
- * <michael@visualdesign.dk> wrote this file. As long as you retain this notice you
- * can do whatever you want with this stuff. If we meet some day, and you think
- * this stuff is worth it, you can buy me a beer in return Michael Fogh Kristensen
- * ----------------------------------------------------------------------------
- */
+/*********************************** The zlib License ************************************
+ *
+ * Copyright (c) 2013 Indielib-crossplatform Development Team
+ *
+ * This software is provided 'as-is', without any express or implied
+ * warranty. In no event will the authors be held liable for any damages
+ * arising from the use of this software.
+ *
+ * Permission is granted to anyone to use this software for any purpose,
+ * including commercial applications, and to alter it and redistribute it
+ * freely, subject to the following restrictions:
+ *
+ * 1. The origin of this software must not be misrepresented; you must not
+ * claim that you wrote the original software. If you use this software
+ * in a product, an acknowledgment in the product documentation would be
+ * appreciated but is not required.
+ *
+ * 2. Altered source versions must be plainly marked as such, and must not be
+ * misrepresented as being the original software.
+ *
+ * 3. This notice may not be removed or altered from any source
+ * distribution.
+ *
+ *****************************************************************************************/
 
 
 #ifndef _IND_SPRITERMANAGER_
@@ -21,8 +37,6 @@
 #include "../dependencies/SpriterParser/Animation.h"
 #include "../dependencies/SpriterParser/Mainline.h"
 #include "../dependencies/SpriterParser/Timeline.h"
-//#include "../dependencies/SpriterParser/MainlineKey.h"
-//#include "../dependencies/SpriterParser/TimelineKey.h"
 
 
 #include <list>
@@ -30,11 +44,13 @@
 
 // ----- Forward declarations -----
 class IND_SurfaceManager;
-class IND_ImageManager;
 class IND_Image;
 class IND_Timer;
 class CollisionParser;
 class IND_SpriterEntity;
+class IND_Render;
+class IND_Surface;
+class IND_Timer;
 
 
 // --------------------------------------------------------------------------------
@@ -51,7 +67,7 @@ public:
 		end();
 	}
 
-	bool    init();
+	bool    init(IND_SurfaceManager *pSurfaceManager, IND_Render *pRender);
 	void    end();
 	bool    isOK() {
 		return _ok;
@@ -59,40 +75,63 @@ public:
 
 	// ----- Public methods -----
     
-	bool addSpriterFile(list<IND_SpriterEntity*> *pSpriterEntityList,const char *pSCMLFileName);	
+	bool addSpriterFile(const char *pSCMLFileName);
 	bool remove(IND_SpriterEntity *pSen);
+    
+    vector <IND_SpriterEntity *>* getEntities() {
+        return _listSpriterEntity;
+    }
 
+    void renderEntities();
+    
 
 private:
 
 	// ----- Private -----
 
 	bool _ok;
+    double _deltaTime;
+    double _lastTime;
 
 	// ----- Enums -----
 
 
 	// ----- Objects -----
-
-	IND_ImageManager *_imageManager;
+    
+    IND_Render * _render;
+	IND_SurfaceManager *_surfaceManager;
+    IND_Timer * _timer;
 
 	// ----- Containers -----
 
-	list <IND_SpriterEntity *> *_listSpriterEntity;
+	vector <IND_SpriterEntity *> *_listSpriterEntity;
 
 	// ----- Private methods -----
 
 
 	void        addToList(IND_SpriterEntity *pNewEntity);
 	void        delFromlist(IND_SpriterEntity *pEn);
-	IND_Image   *loadImage(char *pName);
+	IND_Image*  loadImage(char *pName);
 	bool        remove(IND_SpriterEntity *pEn, bool pType);
 
-	bool        parseSpriterData(list<IND_SpriterEntity*> *pNewSpriterEntityList,const char *pSCMLFileName);
-
+    // ----- render methods -----
+    void        draw(IND_SpriterEntity *ent);
+    void        drawTransientObject(IND_SpriterEntity *ent, MainlineObjectref *mObjectref);
+    void        drawPersistentObject(IND_SpriterEntity *ent, MainlineObjectref *mObjectref);
+    void        drawBone(IND_SpriterEntity *ent, MainlineObjectref *mObjectref);
+    
+    void        updateCurrentTime(IND_SpriterEntity *ent, double deltaTime);
+    void        updateCurrentKey(IND_SpriterEntity *ent);
+    TimelineObject* getTimelineObject(IND_SpriterEntity *ent,int timelineId, int keyId);
+    IND_Surface*    getSurface(IND_SpriterEntity *ent, int folderId, int fileId);
+    
+    
+    // ----- parser methods -----
+	bool        parseSpriterData(const char *pSCMLFileName);
     int         toInt(const char* input);
-    float       toFloat(const char* input);
-	void        writeMessage();
+    float      toFloat(const char* input);
+	
+    void        writeMessage();
 	void        initVars();
 	void        freeVars();
 };

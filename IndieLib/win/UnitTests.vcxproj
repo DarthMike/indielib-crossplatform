@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Development_Debug|Win32">
+      <Configuration>Development_Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{5E7F283C-5C0E-47B8-A057-1CDAE313D18B}</ProjectGuid>
+    <RootNamespace>UnitTests</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development_Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Development_Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>11.0.60610.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(ProjectDir)/../bin/win\</OutDir>
+    <IntDir>$(SolutionDir)/../build/$(Configuration)/$(ProjectName)\</IntDir>
+    <EnableManagedIncrementalBuild>false</EnableManagedIncrementalBuild>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development_Debug|Win32'">
+    <OutDir>$(ProjectDir)/../bin/win\</OutDir>
+    <IntDir>$(SolutionDir)/../build/$(Configuration)/$(ProjectName)\</IntDir>
+    <EnableManagedIncrementalBuild>false</EnableManagedIncrementalBuild>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <AdditionalIncludeDirectories>../Common/; ../Common/include/ ; ../Common/src/;../tests/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader />
+      <WarningLevel>Level4</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Development_Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../Common/; ../Common/include/ ; ../Common/src/;../tests/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <PrecompiledHeader />
+      <ProgramDataBaseFileName>$(TargetDir)$(TargetName).pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Message>Performing Unit tests...</Message>
+      <Command>"$(TargetPath)"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\tests\CIndieLib.cpp" />
+    <ClCompile Include="..\Tests\UnitTests\UnitTests.cpp" />
+    <ClCompile Include="..\tests\WorkingPath.cpp" />
+    <ClCompile Include="..\tests\unittests\Collisions.cpp" />
+    <ClCompile Include="..\Tests\UnitTests\Math.cpp" />
+    <ClCompile Include="..\tests\unittests\Vector2.cpp" />
+    <ClCompile Include="..\Common\Dependencies\UnitTest++\src\AssertException.cpp" />
+    <ClCompile Include="..\Common\Dependencies\UnitTest++\src\Checks.cpp" />
+    <ClCompile Include="..\Common\Dependencies\UnitTest++\src\CurrentTest.cpp" />
+    <ClCompile Include="..\Common\Dependencies\UnitTest++\src\DeferredTestReporter.cpp" />
+    <ClCompile Include="..\Common\Dependencies\UnitTest++\src\DeferredTestResult.cpp" />
+    <ClCompile Include="..\Common\Dependencies\UnitTest++\src\MemoryOutStream.cpp" />
+    <ClCompile Include="..\Common\Dependencies\UnitTest++\src\ReportAssert.cpp" />
+    <ClCompile Include="..\Common\Dependencies\UnitTest++\src\Test.cpp" />
+    <ClCompile Include="..\Common\Dependencies\UnitTest++\src\TestDetails.cpp" />
+    <ClCompile Include="..\Common\Dependencies\UnitTest++\src\TestList.cpp" />
+    <ClCompile Include="..\Common\Dependencies\UnitTest++\src\TestReporter.cpp" />
+    <ClCompile Include="..\Common\Dependencies\UnitTest++\src\TestReporterStdout.cpp" />
+    <ClCompile Include="..\Common\Dependencies\UnitTest++\src\TestResults.cpp" />
+    <ClCompile Include="..\Common\Dependencies\UnitTest++\src\TestRunner.cpp" />
+    <ClCompile Include="..\Common\Dependencies\UnitTest++\src\TimeConstraint.cpp" />
+    <ClCompile Include="..\Common\Dependencies\UnitTest++\src\XmlTestReporter.cpp" />
+    <ClCompile Include="..\Common\Dependencies\UnitTest++\src\Win32\TimeHelpers.cpp" />
+    <ClCompile Include="..\tests\unittests\FontManager.cpp" />
+    <ClCompile Include="..\tests\unittests\Image.cpp" />
+    <ClCompile Include="..\tests\unittests\ImageManager.cpp" />
+    <ClCompile Include="..\tests\unittests\SurfaceManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\tests\CIndieLib.h" />
+    <ClInclude Include="..\tests\WorkingPath.h" />
+    <ClInclude Include="..\Common\Dependencies\UnitTest++\src\AssertException.h" />
+    <ClInclude Include="..\Common\Dependencies\UnitTest++\src\CheckMacros.h" />
+    <ClInclude Include="..\Common\Dependencies\UnitTest++\src\Checks.h" />
+    <ClInclude Include="..\Common\Dependencies\UnitTest++\src\Config.h" />
+    <ClInclude Include="..\Common\Dependencies\UnitTest++\src\CurrentTest.h" />
+    <ClInclude Include="..\Common\Dependencies\UnitTest++\src\DeferredTestReporter.h" />
+    <ClInclude Include="..\Common\Dependencies\UnitTest++\src\DeferredTestResult.h" />
+    <ClInclude Include="..\Common\Dependencies\UnitTest++\src\ExecuteTest.h" />
+    <ClInclude Include="..\Common\Dependencies\UnitTest++\src\MemoryOutStream.h" />
+    <ClInclude Include="..\Common\Dependencies\UnitTest++\src\ReportAssert.h" />
+    <ClInclude Include="..\Common\Dependencies\UnitTest++\src\Test.h" />
+    <ClInclude Include="..\Common\Dependencies\UnitTest++\src\TestDetails.h" />
+    <ClInclude Include="..\Common\Dependencies\UnitTest++\src\TestList.h" />
+    <ClInclude Include="..\Common\Dependencies\UnitTest++\src\TestMacros.h" />
+    <ClInclude Include="..\Common\Dependencies\UnitTest++\src\TestReporter.h" />
+    <ClInclude Include="..\Common\Dependencies\UnitTest++\src\TestReporterStdout.h" />
+    <ClInclude Include="..\Common\Dependencies\UnitTest++\src\TestResults.h" />
+    <ClInclude Include="..\Common\Dependencies\UnitTest++\src\TestRunner.h" />
+    <ClInclude Include="..\Common\Dependencies\UnitTest++\src\TestSuite.h" />
+    <ClInclude Include="..\Common\Dependencies\UnitTest++\src\TimeConstraint.h" />
+    <ClInclude Include="..\Common\Dependencies\UnitTest++\src\TimeHelpers.h" />
+    <ClInclude Include="..\Common\Dependencies\UnitTest++\src\UnitTest++.h" />
+    <ClInclude Include="..\Common\Dependencies\UnitTest++\src\XmlTestReporter.h" />
+    <ClInclude Include="..\Common\Dependencies\UnitTest++\src\Win32\TimeHelpers.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="IndieLib.vcxproj">
+      <Project>{ec5db2f1-5096-430a-b62f-65859f497e5d}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

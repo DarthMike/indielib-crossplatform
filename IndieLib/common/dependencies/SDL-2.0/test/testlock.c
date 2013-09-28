@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 1997-2011 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2013 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -16,6 +16,7 @@
 
 #include <signal.h>
 #include <stdio.h>
+#include <stdlib.h> /* for atexit() */
 
 #include "SDL.h"
 #include "SDL_mutex.h"

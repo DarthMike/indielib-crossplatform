@@ -18,10 +18,10 @@ macro(CheckDLOPEN)
     endif()
     check_c_source_compiles("
        #include <dlfcn.h>
-       #if defined(MAC_OS_X_VERSION_MIN_REQUIRED) && MAC_OS_X_VERSION_MIN_REQUIRED <= 1020
-       #error Use dlcompat for Mac OS X 10.2 compatibility
-       #endif
-       int main(int argc, char **argv) {}" HAVE_DLOPEN)
+       int main(int argc, char **argv) {
+         void *handle = dlopen(\"\", RTLD_NOW);
+         const char *loaderror = (char *) dlerror();
+       }" HAVE_DLOPEN)
     set(CMAKE_REQUIRED_LIBRARIES)
   endif()
 
@@ -226,6 +226,37 @@ macro(CheckNAS)
 endmacro(CheckNAS)
 
 # Requires:
+# - n/a
+# Optional:
+# - SNDIO_SHARED opt
+# - HAVE_DLOPEN opt
+macro(CheckSNDIO)
+  if(SNDIO)
+    # TODO: set include paths properly, so the sndio headers are found
+    check_include_file(sndio.h HAVE_SNDIO_H)
+    find_library(D_SNDIO_LIB audio)
+    if(HAVE_SNDIO_H AND D_SNDIO_LIB)
+      set(HAVE_SNDIO TRUE)
+      file(GLOB SNDIO_SOURCES ${SDL2_SOURCE_DIR}/src/audio/sndio/*.c)
+      set(SOURCE_FILES ${SOURCE_FILES} ${SNDIO_SOURCES})
+      set(SDL_AUDIO_DRIVER_SNDIO 1)
+      if(SNDIO_SHARED)
+        if(NOT HAVE_DLOPEN)
+          message_warn("You must have SDL_LoadObject() support for dynamic sndio loading")
+        else()
+          get_filename_component(F_SNDIO_LIB ${D_SNDIO_LIB} NAME)
+          set(SDL_AUDIO_DRIVER_SNDIO_DYNAMIC "\"${F_SNDIO_LIB}\"")
+          set(HAVE_SNDIO_SHARED TRUE)
+        endif(NOT HAVE_DLOPEN)
+      else(SNDIO_SHARED)
+        list(APPEND EXTRA_LIBS ${D_SNDIO_LIB})
+      endif(SNDIO_SHARED)
+      set(HAVE_SDL_AUDIO TRUE)
+    endif(HAVE_SNDIO_H AND D_SNDIO_LIB)
+  endif(SNDIO)
+endmacro(CheckSNDIO)
+
+# Requires:
 # - PkgCheckModules
 # Optional:
 # - FUSIONSOUND_SHARED opt
@@ -281,8 +312,13 @@ macro(CheckX11)
     check_include_file(X11/extensions/scrnsaver.h HAVE_XSS_H)
     check_include_file(X11/extensions/shape.h HAVE_XSHAPE_H)
     check_include_files("X11/Xlib.h;X11/extensions/xf86vmode.h" HAVE_XF86VM_H)
+    check_include_files("X11/Xlib.h;X11/Xproto.h;X11/extensions/Xext.h" HAVE_XEXT_H)
 
     if(X11_LIB)
+      if(NOT HAVE_XEXT_H)
+        message_error("Missing Xext.h, maybe you need to install the libxext-dev package?")
+      endif()
+
       set(HAVE_VIDEO_X11 TRUE)
       set(HAVE_SDL_VIDEO TRUE)
 
@@ -667,6 +703,7 @@ macro(CheckPTHREAD)
           ${SDL2_SOURCE_DIR}/src/thread/pthread/SDL_systhread.c
           ${SDL2_SOURCE_DIR}/src/thread/pthread/SDL_sysmutex.c   # Can be faked, if necessary
           ${SDL2_SOURCE_DIR}/src/thread/pthread/SDL_syscond.c    # Can be faked, if necessary
+          ${SDL2_SOURCE_DIR}/src/thread/pthread/SDL_systls.c
           )
       if(HAVE_PTHREADS_SEM)
         set(SOURCE_FILES ${SOURCE_FILES}

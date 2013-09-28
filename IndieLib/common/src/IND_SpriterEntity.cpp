@@ -3,14 +3,31 @@
  * Desc: Spriter entity object
  *****************************************************************************************/
 
-/*
- * ----------------------------------------------------------------------------
- * "THE BEER-WARE LICENSE" (Revision 42):
- * <michael@visualdesign.dk> wrote this file. As long as you retain this notice you
- * can do whatever you want with this stuff. If we meet some day, and you think
- * this stuff is worth it, you can buy me a beer in return Michael Fogh Kristensen
- * ----------------------------------------------------------------------------
- */
+/*********************************** The zlib License ************************************
+ *
+ * Copyright (c) 2013 Indielib-crossplatform Development Team
+ *
+ * This software is provided 'as-is', without any express or implied
+ * warranty. In no event will the authors be held liable for any damages
+ * arising from the use of this software.
+ *
+ * Permission is granted to anyone to use this software for any purpose,
+ * including commercial applications, and to alter it and redistribute it
+ * freely, subject to the following restrictions:
+ *
+ * 1. The origin of this software must not be misrepresented; you must not
+ * claim that you wrote the original software. If you use this software
+ * in a product, an acknowledgment in the product documentation would be
+ * appreciated but is not required.
+ *
+ * 2. Altered source versions must be plainly marked as such, and must not be
+ * misrepresented as being the original software.
+ *
+ * 3. This notice may not be removed or altered from any source
+ * distribution.
+ *
+ *****************************************************************************************/
+
 
 // ----- Includes -----
 
@@ -53,42 +70,18 @@ IND_SpriterEntity::~IND_SpriterEntity() {
 //									 Public methods
 // --------------------------------------------------------------------------------
 
-void IND_SpriterEntity::playAnimation(int animation) { // TODO: MFK maybe animation name instead?
+
+void IND_SpriterEntity::playAnimation(int animation/*, IND_Render *render*/) { // TODO: MFK maybe animation name instead?
     _currentAnimation   = animation;
     _currentKey         = 0;
     _currentTime        = 0;
 }
 
 
-void IND_SpriterEntity::update(int deltaTime) {
-    // TODO: MFK, implement this
-}
-
-void  IND_SpriterEntity::draw(float x, float y, float angle, float scale_x, float scale_y) {
-    
-    if (_currentAnimation < 0 || _currentKey < 0 || _currentTime < 0 ){
-        return;
-    }
-    
-    std::vector <MainlineObject *> *mainlineObjects = getAnimations()->at(_currentAnimation)->getMainline()->getKeys()->at(_currentKey)->getObjects();
-    
-    std::vector <MainlineObjectref *> *mainlineObjectrefs = getAnimations()->at(_currentAnimation)->getMainline()->getKeys()->at(_currentKey)->getObjectrefs();
-
-    
-    for (unsigned i=0; i < mainlineObjects->size(); i++) {
-        // TODO : MFK, implement this
-    }
-    
-    
-    for (unsigned i=0; i < mainlineObjectrefs->size(); i++) {
-        // TODO: MFK implement this
-    }
-    
-
-}
-
-void  IND_SpriterEntity::stopAnimation() {
-    // TODO: MFK, implement this
+void IND_SpriterEntity::stopAnimation() {
+    _currentAnimation   = -1;
+    _currentKey         = -1;
+    _currentTime        = -1;
 }
 
 
@@ -106,43 +99,25 @@ Attributes initialization
 void IND_SpriterEntity::initAttrib() {
     _id         = NULL;
 	_name       = NULL;
-    _images     = new map<Fileref*, IND_Image *>();
+    _surfaces   = new SurfaceToFileMap;
     _animations = new std::vector<Animation *>();
     
     _currentAnimation       = -1;       // TODO: ??
     _currentKey             = -1;       // TODO: ??
-    _currentTime            = 0;        // TODO: ??
+    _currentTime            = -1;       // TODO: ??
     
     _drawBones              = false;    // TODO: support this in a later version
     _drawObjectpositions    = false;    // TODO: support this in a later version
-}
-
-
-// ----- Rendering -----
-
-
-void  IND_SpriterEntity::drawTransientObject(float x, float y, float angle, float scale_x, float scale_y) {
-    // TODO: MFK, implement this
-}
-
-void  IND_SpriterEntity::drawPersistentObject(float x, float y, float angle, float scale_x, float scale_y) {
-    // TODO: MFK, implement this
-}
-
-void IND_SpriterEntity::drawBone(float x, float y, float angle, float scale_x, float scale_y) {
-    // TODO: support this in a later version
 }
 
     
 // ----- Parsing -----
 
 
-void IND_SpriterEntity::addImage(const char *folderId, const char *fileId, IND_Image *pImage) {
-    Fileref* ref = new Fileref();
-    ref->first = static_cast<unsigned int>(*folderId);
-    ref->second = static_cast<unsigned int>(*fileId);
+void IND_SpriterEntity::addSurface(int folderId, int fileId, IND_Surface *pSurface) {
+    Fileref ref(static_cast<unsigned int>(folderId),static_cast<unsigned int>(fileId));
     
-    _images->insert(make_pair(ref, pImage));
+    _surfaces->insert(make_pair(ref, pSurface));
 }
 
 Animation* IND_SpriterEntity::addAnimation(int id, const char* name, int length, const char* looping, int loop_to) {

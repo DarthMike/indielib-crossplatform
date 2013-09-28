@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Main">
+      <UniqueIdentifier>{7ead9cd3-8c19-42d3-b716-d9be1db6cfab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Functionality">
+      <UniqueIdentifier>{1640bd32-e6c1-4f50-8118-c87e25018ec8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndieLibMgr">
+      <UniqueIdentifier>{3586ed99-2e5f-4854-b4a4-653517556133}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Primitives">
+      <UniqueIdentifier>{3b071426-1214-4452-b6d6-8aa86871bbe5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Camera2d">
+      <UniqueIdentifier>{0033466e-ec4a-42dc-afb2-147f673e2994}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Surface">
+      <UniqueIdentifier>{42fd730a-78c3-4652-90b1-b6a0c186ebd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Image">
+      <UniqueIdentifier>{98601961-3a92-4dc3-8a1c-2157e9c7a475}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Animation">
+      <UniqueIdentifier>{c3c6ad09-f961-474c-a7fa-8a4482513283}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Font">
+      <UniqueIdentifier>{ba0d587d-c4e8-4244-85b8-4f41077bad44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Collision">
+      <UniqueIdentifier>{04cbac88-e77a-4357-8c95-e1c56f839397}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities">
+      <UniqueIdentifier>{cb259962-6d5c-4b8d-9b11-f5d20cc726a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TMX">
+      <UniqueIdentifier>{f61fedaa-b1a3-4868-81cd-69f097b99bd7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Tests\Manual\ManualTests.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\tests\WorkingPath.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Tests\Manual\Functionality\FunctionalityTests.h">
+      <Filter>Functionality</Filter>
+    </ClInclude>
+    <ClInclude Include="..\tests\CIndieLib.h">
+      <Filter>IndieLibMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Tests\Manual\Primitives\PrimitiveTests.h">
+      <Filter>Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Tests\Manual\Camera2d\Camera2dTests.h">
+      <Filter>Camera2d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\tests\manual\surface\SurfaceTests.h">
+      <Filter>Surface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\tests\manual\surface\SurfaceTests_Filters.h">
+      <Filter>Surface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\tests\manual\surface\SurfaceTests_layout.h">
+      <Filter>Surface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\tests\manual\surface\SurfaceTests_textBlock.h">
+      <Filter>Surface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\tests\manual\surface\SurfaceTests_wrap.h">
+      <Filter>Surface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\tests\manual\image\INDImageTests_Conversions.h">
+      <Filter>Image</Filter>
+    </ClInclude>
+    <ClInclude Include="..\tests\manual\image\INDImageTests_Conversions_NonRGB.h">
+      <Filter>Image</Filter>
+    </ClInclude>
+    <ClInclude Include="..\tests\manual\image\INDImageTests_nonPOTLoad.h">
+      <Filter>Image</Filter>
+    </ClInclude>
+    <ClInclude Include="..\tests\manual\image\INDImageTests_POTLoad.h">
+      <Filter>Image</Filter>
+    </ClInclude>
+    <ClInclude Include="..\tests\manual\animation\AnimationTests.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\tests\manual\font\FontTests.h">
+      <Filter>Font</Filter>
+    </ClInclude>
+    <ClInclude Include="..\tests\manual\font\FontTests_Pretty.h">
+      <Filter>Font</Filter>
+    </ClInclude>
+    <ClInclude Include="..\tests\manual\collision\CollisionTests.h">
+      <Filter>Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\tests\manual\entities\EntityTests_animateRotations.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\tests\manual\entities\EntityTests_animateScale.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\tests\manual\entities\EntityTests_interactions.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\tests\manual\TmxmapTests.h">
+      <Filter>TMX</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Tests\Manual\ManualTestsMain.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\WorkingPath.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Tests\Manual\Functionality\FunctionalityTests.cpp">
+      <Filter>Functionality</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\CIndieLib.cpp">
+      <Filter>IndieLibMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Tests\Manual\Primitives\PrimitiveTests.cpp">
+      <Filter>Primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Tests\Manual\Camera2d\Camera2dTests.cpp">
+      <Filter>Camera2d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\manual\surface\SurfaceTests.cpp">
+      <Filter>Surface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\manual\surface\SurfaceTests_Filters.cpp">
+      <Filter>Surface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\manual\surface\SurfaceTests_layout.cpp">
+      <Filter>Surface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\manual\surface\SurfaceTests_textBlock.cpp">
+      <Filter>Surface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\manual\surface\SurfaceTests_wrap.cpp">
+      <Filter>Surface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\manual\image\INDImageTests_Conversions.cpp">
+      <Filter>Image</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\manual\image\INDImageTests_Conversions_NonRGB.cpp">
+      <Filter>Image</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\manual\image\INDImageTests_nonPOTLoad.cpp">
+      <Filter>Image</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\manual\image\INDImageTests_POTLoad.cpp">
+      <Filter>Image</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\manual\animation\AnimationTests.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\manual\font\FontTests.cpp">
+      <Filter>Font</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\manual\font\FontTests_Pretty.cpp">
+      <Filter>Font</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\manual\collision\CollisionTests.cpp">
+      <Filter>Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\manual\entities\EntityTests_animateRotations.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\manual\entities\EntityTests_animateScale.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\manual\entities\EntityTests_interactions.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\tests\manual\TmxmapTests.cpp">
+      <Filter>TMX</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

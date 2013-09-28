@@ -1,0 +1,619 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="IndieLib">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="IndieLib\DebugLog">
+      <UniqueIdentifier>{3f349c19-5e4d-406c-be77-5b72e9974d6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndieLib\Global">
+      <UniqueIdentifier>{366bafad-755b-41d2-a234-b56251ac29e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndieLib\Init / End">
+      <UniqueIdentifier>{ff3ef45f-6c99-4f28-993a-3bff2a70044c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndieLib\Display">
+      <UniqueIdentifier>{2fe327ee-cca0-414f-befc-faaae30fe2bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndieLib\Display\Display Back">
+      <UniqueIdentifier>{03e0f041-c63f-4153-8985-66d0ca8da394}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndieLib\Display\Display Back\DirectX">
+      <UniqueIdentifier>{a5595264-4ce8-4437-a58a-d5ca86797314}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndieLib\Display\Display Back\iOS">
+      <UniqueIdentifier>{0079b780-30e1-4c9a-a6bd-ff31e404acec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndieLib\Display\Display Back\OpenGL">
+      <UniqueIdentifier>{3f0c2950-d441-4f08-b838-796073bbb651}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndieLib\Display\Display Back\OpenGL ES">
+      <UniqueIdentifier>{4f368c28-24fd-4dd2-9a55-550c7a0fad85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndieLib\Display\Display Back\Linux">
+      <UniqueIdentifier>{13870880-db27-4252-ba88-f17aca76e929}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndieLib\Timer">
+      <UniqueIdentifier>{ad2d340a-394c-4c70-93d8-787be26fc39e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndieLib\Timer\Timer Back">
+      <UniqueIdentifier>{631e9fb7-5d3f-49fc-9323-2dfcb3e12e50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndieLib\Entities">
+      <UniqueIdentifier>{da779243-5a8a-41e6-8b39-82ece4f0f2ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndieLib\Entities\Entity Objects">
+      <UniqueIdentifier>{15607827-48bb-432f-ab69-48f42c23e1cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndieLib\Entities\Entity Managers">
+      <UniqueIdentifier>{2158f19d-06f9-4c6f-837e-cde66c941ed5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndieLib\Graphics">
+      <UniqueIdentifier>{9d8ede20-6259-4b39-baea-d9fe7a4bf7f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndieLib\Graphics\2d">
+      <UniqueIdentifier>{66f765b9-e7cd-4e7e-81eb-3790bd5b5691}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndieLib\Graphics\2d\2d Back">
+      <UniqueIdentifier>{beedef20-662d-48e6-a82c-ee4e94f1e53a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndieLib\Graphics\2d\2d Back\DirectX">
+      <UniqueIdentifier>{599f7924-d599-4abe-ad5f-e18d75692be5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndieLib\Graphics\2d\2d Back\OpenGL">
+      <UniqueIdentifier>{e0fb84d1-6b8b-4a55-b254-8ef8f221dff3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndieLib\Graphics\2d\2d Back\OpenGL ES">
+      <UniqueIdentifier>{e0fe1d41-3cdc-42b2-bbd8-f80e3df3e962}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndieLib\Graphics\2d\2d Objects">
+      <UniqueIdentifier>{01deec01-5461-461a-abac-24cf502a2528}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndieLib\Graphics\2d\2d Objects\Animation back">
+      <UniqueIdentifier>{53dc5eae-f5c4-4bac-b380-8dc1085bc550}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndieLib\Graphics\2d\2d Managers">
+      <UniqueIdentifier>{be73b573-c7da-4b96-acd8-466bc281c464}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndieLib\Graphics\3d">
+      <UniqueIdentifier>{39e42f76-2462-4364-b041-d33f20bb82ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndieLib\Graphics\3d\3d Back">
+      <UniqueIdentifier>{79f8d2aa-2c67-44a4-a936-40faf49c2268}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndieLib\Graphics\3d\3d Back\DirectX">
+      <UniqueIdentifier>{6adb90c3-854d-4231-8ac0-174c451b1312}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndieLib\Graphics\3d\3d Objects">
+      <UniqueIdentifier>{ee9b5a00-0f96-4c6f-ba9f-8302bbd4033e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndieLib\Graphics\3d\3d Managers">
+      <UniqueIdentifier>{50ec6d4a-29a3-4b47-8244-468994798201}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndieLib\Graphics\Common">
+      <UniqueIdentifier>{93051cb1-d0b6-4d4c-ada5-6f4bd792b0ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndieLib\Graphics\Common\Common Managers">
+      <UniqueIdentifier>{b6f2cdb8-06c5-4b77-808a-469106f9cce5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndieLib\Graphics\Common\Common Objects">
+      <UniqueIdentifier>{b3928c01-46f2-413e-a315-7aecb382515a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndieLib\Input">
+      <UniqueIdentifier>{71fc4abd-4e7f-47e5-b0f8-2273436a0f15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndieLib\Math">
+      <UniqueIdentifier>{a7c63968-c2b4-4ca6-ab77-188669ccd79f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndieLib\Camera">
+      <UniqueIdentifier>{3bcc8269-2c3b-46aa-8254-799e63bd01f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies">
+      <UniqueIdentifier>{11f4820a-e3ef-490b-8899-4d4425c53553}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\TinyXml">
+      <UniqueIdentifier>{4c5d680b-7104-497d-9283-0af6f8e57e1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{8f860199-716b-4b79-93db-ea02b2dc94d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Win32">
+      <UniqueIdentifier>{9ec1a28c-1151-4811-997e-d2dde46c1e11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndieLib\TMX Maps">
+      <UniqueIdentifier>{56e37298-d644-4d94-b576-7562837b2855}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\TMXParser">
+      <UniqueIdentifier>{4951542c-f7a0-4f19-ab06-ac1c1dc97b85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndieLib\Spriter">
+      <UniqueIdentifier>{2a15353b-4459-463c-89d5-f97f599cc0eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IndieLib\Spriter\Utilities">
+      <UniqueIdentifier>{34dd7783-3fd5-450e-9462-296a9e9c553f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\SpriterParser">
+      <UniqueIdentifier>{ba447a0c-4c67-44d5-b16d-6a8ec4bb3399}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\TMXParser\base64">
+      <UniqueIdentifier>{20c74dd7-5275-4b10-96e1-2864803dc656}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Common\include\Defines.h">
+      <Filter>IndieLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\include\Indie.h">
+      <Filter>IndieLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\include\IndiePlatforms.h">
+      <Filter>IndieLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\include\IndieVersion.h">
+      <Filter>IndieLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\src\DebugApi.h">
+      <Filter>IndieLib\DebugLog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\src\Global.h">
+      <Filter>IndieLib\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\include\IndieLib.h">
+      <Filter>IndieLib\Init / End</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\include\IND_Render.h">
+      <Filter>IndieLib\Display</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\include\IND_Window.h">
+      <Filter>IndieLib\Display</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\src\Platform\OSOpenGLManager.h">
+      <Filter>IndieLib\Display\Display Back</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\src\Render\DirectX\DirectXRender.h">
+      <Filter>IndieLib\Display\Display Back\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\src\Render\OpenGL\OpenGLRender.h">
+      <Filter>IndieLib\Display\Display Back\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\include\IND_Timer.h">
+      <Filter>IndieLib\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\src\PrecissionTimer.h">
+      <Filter>IndieLib\Timer\Timer Back</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\include\IND_Entity2d.h">
+      <Filter>IndieLib\Entities\Entity Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\include\IND_Entity3d.h">
+      <Filter>IndieLib\Entities\Entity Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\include\IND_Entity2dManager.h">
+      <Filter>IndieLib\Entities\Entity Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\include\IND_Entity3dManager.h">
+      <Filter>IndieLib\Entities\Entity Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\include\CollisionParser.h">
+      <Filter>IndieLib\Graphics\2d\2d Back</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\src\FreeImageHelper.h">
+      <Filter>IndieLib\Graphics\2d\2d Back</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\include\ImageCutter.h">
+      <Filter>IndieLib\Graphics\2d\2d Back</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\src\TextureBuilder.h">
+      <Filter>IndieLib\Graphics\2d\2d Back</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\src\TextureDefinitions.h">
+      <Filter>IndieLib\Graphics\2d\2d Back</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\src\Render\DirectX\DirectXTextureBuilder.h">
+      <Filter>IndieLib\Graphics\2d\2d Back\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\src\Render\OpenGL\OpenGLTextureBuilder.h">
+      <Filter>IndieLib\Graphics\2d\2d Back\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\include\IND_Animation.h">
+      <Filter>IndieLib\Graphics\2d\2d Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\include\IND_Font.h">
+      <Filter>IndieLib\Graphics\2d\2d Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\include\IND_Image.h">
+      <Filter>IndieLib\Graphics\2d\2d Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\include\IND_Surface.h">
+      <Filter>IndieLib\Graphics\2d\2d Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\include\IND_Frame.h">
+      <Filter>IndieLib\Graphics\2d\2d Objects\Animation back</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\include\IND_Sequence.h">
+      <Filter>IndieLib\Graphics\2d\2d Objects\Animation back</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\include\IND_AnimationManager.h">
+      <Filter>IndieLib\Graphics\2d\2d Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\include\IND_FontManager.h">
+      <Filter>IndieLib\Graphics\2d\2d Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\include\IND_ImageManager.h">
+      <Filter>IndieLib\Graphics\2d\2d Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\include\IND_SurfaceManager.h">
+      <Filter>IndieLib\Graphics\2d\2d Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\src\Render\DirectX\XMeshHierarchy.h">
+      <Filter>IndieLib\Graphics\3d\3d Back\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\include\XMeshStructures.h">
+      <Filter>IndieLib\Graphics\3d\3d Back\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\include\IND_3dMesh.h">
+      <Filter>IndieLib\Graphics\3d\3d Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\include\IND_3dMeshManager.h">
+      <Filter>IndieLib\Graphics\3d\3d Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\include\IND_LightManager.h">
+      <Filter>IndieLib\Graphics\Common\Common Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\include\IND_Light.h">
+      <Filter>IndieLib\Graphics\Common\Common Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\include\IND_Input.h">
+      <Filter>IndieLib\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\include\IND_Math.h">
+      <Filter>IndieLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\include\IND_Vector2.h">
+      <Filter>IndieLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\include\IND_Vector3.h">
+      <Filter>IndieLib\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\include\IND_Camera2d.h">
+      <Filter>IndieLib\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\include\IND_Camera3d.h">
+      <Filter>IndieLib\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\Dependencies\TinyXml\tinystr.h">
+      <Filter>Dependencies\TinyXml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\Dependencies\TinyXml\tinyxml.h">
+      <Filter>Dependencies\TinyXml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\src\platform\win32\guicon.h">
+      <Filter>Platform\Win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\include\IND_TmxMap.h">
+      <Filter>IndieLib\TMX Maps</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\include\IND_TmxMapManager.h">
+      <Filter>IndieLib\TMX Maps</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\TmxParser\Tmx.h">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\TmxParser\TmxImage.h">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\TmxParser\TmxLayer.h">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\TmxParser\TmxMap.h">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\TmxParser\TmxMapTile.h">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\TmxParser\TmxObject.h">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\TmxParser\TmxObjectGroup.h">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\TmxParser\TmxPoint.h">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\TmxParser\TmxPolygon.h">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\TmxParser\TmxPolyline.h">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\TmxParser\TmxPropertySet.h">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\TmxParser\TmxTile.h">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\TmxParser\TmxTileset.h">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\TmxParser\TmxUtil.h">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\include\IND_SpriterEntity.h">
+      <Filter>IndieLib\Spriter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\include\IND_SpriterManager.h">
+      <Filter>IndieLib\Spriter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\SpriterParser\Animation.h">
+      <Filter>Dependencies\SpriterParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\SpriterParser\Mainline.h">
+      <Filter>Dependencies\SpriterParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\SpriterParser\MainlineKey.h">
+      <Filter>Dependencies\SpriterParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\SpriterParser\MainlineObject.h">
+      <Filter>Dependencies\SpriterParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\SpriterParser\MainlineObjectref.h">
+      <Filter>Dependencies\SpriterParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\SpriterParser\Timeline.h">
+      <Filter>Dependencies\SpriterParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\SpriterParser\TimelineKey.h">
+      <Filter>Dependencies\SpriterParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\SpriterParser\TimelineObject.h">
+      <Filter>Dependencies\SpriterParser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\dependencies\TmxParser\base64\base64.h">
+      <Filter>Dependencies\TMXParser\base64</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\common\src\IndieVersion.cpp">
+      <Filter>IndieLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\DebugApi.cpp">
+      <Filter>IndieLib\DebugLog</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\Global.cpp">
+      <Filter>IndieLib\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\IndieLib.cpp">
+      <Filter>IndieLib\Init / End</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\IND_Render.cpp">
+      <Filter>IndieLib\Display</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\IND_Window.cpp">
+      <Filter>IndieLib\Display</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\src\platform\OSOpenGLManager.cpp">
+      <Filter>IndieLib\Display\Display Back</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\Render\DirectX\DirectXRender.cpp">
+      <Filter>IndieLib\Display\Display Back\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\Render\DirectX\RenderCullingDirectX.cpp">
+      <Filter>IndieLib\Display\Display Back\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\Render\DirectX\RenderObject2dDirectX.cpp">
+      <Filter>IndieLib\Display\Display Back\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\Render\DirectX\RenderObject3dDirectX.cpp">
+      <Filter>IndieLib\Display\Display Back\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\Render\DirectX\RenderPrimitive2dDirectX.cpp">
+      <Filter>IndieLib\Display\Display Back\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\Render\DirectX\RenderText2dDirectX.cpp">
+      <Filter>IndieLib\Display\Display Back\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\Render\DirectX\RenderTransform2dDirectX.cpp">
+      <Filter>IndieLib\Display\Display Back\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\Render\DirectX\RenderTransform3dDirectX.cpp">
+      <Filter>IndieLib\Display\Display Back\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\Render\DirectX\RenderTransformCommonDirectX.cpp">
+      <Filter>IndieLib\Display\Display Back\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\Render\OpenGL\OpenGLRender.cpp">
+      <Filter>IndieLib\Display\Display Back\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\Render\OpenGL\RenderCullingOpenGL.cpp">
+      <Filter>IndieLib\Display\Display Back\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\Render\OpenGL\RenderObject2dOpenGL.cpp">
+      <Filter>IndieLib\Display\Display Back\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\Render\OpenGL\RenderObject3dOpenGL.cpp">
+      <Filter>IndieLib\Display\Display Back\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\Render\OpenGL\RenderPrimitive2dOpenGL.cpp">
+      <Filter>IndieLib\Display\Display Back\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\Render\OpenGL\RenderText2dOpenGL.cpp">
+      <Filter>IndieLib\Display\Display Back\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\Render\OpenGL\RenderTransform2dOpenGL.cpp">
+      <Filter>IndieLib\Display\Display Back\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\Render\OpenGL\RenderTransform3dOpenGL.cpp">
+      <Filter>IndieLib\Display\Display Back\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\Render\OpenGL\RenderTransformCommonOpenGL.cpp">
+      <Filter>IndieLib\Display\Display Back\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\IND_Timer.cpp">
+      <Filter>IndieLib\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\PrecissionTimer.cpp">
+      <Filter>IndieLib\Timer\Timer Back</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\IND_Entity2d.cpp">
+      <Filter>IndieLib\Entities\Entity Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\IND_Entity3d.cpp">
+      <Filter>IndieLib\Entities\Entity Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\IND_Entity2dManager.cpp">
+      <Filter>IndieLib\Entities\Entity Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\IND_Entity3dManager.cpp">
+      <Filter>IndieLib\Entities\Entity Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\CollisionParser.cpp">
+      <Filter>IndieLib\Graphics\2d\2d Back</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\src\FreeImageHelper.cpp">
+      <Filter>IndieLib\Graphics\2d\2d Back</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\ImageCutter.cpp">
+      <Filter>IndieLib\Graphics\2d\2d Back</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\Render\DirectX\DirectXTextureBuilder.cpp">
+      <Filter>IndieLib\Graphics\2d\2d Back\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\Render\OpenGL\OpenGLTextureBuilder.cpp">
+      <Filter>IndieLib\Graphics\2d\2d Back\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\IND_Animation.cpp">
+      <Filter>IndieLib\Graphics\2d\2d Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\IND_Image.cpp">
+      <Filter>IndieLib\Graphics\2d\2d Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\IND_Surface.cpp">
+      <Filter>IndieLib\Graphics\2d\2d Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\IND_AnimationManager.cpp">
+      <Filter>IndieLib\Graphics\2d\2d Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\IND_FontManager.cpp">
+      <Filter>IndieLib\Graphics\2d\2d Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\IND_ImageManager.cpp">
+      <Filter>IndieLib\Graphics\2d\2d Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\IND_SurfaceManager.cpp">
+      <Filter>IndieLib\Graphics\2d\2d Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\Render\DirectX\XMeshHierarchy.cpp">
+      <Filter>IndieLib\Graphics\3d\3d Back\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\IND_3dMesh.cpp">
+      <Filter>IndieLib\Graphics\3d\3d Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\IND_3dMeshManager.cpp">
+      <Filter>IndieLib\Graphics\3d\3d Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\IND_LightManager.cpp">
+      <Filter>IndieLib\Graphics\Common\Common Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\IND_Light.cpp">
+      <Filter>IndieLib\Graphics\Common\Common Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\IND_Input.cpp">
+      <Filter>IndieLib\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\IND_Math.cpp">
+      <Filter>IndieLib\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\IND_Camera2d.cpp">
+      <Filter>IndieLib\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\src\IND_Camera3d.cpp">
+      <Filter>IndieLib\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\Dependencies\TinyXml\tinystr.cpp">
+      <Filter>Dependencies\TinyXml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\Dependencies\TinyXml\tinyxml.cpp">
+      <Filter>Dependencies\TinyXml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\Dependencies\TinyXml\tinyxmlerror.cpp">
+      <Filter>Dependencies\TinyXml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\Dependencies\TinyXml\tinyxmlparser.cpp">
+      <Filter>Dependencies\TinyXml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\src\platform\win32\guicon.cpp">
+      <Filter>Platform\Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\src\IND_TmxMap.cpp">
+      <Filter>IndieLib\TMX Maps</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\src\IND_TmxMapManager.cpp">
+      <Filter>IndieLib\TMX Maps</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\dependencies\TmxParser\TmxImage.cpp">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\dependencies\TmxParser\TmxLayer.cpp">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\dependencies\TmxParser\TmxMap.cpp">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\dependencies\TmxParser\TmxObject.cpp">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\dependencies\TmxParser\TmxObjectGroup.cpp">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\dependencies\TmxParser\TmxPolygon.cpp">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\dependencies\TmxParser\TmxPolyline.cpp">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\dependencies\TmxParser\TmxPropertySet.cpp">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\dependencies\TmxParser\TmxTile.cpp">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\dependencies\TmxParser\TmxTileset.cpp">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\dependencies\TmxParser\TmxUtil.cpp">
+      <Filter>Dependencies\TMXParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\src\IND_SpriterEntity.cpp">
+      <Filter>IndieLib\Spriter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\src\IND_SpriterManager.cpp">
+      <Filter>IndieLib\Spriter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\dependencies\SpriterParser\Animation.cpp">
+      <Filter>Dependencies\SpriterParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\dependencies\SpriterParser\Mainline.cpp">
+      <Filter>Dependencies\SpriterParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\dependencies\SpriterParser\MainlineKey.cpp">
+      <Filter>Dependencies\SpriterParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\dependencies\SpriterParser\Timeline.cpp">
+      <Filter>Dependencies\SpriterParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\dependencies\SpriterParser\TimelineKey.cpp">
+      <Filter>Dependencies\SpriterParser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\dependencies\TmxParser\base64\base64.cpp">
+      <Filter>Dependencies\TMXParser\base64</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\CHANGELOG" />
+    <None Include="..\LICENSE" />
+    <None Include="..\..\README.md" />
+    <None Include="..\TODO" />
+  </ItemGroup>
+</Project>

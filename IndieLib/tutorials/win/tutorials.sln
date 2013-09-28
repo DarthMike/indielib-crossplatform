@@ -1,39 +1,39 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual C++ Express 2008
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "01_Installing", "basic\01_Installing\01_Installing.vcproj", "{47BF1F65-E6A9-4CD3-A7B0-E07F431BA628}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Windows Desktop
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "01_Installing", "basic\01_Installing\01_Installing.vcxproj", "{47BF1F65-E6A9-4CD3-A7B0-E07F431BA628}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "02_IND_Surface", "basic\02_IND_Surface\02_IND_Surface.vcproj", "{15858124-F4BB-4D94-BFDA-D91597897C09}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "02_IND_Surface", "basic\02_IND_Surface\02_IND_Surface.vcxproj", "{15858124-F4BB-4D94-BFDA-D91597897C09}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "03_IND_Image", "basic\03_IND_Image\03_IND_Image.vcproj", "{A9A95AC1-D9BA-4D0A-87C9-3D82DFCB8F84}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "03_IND_Image", "basic\03_IND_Image\03_IND_Image.vcxproj", "{A9A95AC1-D9BA-4D0A-87C9-3D82DFCB8F84}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "05_IND_Font", "basic\05_IND_Font\05_IND_Font.vcproj", "{1915DD86-A104-42C7-A19E-1B6D6BFFB580}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "05_IND_Font", "basic\05_IND_Font\05_IND_Font.vcxproj", "{1915DD86-A104-42C7-A19E-1B6D6BFFB580}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "04_IND_Animation", "basic\04_IND_Animation\04_IND_Animation.vcproj", "{FB151E55-415E-42C5-BAA4-89A420422831}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "04_IND_Animation", "basic\04_IND_Animation\04_IND_Animation.vcxproj", "{FB151E55-415E-42C5-BAA4-89A420422831}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "06_Primitives", "basic\06_Primitives\06_Primitives.vcproj", "{E6565F68-EC8D-47E4-AD59-276C7D5BB5FE}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "06_Primitives", "basic\06_Primitives\06_Primitives.vcxproj", "{E6565F68-EC8D-47E4-AD59-276C7D5BB5FE}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "07_IND_Input", "basic\07_IND_Input\07_IND_Input.vcproj", "{017523CC-9B42-48DC-AEFE-80B80980D9B5}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "07_IND_Input", "basic\07_IND_Input\07_IND_Input.vcxproj", "{017523CC-9B42-48DC-AEFE-80B80980D9B5}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "08_Collisions", "basic\08_Collisions\08_Collisions.vcproj", "{AB288006-80D0-45C4-AAA7-42D2FD5BE257}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "08_Collisions", "basic\08_Collisions\08_Collisions.vcxproj", "{AB288006-80D0-45C4-AAA7-42D2FD5BE257}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "11_Animated_Tile_Scrolling", "basic\11_Animated_Tile_Scrolling\11_Animated_Tile_Scrolling.vcproj", "{BD512655-2341-4984-AF6A-9844552EC815}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "11_Animated_Tile_Scrolling", "basic\11_Animated_Tile_Scrolling\11_Animated_Tile_Scrolling.vcxproj", "{BD512655-2341-4984-AF6A-9844552EC815}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "13_2d_Camera", "basic\13_2d_Camera\13_2d_Camera.vcproj", "{0B51CC3E-3E39-40DC-9D02-3EA114C63175}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "13_2d_Camera", "basic\13_2d_Camera\13_2d_Camera.vcxproj", "{0B51CC3E-3E39-40DC-9D02-3EA114C63175}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "15_Parallax_Scrolling", "basic\15_Parallax_Scrolling\15_Parallax_Scrolling.vcproj", "{EC7B5316-A2BA-4B00-861D-877D4957F11C}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "15_Parallax_Scrolling", "basic\15_Parallax_Scrolling\15_Parallax_Scrolling.vcxproj", "{EC7B5316-A2BA-4B00-861D-877D4957F11C}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "16_IND_Timer", "basic\16_IND_Timer\16_IND_Timer.vcproj", "{BE793FDD-56FC-4C1B-B60D-E61984780C93}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "16_IND_Timer", "basic\16_IND_Timer\16_IND_Timer.vcxproj", "{BE793FDD-56FC-4C1B-B60D-E61984780C93}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Adv_01_IND_Surface_Grids", "advanced\01_IND_Surface_Grids\Adv_01_IND_Surface_Grids.vcproj", "{85556965-09ED-4D1B-B813-82538A2DDD74}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Adv_01_IND_Surface_Grids", "advanced\01_IND_Surface_Grids\Adv_01_IND_Surface_Grids.vcxproj", "{85556965-09ED-4D1B-B813-82538A2DDD74}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Adv_02_Blitting_2d_Directly", "advanced\02_Blitting_2d_Directly\Adv_02_Blitting_2d_Directly.vcproj", "{5B2F71BF-BB36-439C-93DE-1C338C1937EE}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Adv_02_Blitting_2d_Directly", "advanced\02_Blitting_2d_Directly\Adv_02_Blitting_2d_Directly.vcxproj", "{5B2F71BF-BB36-439C-93DE-1C338C1937EE}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Adv_04_Several_ViewPorts", "advanced\04_Several_ViewPorts\Adv_04_Several_ViewPorts.vcproj", "{68E375FF-E783-42E2-AB79-5BDBBC05849D}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Adv_04_Several_ViewPorts", "advanced\04_Several_ViewPorts\Adv_04_Several_ViewPorts.vcxproj", "{68E375FF-E783-42E2-AB79-5BDBBC05849D}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Bench_01_Alien_BenchMark", "benchmark\01_Alien_BenchMark\Bench_01_Alien_BenchMark.vcproj", "{650F7E26-E05F-4BD0-BE15-103455858829}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Bench_01_Alien_BenchMark", "benchmark\01_Alien_BenchMark\Bench_01_Alien_BenchMark.vcxproj", "{650F7E26-E05F-4BD0-BE15-103455858829}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Bench_02_Rabbits_BenchMark", "benchmark\02_Rabbits_BenchMark\Bench_02_Rabbits_BenchMark.vcproj", "{F434DE98-D552-450B-A582-67CE79104CEC}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Bench_02_Rabbits_BenchMark", "benchmark\02_Rabbits_BenchMark\Bench_02_Rabbits_BenchMark.vcxproj", "{F434DE98-D552-450B-A582-67CE79104CEC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

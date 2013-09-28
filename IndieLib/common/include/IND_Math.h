@@ -28,8 +28,10 @@ Suite 330, Boston, MA 02111-1307 USA
 #include <stdlib.h>
 #include <math.h>
 
+#include "IndiePlatforms.h"
 #include "Defines.h"
 #include "IND_Vector2.h"
+#include "IND_Vector3.h"
 
 // --------------------------------------------------------------------------------
 //									   IND_Math
@@ -52,6 +54,12 @@ Max macro
 Min macro
 */
 #define MIN(a, b)  (((a) < (b)) ? (a) : (b))
+
+/**
+You know what this is..
+*/
+#define PI 3.14159265358979323846f
+
 
 /**
  @brief Encapsulates common math operations used through the library

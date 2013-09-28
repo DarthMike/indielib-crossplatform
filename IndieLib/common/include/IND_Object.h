@@ -26,7 +26,7 @@
 /**
  @defgroup IND_Object IND_Object
  @ingroup Classes
- Base class for some of the user objects in the library. This includes IND_Entity2d, IND_Font, IND_Animation and others.
+ Base class for some of the user objects in the library. This includes IND_Entity2d, IND_Font, IND_Animation, IND_TMXMap and others.
  
  Managers are not deriving from this class.
  */

@@ -8,8 +8,6 @@
 #ifndef __GUICON_H__
 #define __GUICON_H__
 
-#include "IndiePlatforms.h"
-#ifdef PLATFORM_WIN32
 #ifdef _DEBUG
 #include <stdio.h>
 /** @cond DOCUMENT_PRIVATEAPI */
@@ -18,6 +16,6 @@ void RedirectIOToConsole();
 
 /** @endcond */
 
-#endif
-#endif
-#endif
+#endif /_DEBUG
+
+#endif //__GUICON_H__

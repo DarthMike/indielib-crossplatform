@@ -21,12 +21,12 @@ Suite 330, Boston, MA 02111-1307 USA
 */
 
 // ----- Includes -----
+#include "Defines.h"
+#include "Global.h"
+#include "IND_Window.h"
 
 #include "dependencies/SDL-2.0/include/SDL.h"
 #include "dependencies/SDL-2.0/include/SDL_syswm.h"
-
-#include "Global.h"
-#include "IND_Window.h"
 
 // --------------------------------------------------------------------------------
 //									 Public methods

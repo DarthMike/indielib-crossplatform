@@ -24,6 +24,7 @@ Suite 330, Boston, MA 02111-1307 USA
 #define _IND_ENTITY3D_
 
 // ----- Includes -----
+#include "Defines.h"
 #include "IND_3dMesh.h"
 
 // ----- Forward Declarations -----

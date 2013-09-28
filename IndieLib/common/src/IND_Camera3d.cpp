@@ -23,7 +23,12 @@ Suite 330, Boston, MA 02111-1307 USA
 
 #include "Global.h"
 #include "IND_Camera3D.h"
+#include "IND_Math.h"
 
+#ifdef INDIERENDER_DIRECTX
+#include <d3d9.h>
+#include <d3dx9.h>
+#endif
 
 // --------------------------------------------------------------------------------
 //							  Initialization / Destruction

@@ -5,9 +5,6 @@
  http://dslweb.nwnexus.com/~ast/dload/guicon.htm
  *****************************************************************************************/
 
-#include "IndiePlatforms.h"
-
-#ifdef PLATFORM_WIN32
 #include <windows.h>
 #include <fcntl.h>
 #include <io.h>
@@ -94,5 +91,4 @@ void RedirectIOToConsole()
 
 }
 
-#endif
-#endif //PLATFORM_WIN32
+#endif //_DEBUG

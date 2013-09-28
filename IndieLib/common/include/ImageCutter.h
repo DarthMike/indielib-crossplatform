@@ -23,6 +23,8 @@ Suite 330, Boston, MA 02111-1307 USA
 #ifndef _IND_IMAGECUTTER_H_
 #define _IND_IMAGECUTTER_H_
 
+#include "Defines.h"
+
 // ----- Forward declarations -----
 
 class IND_ImageManager;

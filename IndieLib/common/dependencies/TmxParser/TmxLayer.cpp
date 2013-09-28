@@ -25,6 +25,7 @@
 //
 // Author: Tamir Atias
 //-----------------------------------------------------------------------------
+#include "IndiePlatforms.h"
 #include "dependencies/tinyxml/tinyxml.h"
 #include "dependencies/FreeImage/Source/ZLib/zlib.h"
 #include <stdlib.h>

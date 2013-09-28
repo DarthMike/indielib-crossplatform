@@ -1,22 +1,14 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual C++ Express 2008
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IndieLib", "IndieLib_vc2008.vcproj", "{EC5DB2F1-5096-430A-B62F-65859F497E5D}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Windows Desktop
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IndieLib", "IndieLib.vcxproj", "{EC5DB2F1-5096-430A-B62F-65859F497E5D}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tests_Win32", "Tests_Win32.vcproj", "{6DEA187E-ACF6-4A55-AA2F-ABBFFAE5EBEE}"
-	ProjectSection(ProjectDependencies) = postProject
-		{5E7F283C-5C0E-47B8-A057-1CDAE313D18B} = {5E7F283C-5C0E-47B8-A057-1CDAE313D18B}
-		{EC5DB2F1-5096-430A-B62F-65859F497E5D} = {EC5DB2F1-5096-430A-B62F-65859F497E5D}
-	EndProjectSection
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tests_Win32", "Tests_Win32.vcxproj", "{6DEA187E-ACF6-4A55-AA2F-ABBFFAE5EBEE}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTests", "UnitTests.vcproj", "{5E7F283C-5C0E-47B8-A057-1CDAE313D18B}"
-	ProjectSection(ProjectDependencies) = postProject
-		{EC5DB2F1-5096-430A-B62F-65859F497E5D} = {EC5DB2F1-5096-430A-B62F-65859F497E5D}
-	EndProjectSection
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTests", "UnitTests.vcxproj", "{5E7F283C-5C0E-47B8-A057-1CDAE313D18B}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Editor", "Editor\Editor.vcproj", "{BDA7367C-E178-454E-95CE-C8A89B0331A5}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Editor", "Editor\Editor.vcxproj", "{BDA7367C-E178-454E-95CE-C8A89B0331A5}"
 	ProjectSection(ProjectDependencies) = postProject
-		{5E7F283C-5C0E-47B8-A057-1CDAE313D18B} = {5E7F283C-5C0E-47B8-A057-1CDAE313D18B}
 		{EC5DB2F1-5096-430A-B62F-65859F497E5D} = {EC5DB2F1-5096-430A-B62F-65859F497E5D}
 	EndProjectSection
 EndProject
@@ -35,13 +27,19 @@ Global
 		{EC5DB2F1-5096-430A-B62F-65859F497E5D}.Release|Win32.Build.0 = Release|Win32
 		{6DEA187E-ACF6-4A55-AA2F-ABBFFAE5EBEE}.Debug|Win32.ActiveCfg = Development_Debug|Win32
 		{6DEA187E-ACF6-4A55-AA2F-ABBFFAE5EBEE}.DevelopMent_Debug|Win32.ActiveCfg = Development_Debug|Win32
+		{6DEA187E-ACF6-4A55-AA2F-ABBFFAE5EBEE}.DevelopMent_Debug|Win32.Build.0 = Development_Debug|Win32
 		{6DEA187E-ACF6-4A55-AA2F-ABBFFAE5EBEE}.Release|Win32.ActiveCfg = Release|Win32
+		{6DEA187E-ACF6-4A55-AA2F-ABBFFAE5EBEE}.Release|Win32.Build.0 = Release|Win32
 		{5E7F283C-5C0E-47B8-A057-1CDAE313D18B}.Debug|Win32.ActiveCfg = Development_Debug|Win32
 		{5E7F283C-5C0E-47B8-A057-1CDAE313D18B}.DevelopMent_Debug|Win32.ActiveCfg = Development_Debug|Win32
+		{5E7F283C-5C0E-47B8-A057-1CDAE313D18B}.DevelopMent_Debug|Win32.Build.0 = Development_Debug|Win32
 		{5E7F283C-5C0E-47B8-A057-1CDAE313D18B}.Release|Win32.ActiveCfg = Release|Win32
+		{5E7F283C-5C0E-47B8-A057-1CDAE313D18B}.Release|Win32.Build.0 = Release|Win32
 		{BDA7367C-E178-454E-95CE-C8A89B0331A5}.Debug|Win32.ActiveCfg = DevelopMent_Debug|Win32
 		{BDA7367C-E178-454E-95CE-C8A89B0331A5}.DevelopMent_Debug|Win32.ActiveCfg = DevelopMent_Debug|Win32
+		{BDA7367C-E178-454E-95CE-C8A89B0331A5}.DevelopMent_Debug|Win32.Build.0 = DevelopMent_Debug|Win32
 		{BDA7367C-E178-454E-95CE-C8A89B0331A5}.Release|Win32.ActiveCfg = Release|Win32
+		{BDA7367C-E178-454E-95CE-C8A89B0331A5}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

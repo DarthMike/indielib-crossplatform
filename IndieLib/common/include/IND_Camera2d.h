@@ -25,7 +25,8 @@ Suite 330, Boston, MA 02111-1307 USA
 
 
 // ----- Includes -----
-#include "Defines.h"
+#include "IndiePlatforms.h"
+#include "IND_Vector3.h"
 
 #ifdef INDIERENDER_DIRECTX
 #include <d3d9.h>

@@ -22,7 +22,8 @@
 // ----- Forward declarations ----
 
 class IND_TmxMap;
-//struct Map;
+class IND_Surface;
+class IND_Render;
 
 // ----- Defines -----
 
@@ -66,7 +67,7 @@ public:
 		end();
 	}
 
-	bool    init();
+	bool    init(IND_Render* render);
 	void    end();
 	bool    isOK()  const {
 		return _ok;
@@ -81,11 +82,14 @@ public:
 	//FIXME Tmx::Map* load(char *pName);
 	bool add(IND_TmxMap *pNewMap, IND_TmxMap *pMapToBeCopied);
 
+	void renderIsometricMap(IND_TmxMap *map,IND_Surface *mSurfaceTiles, int kMapCenterOffset);
+	void renderOrthogonalMap(IND_TmxMap *orthogonalMap,IND_Surface *mSurfaceOrthogonalTiles, int kMapCenterOffset);
+	void renderStaggeredMap(IND_TmxMap *staggeredMap,IND_Surface *mSurfaceStaggeredTiles, int kMapCenterOffset);
 
 private:
 	/** @cond DOCUMENT_PRIVATEAPI */
 	// ----- Private -----
-
+	IND_Render *_render;
 	bool _ok;                                // Manager initialization flag
 	char *_supportedExt [MAX_EXT_TMXMAP];    // File extensions supported
 

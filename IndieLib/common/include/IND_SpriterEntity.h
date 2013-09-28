@@ -18,7 +18,7 @@
 
 // ----- Includes -----
 
-#include "IND_object.h"
+#include "IND_Object.h"
 #include "IND_Surface.h"
 #include "../dependencies/SpriterParser/Animation.h"
 #include "../dependencies/SpriterParser/Mainline.h"
@@ -112,7 +112,7 @@ private:
     
     int                         _currentAnimation;      // current animation playing
     int                         _currentKey;            // current key of animation playing
-    int                         _currentTime;           // current time of the animation
+    double                         _currentTime;           // current time of the animation
     
     bool                        _drawBones;             // TODO: support this in a later version
     bool                        _drawObjectpositions;   // TODO: support this in a later version

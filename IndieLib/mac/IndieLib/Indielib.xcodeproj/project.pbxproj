@@ -63,7 +63,6 @@
 		E75EB165159CADF900693F41 /* IND_Window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAAE2159CADEF00693F41 /* IND_Window.cpp */; };
 		E75EB166159CADF900693F41 /* IndieLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAAE3159CADEF00693F41 /* IndieLib.cpp */; };
 		E75EB167159CADF900693F41 /* OSOpenGLManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAAE5159CADEF00693F41 /* OSOpenGLManager.cpp */; };
-		E75EB169159CADF900693F41 /* guicon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAAE8159CADEF00693F41 /* guicon.cpp */; };
 		E75EB16C159CADF900693F41 /* PrecissionTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAAEB159CADEF00693F41 /* PrecissionTimer.cpp */; };
 		E75EB17D159CADF900693F41 /* OpenGLRender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAAFF159CADEF00693F41 /* OpenGLRender.cpp */; };
 		E75EB17F159CADF900693F41 /* OpenGLTextureBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75EAB01159CADEF00693F41 /* OpenGLTextureBuilder.cpp */; };
@@ -200,9 +199,6 @@
 		E75EAAE3159CADEF00693F41 /* IndieLib.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IndieLib.cpp; sourceTree = "<group>"; };
 		E75EAAE5159CADEF00693F41 /* OSOpenGLManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OSOpenGLManager.cpp; sourceTree = "<group>"; };
 		E75EAAE6159CADEF00693F41 /* OSOpenGLManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSOpenGLManager.h; sourceTree = "<group>"; };
-		E75EAAE8159CADEF00693F41 /* guicon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = guicon.cpp; sourceTree = "<group>"; };
-		E75EAAE9159CADEF00693F41 /* guicon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = guicon.h; sourceTree = "<group>"; };
-		E75EAAEA159CADEF00693F41 /* LeaksVisualC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaksVisualC.h; sourceTree = "<group>"; };
 		E75EAAEB159CADEF00693F41 /* PrecissionTimer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PrecissionTimer.cpp; sourceTree = "<group>"; };
 		E75EAAEC159CADEF00693F41 /* PrecissionTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrecissionTimer.h; sourceTree = "<group>"; };
 		E75EAAFF159CADEF00693F41 /* OpenGLRender.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenGLRender.cpp; sourceTree = "<group>"; };
@@ -460,19 +456,8 @@
 			children = (
 				E75EAAE5159CADEF00693F41 /* OSOpenGLManager.cpp */,
 				E75EAAE6159CADEF00693F41 /* OSOpenGLManager.h */,
-				E75EAAE7159CADEF00693F41 /* win32 */,
 			);
 			path = platform;
-			sourceTree = "<group>";
-		};
-		E75EAAE7159CADEF00693F41 /* win32 */ = {
-			isa = PBXGroup;
-			children = (
-				E75EAAE8159CADEF00693F41 /* guicon.cpp */,
-				E75EAAE9159CADEF00693F41 /* guicon.h */,
-				E75EAAEA159CADEF00693F41 /* LeaksVisualC.h */,
-			);
-			path = win32;
 			sourceTree = "<group>";
 		};
 		E75EAAED159CADEF00693F41 /* render */ = {
@@ -618,7 +603,6 @@
 				E75EB165159CADF900693F41 /* IND_Window.cpp in Sources */,
 				E75EB166159CADF900693F41 /* IndieLib.cpp in Sources */,
 				E75EB167159CADF900693F41 /* OSOpenGLManager.cpp in Sources */,
-				E75EB169159CADF900693F41 /* guicon.cpp in Sources */,
 				E75EB16C159CADF900693F41 /* PrecissionTimer.cpp in Sources */,
 				E75EB17D159CADF900693F41 /* OpenGLRender.cpp in Sources */,
 				E75EB17F159CADF900693F41 /* OpenGLTextureBuilder.cpp in Sources */,

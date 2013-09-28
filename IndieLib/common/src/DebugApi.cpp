@@ -24,7 +24,7 @@ Suite 330, Boston, MA 02111-1307 USA
 #include <string.h>
 #include "DebugApi.h"
 #include "IndieVersion.h"
-#include "IND_timer.h"
+#include "IND_Timer.h"
 
 const int DebugApi::LogHeaderOk = 1;
 const int DebugApi::LogHeaderError = 2;

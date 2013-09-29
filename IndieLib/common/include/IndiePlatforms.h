@@ -138,7 +138,7 @@
 #define LIB_EXP __declspec(dllimport)
 #endif //INDIELIB_DLLBUILD
 
-#define IndieLib() WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+#define Indielib_Main() WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 #endif //PLATFORM_WIN32
 
 #ifdef PLATFORM_IOS
@@ -148,7 +148,7 @@ typedef unsigned char BYTE;    // HACK: Fixes some code regarding surfaces, fixe
 #else
 #define LIB_EXP
 #endif
-#define IndieLib() main(int argc, char **argv)
+#define Indielib_Main() main(int argc, char **argv)
 #endif //PLATFORM_IOS
 
 #ifdef PLATFORM_OSX
@@ -158,13 +158,13 @@ typedef unsigned char BYTE;    // HACK: Fixes some code regarding surfaces, fixe
 #else
 #define LIB_EXP
 #endif
-#define IndieLib() main(int argc, char **argv)
+#define Indielib_Main() main(int argc, char **argv)
 #endif //PLATFORM_OSX
 
 #ifdef PLATFORM_LINUX
 #define LIB_EXP
 typedef unsigned char BYTE;    // HACK: Fixes some code regarding surfaces, BYTE is not defined in Linux (and remember Linux is case sensitive BYTE != byte )
-#define IndieLib() main(int argc, char * argv[])
+#define Indielib_Main() main(int argc, char * argv[])
 #endif //PLATFORM_LINUX
 
 

@@ -59,6 +59,7 @@
 //Working path utility
 #include "WorkingPath.h"
 
+#include "IndiePlatforms.h"
 
 //Tests
 #include "manual/ManualTests.h"
@@ -174,7 +175,7 @@ void releaseTests() {
     g_permanenttests.clear();
 }
 
-IndieLib_Main() {
+int Indielib_Main() {
 #ifdef PLATFORM_WIN32
 	//memory leaks for win32 creation
 	FINDMEMLEAK(-1);    //When you find a mem. leak, refer to the number displayed in the console and put it here to break when it is created

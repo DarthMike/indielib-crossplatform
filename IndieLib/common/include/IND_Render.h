@@ -34,6 +34,7 @@
 
 // ----- Includes -----
 
+#include "IndiePlatforms.h"
 #include "Defines.h"
 #include "IND_Timer.h"
 #include "IND_Window.h"

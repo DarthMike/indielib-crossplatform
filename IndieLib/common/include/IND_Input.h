@@ -33,6 +33,7 @@
 #define _IND_INPUT_
 
 // ----- Includes -----
+#include "IndiePlatforms.h"
 #include "Defines.h"
 #include "IND_Timer.h"
 #include <map>

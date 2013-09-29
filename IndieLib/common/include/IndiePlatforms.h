@@ -68,11 +68,10 @@
 #endif 
 
 // ----- Renderer settings -----
-//****Renderer choosing in static time****
-//YOU SHOULD CHANGE HERE THE DEFINITION OF WHICH RENDERER TO COMPILE WITH
+// Change here to override preprocessor macro definition. Only affects windows, as all other
+// platforms compile in one renderer only.
 //#define INDIERENDER_DIRECTX
-#define INDIERENDER_OPENGL
-//#define INDIERENDER_GLES_IOS
+//#define INDIERENDER_OPENGL
 
 // ----- Renderer set checkings -----
 //Only one render type per configuration!

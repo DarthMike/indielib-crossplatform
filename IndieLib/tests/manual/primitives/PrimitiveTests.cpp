@@ -31,7 +31,7 @@
 #include "PrimitiveTests.h"
 #include "IND_Entity2d.h"
 
-static IND_Point g_vertPoly2[] = { {440, 200},  {480, 100},  {450, 10},  {470, 220} };		// Poly points
+static IND_Point g_vertPoly2[] = { IND_Point(440, 200),  IND_Point(480, 100),  IND_Point(450, 10),  IND_Point(470, 220) };		// Poly points
 
 void PrimitiveTests::prepareTests() {
 }

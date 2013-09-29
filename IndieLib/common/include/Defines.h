@@ -146,24 +146,12 @@ users for really concrete purposes.
 #ifndef _DEFINES_
 #define _DEFINES_
 
-// ----- Platform checkings -----
-//Platform definition checkings
-#include "IndiePlatforms.h"
-
-#ifdef PLATFORM_LINUX
+// Standard C/C++
 #include <cstring>
-#include <stdio.h> 
-#endif
+#include <stdio.h>
+#include <iostream>
 
-//---------------------------------------------------------------------------------
-//									Standard C/C++
-//---------------------------------------------------------------------------------
-#include <iostream>   //To use printf and other logging utilities
-
-
-// --------------------------------------------------------------------------------
-//								SDL 1.2 compatibility mode off
-// --------------------------------------------------------------------------------
+// SDL 1.2 compatibility mode off
 #define SDL_NO_COMPAT
 
 //Vector3d utility
@@ -443,6 +431,7 @@ typedef struct structMatrix IND_Matrix;
 
 //! 2d Point 2d\n (x, y)
 struct structPoint {
+    structPoint () : x(0), y(0) {}
     structPoint(int x, int y) : x(x) , y(y) {}
 	int x;      //!< Coordinate x
     int y;      //!< Coordinate y

@@ -74,10 +74,10 @@
 //#define INDIERENDER_DIRECTX
 #endif
 #if !defined (INDIERENDER_OPENGL) && !defined (INDIERENDER_GLES_IOS) && !defined (INDIERENDER_DIRECTX)
-//#define INDIERENDER_OPENGL
+#define INDIERENDER_OPENGL
 #endif
 #if !defined (INDIERENDER_GLES_IOS) && !defined (INDIERENDER_OPENGL) && !defined (INDIERENDER_DIRECTX)
-#define INDIERENDER_GLES_IOS
+//#define INDIERENDER_GLES_IOS
 #endif
 
 // ----- Renderer set checkings -----

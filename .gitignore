@@ -81,3 +81,4 @@ Breakpoints.xcbkptlist
 *.o-i686
 IndieLib/ios/indielibios/build
 IndieLib/ios/indielibios.xcworkspace/xcuserdata
+*.xccheckout

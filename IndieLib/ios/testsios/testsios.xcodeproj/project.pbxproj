@@ -11,6 +11,7 @@
 		E720105D176E3D9400D14384 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E720105C176E3D9400D14384 /* Default.png */; };
 		E720105F176E3D9400D14384 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E720105E176E3D9400D14384 /* Default@2x.png */; };
 		E7201061176E3D9400D14384 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7201060176E3D9400D14384 /* Default-568h@2x.png */; };
+		E73B868417F8AA470040F195 /* TmxmapTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E73B868317F8AA470040F195 /* TmxmapTests.cpp */; };
 		E75522A7177616AF005B7F34 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7552259177616AF005B7F34 /* WorkingPath.cpp */; };
 		E75522B0177616AF005B7F34 /* manual_describtion.txt in Resources */ = {isa = PBXBuildFile; fileRef = E7552264177616AF005B7F34 /* manual_describtion.txt */; };
 		E75522B1177616AF005B7F34 /* manual_screenshot_part_01.png in Resources */ = {isa = PBXBuildFile; fileRef = E7552265177616AF005B7F34 /* manual_screenshot_part_01.png */; };
@@ -83,6 +84,8 @@
 		E720105C176E3D9400D14384 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		E720105E176E3D9400D14384 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		E7201060176E3D9400D14384 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		E73B868217F8AA470040F195 /* TmxmapTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TmxmapTests.h; sourceTree = "<group>"; };
+		E73B868317F8AA470040F195 /* TmxmapTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TmxmapTests.cpp; sourceTree = "<group>"; };
 		E7552258177616AF005B7F34 /* WorkingPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WorkingPath.h; path = ../../../tests/WorkingPath.h; sourceTree = "<group>"; };
 		E7552259177616AF005B7F34 /* WorkingPath.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = WorkingPath.cpp; path = ../../../tests/WorkingPath.cpp; sourceTree = "<group>"; };
 		E7552264177616AF005B7F34 /* manual_describtion.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = manual_describtion.txt; sourceTree = "<group>"; };
@@ -229,6 +232,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		E73B868517F8AA4B0040F195 /* TMX */ = {
+			isa = PBXGroup;
+			children = (
+				E73B868217F8AA470040F195 /* TmxmapTests.h */,
+				E73B868317F8AA470040F195 /* TmxmapTests.cpp */,
+			);
+			name = TMX;
+			sourceTree = "<group>";
+		};
 		E7552263177616AF005B7F34 /* results */ = {
 			isa = PBXGroup;
 			children = (
@@ -255,6 +267,7 @@
 		E7552273177616AF005B7F34 /* manual */ = {
 			isa = PBXGroup;
 			children = (
+				E73B868517F8AA4B0040F195 /* TMX */,
 				E7552274177616AF005B7F34 /* animation */,
 				E7552277177616AF005B7F34 /* camera2d */,
 				E755227A177616AF005B7F34 /* collision */,
@@ -481,6 +494,7 @@
 				E75522A7177616AF005B7F34 /* WorkingPath.cpp in Sources */,
 				E75522BF177616AF005B7F34 /* AnimationTests.cpp in Sources */,
 				E75522C0177616AF005B7F34 /* Camera2dTests.cpp in Sources */,
+				E73B868417F8AA470040F195 /* TmxmapTests.cpp in Sources */,
 				E75522C1177616AF005B7F34 /* CollisionTests.cpp in Sources */,
 				E75522C2177616AF005B7F34 /* EntityTests_animateRotations.cpp in Sources */,
 				E75522C3177616AF005B7F34 /* EntityTests_animateScale.cpp in Sources */,

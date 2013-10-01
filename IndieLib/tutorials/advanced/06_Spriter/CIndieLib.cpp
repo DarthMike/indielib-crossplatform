@@ -2,11 +2,34 @@
  * Desc: IndieLib singleton initialization class
  *****************************************************************************************/
 
+/*********************************** The zlib License ************************************
+ *
+ * Copyright (c) 2013 Indielib-crossplatform Development Team
+ *
+ * This software is provided 'as-is', without any express or implied
+ * warranty. In no event will the authors be held liable for any damages
+ * arising from the use of this software.
+ *
+ * Permission is granted to anyone to use this software for any purpose,
+ * including commercial applications, and to alter it and redistribute it
+ * freely, subject to the following restrictions:
+ *
+ * 1. The origin of this software must not be misrepresented; you must not
+ * claim that you wrote the original software. If you use this software
+ * in a product, an acknowledgment in the product documentation would be
+ * appreciated but is not required.
+ *
+ * 2. Altered source versions must be plainly marked as such, and must not be
+ * misrepresented as being the original software.
+ *
+ * 3. This notice may not be removed or altered from any source
+ * distribution.
+ *
+ *****************************************************************************************/
+
+
 #include "CIndieLib.h"
 
-//#ifdef PLATFORM_WIN32
-//#include "TCHAR.h"
-//#endif
 
 /*
 ==================
@@ -21,33 +44,6 @@ CIndieLib *CIndieLib::instance() {
 	return _pinstance; // address of sole instance
 }
 
-/*
-==================
-Sets working path to the directory of exe file (Windows)
-==================
-*/
-/*MIGUEL: DISABLED UNTIL IT IS REALLY NECESSARY. IT IS STANDARD FOR CURRENT DIRECTORY
-TO BE THE APP'S EXECUTABLE LOCATION (FROM WHERE IT WAS LAUNCHED) WE DON'T NEEED
-ANYTHING ELSE
-void CIndieLib::resetCurrentDirectory_W(void) {
-	TCHAR app_path[MAX_PATH] = _T("");
-	DWORD size_in_tchars = sizeof(app_path) / sizeof(TCHAR);
-	// get full app path with the exe filename
-	GetModuleFileName(0, app_path, size_in_tchars - 1);
-	// making app_path to end on dir char ('\\')
-	// _tcsrchr - search for char from the string's end
-	TCHAR *app_dir = _tcsrchr(app_path, _T('\\'));
-	if (app_dir) {
-		app_dir += 1;
-		if (app_dir) {
-			*app_dir = 0;
-			SetCurrentDirectory(app_path);
-			return;
-		}
-	}
-	// TODO. inform somehow that func is failed.
-}
-*/
 
 /*
 ==================
@@ -105,7 +101,8 @@ Free Indielib managers
 ==================
 */
 void CIndieLib::end() {
-	// ----- Freeing objects -----
+	
+    // ----- Freeing objects -----
 
 	_math                ->end();
 	//_meshManager           ->end();

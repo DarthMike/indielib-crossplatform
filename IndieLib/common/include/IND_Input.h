@@ -37,7 +37,7 @@
 #include "Defines.h"
 #include "IND_Timer.h"
 #include <map>
-#include <cstdint>
+#include <stdint.h>
 
 // ----- Forward declarations -----
 class IND_Render;

@@ -74,7 +74,7 @@
 //#define INDIERENDER_OPENGL
 #endif
 #if !defined (INDIERENDER_GLES_IOS) && !defined (INDIERENDER_OPENGL) && !defined (INDIERENDER_DIRECTX)
-#define INDIERENDER_GLES_IOS
+//#define INDIERENDER_GLES_IOS
 #endif
 
 // ----- Renderer set checkings -----
@@ -159,8 +159,6 @@ typedef unsigned char BYTE;    // HACK: Fixes some code regarding surfaces, BYTE
 
 #if defined (__GNUC__) && __GNUC__ >= 4
 #define LIB_EXP __attribute__ ((visibility("default")))
-#else
-#define LIB_EXP
 #endif
 
 

@@ -3,23 +3,23 @@
 	<!-- frames declaration -->
 	<frames>	
 		<!-- Ufo -->
-		<frame name="ufo0" file="../../resources/animations/ufo/renders_ovni0000.png" />
-		<frame name="ufo1" file="../../resources/animations/ufo/renders_ovni0001.png" />
-		<frame name="ufo2" file="../../resources/animations/ufo/renders_ovni0002.png" />
-		<frame name="ufo3" file="../../resources/animations/ufo/renders_ovni0003.png" />
-		<frame name="ufo4" file="../../resources/animations/ufo/renders_ovni0004.png" />
-		<frame name="ufo5" file="../../resources/animations/ufo/renders_ovni0005.png" />
-		<frame name="ufo6" file="../../resources/animations/ufo/renders_ovni0006.png" />
-		<frame name="ufo7" file="../../resources/animations/ufo/renders_ovni0007.png" />
-		<frame name="ufo8" file="../../resources/animations/ufo/renders_ovni0008.png" />
-		<frame name="ufo9" file="../../resources/animations/ufo/renders_ovni0009.png" />
-		<frame name="ufo10" file="../../resources/animations/ufo/renders_ovni0010.png" />
-		<frame name="ufo11" file="../../resources/animations/ufo/renders_ovni0011.png" />
-		<frame name="ufo12" file="../../resources/animations/ufo/renders_ovni0012.png" />
-		<frame name="ufo13" file="../../resources/animations/ufo/renders_ovni0013.png" />
-		<frame name="ufo14" file="../../resources/animations/ufo/renders_ovni0014.png" />
-		<frame name="ufo15" file="../../resources/animations/ufo/renders_ovni0015.png" />
-		<frame name="ufo16" file="../../resources/animations/ufo/renders_ovni0016.png" />
+		<frame name="ufo0" file="ufo/renders_ovni0000.png" />
+		<frame name="ufo1" file="ufo/renders_ovni0001.png" />
+		<frame name="ufo2" file="ufo/renders_ovni0002.png" />
+		<frame name="ufo3" file="ufo/renders_ovni0003.png" />
+		<frame name="ufo4" file="ufo/renders_ovni0004.png" />
+		<frame name="ufo5" file="ufo/renders_ovni0005.png" />
+		<frame name="ufo6" file="ufo/renders_ovni0006.png" />
+		<frame name="ufo7" file="ufo/renders_ovni0007.png" />
+		<frame name="ufo8" file="ufo/renders_ovni0008.png" />
+		<frame name="ufo9" file="ufo/renders_ovni0009.png" />
+		<frame name="ufo10" file="ufo/renders_ovni0010.png" />
+		<frame name="ufo11" file="ufo/renders_ovni0011.png" />
+		<frame name="ufo12" file="ufo/renders_ovni0012.png" />
+		<frame name="ufo13" file="ufo/renders_ovni0013.png" />
+		<frame name="ufo14" file="ufo/renders_ovni0014.png" />
+		<frame name="ufo15" file="ufo/renders_ovni0015.png" />
+		<frame name="ufo16" file="ufo/renders_ovni0016.png" />
 	</frames>
 		
 	<!-- sequences declaration -->

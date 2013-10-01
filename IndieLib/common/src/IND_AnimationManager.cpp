@@ -45,6 +45,8 @@
 #include "IND_Timer.h"
 #include "CollisionParser.h"
 
+#include <string>
+
 
 // --------------------------------------------------------------------------------
 //							  Initialization / Destruction

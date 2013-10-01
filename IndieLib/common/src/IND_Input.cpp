@@ -202,7 +202,7 @@ void IND_Input::update() {
                 IND_Touch* touch = new IND_Touch();
                 touch->identifier = mEvent.tfinger.touchId;
                 touch->state = IND_TouchStateDown;
-                touch->position = IND_Point(mEvent.tfinger.x,mEvent.tfinger.y);
+                touch->position = IND_NormalizedPoint(mEvent.tfinger.x,mEvent.tfinger.y);
                 _touches[touch->identifier] = touch;
             }
                 break;
@@ -210,7 +210,7 @@ void IND_Input::update() {
                 TouchesMapIterator it = _touches.find(mEvent.tfinger.touchId);
                 if (it != _touches.end()) {
                     (*it).second->state = IND_TouchStateMoved;
-                    (*it).second->position = IND_Point(mEvent.tfinger.x,mEvent.tfinger.y);
+                    (*it).second->position = IND_NormalizedPoint(mEvent.tfinger.x,mEvent.tfinger.y);
                 }
             }
                 break;
@@ -218,7 +218,7 @@ void IND_Input::update() {
                 TouchesMapIterator it = _touches.find(mEvent.tfinger.touchId);
                 if (it != _touches.end()) {
                     (*it).second->state = IND_TouchStateUp;
-                    (*it).second->position = IND_Point(mEvent.tfinger.x,mEvent.tfinger.y);
+                    (*it).second->position = IND_NormalizedPoint(mEvent.tfinger.x,mEvent.tfinger.y);
                     _oldTouches[(*it).second->identifier] = (*it).second;
                 }
             }

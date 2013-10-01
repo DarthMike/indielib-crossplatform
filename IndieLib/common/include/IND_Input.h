@@ -37,6 +37,7 @@
 #include "Defines.h"
 #include "IND_Timer.h"
 #include <map>
+#include <cstdint>
 
 // ----- Forward declarations -----
 class IND_Render;
@@ -180,6 +181,7 @@ public:
  */
 /**@{*/
 typedef enum {
+	IND_TouchStateUnknown,
     IND_TouchStateDown,
     IND_TouchStateMoved,
     IND_TouchStateUp
@@ -187,12 +189,12 @@ typedef enum {
 typedef struct IND_Touch{
 public:
     
-    IND_Touch() : position(0,0){
+	IND_Touch() : identifier(0), position(0.f,0.f), state(IND_TouchStateUnknown){
         
     }
     
-    unsigned int identifier;
-    IND_Point position;
+    int64_t identifier;
+    IND_NormalizedPoint position;
     IND_TouchState state;
 } IND_Touch;
 
@@ -267,7 +269,7 @@ public:
      */
 	/**@{*/
     
-    typedef std::map<unsigned int,IND_Touch*> TouchesMap;
+    typedef std::map<int64_t,IND_Touch*> TouchesMap;
     typedef TouchesMap::iterator TouchesMapIterator;
     IND_Touch* touchWithIdentifier(unsigned int identifier);
     TouchesMap touchesWithState(IND_TouchState state);

@@ -439,6 +439,16 @@ struct structPoint {
 //! Alias for the 2d point structure
 typedef struct structPoint IND_Point;
 
+//! 2d Point, where coordinates lay between 0..1 range\n (x, y)
+struct structNormalizedPoint {
+    structNormalizedPoint () : x(0.f), y(0.f) {}
+    structNormalizedPoint(float x, float y) : x(x) , y(y) {}
+	float x;      //!< Coordinate x
+    float y;      //!< Coordinate y
+};
+//! Alias for the 2d point structure
+typedef struct structNormalizedPoint IND_NormalizedPoint;
+
 /**@}*/
 
 // --------------------------------------------------------------------------------

@@ -44,7 +44,7 @@ using namespace std;
 
 /** @cond DOCUMENT_PRIVATEAPI */
 
-#if defined (DEBUG)
+#if defined (DEBUG) || defined (_DEBUG)
 #define LOG_REDIRECT_TO_CONSOLE 1
 #endif
 class IND_Timer;

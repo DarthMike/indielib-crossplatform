@@ -43,7 +43,6 @@ const int DebugApi::LogHeaderWarning = 4;
 const int DebugApi::LogHeaderBegin = 5;
 const int DebugApi::LogHeaderEnd = 6;
 
-
 // --------------------------------------------------------------------------------
 //							  Initialization / Destruction
 // --------------------------------------------------------------------------------

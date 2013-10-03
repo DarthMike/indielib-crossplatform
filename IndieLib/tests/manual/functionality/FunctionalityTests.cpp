@@ -144,9 +144,9 @@ bool FunctionalityTests::resetParameters() {
 bool FunctionalityTests::changeViewPortColor() {
 	CIndieLib *mI = CIndieLib::instance();
 	if (mI->_input->onKeyPress(IND_SPACE)) {
-		mI->_render->clearViewPort(static_cast<BYTE>(mI->_math->randnum(0, 255)),
-		                           static_cast<BYTE>(mI->_math->randnum(0, 255)),
-		                           static_cast<BYTE>(mI->_math->randnum(0, 255)));
+		mI->_render->clearViewPort(static_cast<unsigned char>(mI->_math->randnum(0, 255)),
+		                           static_cast<unsigned char>(mI->_math->randnum(0, 255)),
+		                           static_cast<unsigned char>(mI->_math->randnum(0, 255)));
 		return true;
 	}
 

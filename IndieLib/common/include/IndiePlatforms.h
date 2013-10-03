@@ -142,18 +142,15 @@
 #endif //PLATFORM_WIN32
 
 #ifdef PLATFORM_IOS
-typedef unsigned char BYTE;    // HACK: Fixes some code regarding surfaces, fixes same problem as in Linux.
 #define IndieLib_Main extern "C" int SDL_main(int argc, char *argv[])
 #endif //PLATFORM_IOS
 
 #ifdef PLATFORM_OSX
-typedef unsigned char BYTE;    // HACK: Fixes some code regarding surfaces, fixes same problem as in Linux.
 #define Indielib_Main int main(int argc, char **argv)
 #endif //PLATFORM_OSX
 
 #ifdef PLATFORM_LINUX
 #define LIB_EXP
-typedef unsigned char BYTE;    // HACK: Fixes some code regarding surfaces, BYTE is not defined in Linux (and remember Linux is case sensitive BYTE != byte )
 #define Indielib_Main int main(int argc, char * argv[])
 #endif //PLATFORM_LINUX
 

@@ -90,14 +90,14 @@ public:
 
 	void fillInfoSurface(IND_Image *pImage, INFO_SURFACE *pI, int pBlockSizeX, int pBlockSizeY);
 
-	void cutBlock(BYTE *pPtrBlock,
+	void cutBlock(unsigned char *pPtrBlock,
 	              int pWidthImage,
 	              int pWidthBlock,
 	              int pHeightBlock,
 	              int pSpareX,
 	              int pSpareY,
 	              int pBpp,
-	              BYTE **pNewBlock);
+	              unsigned char **pNewBlock);
 
 
 private:

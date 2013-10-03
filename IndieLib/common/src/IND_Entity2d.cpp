@@ -575,7 +575,7 @@ void IND_Entity2d::setLayer(int pLayer) {
  * Default RGBA = (0, 0, 0) (Without tint)
  * @param pR, pG, pB					Bytes R, G, B
  */
-void IND_Entity2d::setTint(BYTE pR, BYTE pG, BYTE pB) {
+void IND_Entity2d::setTint(unsigned char pR, unsigned char pG, unsigned char pB) {
 	_r = pR;
 	_g = pG;
 	_b = pB;
@@ -591,7 +591,7 @@ void IND_Entity2d::setTint(BYTE pR, BYTE pG, BYTE pB) {
  * Default A = (255) (Without transparency)
  * @param pA						Byte A.
  */
-void IND_Entity2d::setTransparency(BYTE pA) {
+void IND_Entity2d::setTransparency(unsigned char pA) {
 	_a = pA;
 }
 
@@ -612,7 +612,7 @@ void IND_Entity2d::setTransparency(BYTE pA) {
  * Default RGBA = (0, 0, 0, 255) (Without fade)
  * @param pR, pG, pB, pA				Bytes R, G, B, A.
  */
-void IND_Entity2d::setFade(BYTE pR, BYTE pG, BYTE pB, BYTE pA) {
+void IND_Entity2d::setFade(unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA) {
 	_fadeR = pR;
 	_fadeG = pG;
 	_fadeB = pB;

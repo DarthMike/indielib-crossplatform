@@ -35,9 +35,9 @@ Suite 330, Boston, MA 02111-1307 USA
 // --------------------------------------------------------------------------------
 //							         Public methods
 // --------------------------------------------------------------------------------
-void   OpenGLES2Render::clearViewPort(BYTE pR,
-                                   BYTE pG,
-                                   BYTE pB) {
+void   OpenGLES2Render::clearViewPort(unsigned char pR,
+                                   unsigned char pG,
+                                   unsigned char pB) {
 	//Clear color buffer
 	glClearColor(static_cast<GLclampf>(pR / 255.0f),
 	             static_cast<GLclampf>(pG / 255.0f),

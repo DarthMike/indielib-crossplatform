@@ -108,7 +108,7 @@ bool DirectXTextureBuilder::createNewTexture(IND_Surface *pNewSurface,
 	int mCont = 0;
 
 	// Image pointer
-	BYTE *mPtrBlock = pImage->getPointer();
+	unsigned char *mPtrBlock = pImage->getPointer();
 
 	// Vars
 	int mActualWidthBlockX (0);
@@ -187,7 +187,7 @@ bool DirectXTextureBuilder::createNewTexture(IND_Surface *pNewSurface,
 			              mActualV);                                  // V mapping coordinate
 
 			// Cuts a block from the image (bitmap)
-			BYTE *mTempBlock = 0;
+			unsigned char *mTempBlock = 0;
 			_cutter->cutBlock(mPtrBlock,
 			                  mI._widthImage,
 			                  mI._widthBlock,
@@ -249,7 +249,7 @@ bool DirectXTextureBuilder::createNewTexture(IND_Surface *pNewSurface,
 Creates a texture
 ==================
 */
-IDirect3DTexture9 *DirectXTextureBuilder::createTexture(BYTE *pImage,
+IDirect3DTexture9 *DirectXTextureBuilder::createTexture(unsigned char *pImage,
         int pBlockWidth,
         int pBlockHeight,
         int pSrcBpp,

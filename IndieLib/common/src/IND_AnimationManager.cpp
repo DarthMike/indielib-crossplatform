@@ -163,9 +163,9 @@ bool IND_AnimationManager::addToSurface(IND_Animation *pNewAnimation,
                                         const char *pAnimation,
                                         IND_Type pType,
                                         IND_Quality pQuality,
-                                        BYTE pR,
-                                        BYTE pG,
-                                        BYTE pB) {
+                                        unsigned char pR,
+                                        unsigned char pG,
+                                        unsigned char pB) {
 	//TODO:Modify API, as pType is unnecessary (must be IND_ALPHA), if we want to
 	//use alpha blending and assign color key.
 	assert(IND_ALPHA == pType);
@@ -251,9 +251,9 @@ bool IND_AnimationManager::addToSurface(IND_Animation *pNewAnimation,
                                         int pBlockSize,
                                         IND_Type pType,
                                         IND_Quality pQuality,
-                                        BYTE pR,
-                                        BYTE pG,
-                                        BYTE pB) {
+                                        unsigned char pR,
+                                        unsigned char pG,
+                                        unsigned char pB) {
 	if (!addToImage(pNewAnimation, pAnimation))
 		return 0;
 

@@ -64,8 +64,8 @@ public:
 
 	// ----- Public methods ------
 
-	//bool clear(BYTE pR, BYTE pG, BYTE pB, BYTE pA);
-	//bool getPixel(int pX, int pY, BYTE *pR, BYTE *pG, BYTE *pB, BYTE *pA);
+	//bool clear(unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA);
+	//bool getPixel(int pX, int pY, unsigned char *pR, unsigned char *pG, unsigned char *pB, unsigned char *pA);
 
 	// ----- Public gets ------
 	
@@ -141,7 +141,7 @@ private:
     
 	// ----- Private methods -----
 
-	//void setAlphaChannel(BYTE pR, BYTE pG, BYTE pB);
+	//void setAlphaChannel(unsigned char pR, unsigned char pG, unsigned char pB);
 	//string formatToString(IND_ColorFormat pColorFormat);
 
 	// ----- Friends -----

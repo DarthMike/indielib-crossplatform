@@ -232,9 +232,9 @@ bool IND_SurfaceManager::add(IND_Surface    *pNewSurface,
                              const char    *pName,
                              IND_Type        pType,
                              IND_Quality     pQuality,
-                             BYTE            pR,
-                             BYTE            pG,
-                             BYTE            pB) {
+                             unsigned char            pR,
+                             unsigned char            pG,
+                             unsigned char            pB) {
     // Loads the image
 	IND_Image *mNewImage = IND_Image::newImage();
     
@@ -358,9 +358,9 @@ bool IND_SurfaceManager::add(IND_Surface    *pNewSurface,
                              int             pBlockSize,
                              IND_Type        pType,
                              IND_Quality     pQuality,
-                             BYTE pR,
-                             BYTE pG,
-                             BYTE pB) {
+                             unsigned char pR,
+                             unsigned char pG,
+                             unsigned char pB) {
     // Loads the image
 	IND_Image *mNewImage = IND_Image::newImage();
     

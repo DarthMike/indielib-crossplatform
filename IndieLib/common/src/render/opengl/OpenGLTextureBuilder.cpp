@@ -127,7 +127,7 @@ bool OpenGLTextureBuilder::createNewTexture(IND_Surface  *pNewSurface,
 	int mCont = 0;
 
 	// Image pointer
-	BYTE *mPtrBlock = pImage->getPointer();
+	unsigned char *mPtrBlock = pImage->getPointer();
 	
     // Vars
 	int mActualWidthBlockX (0);
@@ -206,7 +206,7 @@ bool OpenGLTextureBuilder::createNewTexture(IND_Surface  *pNewSurface,
 			              mActualV);                                  // V mapping coordinate
 
 			// Cuts a block from the image (bitmap)
-			BYTE *mTempBlock = 0;
+			unsigned char *mTempBlock = 0;
 			_cutter->cutBlock(mPtrBlock,
 			                  mI._widthImage,
 			                  mI._widthBlock,

@@ -84,7 +84,7 @@ void DirectXRender::blitSurface(IND_Surface *pSu) {
 	}
 }
 
-void DirectXRender::blitGrid(IND_Surface *pSu, BYTE pR, BYTE pG, BYTE pB, BYTE pA) {
+void DirectXRender::blitGrid(IND_Surface *pSu, unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA) {
 	D3DXMATRIX mMatWorld;
 	_info._device->GetTransform(D3DTS_WORLD, &mMatWorld);
 

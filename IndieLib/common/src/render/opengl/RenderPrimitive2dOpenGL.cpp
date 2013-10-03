@@ -54,10 +54,10 @@ bool OpenGLRender::setAntialiasing(bool pSwitch) {
 
 void OpenGLRender::blitPixel(int pX,
                              int pY,
-                             BYTE pR,
-                             BYTE pG,
-                             BYTE pB,
-                             BYTE pA) {
+                             unsigned char pR,
+                             unsigned char pG,
+                             unsigned char pB,
+                             unsigned char pA) {
 	
 	float r(static_cast<float>(pR) / 255.0f), g(static_cast<float>(pG) / 255.0f), b(static_cast<float>(pB) / 255.0f), a(static_cast<float>(pA) / 255.0f);
 	// Fill the PIXEL structure
@@ -92,10 +92,10 @@ void OpenGLRender::blitLine(int pX1,
                             int pY1,
                             int pX2,
                             int pY2,
-                            BYTE pR,
-                            BYTE pG,
-                            BYTE pB,
-                            BYTE pA) {
+                            unsigned char pR,
+                            unsigned char pG,
+                            unsigned char pB,
+                            unsigned char pA) {
 	float r(static_cast<float>(pR) / 255.0f), g(static_cast<float>(pG) / 255.0f), b(static_cast<float>(pB) / 255.0f), a(static_cast<float>(pA) / 255.0f);
 	//Fill the PIXEL structure
 	fillPixel(&_pixels[0], static_cast<float>(pX1), static_cast<float>(pY1), r, g, b, a);
@@ -128,10 +128,10 @@ void OpenGLRender::blitRectangle(int pX1,
                                  int pY1,
                                  int pX2,
                                  int pY2,
-                                 BYTE pR,
-                                 BYTE pG,
-                                 BYTE pB,
-                                 BYTE pA) {
+                                 unsigned char pR,
+                                 unsigned char pG,
+                                 unsigned char pB,
+                                 unsigned char pA) {
 	float r(static_cast<float>(pR) / 255.0f), g(static_cast<float>(pG) / 255.0f), b(static_cast<float>(pB) / 255.0f), a(static_cast<float>(pA) / 255.0f);
  	
 	// Fill PIXEL structures
@@ -167,10 +167,10 @@ void OpenGLRender::blitFillRectangle(int pX1,
                                      int pY1,
                                      int pX2,
                                      int pY2,
-                                     BYTE pR,
-                                     BYTE pG,
-                                     BYTE pB,
-                                     BYTE pA) {
+                                     unsigned char pR,
+                                     unsigned char pG,
+                                     unsigned char pB,
+                                     unsigned char pA) {
 	float r(static_cast<float>(pR) / 255.0f), g(static_cast<float>(pG) / 255.0f), b(static_cast<float>(pB) / 255.0f), a(static_cast<float>(pA) / 255.0f);
  	
 	// Fill PIXEL structures
@@ -203,10 +203,10 @@ void OpenGLRender::blitFillRectangle(int pX1,
 
 void OpenGLRender::blitTriangleList(IND_Point *pTrianglePoints,
                                     int pNumPoints,
-                                    BYTE pR,
-                                    BYTE pG,
-                                    BYTE pB,
-                                    BYTE pA) {
+                                    unsigned char pR,
+                                    unsigned char pG,
+                                    unsigned char pB,
+                                    unsigned char pA) {
 
 	//TODO: CHECK MAX POLYGONS PER CALL...
 	if (pNumPoints < 3)
@@ -248,10 +248,10 @@ void OpenGLRender::blitColoredTriangle(int pX1,
                                        int pY2,
                                        int pX3,
                                        int pY3,
-                                       BYTE pR1, BYTE pG1, BYTE pB1,
-                                       BYTE pR2, BYTE pG2, BYTE pB2,
-                                       BYTE pR3, BYTE pG3, BYTE pB3,
-                                       BYTE pA) {
+                                       unsigned char pR1, unsigned char pG1, unsigned char pB1,
+                                       unsigned char pR2, unsigned char pG2, unsigned char pB2,
+                                       unsigned char pR3, unsigned char pG3, unsigned char pB3,
+                                       unsigned char pA) {
 	
     float r1(static_cast<float>(pR1) / 255.0f), g1(static_cast<float>(pG1) / 255.0f), b1(static_cast<float>(pB1) / 255.0f);
     float r2(static_cast<float>(pR2) / 255.0f), g2(static_cast<float>(pG2) / 255.0f), b2(static_cast<float>(pB2) / 255.0f);
@@ -288,10 +288,10 @@ void OpenGLRender::blitColoredTriangle(int pX1,
 
 bool OpenGLRender::blitPoly2d(IND_Point *pPolyPoints,
                               int pNumLines,
-                              BYTE pR,
-                              BYTE pG,
-                              BYTE pB,
-                              BYTE pA) {
+                              unsigned char pR,
+                              unsigned char pG,
+                              unsigned char pB,
+                              unsigned char pA) {
 
 	if (!pPolyPoints)   return 0;
 	if (pNumLines < 1)  return 0;
@@ -332,10 +332,10 @@ bool OpenGLRender::blitRegularPoly(int pX,
                                    int pRadius,
                                    int pN,
                                    float pAngle,
-                                   BYTE pR,
-                                   BYTE pG,
-                                   BYTE pB,
-                                   BYTE pA) {
+                                   unsigned char pR,
+                                   unsigned char pG,
+                                   unsigned char pB,
+                                   unsigned char pA) {
 	int x, y, i;
 	float r(static_cast<float>(pR) / 255.0f), g(static_cast<float>(pG) / 255.0f), b(static_cast<float>(pB) / 255.0f), a(static_cast<float>(pA) / 255.0f);
 
@@ -394,7 +394,7 @@ void OpenGLRender::fillPixel(PIXEL *pPixel,
 }
 
 
-void OpenGLRender::setForPrimitive(BYTE pA, bool pResetTransform) {
+void OpenGLRender::setForPrimitive(unsigned char pA, bool pResetTransform) {
 	// Transformation reset
 	if (pResetTransform) {
 		setTransform2d(0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0);
@@ -413,7 +413,7 @@ void OpenGLRender::setForPrimitive(BYTE pA, bool pResetTransform) {
 Blits a bounding line
 ==================
 */
- void OpenGLRender::blitGridLine (int pPosX1, int pPosY1, int pPosX2, int pPosY2,  BYTE pR, BYTE pG, BYTE pB, BYTE pA)
+ void OpenGLRender::blitGridLine (int pPosX1, int pPosY1, int pPosX2, int pPosY2,  unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA)
 {	
 	float r(static_cast<float>(pR) / 255.0f), g(static_cast<float>(pG) / 255.0f), b(static_cast<float>(pB) / 255.0f), a(static_cast<float>(pA) / 255.0f);
 	// Filling pixels
@@ -451,7 +451,7 @@ void OpenGLRender::blitGridQuad    (int pAx, int pAy,
                                    int pBx, int pBy,
                                    int pCx, int pCy,
                                    int pDx, int pDy,
-                                   BYTE pR, BYTE pG, BYTE pB, BYTE pA)
+                                   unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA)
 {
 	blitGridLine (pAx, pAy, pBx, pBy, pR, pG, pB, pA);
 	blitGridLine (pBx, pBy, pDx, pDy, pR, pG, pB, pA);
@@ -464,7 +464,7 @@ void OpenGLRender::blitGridQuad    (int pAx, int pAy,
 Blits a bounding circle area
 ==================
 */
-void OpenGLRender::blitCollisionCircle(int pPosX, int pPosY, int pRadius, float pScale,  BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pIndWorldMatrix) {
+void OpenGLRender::blitCollisionCircle(int pPosX, int pPosY, int pRadius, float pScale,  unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA, IND_Matrix pIndWorldMatrix) {
 	float r(static_cast<float>(pR) / 255.0f), g(static_cast<float>(pG) / 255.0f), b(static_cast<float>(pB) / 255.0f), a(static_cast<float>(pA) / 255.0f);
 
 	// Filling pixels
@@ -510,7 +510,7 @@ void OpenGLRender::blitCollisionCircle(int pPosX, int pPosY, int pRadius, float 
 Blits a bounding line
 ==================
 */
-void OpenGLRender::blitCollisionLine(int pPosX1, int pPosY1, int pPosX2, int pPosY2,  BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pIndWorldMatrix) {
+void OpenGLRender::blitCollisionLine(int pPosX1, int pPosY1, int pPosX2, int pPosY2,  unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA, IND_Matrix pIndWorldMatrix) {
 
 	//Transform with supplied matrix
 	setTransform2d(pIndWorldMatrix);

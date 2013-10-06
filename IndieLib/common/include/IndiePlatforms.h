@@ -92,13 +92,17 @@
 //#define INDIERENDER_DIRECTX 1
 #endif
 #if !defined (INDIERENDER_OPENGL) && !defined (INDIERENDER_GLES_IOS) && !defined (INDIERENDER_DIRECTX)
-#define INDIERENDER_OPENGL 1
+//#define INDIERENDER_OPENGL 1
 #endif
 #if !defined (INDIERENDER_GLES_IOS) && !defined (INDIERENDER_OPENGL) && !defined (INDIERENDER_DIRECTX)
-//#define INDIERENDER_GLES_IOS 1
+#define INDIERENDER_GLES_IOS 1
 #endif
 
 // ----- Renderer set safety -----
+// A renderer must be defined
+#if !defined (INDIERENDER_DIRECTX) && !defined (INDIERENDER_GLES_IOS) && !defined (INDIERENDER_OPENGL)
+#error A renderer must be defined. Check IndiePlatforms.h
+#endif
 //Only one render type per configuration!
 //DirectX vs. OPENGLES
 #if defined (INDIERENDER_DIRECTX) && defined (INDIERENDER_GLES_IOS)
@@ -134,7 +138,7 @@
 
 // ---- Config checkings -----
 //Win32 platform vs. render settings
-#if defined (PLATFORM_WIN32) && defined (INDIERENDER_GLES_IOS)
+#if defined (PLATFORM_WIN32) && !defined (INDIERENDER_OPENGL) && !defined (INDIERENDER_DIRECTX)
 #error Render GLES_IOS defined for platform WIN32! Check IndiePlatforms.h
 #endif
 //iOS platform vs. render setting

@@ -86,6 +86,7 @@
 #endif
 
 // ----- Renderer settings -----
+//YOU SHOULD CHANGE HERE THE DEFINITION OF WHICH RENDERER TO COMPILE WITH, INCLUDING LIBRARY USER
 // Change here to override preprocessor macro definition. Only affects windows, as all other
 // platforms compile in one renderer only.
 #if !defined (INDIERENDER_DIRECTX) && !defined (INDIERENDER_GLES_IOS) && !defined (INDIERENDER_OPENGL)

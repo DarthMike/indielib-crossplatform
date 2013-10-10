@@ -106,7 +106,7 @@ bool DebugApi::init() {
  */
 void DebugApi::end() {
 	if (_ok) {
-#if !defined (LOG_REDIRECT_TO_CONSOLE)
+#if !LOG_REDIRECT_TO_CONSOLE
 		_count->close();
 #endif
         _timer->stop();
@@ -408,7 +408,9 @@ void DebugApi::initVars() {
  * Free variables.
  */
 void DebugApi::freeVars() {
+#if !LOG_REDIRECT_TO_CONSOLE
 	DISPOSE(_count);
+#endif
 	DISPOSE(_timer);
 }
 

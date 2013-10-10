@@ -44,19 +44,19 @@ struct fontFixture {
 
 
 TEST_FIXTURE(fontFixture,FONTMANAGER_ADDEXISTING_ADDOK) {
-	CHECK(iLib->_fontManager->add(testFont, "../../resources/font_small.png", "../../resources/font_small.xml", IND_ALPHA, IND_32));
+	CHECK(iLib->_fontManager->add(testFont, "../../assets/font_small.png", "../../assets/font_small.xml", IND_ALPHA, IND_32));
 }
 
 TEST_FIXTURE(fontFixture,FONTMANAGER_ADDNONEXISTINGIMG_ADDFAILS) {
-	CHECK(!iLib->_fontManager->add(testFont, "../../resources/BADBADBAD.png", "../../resources/font_small.xml", IND_ALPHA, IND_32));
+	CHECK(!iLib->_fontManager->add(testFont, "../../assets/BADBADBAD.png", "../../assets/font_small.xml", IND_ALPHA, IND_32));
 }
 
 TEST_FIXTURE(fontFixture,FONTMANAGER_ADDNONEXISTINGXML_ADDFAILS) {
-	CHECK(!iLib->_fontManager->add(testFont, "../../resources/font_small.png", "../../resources/BADBADBAD.xml", IND_ALPHA, IND_32));
+	CHECK(!iLib->_fontManager->add(testFont, "../../assets/font_small.png", "../../assets/BADBADBAD.xml", IND_ALPHA, IND_32));
 }
 
 TEST_FIXTURE(fontFixture,FONTMANAGER_ADDEXISTING_REMOVEIT_NOFAIL) {
-	CHECK(iLib->_fontManager->add(testFont, "../../resources/font_small.png", "../../resources/font_small.xml", IND_ALPHA, IND_32));
+	CHECK(iLib->_fontManager->add(testFont, "../../assets/font_small.png", "../../assets/font_small.xml", IND_ALPHA, IND_32));
     CHECK(iLib->_fontManager->remove(testFont));
 }
 

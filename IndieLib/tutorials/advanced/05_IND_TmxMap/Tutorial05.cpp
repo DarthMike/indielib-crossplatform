@@ -48,7 +48,7 @@ void renderStaggeredMap(CIndieLib *mI, IND_TmxMap *staggeredMap,IND_Surface *mSu
 Main
 ==================
 */
-IndieLib_Main()			
+Indielib_Main			
 {
     //Sets the working path at the resources directory. Resources paths are relative to that directory
 	if (!WorkingPathSetup::setWorkingPath(WorkingPathSetup::resourcesDirectory())) {

@@ -49,7 +49,7 @@ string convert(int number)
 }
 
 
-IndieLib_Main()			
+Indielib_Main			
 
 {
     //Sets the working path at the resources directory. Resources paths are relative to that directory

@@ -35,7 +35,7 @@
 Main
 ==================
 */
-IndieLib_Main()
+Indielib_Main
 {
 	// ----- IndieLib intialization -----
 

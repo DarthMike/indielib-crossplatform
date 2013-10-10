@@ -38,7 +38,7 @@
 Main
 ==================
 */
-IndieLib_Main()			
+Indielib_Main			
 {
     //Sets the working path at the resources directory. Resources paths are relative to that directory
 	if (!WorkingPathSetup::setWorkingPath(WorkingPathSetup::resourcesDirectory())) {

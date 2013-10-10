@@ -106,9 +106,9 @@ public:
 	// ----- Viewports and cameras -----
 
 
-	void   clearViewPort(BYTE pR,
-	                     BYTE pG,
-	                     BYTE pB);
+	void   clearViewPort(unsigned char pR,
+	                     unsigned char pG,
+	                     unsigned char pB);
 
 	bool setViewPort2d(int pX,
 	                   int pY,
@@ -131,37 +131,37 @@ public:
 
 	void blitPixel(int pX,
 	               int pY,
-	               BYTE pR,
-	               BYTE pG,
-	               BYTE pB,
-	               BYTE pA);
+	               unsigned char pR,
+	               unsigned char pG,
+	               unsigned char pB,
+	               unsigned char pA);
 
 	void blitLine(int pX1,
 	              int pY1,
 	              int pX2,
 	              int pY2,
-	              BYTE pR,
-	              BYTE pG,
-	              BYTE pB,
-	              BYTE pA);
+	              unsigned char pR,
+	              unsigned char pG,
+	              unsigned char pB,
+	              unsigned char pA);
 
 	void blitRectangle(int pX1,
 	                   int pY1,
 	                   int pX2,
 	                   int pY2,
-	                   BYTE pR,
-	                   BYTE pG,
-	                   BYTE pB,
-	                   BYTE pA);
+	                   unsigned char pR,
+	                   unsigned char pG,
+	                   unsigned char pB,
+	                   unsigned char pA);
 
 	void blitFillRectangle(int pX1,
 	                       int pY1,
 	                       int pX2,
 	                       int pY2,
-	                       BYTE pR,
-	                       BYTE pG,
-	                       BYTE pB,
-	                       BYTE pA);
+	                       unsigned char pR,
+	                       unsigned char pG,
+	                       unsigned char pB,
+	                       unsigned char pA);
 
 	void blitColoredTriangle(int pX1,
 	                         int pY1,
@@ -169,34 +169,34 @@ public:
 	                         int pY2,
 	                         int pX3,
 	                         int pY3,
-	                         BYTE pR1, BYTE pG1, BYTE pB1,
-	                         BYTE pR2, BYTE pG2, BYTE pB2,
-	                         BYTE pR3, BYTE pG3, BYTE pB3,
-	                         BYTE pA);
+	                         unsigned char pR1, unsigned char pG1, unsigned char pB1,
+	                         unsigned char pR2, unsigned char pG2, unsigned char pB2,
+	                         unsigned char pR3, unsigned char pG3, unsigned char pB3,
+	                         unsigned char pA);
 
 	void blitTriangleList(IND_Point *pTrianglePoints,
 	                      int pNumPoints,
-	                      BYTE pR,
-	                      BYTE pG,
-	                      BYTE pB,
-	                      BYTE pA);
+	                      unsigned char pR,
+	                      unsigned char pG,
+	                      unsigned char pB,
+	                      unsigned char pA);
 
 	bool blitPoly2d(IND_Point *pPixel,
 	                int pNumLines,
-	                BYTE pR,
-	                BYTE pG,
-	                BYTE pB,
-	                BYTE pA);
+	                unsigned char pR,
+	                unsigned char pG,
+	                unsigned char pB,
+	                unsigned char pA);
 
 	bool blitRegularPoly(int pX,
 	                     int pY,
 	                     int pRadius,
 	                     int pN,
 	                     float pAngle,
-	                     BYTE pR,
-	                     BYTE pG,
-	                     BYTE pB,
-	                     BYTE pA);
+	                     unsigned char pR,
+	                     unsigned char pG,
+	                     unsigned char pB,
+	                     unsigned char pA);
 
 	void setTransform2d(int pX,
 	                    int  pY,
@@ -233,28 +233,28 @@ public:
 	                  bool pMirrorX,
 	                  bool pMirrorY,
 	                  IND_Filter pFilter,
-	                  BYTE pR,
-	                  BYTE pG,
-	                  BYTE pB,
-	                  BYTE pA,
-	                  BYTE pFadeR,
-	                  BYTE pFadeG,
-	                  BYTE pFadeB,
-	                  BYTE pFadeA,
+	                  unsigned char pR,
+	                  unsigned char pG,
+	                  unsigned char pB,
+	                  unsigned char pA,
+	                  unsigned char pFadeR,
+	                  unsigned char pFadeG,
+	                  unsigned char pFadeB,
+	                  unsigned char pFadeA,
 	                  IND_BlendingType pSo,
 	                  IND_BlendingType pDs);
 
 	void setRainbow3d(bool pCull,
 	                  bool pFlipNormals,
 	                  IND_Filter pFilter,
-	                  BYTE pR,
-	                  BYTE pG,
-	                  BYTE pB,
-	                  BYTE pA,
-	                  BYTE pFadeR,
-	                  BYTE pFadeG,
-	                  BYTE pFadeB,
-	                  BYTE pFadeA,
+	                  unsigned char pR,
+	                  unsigned char pG,
+	                  unsigned char pB,
+	                  unsigned char pA,
+	                  unsigned char pFadeR,
+	                  unsigned char pFadeG,
+	                  unsigned char pFadeB,
+	                  unsigned char pFadeA,
 	                  IND_BlendingType pSo,
 	                  IND_BlendingType pDs);
 
@@ -270,7 +270,7 @@ public:
 
 	void blitSurface(IND_Surface *pSu);
 
-	void blitGrid(IND_Surface *pSu, BYTE pR, BYTE pG, BYTE pB, BYTE pA);
+	void blitGrid(IND_Surface *pSu, unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA);
 
 	void blitRegionSurface(IND_Surface *pSu,
 	                       int pX,
@@ -302,14 +302,14 @@ public:
 	              int pLineSpacing,
 	              float pScaleX,
 	              float pScaleY,
-	              BYTE pR,
-	              BYTE pG,
-	              BYTE pB,
-	              BYTE pA,
-	              BYTE pFadeR,
-	              BYTE pFadeG,
-	              BYTE pFadeB,
-	              BYTE pFadeA,
+	              unsigned char pR,
+	              unsigned char pG,
+	              unsigned char pB,
+	              unsigned char pA,
+	              unsigned char pFadeR,
+	              unsigned char pFadeG,
+	              unsigned char pFadeB,
+	              unsigned char pFadeA,
 	              IND_Filter pLinearFilter,
 	              IND_BlendingType pSo,
 	              IND_BlendingType pDs,
@@ -503,19 +503,19 @@ private:
 	void fillPixel(PIXEL *pPixel,
 	               int pX,
 	               int pY,
-	               BYTE pR,
-	               BYTE pG,
-	               BYTE pB);
+	               unsigned char pR,
+	               unsigned char pG,
+	               unsigned char pB);
 
 	void fillPixel(PIXEL *pPixel,
 	               int pX,
 	               int pY,
 	               int pZ,
-	               BYTE pR,
-	               BYTE pG,
-	               BYTE pB);
+	               unsigned char pR,
+	               unsigned char pG,
+	               unsigned char pB);
 
-	void setForPrimitive(BYTE pA);
+	void setForPrimitive(unsigned char pA);
 
 	// ------ Fonts -----
 
@@ -525,17 +525,17 @@ private:
 
 	// ----- Grid -----
 
-	void BlitGridLine(int pPosX1, int pPosY1, int pPosX2, int pPosY2,  BYTE pR, BYTE pG, BYTE pB, BYTE pA, D3DXMATRIX pWorldMatrix);
+	void BlitGridLine(int pPosX1, int pPosY1, int pPosX2, int pPosY2,  unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA, D3DXMATRIX pWorldMatrix);
 	void BlitGridQuad(int pAx, int pAy,
 	                  int pBx, int pBy,
 	                  int pCx, int pCy,
 	                  int pDx, int pDy,
-	                  BYTE pR, BYTE pG, BYTE pB, BYTE pA,
+	                  unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA,
 	                  D3DXMATRIX pWorldMatrix);
 	
 	// ----- Collisions  -----
-	void blitCollisionCircle(int pPosX, int pPosY, int pRadius, float pScale, BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pWorldMatrix);
-	void blitCollisionLine(int pPosX1, int pPosY1, int pPosX2, int pPosY2,  BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pIndWorldMatrix);
+	void blitCollisionCircle(int pPosX, int pPosY, int pRadius, float pScale, unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA, IND_Matrix pWorldMatrix);
+	void blitCollisionLine(int pPosX1, int pPosY1, int pPosX2, int pPosY2,  unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA, IND_Matrix pIndWorldMatrix);
 
 	// ----- Culling -----
 	void Transform4Vertices(float pX1, float pY1,

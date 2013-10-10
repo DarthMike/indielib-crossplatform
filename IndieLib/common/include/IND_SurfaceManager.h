@@ -119,9 +119,9 @@ public:
 	             const char    *pName,
 	             IND_Type        pType,
 	             IND_Quality     pQuality,
-	             BYTE pR,
-	             BYTE pG,
-	             BYTE pB);
+	             unsigned char pR,
+	             unsigned char pG,
+	             unsigned char pB);
 
 
 
@@ -145,9 +145,9 @@ public:
 	         int             pBlockSize,
 	         IND_Type        pType,
 	         IND_Quality     pQuality,
-	         BYTE pR,
-	         BYTE pG,
-	         BYTE pB);
+	         unsigned char pR,
+	         unsigned char pG,
+	         unsigned char pB);
 
 	bool clone(IND_Surface *pNewSurface, IND_Surface *pSurfaceToClone);
 

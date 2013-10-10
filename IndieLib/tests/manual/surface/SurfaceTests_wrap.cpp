@@ -37,7 +37,7 @@ void SurfaceTests_wrap::prepareTests() {
 
     CIndieLib* iLib = CIndieLib::instance();
 	// Sun animation
-	iLib->_surfaceManager->add(_surfaces[0], const_cast<char *>("../../resources/layouting/tile2.bmp"), IND_ALPHA, IND_32);
+	iLib->_surfaceManager->add(_surfaces[0], const_cast<char *>("layouting/tile2.bmp"), IND_ALPHA, IND_32);
 }
 
 

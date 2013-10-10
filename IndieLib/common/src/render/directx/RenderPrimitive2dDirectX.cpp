@@ -54,10 +54,10 @@ bool DirectXRender::setAntialiasing(bool pSwitch) {
 
 void DirectXRender::blitPixel(int pX,
                               int pY,
-                              BYTE pR,
-                              BYTE pG,
-                              BYTE pB,
-                              BYTE pA) {
+                              unsigned char pR,
+                              unsigned char pG,
+                              unsigned char pB,
+                              unsigned char pA) {
 
 	// Fill the PIXEL structure
 	fillPixel(&_pixels [0], pX, pY, pR, pG, pB);
@@ -73,10 +73,10 @@ void DirectXRender::blitLine(int pX1,
                              int pY1,
                              int pX2,
                              int pY2,
-                             BYTE pR,
-                             BYTE pG,
-                             BYTE pB,
-                             BYTE pA) {
+                             unsigned char pR,
+                             unsigned char pG,
+                             unsigned char pB,
+                             unsigned char pA) {
 	// Fill the PIXEL structure
 	fillPixel(&_pixels [0], pX1, pY1, pR, pG, pB);
 	fillPixel(&_pixels [1], pX2, pY2, pR, pG, pB);
@@ -92,10 +92,10 @@ void DirectXRender::blitRectangle(int pX1,
                                   int pY1,
                                   int pX2,
                                   int pY2,
-                                  BYTE pR,
-                                  BYTE pG,
-                                  BYTE pB,
-                                  BYTE pA) {
+                                  unsigned char pR,
+                                  unsigned char pG,
+                                  unsigned char pB,
+                                  unsigned char pA) {
 	// Fill PIXEL structures
 	fillPixel(&_pixels [0], pX1, pY1,      pR, pG, pB);
 	fillPixel(&_pixels [1], pX2, pY1,      pR, pG, pB);
@@ -114,10 +114,10 @@ void DirectXRender::blitFillRectangle(int pX1,
                                       int pY1,
                                       int pX2,
                                       int pY2,
-                                      BYTE pR,
-                                      BYTE pG,
-                                      BYTE pB,
-                                      BYTE pA) {
+                                      unsigned char pR,
+                                      unsigned char pG,
+                                      unsigned char pB,
+                                      unsigned char pA) {
 	// Fill PIXEL structures
 	fillPixel(&_pixels [0], pX2, pY1,      pR, pG, pB);
 	fillPixel(&_pixels [1], pX2, pY2,      pR, pG, pB);
@@ -136,10 +136,10 @@ void DirectXRender::blitFillRectangle(int pX1,
 
 void DirectXRender::blitTriangleList(IND_Point *pTrianglePoints,
                                      int pNumPoints,
-                                     BYTE pR,
-                                     BYTE pG,
-                                     BYTE pB,
-                                     BYTE pA) {
+                                     unsigned char pR,
+                                     unsigned char pG,
+                                     unsigned char pB,
+                                     unsigned char pA) {
 	//TODO: CHECK MAX POLYGONS PER CALL...  mD3dcap.MaxPrimitiveCount
 	if (pNumPoints < 3)
 		return;
@@ -162,10 +162,10 @@ void DirectXRender::blitColoredTriangle(int pX1,
                                         int pY2,
                                         int pX3,
                                         int pY3,
-                                        BYTE pR1, BYTE pG1, BYTE pB1,
-                                        BYTE pR2, BYTE pG2, BYTE pB2,
-                                        BYTE pR3, BYTE pG3, BYTE pB3,
-                                        BYTE pA) {
+                                        unsigned char pR1, unsigned char pG1, unsigned char pB1,
+                                        unsigned char pR2, unsigned char pG2, unsigned char pB2,
+                                        unsigned char pR3, unsigned char pG3, unsigned char pB3,
+                                        unsigned char pA) {
 	// Fill PIXEL structures
 	fillPixel(&_pixels [0], pX1, pY1, pR1, pG1, pB1);
 	fillPixel(&_pixels [1], pX2, pY2, pR2, pG2, pB2);
@@ -183,10 +183,10 @@ void DirectXRender::blitColoredTriangle(int pX1,
 
 bool DirectXRender::blitPoly2d(IND_Point *pPolyPoints,
                                int pNumLines,
-                               BYTE pR,
-                               BYTE pG,
-                               BYTE pB,
-                               BYTE pA) {
+                               unsigned char pR,
+                               unsigned char pG,
+                               unsigned char pB,
+                               unsigned char pA) {
 	if (!pPolyPoints)   return 0;
 	if (pNumLines < 1)  return 0;
 
@@ -208,10 +208,10 @@ bool DirectXRender::blitRegularPoly(int pX,
                                     int pRadius,
                                     int pN,
                                     float pAngle,
-                                    BYTE pR,
-                                    BYTE pG,
-                                    BYTE pB,
-                                    BYTE pA) {
+                                    unsigned char pR,
+                                    unsigned char pG,
+                                    unsigned char pB,
+                                    unsigned char pA) {
 	int x, y, i;
 
 	for (i = 0; i < pN; i++) {
@@ -238,7 +238,7 @@ bool DirectXRender::blitRegularPoly(int pX,
 Blits a bounding circle area
 ==================
 */
-void DirectXRender::blitCollisionCircle(int pPosX, int pPosY, int pRadius, float pScale,  BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pIndWorldMatrix) {
+void DirectXRender::blitCollisionCircle(int pPosX, int pPosY, int pRadius, float pScale,  unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA, IND_Matrix pIndWorldMatrix) {
 	if (pScale != 1.0f) pRadius = (int)(pRadius * pScale);
 
 	setTransform2d(0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0);
@@ -281,7 +281,7 @@ void DirectXRender::blitCollisionCircle(int pPosX, int pPosY, int pRadius, float
 Blits a bounding line
 ==================
 */
-void DirectXRender::blitCollisionLine(int pPosX1, int pPosY1, int pPosX2, int pPosY2,  BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pIndWorldMatrix) {
+void DirectXRender::blitCollisionLine(int pPosX1, int pPosY1, int pPosX2, int pPosY2,  unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA, IND_Matrix pIndWorldMatrix) {
 	setTransform2d(0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0);
 
 	IND_Vector3 mP1 (static_cast<float>(pPosX1),static_cast<float>(pPosY1),0.0f);
@@ -312,7 +312,7 @@ void DirectXRender::blitCollisionLine(int pPosX1, int pPosY1, int pPosX2, int pP
 Blits a bounding line
 ==================
 */
-void DirectXRender::BlitGridLine(int pPosX1, int pPosY1, int pPosX2, int pPosY2,  BYTE pR, BYTE pG, BYTE pB, BYTE pA, D3DXMATRIX pWorldMatrix) {
+void DirectXRender::BlitGridLine(int pPosX1, int pPosY1, int pPosX2, int pPosY2,  unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA, D3DXMATRIX pWorldMatrix) {
 	setTransform2d(0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0);
 
 	// Untransformed Points
@@ -350,7 +350,7 @@ void DirectXRender::BlitGridQuad(int pAx, int pAy,
                                  int pBx, int pBy,
                                  int pCx, int pCy,
                                  int pDx, int pDy,
-                                 BYTE pR, BYTE pG, BYTE pB, BYTE pA,
+                                 unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA,
                                  D3DXMATRIX pWorldMatrix) {
 	BlitGridLine(pAx, pAy, pBx, pBy, pR, pG, pB, pA, pWorldMatrix);
 	BlitGridLine(pBx, pBy, pDx, pDy, pR, pG, pB, pA, pWorldMatrix);
@@ -372,9 +372,9 @@ Fill PIXEL structures
 void DirectXRender::fillPixel(PIXEL *pPixel,
                               int pX,
                               int pY,
-                              BYTE pR,
-                              BYTE pG,
-                              BYTE pB) {
+                              unsigned char pR,
+                              unsigned char pG,
+                              unsigned char pB) {
 	// Pixel
 	pPixel->_x      = (float) pX;
 	pPixel->_y      = (float) pY;
@@ -387,7 +387,7 @@ void DirectXRender::fillPixel(PIXEL *pPixel,
 Transformations before drawing a primitive
 ==================
 */
-void DirectXRender::setForPrimitive(BYTE pA) {
+void DirectXRender::setForPrimitive(unsigned char pA) {
 	// Transformation
 	setTransform2d(0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0);
 

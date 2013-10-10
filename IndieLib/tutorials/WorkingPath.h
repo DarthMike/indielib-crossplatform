@@ -31,15 +31,16 @@
 #ifndef _WorkingPath_h
 #define _WorkingPath_h
 
-    
+
 class WorkingPathSetup {
-	public:
+public:
     
+    static const char* resourcesDirectory();
     
-    static bool setWorkingPathFromExe(const char* relpath);
+    static bool setWorkingPath(const char* absPath);
     
-    private:
-    static bool readExeDirectory();
+private:
+    static bool readExeDirectory(char* exePath);
 };
 
 #endif

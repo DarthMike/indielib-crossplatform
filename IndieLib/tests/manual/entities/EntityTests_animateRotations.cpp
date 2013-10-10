@@ -45,21 +45,21 @@ void EntityTests_animateRotations::prepareTests() {
     CIndieLib* iLib = CIndieLib::instance();
 
 	// Loading Rocket
-	if (!iLib->_surfaceManager->add(_surfaces[0], const_cast<char *>("../../resources/rocket.png"), IND_ALPHA, IND_32)) return;
+	if (!iLib->_surfaceManager->add(_surfaces[0], const_cast<char *>("rocket.png"), IND_ALPHA, IND_32)) return;
 
 	// Loading Beetleship
-	if (!iLib->_surfaceManager->add(_surfaces[1], const_cast<char *>("../../resources/beetleship.png"), IND_ALPHA, IND_32)) return;
+	if (!iLib->_surfaceManager->add(_surfaces[1], const_cast<char *>("beetleship.png"), IND_ALPHA, IND_32)) return;
 	
 	// Loading star
-	if (!iLib->_surfaceManager->add(_surfaces[2], const_cast<char *>("../../resources/star.png"), IND_ALPHA, IND_32)) return;
+	if (!iLib->_surfaceManager->add(_surfaces[2], const_cast<char *>("star.png"), IND_ALPHA, IND_32)) return;
 
 	// Sword Master animation, we apply a color key of (0, 255, 0)
-	if (!iLib->_animationManager->addToSurface(_animations[0], const_cast<char *>("../../resources/animations/sword_master.xml"), IND_ALPHA, IND_16, 0, 255, 0)) return;
+	if (!iLib->_animationManager->addToSurface(_animations[0], const_cast<char *>("animations/sword_master.xml"), IND_ALPHA, IND_16, 0, 255, 0)) return;
 
 	// ----- Font loading -----
 
 	// Font
-	if (!iLib->_fontManager->add(_fonts[0], const_cast<char *>("../../resources/font_small.png"), const_cast<char *>("../../resources/font_small.xml"), IND_ALPHA, IND_32)) return;
+	if (!iLib->_fontManager->add(_fonts[0], const_cast<char *>("font_small.png"), const_cast<char *>("font_small.xml"), IND_ALPHA, IND_32)) return;
 
 	// Rocket
 	_entities[0]->setSurface(_surfaces[0]);

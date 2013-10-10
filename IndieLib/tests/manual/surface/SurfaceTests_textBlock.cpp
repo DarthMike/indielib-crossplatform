@@ -37,7 +37,7 @@ void SurfaceTests_textBlock::prepareTests() {
 
     CIndieLib* iLib = CIndieLib::instance();
 	//Draco. Will be partitioned in several texture blocks
-	iLib->_surfaceManager->add(_surfaces[0], const_cast<char *>("../../resources/draco.png"), IND_ALPHA, IND_32);
+	iLib->_surfaceManager->add(_surfaces[0], const_cast<char *>("draco.png"), IND_ALPHA, IND_32);
 	//Make an arbitrary grid
 	_surfaces[0]->setGrid(8, 8);
 }

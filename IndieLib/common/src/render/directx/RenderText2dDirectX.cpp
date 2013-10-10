@@ -46,14 +46,14 @@ void DirectXRender::blitText(IND_Font *pFo,
                              int pLineSpacing,
                              float pScaleX,
                              float pScaleY,
-                             BYTE pR,
-                             BYTE pG,
-                             BYTE pB,
-                             BYTE pA,
-                             BYTE pFadeR,
-                             BYTE pFadeG,
-                             BYTE pFadeB,
-                             BYTE pFadeA,
+                             unsigned char pR,
+                             unsigned char pG,
+                             unsigned char pB,
+                             unsigned char pA,
+                             unsigned char pFadeR,
+                             unsigned char pFadeG,
+                             unsigned char pFadeB,
+                             unsigned char pFadeA,
                              IND_Filter pLinearFilter,
                              IND_BlendingType pSo,
                              IND_BlendingType pDs,
@@ -72,8 +72,8 @@ void DirectXRender::blitText(IND_Font *pFo,
 
 		// ----- Drawing text   -----
 
-		BYTE mChar1;
-		BYTE mChar2;
+		unsigned char mChar1;
+		unsigned char mChar2;
 		int mCont1 = 0;
 		int mCont2 = 0;
 		int mTranslationX = 0;
@@ -171,8 +171,8 @@ A sentence is an array of chars that ends in \n or \0
 ==================
 */
 int DirectXRender::getLongInPixels(IND_Font *pFo, char *pText, int pPos, int pOffset) {
-	BYTE mChar1;
-	BYTE mChar2;
+	unsigned char mChar1;
+	unsigned char mChar2;
 	int mCont1 = pPos;
 	int mCont2 = 0;
 	bool mErrorChar;    // Error when nonexistant char

@@ -7,7 +7,7 @@ libIndieLib_la_SOURCES = ../common/src/IndieVersion.cpp ../common/src/DebugApi.c
 
 libIndieLib_la_LDFLAGS =-static -version-info 0:5:0 -lfreeimage -lSDL2 -lGLEW -lGLU -lGL
 
-libIndieLib_la_CPPFLAGS =-fPIC -Wall -Wno-error=unused-result -Werror -DNDEBUG -DINDIERENDER_OPENGL -O2 -s -I../common/ -I../common/src/ -I../common/include/
+libIndieLib_la_CPPFLAGS =-fPIC -Wall -Wno-error=unused-result -Werror -DNDEBUG -O2 -s -I../common/ -I../common/src/ -I../common/include/
 
 dist_noinst_SCRIPTS = autogen.sh
 

@@ -38,10 +38,15 @@
 #define ESP 3
 
 #include <fstream>
+
+class IND_Timer;
 using namespace std;
 
 /** @cond DOCUMENT_PRIVATEAPI */
 
+#if defined (DEBUG) || defined (_DEBUG)
+#define LOG_REDIRECT_TO_CONSOLE 1
+#endif
 class IND_Timer;
 
 class DebugApi {
@@ -49,7 +54,7 @@ public:
  
 	// ----- Init/End -----
 
-	DebugApi(): _ok(false)  { }
+	DebugApi(): _ok(false)  {}
 	~DebugApi()              {
 		end();
 	}
@@ -83,7 +88,11 @@ private:
 	bool _ok;
 
 	// Output debug file
-	ofstream *_count;
+#if LOG_REDIRECT_TO_CONSOLE
+	ostream *_count;
+#else
+    ofstream *_count;
+#endif //LOG_REDIRECT_TO_CONSOLE
 
 	// Depeth (increases with each  "{" and go down with each "}")
 	int _depth;

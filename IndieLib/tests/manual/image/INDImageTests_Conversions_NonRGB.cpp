@@ -37,10 +37,10 @@ void INDImageTests_Conversions_NonRGB::prepareTests() {
 	CIndieLib *iLib = CIndieLib::instance();
 	// ----- Images loading -----
 	//Colour index format, 16-bit
-	iLib->_imageManager->add(_images[0], const_cast<char *>("../../resources/animations/advance/Rock_Avanza_01.png"));
+	iLib->_imageManager->add(_images[0], const_cast<char *>("animations/advance/Rock_Avanza_01.png"));
 
 	//Colour index format, 16-bit
-	iLib->_imageManager->add(_images[1], const_cast<char *>("../../resources/animations/advance/Rock_Avanza_02.png"));
+	iLib->_imageManager->add(_images[1], const_cast<char *>("animations/advance/Rock_Avanza_02.png"));
 
 	//Colour index format, 16-bit
 	//NO image preload needed. Added here to keep image-surface match perfect in index
@@ -53,7 +53,7 @@ void INDImageTests_Conversions_NonRGB::prepareTests() {
 	iLib->_surfaceManager->add(_surfaces[1], _images[1], IND_ALPHA, IND_32);
 
 	//Conversion by adding alpha channel, colorkey specified
-	iLib->_surfaceManager->add(_surfaces[2], const_cast<char *>("../../resources/animations/advance/Rock_Avanza_03.png"), IND_ALPHA, IND_32,0, 48, 152);
+	iLib->_surfaceManager->add(_surfaces[2], const_cast<char *>("animations/advance/Rock_Avanza_03.png"), IND_ALPHA, IND_32,0, 48, 152);
 	
 }
 

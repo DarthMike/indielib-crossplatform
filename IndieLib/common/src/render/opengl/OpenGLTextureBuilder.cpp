@@ -31,7 +31,7 @@
 
 #include "Defines.h"
 
-#ifdef INDIERENDER_OPENGL
+#if defined (INDIERENDER_OPENGL) || defined (INDIERENDER_GLES_IOS) 
 
 #include "dependencies/FreeImage/Dist/FreeImage.h"
 
@@ -41,6 +41,9 @@
 #include "TextureDefinitions.h"
 #include "IND_Image.h"
 #include "ImageCutter.h"
+
+
+
 /** @cond DOCUMENT_PRIVATEAPI */
 
 OpenGLTextureBuilder::OpenGLTextureBuilder(IND_ImageManager *imagemgr, IND_Render *render):
@@ -124,7 +127,7 @@ bool OpenGLTextureBuilder::createNewTexture(IND_Surface  *pNewSurface,
 	int mCont = 0;
 
 	// Image pointer
-	BYTE *mPtrBlock = pImage->getPointer();
+	unsigned char *mPtrBlock = pImage->getPointer();
 	
     // Vars
 	int mActualWidthBlockX (0);
@@ -203,7 +206,7 @@ bool OpenGLTextureBuilder::createNewTexture(IND_Surface  *pNewSurface,
 			              mActualV);                                  // V mapping coordinate
 
 			// Cuts a block from the image (bitmap)
-			BYTE *mTempBlock = 0;
+			unsigned char *mTempBlock = 0;
 			_cutter->cutBlock(mPtrBlock,
 			                  mI._widthImage,
 			                  mI._widthBlock,
@@ -446,4 +449,4 @@ void OpenGLTextureBuilder::push4Vertices(CUSTOMVERTEX2D *pVertices,
 	           0.0f);
 }
 /** @endcond */
-#endif //INDIERENDER_OPENGL
+#endif // defined (INDIERENDER_OPENGL) || defined (INDIERENDER_GLES_IOS)

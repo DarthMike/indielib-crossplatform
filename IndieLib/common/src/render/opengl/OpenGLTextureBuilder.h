@@ -34,9 +34,19 @@
 
 #include "Defines.h"
 #include "TextureBuilder.h"
-#include "OpenGLRender.h"
 #include "IND_Render.h"
 
+#ifdef INDIERENDER_OPENGL
+#include "dependencies/glew-1.9.0/include/GL/glew.h" //Extension loading facilites library
+#endif
+
+
+#ifdef INDIERENDER_GLES_IOS
+#include <OpenGLES/ES2/gl.h>
+// Define inverted G-B pixel types, only available in desktop
+#define GL_BGR GL_RGB
+#define GL_BGRA GL_RGBA
+#endif
 /** @cond DOCUMENT_PRIVATEAPI */
 
 class IND_Image;

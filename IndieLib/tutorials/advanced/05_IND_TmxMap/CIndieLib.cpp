@@ -87,7 +87,7 @@ bool CIndieLib::init() {
 	//if (!_meshManager      ->init (_render))                                    return 0;
 	if (!_input              ->init(_render))                                    return 0;
 	if (!_math               ->init())                                           return 0;
-	if (!_tmxMapManager      ->init())                                           return 0;
+	if (!_tmxMapManager      ->init(_render)                                           return 0;
 
 
 	return 1;

@@ -38,10 +38,10 @@
 Main
 ==================
 */
-int IndieLib()			
+Indielib_Main			
 {
-    //Sets the working path as the 'exe' directory. All resource paths are relative to this directory
-	if (!WorkingPathSetup::setWorkingPathFromExe(NULL)) {
+    //Sets the working path at the resources directory. Resources paths are relative to that directory
+	if (!WorkingPathSetup::setWorkingPath(WorkingPathSetup::resourcesDirectory())) {
 		std::cout<<"\nUnable to Set the working path !";
 	}
 	
@@ -54,7 +54,7 @@ int IndieLib()
 
 	// Sun animation
 	IND_Animation *mAnimationSun = IND_Animation::newAnimation();
-	if (!mI->_animationManager->addToSurface(mAnimationSun, "../../resources/animations/sun.xml", IND_OPAQUE, IND_32)) return 0;
+	if (!mI->_animationManager->addToSurface(mAnimationSun, "animations/sun.xml", IND_OPAQUE, IND_32)) return 0;
 
 	// ----- Set the surface and animations into 2d entities -----
 

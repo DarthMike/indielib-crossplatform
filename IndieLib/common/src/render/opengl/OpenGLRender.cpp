@@ -47,10 +47,7 @@
 #include "IND_Font.h"
 #include "IND_Animation.h"
 #include "IND_Camera2d.h"
-
-#if defined (PLATFORM_WIN32) || defined(PLATFORM_LINUX) || defined (PLATFORM_OSX)
 #include "platform/OSOpenGLManager.h"
-#endif
 
 //Constants
 #define MINIMUM_OPENGL_VERSION_STRING "GL_VERSION_1_5"  //The minimum GL version supported by this renderer  
@@ -310,12 +307,15 @@ Hardware information
 ==================
 */
 void OpenGLRender::getInfo() {
-
-    GLint maxTextureSize;
-    glGetIntegerv(GL_MAX_TEXTURE_SIZE,&maxTextureSize);
+    const GLubyte* vendor = glGetString(GL_VENDOR);
+    strcpy(_info._vendor,(char*)vendor);
+    const GLubyte* renderer = glGetString(GL_RENDERER);
+    strcpy(_info._vendor,(char*)renderer);
+    const GLubyte* version = glGetString(GL_VERSION);
+    strcpy (_info._version,(char*)version);
+    
+    glGetIntegerv(GL_MAX_TEXTURE_SIZE,&_info._maxTextureSize);
 	glGetIntegerv(GL_MAX_TEXTURE_UNITS, &_info._textureUnits);
-    _info._maxTextureSize = maxTextureSize;
-
 }
 
 /*
@@ -326,7 +326,7 @@ Write hardware information to debug log
 void OpenGLRender::writeInfo() {
 	g_debug->header("Hardware information" , DebugApi::LogHeaderBegin);
 
-	// ----- D3D version -----
+	// ----- version -----
 
 	g_debug->header("OpenGL version:" , DebugApi::LogHeaderInfo);
 	g_debug->dataChar(_info._version, 1);

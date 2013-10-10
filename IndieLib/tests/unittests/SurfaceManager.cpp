@@ -43,15 +43,15 @@ struct fixture {
 
 
 TEST_FIXTURE(fixture,SURFACEMANAGER_ADDEXISTING_ADDOK) {
-	CHECK(iLib->_surfaceManager->add(testSurf,const_cast<char *>("../../resources/blue_background.jpg"), IND_OPAQUE, IND_32));
+	CHECK(iLib->_surfaceManager->add(testSurf,const_cast<char *>("../../assets/blue_background.jpg"), IND_OPAQUE, IND_32));
 }
 
 TEST_FIXTURE(fixture,SURFACEMANAGER_ADDNONEXISTING_ADDFAILS) {
-	CHECK(!iLib->_surfaceManager->add(testSurf,const_cast<char *>("../../resources/BADBADBAD.jpg"), IND_OPAQUE, IND_32));
+	CHECK(!iLib->_surfaceManager->add(testSurf,const_cast<char *>("../../assets/BADBADBAD.jpg"), IND_OPAQUE, IND_32));
 }
 
 TEST_FIXTURE(fixture,SURFACEMANAGER_ADDEXISTING_REMOVEIT_NOFAIL) {
-	iLib->_surfaceManager->add(testSurf,const_cast<char *>("../../resources/blue_background.jpg"), IND_OPAQUE, IND_32);
+	iLib->_surfaceManager->add(testSurf,const_cast<char *>("../../assets/blue_background.jpg"), IND_OPAQUE, IND_32);
     CHECK(iLib->_surfaceManager->remove(testSurf));
 }
 

@@ -58,7 +58,7 @@ private:
 	// ----- Private Methods ------
 	void           getSourceAndDestinationFormat(IND_Image *pImage, D3DFORMAT* pSrcFormat, D3DFORMAT* pDstFormat);
 
-	IDirect3DTexture9   *createTexture(BYTE *pImage,
+	IDirect3DTexture9   *createTexture(unsigned char *pImage,
 	                                   int pBlockWidth,
 	                                   int pBlockHeight,
 	                                   int pSrcBpp,

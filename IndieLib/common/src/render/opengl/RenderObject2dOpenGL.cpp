@@ -111,7 +111,7 @@ void OpenGLRender::blitSurface(IND_Surface *pSu) {
 }
 
 
-void OpenGLRender::blitGrid(IND_Surface *pSu, BYTE pR, BYTE pG, BYTE pB, BYTE pA) {
+void OpenGLRender::blitGrid(IND_Surface *pSu, unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA) {
 
 	//LOOP - All texture blocks of the surface
 	for (int i = 0; i < pSu->getNumBlocks() * 4; i += 4) {

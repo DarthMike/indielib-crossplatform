@@ -69,7 +69,7 @@ void IND_Image::destroy() {
  * @param pB						Byte B (Blue).
  * @param pA						Byte A (Transparency).
  */
-bool IND_Image::clear(BYTE pR, BYTE pG, BYTE pB, BYTE pA) {
+bool IND_Image::clear(unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA) {
 	// No image loaded
 	if (!isImageLoaded() || !FreeImage_HasPixels(getFreeImageHandle())) 
 		return false;
@@ -85,7 +85,7 @@ bool IND_Image::clear(BYTE pR, BYTE pG, BYTE pB, BYTE pA) {
 		case FIT_BITMAP:
 			//LOOP - Y coords
 			for(unsigned y = 0; y < FreeImage_GetHeight(dib); y++) {
-				BYTE *bits = FreeImage_GetScanLine(dib, y);
+				unsigned char *bits = FreeImage_GetScanLine(dib, y);
 				//LOOP - X coords
 				for(unsigned x = 0; x < FreeImage_GetWidth(dib); x++) {
 					// Set pixel color to total transparency, if color matches given colorkey
@@ -130,7 +130,7 @@ bool IND_Image::clear(BYTE pR, BYTE pG, BYTE pB, BYTE pA) {
  * @param pB						Byte B (Blue).
  * @param pA						Byte A (Transparency).
  */
-bool IND_Image::getPixel(int pX, int pY, BYTE *pR, BYTE *pG, BYTE *pB, BYTE *pA) {
+bool IND_Image::getPixel(int pX, int pY, unsigned char *pR, unsigned char *pG, unsigned char *pB, unsigned char *pA) {
 	// No image loaded
 	if (!isImageLoaded() || !FreeImage_HasPixels(getFreeImageHandle()))  return false;
 
@@ -150,7 +150,7 @@ bool IND_Image::getPixel(int pX, int pY, BYTE *pR, BYTE *pG, BYTE *pB, BYTE *pA)
 	switch(image_type) {
 		case FIT_BITMAP: {
 			//Point to requested y coord
-			BYTE *bits = FreeImage_GetScanLine(dib, pY);
+			unsigned char *bits = FreeImage_GetScanLine(dib, pY);
 			//Point to requested x coord
 			bits += (bytespp * pX);
 					
@@ -190,7 +190,7 @@ bool IND_Image::getPixel(int pX, int pY, BYTE *pR, BYTE *pG, BYTE *pB, BYTE *pA)
  * @param pB						Byte B (Blue).
  * @param pA						Byte A (Transparency).
  */
-bool IND_Image::putPixel(int pX, int pY, BYTE pR, BYTE pG, BYTE pB, BYTE pA) {
+bool IND_Image::putPixel(int pX, int pY, unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA) {
 	// No image loaded
 	if (!isImageLoaded() || !FreeImage_HasPixels(getFreeImageHandle()))  return false;
 
@@ -210,7 +210,7 @@ bool IND_Image::putPixel(int pX, int pY, BYTE pR, BYTE pG, BYTE pB, BYTE pA) {
 	switch(image_type) {
 		case FIT_BITMAP: {
 			//Point to requested y coord
-			BYTE *bits = FreeImage_GetScanLine(dib, pY);
+			unsigned char *bits = FreeImage_GetScanLine(dib, pY);
 			//Point to requested x coord
 			bits += (bytespp * pX);
 					
@@ -307,7 +307,7 @@ bool IND_Image::convert(IND_ColorFormat pColorFormat, int pBpp) {
  * @param pG						Byte G (Green).
  * @param pB						Byte B (Blue).
  */
-bool IND_Image::setAlpha(BYTE pR, BYTE pG, BYTE pB) {
+bool IND_Image::setAlpha(unsigned char pR, unsigned char pG, unsigned char pB) {
 	// No image loaded
 	if (!isImageLoaded() || !FreeImage_HasPixels(getFreeImageHandle()))  return false;
 	
@@ -616,12 +616,12 @@ bool IND_Image::invertAlpha() {
 			if(getFormatInt() == IND_RGBA) {
 			//LOOP - Y coords
 			for(unsigned y = 0; y < FreeImage_GetHeight(dib); y++) {
-				BYTE *bits = FreeImage_GetScanLine(dib, y);
+				unsigned char *bits = FreeImage_GetScanLine(dib, y);
 				//LOOP - X coords
 				for(unsigned x = 0; x < FreeImage_GetWidth(dib); x++) {
 					// Invert the alpha value in a per-pixel basis
-					BYTE alpha = bits[FI_RGBA_ALPHA];
-					BYTE max = 255;
+					unsigned char alpha = bits[FI_RGBA_ALPHA];
+					unsigned char max = 255;
 					bits[FI_RGBA_ALPHA] = max - alpha;
 					// jump to next pixel
 					bits += bytespp;
@@ -664,7 +664,7 @@ bool IND_Image::saturation(float) {
 ColorKey
 ==================
 */
-void IND_Image::setAlphaChannel(BYTE pR, BYTE pG, BYTE pB) {
+void IND_Image::setAlphaChannel(unsigned char pR, unsigned char pG, unsigned char pB) {
 	if (!isImageLoaded()) return;
 	if (IND_RGBA != getFormatInt()) return;
 
@@ -680,7 +680,7 @@ void IND_Image::setAlphaChannel(BYTE pR, BYTE pG, BYTE pB) {
 			if(	32 == bpp) {
 				//LOOP - Y coords
 				for(unsigned y = 0; y < FreeImage_GetHeight(dib); y++) {
-					BYTE *bits = FreeImage_GetScanLine(dib, y);
+					unsigned char *bits = FreeImage_GetScanLine(dib, y);
 					//LOOP - X coords
 					for(unsigned x = 0; x < FreeImage_GetWidth(dib); x++) {
 						// Set pixel color to total transparency, if color matches given colorkey

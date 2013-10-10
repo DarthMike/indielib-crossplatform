@@ -34,9 +34,9 @@ Suite 330, Boston, MA 02111-1307 USA
 //							         Public methods
 // --------------------------------------------------------------------------------
 
-void   DirectXRender::clearViewPort(BYTE pR,
-                                    BYTE pG,
-                                    BYTE pB) {
+void   DirectXRender::clearViewPort(unsigned char pR,
+                                    unsigned char pG,
+                                    unsigned char pB) {
 	_info._device->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(pR, pG, pB), 1.0f, 0);
 }
 

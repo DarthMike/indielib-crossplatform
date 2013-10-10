@@ -90,9 +90,9 @@ public:
 	                  const char *pAnimation,
 	                  IND_Type pType,
 	                  IND_Quality pQuality,
-	                  BYTE pR,
-	                  BYTE pG,
-	                  BYTE pB);
+	                  unsigned char pR,
+	                  unsigned char pG,
+	                  unsigned char pB);
 
 	// ----- Specifying block size -----
 
@@ -107,9 +107,9 @@ public:
 	                  int pBlockSize,
 	                  IND_Type pType,
 	                  IND_Quality pQuality,
-	                  BYTE pR,
-	                  BYTE pG,
-	                  BYTE pB);
+	                  unsigned char pR,
+	                  unsigned char pG,
+	                  unsigned char pB);
 
 	bool remove(IND_Animation *pAn);
 

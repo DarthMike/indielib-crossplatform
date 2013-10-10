@@ -11,13 +11,13 @@
 		E7071233159EFEC500BF34D9 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7071232159EFEC500BF34D9 /* WorkingPath.cpp */; };
 		E744863615E8E48700DDE3BF /* CollisionTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E744863415E8E48700DDE3BF /* CollisionTests.cpp */; };
 		E74EAAD715FBD0AC009E948F /* EntityTests_interactions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E74EAAD515FBD0AC009E948F /* EntityTests_interactions.cpp */; };
+		E759E80F17B05583007D4DC3 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = E759E80E17B05583007D4DC3 /* assets */; };
 		E75EB2B6159CB25100693F41 /* libIndielib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
 		E75FCB8C16D3C33700D4694F /* SurfaceTests_Filters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75FCB8A16D3C33700D4694F /* SurfaceTests_Filters.cpp */; };
 		E773A55216AC1D45004E6FDD /* libIndielib.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = E75EB2B1159CAFEA00693F41 /* libIndielib.dylib */; };
 		E796D45A15F88AD900724FBD /* EntityTests_animateRotations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E796D45615F88AD900724FBD /* EntityTests_animateRotations.cpp */; };
 		E796D45B15F88AD900724FBD /* EntityTests_animateScale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E796D45815F88AD900724FBD /* EntityTests_animateScale.cpp */; };
 		E7B4FEB01736EE40003E4489 /* SurfaceTests_layout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7B4FEAE1736EE40003E4489 /* SurfaceTests_layout.cpp */; };
-		E7DBCB1D159C78F600C8B2D9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */; };
 		E7DBCB27159C78F600C8B2D9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E7DBCB25159C78F600C8B2D9 /* InfoPlist.strings */; };
 		E7DBCB2D159C78F600C8B2D9 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E7DBCB2B159C78F600C8B2D9 /* Credits.rtf */; };
 		E7DBCBA3159C7A8D00C8B2D9 /* CIndieLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7DBCB78159C7A8C00C8B2D9 /* CIndieLib.cpp */; };
@@ -69,13 +69,14 @@
 
 /* Begin PBXFileReference section */
 		4C85058D1773967600306A0E /* TmxmapTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TmxmapTests.h; sourceTree = "<group>"; };
-		4C85058E1773973400306A0E /* TmxmapTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TmxmapTests.cpp; sourceTree = "<group>"; };
+		4C85058E1773973400306A0E /* TmxmapTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = TmxmapTests.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		E7071232159EFEC500BF34D9 /* WorkingPath.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = WorkingPath.cpp; path = ../../../tests/WorkingPath.cpp; sourceTree = "<group>"; };
 		E7071234159F057900BF34D9 /* WorkingPath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = WorkingPath.h; path = ../../../tests/WorkingPath.h; sourceTree = "<group>"; };
 		E744863415E8E48700DDE3BF /* CollisionTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CollisionTests.cpp; sourceTree = "<group>"; };
 		E744863515E8E48700DDE3BF /* CollisionTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionTests.h; sourceTree = "<group>"; };
 		E74EAAD515FBD0AC009E948F /* EntityTests_interactions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EntityTests_interactions.cpp; path = entities/EntityTests_interactions.cpp; sourceTree = "<group>"; };
 		E74EAAD615FBD0AC009E948F /* EntityTests_interactions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntityTests_interactions.h; path = entities/EntityTests_interactions.h; sourceTree = "<group>"; };
+		E759E80E17B05583007D4DC3 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = ../../assets; sourceTree = "<group>"; };
 		E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Indielib.xcodeproj; path = ../IndieLib/Indielib.xcodeproj; sourceTree = "<group>"; };
 		E75FCB8A16D3C33700D4694F /* SurfaceTests_Filters.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SurfaceTests_Filters.cpp; sourceTree = "<group>"; };
 		E75FCB8B16D3C33700D4694F /* SurfaceTests_Filters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurfaceTests_Filters.h; sourceTree = "<group>"; };
@@ -86,10 +87,6 @@
 		E7B4FEAE1736EE40003E4489 /* SurfaceTests_layout.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SurfaceTests_layout.cpp; sourceTree = "<group>"; };
 		E7B4FEAF1736EE40003E4489 /* SurfaceTests_layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurfaceTests_layout.h; sourceTree = "<group>"; };
 		E7DBCB18159C78F600C8B2D9 /* IndielibTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IndielibTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		E7DBCB1F159C78F600C8B2D9 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		E7DBCB20159C78F600C8B2D9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		E7DBCB21159C78F600C8B2D9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E7DBCB24159C78F600C8B2D9 /* IndielibTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "IndielibTests-Info.plist"; sourceTree = "<group>"; };
 		E7DBCB26159C78F600C8B2D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E7DBCB2A159C78F600C8B2D9 /* IndielibTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IndielibTests-Prefix.pch"; sourceTree = "<group>"; };
@@ -132,7 +129,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E75EB2B6159CB25100693F41 /* libIndielib.dylib in Frameworks */,
-				E7DBCB1D159C78F600C8B2D9 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,6 +177,7 @@
 		E7DBCAAE159C432500C8B2D9 = {
 			isa = PBXGroup;
 			children = (
+				E759E80E17B05583007D4DC3 /* assets */,
 				E75EB2AC159CAFEA00693F41 /* Indielib.xcodeproj */,
 				E7DBCB22159C78F600C8B2D9 /* IndielibTests */,
 				E7DBCB1B159C78F600C8B2D9 /* Frameworks */,
@@ -199,20 +196,8 @@
 		E7DBCB1B159C78F600C8B2D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */,
-				E7DBCB1E159C78F600C8B2D9 /* Other Frameworks */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		E7DBCB1E159C78F600C8B2D9 /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				E7DBCB1F159C78F600C8B2D9 /* AppKit.framework */,
-				E7DBCB20159C78F600C8B2D9 /* CoreData.framework */,
-				E7DBCB21159C78F600C8B2D9 /* Foundation.framework */,
-			);
-			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
 		E7DBCB22159C78F600C8B2D9 /* IndielibTests */ = {
@@ -408,6 +393,7 @@
 			files = (
 				E7DBCB27159C78F600C8B2D9 /* InfoPlist.strings in Resources */,
 				E7DBCB2D159C78F600C8B2D9 /* Credits.rtf in Resources */,
+				E759E80F17B05583007D4DC3 /* assets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,6 +463,7 @@
 		E7DBCAB5159C432500C8B2D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../../common/include\"",
 					"\"$(SRCROOT)/../../tests\"",
@@ -489,6 +476,7 @@
 		E7DBCAB6159C432500C8B2D9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../../common/include\"",
 					"\"$(SRCROOT)/../../tests\"",

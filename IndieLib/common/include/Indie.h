@@ -60,6 +60,9 @@ using namespace std;
 //Version defs
 #include "IndieVersion.h"
 
+// Platform definitions
+#include "IndiePlatforms.h"
+
 // Math
 #include "IND_Math.h"
 #include "IND_Vector2.h"

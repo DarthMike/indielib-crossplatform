@@ -118,23 +118,6 @@
 #error Multiple renderers defined. Check IndiePlatforms.h
 #endif
 
-//Undefine symbols depending on chosen renderer
-#ifdef INDIERENDER_OPENGL
-#undef INDIERENDER_DIRECTX
-#undef INDIERENDER_GLES_IOS
-#undef PLATFORM_IOS			//We need this as iOS is a subset of MAC in apple terms (both defined)
-#endif //INDIERENDER_OPENGL
-
-#ifdef INDIERENDER_DIRECTX
-#undef INDIERENDER_OPENGL
-#undef INDIERENDER_GLES_IOS  
-#endif //INDIERENDER_DIRECTX
-
-#ifdef INDIERENDER_GLES_IOS
-#undef INDIERENDER_OPENGL
-#undef INDIERENDER_DIRECTX
-#undef PLATFORM_OSX          //We need this as iOS is a subset of MAC in apple terms (both defined)
-#endif //INDIERENDER_GLES_IOS
 //****************************************
 
 // ---- Config checkings -----
@@ -177,19 +160,19 @@
 // On desktop platforms, this definition is provided as a shorthand for C-based main().
 // On iOS it is strictly needed, as using SDL we need to implement a redefined SDL_Main. :(
 
-#if PLATFORM_WIN32
+#ifdef PLATFORM_WIN32
 #define Indielib_Main int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 #endif //PLATFORM_WIN32
 
-#if PLATFORM_IOS
+#ifdef PLATFORM_IOS
 #define Indielib_Main extern "C" int SDL_main(int argc, char *argv[])
 #endif //PLATFORM_IOS
 
-#if PLATFORM_OSX
+#ifdef PLATFORM_OSX
 #define Indielib_Main int main(int argc, char **argv)
 #endif //PLATFORM_OSX
 
-#if PLATFORM_LINUX
+#ifdef PLATFORM_LINUX
 #define Indielib_Main int main(int argc, char * argv[])
 #endif //PLATFORM_LINUX
 

@@ -83,7 +83,7 @@ Indielib_Main
 	// ----- Spriter animation loading -----
     
     
-	if (!mI->_spriterManager->addSpriterFile("../../resources/Spriter/monster/Example.SCML")){
+	if (!mI->_spriterManager->addSpriterFile("Spriter/monster/Example.SCML")){
         return 0;
     }
     

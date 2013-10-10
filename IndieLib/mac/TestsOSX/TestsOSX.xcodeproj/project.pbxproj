@@ -69,7 +69,7 @@
 
 /* Begin PBXFileReference section */
 		4C85058D1773967600306A0E /* TmxmapTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TmxmapTests.h; sourceTree = "<group>"; };
-		4C85058E1773973400306A0E /* TmxmapTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TmxmapTests.cpp; sourceTree = "<group>"; };
+		4C85058E1773973400306A0E /* TmxmapTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = TmxmapTests.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		E7071232159EFEC500BF34D9 /* WorkingPath.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = WorkingPath.cpp; path = ../../../tests/WorkingPath.cpp; sourceTree = "<group>"; };
 		E7071234159F057900BF34D9 /* WorkingPath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = WorkingPath.h; path = ../../../tests/WorkingPath.h; sourceTree = "<group>"; };
 		E744863415E8E48700DDE3BF /* CollisionTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CollisionTests.cpp; sourceTree = "<group>"; };

@@ -69,10 +69,10 @@ void Camera2dTests::performTests(float dt) {
 	}
 
 	// Camera angle
-    if (iLib->_input->isMouseButtonPressed (IND_MBUTTON_LEFT)){
+    if (iLib->_input->isKeyPressed(IND_Q)){
         cameraAngle += g_rotspeed * dt;
     }
-    if (iLib->_input->isMouseButtonPressed (IND_MBUTTON_RIGHT)){
+    if (iLib->_input->isKeyPressed(IND_E)){
         cameraAngle -= g_rotspeed * dt;
     }
 

@@ -42,134 +42,139 @@
 
 #if defined (WIN32) || defined (_WIN32) || defined (_WIN32_)
 #include <windows.h>
-#define PLATFORM_WIN32
+#define PLATFORM_WIN32 1
 #define WIN32_LEAN_AND_MEAN
 #define NOMINMAX //Min max definitions conflicting with std::min and std::max
 #endif
 
-// IOS
-#if defined (__APPLE__)
+// OSX vs. iOS:
+// http://sealiesoftware.com/blog/archive/2010/8/16/TargetConditionalsh.html
+#ifdef __APPLE__
 #include "TargetConditionals.h"
-#if defined (TARGET_OS_IPHONE) || defined (TARGET_IPHONE_SIMULATOR)
-#define PLATFORM_IOS
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+#define PLATFORM_IOS 1
+#else
+#define PLATFORM_OSX 1
 #endif
-#endif
-
-// OSX
-#if defined (__APPLE__) && defined (__MACH__)
-#include "AvailabilityMacros.h"
-#include "TargetConditionals.h"
-#define PLATFORM_OSX
 #endif
 
 // Linux
 #if defined(linux) || defined(__linux)
-#define PLATFORM_LINUX
+#define PLATFORM_LINUX 1
 #endif 
 
+// ----- Platform definition checks -----
+// A platform must be defined
+#if !defined (PLATFORM_WIN32) && !defined (PLATFORM_OSX) && !defined(PLATFORM_LINUX) && !defined (PLATFORM_IOS)
+#error No Platform defined
+#endif
+// Win32 vs. any
+#if defined (PLATFORM_WIN32) && (defined (PLATFORM_OSX) || defined(PLATFORM_LINUX) || defined (PLATFORM_IOS))
+#error Win32 defined when other platforms are defined
+#endif
+// OSX vs. any
+#if defined (PLATFORM_OSX) && (defined (PLATFORM_WIN32) || defined(PLATFORM_LINUX) || defined (PLATFORM_IOS))
+#error OSX defined when other platforms are defined
+#endif
+// Linux vs. any
+#if defined (PLATFORM_LINUX) && (defined (PLATFORM_WIN32) || defined(PLATFORM_OSX) || defined (PLATFORM_IOS))
+#error OSX defined when other platforms are defined
+#endif
+// iOS vs. any
+#if defined (PLATFORM_IOS) && (defined (PLATFORM_WIN32) || defined(PLATFORM_OSX) || defined (PLATFORM_LINUX))
+#error iOS defined when other platforms are defined
+#endif
+
 // ----- Renderer settings -----
+//YOU SHOULD CHANGE HERE THE DEFINITION OF WHICH RENDERER TO COMPILE WITH, INCLUDING LIBRARY USER
 // Change here to override preprocessor macro definition. Only affects windows, as all other
 // platforms compile in one renderer only.
 #if !defined (INDIERENDER_DIRECTX) && !defined (INDIERENDER_GLES_IOS) && !defined (INDIERENDER_OPENGL)
-//#define INDIERENDER_DIRECTX
+//#define INDIERENDER_DIRECTX 1
 #endif
 #if !defined (INDIERENDER_OPENGL) && !defined (INDIERENDER_GLES_IOS) && !defined (INDIERENDER_DIRECTX)
-#define INDIERENDER_OPENGL
+#define INDIERENDER_OPENGL 1
 #endif
 #if !defined (INDIERENDER_GLES_IOS) && !defined (INDIERENDER_OPENGL) && !defined (INDIERENDER_DIRECTX)
-//#define INDIERENDER_GLES_IOS
+//#define INDIERENDER_GLES_IOS 1
 #endif
 
-// ----- Renderer set checkings -----
+// ----- Renderer set safety -----
+// A renderer must be defined
+#if !defined (INDIERENDER_DIRECTX) && !defined (INDIERENDER_GLES_IOS) && !defined (INDIERENDER_OPENGL)
+#error A renderer must be defined. Check IndiePlatforms.h
+#endif
 //Only one render type per configuration!
 //DirectX vs. OPENGLES
 #if defined (INDIERENDER_DIRECTX) && defined (INDIERENDER_GLES_IOS)
-#error Multiple renderers defined. Check Defines.h
+#error Multiple renderers defined. Check IndiePlatforms.h
 #endif
 //DirectX vs. OPENGL
 #if defined (INDIERENDER_DIRECTX) && defined (INDIERENDER_OPENGL)
-#error Multiple renderers defined. Check Defines.h
+#error Multiple renderers defined. Check IndiePlatforms.h
 #endif
 //OPENGL vs. OPENGLES
 #if defined (INDIERENDER_GLES_IOS) && defined (INDIERENDER_OPENGL)
-#error Multiple renderers defined. Check Defines.h
+#error Multiple renderers defined. Check IndiePlatforms.h
 #endif
 
-//Undefine symbols depending on chosen renderer
-#ifdef INDIERENDER_OPENGL
-#undef INDIERENDER_DIRECTX
-#undef INDIERENDER_GLES_IOS
-#undef PLATFORM_IOS			//We need this as iOS is a subset of MAC in apple terms (both defined)
-#endif //INDIERENDER_OPENGL
-
-#ifdef INDIERENDER_DIRECTX
-#undef INDIERENDER_OPENGL
-#undef INDIERENDER_GLES_IOS  
-#endif //INDIERENDER_DIRECTX
-
-#ifdef INDIERENDER_GLES_IOS
-#undef INDIERENDER_OPENGL
-#undef INDIERENDER_DIRECTX
-#undef PLATFORM_OSX          //We need this as iOS is a subset of MAC in apple terms (both defined)
-#endif //INDIERENDER_GLES_IOS
 //****************************************
 
 // ---- Config checkings -----
 //Win32 platform vs. render settings
-#if defined (PLATFORM_WIN32) && defined (INDIERENDER_GLES_IOS)
-#error Render GLES_IOS defined for platform WIN32! Check Defines.h
+#if defined (PLATFORM_WIN32) && !defined (INDIERENDER_OPENGL) && !defined (INDIERENDER_DIRECTX)
+#error Render GLES_IOS defined for platform WIN32! Check IndiePlatforms.h
 #endif
 //iOS platform vs. render setting
 #if defined (PLATFORM_IOS) && !defined (INDIERENDER_GLES_IOS)
-#error Render GLES_IOS NOT defined for platform iOS! Check Defines.h
+#error Render GLES_IOS NOT defined for platform iOS! Check IndiePlatforms.h
 #endif
 //OSX platform vs. render setting
 #if defined (PLATFORM_OSX) && !defined (INDIERENDER_OPENGL)
-#error Render INDIERENDER_OPENGL NOT defined for platform OSX! Check Defines.h
+#error Render INDIERENDER_OPENGL NOT defined for platform OSX! Check IndiePlatforms.h
 #endif
 //Linux platform vs. render setting
 #if defined (PLATFORM_LINUX) && !defined (INDIERENDER_OPENGL)
-#error Render GL NOT defined for platform Linux! Check Defines.h
+#error Render GL NOT defined for platform Linux! Check IndiePlatforms.h
 #endif
+
 // ----- Lib export -----
 
-#ifdef PLATFORM_WIN32
-
+#if PLATFORM_WIN32
 #ifdef INDIELIB_DLLBUILD
 #define LIB_EXP __declspec(dllexport)
 #else
 #define LIB_EXP __declspec(dllimport)
 #endif //INDIELIB_DLLBUILD
+#endif //PLATFORM_WIN32
 
-#define IndieLib() WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+#if PLATFORM_LINUX
+#define LIB_EXP
+#endif //PLATFORM_LINUX
+
+#if defined (__GNUC__) && __GNUC__ >= 4
+#define LIB_EXP __attribute__ ((visibility("default")))
+#endif
+
+// ------ Indielib main -----
+// On desktop platforms, this definition is provided as a shorthand for C-based main().
+// On iOS it is strictly needed, as using SDL we need to implement a redefined SDL_Main. :(
+
+#ifdef PLATFORM_WIN32
+#define Indielib_Main int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 #endif //PLATFORM_WIN32
 
 #ifdef PLATFORM_IOS
-typedef unsigned char BYTE;    // HACK: Fixes some code regarding surfaces, fixes same problem as in Linux.
-#if defined (__GNUC__) && __GNUC__ >= 4
-#define LIB_EXP __attribute__ ((visibility("default")))
-#else
-#define LIB_EXP
-#endif
-#define IndieLib() main(int argc, char **argv)
+#define Indielib_Main extern "C" int SDL_main(int argc, char *argv[])
 #endif //PLATFORM_IOS
 
 #ifdef PLATFORM_OSX
-typedef unsigned char BYTE;    // HACK: Fixes some code regarding surfaces, fixes same problem as in Linux.
-#if defined (__GNUC__) && __GNUC__ >= 4
-#define LIB_EXP __attribute__ ((visibility("default")))
-#else
-#define LIB_EXP
-#endif
-#define IndieLib() main(int argc, char **argv)
+#define Indielib_Main int main(int argc, char **argv)
 #endif //PLATFORM_OSX
 
 #ifdef PLATFORM_LINUX
-#define LIB_EXP
-typedef unsigned char BYTE;    // HACK: Fixes some code regarding surfaces, BYTE is not defined in Linux (and remember Linux is case sensitive BYTE != byte )
-#define IndieLib() main(int argc, char * argv[])
+#define Indielib_Main int main(int argc, char * argv[])
 #endif //PLATFORM_LINUX
-
 
 // --------------------------------------------------------------------------------
 //							       Warnings OFF

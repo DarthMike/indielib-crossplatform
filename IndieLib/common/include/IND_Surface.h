@@ -161,6 +161,7 @@ private:
 	friend class OpenGLTextureBuilder;
 	friend class DirectXRender;
 	friend class OpenGLRender;
+    friend class OpenGLES2Render;
     /** @endcond */
 };
 /**@}*/

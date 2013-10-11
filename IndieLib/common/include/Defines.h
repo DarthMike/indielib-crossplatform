@@ -192,6 +192,22 @@ struct structPixelPos {
 typedef struct structPixelPos PIXEL;
 #endif
 
+#ifdef INDIERENDER_GLES_IOS
+//!Pixel - When not rendering textures
+struct structPixelPos {
+	float _x; ///< Point position x
+    float _y; ///< Point position y
+    float _z; ///< Point position z
+	//Color
+	float _colorR; ///< Point color R
+    float _colorG; ///< Point color G
+    float _colorB; ///< Point color B
+    float _colorA; ///< Point color A
+};
+//! Alias for the pixel structure
+typedef struct structPixelPos PIXEL;
+#endif
+
 //Win32 (DirectX used)
 #ifdef INDIERENDER_DIRECTX
 //!Vertex - When rendering with textures
@@ -209,6 +225,19 @@ typedef struct structVertex2d CUSTOMVERTEX2D;
 #endif
 
 #ifdef INDIERENDER_OPENGL
+//!Vertex - When rendering with textures
+struct structVertex2d {
+	float _x; ///< Point position x
+    float _y; ///< Point position y
+    float _z; ///< Point position z
+	float _u; ///< Texture mapping coordinate u
+    float _v; ///< Texture mapping coordinate v
+};
+//! Alias for the 2d vertex structure
+typedef struct structVertex2d CUSTOMVERTEX2D;
+#endif
+
+#ifdef INDIERENDER_GLES_IOS
 //!Vertex - When rendering with textures
 struct structVertex2d {
 	float _x; ///< Point position x
@@ -409,6 +438,16 @@ struct structPoint {
 };
 //! Alias for the 2d point structure
 typedef struct structPoint IND_Point;
+
+//! 2d Point, where coordinates lay between 0..1 range\n (x, y)
+struct structNormalizedPoint {
+    structNormalizedPoint () : x(0.f), y(0.f) {}
+    structNormalizedPoint(float x, float y) : x(x) , y(y) {}
+	float x;      //!< Coordinate x
+    float y;      //!< Coordinate y
+};
+//! Alias for the 2d point structure
+typedef struct structNormalizedPoint IND_NormalizedPoint;
 
 /**@}*/
 
@@ -738,8 +777,6 @@ typedef int IND_Filter;
 //! Bilinear interpolation filter. This is quite fast, and has better quality than IND_FILTER_POINT.
 #define IND_FILTER_LINEAR                   2
 /**@}*/
-
-#ifndef PLATFORM_IOS   //KEYS FOR DESKTOP OS
 
 /**
  * @defgroup IND_Key Input keys
@@ -1092,8 +1129,6 @@ typedef int IND_MouseButtonState;
 //! Button not pressed
 #define IND_MBUTTON_NOT_PRESSED 0
 /**@}*/
-
-#endif  //KEYS FOR DESKTOP OS
     
 /**
  * @defgroup IND_Debug Debug mode

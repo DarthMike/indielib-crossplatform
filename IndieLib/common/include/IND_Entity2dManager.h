@@ -99,8 +99,8 @@ public:
 		renderEntities2d(0);
 	};
 	void     renderEntities2d(int pLayer);
-	void     renderCollisionAreas(BYTE pR, BYTE pG, BYTE pB, BYTE pA);
-	void     renderCollisionAreas(int pLayer, BYTE pR, BYTE pG, BYTE pB, BYTE pA);
+	void     renderCollisionAreas(unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA);
+	void     renderCollisionAreas(int pLayer, unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA);
 	/**
 	@b Operation:
 	
@@ -108,10 +108,10 @@ public:
 	
 	This method is equivalent to rendering the grid areas of layer number 0.
 	*/	
-	inline void     renderGridAreas(BYTE pR, BYTE pG, BYTE pB, BYTE pA) {
+	inline void     renderGridAreas(unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA) {
 		renderGridAreas(0, pR, pG, pB, pA);
 	};
-	void     renderGridAreas(int pLayer, BYTE pR, BYTE pG, BYTE pB, BYTE pA);
+	void     renderGridAreas(int pLayer, unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA);
 
 	bool     isCollision(IND_Entity2d *pEn1, const char *pId1, IND_Entity2d *pEn2, const char *pId2);
 

@@ -132,7 +132,8 @@ If you want to use a global time constraint, but have one test that is notorious
 int main() {
 	//Just run all tests
     printf("PERFORMING UNIT TESTS...\n");
-    WorkingPathSetup::setWorkingPathFromExe(NULL);
+    const char* resourcesDir = WorkingPathSetup::resourcesDirectory();
+    WorkingPathSetup::setWorkingPath(resourcesDir);
     
 	return UnitTest::RunAllTests();
 }

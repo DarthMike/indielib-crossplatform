@@ -166,24 +166,24 @@ void ImageCutter::fillInfoSurface(IND_Image *pImage,
  *  @param pBpp			TODO: describtion
  *  @param pNewBlock		TODO: describtion
  */
-void ImageCutter::cutBlock(BYTE *pPtrBlock,
+void ImageCutter::cutBlock(unsigned char *pPtrBlock,
                            int pWidthImage,
                            int pWidthBlock,
                            int pHeightBlock,
                            int pSpareX,
                            int pSpareY,
                            int pBpp,
-                           BYTE **pNewBlock) {
+                           unsigned char **pNewBlock) {
 	// ----- Allocate memory for the block  -----
 
 	int mSizeBlock = pWidthBlock * pHeightBlock * pBpp;
-	*pNewBlock = new BYTE [mSizeBlock];
+	*pNewBlock = new unsigned char [mSizeBlock];
 	memset(*pNewBlock, 0, mSizeBlock);
 
 	// ----- Copy the block -----
 
 	// Initial position
-	BYTE *mInitPosition = *pNewBlock;
+	unsigned char *mInitPosition = *pNewBlock;
 
 	// Cut
 	for (int i = 0; i < pHeightBlock - pSpareY; i++) {

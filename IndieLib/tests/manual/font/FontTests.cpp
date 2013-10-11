@@ -37,9 +37,9 @@ void FontTests::prepareTests() {
     CIndieLib* iLib = CIndieLib::instance();
 
 	// Font 1
-	iLib->_fontManager->add(_fonts[0], const_cast<char *>("../../resources/font_big.png"), const_cast<char *>("../../resources/font_big.xml"), IND_ALPHA, IND_32);
-	iLib->_fontManager->add(_fonts[1], const_cast<char *>("../../resources/font_big.png"), const_cast<char *>("../../resources/font_big.xml"), IND_ALPHA, IND_32);
-	iLib->_fontManager->add(_fonts[2], const_cast<char *>("../../resources/font_big.png"), const_cast<char *>("../../resources/font_big.xml"), IND_ALPHA, IND_32);
+	iLib->_fontManager->add(_fonts[0], const_cast<char *>("font_big.png"), const_cast<char *>("font_big.xml"), IND_ALPHA, IND_32);
+	iLib->_fontManager->add(_fonts[1], const_cast<char *>("font_big.png"), const_cast<char *>("font_big.xml"), IND_ALPHA, IND_32);
+	iLib->_fontManager->add(_fonts[2], const_cast<char *>("font_big.png"), const_cast<char *>("font_big.xml"), IND_ALPHA, IND_32);
 }
 
 

@@ -51,6 +51,7 @@ private:
 	bool resetParameters();
 	bool changeViewPortColor();
     bool pixelPointScaleChange();
+    bool keyboardFocus();
 
 };
 

@@ -156,9 +156,9 @@ public:
 	*/
 	/**@{*/
 	void    setBackCull(bool pCull);
-	void    setTint(BYTE pR, BYTE pG, BYTE pB);
-	void    setTransparency(BYTE pA);
-	void    setFade(BYTE pR, BYTE pG, BYTE pB, BYTE pA);
+	void    setTint(unsigned char pR, unsigned char pG, unsigned char pB);
+	void    setTransparency(unsigned char pA);
+	void    setFade(unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA);
 	void    setBlendSource(IND_BlendingType pSo);
 	void    setBlendDest(IND_BlendingType pDs);
 	/**@}*/
@@ -261,35 +261,35 @@ public:
 	//! Returns the type ::IND_Type which uses the graphical object assignated to the entity.
 	IND_Type    getType();
 	//! Returns the tint level in the R (red) channel of the entity.
-	BYTE    getTintR()      {
+	unsigned char    getTintR()      {
 		return _r;
 	}
 	//! Returns the tint level in the G (green) channel of the entity.
-	BYTE    getTintG()      {
+	unsigned char    getTintG()      {
 		return _g;
 	}
 	//! Returns the tint level in the B (blue) channel of the entity.
-	BYTE    getTintB()      {
+	unsigned char    getTintB()      {
 		return _b;
 	}
 	//! Returns the transparency level of the entity
-	BYTE    getTransparency()      {
+	unsigned char    getTransparency()      {
 		return _a;
 	}
 	//! Returns the fade level in R (red) channel of the entity.
-	BYTE    getFadeR()      {
+	unsigned char    getFadeR()      {
 		return _fadeR;
 	}
 	//! Returns the fade level in G (green) channel of the entity.
-	BYTE    getFadeG()      {
+	unsigned char    getFadeG()      {
 		return _fadeG;
 	}
 	//! Returns the fade level in B (blue) channel of the entity.
-	BYTE    getFadeB()      {
+	unsigned char    getFadeB()      {
 		return _fadeB;
 	}
 	//! Returns the fade level of the entity.
-	BYTE    getFadeA()      {
+	unsigned char    getFadeA()      {
 		return _fadeA;
 	}
 	//! Returns the blending type ::IND_BlendingType for the source
@@ -435,14 +435,14 @@ private:
 	IND_Matrix  _mat;       // World matrix
 
 	// Color, transperency and fading attribute
-	BYTE _r;                // R component for tinting
-	BYTE _g;                // G component for tinting
-	BYTE _b;                // B component for tinting
-	BYTE _a;                // Transparency
-	BYTE _fadeR;            // R component for the fade to color
-	BYTE _fadeG;            // G component for the fade to color
-	BYTE _fadeB;            // B component for the fade to color
-	BYTE _fadeA;            // Amount of fade
+	unsigned char _r;                // R component for tinting
+	unsigned char _g;                // G component for tinting
+	unsigned char _b;                // B component for tinting
+	unsigned char _a;                // Transparency
+	unsigned char _fadeR;            // R component for the fade to color
+	unsigned char _fadeG;            // G component for the fade to color
+	unsigned char _fadeB;            // B component for the fade to color
+	unsigned char _fadeA;            // Amount of fade
 	IND_BlendingType _so;   // Blending source
 	IND_BlendingType _ds;   // Blending destination
 

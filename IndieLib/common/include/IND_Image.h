@@ -64,13 +64,13 @@ public:
     
     virtual void destroy();
     
-	bool clear(BYTE pR, BYTE pG, BYTE pB, BYTE pA);
-	bool getPixel(int pX, int pY, BYTE *pR, BYTE *pG, BYTE *pB, BYTE *pA);
-	bool putPixel(int pX, int pY, BYTE pR, BYTE pG, BYTE pB, BYTE pA);
+	bool clear(unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA);
+	bool getPixel(int pX, int pY, unsigned char *pR, unsigned char *pG, unsigned char *pB, unsigned char *pA);
+	bool putPixel(int pX, int pY, unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA);
 	bool flipHorizontal();
 	bool flipVertical();
 	bool convert(IND_ColorFormat pColorFormat, int pBpp);
-	bool setAlpha(BYTE pR, BYTE pG, BYTE pB);
+	bool setAlpha(unsigned char pR, unsigned char pG, unsigned char pB);
 	bool pasteImage(IND_Image *pIm, int pX, int pY, int pAlpha);
 	bool gaussianBlur(int pIter);
 	bool contrast(double pPercentage);
@@ -130,7 +130,7 @@ public:
      This function returns the pointer to the memory bytes which forms the image. It is a function very useful for accessing to the image directy and for modifying it or reading it.
 	 Be aware that modifying the data via the pointer is not the recommended way. See Freeimage docs (underlying library used by IndieLib) to get more details. 
      */
-	BYTE *getPointer()  {
+	unsigned char *getPointer()  {
 		return _image._pointer;
 	}
     
@@ -159,7 +159,7 @@ private:
 		int			_bytespp;           // Bytes per pixel
 		IND_ColorFormat  _format;       // Image format
 		char        *_ext;              // Image file extension
-		BYTE        *_pointer;          // Image data pointer
+		unsigned char        *_pointer;          // Image data pointer
 		char        *_name;             // Image name
 		FIBITMAP    *_handle;           // FreeImage handle
 
@@ -202,7 +202,7 @@ private:
 	void setExtension(const char *pExt)    {
 		strcpy(_image._ext,pExt);
 	}
-	void setPointer(BYTE *pPtr)    {
+	void setPointer(unsigned char *pPtr)    {
 		_image._pointer = pPtr;
 	}
 	void setName(const char *pName)   {
@@ -215,7 +215,7 @@ private:
 
 	// ----- Private methods -----
 
-	void setAlphaChannel(BYTE pR, BYTE pG, BYTE pB);
+	void setAlphaChannel(unsigned char pR, unsigned char pG, unsigned char pB);
 	string formatToString(IND_ColorFormat pColorFormat);
 
 	// ----- Friends -----

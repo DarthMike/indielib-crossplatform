@@ -53,7 +53,7 @@ public:
 
 	// ----- Public methods -----
 
-	static void init(IND_InitializationMode pMode);
+	static bool init(IND_InitializationMode pMode);
 	static void end();
 
 };

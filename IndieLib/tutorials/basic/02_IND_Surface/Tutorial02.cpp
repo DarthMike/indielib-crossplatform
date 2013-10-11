@@ -2,6 +2,32 @@
  * Desc: Tutorial 02 IND_Surface
  *****************************************************************************************/
 
+/*********************************** The zlib License ************************************
+ *
+ * Copyright (c) 2013 Indielib-crossplatform Development Team
+ *
+ * This software is provided 'as-is', without any express or implied
+ * warranty. In no event will the authors be held liable for any damages
+ * arising from the use of this software.
+ *
+ * Permission is granted to anyone to use this software for any purpose,
+ * including commercial applications, and to alter it and redistribute it
+ * freely, subject to the following restrictions:
+ *
+ * 1. The origin of this software must not be misrepresented; you must not
+ * claim that you wrote the original software. If you use this software
+ * in a product, an acknowledgment in the product documentation would be
+ * appreciated but is not required.
+ *
+ * 2. Altered source versions must be plainly marked as such, and must not be
+ * misrepresented as being the original software.
+ *
+ * 3. This notice may not be removed or altered from any source
+ * distribution.
+ *
+ *****************************************************************************************/
+
+
 #include "CIndieLib.h"
 #include "IND_Surface.h"
 #include "IND_Entity2d.h"
@@ -12,17 +38,16 @@
 Main
 ==================
 */
-int IndieLib()			
+Indielib_Main			
 {
-    //Sets the working path as the 'exe' directory. All resource paths are relative to this directory
-	if (!WorkingPathSetup::setWorkingPathFromExe(NULL)) {
+    //Sets the working path at the resources directory. Resources paths are relative to that directory
+	if (!WorkingPathSetup::setWorkingPath(WorkingPathSetup::resourcesDirectory())) {
 		std::cout<<"\nUnable to Set the working path !";
 	}
 	
     
     // ----- IndieLib intialization -----
 
-    
 
 	CIndieLib *mI = CIndieLib::instance();
 	if (!mI->init()) return 0;
@@ -32,15 +57,15 @@ int IndieLib()
 
 	// Loading Background
 	IND_Surface *mSurfaceBack = IND_Surface::newSurface();
-	if (!mI->_surfaceManager->add(mSurfaceBack, "../../resources/blue_background.jpg", IND_OPAQUE, IND_32)) return 0;
+	if (!mI->_surfaceManager->add(mSurfaceBack, "blue_background.jpg", IND_OPAQUE, IND_32)) return 0;
 
 	// Loading sprite of a warrior
 	IND_Surface *mSurfaceWarrior = IND_Surface::newSurface();
-	if (!mI->_surfaceManager->add(mSurfaceWarrior, "../../resources/derekyu_sprite.png", IND_ALPHA, IND_32, 255, 0, 255)) return 0; // TODO: This calls setAlpha in IND_Image, which is broken, please fix.
+	if (!mI->_surfaceManager->add(mSurfaceWarrior, "derekyu_sprite.png", IND_ALPHA, IND_32, 255, 0, 255)) return 0; // TODO: This calls setAlpha in IND_Image, which is broken, please fix.
 
 	// Loading sprite of a star
 	IND_Surface *mSurfaceStar = IND_Surface::newSurface();
-	if (!mI->_surfaceManager->add(mSurfaceStar, "../../resources/star.png", IND_ALPHA, IND_32)) return 0;
+	if (!mI->_surfaceManager->add(mSurfaceStar, "star.png", IND_ALPHA, IND_32)) return 0;
 
 
 	// ----- Set the surfaces into 2d entities -----

@@ -45,7 +45,7 @@
 #endif
 
 #ifdef INDIERENDER_GLES_IOS
-#include "OpenGLES_iOS_Render.h"
+#include "render/gles/ios/OpenGLES2Render.h"
 #endif
 
 #ifdef INDIERENDER_OPENGL
@@ -64,8 +64,11 @@
 @b Operation:
 
  Creates a render and window, with supplied window params. Window params need to be compatible with platform
- running on, as engine will not try to fit display params to something 'similar'. i.e. running in an iPhone 4 and asking for a
- screen with 800x600 will just fail.
+ running on, as engine will not try to fit display params to something 'similar'. 
+ 
+ 
+ If device does not support given resolution, specially important for mobile platforms (running in an iPad and asking for a
+ screen with 800x600), will still create a full screen window, and ignore the supplied width and height.
  
   This function returns a pointer to correctly created window if success. NULL if failed
 */
@@ -181,9 +184,9 @@ inline bool IND_Render::setAntialiasing(bool pSwitch) {
 
 Clean the viewport with a color expressed in RGB
 */
-void IND_Render::clearViewPort(BYTE pR,
-                               BYTE pG,
-                               BYTE pB) {
+void IND_Render::clearViewPort(unsigned char pR,
+                               unsigned char pG,
+                               unsigned char pB) {
 	_wrappedRenderer->clearViewPort(pR, pG, pB);
 }
 /**
@@ -332,14 +335,14 @@ void IND_Render::blitText(IND_Font *pFo,
                                  int pLineSpacing,
                                  float pScaleX,  //MIGUEL: New param
                                  float pScaleY,  //MIGUEL: New param
-                                 BYTE pR,
-                                 BYTE pG,
-                                 BYTE pB,
-                                 BYTE pA,
-                                 BYTE pFadeR,
-                                 BYTE pFadeG,
-                                 BYTE pFadeB,
-                                 BYTE pFadeA,
+                                 unsigned char pR,
+                                 unsigned char pG,
+                                 unsigned char pB,
+                                 unsigned char pA,
+                                 unsigned char pFadeR,
+                                 unsigned char pFadeG,
+                                 unsigned char pFadeB,
+                                 unsigned char pFadeA,
                                  IND_Filter pLinearFilter,
                                  IND_BlendingType pSo,
                                  IND_BlendingType pDs,
@@ -505,10 +508,10 @@ Using this method is equivalent to using both of these methods:
 - IND_Entity2d::showGridAreas()
 */
 void IND_Render::blitGrid(IND_Surface *pSu,
-			  BYTE pR,
-                          BYTE pG,
-                          BYTE pB,
-                          BYTE pA) {
+			  unsigned char pR,
+                          unsigned char pG,
+                          unsigned char pB,
+                          unsigned char pA) {
 	_wrappedRenderer->blitGrid(pSu, pR, pG, pB, pA);
 }
 
@@ -578,10 +581,10 @@ This method is equivalent to use a combination of these methods:
 */
 void IND_Render::blitPixel(int pX,
                            int pY,
-                           BYTE pR,
-                           BYTE pG,
-                           BYTE pB,
-                           BYTE pA) {
+                           unsigned char pR,
+                           unsigned char pG,
+                           unsigned char pB,
+                           unsigned char pA) {
 	_wrappedRenderer->blitPixel(pX, pY, pR, pG, pB, pA);
 }
 
@@ -608,10 +611,10 @@ void IND_Render::blitLine(int pX1,
                           int pY1,
                           int pX2,
                           int pY2,
-                          BYTE pR,
-                          BYTE pG,
-                          BYTE pB,
-                          BYTE pA) {
+                          unsigned char pR,
+                          unsigned char pG,
+                          unsigned char pB,
+                          unsigned char pA) {
 	_wrappedRenderer->blitLine(pX1, pY1, pX2, pY2, pR, pG, pB, pA);
 }
 
@@ -638,10 +641,10 @@ void IND_Render::blitRectangle(int pX1,
                                int pY1,
                                int pX2,
                                int pY2,
-                               BYTE pR,
-                               BYTE pG,
-                               BYTE pB,
-                               BYTE pA) {
+                               unsigned char pR,
+                               unsigned char pG,
+                               unsigned char pB,
+                               unsigned char pA) {
 	_wrappedRenderer->blitRectangle(pX1, pY1, pX2, pY2, pR, pG, pB, pA);
 }
 
@@ -669,10 +672,10 @@ void IND_Render::blitFillRectangle(int pX1,
         			   int pY1,
         			   int pX2,
         			   int pY2,
-        			   BYTE pR,
-        			   BYTE pG,
-        			   BYTE pB,
-        			   BYTE pA) {
+        			   unsigned char pR,
+        			   unsigned char pG,
+        			   unsigned char pB,
+        			   unsigned char pA) {
 	_wrappedRenderer->blitFillRectangle(pX1, pY1, pX2, pY2, pR, pG, pB, pA);
 }
 
@@ -692,10 +695,10 @@ The A parameter is transparency (255 = complety opaque).
 */
 void IND_Render::blitTriangleList(IND_Point *pTrianglePoints,
         			  int pNumPoints,
-        			  BYTE pR,
-        			  BYTE pG,
-        			  BYTE pB,
-        			  BYTE pA) {
+        			  unsigned char pR,
+        			  unsigned char pG,
+        			  unsigned char pB,
+        			  unsigned char pA) {
 				  _wrappedRenderer->blitTriangleList(pTrianglePoints, pNumPoints, pR, pG, pB, pA);
 }
 
@@ -723,10 +726,10 @@ void IND_Render::blitColoredTriangle(int pX1,
         			     int pY2,
         			     int pX3,
         			     int pY3,
-        			     BYTE pR1, BYTE pG1, BYTE pB1,
-        			     BYTE pR2, BYTE pG2, BYTE pB2,
-        			     BYTE pR3, BYTE pG3, BYTE pB3,
-        			     BYTE pA) {
+        			     unsigned char pR1, unsigned char pG1, unsigned char pB1,
+        			     unsigned char pR2, unsigned char pG2, unsigned char pB2,
+        			     unsigned char pR3, unsigned char pG3, unsigned char pB3,
+        			     unsigned char pA) {
 					       _wrappedRenderer->blitColoredTriangle(pX1, pY1, pX2, pY2, pX3, pY3, pR1, pG1, pB1, pR2, pG2, pB2, pR3, pG3, pB3, pA);
 }
 
@@ -752,10 +755,10 @@ Using this method is equivalent to using all of these methods:
 */
 bool IND_Render::blitPoly2d(IND_Point *pPolyPoints,
                             int pNumLines,
-                            BYTE pR,
-                            BYTE pG,
-                            BYTE pB,
-                            BYTE pA) {
+                            unsigned char pR,
+                            unsigned char pG,
+                            unsigned char pB,
+                            unsigned char pA) {
 	return (_wrappedRenderer->blitPoly2d(pPolyPoints, pNumLines, pR, pG, pB, pA));
 }
 
@@ -788,10 +791,10 @@ bool IND_Render::blitRegularPoly(int pX,
                                  int pRadius,
                                  int pN,
                                  float pAngle,
-                                 BYTE pR,
-                                 BYTE pG,
-                                 BYTE pB,
-                                 BYTE pA) {
+                                 unsigned char pR,
+                                 unsigned char pG,
+                                 unsigned char pB,
+                                 unsigned char pA) {
 	return (_wrappedRenderer->blitRegularPoly(pX, pY, pRadius, pN, pAngle, pR, pG, pB, pA));
 }
 /**@}*/
@@ -1008,7 +1011,7 @@ void IND_Render::setIdentityTransform2d () {
                                                     Used for fading the image to a certain color.
                                                     For example, if we use RGB = (255, 0, 0),
                                                     the image will progressively become red.
-@arg @b pA                                          The A BYTE indicates the level of transparency.
+@arg @b pA                                          The A unsigned char indicates the level of transparency.
                                                     If a value of 0 is used, the following graphical
                                                     object will be completely transparent, as opposed
                                                     to the value 255 that will cause the object
@@ -1047,14 +1050,14 @@ void IND_Render::setRainbow2d(IND_Type pType,
                               bool pMirrorX,
                               bool pMirrorY,
                               IND_Filter pFilter,
-                              BYTE pR,
-                              BYTE pG,
-                              BYTE pB,
-                              BYTE pA,
-                              BYTE pFadeR,
-                              BYTE pFadeG,
-                              BYTE pFadeB,
-                              BYTE pFadeA,
+                              unsigned char pR,
+                              unsigned char pG,
+                              unsigned char pB,
+                              unsigned char pA,
+                              unsigned char pFadeR,
+                              unsigned char pFadeG,
+                              unsigned char pFadeB,
+                              unsigned char pFadeA,
                               IND_BlendingType pSo,
                               IND_BlendingType pDs) {
 	_wrappedRenderer->setRainbow2d(pType,
@@ -1274,14 +1277,14 @@ Using this method is equivalent to using a combination of these methods:
 inline void IND_Render::setRainbow3d(bool pCull,
                                      bool pFlipNormals,
                                      IND_Filter pFilter,
-                                     BYTE pR,
-                                     BYTE pG,
-                                     BYTE pB,
-                                     BYTE pA,
-                                     BYTE pFadeR,
-                                     BYTE pFadeG,
-                                     BYTE pFadeB,
-                                     BYTE pFadeA,
+                                     unsigned char pR,
+                                     unsigned char pG,
+                                     unsigned char pB,
+                                     unsigned char pA,
+                                     unsigned char pFadeR,
+                                     unsigned char pFadeG,
+                                     unsigned char pFadeB,
+                                     unsigned char pFadeA,
                                      IND_BlendingType pSo,
                                      IND_BlendingType pDs) {
 	_wrappedRenderer->setRainbow3d(pCull,
@@ -1428,7 +1431,7 @@ IND_Window* IND_Render::createRender(IND_WindowProperties& windowProperties) {
 #endif
 
 #ifdef INDIERENDER_GLES_IOS
-	_wrappedRenderer = new OpenGLES_iOS_Render();
+	_wrappedRenderer = new OpenGLES2Render();
 #endif
 
 #ifdef INDIERENDER_OPENGL
@@ -1477,7 +1480,7 @@ Calculates 6 planes defining the frustum
  Blits a bounding circle area
  ==================
  */
-void IND_Render::blitCollisionCircle(int pPosX, int pPosY, int pRadius, float pScale,  BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pIndWorldMatrix) {
+void IND_Render::blitCollisionCircle(int pPosX, int pPosY, int pRadius, float pScale,  unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA, IND_Matrix pIndWorldMatrix) {
 	_wrappedRenderer->blitCollisionCircle(pPosX, pPosY, pRadius, pScale, pR, pG, pB, pA, pIndWorldMatrix);
 }
 
@@ -1487,7 +1490,7 @@ void IND_Render::blitCollisionCircle(int pPosX, int pPosY, int pRadius, float pS
  Blits a bounding line
  ==================
  */
-void IND_Render::blitCollisionLine(int pPosX1, int pPosY1, int pPosX2, int pPosY2,  BYTE pR, BYTE pG, BYTE pB, BYTE pA, IND_Matrix pIndWorldMatrix) {
+void IND_Render::blitCollisionLine(int pPosX1, int pPosY1, int pPosX2, int pPosY2,  unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA, IND_Matrix pIndWorldMatrix) {
 	_wrappedRenderer->blitCollisionLine(pPosX1, pPosY1, pPosX2, pPosY2, pR, pG, pB, pA, pIndWorldMatrix);
 }
 

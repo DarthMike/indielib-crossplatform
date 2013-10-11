@@ -43,7 +43,6 @@ const int DebugApi::LogHeaderWarning = 4;
 const int DebugApi::LogHeaderBegin = 5;
 const int DebugApi::LogHeaderEnd = 6;
 
-
 // --------------------------------------------------------------------------------
 //							  Initialization / Destruction
 // --------------------------------------------------------------------------------
@@ -55,8 +54,11 @@ bool DebugApi::init() {
 	initVars();
 
 	// File
-	_count = new ofstream("debug.log", ios::out);
-
+#if LOG_REDIRECT_TO_CONSOLE
+	_count = &std::cout;
+#else
+    _count = new ofstream("debug.log", ios::out);
+#endif //LOG_REDIRECT_TO_CONSOLE
 	// Time
 	time_t mT;							
 	time(&mT);							 
@@ -104,7 +106,10 @@ bool DebugApi::init() {
  */
 void DebugApi::end() {
 	if (_ok) {
+#if !LOG_REDIRECT_TO_CONSOLE
 		_count->close();
+#endif
+        _timer->stop();
 		freeVars();
 		_ok = false;
 	}
@@ -403,7 +408,9 @@ void DebugApi::initVars() {
  * Free variables.
  */
 void DebugApi::freeVars() {
+#if !LOG_REDIRECT_TO_CONSOLE
 	DISPOSE(_count);
+#endif
 	DISPOSE(_timer);
 }
 

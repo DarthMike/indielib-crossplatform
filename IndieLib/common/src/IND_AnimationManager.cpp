@@ -45,6 +45,8 @@
 #include "IND_Timer.h"
 #include "CollisionParser.h"
 
+#include <string>
+
 
 // --------------------------------------------------------------------------------
 //							  Initialization / Destruction
@@ -161,9 +163,9 @@ bool IND_AnimationManager::addToSurface(IND_Animation *pNewAnimation,
                                         const char *pAnimation,
                                         IND_Type pType,
                                         IND_Quality pQuality,
-                                        BYTE pR,
-                                        BYTE pG,
-                                        BYTE pB) {
+                                        unsigned char pR,
+                                        unsigned char pG,
+                                        unsigned char pB) {
 	//TODO:Modify API, as pType is unnecessary (must be IND_ALPHA), if we want to
 	//use alpha blending and assign color key.
 	assert(IND_ALPHA == pType);
@@ -249,9 +251,9 @@ bool IND_AnimationManager::addToSurface(IND_Animation *pNewAnimation,
                                         int pBlockSize,
                                         IND_Type pType,
                                         IND_Quality pQuality,
-                                        BYTE pR,
-                                        BYTE pG,
-                                        BYTE pB) {
+                                        unsigned char pR,
+                                        unsigned char pG,
+                                        unsigned char pB) {
 	if (!addToImage(pNewAnimation, pAnimation))
 		return 0;
 
@@ -426,7 +428,24 @@ bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, const ch
         DISPOSE(mXmlDoc);
      	return 0;
     }
+    
+    // getting xml document location
+	string animationTopPath;
+    string s = string(pAnimationName);
+    
+	size_t lastPosTemp = s.find_last_of("\\/");
+    
+	if(lastPosTemp == string::npos){
+		animationTopPath = "./";
+    }
+	else{
+    	animationTopPath = s.substr(0, lastPosTemp + 1);
+	}
+    
+	g_debug->header("Top directory : ", 3);
+    g_debug->dataChar(animationTopPath.c_str(), true);
 
+    
 	// Document root
 	TiXmlElement *mXAnimation = 0;
 	mXAnimation = mXmlDoc->FirstChildElement("animation");
@@ -478,8 +497,11 @@ bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, const ch
 
 		// Frame image file attribute
 		if (mXFrame->Attribute("file")) {
-			// Loading image
-			mNewFrame->setImage(loadImage((char *) mXFrame->Attribute("file")));
+			
+            string totalImagePath = animationTopPath + string(mXFrame->Attribute("file"));
+            
+            // Loading image
+            mNewFrame->setImage(loadImage(totalImagePath.c_str()));
 			if (mNewFrame->getImage() == 0)
 				return 0;
 		} else {
@@ -505,9 +527,11 @@ bool IND_AnimationManager::parseAnimation(IND_Animation *pNewAnimation, const ch
 
 			g_debug->header("Parsing collision file", DebugApi::LogHeaderBegin);
 			g_debug->header("File name:", DebugApi::LogHeaderInfo);
-			g_debug->dataChar((char *) mXFrame->Attribute("collision"), 1);
-
-			if (!_collisionParser->parseCollision(mNewFrame->_frame._listBoundingCollision, (char *) mXFrame->Attribute("collision"))) {
+            g_debug->dataChar((char *) mXFrame->Attribute("collision"), 1);
+            
+            string totalColisionPath = animationTopPath + string(mXFrame->Attribute("collision"));
+            
+			if (!_collisionParser->parseCollision(mNewFrame->_frame._listBoundingCollision, totalColisionPath.c_str())) {
 				g_debug->header("Fatal error, cannot load the collision xml file", DebugApi::LogHeaderError);
 				return 0;
 			}

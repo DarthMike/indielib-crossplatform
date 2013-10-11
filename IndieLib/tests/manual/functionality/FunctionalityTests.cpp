@@ -50,29 +50,36 @@ static RESOLUTION g_possibleRes[g_numTestedRes] = {RESOLUTION(480, 320),
 												   RESOLUTION(1440, 900),
 												   RESOLUTION(1280,960),
 												   RESOLUTION(1920, 1200)};
-#endif
+#endif //defined (PLATFORM_WIN32) || defined (PLATFORM_LINUX) || defined (PLATFORM_OSX)
+
+//Phone platforms
+#if defined (PLATFORM_IOS)
+static const int g_numTestedRes = 1;
+static RESOLUTION g_possibleRes[g_numTestedRes] = {
+    RESOLUTION(1024, 768)
+};
+#endif //defined (PLATFORM_IOS)
 
 void FunctionalityTests::performTests(float dt) {
 
 	_keyTimer += dt;
-	//if (_timer > g_testingInterval) {
-		//Only perform 1 test
-		_timer = 0.0f;
-		if (fullScreenToggle())
-			return;
-
-		if (resetParameters())
-			return;
-
-		if (changeViewPortColor())
-			return;
+    _timer = 0.0f;
+    if (fullScreenToggle())
+        return;
     
-        if (pixelPointScaleChange()) {
-            return;
-        }
-	//} else {
-	//	_timer += dt;
-	//}
+    if (resetParameters())
+        return;
+    
+    if (changeViewPortColor())
+        return;
+    
+    if (pixelPointScaleChange()) {
+        return;
+    }
+    
+    if (keyboardFocus()) {
+        return ;
+    }
 }
 
 //Default implementation
@@ -137,11 +144,21 @@ bool FunctionalityTests::resetParameters() {
 bool FunctionalityTests::changeViewPortColor() {
 	CIndieLib *mI = CIndieLib::instance();
 	if (mI->_input->onKeyPress(IND_SPACE)) {
-		mI->_render->clearViewPort(static_cast<BYTE>(mI->_math->randnum(0, 255)),
-		                           static_cast<BYTE>(mI->_math->randnum(0, 255)),
-		                           static_cast<BYTE>(mI->_math->randnum(0, 255)));
+		mI->_render->clearViewPort(static_cast<unsigned char>(mI->_math->randnum(0, 255)),
+		                           static_cast<unsigned char>(mI->_math->randnum(0, 255)),
+		                           static_cast<unsigned char>(mI->_math->randnum(0, 255)));
 		return true;
 	}
 
+	return false;
+}
+
+bool FunctionalityTests::keyboardFocus() {
+   	CIndieLib *mI = CIndieLib::instance();
+	if (mI->_input->touchesWithState(IND_TouchStateUp).size()) {
+        mI->_input->isAcceptingKeyboardEvents() ? mI->_input->endKeyboardEvents() : mI->_input->beginKeyboardEvents();
+		return true;
+	}
+    
 	return false;
 }

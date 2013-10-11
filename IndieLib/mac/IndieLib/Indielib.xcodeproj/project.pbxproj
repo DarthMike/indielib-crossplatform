@@ -662,10 +662,9 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
 					"$(inherited)",
 					"_DEBUG=1",
-					"DEBUG=1",
-					"INDIERENDER_OPENGL=1",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
@@ -687,6 +686,12 @@
 					"\"$(SRCROOT)/../../common/dependencies/freetype-2.5.0.1/include\"",
 				);
 				INCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../common/dependencies/FreeImage/Dist\"",
+					"\"$(SRCROOT)/../../common/dependencies/glew-1.9.0/lib\"",
+					"\"$(SRCROOT)/../../common/dependencies/SDL-2.0/osx/lib\"",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
@@ -730,6 +735,12 @@
 					"\"/usr/X11/include\"",
 					"\"$(SRCROOT)/../../common/dependencies/freetype-2.5.0.1/include\"",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../common/dependencies/FreeImage/Dist\"",
+					"\"$(SRCROOT)/../../common/dependencies/glew-1.9.0/lib\"",
+					"\"$(SRCROOT)/../../common/dependencies/SDL-2.0/osx/lib\"",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_LDFLAGS = (
 					"-lSDL2",
@@ -762,6 +773,11 @@
 					"\"$(SRCROOT)/../../common/dependencies/freetype-2.5.0.1/osx/lib\"",
 					"\"$(SRCROOT)/../../common/dependencies/FreeImage/Dist\"",
 				);
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-lGLEW",
+					"-lSDL2",
+					"-lfreeImage",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -784,6 +800,11 @@
 					"\"$(SRCROOT)/../../common/dependencies/SDL-2.0/osx/lib\"/**",
 					"\"$(SRCROOT)/../../common/dependencies/freetype-2.5.0.1/osx/lib\"",
 					"\"$(SRCROOT)/../../common/dependencies/FreeImage/Dist\"",
+				);
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-lGLEW",
+					"-lSDL2",
+					"-lfreeImage",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

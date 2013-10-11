@@ -1,0 +1,673 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E759E7D717B03687007D4DC3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B517B03674007D4DC3 /* UIKit.framework */; };
+		E759E7D817B03687007D4DC3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B717B03674007D4DC3 /* Foundation.framework */; };
+		E759E7D917B03687007D4DC3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B917B03674007D4DC3 /* CoreGraphics.framework */; };
+		E759E87A17B0576C007D4DC3 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E81117B05766007D4DC3 /* WorkingPath.cpp */; };
+		E759E87B17B05783007D4DC3 /* CIndieLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E82617B05767007D4DC3 /* CIndieLib.cpp */; };
+		E759E87C17B05786007D4DC3 /* Tutorial01.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E82817B05767007D4DC3 /* Tutorial01.cpp */; };
+		E759E88917B05965007D4DC3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88717B05942007D4DC3 /* QuartzCore.framework */; };
+		E759E88A17B05965007D4DC3 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88517B05935007D4DC3 /* GLKit.framework */; };
+		E759E88B17B05965007D4DC3 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88317B0592A007D4DC3 /* OpenGLES.framework */; };
+		E759E88C17B05965007D4DC3 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88117B0591D007D4DC3 /* libstdc++.6.0.9.dylib */; };
+		E759E88D17B05965007D4DC3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E87F17B05910007D4DC3 /* AudioToolbox.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		E759E7B517B03674007D4DC3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		E759E7B717B03674007D4DC3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		E759E7B917B03674007D4DC3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		E759E7BD17B03674007D4DC3 /* IndielibTutorials-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "IndielibTutorials-Info.plist"; sourceTree = "<group>"; };
+		E759E7BF17B03674007D4DC3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E759E7C717B03674007D4DC3 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		E759E7C917B03674007D4DC3 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		E759E7CB17B03674007D4DC3 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		E759E7D617B03687007D4DC3 /* Tutorial01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial01.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E759E81017B05766007D4DC3 /* WorkingPath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = WorkingPath.h; path = ../WorkingPath.h; sourceTree = "<group>"; };
+		E759E81117B05766007D4DC3 /* WorkingPath.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; name = WorkingPath.cpp; path = ../WorkingPath.cpp; sourceTree = "<group>"; };
+		E759E81417B05766007D4DC3 /* CIndieLib.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib.cpp; sourceTree = "<group>"; };
+		E759E81517B05766007D4DC3 /* CIndieLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CIndieLib.h; sourceTree = "<group>"; };
+		E759E81617B05766007D4DC3 /* CTerrain.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CTerrain.cpp; sourceTree = "<group>"; };
+		E759E81717B05766007D4DC3 /* CTerrain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTerrain.h; sourceTree = "<group>"; };
+		E759E81817B05766007D4DC3 /* CUfo.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CUfo.cpp; sourceTree = "<group>"; };
+		E759E81917B05766007D4DC3 /* CUfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CUfo.h; sourceTree = "<group>"; };
+		E759E81A17B05766007D4DC3 /* Tutorial01.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial01.cpp; sourceTree = "<group>"; };
+		E759E81C17B05766007D4DC3 /* CIndieLib.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib.cpp; sourceTree = "<group>"; };
+		E759E81D17B05766007D4DC3 /* CIndieLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CIndieLib.h; sourceTree = "<group>"; };
+		E759E81E17B05766007D4DC3 /* CRabbit.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CRabbit.cpp; sourceTree = "<group>"; };
+		E759E81F17B05767007D4DC3 /* CRabbit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRabbit.h; sourceTree = "<group>"; };
+		E759E82017B05767007D4DC3 /* Tutorial02.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial02.cpp; sourceTree = "<group>"; };
+		E759E82617B05767007D4DC3 /* CIndieLib.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib.cpp; sourceTree = "<group>"; };
+		E759E82717B05767007D4DC3 /* CIndieLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CIndieLib.h; sourceTree = "<group>"; };
+		E759E82817B05767007D4DC3 /* Tutorial01.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial01.cpp; sourceTree = "<group>"; };
+		E759E82A17B05767007D4DC3 /* CIndieLib.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib.cpp; sourceTree = "<group>"; };
+		E759E82B17B05767007D4DC3 /* CIndieLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CIndieLib.h; sourceTree = "<group>"; };
+		E759E82C17B05767007D4DC3 /* Tutorial02.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial02.cpp; sourceTree = "<group>"; };
+		E759E82E17B05767007D4DC3 /* CIndieLib.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib.cpp; sourceTree = "<group>"; };
+		E759E82F17B05767007D4DC3 /* CIndieLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CIndieLib.h; sourceTree = "<group>"; };
+		E759E83017B05767007D4DC3 /* Tutorial03.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial03.cpp; sourceTree = "<group>"; };
+		E759E83217B05767007D4DC3 /* CIndieLib.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib.cpp; sourceTree = "<group>"; };
+		E759E83317B05767007D4DC3 /* CIndieLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CIndieLib.h; sourceTree = "<group>"; };
+		E759E83417B05767007D4DC3 /* Tutorial04.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial04.cpp; sourceTree = "<group>"; };
+		E759E83617B05767007D4DC3 /* CIndieLib.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib.cpp; sourceTree = "<group>"; };
+		E759E83717B05767007D4DC3 /* CIndieLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CIndieLib.h; sourceTree = "<group>"; };
+		E759E83817B05767007D4DC3 /* Tutorial05.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial05.cpp; sourceTree = "<group>"; };
+		E759E83A17B05767007D4DC3 /* CIndieLib.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib.cpp; sourceTree = "<group>"; };
+		E759E83B17B05767007D4DC3 /* CIndieLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CIndieLib.h; sourceTree = "<group>"; };
+		E759E83C17B05767007D4DC3 /* Tutorial06.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial06.cpp; sourceTree = "<group>"; };
+		E759E83E17B05767007D4DC3 /* CIndieLib.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib.cpp; sourceTree = "<group>"; };
+		E759E83F17B05767007D4DC3 /* CIndieLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CIndieLib.h; sourceTree = "<group>"; };
+		E759E84017B05767007D4DC3 /* Tutorial07.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial07.cpp; sourceTree = "<group>"; };
+		E759E84217B05767007D4DC3 /* CIndieLib.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib.cpp; sourceTree = "<group>"; };
+		E759E84317B05767007D4DC3 /* CIndieLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CIndieLib.h; sourceTree = "<group>"; };
+		E759E84417B05767007D4DC3 /* Tutorial08.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial08.cpp; sourceTree = "<group>"; };
+		E759E84617B05767007D4DC3 /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
+		E759E84717B05767007D4DC3 /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CIndieLib_vc2008.h; sourceTree = "<group>"; };
+		E759E84817B05767007D4DC3 /* Tutorial09.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial09.cpp; sourceTree = "<group>"; };
+		E759E84A17B05767007D4DC3 /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
+		E759E84B17B05767007D4DC3 /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CIndieLib_vc2008.h; sourceTree = "<group>"; };
+		E759E84C17B05767007D4DC3 /* Tutorial10.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial10.cpp; sourceTree = "<group>"; };
+		E759E84E17B05767007D4DC3 /* CIndieLib.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib.cpp; sourceTree = "<group>"; };
+		E759E84F17B05767007D4DC3 /* CIndieLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CIndieLib.h; sourceTree = "<group>"; };
+		E759E85017B05767007D4DC3 /* Tutorial11.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial11.cpp; sourceTree = "<group>"; };
+		E759E85217B05767007D4DC3 /* CIndieLib.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib.cpp; sourceTree = "<group>"; };
+		E759E85317B05767007D4DC3 /* CIndieLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CIndieLib.h; sourceTree = "<group>"; };
+		E759E85417B05767007D4DC3 /* Tutorial13.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial13.cpp; sourceTree = "<group>"; };
+		E759E85617B05767007D4DC3 /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
+		E759E85717B05767007D4DC3 /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CIndieLib_vc2008.h; sourceTree = "<group>"; };
+		E759E85817B05767007D4DC3 /* Tutorial14.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial14.cpp; sourceTree = "<group>"; };
+		E759E85A17B05767007D4DC3 /* CIndieLib.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib.cpp; sourceTree = "<group>"; };
+		E759E85B17B05767007D4DC3 /* CIndieLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CIndieLib.h; sourceTree = "<group>"; };
+		E759E85C17B05767007D4DC3 /* Tutorial15.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial15.cpp; sourceTree = "<group>"; };
+		E759E85E17B05767007D4DC3 /* CIndieLib.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib.cpp; sourceTree = "<group>"; };
+		E759E85F17B05767007D4DC3 /* CIndieLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CIndieLib.h; sourceTree = "<group>"; };
+		E759E86017B05767007D4DC3 /* Tutorial16.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial16.cpp; sourceTree = "<group>"; };
+		E759E86317B05767007D4DC3 /* CIndieLib.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib.cpp; sourceTree = "<group>"; };
+		E759E86417B05767007D4DC3 /* CIndieLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CIndieLib.h; sourceTree = "<group>"; };
+		E759E86517B05767007D4DC3 /* Tutorial01.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial01.cpp; sourceTree = "<group>"; };
+		E759E86717B05767007D4DC3 /* CIndieLib.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib.cpp; sourceTree = "<group>"; };
+		E759E86817B05767007D4DC3 /* CIndieLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CIndieLib.h; sourceTree = "<group>"; };
+		E759E86917B05767007D4DC3 /* Tutorial02.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial02.cpp; sourceTree = "<group>"; };
+		E759E86B17B05767007D4DC3 /* CIndieLib_vc2008.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib_vc2008.cpp; sourceTree = "<group>"; };
+		E759E86C17B05767007D4DC3 /* CIndieLib_vc2008.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CIndieLib_vc2008.h; sourceTree = "<group>"; };
+		E759E86D17B05767007D4DC3 /* Tutorial03.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial03.cpp; sourceTree = "<group>"; };
+		E759E86F17B05767007D4DC3 /* CIndieLib.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib.cpp; sourceTree = "<group>"; };
+		E759E87017B05767007D4DC3 /* CIndieLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CIndieLib.h; sourceTree = "<group>"; };
+		E759E87117B05767007D4DC3 /* Tutorial04.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial04.cpp; sourceTree = "<group>"; };
+		E759E87317B05767007D4DC3 /* CIndieLib.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib.cpp; sourceTree = "<group>"; };
+		E759E87417B05767007D4DC3 /* CIndieLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CIndieLib.h; sourceTree = "<group>"; };
+		E759E87517B05767007D4DC3 /* Tutorial05.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial05.cpp; sourceTree = "<group>"; };
+		E759E87717B05767007D4DC3 /* CIndieLib.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CIndieLib.cpp; sourceTree = "<group>"; };
+		E759E87817B05767007D4DC3 /* CIndieLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CIndieLib.h; sourceTree = "<group>"; };
+		E759E87917B05767007D4DC3 /* Tutorial06.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial06.cpp; sourceTree = "<group>"; };
+		E759E87F17B05910007D4DC3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		E759E88117B0591D007D4DC3 /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
+		E759E88317B0592A007D4DC3 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		E759E88517B05935007D4DC3 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		E759E88717B05942007D4DC3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E759E7D317B03687007D4DC3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E759E7D717B03687007D4DC3 /* UIKit.framework in Frameworks */,
+				E759E7D817B03687007D4DC3 /* Foundation.framework in Frameworks */,
+				E759E7D917B03687007D4DC3 /* CoreGraphics.framework in Frameworks */,
+				E759E88917B05965007D4DC3 /* QuartzCore.framework in Frameworks */,
+				E759E88A17B05965007D4DC3 /* GLKit.framework in Frameworks */,
+				E759E88B17B05965007D4DC3 /* OpenGLES.framework in Frameworks */,
+				E759E88C17B05965007D4DC3 /* libstdc++.6.0.9.dylib in Frameworks */,
+				E759E88D17B05965007D4DC3 /* AudioToolbox.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E759E7A917B03674007D4DC3 = {
+			isa = PBXGroup;
+			children = (
+				E759E81017B05766007D4DC3 /* WorkingPath.h */,
+				E759E81117B05766007D4DC3 /* WorkingPath.cpp */,
+				E759E81217B05766007D4DC3 /* benchmark */,
+				E759E82117B05767007D4DC3 /* basic */,
+				E759E86117B05767007D4DC3 /* advanced */,
+				E759E7BB17B03674007D4DC3 /* IndielibTutorials */,
+				E759E7B417B03674007D4DC3 /* Frameworks */,
+				E759E7B317B03674007D4DC3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E759E7B317B03674007D4DC3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E759E7D617B03687007D4DC3 /* Tutorial01.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E759E7B417B03674007D4DC3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E759E88717B05942007D4DC3 /* QuartzCore.framework */,
+				E759E88517B05935007D4DC3 /* GLKit.framework */,
+				E759E88317B0592A007D4DC3 /* OpenGLES.framework */,
+				E759E88117B0591D007D4DC3 /* libstdc++.6.0.9.dylib */,
+				E759E87F17B05910007D4DC3 /* AudioToolbox.framework */,
+				E759E7B517B03674007D4DC3 /* UIKit.framework */,
+				E759E7B717B03674007D4DC3 /* Foundation.framework */,
+				E759E7B917B03674007D4DC3 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E759E7BB17B03674007D4DC3 /* IndielibTutorials */ = {
+			isa = PBXGroup;
+			children = (
+				E759E7BC17B03674007D4DC3 /* Supporting Files */,
+			);
+			path = IndielibTutorials;
+			sourceTree = "<group>";
+		};
+		E759E7BC17B03674007D4DC3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E759E7BD17B03674007D4DC3 /* IndielibTutorials-Info.plist */,
+				E759E7BE17B03674007D4DC3 /* InfoPlist.strings */,
+				E759E7C717B03674007D4DC3 /* Default.png */,
+				E759E7C917B03674007D4DC3 /* Default@2x.png */,
+				E759E7CB17B03674007D4DC3 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E759E81217B05766007D4DC3 /* benchmark */ = {
+			isa = PBXGroup;
+			children = (
+				E759E81317B05766007D4DC3 /* 01_Alien_BenchMark */,
+				E759E81B17B05766007D4DC3 /* 02_Rabbits_BenchMark */,
+			);
+			name = benchmark;
+			path = ../benchmark;
+			sourceTree = "<group>";
+		};
+		E759E81317B05766007D4DC3 /* 01_Alien_BenchMark */ = {
+			isa = PBXGroup;
+			children = (
+				E759E81417B05766007D4DC3 /* CIndieLib.cpp */,
+				E759E81517B05766007D4DC3 /* CIndieLib.h */,
+				E759E81617B05766007D4DC3 /* CTerrain.cpp */,
+				E759E81717B05766007D4DC3 /* CTerrain.h */,
+				E759E81817B05766007D4DC3 /* CUfo.cpp */,
+				E759E81917B05766007D4DC3 /* CUfo.h */,
+				E759E81A17B05766007D4DC3 /* Tutorial01.cpp */,
+			);
+			path = 01_Alien_BenchMark;
+			sourceTree = "<group>";
+		};
+		E759E81B17B05766007D4DC3 /* 02_Rabbits_BenchMark */ = {
+			isa = PBXGroup;
+			children = (
+				E759E81C17B05766007D4DC3 /* CIndieLib.cpp */,
+				E759E81D17B05766007D4DC3 /* CIndieLib.h */,
+				E759E81E17B05766007D4DC3 /* CRabbit.cpp */,
+				E759E81F17B05767007D4DC3 /* CRabbit.h */,
+				E759E82017B05767007D4DC3 /* Tutorial02.cpp */,
+			);
+			path = 02_Rabbits_BenchMark;
+			sourceTree = "<group>";
+		};
+		E759E82117B05767007D4DC3 /* basic */ = {
+			isa = PBXGroup;
+			children = (
+				E759E82217B05767007D4DC3 /* 01_Installing */,
+				E759E82917B05767007D4DC3 /* 02_IND_Surface */,
+				E759E82D17B05767007D4DC3 /* 03_IND_Image */,
+				E759E83117B05767007D4DC3 /* 04_IND_Animation */,
+				E759E83517B05767007D4DC3 /* 05_IND_Font */,
+				E759E83917B05767007D4DC3 /* 06_Primitives */,
+				E759E83D17B05767007D4DC3 /* 07_IND_Input */,
+				E759E84117B05767007D4DC3 /* 08_Collisions */,
+				E759E84517B05767007D4DC3 /* 09_IND_3dMesh */,
+				E759E84917B05767007D4DC3 /* 10_IND_Light */,
+				E759E84D17B05767007D4DC3 /* 11_Animated_Tile_Scrolling */,
+				E759E85117B05767007D4DC3 /* 13_2d_Camera */,
+				E759E85517B05767007D4DC3 /* 14_3d_Camera */,
+				E759E85917B05767007D4DC3 /* 15_Parallax_Scrolling */,
+				E759E85D17B05767007D4DC3 /* 16_IND_Timer */,
+			);
+			name = basic;
+			path = ../basic;
+			sourceTree = "<group>";
+		};
+		E759E82217B05767007D4DC3 /* 01_Installing */ = {
+			isa = PBXGroup;
+			children = (
+				E759E82617B05767007D4DC3 /* CIndieLib.cpp */,
+				E759E82717B05767007D4DC3 /* CIndieLib.h */,
+				E759E82817B05767007D4DC3 /* Tutorial01.cpp */,
+			);
+			path = 01_Installing;
+			sourceTree = "<group>";
+		};
+		E759E82917B05767007D4DC3 /* 02_IND_Surface */ = {
+			isa = PBXGroup;
+			children = (
+				E759E82A17B05767007D4DC3 /* CIndieLib.cpp */,
+				E759E82B17B05767007D4DC3 /* CIndieLib.h */,
+				E759E82C17B05767007D4DC3 /* Tutorial02.cpp */,
+			);
+			path = 02_IND_Surface;
+			sourceTree = "<group>";
+		};
+		E759E82D17B05767007D4DC3 /* 03_IND_Image */ = {
+			isa = PBXGroup;
+			children = (
+				E759E82E17B05767007D4DC3 /* CIndieLib.cpp */,
+				E759E82F17B05767007D4DC3 /* CIndieLib.h */,
+				E759E83017B05767007D4DC3 /* Tutorial03.cpp */,
+			);
+			path = 03_IND_Image;
+			sourceTree = "<group>";
+		};
+		E759E83117B05767007D4DC3 /* 04_IND_Animation */ = {
+			isa = PBXGroup;
+			children = (
+				E759E83217B05767007D4DC3 /* CIndieLib.cpp */,
+				E759E83317B05767007D4DC3 /* CIndieLib.h */,
+				E759E83417B05767007D4DC3 /* Tutorial04.cpp */,
+			);
+			path = 04_IND_Animation;
+			sourceTree = "<group>";
+		};
+		E759E83517B05767007D4DC3 /* 05_IND_Font */ = {
+			isa = PBXGroup;
+			children = (
+				E759E83617B05767007D4DC3 /* CIndieLib.cpp */,
+				E759E83717B05767007D4DC3 /* CIndieLib.h */,
+				E759E83817B05767007D4DC3 /* Tutorial05.cpp */,
+			);
+			path = 05_IND_Font;
+			sourceTree = "<group>";
+		};
+		E759E83917B05767007D4DC3 /* 06_Primitives */ = {
+			isa = PBXGroup;
+			children = (
+				E759E83A17B05767007D4DC3 /* CIndieLib.cpp */,
+				E759E83B17B05767007D4DC3 /* CIndieLib.h */,
+				E759E83C17B05767007D4DC3 /* Tutorial06.cpp */,
+			);
+			path = 06_Primitives;
+			sourceTree = "<group>";
+		};
+		E759E83D17B05767007D4DC3 /* 07_IND_Input */ = {
+			isa = PBXGroup;
+			children = (
+				E759E83E17B05767007D4DC3 /* CIndieLib.cpp */,
+				E759E83F17B05767007D4DC3 /* CIndieLib.h */,
+				E759E84017B05767007D4DC3 /* Tutorial07.cpp */,
+			);
+			path = 07_IND_Input;
+			sourceTree = "<group>";
+		};
+		E759E84117B05767007D4DC3 /* 08_Collisions */ = {
+			isa = PBXGroup;
+			children = (
+				E759E84217B05767007D4DC3 /* CIndieLib.cpp */,
+				E759E84317B05767007D4DC3 /* CIndieLib.h */,
+				E759E84417B05767007D4DC3 /* Tutorial08.cpp */,
+			);
+			path = 08_Collisions;
+			sourceTree = "<group>";
+		};
+		E759E84517B05767007D4DC3 /* 09_IND_3dMesh */ = {
+			isa = PBXGroup;
+			children = (
+				E759E84617B05767007D4DC3 /* CIndieLib_vc2008.cpp */,
+				E759E84717B05767007D4DC3 /* CIndieLib_vc2008.h */,
+				E759E84817B05767007D4DC3 /* Tutorial09.cpp */,
+			);
+			path = 09_IND_3dMesh;
+			sourceTree = "<group>";
+		};
+		E759E84917B05767007D4DC3 /* 10_IND_Light */ = {
+			isa = PBXGroup;
+			children = (
+				E759E84A17B05767007D4DC3 /* CIndieLib_vc2008.cpp */,
+				E759E84B17B05767007D4DC3 /* CIndieLib_vc2008.h */,
+				E759E84C17B05767007D4DC3 /* Tutorial10.cpp */,
+			);
+			path = 10_IND_Light;
+			sourceTree = "<group>";
+		};
+		E759E84D17B05767007D4DC3 /* 11_Animated_Tile_Scrolling */ = {
+			isa = PBXGroup;
+			children = (
+				E759E84E17B05767007D4DC3 /* CIndieLib.cpp */,
+				E759E84F17B05767007D4DC3 /* CIndieLib.h */,
+				E759E85017B05767007D4DC3 /* Tutorial11.cpp */,
+			);
+			path = 11_Animated_Tile_Scrolling;
+			sourceTree = "<group>";
+		};
+		E759E85117B05767007D4DC3 /* 13_2d_Camera */ = {
+			isa = PBXGroup;
+			children = (
+				E759E85217B05767007D4DC3 /* CIndieLib.cpp */,
+				E759E85317B05767007D4DC3 /* CIndieLib.h */,
+				E759E85417B05767007D4DC3 /* Tutorial13.cpp */,
+			);
+			path = 13_2d_Camera;
+			sourceTree = "<group>";
+		};
+		E759E85517B05767007D4DC3 /* 14_3d_Camera */ = {
+			isa = PBXGroup;
+			children = (
+				E759E85617B05767007D4DC3 /* CIndieLib_vc2008.cpp */,
+				E759E85717B05767007D4DC3 /* CIndieLib_vc2008.h */,
+				E759E85817B05767007D4DC3 /* Tutorial14.cpp */,
+			);
+			path = 14_3d_Camera;
+			sourceTree = "<group>";
+		};
+		E759E85917B05767007D4DC3 /* 15_Parallax_Scrolling */ = {
+			isa = PBXGroup;
+			children = (
+				E759E85A17B05767007D4DC3 /* CIndieLib.cpp */,
+				E759E85B17B05767007D4DC3 /* CIndieLib.h */,
+				E759E85C17B05767007D4DC3 /* Tutorial15.cpp */,
+			);
+			path = 15_Parallax_Scrolling;
+			sourceTree = "<group>";
+		};
+		E759E85D17B05767007D4DC3 /* 16_IND_Timer */ = {
+			isa = PBXGroup;
+			children = (
+				E759E85E17B05767007D4DC3 /* CIndieLib.cpp */,
+				E759E85F17B05767007D4DC3 /* CIndieLib.h */,
+				E759E86017B05767007D4DC3 /* Tutorial16.cpp */,
+			);
+			path = 16_IND_Timer;
+			sourceTree = "<group>";
+		};
+		E759E86117B05767007D4DC3 /* advanced */ = {
+			isa = PBXGroup;
+			children = (
+				E759E86217B05767007D4DC3 /* 01_IND_Surface_Grids */,
+				E759E86617B05767007D4DC3 /* 02_Blitting_2d_Directly */,
+				E759E86A17B05767007D4DC3 /* 03_Blitting_3d_Directly */,
+				E759E86E17B05767007D4DC3 /* 04_Several_ViewPorts */,
+				E759E87217B05767007D4DC3 /* 05_IND_TmxMap */,
+				E759E87617B05767007D4DC3 /* 06_Spriter */,
+			);
+			name = advanced;
+			path = ../advanced;
+			sourceTree = "<group>";
+		};
+		E759E86217B05767007D4DC3 /* 01_IND_Surface_Grids */ = {
+			isa = PBXGroup;
+			children = (
+				E759E86317B05767007D4DC3 /* CIndieLib.cpp */,
+				E759E86417B05767007D4DC3 /* CIndieLib.h */,
+				E759E86517B05767007D4DC3 /* Tutorial01.cpp */,
+			);
+			path = 01_IND_Surface_Grids;
+			sourceTree = "<group>";
+		};
+		E759E86617B05767007D4DC3 /* 02_Blitting_2d_Directly */ = {
+			isa = PBXGroup;
+			children = (
+				E759E86717B05767007D4DC3 /* CIndieLib.cpp */,
+				E759E86817B05767007D4DC3 /* CIndieLib.h */,
+				E759E86917B05767007D4DC3 /* Tutorial02.cpp */,
+			);
+			path = 02_Blitting_2d_Directly;
+			sourceTree = "<group>";
+		};
+		E759E86A17B05767007D4DC3 /* 03_Blitting_3d_Directly */ = {
+			isa = PBXGroup;
+			children = (
+				E759E86B17B05767007D4DC3 /* CIndieLib_vc2008.cpp */,
+				E759E86C17B05767007D4DC3 /* CIndieLib_vc2008.h */,
+				E759E86D17B05767007D4DC3 /* Tutorial03.cpp */,
+			);
+			path = 03_Blitting_3d_Directly;
+			sourceTree = "<group>";
+		};
+		E759E86E17B05767007D4DC3 /* 04_Several_ViewPorts */ = {
+			isa = PBXGroup;
+			children = (
+				E759E86F17B05767007D4DC3 /* CIndieLib.cpp */,
+				E759E87017B05767007D4DC3 /* CIndieLib.h */,
+				E759E87117B05767007D4DC3 /* Tutorial04.cpp */,
+			);
+			path = 04_Several_ViewPorts;
+			sourceTree = "<group>";
+		};
+		E759E87217B05767007D4DC3 /* 05_IND_TmxMap */ = {
+			isa = PBXGroup;
+			children = (
+				E759E87317B05767007D4DC3 /* CIndieLib.cpp */,
+				E759E87417B05767007D4DC3 /* CIndieLib.h */,
+				E759E87517B05767007D4DC3 /* Tutorial05.cpp */,
+			);
+			path = 05_IND_TmxMap;
+			sourceTree = "<group>";
+		};
+		E759E87617B05767007D4DC3 /* 06_Spriter */ = {
+			isa = PBXGroup;
+			children = (
+				E759E87717B05767007D4DC3 /* CIndieLib.cpp */,
+				E759E87817B05767007D4DC3 /* CIndieLib.h */,
+				E759E87917B05767007D4DC3 /* Tutorial06.cpp */,
+			);
+			path = 06_Spriter;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E759E7D517B03687007D4DC3 /* Tutorial01 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E759E7EC17B03687007D4DC3 /* Build configuration list for PBXNativeTarget "Tutorial01" */;
+			buildPhases = (
+				E759E7D217B03687007D4DC3 /* Sources */,
+				E759E7D317B03687007D4DC3 /* Frameworks */,
+				E759E7D417B03687007D4DC3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tutorial01;
+			productName = Tutorial01;
+			productReference = E759E7D617B03687007D4DC3 /* Tutorial01.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E759E7AA17B03674007D4DC3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = indielib;
+			};
+			buildConfigurationList = E759E7AD17B03674007D4DC3 /* Build configuration list for PBXProject "IndielibTutorials" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E759E7A917B03674007D4DC3;
+			productRefGroup = E759E7B317B03674007D4DC3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E759E7D517B03687007D4DC3 /* Tutorial01 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E759E7D417B03687007D4DC3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E759E7D217B03687007D4DC3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E759E87A17B0576C007D4DC3 /* WorkingPath.cpp in Sources */,
+				E759E87B17B05783007D4DC3 /* CIndieLib.cpp in Sources */,
+				E759E87C17B05786007D4DC3 /* Tutorial01.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E759E7BE17B03674007D4DC3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E759E7BF17B03674007D4DC3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E759E7CD17B03674007D4DC3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../common/include\"",
+					"\"$(SRCROOT)/../../tests\"",
+					"\"$(SRCROOT)/../../common\"",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../../bin/ios\"";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-lIndielibios";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E759E7CE17B03674007D4DC3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../common/include\"",
+					"\"$(SRCROOT)/../../tests\"",
+					"\"$(SRCROOT)/../../common\"",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../../bin/ios\"";
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = "-lIndielibios";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E759E7ED17B03687007D4DC3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				INFOPLIST_FILE = "IndielibTutorials/IndielibTutorials-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E759E7EE17B03687007D4DC3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				INFOPLIST_FILE = "IndielibTutorials/IndielibTutorials-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E759E7AD17B03674007D4DC3 /* Build configuration list for PBXProject "IndielibTutorials" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E759E7CD17B03674007D4DC3 /* Debug */,
+				E759E7CE17B03674007D4DC3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E759E7EC17B03687007D4DC3 /* Build configuration list for PBXNativeTarget "Tutorial01" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E759E7ED17B03687007D4DC3 /* Debug */,
+				E759E7EE17B03687007D4DC3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E759E7AA17B03674007D4DC3 /* Project object */;
+}

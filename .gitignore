@@ -80,3 +80,8 @@ Breakpoints.xcbkptlist
 IndieLib/common/dependencies/freetype-2.5.0.1/osx
 IndieLib/common/dependencies/freetype-2.5.0.1/builds
 IndieLib/common/dependencies/freetype-2.5.0.1/objs
+*.o-arm
+*.o-i686
+IndieLib/ios/indielibios/build
+IndieLib/ios/indielibios.xcworkspace/xcuserdata
+*.xccheckout

@@ -514,7 +514,7 @@ void IND_Entity2dManager::renderEntities2d(int pLayer) {
  * in order to check that our collision areas are accurate.
  * This method is equivalent to rendering the collision areas of layer number 0.
  */
-void IND_Entity2dManager::renderCollisionAreas(BYTE pR, BYTE pG, BYTE pB, BYTE pA) {
+void IND_Entity2dManager::renderCollisionAreas(unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA) {
 	renderCollisionAreas(0, pR, pG, pB, pA);
 }
 
@@ -523,7 +523,7 @@ void IND_Entity2dManager::renderCollisionAreas(BYTE pR, BYTE pG, BYTE pB, BYTE p
  * This function renders (blits on the screen) all the collision areas of the entities of a certain layer. It's good to use
  * this method in order to check that our collision areas are accurate.
  */
-void IND_Entity2dManager::renderCollisionAreas(int pLayer, BYTE pR, BYTE pG, BYTE pB, BYTE pA) {
+void IND_Entity2dManager::renderCollisionAreas(int pLayer, unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA) {
 	if (!_ok || _listEntities2d[pLayer]->empty()) return;
 
 	// Iterate the list
@@ -583,7 +583,7 @@ void IND_Entity2dManager::renderCollisionAreas(int pLayer, BYTE pR, BYTE pG, BYT
 /**
  * Renders (blits on the screen) all the grid areas of the entities of a certain layer.
  */
-void IND_Entity2dManager::renderGridAreas(int pLayer, BYTE pR, BYTE pG, BYTE pB, BYTE pA) {
+void IND_Entity2dManager::renderGridAreas(int pLayer, unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA) {
 	if (!_ok || _listEntities2d[pLayer]->empty()) return;
 
 	// Iterate the list

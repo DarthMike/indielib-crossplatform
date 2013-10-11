@@ -29,11 +29,12 @@
 class WorkingPathSetup {
 	public:
     
+    static const char* resourcesDirectory();
     
-    static bool setWorkingPathFromExe(const char* relpath);
+    static bool setWorkingPath(const char* absPath);
     
     private:
-    static bool readExeDirectory();
+    static bool readExeDirectory(char* exePath);
 };
 
 #endif

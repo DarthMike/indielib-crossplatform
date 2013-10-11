@@ -37,27 +37,27 @@ void SurfaceTests::prepareTests() {
 
     CIndieLib* iLib = CIndieLib::instance();
 	// Loading Background. No conversions
-	iLib->_surfaceManager->add (_surfaces[0], const_cast<char *>("../../resources/blue_background.jpg"), IND_OPAQUE, IND_32);
+	iLib->_surfaceManager->add (_surfaces[0], const_cast<char *>("blue_background.jpg"), IND_OPAQUE, IND_32);
 	// Loading sprite of a warrior. Colorkey conversion
-	iLib->_surfaceManager->add (_surfaces[1], const_cast<char *>("../../resources/derekyu_sprite.png"), IND_ALPHA, IND_32, 255, 0, 255);
+	iLib->_surfaceManager->add (_surfaces[1], const_cast<char *>("derekyu_sprite.png"), IND_ALPHA, IND_32, 255, 0, 255);
 	// Loading sprite of a star. No conversions
-	iLib->_surfaceManager->add (_surfaces[2], const_cast<char *>("../../resources/star.png"), IND_ALPHA, IND_32);
+	iLib->_surfaceManager->add (_surfaces[2], const_cast<char *>("star.png"), IND_ALPHA, IND_32);
 	// Loading sprite of a star. No conversions
-	iLib->_surfaceManager->add (_surfaces[3], const_cast<char *>("../../resources/star.png"), IND_ALPHA, IND_32);
+	iLib->_surfaceManager->add (_surfaces[3], const_cast<char *>("star.png"), IND_ALPHA, IND_32);
 	// Loading sprite of a star. No conversions
-	iLib->_surfaceManager->add (_surfaces[4], const_cast<char *>("../../resources/star.png"), IND_ALPHA, IND_32);
+	iLib->_surfaceManager->add (_surfaces[4], const_cast<char *>("star.png"), IND_ALPHA, IND_32);
 	// Loading sprite of a rabbit. No conversions
-	iLib->_surfaceManager->add (_surfaces[5], const_cast<char *>("../../resources/rabbit.png"), IND_ALPHA, IND_32);
+	iLib->_surfaceManager->add (_surfaces[5], const_cast<char *>("rabbit.png"), IND_ALPHA, IND_32);
 	// Loading sprite of a rabbit. No conversions
-	iLib->_surfaceManager->add (_surfaces[6], const_cast<char *>("../../resources/rabbit.png"), IND_ALPHA, IND_32);
+	iLib->_surfaceManager->add (_surfaces[6], const_cast<char *>("rabbit.png"), IND_ALPHA, IND_32);
 	// Loading sprite of a rabbit. No conversions
-	iLib->_surfaceManager->add (_surfaces[7], const_cast<char *>("../../resources/rabbit.png"), IND_ALPHA, IND_32);
+	iLib->_surfaceManager->add (_surfaces[7], const_cast<char *>("rabbit.png"), IND_ALPHA, IND_32);
 	// Loading sprite of a rabbit. No conversions
-	iLib->_surfaceManager->add (_surfaces[8], const_cast<char *>("../../resources/rabbit.png"), IND_ALPHA, IND_32);
+	iLib->_surfaceManager->add (_surfaces[8], const_cast<char *>("rabbit.png"), IND_ALPHA, IND_32);
 	// Loading sprite of a rabbit. No conversions
-	iLib->_surfaceManager->add (_surfaces[9], const_cast<char *>("../../resources/rabbit.png"), IND_ALPHA, IND_32);
+	iLib->_surfaceManager->add (_surfaces[9], const_cast<char *>("rabbit.png"), IND_ALPHA, IND_32);
 	// Loading sprite of a rabbit. No conversions
-	iLib->_surfaceManager->add (_surfaces[10], const_cast<char *>("../../resources/rabbit.png"), IND_ALPHA, IND_32);
+	iLib->_surfaceManager->add (_surfaces[10], const_cast<char *>("rabbit.png"), IND_ALPHA, IND_32);
 }
 
 

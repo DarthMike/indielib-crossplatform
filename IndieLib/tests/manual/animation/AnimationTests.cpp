@@ -36,13 +36,13 @@ void AnimationTests::prepareTests() {
     CIndieLib* iLib = CIndieLib::instance();
 
 	//Normal animation, with color key to surface. Contains some offsets (not noticeable)
-	iLib->_animationManager->addToSurface(_animations[0], const_cast<char *>("../../resources/animations/character1.xml"), IND_ALPHA, IND_32, 0, 48, 152);
+	iLib->_animationManager->addToSurface(_animations[0], const_cast<char *>("animations/character1.xml"), IND_ALPHA, IND_32, 0, 48, 152);
 	//Animation with offsets animation, with color key to surface.
-	iLib->_animationManager->addToSurface(_animations[1], const_cast<char *>("../../resources/animations/character1_offsetTests.xml"), IND_ALPHA, IND_32, 0, 48, 152);
+	iLib->_animationManager->addToSurface(_animations[1], const_cast<char *>("animations/character1_offsetTests.xml"), IND_ALPHA, IND_32, 0, 48, 152);
 	//Animation with no offsets, with color key to surface, conversion to IND_16 image. Will repeat animation only 5 times
-	iLib->_animationManager->addToSurface(_animations[2], const_cast<char *>("../../resources/animations/dust.xml"), IND_ALPHA, IND_16, 255, 0, 255);
+	iLib->_animationManager->addToSurface(_animations[2], const_cast<char *>("animations/dust.xml"), IND_ALPHA, IND_16, 255, 0, 255);
 	//Animation with offsets animation, with color key to surface. Will test replays+offsets behavior
-	iLib->_animationManager->addToSurface(_animations[3], const_cast<char *>("../../resources/animations/character1_offsetTests.xml"), IND_ALPHA, IND_32, 0, 48, 152);
+	iLib->_animationManager->addToSurface(_animations[3], const_cast<char *>("animations/character1_offsetTests.xml"), IND_ALPHA, IND_32, 0, 48, 152);
 }
 
 

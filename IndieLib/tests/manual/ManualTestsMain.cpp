@@ -59,6 +59,7 @@
 //Working path utility
 #include "WorkingPath.h"
 
+#include "IndiePlatforms.h"
 
 //Tests
 #include "manual/ManualTests.h"
@@ -174,7 +175,7 @@ void releaseTests() {
     g_permanenttests.clear();
 }
 
-int IndieLib() {
+Indielib_Main {
 #ifdef PLATFORM_WIN32
 	//memory leaks for win32 creation
 	FINDMEMLEAK(-1);    //When you find a mem. leak, refer to the number displayed in the console and put it here to break when it is created
@@ -184,8 +185,9 @@ int IndieLib() {
 	CIndieLib *mI = CIndieLib::instance();
 	if (!mI->init()) return 0;
     
-    //Sets the working path as the 'exe' directory. All resource paths are relative to this directory
-	if (!WorkingPathSetup::setWorkingPathFromExe(NULL)) {
+    //Sets the working path to the resources directory. All paths are relative to it
+    const char* resourcesPath = WorkingPathSetup::resourcesDirectory();
+	if (!WorkingPathSetup::setWorkingPath(resourcesPath)) {
 		std::cout<<"\nUnable to Set the working path !";
 	}
 	
@@ -208,7 +210,9 @@ int IndieLib() {
 	double ticks = g_mainTimer.getTicks();
 	double pastticks = g_mainTimer.getTicks();
     testsvectoriterator currentTest = g_tests.begin();
-    (*currentTest)->setActive(true);
+    if (currentTest != g_tests.end()) {
+        (*currentTest)->setActive(true);
+    }
 
 	while (!mI->_input->onKeyPress(IND_ESCAPE) && !mI->_input->quit()) {
 		// ----- Input Update ----
@@ -238,7 +242,7 @@ int IndieLib() {
 		ticks += g_mainTimer.getTicks();
 
         //Perform next test setup (if needed) Arrow keys change current temporary test using
-        if (mI->_input->onKeyPress(IND_KEYRIGHT) && !mI->_input->onKeyPress(IND_KEYLEFT)){
+        if (mI->_input->onKeyRelease(IND_M)) {
             //Current test is not active
             (*currentTest)->setActive(false);
             currentTest++;
@@ -250,7 +254,7 @@ int IndieLib() {
             
             //Next test is active
             (*currentTest)->setActive(true);
-        } else if (mI->_input->onKeyPress(IND_KEYLEFT) && !mI->_input->onKeyPress(IND_KEYRIGHT)){
+        } else if (mI->_input->onKeyRelease(IND_N)){
             //Current test is not active
             (*currentTest)->setActive(false);
           

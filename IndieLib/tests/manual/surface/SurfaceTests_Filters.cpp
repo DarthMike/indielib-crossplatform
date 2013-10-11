@@ -39,20 +39,20 @@ void SurfaceTests_Filters::prepareTests() {
 
     CIndieLib* iLib = CIndieLib::instance();
 	// Loading sprite of a star. No conversions
-	iLib->_surfaceManager->add (_surfaces[0], "../../resources/star.png", IND_ALPHA, IND_32);
+	iLib->_surfaceManager->add (_surfaces[0], "star.png", IND_ALPHA, IND_32);
     // Loading sprite of a star. No conversions
-	iLib->_surfaceManager->add (_surfaces[1], "../../resources/star.png", IND_ALPHA, IND_32);
+	iLib->_surfaceManager->add (_surfaces[1], "star.png", IND_ALPHA, IND_32);
     // Loading sprite of a star. No conversions
-	iLib->_surfaceManager->add (_surfaces[2], "../../resources/star.png", IND_ALPHA, IND_32);
+	iLib->_surfaceManager->add (_surfaces[2], "star.png", IND_ALPHA, IND_32);
     
     //Normal animation, with color key to surface. Contains some offsets (not noticeable)
-	iLib->_animationManager->addToSurface(_animations[0], const_cast<char *>("../../resources/animations/character1.xml"), IND_ALPHA, IND_32, 0, 48, 152);
+	iLib->_animationManager->addToSurface(_animations[0], const_cast<char *>("animations/character1.xml"), IND_ALPHA, IND_32, 0, 48, 152);
     
     //Normal animation, with color key to surface. Contains some offsets (not noticeable)
-	iLib->_animationManager->addToSurface(_animations[1], const_cast<char *>("../../resources/animations/character1.xml"), IND_ALPHA, IND_32, 0, 48, 152);
+	iLib->_animationManager->addToSurface(_animations[1], const_cast<char *>("animations/character1.xml"), IND_ALPHA, IND_32, 0, 48, 152);
     
     //Normal animation, with color key to surface. Contains some offsets (not noticeable)
-	iLib->_animationManager->addToSurface(_animations[2], const_cast<char *>("../../resources/animations/character1.xml"), IND_ALPHA, IND_32, 0, 48, 152);
+	iLib->_animationManager->addToSurface(_animations[2], const_cast<char *>("animations/character1.xml"), IND_ALPHA, IND_32, 0, 48, 152);
 }
 
 

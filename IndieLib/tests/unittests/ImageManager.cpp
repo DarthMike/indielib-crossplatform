@@ -42,7 +42,7 @@ struct fixture {
 };
 
 TEST_FIXTURE(fixture,ImageManager_addFromFile) {
-	CHECK(iLib->_imageManager->add(testImage, "../../assets/Enemy Bug.png"));
+	CHECK(iLib->_imageManager->add(testImage, "Enemy Bug.png"));
 }
 
 TEST_FIXTURE(fixture,ImageManager_AddProcedural_RGBA) {
@@ -66,7 +66,7 @@ TEST_FIXTURE(fixture,ImageManager_AddProcedural_LUMINANCE) {
 }
 
 TEST_FIXTURE(fixture,ImageManager_addCopying) {
-	iLib->_imageManager->add(testImage, "../../assets/Enemy Bug.png");
+	iLib->_imageManager->add(testImage, "Enemy Bug.png");
 	
 	IND_Image *copied = IND_Image::newImage();
 	CHECK(iLib->_imageManager->add(copied,testImage->getFreeImageHandle()));
@@ -74,7 +74,7 @@ TEST_FIXTURE(fixture,ImageManager_addCopying) {
 }
 
 TEST_FIXTURE(fixture,Image_Paste) {
-	iLib->_imageManager->add(testImage, "../../assets/Enemy Bug.png");
+	iLib->_imageManager->add(testImage, "Enemy Bug.png");
 	
 	IND_Image *pastedTo = IND_Image::newImage();
 	iLib->_imageManager->add(pastedTo,testImage->getWidth(),testImage->getHeight(),IND_RGBA);
@@ -83,20 +83,20 @@ TEST_FIXTURE(fixture,Image_Paste) {
 }
 
 TEST_FIXTURE(fixture,ImageManager_remove) {	
-	iLib->_imageManager->add(testImage, "../../assets/Enemy Bug.png");
+	iLib->_imageManager->add(testImage, "Enemy Bug.png");
 	
 	CHECK(iLib->_imageManager->remove(testImage));
 }
 
 TEST_FIXTURE(fixture,ImageManager_clone) {	
 	IND_Image *testClone = IND_Image::newImage();
-	iLib->_imageManager->add(testImage, "../../assets/Enemy Bug.png");
+	iLib->_imageManager->add(testImage, "Enemy Bug.png");
 	
 	CHECK(iLib->_imageManager->clone(testClone,testImage));
 	CHECK(testClone->getFreeImageHandle() != NULL);
 }
 
 TEST_FIXTURE(fixture,ImageManager_load) {
-	FIBITMAP* bitmap = iLib->_imageManager->load("../../assets/Enemy Bug.png");
+	FIBITMAP* bitmap = iLib->_imageManager->load("Enemy Bug.png");
 	CHECK(bitmap != NULL);
 }

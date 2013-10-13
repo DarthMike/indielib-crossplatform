@@ -30,8 +30,8 @@
 #include "IND_Image.h"
 #include "IND_Surface.h"
 
-#include <ft2build.h>
-#include FT_FREETYPE_H
+//#include <ft2build.h>
+//#include FT_FREETYPE_H
 
 #include <map>
 
@@ -53,6 +53,7 @@
 #define DT_EX_BORDER	               0x00000200
 #define DT_EX_BACKCOLOR	               0x00000400
 
+class free_type_impl;  // forward-declare private "implementation" class.
 
 // --------------------------------------------------------------------------------
 //									 IND_TTF_Font
@@ -67,7 +68,7 @@ public:
 
 	// ----- Init/End -----
     
-	IND_TTF_Font(	FT_Library ftlib, IND_Render *pIndieRender, IND_ImageManager *pIndieImageManager, 
+	IND_TTF_Font(	IND_Render *pIndieRender, IND_ImageManager *pIndieImageManager,
 					IND_SurfaceManager *pIndieSurfaceManager);
 	~IND_TTF_Font();
 
@@ -154,8 +155,11 @@ private:
     //Number of spaces in a tab
 	static const unsigned int nTabSize = 4;
 
-	FT_Library				_FTLib;                 // freetype lib
-	FT_Face					_Face;                  // THIS font face
+   
+    free_type_impl          *_impl;         // free type library wrapper
+    
+	//FT_Library				_FTLib;                 // freetype lib
+	//FT_Face					_Face;                  // THIS font face
 	float					_fFaceAscender;
 
 	IND_Render				*_pIndieRender;
@@ -173,7 +177,7 @@ private:
 	
 	bool					_bBold;                 // bold
 	bool					_bItalic;               // italic
-	FT_Matrix				_matItalic;             // transformation matrix for italic
+	//FT_Matrix				_matItalic;             // transformation matrix for italic
 
 	float					_fXScale;               // x scale for bliting
 	float					_fYScale;               // y scale for bliting
@@ -198,7 +202,7 @@ private:
 	CharCacheNode* getCharCacheNode(wchar_t charCode);
 
 	// render glyph to image
-	bool renderGlyph(FT_Bitmap* Glyph, IND_Image *pImage);
+	bool renderGlyph(free_type_impl* impl, IND_Image *pImage);
 
 	// advance with space 
 	uint32_t getSpaceAdvance();

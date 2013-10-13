@@ -89,7 +89,7 @@ private:
     
 	IND_TTF_FontList		_FontList;
 	bool					_bInit;
-	FT_Library				_FTLib;
+//	FT_Library				_FTLib;
 	IND_Render				*_pIndieRender;
 	IND_ImageManager		*_pIndieImageManager;
 	IND_SurfaceManager		*_pIndieSurfaceManager;

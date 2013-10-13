@@ -24,17 +24,32 @@
 
 #include "IND_TTF_Font.h"
 
+#include <ft2build.h>
+#include FT_FREETYPE_H
+
 
 #include "freetype/ttunpat.h"
 #include "freetype/ftoutln.h"
 
-IND_TTF_Font::IND_TTF_Font(FT_Library ftlib, IND_Render *pIndieRender, IND_ImageManager *pIndieImageManager, 
+class free_type_impl {
+public:
+    FT_Library				_FTLib;                 // freetype lib
+	FT_Face					_Face;                  // THIS font face
+    FT_Matrix				_matItalic;             // transformation matrix for italic
+
+    // ...
+public:
+    // some functions ...
+    friend class IND_TTF_Font;
+};
+
+IND_TTF_Font::IND_TTF_Font( IND_Render *pIndieRender, IND_ImageManager *pIndieImageManager, 
 							IND_SurfaceManager *pIndieSurfaceManager)
-:_FTLib(ftlib),
+://_impl->_FTLib(ftlib),
 _pIndieRender(pIndieRender),
 _pIndieImageManager(pIndieImageManager),
 _pIndieSurfaceManager(pIndieSurfaceManager),
-_Face(NULL),
+//_impl->_Face(NULL),
 _CharWidth(20),
 _CharHeight(20),
 _bAutoCache(true),
@@ -45,10 +60,10 @@ _fXHotSpot(0.5f),
 _fYHotSpot(0.5f),
 _bBold(false),
 _bItalic(false) {
-	_matItalic.xx = 1 << 16;
-	_matItalic.xy = 0x5800;
-	_matItalic.yx = 0;
-	_matItalic.yy = 1 << 16;
+	_impl->_matItalic.xx = 1 << 16;
+	_impl->_matItalic.xy = 0x5800;
+	_impl->_matItalic.yx = 0;
+	_impl->_matItalic.yy = 1 << 16;
 }
 
 IND_TTF_Font::~IND_TTF_Font() {
@@ -60,25 +75,25 @@ bool IND_TTF_Font::loadTTFFontFromDisk(const std::string& strname, const std::st
 	unloadFont();
 
 	//create new face
-	if (FT_New_Face(_FTLib, strpath.c_str(), 0, &_Face) != 0)
+	if (FT_New_Face(_impl->_FTLib, strpath.c_str(), 0, &_impl->_Face) != 0)
 		return false;
 
-	if (!_Face->charmap || !FT_IS_SCALABLE(_Face)) {
-		FT_Done_Face(_Face);
+	if (!_impl->_Face->charmap || !FT_IS_SCALABLE(_impl->_Face)) {
+		FT_Done_Face(_impl->_Face);
 		return false;
 	}
 
 	_strFilePath = strpath;
-	if (FT_HAS_KERNING(_Face))
+	if (FT_HAS_KERNING(_impl->_Face))
 		_bHasKerning = true;
 
 	_CharWidth	= iSize;
 	_CharHeight = iSize;
 
-	if (FT_Set_Pixel_Sizes(_Face, _CharWidth, _CharHeight) != 0)
+	if (FT_Set_Pixel_Sizes(_impl->_Face, _CharWidth, _CharHeight) != 0)
 		return false;
 
-    _fFaceAscender = _Face->ascender * _Face->size->metrics.y_scale * float(1.0/64.0) * (1.0f/65536.0f);
+    _fFaceAscender = _impl->_Face->ascender * _impl->_Face->size->metrics.y_scale * float(1.0/64.0) * (1.0f/65536.0f);
 
 	_bBold = bBold;
 	_bItalic = bItalic;
@@ -89,9 +104,9 @@ bool IND_TTF_Font::loadTTFFontFromDisk(const std::string& strname, const std::st
 void IND_TTF_Font::unloadFont() {
 	clearAllCache();
 
-	if (_Face) {
-		FT_Done_Face(_Face);
-		_Face = NULL;
+	if (_impl->_Face) {
+		FT_Done_Face(_impl->_Face);
+		_impl->_Face = NULL;
 	}
 }
 
@@ -175,7 +190,7 @@ bool IND_TTF_Font::drawText(const std::wstring& s, float x, float y, uint32_t cl
 		}
 		//Kerning
 		if (previousGlyph != 0 && _bHasKerning && bKerning && !bFlipX && !bFlipY && fZRotate == 0) {
-			FT_Get_Kerning(_Face, previousGlyph, pNode->charGlyphIndex, FT_KERNING_DEFAULT, &Delta);
+			FT_Get_Kerning(_impl->_Face, previousGlyph, pNode->charGlyphIndex, FT_KERNING_DEFAULT, &Delta);
 			penX += Delta.x >> 6;
 			penY += Delta.y >> 6;
 		}
@@ -238,7 +253,7 @@ int IND_TTF_Font::drawTextEx(const std::wstring& sText, float fLeft, float fTop,
 	if(nFormat & DT_EX_VERTICAL) {
         // vertical layout
 		// mainly for you guys speaking Chinese, Japanese and Korean
-		if(!FT_HAS_VERTICAL(_Face)){
+		if(!FT_HAS_VERTICAL(_impl->_Face)){
             // ooops, font face doesn't support vertical layout
 			return -3;
 		}
@@ -510,29 +525,29 @@ bool IND_TTF_Font::buildCharCache(wchar_t charCode) {
 	pNode->pSurface = NULL;
 	//////////
 	pNode->charCode = charCode;
-	pNode->charGlyphIndex = FT_Get_Char_Index(_Face, charCode);
+	pNode->charGlyphIndex = FT_Get_Char_Index(_impl->_Face, charCode);
 
 	if (pNode->charGlyphIndex == 0) {
 		delete pNode;
 		return false;
 	}
 
-	FT_Load_Char(_Face, charCode, FT_LOAD_DEFAULT /*| FT_LOAD_NO_BITMAP*/);
+	FT_Load_Char(_impl->_Face, charCode, FT_LOAD_DEFAULT /*| FT_LOAD_NO_BITMAP*/);
 
 	// Bold
 	if(_bBold) {
 		int strength = 1 << 6;
-		FT_Outline_Embolden(&_Face->glyph->outline, strength);
+		FT_Outline_Embolden(&_impl->_Face->glyph->outline, strength);
 	}
 
 	// Italic
 	if(_bItalic) {
 		// set transformation 
-		FT_Outline_Transform(&_Face->glyph->outline, &_matItalic);
+		FT_Outline_Transform(&_impl->_Face->glyph->outline, &_impl->_matItalic);
 	}
 	
 
-	if(FT_Render_Glyph(_Face->glyph, FT_RENDER_MODE_NORMAL)) {
+	if(FT_Render_Glyph(_impl->_Face->glyph, FT_RENDER_MODE_NORMAL)) {
 		delete pNode;
 		return false;
 	}
@@ -542,7 +557,7 @@ bool IND_TTF_Font::buildCharCache(wchar_t charCode) {
 	assert(pImage);
 
 	// render the glyph image to IND_Image
-	if(!renderGlyph(&_Face->glyph->bitmap, pImage))
+	if(!renderGlyph(_impl, pImage)) // &_impl->_Face->glyph->bitmap, pImage
 		return false;
 		
 	//building the surface from image
@@ -562,9 +577,9 @@ bool IND_TTF_Font::buildCharCache(wchar_t charCode) {
 		return false;
 	}
 
-	pNode->charLeftBearing = _Face->glyph->bitmap_left;
-	pNode->charTopBearing = _Face->glyph->bitmap_top;
-	pNode->charAdvance = _Face->glyph->advance.x / 64;
+	pNode->charLeftBearing = _impl->_Face->glyph->bitmap_left;
+	pNode->charTopBearing = _impl->_Face->glyph->bitmap_top;
+	pNode->charAdvance = _impl->_Face->glyph->advance.x / 64;
 	
 	_FontCharCache.insert(std::pair<wchar_t, CharCacheNode*>(charCode, pNode));
 
@@ -580,8 +595,13 @@ IND_TTF_Font::CharCacheNode* IND_TTF_Font::getCharCacheNode(wchar_t charCode) {
 		return it->second;
 }
 
-bool IND_TTF_Font::renderGlyph(FT_Bitmap* ftBMP, IND_Image *pImage) {
-	uint32_t glyphWidth = ftBMP->width;
+bool IND_TTF_Font::renderGlyph(free_type_impl* impl, IND_Image *pImage) {
+	
+    //free_type_impl* impl
+    
+    FT_Bitmap* ftBMP = &impl->_Face->glyph->bitmap;
+    
+    uint32_t glyphWidth = ftBMP->width;
 	uint32_t glyphHeight = ftBMP->rows;
 
 	if (glyphWidth == 0 || glyphHeight == 0)
@@ -716,7 +736,7 @@ std::wstring IND_TTF_Font::textFormat(	const std::wstring& sText, float &fLineWi
 		}
 		if (previousGlyph != 0 && _bHasKerning && bKerning && !bFlipX && !bFlipY && fZRotate == 0)
 		{
-			FT_Get_Kerning(_Face, previousGlyph, pNode->charGlyphIndex, FT_KERNING_DEFAULT, &Delta);
+			FT_Get_Kerning(_impl->_Face, previousGlyph, pNode->charGlyphIndex, FT_KERNING_DEFAULT, &Delta);
 			fCurrentLineWidth += Delta.x >> 6;
 		}
 
@@ -778,7 +798,7 @@ IND_TTF_Font::uint32_t IND_TTF_Font::getLineWidth(const std::wstring& sText, boo
 		}
         
 		if (previousGlyph != 0 && _bHasKerning  && bKerning && !bFlipX && !bFlipY && fZRotate == 0) {
-			FT_Get_Kerning(_Face, previousGlyph, pNode->charGlyphIndex, FT_KERNING_DEFAULT, &Delta);
+			FT_Get_Kerning(_impl->_Face, previousGlyph, pNode->charGlyphIndex, FT_KERNING_DEFAULT, &Delta);
 			nRet += Delta.x >> 6;
 		}
 
@@ -847,7 +867,7 @@ void IND_TTF_Font::drawTextLineEx(const std::wstring& sText, float penX, float p
 		//Kerning
 		if (!bR2L && previousGlyph != 0 && _bHasKerning  && bKerning && !bFlipX && !bFlipY && fZRotate == 0)
 		{
-			FT_Get_Kerning(_Face, previousGlyph, pNode->charGlyphIndex, FT_KERNING_DEFAULT, &Delta);
+			FT_Get_Kerning(_impl->_Face, previousGlyph, pNode->charGlyphIndex, FT_KERNING_DEFAULT, &Delta);
 			penX += Delta.x >> 6;
 			penY += Delta.y >> 6;
 		}

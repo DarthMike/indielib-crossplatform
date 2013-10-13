@@ -148,13 +148,15 @@
 #endif //INDIELIB_DLLBUILD
 #endif //PLATFORM_WIN32
 
-#if PLATFORM_LINUX
-#define LIB_EXP
-#endif //PLATFORM_LINUX
-
 #if defined (__GNUC__) && __GNUC__ >= 4
 #define LIB_EXP __attribute__ ((visibility("default")))
-#endif
+#endif //__GNUC__
+
+#if PLATFORM_LINUX
+#ifndef LIB_EXP
+#define LIB_EXP
+#endif //LIB_EXP
+#endif //PLATFORM_LINUX
 
 // ------ Indielib main -----
 // On desktop platforms, this definition is provided as a shorthand for C-based main().

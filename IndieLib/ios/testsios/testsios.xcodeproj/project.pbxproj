@@ -13,21 +13,6 @@
 		E7201061176E3D9400D14384 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7201060176E3D9400D14384 /* Default-568h@2x.png */; };
 		E73B868417F8AA470040F195 /* TmxmapTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E73B868317F8AA470040F195 /* TmxmapTests.cpp */; };
 		E75522A7177616AF005B7F34 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7552259177616AF005B7F34 /* WorkingPath.cpp */; };
-		E75522B0177616AF005B7F34 /* manual_describtion.txt in Resources */ = {isa = PBXBuildFile; fileRef = E7552264177616AF005B7F34 /* manual_describtion.txt */; };
-		E75522B1177616AF005B7F34 /* manual_screenshot_part_01.png in Resources */ = {isa = PBXBuildFile; fileRef = E7552265177616AF005B7F34 /* manual_screenshot_part_01.png */; };
-		E75522B2177616AF005B7F34 /* manual_screenshot_part_02.png in Resources */ = {isa = PBXBuildFile; fileRef = E7552266177616AF005B7F34 /* manual_screenshot_part_02.png */; };
-		E75522B3177616AF005B7F34 /* manual_screenshot_part_03.png in Resources */ = {isa = PBXBuildFile; fileRef = E7552267177616AF005B7F34 /* manual_screenshot_part_03.png */; };
-		E75522B4177616AF005B7F34 /* manual_screenshot_part_04.png in Resources */ = {isa = PBXBuildFile; fileRef = E7552268177616AF005B7F34 /* manual_screenshot_part_04.png */; };
-		E75522B5177616AF005B7F34 /* manual_screenshot_part_05.png in Resources */ = {isa = PBXBuildFile; fileRef = E7552269177616AF005B7F34 /* manual_screenshot_part_05.png */; };
-		E75522B6177616AF005B7F34 /* manual_screenshot_part_06.png in Resources */ = {isa = PBXBuildFile; fileRef = E755226A177616AF005B7F34 /* manual_screenshot_part_06.png */; };
-		E75522B7177616AF005B7F34 /* manual_screenshot_part_07.png in Resources */ = {isa = PBXBuildFile; fileRef = E755226B177616AF005B7F34 /* manual_screenshot_part_07.png */; };
-		E75522B8177616AF005B7F34 /* manual_screenshot_part_08.png in Resources */ = {isa = PBXBuildFile; fileRef = E755226C177616AF005B7F34 /* manual_screenshot_part_08.png */; };
-		E75522B9177616AF005B7F34 /* manual_screenshot_part_09.png in Resources */ = {isa = PBXBuildFile; fileRef = E755226D177616AF005B7F34 /* manual_screenshot_part_09.png */; };
-		E75522BA177616AF005B7F34 /* manual_screenshot_part_10.png in Resources */ = {isa = PBXBuildFile; fileRef = E755226E177616AF005B7F34 /* manual_screenshot_part_10.png */; };
-		E75522BB177616AF005B7F34 /* manual_screenshot_part_11.png in Resources */ = {isa = PBXBuildFile; fileRef = E755226F177616AF005B7F34 /* manual_screenshot_part_11.png */; };
-		E75522BC177616AF005B7F34 /* manual_screenshot_part_12.png in Resources */ = {isa = PBXBuildFile; fileRef = E7552270177616AF005B7F34 /* manual_screenshot_part_12.png */; };
-		E75522BD177616AF005B7F34 /* unittests_console_output.txt in Resources */ = {isa = PBXBuildFile; fileRef = E7552271177616AF005B7F34 /* unittests_console_output.txt */; };
-		E75522BE177616AF005B7F34 /* unittests_describtion.txt in Resources */ = {isa = PBXBuildFile; fileRef = E7552272177616AF005B7F34 /* unittests_describtion.txt */; };
 		E75522BF177616AF005B7F34 /* AnimationTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7552275177616AF005B7F34 /* AnimationTests.cpp */; };
 		E75522C0177616AF005B7F34 /* Camera2dTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7552278177616AF005B7F34 /* Camera2dTests.cpp */; };
 		E75522C1177616AF005B7F34 /* CollisionTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E755227B177616AF005B7F34 /* CollisionTests.cpp */; };
@@ -88,21 +73,6 @@
 		E73B868317F8AA470040F195 /* TmxmapTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TmxmapTests.cpp; sourceTree = "<group>"; };
 		E7552258177616AF005B7F34 /* WorkingPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WorkingPath.h; path = ../../../tests/WorkingPath.h; sourceTree = "<group>"; };
 		E7552259177616AF005B7F34 /* WorkingPath.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = WorkingPath.cpp; path = ../../../tests/WorkingPath.cpp; sourceTree = "<group>"; };
-		E7552264177616AF005B7F34 /* manual_describtion.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = manual_describtion.txt; sourceTree = "<group>"; };
-		E7552265177616AF005B7F34 /* manual_screenshot_part_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manual_screenshot_part_01.png; sourceTree = "<group>"; };
-		E7552266177616AF005B7F34 /* manual_screenshot_part_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manual_screenshot_part_02.png; sourceTree = "<group>"; };
-		E7552267177616AF005B7F34 /* manual_screenshot_part_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manual_screenshot_part_03.png; sourceTree = "<group>"; };
-		E7552268177616AF005B7F34 /* manual_screenshot_part_04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manual_screenshot_part_04.png; sourceTree = "<group>"; };
-		E7552269177616AF005B7F34 /* manual_screenshot_part_05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manual_screenshot_part_05.png; sourceTree = "<group>"; };
-		E755226A177616AF005B7F34 /* manual_screenshot_part_06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manual_screenshot_part_06.png; sourceTree = "<group>"; };
-		E755226B177616AF005B7F34 /* manual_screenshot_part_07.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manual_screenshot_part_07.png; sourceTree = "<group>"; };
-		E755226C177616AF005B7F34 /* manual_screenshot_part_08.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manual_screenshot_part_08.png; sourceTree = "<group>"; };
-		E755226D177616AF005B7F34 /* manual_screenshot_part_09.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manual_screenshot_part_09.png; sourceTree = "<group>"; };
-		E755226E177616AF005B7F34 /* manual_screenshot_part_10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manual_screenshot_part_10.png; sourceTree = "<group>"; };
-		E755226F177616AF005B7F34 /* manual_screenshot_part_11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manual_screenshot_part_11.png; sourceTree = "<group>"; };
-		E7552270177616AF005B7F34 /* manual_screenshot_part_12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manual_screenshot_part_12.png; sourceTree = "<group>"; };
-		E7552271177616AF005B7F34 /* unittests_console_output.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = unittests_console_output.txt; sourceTree = "<group>"; };
-		E7552272177616AF005B7F34 /* unittests_describtion.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = unittests_describtion.txt; sourceTree = "<group>"; };
 		E7552275177616AF005B7F34 /* AnimationTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationTests.cpp; sourceTree = "<group>"; };
 		E7552276177616AF005B7F34 /* AnimationTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationTests.h; sourceTree = "<group>"; };
 		E7552278177616AF005B7F34 /* Camera2dTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera2dTests.cpp; sourceTree = "<group>"; };
@@ -210,7 +180,6 @@
 			children = (
 				E7552258177616AF005B7F34 /* WorkingPath.h */,
 				E7552259177616AF005B7F34 /* WorkingPath.cpp */,
-				E7552263177616AF005B7F34 /* results */,
 				E7552273177616AF005B7F34 /* manual */,
 				E75522A5177616AF005B7F34 /* CIndieLib.h */,
 				E75522A6177616AF005B7F34 /* CIndieLib.cpp */,
@@ -239,29 +208,6 @@
 				E73B868317F8AA470040F195 /* TmxmapTests.cpp */,
 			);
 			name = TMX;
-			sourceTree = "<group>";
-		};
-		E7552263177616AF005B7F34 /* results */ = {
-			isa = PBXGroup;
-			children = (
-				E7552264177616AF005B7F34 /* manual_describtion.txt */,
-				E7552265177616AF005B7F34 /* manual_screenshot_part_01.png */,
-				E7552266177616AF005B7F34 /* manual_screenshot_part_02.png */,
-				E7552267177616AF005B7F34 /* manual_screenshot_part_03.png */,
-				E7552268177616AF005B7F34 /* manual_screenshot_part_04.png */,
-				E7552269177616AF005B7F34 /* manual_screenshot_part_05.png */,
-				E755226A177616AF005B7F34 /* manual_screenshot_part_06.png */,
-				E755226B177616AF005B7F34 /* manual_screenshot_part_07.png */,
-				E755226C177616AF005B7F34 /* manual_screenshot_part_08.png */,
-				E755226D177616AF005B7F34 /* manual_screenshot_part_09.png */,
-				E755226E177616AF005B7F34 /* manual_screenshot_part_10.png */,
-				E755226F177616AF005B7F34 /* manual_screenshot_part_11.png */,
-				E7552270177616AF005B7F34 /* manual_screenshot_part_12.png */,
-				E7552271177616AF005B7F34 /* unittests_console_output.txt */,
-				E7552272177616AF005B7F34 /* unittests_describtion.txt */,
-			);
-			name = results;
-			path = ../../../tests/results;
 			sourceTree = "<group>";
 		};
 		E7552273177616AF005B7F34 /* manual */ = {
@@ -465,21 +411,6 @@
 				E720105D176E3D9400D14384 /* Default.png in Resources */,
 				E720105F176E3D9400D14384 /* Default@2x.png in Resources */,
 				E7201061176E3D9400D14384 /* Default-568h@2x.png in Resources */,
-				E75522B0177616AF005B7F34 /* manual_describtion.txt in Resources */,
-				E75522B1177616AF005B7F34 /* manual_screenshot_part_01.png in Resources */,
-				E75522B2177616AF005B7F34 /* manual_screenshot_part_02.png in Resources */,
-				E75522B3177616AF005B7F34 /* manual_screenshot_part_03.png in Resources */,
-				E75522B4177616AF005B7F34 /* manual_screenshot_part_04.png in Resources */,
-				E75522B5177616AF005B7F34 /* manual_screenshot_part_05.png in Resources */,
-				E75522B6177616AF005B7F34 /* manual_screenshot_part_06.png in Resources */,
-				E75522B7177616AF005B7F34 /* manual_screenshot_part_07.png in Resources */,
-				E75522B8177616AF005B7F34 /* manual_screenshot_part_08.png in Resources */,
-				E75522B9177616AF005B7F34 /* manual_screenshot_part_09.png in Resources */,
-				E75522BA177616AF005B7F34 /* manual_screenshot_part_10.png in Resources */,
-				E75522BB177616AF005B7F34 /* manual_screenshot_part_11.png in Resources */,
-				E75522BC177616AF005B7F34 /* manual_screenshot_part_12.png in Resources */,
-				E75522BD177616AF005B7F34 /* unittests_console_output.txt in Resources */,
-				E75522BE177616AF005B7F34 /* unittests_describtion.txt in Resources */,
 				E759E77D17AED2D0007D4DC3 /* assets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

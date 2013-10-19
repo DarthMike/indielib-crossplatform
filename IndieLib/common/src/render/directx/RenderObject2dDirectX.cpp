@@ -218,17 +218,17 @@ bool DirectXRender::blitWrapSurface(IND_Surface *pSu,
 
 		// Prepare the quad that is going to be blitted
 		// Calculates the position and mapping coords for that block
-		float _u = static_cast<float>(pWidth  / pSu->getWidthBlock());
-		float _v = static_cast<float>(pHeight / pSu->getHeightBlock());
+		float _u = static_cast<float>(pWidth)  / static_cast<float>(pSu->getWidthBlock());
+		float _v = static_cast<float>(pHeight) / static_cast<float>(pSu->getHeightBlock());
 
 		//Upper-right
-		fillVertex2d(&_vertices2d [0], static_cast<float>(pWidth), 0,           _u - pUDisplace,   pVDisplace);
+		fillVertex2d(&_vertices2d [0], static_cast<float>(pWidth), 0, _u - pUDisplace, pVDisplace);
 		//Lower-right
-		fillVertex2d(&_vertices2d [1], static_cast<float>(pWidth), static_cast<float>(pHeight),     _u - pUDisplace,   -_v + pVDisplace);
+		fillVertex2d(&_vertices2d [1], static_cast<float>(pWidth), static_cast<float>(pHeight), _u - pUDisplace,-_v + pVDisplace);
 		//Upper-left
-		fillVertex2d(&_vertices2d [2], 0.0f,      0.0f,           -pUDisplace,       pVDisplace);
+		fillVertex2d(&_vertices2d [2], 0.0f,0.0f,-pUDisplace,pVDisplace);
 		//Lower-left
-		fillVertex2d(&_vertices2d [3], 0.0f,      static_cast<float>(pHeight),     -pUDisplace,       -_v + pVDisplace);
+		fillVertex2d(&_vertices2d [3], 0.0f,static_cast<float>(pHeight),-pUDisplace,-_v + pVDisplace);
 
 		// Quad blitting
 		_info._device->SetFVF(D3DFVF_CUSTOMVERTEX2D);

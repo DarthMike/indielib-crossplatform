@@ -85,3 +85,5 @@ IndieLib/common/dependencies/freetype-2.5.0.1/objs
 IndieLib/ios/indielibios/build
 IndieLib/ios/indielibios.xcworkspace/xcuserdata
 *.xccheckout
+*.xcuserstate
+IndieLib/common/dependencies/SDL-2.0/Xcode-iOS/SDL/SDL.xcodeproj/xcuserdata

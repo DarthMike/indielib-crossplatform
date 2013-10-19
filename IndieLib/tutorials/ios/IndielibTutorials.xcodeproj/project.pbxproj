@@ -18,6 +18,226 @@
 		E759E88B17B05965007D4DC3 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88317B0592A007D4DC3 /* OpenGLES.framework */; };
 		E759E88C17B05965007D4DC3 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88117B0591D007D4DC3 /* libstdc++.6.0.9.dylib */; };
 		E759E88D17B05965007D4DC3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E87F17B05910007D4DC3 /* AudioToolbox.framework */; };
+		E78889941812E7D700890536 /* CIndieLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E81417B05766007D4DC3 /* CIndieLib.cpp */; };
+		E78889951812E7DA00890536 /* CTerrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E81617B05766007D4DC3 /* CTerrain.cpp */; };
+		E78889961812E7E400890536 /* CUfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E81817B05766007D4DC3 /* CUfo.cpp */; };
+		E78889971812E7E400890536 /* Tutorial01.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E81A17B05766007D4DC3 /* Tutorial01.cpp */; };
+		E78889981812E7EC00890536 /* CIndieLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E81C17B05766007D4DC3 /* CIndieLib.cpp */; };
+		E78889991812E7EC00890536 /* CRabbit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E81E17B05766007D4DC3 /* CRabbit.cpp */; };
+		E788899A1812E7EC00890536 /* Tutorial02.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E82017B05767007D4DC3 /* Tutorial02.cpp */; };
+		E788899B1812E7FE00890536 /* CIndieLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E82A17B05767007D4DC3 /* CIndieLib.cpp */; };
+		E788899C1812E7FE00890536 /* Tutorial02.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E82C17B05767007D4DC3 /* Tutorial02.cpp */; };
+		E788899D1812E80000890536 /* CIndieLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E82E17B05767007D4DC3 /* CIndieLib.cpp */; };
+		E788899E1812E80000890536 /* Tutorial03.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E83017B05767007D4DC3 /* Tutorial03.cpp */; };
+		E788899F1812E80300890536 /* CIndieLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E83217B05767007D4DC3 /* CIndieLib.cpp */; };
+		E78889A01812E80300890536 /* Tutorial04.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E83417B05767007D4DC3 /* Tutorial04.cpp */; };
+		E78889A11812E80600890536 /* CIndieLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E83617B05767007D4DC3 /* CIndieLib.cpp */; };
+		E78889A21812E80600890536 /* Tutorial05.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E83817B05767007D4DC3 /* Tutorial05.cpp */; };
+		E78889A31812E80900890536 /* CIndieLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E83A17B05767007D4DC3 /* CIndieLib.cpp */; };
+		E78889A41812E80900890536 /* Tutorial06.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E83C17B05767007D4DC3 /* Tutorial06.cpp */; };
+		E78889A51812E80C00890536 /* CIndieLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E83E17B05767007D4DC3 /* CIndieLib.cpp */; };
+		E78889A61812E80C00890536 /* Tutorial07.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E84017B05767007D4DC3 /* Tutorial07.cpp */; };
+		E78889A71812E81000890536 /* CIndieLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E84217B05767007D4DC3 /* CIndieLib.cpp */; };
+		E78889A81812E81000890536 /* Tutorial08.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E84417B05767007D4DC3 /* Tutorial08.cpp */; };
+		E78889A91812E81A00890536 /* CIndieLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E84E17B05767007D4DC3 /* CIndieLib.cpp */; };
+		E78889AA1812E81A00890536 /* Tutorial11.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E85017B05767007D4DC3 /* Tutorial11.cpp */; };
+		E78889AD1812E83500890536 /* CIndieLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E85E17B05767007D4DC3 /* CIndieLib.cpp */; };
+		E78889AE1812E83500890536 /* Tutorial16.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E86017B05767007D4DC3 /* Tutorial16.cpp */; };
+		E78889AF1812E83900890536 /* CIndieLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E86317B05767007D4DC3 /* CIndieLib.cpp */; };
+		E78889B01812E83900890536 /* Tutorial01.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E86517B05767007D4DC3 /* Tutorial01.cpp */; };
+		E78889B11812E83D00890536 /* CIndieLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E86717B05767007D4DC3 /* CIndieLib.cpp */; };
+		E78889B21812E83D00890536 /* Tutorial02.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E86917B05767007D4DC3 /* Tutorial02.cpp */; };
+		E78889B31812E84100890536 /* CIndieLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E86F17B05767007D4DC3 /* CIndieLib.cpp */; };
+		E78889B41812E84100890536 /* Tutorial04.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E87117B05767007D4DC3 /* Tutorial04.cpp */; };
+		E78889B51812E84400890536 /* CIndieLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E87317B05767007D4DC3 /* CIndieLib.cpp */; };
+		E78889B61812E84400890536 /* Tutorial05.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E87517B05767007D4DC3 /* Tutorial05.cpp */; };
+		E78889B71812E84800890536 /* CIndieLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E87717B05767007D4DC3 /* CIndieLib.cpp */; };
+		E78889B81812E84800890536 /* Tutorial06.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E87917B05767007D4DC3 /* Tutorial06.cpp */; };
+		E78889BB1812E85900890536 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E81117B05766007D4DC3 /* WorkingPath.cpp */; };
+		E78889BD1812E85900890536 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B517B03674007D4DC3 /* UIKit.framework */; };
+		E78889BE1812E85900890536 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B717B03674007D4DC3 /* Foundation.framework */; };
+		E78889BF1812E85900890536 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B917B03674007D4DC3 /* CoreGraphics.framework */; };
+		E78889C01812E85900890536 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88717B05942007D4DC3 /* QuartzCore.framework */; };
+		E78889C11812E85900890536 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88517B05935007D4DC3 /* GLKit.framework */; };
+		E78889C21812E85900890536 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88317B0592A007D4DC3 /* OpenGLES.framework */; };
+		E78889C31812E85900890536 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88117B0591D007D4DC3 /* libstdc++.6.0.9.dylib */; };
+		E78889C41812E85900890536 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E87F17B05910007D4DC3 /* AudioToolbox.framework */; };
+		E78889CD1812E8C300890536 /* CIndieLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E85A17B05767007D4DC3 /* CIndieLib.cpp */; };
+		E78889CE1812E8C300890536 /* Tutorial15.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E85C17B05767007D4DC3 /* Tutorial15.cpp */; };
+		E78889D21812E9A600890536 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = E78889D11812E9A600890536 /* assets */; };
+		E78889D31812E9A600890536 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = E78889D11812E9A600890536 /* assets */; };
+		E78889D41812E9A600890536 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = E78889D11812E9A600890536 /* assets */; };
+		E78889D51812E9A600890536 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = E78889D11812E9A600890536 /* assets */; };
+		E78889D61812E9A600890536 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = E78889D11812E9A600890536 /* assets */; };
+		E78889D71812E9A600890536 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = E78889D11812E9A600890536 /* assets */; };
+		E78889D81812E9A600890536 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = E78889D11812E9A600890536 /* assets */; };
+		E78889D91812E9A600890536 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = E78889D11812E9A600890536 /* assets */; };
+		E78889DA1812E9A600890536 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = E78889D11812E9A600890536 /* assets */; };
+		E78889DC1812E9A600890536 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = E78889D11812E9A600890536 /* assets */; };
+		E78889DD1812E9A600890536 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = E78889D11812E9A600890536 /* assets */; };
+		E78889DE1812E9A600890536 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = E78889D11812E9A600890536 /* assets */; };
+		E78889DF1812E9A600890536 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = E78889D11812E9A600890536 /* assets */; };
+		E78889E01812E9A600890536 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = E78889D11812E9A600890536 /* assets */; };
+		E78889E11812E9A600890536 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = E78889D11812E9A600890536 /* assets */; };
+		E78889E21812E9A600890536 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = E78889D11812E9A600890536 /* assets */; };
+		E78889E31812E9A600890536 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = E78889D11812E9A600890536 /* assets */; };
+		E78889E41812E9A600890536 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = E78889D11812E9A600890536 /* assets */; };
+		E78889E51812E9A600890536 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = E78889D11812E9A600890536 /* assets */; };
+		E78889E61812EB8700890536 /* CIndieLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E85217B05767007D4DC3 /* CIndieLib.cpp */; };
+		E78889E71812EB8700890536 /* Tutorial13.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E85417B05767007D4DC3 /* Tutorial13.cpp */; };
+		E79B83671812E2C800EA8AB1 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E81117B05766007D4DC3 /* WorkingPath.cpp */; };
+		E79B836B1812E2C800EA8AB1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B517B03674007D4DC3 /* UIKit.framework */; };
+		E79B836C1812E2C800EA8AB1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B717B03674007D4DC3 /* Foundation.framework */; };
+		E79B836D1812E2C800EA8AB1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B917B03674007D4DC3 /* CoreGraphics.framework */; };
+		E79B836E1812E2C800EA8AB1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88717B05942007D4DC3 /* QuartzCore.framework */; };
+		E79B836F1812E2C800EA8AB1 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88517B05935007D4DC3 /* GLKit.framework */; };
+		E79B83701812E2C800EA8AB1 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88317B0592A007D4DC3 /* OpenGLES.framework */; };
+		E79B83711812E2C800EA8AB1 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88117B0591D007D4DC3 /* libstdc++.6.0.9.dylib */; };
+		E79B83721812E2C800EA8AB1 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E87F17B05910007D4DC3 /* AudioToolbox.framework */; };
+		E79B837B1812E2D700EA8AB1 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E81117B05766007D4DC3 /* WorkingPath.cpp */; };
+		E79B837F1812E2D700EA8AB1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B517B03674007D4DC3 /* UIKit.framework */; };
+		E79B83801812E2D700EA8AB1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B717B03674007D4DC3 /* Foundation.framework */; };
+		E79B83811812E2D700EA8AB1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B917B03674007D4DC3 /* CoreGraphics.framework */; };
+		E79B83821812E2D700EA8AB1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88717B05942007D4DC3 /* QuartzCore.framework */; };
+		E79B83831812E2D700EA8AB1 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88517B05935007D4DC3 /* GLKit.framework */; };
+		E79B83841812E2D700EA8AB1 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88317B0592A007D4DC3 /* OpenGLES.framework */; };
+		E79B83851812E2D700EA8AB1 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88117B0591D007D4DC3 /* libstdc++.6.0.9.dylib */; };
+		E79B83861812E2D700EA8AB1 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E87F17B05910007D4DC3 /* AudioToolbox.framework */; };
+		E79B838F1812E2E100EA8AB1 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E81117B05766007D4DC3 /* WorkingPath.cpp */; };
+		E79B83931812E2E100EA8AB1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B517B03674007D4DC3 /* UIKit.framework */; };
+		E79B83941812E2E100EA8AB1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B717B03674007D4DC3 /* Foundation.framework */; };
+		E79B83951812E2E100EA8AB1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B917B03674007D4DC3 /* CoreGraphics.framework */; };
+		E79B83961812E2E100EA8AB1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88717B05942007D4DC3 /* QuartzCore.framework */; };
+		E79B83971812E2E100EA8AB1 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88517B05935007D4DC3 /* GLKit.framework */; };
+		E79B83981812E2E100EA8AB1 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88317B0592A007D4DC3 /* OpenGLES.framework */; };
+		E79B83991812E2E100EA8AB1 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88117B0591D007D4DC3 /* libstdc++.6.0.9.dylib */; };
+		E79B839A1812E2E100EA8AB1 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E87F17B05910007D4DC3 /* AudioToolbox.framework */; };
+		E79B83A31812E2E600EA8AB1 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E81117B05766007D4DC3 /* WorkingPath.cpp */; };
+		E79B83A71812E2E600EA8AB1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B517B03674007D4DC3 /* UIKit.framework */; };
+		E79B83A81812E2E600EA8AB1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B717B03674007D4DC3 /* Foundation.framework */; };
+		E79B83A91812E2E600EA8AB1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B917B03674007D4DC3 /* CoreGraphics.framework */; };
+		E79B83AA1812E2E600EA8AB1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88717B05942007D4DC3 /* QuartzCore.framework */; };
+		E79B83AB1812E2E600EA8AB1 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88517B05935007D4DC3 /* GLKit.framework */; };
+		E79B83AC1812E2E600EA8AB1 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88317B0592A007D4DC3 /* OpenGLES.framework */; };
+		E79B83AD1812E2E600EA8AB1 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88117B0591D007D4DC3 /* libstdc++.6.0.9.dylib */; };
+		E79B83AE1812E2E600EA8AB1 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E87F17B05910007D4DC3 /* AudioToolbox.framework */; };
+		E79B83B71812E2F000EA8AB1 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E81117B05766007D4DC3 /* WorkingPath.cpp */; };
+		E79B83BB1812E2F000EA8AB1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B517B03674007D4DC3 /* UIKit.framework */; };
+		E79B83BC1812E2F000EA8AB1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B717B03674007D4DC3 /* Foundation.framework */; };
+		E79B83BD1812E2F000EA8AB1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B917B03674007D4DC3 /* CoreGraphics.framework */; };
+		E79B83BE1812E2F000EA8AB1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88717B05942007D4DC3 /* QuartzCore.framework */; };
+		E79B83BF1812E2F000EA8AB1 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88517B05935007D4DC3 /* GLKit.framework */; };
+		E79B83C01812E2F000EA8AB1 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88317B0592A007D4DC3 /* OpenGLES.framework */; };
+		E79B83C11812E2F000EA8AB1 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88117B0591D007D4DC3 /* libstdc++.6.0.9.dylib */; };
+		E79B83C21812E2F000EA8AB1 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E87F17B05910007D4DC3 /* AudioToolbox.framework */; };
+		E79B83CB1812E2FB00EA8AB1 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E81117B05766007D4DC3 /* WorkingPath.cpp */; };
+		E79B83CF1812E2FB00EA8AB1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B517B03674007D4DC3 /* UIKit.framework */; };
+		E79B83D01812E2FB00EA8AB1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B717B03674007D4DC3 /* Foundation.framework */; };
+		E79B83D11812E2FB00EA8AB1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B917B03674007D4DC3 /* CoreGraphics.framework */; };
+		E79B83D21812E2FB00EA8AB1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88717B05942007D4DC3 /* QuartzCore.framework */; };
+		E79B83D31812E2FB00EA8AB1 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88517B05935007D4DC3 /* GLKit.framework */; };
+		E79B83D41812E2FB00EA8AB1 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88317B0592A007D4DC3 /* OpenGLES.framework */; };
+		E79B83D51812E2FB00EA8AB1 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88117B0591D007D4DC3 /* libstdc++.6.0.9.dylib */; };
+		E79B83D61812E2FB00EA8AB1 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E87F17B05910007D4DC3 /* AudioToolbox.framework */; };
+		E79B83DF1812E30800EA8AB1 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E81117B05766007D4DC3 /* WorkingPath.cpp */; };
+		E79B83E31812E30800EA8AB1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B517B03674007D4DC3 /* UIKit.framework */; };
+		E79B83E41812E30800EA8AB1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B717B03674007D4DC3 /* Foundation.framework */; };
+		E79B83E51812E30800EA8AB1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B917B03674007D4DC3 /* CoreGraphics.framework */; };
+		E79B83E61812E30800EA8AB1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88717B05942007D4DC3 /* QuartzCore.framework */; };
+		E79B83E71812E30800EA8AB1 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88517B05935007D4DC3 /* GLKit.framework */; };
+		E79B83E81812E30800EA8AB1 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88317B0592A007D4DC3 /* OpenGLES.framework */; };
+		E79B83E91812E30800EA8AB1 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88117B0591D007D4DC3 /* libstdc++.6.0.9.dylib */; };
+		E79B83EA1812E30800EA8AB1 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E87F17B05910007D4DC3 /* AudioToolbox.framework */; };
+		E79B83F31812E31200EA8AB1 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E81117B05766007D4DC3 /* WorkingPath.cpp */; };
+		E79B83F71812E31200EA8AB1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B517B03674007D4DC3 /* UIKit.framework */; };
+		E79B83F81812E31200EA8AB1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B717B03674007D4DC3 /* Foundation.framework */; };
+		E79B83F91812E31200EA8AB1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B917B03674007D4DC3 /* CoreGraphics.framework */; };
+		E79B83FA1812E31200EA8AB1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88717B05942007D4DC3 /* QuartzCore.framework */; };
+		E79B83FB1812E31200EA8AB1 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88517B05935007D4DC3 /* GLKit.framework */; };
+		E79B83FC1812E31200EA8AB1 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88317B0592A007D4DC3 /* OpenGLES.framework */; };
+		E79B83FD1812E31200EA8AB1 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88117B0591D007D4DC3 /* libstdc++.6.0.9.dylib */; };
+		E79B83FE1812E31200EA8AB1 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E87F17B05910007D4DC3 /* AudioToolbox.framework */; };
+		E79B841B1812E32400EA8AB1 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E81117B05766007D4DC3 /* WorkingPath.cpp */; };
+		E79B841F1812E32400EA8AB1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B517B03674007D4DC3 /* UIKit.framework */; };
+		E79B84201812E32400EA8AB1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B717B03674007D4DC3 /* Foundation.framework */; };
+		E79B84211812E32400EA8AB1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B917B03674007D4DC3 /* CoreGraphics.framework */; };
+		E79B84221812E32400EA8AB1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88717B05942007D4DC3 /* QuartzCore.framework */; };
+		E79B84231812E32400EA8AB1 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88517B05935007D4DC3 /* GLKit.framework */; };
+		E79B84241812E32400EA8AB1 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88317B0592A007D4DC3 /* OpenGLES.framework */; };
+		E79B84251812E32400EA8AB1 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88117B0591D007D4DC3 /* libstdc++.6.0.9.dylib */; };
+		E79B84261812E32400EA8AB1 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E87F17B05910007D4DC3 /* AudioToolbox.framework */; };
+		E79B842F1812E32B00EA8AB1 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E81117B05766007D4DC3 /* WorkingPath.cpp */; };
+		E79B84331812E32B00EA8AB1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B517B03674007D4DC3 /* UIKit.framework */; };
+		E79B84341812E32B00EA8AB1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B717B03674007D4DC3 /* Foundation.framework */; };
+		E79B84351812E32B00EA8AB1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B917B03674007D4DC3 /* CoreGraphics.framework */; };
+		E79B84361812E32B00EA8AB1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88717B05942007D4DC3 /* QuartzCore.framework */; };
+		E79B84371812E32B00EA8AB1 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88517B05935007D4DC3 /* GLKit.framework */; };
+		E79B84381812E32B00EA8AB1 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88317B0592A007D4DC3 /* OpenGLES.framework */; };
+		E79B84391812E32B00EA8AB1 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88117B0591D007D4DC3 /* libstdc++.6.0.9.dylib */; };
+		E79B843A1812E32B00EA8AB1 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E87F17B05910007D4DC3 /* AudioToolbox.framework */; };
+		E79B84431812E34B00EA8AB1 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E81117B05766007D4DC3 /* WorkingPath.cpp */; };
+		E79B84471812E34B00EA8AB1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B517B03674007D4DC3 /* UIKit.framework */; };
+		E79B84481812E34B00EA8AB1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B717B03674007D4DC3 /* Foundation.framework */; };
+		E79B84491812E34B00EA8AB1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B917B03674007D4DC3 /* CoreGraphics.framework */; };
+		E79B844A1812E34B00EA8AB1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88717B05942007D4DC3 /* QuartzCore.framework */; };
+		E79B844B1812E34B00EA8AB1 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88517B05935007D4DC3 /* GLKit.framework */; };
+		E79B844C1812E34B00EA8AB1 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88317B0592A007D4DC3 /* OpenGLES.framework */; };
+		E79B844D1812E34B00EA8AB1 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88117B0591D007D4DC3 /* libstdc++.6.0.9.dylib */; };
+		E79B844E1812E34B00EA8AB1 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E87F17B05910007D4DC3 /* AudioToolbox.framework */; };
+		E79B84571812E35B00EA8AB1 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E81117B05766007D4DC3 /* WorkingPath.cpp */; };
+		E79B845B1812E35B00EA8AB1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B517B03674007D4DC3 /* UIKit.framework */; };
+		E79B845C1812E35B00EA8AB1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B717B03674007D4DC3 /* Foundation.framework */; };
+		E79B845D1812E35B00EA8AB1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B917B03674007D4DC3 /* CoreGraphics.framework */; };
+		E79B845E1812E35B00EA8AB1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88717B05942007D4DC3 /* QuartzCore.framework */; };
+		E79B845F1812E35B00EA8AB1 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88517B05935007D4DC3 /* GLKit.framework */; };
+		E79B84601812E35B00EA8AB1 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88317B0592A007D4DC3 /* OpenGLES.framework */; };
+		E79B84611812E35B00EA8AB1 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88117B0591D007D4DC3 /* libstdc++.6.0.9.dylib */; };
+		E79B84621812E35B00EA8AB1 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E87F17B05910007D4DC3 /* AudioToolbox.framework */; };
+		E79B846B1812E36200EA8AB1 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E81117B05766007D4DC3 /* WorkingPath.cpp */; };
+		E79B846F1812E36200EA8AB1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B517B03674007D4DC3 /* UIKit.framework */; };
+		E79B84701812E36200EA8AB1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B717B03674007D4DC3 /* Foundation.framework */; };
+		E79B84711812E36200EA8AB1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B917B03674007D4DC3 /* CoreGraphics.framework */; };
+		E79B84721812E36200EA8AB1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88717B05942007D4DC3 /* QuartzCore.framework */; };
+		E79B84731812E36200EA8AB1 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88517B05935007D4DC3 /* GLKit.framework */; };
+		E79B84741812E36200EA8AB1 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88317B0592A007D4DC3 /* OpenGLES.framework */; };
+		E79B84751812E36200EA8AB1 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88117B0591D007D4DC3 /* libstdc++.6.0.9.dylib */; };
+		E79B84761812E36200EA8AB1 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E87F17B05910007D4DC3 /* AudioToolbox.framework */; };
+		E79B847F1812E36B00EA8AB1 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E81117B05766007D4DC3 /* WorkingPath.cpp */; };
+		E79B84831812E36B00EA8AB1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B517B03674007D4DC3 /* UIKit.framework */; };
+		E79B84841812E36B00EA8AB1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B717B03674007D4DC3 /* Foundation.framework */; };
+		E79B84851812E36B00EA8AB1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B917B03674007D4DC3 /* CoreGraphics.framework */; };
+		E79B84861812E36B00EA8AB1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88717B05942007D4DC3 /* QuartzCore.framework */; };
+		E79B84871812E36B00EA8AB1 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88517B05935007D4DC3 /* GLKit.framework */; };
+		E79B84881812E36B00EA8AB1 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88317B0592A007D4DC3 /* OpenGLES.framework */; };
+		E79B84891812E36B00EA8AB1 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88117B0591D007D4DC3 /* libstdc++.6.0.9.dylib */; };
+		E79B848A1812E36B00EA8AB1 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E87F17B05910007D4DC3 /* AudioToolbox.framework */; };
+		E79B84931812E37500EA8AB1 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E81117B05766007D4DC3 /* WorkingPath.cpp */; };
+		E79B84971812E37500EA8AB1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B517B03674007D4DC3 /* UIKit.framework */; };
+		E79B84981812E37500EA8AB1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B717B03674007D4DC3 /* Foundation.framework */; };
+		E79B84991812E37500EA8AB1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B917B03674007D4DC3 /* CoreGraphics.framework */; };
+		E79B849A1812E37500EA8AB1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88717B05942007D4DC3 /* QuartzCore.framework */; };
+		E79B849B1812E37500EA8AB1 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88517B05935007D4DC3 /* GLKit.framework */; };
+		E79B849C1812E37500EA8AB1 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88317B0592A007D4DC3 /* OpenGLES.framework */; };
+		E79B849D1812E37500EA8AB1 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88117B0591D007D4DC3 /* libstdc++.6.0.9.dylib */; };
+		E79B849E1812E37500EA8AB1 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E87F17B05910007D4DC3 /* AudioToolbox.framework */; };
+		E79B84A71812E38100EA8AB1 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E81117B05766007D4DC3 /* WorkingPath.cpp */; };
+		E79B84AB1812E38100EA8AB1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B517B03674007D4DC3 /* UIKit.framework */; };
+		E79B84AC1812E38100EA8AB1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B717B03674007D4DC3 /* Foundation.framework */; };
+		E79B84AD1812E38100EA8AB1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B917B03674007D4DC3 /* CoreGraphics.framework */; };
+		E79B84AE1812E38100EA8AB1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88717B05942007D4DC3 /* QuartzCore.framework */; };
+		E79B84AF1812E38100EA8AB1 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88517B05935007D4DC3 /* GLKit.framework */; };
+		E79B84B01812E38100EA8AB1 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88317B0592A007D4DC3 /* OpenGLES.framework */; };
+		E79B84B11812E38100EA8AB1 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88117B0591D007D4DC3 /* libstdc++.6.0.9.dylib */; };
+		E79B84B21812E38100EA8AB1 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E87F17B05910007D4DC3 /* AudioToolbox.framework */; };
+		E79B84BB1812E38800EA8AB1 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E759E81117B05766007D4DC3 /* WorkingPath.cpp */; };
+		E79B84BF1812E38800EA8AB1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B517B03674007D4DC3 /* UIKit.framework */; };
+		E79B84C01812E38800EA8AB1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B717B03674007D4DC3 /* Foundation.framework */; };
+		E79B84C11812E38800EA8AB1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E7B917B03674007D4DC3 /* CoreGraphics.framework */; };
+		E79B84C21812E38800EA8AB1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88717B05942007D4DC3 /* QuartzCore.framework */; };
+		E79B84C31812E38800EA8AB1 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88517B05935007D4DC3 /* GLKit.framework */; };
+		E79B84C41812E38800EA8AB1 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88317B0592A007D4DC3 /* OpenGLES.framework */; };
+		E79B84C51812E38800EA8AB1 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E88117B0591D007D4DC3 /* libstdc++.6.0.9.dylib */; };
+		E79B84C61812E38800EA8AB1 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E759E87F17B05910007D4DC3 /* AudioToolbox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -112,6 +332,25 @@
 		E759E88317B0592A007D4DC3 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		E759E88517B05935007D4DC3 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		E759E88717B05942007D4DC3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		E78889C91812E85900890536 /* Tutorial13.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial13.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E78889D11812E9A600890536 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = ../../assets; sourceTree = "<group>"; };
+		E79B83771812E2C800EA8AB1 /* Tutorial02.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial02.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E79B838B1812E2D700EA8AB1 /* Tutorial03.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial03.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E79B839F1812E2E100EA8AB1 /* Tutorial04.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial04.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E79B83B31812E2E600EA8AB1 /* Tutorial05.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial05.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E79B83C71812E2F000EA8AB1 /* Tutorial06.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial06.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E79B83DB1812E2FB00EA8AB1 /* Tutorial07.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial07.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E79B83EF1812E30800EA8AB1 /* Tutorial08.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial08.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E79B84031812E31200EA8AB1 /* Tutorial11.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial11.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E79B842B1812E32400EA8AB1 /* Tutorial15.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial15.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E79B843F1812E32B00EA8AB1 /* Tutorial16.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial16.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E79B84531812E34B00EA8AB1 /* TutorialAdvanced01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TutorialAdvanced01.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E79B84671812E35B00EA8AB1 /* TutorialAdvanced02.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TutorialAdvanced02.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E79B847B1812E36200EA8AB1 /* TutorialAdvanced04.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TutorialAdvanced04.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E79B848F1812E36B00EA8AB1 /* TutorialAdvanced05.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TutorialAdvanced05.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E79B84A31812E37500EA8AB1 /* TutorialAdvanced06.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TutorialAdvanced06.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E79B84B71812E38100EA8AB1 /* Benchmark01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Benchmark01.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E79B84CB1812E38800EA8AB1 /* Benchmark02.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Benchmark02.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,12 +369,283 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E78889BC1812E85900890536 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E78889BD1812E85900890536 /* UIKit.framework in Frameworks */,
+				E78889BE1812E85900890536 /* Foundation.framework in Frameworks */,
+				E78889BF1812E85900890536 /* CoreGraphics.framework in Frameworks */,
+				E78889C01812E85900890536 /* QuartzCore.framework in Frameworks */,
+				E78889C11812E85900890536 /* GLKit.framework in Frameworks */,
+				E78889C21812E85900890536 /* OpenGLES.framework in Frameworks */,
+				E78889C31812E85900890536 /* libstdc++.6.0.9.dylib in Frameworks */,
+				E78889C41812E85900890536 /* AudioToolbox.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B836A1812E2C800EA8AB1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E79B836B1812E2C800EA8AB1 /* UIKit.framework in Frameworks */,
+				E79B836C1812E2C800EA8AB1 /* Foundation.framework in Frameworks */,
+				E79B836D1812E2C800EA8AB1 /* CoreGraphics.framework in Frameworks */,
+				E79B836E1812E2C800EA8AB1 /* QuartzCore.framework in Frameworks */,
+				E79B836F1812E2C800EA8AB1 /* GLKit.framework in Frameworks */,
+				E79B83701812E2C800EA8AB1 /* OpenGLES.framework in Frameworks */,
+				E79B83711812E2C800EA8AB1 /* libstdc++.6.0.9.dylib in Frameworks */,
+				E79B83721812E2C800EA8AB1 /* AudioToolbox.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B837E1812E2D700EA8AB1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E79B837F1812E2D700EA8AB1 /* UIKit.framework in Frameworks */,
+				E79B83801812E2D700EA8AB1 /* Foundation.framework in Frameworks */,
+				E79B83811812E2D700EA8AB1 /* CoreGraphics.framework in Frameworks */,
+				E79B83821812E2D700EA8AB1 /* QuartzCore.framework in Frameworks */,
+				E79B83831812E2D700EA8AB1 /* GLKit.framework in Frameworks */,
+				E79B83841812E2D700EA8AB1 /* OpenGLES.framework in Frameworks */,
+				E79B83851812E2D700EA8AB1 /* libstdc++.6.0.9.dylib in Frameworks */,
+				E79B83861812E2D700EA8AB1 /* AudioToolbox.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B83921812E2E100EA8AB1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E79B83931812E2E100EA8AB1 /* UIKit.framework in Frameworks */,
+				E79B83941812E2E100EA8AB1 /* Foundation.framework in Frameworks */,
+				E79B83951812E2E100EA8AB1 /* CoreGraphics.framework in Frameworks */,
+				E79B83961812E2E100EA8AB1 /* QuartzCore.framework in Frameworks */,
+				E79B83971812E2E100EA8AB1 /* GLKit.framework in Frameworks */,
+				E79B83981812E2E100EA8AB1 /* OpenGLES.framework in Frameworks */,
+				E79B83991812E2E100EA8AB1 /* libstdc++.6.0.9.dylib in Frameworks */,
+				E79B839A1812E2E100EA8AB1 /* AudioToolbox.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B83A61812E2E600EA8AB1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E79B83A71812E2E600EA8AB1 /* UIKit.framework in Frameworks */,
+				E79B83A81812E2E600EA8AB1 /* Foundation.framework in Frameworks */,
+				E79B83A91812E2E600EA8AB1 /* CoreGraphics.framework in Frameworks */,
+				E79B83AA1812E2E600EA8AB1 /* QuartzCore.framework in Frameworks */,
+				E79B83AB1812E2E600EA8AB1 /* GLKit.framework in Frameworks */,
+				E79B83AC1812E2E600EA8AB1 /* OpenGLES.framework in Frameworks */,
+				E79B83AD1812E2E600EA8AB1 /* libstdc++.6.0.9.dylib in Frameworks */,
+				E79B83AE1812E2E600EA8AB1 /* AudioToolbox.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B83BA1812E2F000EA8AB1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E79B83BB1812E2F000EA8AB1 /* UIKit.framework in Frameworks */,
+				E79B83BC1812E2F000EA8AB1 /* Foundation.framework in Frameworks */,
+				E79B83BD1812E2F000EA8AB1 /* CoreGraphics.framework in Frameworks */,
+				E79B83BE1812E2F000EA8AB1 /* QuartzCore.framework in Frameworks */,
+				E79B83BF1812E2F000EA8AB1 /* GLKit.framework in Frameworks */,
+				E79B83C01812E2F000EA8AB1 /* OpenGLES.framework in Frameworks */,
+				E79B83C11812E2F000EA8AB1 /* libstdc++.6.0.9.dylib in Frameworks */,
+				E79B83C21812E2F000EA8AB1 /* AudioToolbox.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B83CE1812E2FB00EA8AB1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E79B83CF1812E2FB00EA8AB1 /* UIKit.framework in Frameworks */,
+				E79B83D01812E2FB00EA8AB1 /* Foundation.framework in Frameworks */,
+				E79B83D11812E2FB00EA8AB1 /* CoreGraphics.framework in Frameworks */,
+				E79B83D21812E2FB00EA8AB1 /* QuartzCore.framework in Frameworks */,
+				E79B83D31812E2FB00EA8AB1 /* GLKit.framework in Frameworks */,
+				E79B83D41812E2FB00EA8AB1 /* OpenGLES.framework in Frameworks */,
+				E79B83D51812E2FB00EA8AB1 /* libstdc++.6.0.9.dylib in Frameworks */,
+				E79B83D61812E2FB00EA8AB1 /* AudioToolbox.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B83E21812E30800EA8AB1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E79B83E31812E30800EA8AB1 /* UIKit.framework in Frameworks */,
+				E79B83E41812E30800EA8AB1 /* Foundation.framework in Frameworks */,
+				E79B83E51812E30800EA8AB1 /* CoreGraphics.framework in Frameworks */,
+				E79B83E61812E30800EA8AB1 /* QuartzCore.framework in Frameworks */,
+				E79B83E71812E30800EA8AB1 /* GLKit.framework in Frameworks */,
+				E79B83E81812E30800EA8AB1 /* OpenGLES.framework in Frameworks */,
+				E79B83E91812E30800EA8AB1 /* libstdc++.6.0.9.dylib in Frameworks */,
+				E79B83EA1812E30800EA8AB1 /* AudioToolbox.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B83F61812E31200EA8AB1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E79B83F71812E31200EA8AB1 /* UIKit.framework in Frameworks */,
+				E79B83F81812E31200EA8AB1 /* Foundation.framework in Frameworks */,
+				E79B83F91812E31200EA8AB1 /* CoreGraphics.framework in Frameworks */,
+				E79B83FA1812E31200EA8AB1 /* QuartzCore.framework in Frameworks */,
+				E79B83FB1812E31200EA8AB1 /* GLKit.framework in Frameworks */,
+				E79B83FC1812E31200EA8AB1 /* OpenGLES.framework in Frameworks */,
+				E79B83FD1812E31200EA8AB1 /* libstdc++.6.0.9.dylib in Frameworks */,
+				E79B83FE1812E31200EA8AB1 /* AudioToolbox.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B841E1812E32400EA8AB1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E79B841F1812E32400EA8AB1 /* UIKit.framework in Frameworks */,
+				E79B84201812E32400EA8AB1 /* Foundation.framework in Frameworks */,
+				E79B84211812E32400EA8AB1 /* CoreGraphics.framework in Frameworks */,
+				E79B84221812E32400EA8AB1 /* QuartzCore.framework in Frameworks */,
+				E79B84231812E32400EA8AB1 /* GLKit.framework in Frameworks */,
+				E79B84241812E32400EA8AB1 /* OpenGLES.framework in Frameworks */,
+				E79B84251812E32400EA8AB1 /* libstdc++.6.0.9.dylib in Frameworks */,
+				E79B84261812E32400EA8AB1 /* AudioToolbox.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B84321812E32B00EA8AB1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E79B84331812E32B00EA8AB1 /* UIKit.framework in Frameworks */,
+				E79B84341812E32B00EA8AB1 /* Foundation.framework in Frameworks */,
+				E79B84351812E32B00EA8AB1 /* CoreGraphics.framework in Frameworks */,
+				E79B84361812E32B00EA8AB1 /* QuartzCore.framework in Frameworks */,
+				E79B84371812E32B00EA8AB1 /* GLKit.framework in Frameworks */,
+				E79B84381812E32B00EA8AB1 /* OpenGLES.framework in Frameworks */,
+				E79B84391812E32B00EA8AB1 /* libstdc++.6.0.9.dylib in Frameworks */,
+				E79B843A1812E32B00EA8AB1 /* AudioToolbox.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B84461812E34B00EA8AB1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E79B84471812E34B00EA8AB1 /* UIKit.framework in Frameworks */,
+				E79B84481812E34B00EA8AB1 /* Foundation.framework in Frameworks */,
+				E79B84491812E34B00EA8AB1 /* CoreGraphics.framework in Frameworks */,
+				E79B844A1812E34B00EA8AB1 /* QuartzCore.framework in Frameworks */,
+				E79B844B1812E34B00EA8AB1 /* GLKit.framework in Frameworks */,
+				E79B844C1812E34B00EA8AB1 /* OpenGLES.framework in Frameworks */,
+				E79B844D1812E34B00EA8AB1 /* libstdc++.6.0.9.dylib in Frameworks */,
+				E79B844E1812E34B00EA8AB1 /* AudioToolbox.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B845A1812E35B00EA8AB1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E79B845B1812E35B00EA8AB1 /* UIKit.framework in Frameworks */,
+				E79B845C1812E35B00EA8AB1 /* Foundation.framework in Frameworks */,
+				E79B845D1812E35B00EA8AB1 /* CoreGraphics.framework in Frameworks */,
+				E79B845E1812E35B00EA8AB1 /* QuartzCore.framework in Frameworks */,
+				E79B845F1812E35B00EA8AB1 /* GLKit.framework in Frameworks */,
+				E79B84601812E35B00EA8AB1 /* OpenGLES.framework in Frameworks */,
+				E79B84611812E35B00EA8AB1 /* libstdc++.6.0.9.dylib in Frameworks */,
+				E79B84621812E35B00EA8AB1 /* AudioToolbox.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B846E1812E36200EA8AB1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E79B846F1812E36200EA8AB1 /* UIKit.framework in Frameworks */,
+				E79B84701812E36200EA8AB1 /* Foundation.framework in Frameworks */,
+				E79B84711812E36200EA8AB1 /* CoreGraphics.framework in Frameworks */,
+				E79B84721812E36200EA8AB1 /* QuartzCore.framework in Frameworks */,
+				E79B84731812E36200EA8AB1 /* GLKit.framework in Frameworks */,
+				E79B84741812E36200EA8AB1 /* OpenGLES.framework in Frameworks */,
+				E79B84751812E36200EA8AB1 /* libstdc++.6.0.9.dylib in Frameworks */,
+				E79B84761812E36200EA8AB1 /* AudioToolbox.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B84821812E36B00EA8AB1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E79B84831812E36B00EA8AB1 /* UIKit.framework in Frameworks */,
+				E79B84841812E36B00EA8AB1 /* Foundation.framework in Frameworks */,
+				E79B84851812E36B00EA8AB1 /* CoreGraphics.framework in Frameworks */,
+				E79B84861812E36B00EA8AB1 /* QuartzCore.framework in Frameworks */,
+				E79B84871812E36B00EA8AB1 /* GLKit.framework in Frameworks */,
+				E79B84881812E36B00EA8AB1 /* OpenGLES.framework in Frameworks */,
+				E79B84891812E36B00EA8AB1 /* libstdc++.6.0.9.dylib in Frameworks */,
+				E79B848A1812E36B00EA8AB1 /* AudioToolbox.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B84961812E37500EA8AB1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E79B84971812E37500EA8AB1 /* UIKit.framework in Frameworks */,
+				E79B84981812E37500EA8AB1 /* Foundation.framework in Frameworks */,
+				E79B84991812E37500EA8AB1 /* CoreGraphics.framework in Frameworks */,
+				E79B849A1812E37500EA8AB1 /* QuartzCore.framework in Frameworks */,
+				E79B849B1812E37500EA8AB1 /* GLKit.framework in Frameworks */,
+				E79B849C1812E37500EA8AB1 /* OpenGLES.framework in Frameworks */,
+				E79B849D1812E37500EA8AB1 /* libstdc++.6.0.9.dylib in Frameworks */,
+				E79B849E1812E37500EA8AB1 /* AudioToolbox.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B84AA1812E38100EA8AB1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E79B84AB1812E38100EA8AB1 /* UIKit.framework in Frameworks */,
+				E79B84AC1812E38100EA8AB1 /* Foundation.framework in Frameworks */,
+				E79B84AD1812E38100EA8AB1 /* CoreGraphics.framework in Frameworks */,
+				E79B84AE1812E38100EA8AB1 /* QuartzCore.framework in Frameworks */,
+				E79B84AF1812E38100EA8AB1 /* GLKit.framework in Frameworks */,
+				E79B84B01812E38100EA8AB1 /* OpenGLES.framework in Frameworks */,
+				E79B84B11812E38100EA8AB1 /* libstdc++.6.0.9.dylib in Frameworks */,
+				E79B84B21812E38100EA8AB1 /* AudioToolbox.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B84BE1812E38800EA8AB1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E79B84BF1812E38800EA8AB1 /* UIKit.framework in Frameworks */,
+				E79B84C01812E38800EA8AB1 /* Foundation.framework in Frameworks */,
+				E79B84C11812E38800EA8AB1 /* CoreGraphics.framework in Frameworks */,
+				E79B84C21812E38800EA8AB1 /* QuartzCore.framework in Frameworks */,
+				E79B84C31812E38800EA8AB1 /* GLKit.framework in Frameworks */,
+				E79B84C41812E38800EA8AB1 /* OpenGLES.framework in Frameworks */,
+				E79B84C51812E38800EA8AB1 /* libstdc++.6.0.9.dylib in Frameworks */,
+				E79B84C61812E38800EA8AB1 /* AudioToolbox.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		E759E7A917B03674007D4DC3 = {
 			isa = PBXGroup;
 			children = (
+				E78889D11812E9A600890536 /* assets */,
 				E759E81017B05766007D4DC3 /* WorkingPath.h */,
 				E759E81117B05766007D4DC3 /* WorkingPath.cpp */,
 				E759E81217B05766007D4DC3 /* benchmark */,
@@ -151,6 +661,24 @@
 			isa = PBXGroup;
 			children = (
 				E759E7D617B03687007D4DC3 /* Tutorial01.app */,
+				E79B83771812E2C800EA8AB1 /* Tutorial02.app */,
+				E79B838B1812E2D700EA8AB1 /* Tutorial03.app */,
+				E79B839F1812E2E100EA8AB1 /* Tutorial04.app */,
+				E79B83B31812E2E600EA8AB1 /* Tutorial05.app */,
+				E79B83C71812E2F000EA8AB1 /* Tutorial06.app */,
+				E79B83DB1812E2FB00EA8AB1 /* Tutorial07.app */,
+				E79B83EF1812E30800EA8AB1 /* Tutorial08.app */,
+				E79B84031812E31200EA8AB1 /* Tutorial11.app */,
+				E79B842B1812E32400EA8AB1 /* Tutorial15.app */,
+				E79B843F1812E32B00EA8AB1 /* Tutorial16.app */,
+				E79B84531812E34B00EA8AB1 /* TutorialAdvanced01.app */,
+				E79B84671812E35B00EA8AB1 /* TutorialAdvanced02.app */,
+				E79B847B1812E36200EA8AB1 /* TutorialAdvanced04.app */,
+				E79B848F1812E36B00EA8AB1 /* TutorialAdvanced05.app */,
+				E79B84A31812E37500EA8AB1 /* TutorialAdvanced06.app */,
+				E79B84B71812E38100EA8AB1 /* Benchmark01.app */,
+				E79B84CB1812E38800EA8AB1 /* Benchmark02.app */,
+				E78889C91812E85900890536 /* Tutorial13.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -493,6 +1021,312 @@
 			productReference = E759E7D617B03687007D4DC3 /* Tutorial01.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E78889B91812E85900890536 /* Tutorial13 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E78889C61812E85900890536 /* Build configuration list for PBXNativeTarget "Tutorial13" */;
+			buildPhases = (
+				E78889BA1812E85900890536 /* Sources */,
+				E78889BC1812E85900890536 /* Frameworks */,
+				E78889C51812E85900890536 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tutorial13;
+			productName = Tutorial01;
+			productReference = E78889C91812E85900890536 /* Tutorial13.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E79B83651812E2C800EA8AB1 /* Tutorial02 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E79B83741812E2C800EA8AB1 /* Build configuration list for PBXNativeTarget "Tutorial02" */;
+			buildPhases = (
+				E79B83661812E2C800EA8AB1 /* Sources */,
+				E79B836A1812E2C800EA8AB1 /* Frameworks */,
+				E79B83731812E2C800EA8AB1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tutorial02;
+			productName = Tutorial01;
+			productReference = E79B83771812E2C800EA8AB1 /* Tutorial02.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E79B83791812E2D700EA8AB1 /* Tutorial03 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E79B83881812E2D700EA8AB1 /* Build configuration list for PBXNativeTarget "Tutorial03" */;
+			buildPhases = (
+				E79B837A1812E2D700EA8AB1 /* Sources */,
+				E79B837E1812E2D700EA8AB1 /* Frameworks */,
+				E79B83871812E2D700EA8AB1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tutorial03;
+			productName = Tutorial01;
+			productReference = E79B838B1812E2D700EA8AB1 /* Tutorial03.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E79B838D1812E2E100EA8AB1 /* Tutorial04 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E79B839C1812E2E100EA8AB1 /* Build configuration list for PBXNativeTarget "Tutorial04" */;
+			buildPhases = (
+				E79B838E1812E2E100EA8AB1 /* Sources */,
+				E79B83921812E2E100EA8AB1 /* Frameworks */,
+				E79B839B1812E2E100EA8AB1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tutorial04;
+			productName = Tutorial01;
+			productReference = E79B839F1812E2E100EA8AB1 /* Tutorial04.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E79B83A11812E2E600EA8AB1 /* Tutorial05 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E79B83B01812E2E600EA8AB1 /* Build configuration list for PBXNativeTarget "Tutorial05" */;
+			buildPhases = (
+				E79B83A21812E2E600EA8AB1 /* Sources */,
+				E79B83A61812E2E600EA8AB1 /* Frameworks */,
+				E79B83AF1812E2E600EA8AB1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tutorial05;
+			productName = Tutorial01;
+			productReference = E79B83B31812E2E600EA8AB1 /* Tutorial05.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E79B83B51812E2F000EA8AB1 /* Tutorial06 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E79B83C41812E2F000EA8AB1 /* Build configuration list for PBXNativeTarget "Tutorial06" */;
+			buildPhases = (
+				E79B83B61812E2F000EA8AB1 /* Sources */,
+				E79B83BA1812E2F000EA8AB1 /* Frameworks */,
+				E79B83C31812E2F000EA8AB1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tutorial06;
+			productName = Tutorial01;
+			productReference = E79B83C71812E2F000EA8AB1 /* Tutorial06.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E79B83C91812E2FB00EA8AB1 /* Tutorial07 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E79B83D81812E2FB00EA8AB1 /* Build configuration list for PBXNativeTarget "Tutorial07" */;
+			buildPhases = (
+				E79B83CA1812E2FB00EA8AB1 /* Sources */,
+				E79B83CE1812E2FB00EA8AB1 /* Frameworks */,
+				E79B83D71812E2FB00EA8AB1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tutorial07;
+			productName = Tutorial01;
+			productReference = E79B83DB1812E2FB00EA8AB1 /* Tutorial07.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E79B83DD1812E30800EA8AB1 /* Tutorial08 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E79B83EC1812E30800EA8AB1 /* Build configuration list for PBXNativeTarget "Tutorial08" */;
+			buildPhases = (
+				E79B83DE1812E30800EA8AB1 /* Sources */,
+				E79B83E21812E30800EA8AB1 /* Frameworks */,
+				E79B83EB1812E30800EA8AB1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tutorial08;
+			productName = Tutorial01;
+			productReference = E79B83EF1812E30800EA8AB1 /* Tutorial08.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E79B83F11812E31200EA8AB1 /* Tutorial11 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E79B84001812E31200EA8AB1 /* Build configuration list for PBXNativeTarget "Tutorial11" */;
+			buildPhases = (
+				E79B83F21812E31200EA8AB1 /* Sources */,
+				E79B83F61812E31200EA8AB1 /* Frameworks */,
+				E79B83FF1812E31200EA8AB1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tutorial11;
+			productName = Tutorial01;
+			productReference = E79B84031812E31200EA8AB1 /* Tutorial11.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E79B84191812E32400EA8AB1 /* Tutorial15 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E79B84281812E32400EA8AB1 /* Build configuration list for PBXNativeTarget "Tutorial15" */;
+			buildPhases = (
+				E79B841A1812E32400EA8AB1 /* Sources */,
+				E79B841E1812E32400EA8AB1 /* Frameworks */,
+				E79B84271812E32400EA8AB1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tutorial15;
+			productName = Tutorial01;
+			productReference = E79B842B1812E32400EA8AB1 /* Tutorial15.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E79B842D1812E32B00EA8AB1 /* Tutorial16 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E79B843C1812E32B00EA8AB1 /* Build configuration list for PBXNativeTarget "Tutorial16" */;
+			buildPhases = (
+				E79B842E1812E32B00EA8AB1 /* Sources */,
+				E79B84321812E32B00EA8AB1 /* Frameworks */,
+				E79B843B1812E32B00EA8AB1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tutorial16;
+			productName = Tutorial01;
+			productReference = E79B843F1812E32B00EA8AB1 /* Tutorial16.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E79B84411812E34B00EA8AB1 /* TutorialAdvanced01 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E79B84501812E34B00EA8AB1 /* Build configuration list for PBXNativeTarget "TutorialAdvanced01" */;
+			buildPhases = (
+				E79B84421812E34B00EA8AB1 /* Sources */,
+				E79B84461812E34B00EA8AB1 /* Frameworks */,
+				E79B844F1812E34B00EA8AB1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TutorialAdvanced01;
+			productName = Tutorial01;
+			productReference = E79B84531812E34B00EA8AB1 /* TutorialAdvanced01.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E79B84551812E35B00EA8AB1 /* TutorialAdvanced02 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E79B84641812E35B00EA8AB1 /* Build configuration list for PBXNativeTarget "TutorialAdvanced02" */;
+			buildPhases = (
+				E79B84561812E35B00EA8AB1 /* Sources */,
+				E79B845A1812E35B00EA8AB1 /* Frameworks */,
+				E79B84631812E35B00EA8AB1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TutorialAdvanced02;
+			productName = Tutorial01;
+			productReference = E79B84671812E35B00EA8AB1 /* TutorialAdvanced02.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E79B84691812E36200EA8AB1 /* TutorialAdvanced04 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E79B84781812E36200EA8AB1 /* Build configuration list for PBXNativeTarget "TutorialAdvanced04" */;
+			buildPhases = (
+				E79B846A1812E36200EA8AB1 /* Sources */,
+				E79B846E1812E36200EA8AB1 /* Frameworks */,
+				E79B84771812E36200EA8AB1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TutorialAdvanced04;
+			productName = Tutorial01;
+			productReference = E79B847B1812E36200EA8AB1 /* TutorialAdvanced04.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E79B847D1812E36B00EA8AB1 /* TutorialAdvanced05 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E79B848C1812E36B00EA8AB1 /* Build configuration list for PBXNativeTarget "TutorialAdvanced05" */;
+			buildPhases = (
+				E79B847E1812E36B00EA8AB1 /* Sources */,
+				E79B84821812E36B00EA8AB1 /* Frameworks */,
+				E79B848B1812E36B00EA8AB1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TutorialAdvanced05;
+			productName = Tutorial01;
+			productReference = E79B848F1812E36B00EA8AB1 /* TutorialAdvanced05.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E79B84911812E37500EA8AB1 /* TutorialAdvanced06 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E79B84A01812E37500EA8AB1 /* Build configuration list for PBXNativeTarget "TutorialAdvanced06" */;
+			buildPhases = (
+				E79B84921812E37500EA8AB1 /* Sources */,
+				E79B84961812E37500EA8AB1 /* Frameworks */,
+				E79B849F1812E37500EA8AB1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TutorialAdvanced06;
+			productName = Tutorial01;
+			productReference = E79B84A31812E37500EA8AB1 /* TutorialAdvanced06.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E79B84A51812E38100EA8AB1 /* Benchmark01 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E79B84B41812E38100EA8AB1 /* Build configuration list for PBXNativeTarget "Benchmark01" */;
+			buildPhases = (
+				E79B84A61812E38100EA8AB1 /* Sources */,
+				E79B84AA1812E38100EA8AB1 /* Frameworks */,
+				E79B84B31812E38100EA8AB1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Benchmark01;
+			productName = Tutorial01;
+			productReference = E79B84B71812E38100EA8AB1 /* Benchmark01.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E79B84B91812E38800EA8AB1 /* Benchmark02 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E79B84C81812E38800EA8AB1 /* Build configuration list for PBXNativeTarget "Benchmark02" */;
+			buildPhases = (
+				E79B84BA1812E38800EA8AB1 /* Sources */,
+				E79B84BE1812E38800EA8AB1 /* Frameworks */,
+				E79B84C71812E38800EA8AB1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Benchmark02;
+			productName = Tutorial01;
+			productReference = E79B84CB1812E38800EA8AB1 /* Benchmark02.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -515,6 +1349,24 @@
 			projectRoot = "";
 			targets = (
 				E759E7D517B03687007D4DC3 /* Tutorial01 */,
+				E79B83651812E2C800EA8AB1 /* Tutorial02 */,
+				E79B83791812E2D700EA8AB1 /* Tutorial03 */,
+				E79B838D1812E2E100EA8AB1 /* Tutorial04 */,
+				E79B83A11812E2E600EA8AB1 /* Tutorial05 */,
+				E79B83B51812E2F000EA8AB1 /* Tutorial06 */,
+				E79B83C91812E2FB00EA8AB1 /* Tutorial07 */,
+				E79B83DD1812E30800EA8AB1 /* Tutorial08 */,
+				E79B83F11812E31200EA8AB1 /* Tutorial11 */,
+				E78889B91812E85900890536 /* Tutorial13 */,
+				E79B84191812E32400EA8AB1 /* Tutorial15 */,
+				E79B842D1812E32B00EA8AB1 /* Tutorial16 */,
+				E79B84411812E34B00EA8AB1 /* TutorialAdvanced01 */,
+				E79B84551812E35B00EA8AB1 /* TutorialAdvanced02 */,
+				E79B84691812E36200EA8AB1 /* TutorialAdvanced04 */,
+				E79B847D1812E36B00EA8AB1 /* TutorialAdvanced05 */,
+				E79B84911812E37500EA8AB1 /* TutorialAdvanced06 */,
+				E79B84A51812E38100EA8AB1 /* Benchmark01 */,
+				E79B84B91812E38800EA8AB1 /* Benchmark02 */,
 			);
 		};
 /* End PBXProject section */
@@ -524,6 +1376,151 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E78889D21812E9A600890536 /* assets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E78889C51812E85900890536 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E78889DC1812E9A600890536 /* assets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B83731812E2C800EA8AB1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E78889D31812E9A600890536 /* assets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B83871812E2D700EA8AB1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E78889D41812E9A600890536 /* assets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B839B1812E2E100EA8AB1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E78889D51812E9A600890536 /* assets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B83AF1812E2E600EA8AB1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E78889D61812E9A600890536 /* assets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B83C31812E2F000EA8AB1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E78889D71812E9A600890536 /* assets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B83D71812E2FB00EA8AB1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E78889D81812E9A600890536 /* assets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B83EB1812E30800EA8AB1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E78889D91812E9A600890536 /* assets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B83FF1812E31200EA8AB1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E78889DA1812E9A600890536 /* assets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B84271812E32400EA8AB1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E78889DD1812E9A600890536 /* assets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B843B1812E32B00EA8AB1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E78889DE1812E9A600890536 /* assets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B844F1812E34B00EA8AB1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E78889DF1812E9A600890536 /* assets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B84631812E35B00EA8AB1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E78889E01812E9A600890536 /* assets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B84771812E36200EA8AB1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E78889E11812E9A600890536 /* assets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B848B1812E36B00EA8AB1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E78889E21812E9A600890536 /* assets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B849F1812E37500EA8AB1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E78889E31812E9A600890536 /* assets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B84B31812E38100EA8AB1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E78889E41812E9A600890536 /* assets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B84C71812E38800EA8AB1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E78889E51812E9A600890536 /* assets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -537,6 +1534,189 @@
 				E759E87A17B0576C007D4DC3 /* WorkingPath.cpp in Sources */,
 				E759E87B17B05783007D4DC3 /* CIndieLib.cpp in Sources */,
 				E759E87C17B05786007D4DC3 /* Tutorial01.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E78889BA1812E85900890536 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E78889E71812EB8700890536 /* Tutorial13.cpp in Sources */,
+				E78889BB1812E85900890536 /* WorkingPath.cpp in Sources */,
+				E78889E61812EB8700890536 /* CIndieLib.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B83661812E2C800EA8AB1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E788899C1812E7FE00890536 /* Tutorial02.cpp in Sources */,
+				E79B83671812E2C800EA8AB1 /* WorkingPath.cpp in Sources */,
+				E788899B1812E7FE00890536 /* CIndieLib.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B837A1812E2D700EA8AB1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E79B837B1812E2D700EA8AB1 /* WorkingPath.cpp in Sources */,
+				E788899D1812E80000890536 /* CIndieLib.cpp in Sources */,
+				E788899E1812E80000890536 /* Tutorial03.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B838E1812E2E100EA8AB1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E79B838F1812E2E100EA8AB1 /* WorkingPath.cpp in Sources */,
+				E78889A01812E80300890536 /* Tutorial04.cpp in Sources */,
+				E788899F1812E80300890536 /* CIndieLib.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B83A21812E2E600EA8AB1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E78889A21812E80600890536 /* Tutorial05.cpp in Sources */,
+				E79B83A31812E2E600EA8AB1 /* WorkingPath.cpp in Sources */,
+				E78889A11812E80600890536 /* CIndieLib.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B83B61812E2F000EA8AB1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E79B83B71812E2F000EA8AB1 /* WorkingPath.cpp in Sources */,
+				E78889A31812E80900890536 /* CIndieLib.cpp in Sources */,
+				E78889A41812E80900890536 /* Tutorial06.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B83CA1812E2FB00EA8AB1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E79B83CB1812E2FB00EA8AB1 /* WorkingPath.cpp in Sources */,
+				E78889A61812E80C00890536 /* Tutorial07.cpp in Sources */,
+				E78889A51812E80C00890536 /* CIndieLib.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B83DE1812E30800EA8AB1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E78889A81812E81000890536 /* Tutorial08.cpp in Sources */,
+				E79B83DF1812E30800EA8AB1 /* WorkingPath.cpp in Sources */,
+				E78889A71812E81000890536 /* CIndieLib.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B83F21812E31200EA8AB1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E79B83F31812E31200EA8AB1 /* WorkingPath.cpp in Sources */,
+				E78889A91812E81A00890536 /* CIndieLib.cpp in Sources */,
+				E78889AA1812E81A00890536 /* Tutorial11.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B841A1812E32400EA8AB1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E79B841B1812E32400EA8AB1 /* WorkingPath.cpp in Sources */,
+				E78889CE1812E8C300890536 /* Tutorial15.cpp in Sources */,
+				E78889CD1812E8C300890536 /* CIndieLib.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B842E1812E32B00EA8AB1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E78889AE1812E83500890536 /* Tutorial16.cpp in Sources */,
+				E79B842F1812E32B00EA8AB1 /* WorkingPath.cpp in Sources */,
+				E78889AD1812E83500890536 /* CIndieLib.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B84421812E34B00EA8AB1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E79B84431812E34B00EA8AB1 /* WorkingPath.cpp in Sources */,
+				E78889B01812E83900890536 /* Tutorial01.cpp in Sources */,
+				E78889AF1812E83900890536 /* CIndieLib.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B84561812E35B00EA8AB1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E78889B21812E83D00890536 /* Tutorial02.cpp in Sources */,
+				E79B84571812E35B00EA8AB1 /* WorkingPath.cpp in Sources */,
+				E78889B11812E83D00890536 /* CIndieLib.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B846A1812E36200EA8AB1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E79B846B1812E36200EA8AB1 /* WorkingPath.cpp in Sources */,
+				E78889B41812E84100890536 /* Tutorial04.cpp in Sources */,
+				E78889B31812E84100890536 /* CIndieLib.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B847E1812E36B00EA8AB1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E78889B61812E84400890536 /* Tutorial05.cpp in Sources */,
+				E79B847F1812E36B00EA8AB1 /* WorkingPath.cpp in Sources */,
+				E78889B51812E84400890536 /* CIndieLib.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B84921812E37500EA8AB1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E79B84931812E37500EA8AB1 /* WorkingPath.cpp in Sources */,
+				E78889B71812E84800890536 /* CIndieLib.cpp in Sources */,
+				E78889B81812E84800890536 /* Tutorial06.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B84A61812E38100EA8AB1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E78889961812E7E400890536 /* CUfo.cpp in Sources */,
+				E79B84A71812E38100EA8AB1 /* WorkingPath.cpp in Sources */,
+				E78889941812E7D700890536 /* CIndieLib.cpp in Sources */,
+				E78889951812E7DA00890536 /* CTerrain.cpp in Sources */,
+				E78889971812E7E400890536 /* Tutorial01.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E79B84BA1812E38800EA8AB1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E79B84BB1812E38800EA8AB1 /* WorkingPath.cpp in Sources */,
+				E78889981812E7EC00890536 /* CIndieLib.cpp in Sources */,
+				E788899A1812E7EC00890536 /* Tutorial02.cpp in Sources */,
+				E78889991812E7EC00890536 /* CRabbit.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -583,10 +1763,12 @@
 					"\"$(SRCROOT)/../../tests\"",
 					"\"$(SRCROOT)/../../common\"",
 				);
+				INFOPLIST_FILE = "IndielibTutorials/IndielibTutorials-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../../bin/ios\"";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-lIndielibios";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -614,10 +1796,12 @@
 					"\"$(SRCROOT)/../../tests\"",
 					"\"$(SRCROOT)/../../common\"",
 				);
+				INFOPLIST_FILE = "IndielibTutorials/IndielibTutorials-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../../bin/ios\"";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-lIndielibios";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -629,8 +1813,7 @@
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				INFOPLIST_FILE = "IndielibTutorials/IndielibTutorials-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -640,8 +1823,331 @@
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				INFOPLIST_FILE = "IndielibTutorials/IndielibTutorials-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E78889C71812E85900890536 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E78889C81812E85900890536 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E79B83751812E2C800EA8AB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E79B83761812E2C800EA8AB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E79B83891812E2D700EA8AB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E79B838A1812E2D700EA8AB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E79B839D1812E2E100EA8AB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E79B839E1812E2E100EA8AB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E79B83B11812E2E600EA8AB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E79B83B21812E2E600EA8AB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E79B83C51812E2F000EA8AB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E79B83C61812E2F000EA8AB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E79B83D91812E2FB00EA8AB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E79B83DA1812E2FB00EA8AB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E79B83ED1812E30800EA8AB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E79B83EE1812E30800EA8AB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E79B84011812E31200EA8AB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E79B84021812E31200EA8AB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E79B84291812E32400EA8AB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E79B842A1812E32400EA8AB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E79B843D1812E32B00EA8AB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E79B843E1812E32B00EA8AB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E79B84511812E34B00EA8AB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E79B84521812E34B00EA8AB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E79B84651812E35B00EA8AB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E79B84661812E35B00EA8AB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E79B84791812E36200EA8AB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E79B847A1812E36200EA8AB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E79B848D1812E36B00EA8AB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E79B848E1812E36B00EA8AB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E79B84A11812E37500EA8AB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E79B84A21812E37500EA8AB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E79B84B51812E38100EA8AB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E79B84B61812E38100EA8AB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E79B84C91812E38800EA8AB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E79B84CA1812E38800EA8AB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -663,6 +2169,168 @@
 			buildConfigurations = (
 				E759E7ED17B03687007D4DC3 /* Debug */,
 				E759E7EE17B03687007D4DC3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E78889C61812E85900890536 /* Build configuration list for PBXNativeTarget "Tutorial13" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E78889C71812E85900890536 /* Debug */,
+				E78889C81812E85900890536 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E79B83741812E2C800EA8AB1 /* Build configuration list for PBXNativeTarget "Tutorial02" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E79B83751812E2C800EA8AB1 /* Debug */,
+				E79B83761812E2C800EA8AB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E79B83881812E2D700EA8AB1 /* Build configuration list for PBXNativeTarget "Tutorial03" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E79B83891812E2D700EA8AB1 /* Debug */,
+				E79B838A1812E2D700EA8AB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E79B839C1812E2E100EA8AB1 /* Build configuration list for PBXNativeTarget "Tutorial04" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E79B839D1812E2E100EA8AB1 /* Debug */,
+				E79B839E1812E2E100EA8AB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E79B83B01812E2E600EA8AB1 /* Build configuration list for PBXNativeTarget "Tutorial05" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E79B83B11812E2E600EA8AB1 /* Debug */,
+				E79B83B21812E2E600EA8AB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E79B83C41812E2F000EA8AB1 /* Build configuration list for PBXNativeTarget "Tutorial06" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E79B83C51812E2F000EA8AB1 /* Debug */,
+				E79B83C61812E2F000EA8AB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E79B83D81812E2FB00EA8AB1 /* Build configuration list for PBXNativeTarget "Tutorial07" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E79B83D91812E2FB00EA8AB1 /* Debug */,
+				E79B83DA1812E2FB00EA8AB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E79B83EC1812E30800EA8AB1 /* Build configuration list for PBXNativeTarget "Tutorial08" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E79B83ED1812E30800EA8AB1 /* Debug */,
+				E79B83EE1812E30800EA8AB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E79B84001812E31200EA8AB1 /* Build configuration list for PBXNativeTarget "Tutorial11" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E79B84011812E31200EA8AB1 /* Debug */,
+				E79B84021812E31200EA8AB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E79B84281812E32400EA8AB1 /* Build configuration list for PBXNativeTarget "Tutorial15" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E79B84291812E32400EA8AB1 /* Debug */,
+				E79B842A1812E32400EA8AB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E79B843C1812E32B00EA8AB1 /* Build configuration list for PBXNativeTarget "Tutorial16" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E79B843D1812E32B00EA8AB1 /* Debug */,
+				E79B843E1812E32B00EA8AB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E79B84501812E34B00EA8AB1 /* Build configuration list for PBXNativeTarget "TutorialAdvanced01" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E79B84511812E34B00EA8AB1 /* Debug */,
+				E79B84521812E34B00EA8AB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E79B84641812E35B00EA8AB1 /* Build configuration list for PBXNativeTarget "TutorialAdvanced02" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E79B84651812E35B00EA8AB1 /* Debug */,
+				E79B84661812E35B00EA8AB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E79B84781812E36200EA8AB1 /* Build configuration list for PBXNativeTarget "TutorialAdvanced04" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E79B84791812E36200EA8AB1 /* Debug */,
+				E79B847A1812E36200EA8AB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E79B848C1812E36B00EA8AB1 /* Build configuration list for PBXNativeTarget "TutorialAdvanced05" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E79B848D1812E36B00EA8AB1 /* Debug */,
+				E79B848E1812E36B00EA8AB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E79B84A01812E37500EA8AB1 /* Build configuration list for PBXNativeTarget "TutorialAdvanced06" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E79B84A11812E37500EA8AB1 /* Debug */,
+				E79B84A21812E37500EA8AB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E79B84B41812E38100EA8AB1 /* Build configuration list for PBXNativeTarget "Benchmark01" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E79B84B51812E38100EA8AB1 /* Debug */,
+				E79B84B61812E38100EA8AB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E79B84C81812E38800EA8AB1 /* Build configuration list for PBXNativeTarget "Benchmark02" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E79B84C91812E38800EA8AB1 /* Debug */,
+				E79B84CA1812E38800EA8AB1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -93,10 +93,10 @@
 //#define INDIERENDER_DIRECTX 1
 #endif
 #if !defined (INDIERENDER_OPENGL) && !defined (INDIERENDER_GLES_IOS) && !defined (INDIERENDER_DIRECTX)
-#define INDIERENDER_OPENGL 1
+//#define INDIERENDER_OPENGL 1
 #endif
 #if !defined (INDIERENDER_GLES_IOS) && !defined (INDIERENDER_OPENGL) && !defined (INDIERENDER_DIRECTX)
-//#define INDIERENDER_GLES_IOS 1
+#define INDIERENDER_GLES_IOS 1
 #endif
 
 // ----- Renderer set safety -----

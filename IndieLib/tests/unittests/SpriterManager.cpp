@@ -31,7 +31,7 @@ struct fixture {
 };
 
 TEST_FIXTURE(fixture,SpriterManager_addFromFile) {
-	CHECK(iLib->_spriterManager->addSpriterFile("../../assets/Spriter/monster/Example.SCML"));
+	CHECK(iLib->_spriterManager->addSpriterFile("Spriter/monster/Example.SCML"));
     CHECK(!listSpriterEntity->empty());
     // @MFK Tests fail here
     //CHECK_EQUAL(1,listSpriterEntity->at(0)->getAnimations()->size());

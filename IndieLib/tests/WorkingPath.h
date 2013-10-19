@@ -25,16 +25,19 @@
 #ifndef _WorkingPath_h
 #define _WorkingPath_h
 
-    
+
 class WorkingPathSetup {
-	public:
+public:
     
     static const char* resourcesDirectory();
+    static const char* unittestsResourcesDirectory();
+    
     
     static bool setWorkingPath(const char* absPath);
     
-    private:
+private:
     static bool readExeDirectory(char* exePath);
+    static void initializeResourcesDirectory();
 };
 
 #endif

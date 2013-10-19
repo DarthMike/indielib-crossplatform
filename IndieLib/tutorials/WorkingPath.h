@@ -1,7 +1,3 @@
-/*****************************************************************************************
- * Desc: Utility methods for working paths setup
- *****************************************************************************************/
-
 /*********************************** The zlib License ************************************
  *
  * Copyright (c) 2013 Indielib-crossplatform Development Team
@@ -26,8 +22,6 @@
  * distribution.
  *
  *****************************************************************************************/
-
-
 #ifndef _WorkingPath_h
 #define _WorkingPath_h
 
@@ -36,11 +30,14 @@ class WorkingPathSetup {
 public:
     
     static const char* resourcesDirectory();
+    static const char* unittestsResourcesDirectory();
+    
     
     static bool setWorkingPath(const char* absPath);
     
 private:
     static bool readExeDirectory(char* exePath);
+    static void initializeResourcesDirectory();
 };
 
 #endif

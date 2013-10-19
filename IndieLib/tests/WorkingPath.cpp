@@ -47,13 +47,17 @@ static const int appDirChars = 16084;
 static char g_appDir[appDirChars];
 static char g_resourcesDir[appDirChars];
 
+
+const char* WorkingPathSetup::unittestsResourcesDirectory() {
+    WorkingPathSetup::initializeResourcesDirectory();
+    
+    strcat(g_resourcesDir, "/../../assets");
+    return g_resourcesDir;
+}
+
 const char* WorkingPathSetup::resourcesDirectory() {
     
-    if (!WorkingPathSetup::readExeDirectory(g_appDir)) {
-        return NULL;
-    }
-    
-    strcpy(g_resourcesDir, g_appDir);
+    WorkingPathSetup::initializeResourcesDirectory();
     
 #ifdef PLATFORM_IOS
     // Bundle in iOS apps is flattened, meaning exe is in root, and added dirs start from there
@@ -71,6 +75,14 @@ const char* WorkingPathSetup::resourcesDirectory() {
 #endif
     
     return g_resourcesDir;
+}
+
+void WorkingPathSetup::initializeResourcesDirectory() {
+    if (!WorkingPathSetup::readExeDirectory(g_appDir)) {
+        strcpy(g_resourcesDir, "");
+    }
+    
+    strcpy(g_resourcesDir, g_appDir);
 }
 
 bool WorkingPathSetup::setWorkingPath(const char* absPath) {

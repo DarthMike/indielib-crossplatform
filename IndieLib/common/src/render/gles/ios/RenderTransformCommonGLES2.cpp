@@ -46,27 +46,6 @@ void   OpenGLES2Render::clearViewPort(unsigned char pR,
 	glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void OpenGLES2Render::lookAt(float pEyeX, float pEyeY, float pEyeZ,
-                          float pLookAtX, float pLookAtY, float pLookAtZ,
-                          float pUpX, float pUpY, float pUpZ) {
-    
-                                 
-    //Build the view matrix from given vectors
-	IND_Matrix lookatmatrix; 
-	_math.matrix4DLookAtMatrixEyeLookUpLH(IND_Vector3(pEyeX,pEyeY,pEyeZ),
-	                           IND_Vector3(pLookAtX,pLookAtY,pLookAtZ),
-	                           IND_Vector3(pUpX,pUpY,pUpZ),
-	                           lookatmatrix);
-
-#ifdef _DEBUG
-	int mmode;
-	glGetIntegerv(GL_MATRIX_MODE,&mmode);
-	assert( mmode == GL_MODELVIEW);
-#endif
-    glLoadIdentity();
-    glMultMatrixf(reinterpret_cast<GLfloat *>(&lookatmatrix));
-}
-
 void OpenGLES2Render::perspectiveFov(float pFov, float pAspect, float pNearClippingPlane, float pFarClippingPlane) {
 	//TODO
 }

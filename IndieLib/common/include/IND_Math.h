@@ -740,6 +740,28 @@ public:
 	  result._43 = m1._41 * m2._13 + m1._42 * m2._23 + m1._43 * m2._33 + m1._44 * m2._43;
 	  result._44 = m1._41 * m2._14 + m1._42 * m2._24 + m1._43 * m2._34 + m1._44 * m2._44;
 	}
+    
+    /**
+	 Multiplies 2 matrices, stores the result in place of the first matrix, after multiplication.
+     
+	 In the form of R = M1*M2 (Post multiplication on the right) that means we take the rows from
+	 the left, and the columns from the right as:
+     
+     [        ][       ]
+     [ target ][ next  ]
+     [        ][       ]  = target
+     [        ][       ]
+     
+     @param m1 First matrix (left side)
+     @param m2 Second matrix (right side)
+     
+     @see matrix4DMultiply
+     */
+	inline void matrix4DMultiplyInPlace(IND_Matrix &target, const IND_Matrix &next)const {
+        IND_Matrix temp;
+        IND_Math::matrix4DMultiply(target, next, temp);
+        target = temp;
+	}
 
 	/**
 	 Initializes matrix as Identity.

@@ -293,7 +293,7 @@ struct structMatrix {
     float _24;      //!< Matrix element
     float _34;      //!< Matrix element
     float _44;      //!< Matrix element
-
+    
     /**
      @brief Default constructor
      */
@@ -315,7 +315,17 @@ struct structMatrix {
 		}
 		readFromArray(matrixArray);
 	}
-
+    
+    static structMatrix identity() {
+        structMatrix m = structMatrix();
+        m._11 = 1.f;
+        m._22 = 1.f;
+        m._33 = 1.f;
+        m._44 = 1.f;
+        
+        return m;
+    }
+    
     /**
      @brief Writes to passed matrixArray the values inside the IND_Matrix structure
      Elements are interpreted this way:
@@ -344,12 +354,12 @@ struct structMatrix {
 		matrixArray[14] = _34;
 		matrixArray[15] = _44;
 	}
-
+    
     /**
-     @brief Operator override which does the right thing, that is matrix sum
+     @brief Operator override which does the right thing, that is matrix copy
      
      @param rhs Other matrix
-     @return Sum matrix
+     @return this matrix, now with values from the other matrix
      */
 	structMatrix & operator=(const structMatrix &rhs) {
 		if (this != &rhs)  {
@@ -399,7 +409,7 @@ struct structMatrix {
 		_34 = matrixArray[14];
 		_44 = matrixArray[15];
 	}
-
+    
     //!Logs itself to console.
     void description () const {
         std::cout << "\nMATRIX :\n";
@@ -427,7 +437,6 @@ struct structMatrix {
 };
 //!Alias for the matrix structure
 typedef struct structMatrix IND_Matrix;
-
 
 //! 2d Point 2d\n (x, y)
 struct structPoint {

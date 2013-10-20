@@ -31,10 +31,10 @@
 
 /** @cond DOCUMENT_PRIVATEAPI */
 
-#include <string.h>
 #include "DebugApi.h"
 #include "IndieVersion.h"
 #include "IND_Timer.h"
+#include <string.h>
 
 const int DebugApi::LogHeaderOk = 1;
 const int DebugApi::LogHeaderError = 2;

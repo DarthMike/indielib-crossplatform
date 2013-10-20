@@ -23,6 +23,8 @@
 #ifndef _IND_OBJECT_
 #define _IND_OBJECT_
 
+#include "IndiePlatforms.h"
+
 /**
  @defgroup IND_Object IND_Object
  @ingroup Classes

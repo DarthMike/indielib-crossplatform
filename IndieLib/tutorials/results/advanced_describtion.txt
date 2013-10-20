@@ -3,7 +3,10 @@ advanced 01: IND Surface Grids
 In this tutorial, Draco the dragon is placed on blue rotating background.A small blue / white text is located in the left upper corner. Draco is moved by a timespecific wavefunction that manipulates the surface. To display a grid you can toggle it on / off by pressing space. Press escape to exit.
 
 advanced 02: Blitting 2d Directly
-TODO: describtion..
+In this tutorial 4 surfaces is being blitted directly. A Draco the dragon surface is blitted, A Bug surface is being blitted with timespecific parameters (hotspot and rotation), A Gem surface is tiled and a region of this is being blitted (surface wrap), and a ufo animation is being blitted (animation).
+
+advanced 03: Blitting 3d Directly
+TODO: currently 3d support is not ported - yet.
 
 advanced 04: Several ViewPorts
 In this tutorial, 2 viewports is created and each viewport get a cameras attached. Both camera's at start has the same setting and therefore each viewport show the same result: A rotating beetle, a fixed octupus and a rotating bug. To rotate the upper camera hold down right or left mousebutton. For zooming in and out, use the mouse scroll.

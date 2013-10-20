@@ -298,6 +298,9 @@ void OpenGLES2Render::getInfo() {
     glGetIntegerv(GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS, &_info._maxCombinedTextureImageUnits);
     glGetIntegerv(GL_MAX_TEXTURE_IMAGE_UNITS, &_info._maxCombinedTextureImageUnits);
     glGetIntegerv(GL_MAX_FRAGMENT_UNIFORM_VECTORS, &_info._maxfragmentUniformVectors);
+    
+    const GLubyte* shaderVersion = glGetString(GL_SHADING_LANGUAGE_VERSION);
+    strcpy(_info._glslVersion, (char*)shaderVersion);
 }
 
 /*
@@ -338,40 +341,25 @@ void OpenGLES2Render::writeInfo() {
 	g_debug->dataChar("x", 0);
 	g_debug->dataInt(_info._maxTextureSize, 1);
     g_debug->header("Maximum number of vertex attributes:" , DebugApi::LogHeaderInfo);
-	g_debug->dataInt(_info._maxVertexAttributes, 0);
+	g_debug->dataInt(_info._maxVertexAttributes, 1);
     g_debug->header("Maximum number of vertex uniform vectors:" , DebugApi::LogHeaderInfo);
-	g_debug->dataInt(_info._maxVertexUniformComponents, 0);
+	g_debug->dataInt(_info._maxVertexUniformComponents, 1);
     g_debug->header("Maximum number of vertex texture units:" , DebugApi::LogHeaderInfo);
-	g_debug->dataInt(_info._maxVertexTextureUnits, 0);
+	g_debug->dataInt(_info._maxVertexTextureUnits, 1);
     g_debug->header("Maximum number of varying vectors:" , DebugApi::LogHeaderInfo);
-	g_debug->dataInt(_info._maxVaryingVectors, 0);
+	g_debug->dataInt(_info._maxVaryingVectors, 1);
     g_debug->header("Maximum number of combined texture image units:" , DebugApi::LogHeaderInfo);
-	g_debug->dataInt(_info._maxCombinedTextureImageUnits, 0);
+	g_debug->dataInt(_info._maxCombinedTextureImageUnits, 1);
     g_debug->header("Maximum number of texture units:" , DebugApi::LogHeaderInfo);
-	g_debug->dataInt(_info._maxTextureImageUnits, 0);
+	g_debug->dataInt(_info._maxTextureImageUnits, 1);
     g_debug->header("Maximum number of fragment uniform vectors:" , DebugApi::LogHeaderInfo);
-	g_debug->dataInt(_info._maxfragmentUniformVectors, 0);
+	g_debug->dataInt(_info._maxfragmentUniformVectors, 1);
 
 
-	// ----- Vertex Shader version  -----
-
-	/*g_debug->Header ("Vertex Shader:" , DebugApi::LogHeaderInfo);
-	g_debug->DataInt (D3DSHADER_VERSION_MAJOR (_info._vertexShaderVersion), 0);
-	g_debug->DataChar (".", 0);
-	g_debug->DataInt (D3DSHADER_VERSION_MINOR (_info._vertexShaderVersion), 0);
-
-	if (_info._softwareVertexProcessing)
-	    g_debug->DataChar ("(Software)", 1);
-	else
-	    g_debug->DataChar ("", 1);*/
-
-	// ----- Pixel Shader version -----
-
-	/*g_debug->Header ("Pixel Shader:" , DebugApi::LogHeaderInfo);
-	g_debug->DataInt (D3DSHADER_VERSION_MAJOR (_info._pixelShaderVersion), 0);
-	g_debug->DataChar (".", 0);
-	g_debug->DataInt (D3DSHADER_VERSION_MINOR (_info._pixelShaderVersion), 1);*/
-
+	// ----- Shading language version  -----
+	g_debug->header ("Shading language version:" , DebugApi::LogHeaderInfo);
+	g_debug->dataChar(_info._glslVersion, 1);
+    
 	g_debug->header("Hardware Ok" , DebugApi::LogHeaderEnd);
 }
 

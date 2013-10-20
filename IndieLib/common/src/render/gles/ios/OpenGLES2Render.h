@@ -88,6 +88,7 @@ struct InfoStruct {
         strcpy(_version, "NO DATA");
         strcpy(_vendor, "NO DATA");
         strcpy(_renderer, "NO DATA");
+        strcpy(_glslVersion, "NO DATA");
     }
     int _fbWidth;
     int _fbHeight;
@@ -108,6 +109,7 @@ struct InfoStruct {
     int _maxCombinedTextureImageUnits;
     int _maxTextureImageUnits;
     int _maxfragmentUniformVectors;
+    char _glslVersion[1024];
     
     float _pointPixelScale;
 };

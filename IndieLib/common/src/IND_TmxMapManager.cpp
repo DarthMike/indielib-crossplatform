@@ -329,8 +329,6 @@ Call this method to render a TMX map as ortogonal tiles.
 */
 void IND_TmxMapManager::renderOrthogonalMap(IND_TmxMap *orthogonalMap,IND_Surface *mSurfaceOrthogonalTiles, int kMapCenterOffset) {
     
-    IND_Matrix *mMatrix = new IND_Matrix();
-    
     // Iterate through the layers.
     for (int i = 0; i < orthogonalMap->getTmxMapHandle()->GetNumLayers(); ++i) {
         
@@ -395,7 +393,7 @@ void IND_TmxMapManager::renderOrthogonalMap(IND_TmxMap *orthogonalMap,IND_Surfac
                                             0,                          // Mirror y
                                             0,                          // Width
                                             0,                          // Height
-                                            mMatrix);                   // Matrix in wich the transformation will be applied (optional)
+                                            NULL);                   // Matrix in wich the transformation will be applied (optional)
                 
                 // We apply the color, blending and culling transformations.
                 _render->setRainbow2d(IND_ALPHA,                    // IND_Type
@@ -436,8 +434,6 @@ void IND_TmxMapManager::renderOrthogonalMap(IND_TmxMap *orthogonalMap,IND_Surfac
 Call this method to render a TMX map as isometric tiles. 
 */
 void IND_TmxMapManager::renderIsometricMap(IND_TmxMap *isometricMap,IND_Surface *mSurfaceIsometricTiles, int kMapCenterOffset) {
-    
-    IND_Matrix *mMatrix = new IND_Matrix();
     
     // Iterate through the layers.
     for (int i = 0; i < isometricMap->getTmxMapHandle()->GetNumLayers(); ++i) {
@@ -501,7 +497,7 @@ void IND_TmxMapManager::renderIsometricMap(IND_TmxMap *isometricMap,IND_Surface 
                                             0,                          // Mirror y
                                             0,                          // Width
                                             0,                          // Height
-                                            mMatrix);                   // Matrix in wich the transformation will be applied (optional)
+                                            NULL);                   // Matrix in wich the transformation will be applied (optional)
                 
                 // We apply the color, blending and culling transformations.
                 _render->setRainbow2d(IND_ALPHA,                    // IND_Type

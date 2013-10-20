@@ -53,7 +53,8 @@
 #define DT_EX_BORDER	               0x00000200
 #define DT_EX_BACKCOLOR	               0x00000400
 
-class free_type_impl;  // forward-declare private "implementation" class.
+class free_type_impl;               // forward-declare private "implementation" class.
+class free_type_ptr_wrapped_impl;   // forward-declare the freetype wrapped pointer delivered by the manger in the init method
 
 // --------------------------------------------------------------------------------
 //									 IND_TTF_Font
@@ -68,7 +69,7 @@ public:
 
 	// ----- Init/End -----
     
-	IND_TTF_Font(	IND_Render *pIndieRender, IND_ImageManager *pIndieImageManager,
+	IND_TTF_Font(	free_type_ptr_wrapped_impl *freetype_wrapped, IND_Render *pIndieRender, IND_ImageManager *pIndieImageManager,
 					IND_SurfaceManager *pIndieSurfaceManager);
 	~IND_TTF_Font();
 

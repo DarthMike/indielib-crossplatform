@@ -23,13 +23,14 @@
  */
 
 #include "IND_TTF_Font.h"
+//#include "IND_TTF_FontManager.h"
 
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
 
-#include "freetype/ttunpat.h"
-#include "freetype/ftoutln.h"
+//#include "freetype/ttunpat.h"
+//#include "freetype/ftoutln.h"
 
 class free_type_impl {
 public:
@@ -43,13 +44,11 @@ public:
     friend class IND_TTF_Font;
 };
 
-IND_TTF_Font::IND_TTF_Font( IND_Render *pIndieRender, IND_ImageManager *pIndieImageManager, 
+IND_TTF_Font::IND_TTF_Font( free_type_ptr_wrapped_impl *freetype_wrapped, IND_Render *pIndieRender, IND_ImageManager *pIndieImageManager,
 							IND_SurfaceManager *pIndieSurfaceManager)
-://_impl->_FTLib(ftlib),
-_pIndieRender(pIndieRender),
+:_pIndieRender(pIndieRender),
 _pIndieImageManager(pIndieImageManager),
 _pIndieSurfaceManager(pIndieSurfaceManager),
-//_impl->_Face(NULL),
 _CharWidth(20),
 _CharHeight(20),
 _bAutoCache(true),
@@ -60,10 +59,14 @@ _fXHotSpot(0.5f),
 _fYHotSpot(0.5f),
 _bBold(false),
 _bItalic(false) {
+
+    _impl->_FTLib = freetype_wrapped->_FTLib;
+    _impl->_Face = NULL;
 	_impl->_matItalic.xx = 1 << 16;
 	_impl->_matItalic.xy = 0x5800;
 	_impl->_matItalic.yx = 0;
 	_impl->_matItalic.yy = 1 << 16;
+    
 }
 
 IND_TTF_Font::~IND_TTF_Font() {

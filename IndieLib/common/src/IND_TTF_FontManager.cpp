@@ -29,8 +29,25 @@
 #include "IND_TTF_FontManager.h"
 #include <assert.h>
 
-//#include <ft2build.h>
-//#include FT_FREETYPE_H
+#include <ft2build.h>
+#include FT_FREETYPE_H
+
+
+//#include "freetype/ttunpat.h"
+//#include "freetype/ftoutln.h"
+//free_type_ptr_wrapped_impl	_freetype;
+
+
+class free_type_ptr_wrapped_impl {
+public:
+    FT_Library				_FTLib;                 // freetype lib 
+    
+    // ...
+public:
+    // some functions ...
+    friend class IND_TTF_FontManager;
+    friend class IND_TTF_Font;
+};
 
 // --------------------------------------------------------------------------------
 //							  Initialization / Destruction
@@ -40,7 +57,8 @@ IND_TTF_FontManager::IND_TTF_FontManager(void)
 : _bInit(false),
 _pIndieRender(NULL),
 _pIndieImageManager(NULL),
-_pIndieSurfaceManager(NULL)
+_pIndieSurfaceManager(NULL),
+_freetype(NULL)
 {
 }
 
@@ -85,12 +103,14 @@ bool IND_TTF_FontManager::init(IND_Render *pRender, IND_ImageManager *pImageMana
 		_bInit = false;
 		return _bInit;
 	}
+    
+    _freetype = new free_type_ptr_wrapped_impl(); // TODO delete this object when finished
 
     
 	if(_bInit)
 		return true;
 
-	if(FT_Init_FreeType(&_FTLib) != 0)
+	if(FT_Init_FreeType(&_freetype->_FTLib) != 0)
 		_bInit = false;
 	else
 		_bInit = true;
@@ -126,7 +146,7 @@ bool IND_TTF_FontManager::addFont(const std::string& strName, const std::string&
 	if (isFontLoaded(strName))
 		return true;
 
-	IND_TTF_Font* ptrNewFont = new IND_TTF_Font(_FTLib, _pIndieRender, _pIndieImageManager, _pIndieSurfaceManager);
+	IND_TTF_Font* ptrNewFont = new IND_TTF_Font(_freetype, _pIndieRender, _pIndieImageManager, _pIndieSurfaceManager);
 	if (!ptrNewFont->loadTTFFontFromDisk(strName, strPath, iSize, bBold, bItalic)) {
 		delete ptrNewFont;
 		return false;
@@ -168,7 +188,7 @@ void IND_TTF_FontManager::end() {
 	}
 
 	if (_bInit) {
-		FT_Done_FreeType(_FTLib);
+		FT_Done_FreeType(_freetype->_FTLib);
 		_bInit = false;
 	}
 }

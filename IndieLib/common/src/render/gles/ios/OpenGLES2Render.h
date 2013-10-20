@@ -61,7 +61,7 @@ class IND_Camera3d;
 class OpenGLES2Manager;
 
 // ----- Libs -----
-#include <OpenGLES/ES1/gl.h>
+#include <OpenGLES/ES2/gl.h>
 
 // ----- Defines ------
 #define MAX_PIXELS 2048
@@ -77,7 +77,13 @@ struct InfoStruct {
     _viewPortApectRatio(0.0f),
     _antialiasing(0),
     _maxTextureSize(0),
-    _textureUnits(0),
+    _maxVertexAttributes(0),
+    _maxVertexUniformComponents(0),
+    _maxVertexTextureUnits(0),
+    _maxVaryingVectors(0),
+    _maxCombinedTextureImageUnits(0),
+    _maxTextureImageUnits(0),
+    _maxfragmentUniformVectors(0),
     _pointPixelScale(1.0f){
         strcpy(_version, "NO DATA");
         strcpy(_vendor, "NO DATA");
@@ -95,7 +101,14 @@ struct InfoStruct {
     char _vendor [1024];
     char _renderer [1024];
     int _maxTextureSize;
-    int _textureUnits;
+    int _maxVertexAttributes;
+    int _maxVertexUniformComponents;
+    int _maxVertexTextureUnits;
+    int _maxVaryingVectors;
+    int _maxCombinedTextureImageUnits;
+    int _maxTextureImageUnits;
+    int _maxfragmentUniformVectors;
+    
     float _pointPixelScale;
 };
 
@@ -498,6 +511,9 @@ private:
 
     //Current 'camera' matrix
     IND_Matrix _cameraMatrix;
+    
+    IND_Matrix _shaderModelViewMatrix;
+    IND_Matrix _shaderProjectionMatrix;
     
 	// ----- Primitives vertices -----
 

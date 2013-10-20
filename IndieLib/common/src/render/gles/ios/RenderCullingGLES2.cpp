@@ -47,14 +47,8 @@ To perform culling calculations, the comparisons need to be in same space. In ou
 ==================
 */
 void OpenGLES2Render::reCalculateFrustrumPlanes() {
-	IND_Matrix  mMatProj;
-	float temp [16];
-	glGetFloatv(GL_PROJECTION_MATRIX,temp);
-	mMatProj.readFromArray(temp);
-
 	// Get combined matrix
-	IND_Matrix matComb;
-	_math.matrix4DMultiply(mMatProj,_cameraMatrix,matComb);
+	IND_Matrix matComb (_shaderProjectionMatrix);
 
 	// Left clipping plane
 	_frustrumPlanes._planes[0]._normal._x     = (matComb._41 + matComb._11);

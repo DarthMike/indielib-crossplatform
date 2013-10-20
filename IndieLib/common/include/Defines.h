@@ -275,8 +275,8 @@ typedef struct structVertex2d CUSTOMVERTEX2D;
  For example, Matrix in openGL is stored in array using colum-major order
  A Matrix 4x4\n (_11, _21, _31, _41,\n _12, _22, _32, _42,\n _13, _23, _33, _43\n _14, _24, _34, _44)
  */
-struct structMatrix {
-	
+class IND_Matrix {
+public:
 	float _11;      //!< Matrix element
     float _21;      //!< Matrix element
     float _31;      //!< Matrix element
@@ -297,9 +297,28 @@ struct structMatrix {
     /**
      @brief Default constructor
      */
-	structMatrix() {
+	IND_Matrix() {
 		_11 = _12 = _13 = _14 = _21 = _22 = _23 = _24 = _31 = _32 = _33 = _34 = _41 = _42 = _43 = _44 = 0;
 	}
+    
+    IND_Matrix(const IND_Matrix& other) {
+        _11 = other._11;
+        _21 = other._21;
+        _31 = other._31;
+        _41 = other._41;
+        _12 = other._12;
+        _22 = other._22;
+        _32 = other._32;
+        _42 = other._42;
+        _13 = other._13;
+        _23 = other._23;
+        _33 = other._33;
+        _43 = other._43;
+        _14 = other._14;
+        _24 = other._24;
+        _34 = other._34;
+        _44 = other._44;
+    }
 	
     /**
      @brief Constructor to initialize struct with an array
@@ -308,7 +327,7 @@ struct structMatrix {
      
      @param matrixArray An array containing as many elements as 16 (4x4) to read matrix from.
      */
-	structMatrix(float* matrixArray){
+	IND_Matrix(float* matrixArray){
 		if (!matrixArray) {
 			_11 = _12 = _13 = _14 = _21 = _22 = _23 = _24 = _31 = _32 = _33 = _34 = _41 = _42 = _43 = _44 = 0.0f;
             return;
@@ -316,8 +335,8 @@ struct structMatrix {
 		readFromArray(matrixArray);
 	}
     
-    static structMatrix identity() {
-        structMatrix m = structMatrix();
+    static IND_Matrix identity() {
+        IND_Matrix m = IND_Matrix();
         m._11 = 1.f;
         m._22 = 1.f;
         m._33 = 1.f;
@@ -361,7 +380,7 @@ struct structMatrix {
      @param rhs Other matrix
      @return this matrix, now with values from the other matrix
      */
-	structMatrix & operator=(const structMatrix &rhs) {
+	IND_Matrix & operator=(const IND_Matrix &rhs) {
 		if (this != &rhs)  {
 			_11 = rhs._11;
 			_21 = rhs._21;
@@ -435,8 +454,6 @@ struct structMatrix {
         std::cout << std::endl;
     }
 };
-//!Alias for the matrix structure
-typedef struct structMatrix IND_Matrix;
 
 //! 2d Point 2d\n (x, y)
 struct structPoint {

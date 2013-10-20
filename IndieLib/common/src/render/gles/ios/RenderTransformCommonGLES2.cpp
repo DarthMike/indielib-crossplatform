@@ -51,21 +51,7 @@ void OpenGLES2Render::perspectiveFov(float pFov, float pAspect, float pNearClipp
 }
 
 void OpenGLES2Render::perspectiveOrtho(float pWidth, float pHeight, float pNearClippingPlane, float pFarClippingPlane) {
-	//Projection matrix modification
-	glMatrixMode(GL_PROJECTION);
-	IND_Matrix orthoMatrix;
-	_math.matrix4DOrthographicProjectionLH(-pWidth/2,pWidth/2,-pHeight/2,pHeight/2,pNearClippingPlane,pFarClippingPlane,orthoMatrix);
-	glLoadMatrixf(reinterpret_cast<GLfloat *>(&orthoMatrix));
-	
-	//float m[16];
-	//glGetFloatv(GL_PROJECTION_MATRIX, m);
-	//for (size_t i = 0; i < 4; ++i) {    
-	//	for (size_t j = 0; j < 4; ++j) {        
-	//		std::cout << m[i + j * 4] << " ";    
-	//	}    
-	//	std::cout << std::endl;
-	//}
-	glMatrixMode(GL_MODELVIEW);
+	_math.matrix4DOrthographicProjectionLH(-pWidth/2,pWidth/2,-pHeight/2,pHeight/2,pNearClippingPlane,pFarClippingPlane,_shaderProjectionMatrix);
 }
 
 /** @endcond */

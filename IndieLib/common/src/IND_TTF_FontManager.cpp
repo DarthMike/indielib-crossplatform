@@ -27,6 +27,7 @@
 
 #include "Global.h"
 #include "IND_TTF_FontManager.h"
+#include "FreeTypeHandle.h"
 #include <assert.h>
 
 #include <ft2build.h>
@@ -38,16 +39,7 @@
 //free_type_ptr_wrapped_impl	_freetype;
 
 
-class free_type_ptr_wrapped_impl {
-public:
-    FT_Library				_FTLib;                 // freetype lib 
-    
-    // ...
-public:
-    // some functions ...
-    friend class IND_TTF_FontManager;
-    friend class IND_TTF_Font;
-};
+
 
 // --------------------------------------------------------------------------------
 //							  Initialization / Destruction

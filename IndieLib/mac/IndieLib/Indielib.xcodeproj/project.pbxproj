@@ -778,9 +778,10 @@
 					"\"$(SRCROOT)/../../common/dependencies/FreeImage/Dist\"",
 				);
 				"OTHER_LDFLAGS[arch=*]" = (
-					"-lGLEW",
 					"-lSDL2",
-					"-lfreeImage",
+					"-lGLEW",
+					"-lfreeimage",
+					"-lfreetype",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -806,9 +807,10 @@
 					"\"$(SRCROOT)/../../common/dependencies/FreeImage/Dist\"",
 				);
 				"OTHER_LDFLAGS[arch=*]" = (
-					"-lGLEW",
 					"-lSDL2",
-					"-lfreeImage",
+					"-lGLEW",
+					"-lfreeimage",
+					"-lfreetype",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

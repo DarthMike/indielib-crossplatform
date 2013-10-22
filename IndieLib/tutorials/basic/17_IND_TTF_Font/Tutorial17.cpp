@@ -14,8 +14,7 @@
 Main
 ==================
 */
-int IndieLib()			
-
+Indielib_Main			
 {
     
     //Sets the working path as the 'exe' directory. All resource paths are relative to this directory

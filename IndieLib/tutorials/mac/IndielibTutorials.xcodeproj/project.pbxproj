@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E700A1B517EF0174001327E5 /* CIndieLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E73EB03715E6D6D000B95FE4 /* CIndieLib.cpp */; };
-		E700A1B617EF0174001327E5 /* Tutorial16.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E73EB03B15E6D6D000B95FE4 /* Tutorial16.cpp */; };
 		E700A1B717EF0174001327E5 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7DFACA0165C1A86004507C5 /* WorkingPath.cpp */; };
 		E700A1B917EF0174001327E5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */; };
 		E700A1BB17EF0174001327E5 /* IndielibTutorials-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA415E6B5FF00250CEE /* IndielibTutorials-Info.plist */; };
@@ -1884,9 +1882,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E700A1B517EF0174001327E5 /* CIndieLib.cpp in Sources */,
 				E700A1C517EF01BA001327E5 /* CIndieLib.cpp in Sources */,
-				E700A1B617EF0174001327E5 /* Tutorial16.cpp in Sources */,
 				E700A1B717EF0174001327E5 /* WorkingPath.cpp in Sources */,
 				E700A1C617EF01BA001327E5 /* Tutorial17.cpp in Sources */,
 			);

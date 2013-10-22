@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C05C8A618159DA600EFAA6F /* FreeTypeHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C05C8A518159DA600EFAA6F /* FreeTypeHandle.h */; };
 		4C7AF05F175B73F7004F4821 /* Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C7AF052175B73F7004F4821 /* Animation.cpp */; };
 		4C7AF060175B73F7004F4821 /* Animation.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C7AF053175B73F7004F4821 /* Animation.h */; };
 		4C7AF061175B73F7004F4821 /* Mainline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C7AF054175B73F7004F4821 /* Mainline.cpp */; };
@@ -93,6 +94,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C05C8A518159DA600EFAA6F /* FreeTypeHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeTypeHandle.h; sourceTree = "<group>"; };
 		4C7AF052175B73F7004F4821 /* Animation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Animation.cpp; sourceTree = "<group>"; };
 		4C7AF053175B73F7004F4821 /* Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animation.h; sourceTree = "<group>"; };
 		4C7AF054175B73F7004F4821 /* Mainline.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mainline.cpp; sourceTree = "<group>"; };
@@ -429,6 +431,7 @@
 				E75EAAC3159CADEF00693F41 /* CollisionParser.cpp */,
 				E75EAAC4159CADEF00693F41 /* DebugApi.cpp */,
 				E75EAAC5159CADEF00693F41 /* DebugApi.h */,
+				4C05C8A518159DA600EFAA6F /* FreeTypeHandle.h */,
 				E75EAAC6159CADEF00693F41 /* FreeImageHelper.cpp */,
 				E75EAAC7159CADEF00693F41 /* FreeImageHelper.h */,
 				E75EAAC8159CADEF00693F41 /* Global.cpp */,
@@ -527,6 +530,7 @@
 				4C7AF06B175B73F7004F4821 /* TimelineObject.h in Headers */,
 				4CD86C1217DE38F300DB911B /* IND_TTF_Font.h in Headers */,
 				4CD86C1317DE38F300DB911B /* IND_TTF_FontManager.h in Headers */,
+				4C05C8A618159DA600EFAA6F /* FreeTypeHandle.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -774,9 +778,10 @@
 					"\"$(SRCROOT)/../../common/dependencies/FreeImage/Dist\"",
 				);
 				"OTHER_LDFLAGS[arch=*]" = (
-					"-lGLEW",
 					"-lSDL2",
-					"-lfreeImage",
+					"-lGLEW",
+					"-lfreeimage",
+					"-lfreetype",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -802,9 +807,10 @@
 					"\"$(SRCROOT)/../../common/dependencies/FreeImage/Dist\"",
 				);
 				"OTHER_LDFLAGS[arch=*]" = (
-					"-lGLEW",
 					"-lSDL2",
-					"-lfreeImage",
+					"-lGLEW",
+					"-lfreeimage",
+					"-lfreetype",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

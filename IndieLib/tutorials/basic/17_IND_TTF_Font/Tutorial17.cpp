@@ -19,7 +19,7 @@ int IndieLib()
 {
     
     //Sets the working path as the 'exe' directory. All resource paths are relative to this directory
-	if (!WorkingPathSetup::setWorkingPathFromExe(NULL)) {
+	if (!WorkingPathSetup::setWorkingPath(NULL)) {
 		std::cout<<"\nUnable to Set the working path !";
     }
         

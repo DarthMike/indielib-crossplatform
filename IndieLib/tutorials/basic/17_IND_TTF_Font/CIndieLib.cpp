@@ -2,6 +2,32 @@
  * Desc: IndieLib singleton initialization class
  *****************************************************************************************/
 
+/*********************************** The zlib License ************************************
+ *
+ * Copyright (c) 2013 Indielib-crossplatform Development Team
+ *
+ * This software is provided 'as-is', without any express or implied
+ * warranty. In no event will the authors be held liable for any damages
+ * arising from the use of this software.
+ *
+ * Permission is granted to anyone to use this software for any purpose,
+ * including commercial applications, and to alter it and redistribute it
+ * freely, subject to the following restrictions:
+ *
+ * 1. The origin of this software must not be misrepresented; you must not
+ * claim that you wrote the original software. If you use this software
+ * in a product, an acknowledgment in the product documentation would be
+ * appreciated but is not required.
+ *
+ * 2. Altered source versions must be plainly marked as such, and must not be
+ * misrepresented as being the original software.
+ *
+ * 3. This notice may not be removed or altered from any source
+ * distribution.
+ *
+ *****************************************************************************************/
+
+
 #include "CIndieLib.h"
 
 /*
@@ -43,7 +69,6 @@ bool CIndieLib::init() {
 	_math                =   new     IND_Math;
     _TTFFontManager      =   new     IND_TTF_FontManager;
     
-    
 	IND_WindowProperties props ("IndieLib", 800, 600, 32, 0, 0, 1);
 	
 	
@@ -73,11 +98,11 @@ bool CIndieLib::init() {
  ==================
  */
 void CIndieLib::end() {
-	// ----- Freeing objects -----
+	
+    // ----- Freeing objects -----
     
 	_math                ->end();
-	_TTFFontManager      ->end();
-    //_meshManager           ->end();
+	//_meshManager           ->end();
 	_input               ->end();
 	_entity2dManager     ->end();
 	//_entity3dManager       ->end();
@@ -87,10 +112,9 @@ void CIndieLib::end() {
 	_imageManager        ->end();
 	//_lightManager      ->end();
 	_render              ->end();
-    
+    _TTFFontManager      ->end();
     
 	DISPOSE(_math);
-    DISPOSE(_TTFFontManager);
 	//DISPOSE(_meshManager);
 	DISPOSE(_input);
 	DISPOSE(_entity2dManager);
@@ -101,6 +125,7 @@ void CIndieLib::end() {
     DISPOSE(_imageManager);
 	//DISPOSE(_lightManager);
 	DISPOSE(_render);
+    DISPOSE(_TTFFontManager);
     
 	IndieLib::end();
     

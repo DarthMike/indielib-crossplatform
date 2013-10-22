@@ -189,27 +189,6 @@ void IND_Render::clearViewPort(unsigned char pR,
                                unsigned char pB) {
 	_wrappedRenderer->clearViewPort(pR, pG, pB);
 }
-/**
-@b Parameters:
-
-@arg @b pEyeX, pEyeY, pEyeZ                         Position of the camera
-@arg @b pLookAtX, pLookAtY, pLookAtZ                Vector defining the direction of the camera
-@arg @b pUpX, pUpY, pUpZ                            Vector "up" of the camera.
-
-Operation:
-
-This function sets a perspective matrix through the definition of a position and two vectors (lookat and up).
-
-Using this method is equivalent to using a combination of methods of the class setCamera3d.
-*/
-inline void IND_Render::lookAt(float pEyeX, float pEyeY, float pEyeZ,
-                               float pLookAtX, float pLookAtY, float pLookAtZ,
-                               float pUpX, float pUpY, float pUpZ) {
-	_wrappedRenderer->lookAt(pEyeX, pEyeY, pEyeZ,
-	                         pLookAtX, pLookAtY, pLookAtZ,
-	                         pUpX, pUpY, pUpZ);
-}
-
 
 /**
 @b Parameters:

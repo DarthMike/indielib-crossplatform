@@ -40,21 +40,6 @@ void   DirectXRender::clearViewPort(unsigned char pR,
 	_info._device->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(pR, pG, pB), 1.0f, 0);
 }
 
-
-void DirectXRender::lookAt(float pEyeX, float pEyeY, float pEyeZ,
-                           float pLookAtX, float pLookAtY, float pLookAtZ,
-                           float pUpX, float pUpY, float pUpZ) {
-	// ----- View matrix -----
-
-	D3DXMATRIX mMatView;
-	D3DXVECTOR3 mEyePt(pEyeX, pEyeY, pEyeZ);
-	D3DXVECTOR3 mLookatPt(pLookAtX, pLookAtY, pLookAtZ);
-	D3DXVECTOR3 mUpVec(pUpX, pUpY, pUpZ);
-	D3DXMatrixLookAtLH(&mMatView, &mEyePt, &mLookatPt, &mUpVec);
-
-	_info._device->SetTransform(D3DTS_VIEW, &mMatView);
-}
-
 void DirectXRender::perspectiveFov(float pFov, float pAspect, float pNearClippingPlane, float pFarClippingPlane) {
 	// ----- Projection matrix -----
 

@@ -32,7 +32,6 @@
 #ifndef _DEBUGAPI_H_
 #define _DEBUGAPI_H_
 
-#include "IndiePlatforms.h"
 #include <time.h>
 
 #define ESP 3
@@ -44,9 +43,10 @@ using namespace std;
 
 /** @cond DOCUMENT_PRIVATEAPI */
 
-#if defined (DEBUG) || defined (_DEBUG)
+#if defined(DEBUG) || defined(_DEBUG)
 #define LOG_REDIRECT_TO_CONSOLE 1
 #endif
+
 class IND_Timer;
 
 class DebugApi {

@@ -57,15 +57,13 @@ bool OpenGLES2Render::setViewPort2d(int pX,
     _info._viewPortApectRatio = static_cast<float>(pWidth/pHeight);
 
 	//Clear projection matrix
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
+	_shaderProjectionMatrix = IND_Matrix::identity();
 
 	//Define the viewport
 	glViewport(static_cast<GLint>(pX),
 	           static_cast<GLint>(pY),
 	           static_cast<GLsizei>(pWidth),
 	           static_cast<GLsizei>(pHeight));
-	glMatrixMode(GL_MODELVIEW);
 
 	setDefaultGLState();
 	return true;
@@ -91,43 +89,29 @@ void OpenGLES2Render::setCamera2d(IND_Camera2d *pCamera2d) {
 							   pCamera2d->_look,
 							   pCamera2d->_pos,
 	                           lookatmatrix);
-#ifdef _DEBUG
-	int mmode;
-	glGetIntegerv(GL_MATRIX_MODE,&mmode);
-	assert( mmode == GL_MODELVIEW);
-#endif
 
-	glLoadIdentity();
+    
+    _cameraMatrix = IND_Matrix::identity();
+    
     //------ Zooming -----
 	if (pCamera2d->_zoom != 1.0f) {
         //Zoom global scale (around where camera points - screen center)
-        glScalef(pCamera2d->_zoom, pCamera2d->_zoom,0);
+        IND_Matrix zoom = IND_Matrix();
+        _math.matrix4DSetScale(zoom, pCamera2d->_zoom, pCamera2d->_zoom,0.f);
+        _math.matrix4DMultiplyInPlace(_cameraMatrix, zoom);
 	} 
 
 	//------ Lookat transform -----
-	glMultMatrixf(reinterpret_cast<GLfloat *>(&lookatmatrix));
+    _math.matrix4DMultiplyInPlace(_cameraMatrix, lookatmatrix);
     
 	//------ Global point to pixel ratio -----
-    glScalef(_info._pointPixelScale, _info._pointPixelScale, 1.0f);
-
-    //Store result from GL matrix back to our local matrix
-    float cam[16];
-	glGetFloatv(GL_MODELVIEW_MATRIX, cam);
-    _cameraMatrix.readFromArray(cam);
+    IND_Matrix pointPixelScale;
+    _math.matrix4DSetScale(pointPixelScale,_info._pointPixelScale, _info._pointPixelScale, 1.0f);
+    _math.matrix4DMultiplyInPlace(_cameraMatrix, pointPixelScale);
     
 	// ----- Projection Matrix -----
 	//Setup a 2d projection (orthogonal)
 	perspectiveOrtho(static_cast<float>(_info._viewPortWidth), static_cast<float>(_info._viewPortHeight), 2048.0f, -2048.0f);
-
-	/*float m[16];
-	glGetFloatv(GL_MODELVIEW_MATRIX, m);
-	std::cout << "\nMATRIX:\n";
-	for (size_t i = 0; i < 4; ++i) {    
-		for (size_t j = 0; j < 4; ++j) {        
-			std::cout << m[i + j * 4] << " ";    
-		}    
-		std::cout << std::endl;
-	}*/
 }
 
 
@@ -149,8 +133,6 @@ void OpenGLES2Render::setTransform2d(int pX,
 	//Temporal holders for all accumulated transforms
 	IND_Matrix totalTrans;
 	_math.matrix4DSetIdentity(totalTrans);
-	IND_Matrix temp;
-	_math.matrix4DSetIdentity(temp);
 
 	//Initialize to identity given matrix, if exists
 	if (pMatrix) {
@@ -161,46 +143,40 @@ void OpenGLES2Render::setTransform2d(int pX,
 	if (pX != 0 || pY != 0) {
 		IND_Matrix trans;
 		_math.matrix4DSetTranslation(trans,static_cast<float>(pX),static_cast<float>(pY),0.0f);
-		_math.matrix4DMultiply(totalTrans,trans,temp);
-		totalTrans = temp;
+		_math.matrix4DMultiplyInPlace(totalTrans,trans);
 	}
 
 	// Scaling
 	if (pScaleX != 1.0f || pScaleY != 1.0f) {
 		IND_Matrix scale;
 		_math.matrix4DSetScale(scale,pScaleX,pScaleY,0.0f);
-		_math.matrix4DMultiply(totalTrans,scale,temp);
-		totalTrans = temp;
+		_math.matrix4DMultiplyInPlace(totalTrans,scale);
 	}
 
 	// Rotations
 	if (pAngleX != 0.0f) {
 		IND_Matrix angleX;
 		_math.matrix4DSetRotationAroundAxis(angleX,pAngleX,IND_Vector3(1.0f,0.0f,0.0f));
-		_math.matrix4DMultiply(totalTrans,angleX,temp);
-		totalTrans = temp;
+		_math.matrix4DMultiplyInPlace(totalTrans,angleX);
 	}
 
 	if (pAngleY != 0.0f) {
 		IND_Matrix angleY;
 		_math.matrix4DSetRotationAroundAxis(angleY,pAngleY,IND_Vector3(0.0f,1.0f,0.0f));
-		_math.matrix4DMultiply(totalTrans,angleY,temp);
-		totalTrans = temp;
+		_math.matrix4DMultiplyInPlace(totalTrans,angleY);
 	}
 
 	if (pAngleZ != 0.0f) {
 		IND_Matrix angleZ;
 		_math.matrix4DSetRotationAroundAxis(angleZ,pAngleZ,IND_Vector3(0.0f,0.0f,1.0f));
-		_math.matrix4DMultiply(totalTrans,angleZ,temp);
-		totalTrans = temp;
+		_math.matrix4DMultiplyInPlace(totalTrans,angleZ);
 	}
 
 	// Hotspot - Add hotspot to make all transforms to be affected by it
 	if (pAxisCalX != 0 || pAxisCalY != 0) {
 		IND_Matrix hotspot;
 		_math.matrix4DSetTranslation(hotspot,static_cast<float>(pAxisCalX),static_cast<float>(pAxisCalY),0.0f);
-		_math.matrix4DMultiply(totalTrans,hotspot,temp);
-		totalTrans = temp;
+		_math.matrix4DMultiplyInPlace(totalTrans,hotspot);
 	}
 
     // Mirroring (180º rotations) and translation
@@ -214,13 +190,11 @@ void OpenGLES2Render::setTransform2d(int pX,
                                          static_cast<float>(pWidth),
                                          0.0f,
                                          0.0f);
-			_math.matrix4DMultiply(totalTrans,mirrorX,temp);
-			totalTrans = temp;
+			_math.matrix4DMultiplyInPlace(totalTrans,mirrorX);
             
             //Rotate in y, to invert texture
 			_math.matrix4DSetRotationAroundAxis(mirrorX,180.0f,IND_Vector3(0.0f,1.0f,0.0f));
-			_math.matrix4DMultiply(totalTrans,mirrorX,temp);
-			totalTrans = temp;
+			_math.matrix4DMultiplyInPlace(totalTrans,mirrorX);
 		}
         
 		//A mirror is a rotation in desired axis (the actual mirror) and a repositioning because rotation
@@ -232,28 +206,18 @@ void OpenGLES2Render::setTransform2d(int pX,
                                          0.0f,
                                          static_cast<float>(pHeight),
                                          0.0f);
-			_math.matrix4DMultiply(totalTrans,mirrorY,temp);
-			totalTrans = temp;
+			_math.matrix4DMultiplyInPlace(totalTrans,mirrorY);
             
             //Rotate in x, to invert texture
 			_math.matrix4DSetRotationAroundAxis(mirrorY,180.0f,IND_Vector3(1.0f,0.0f,0.0f));
-			_math.matrix4DMultiply(totalTrans,mirrorY,temp);
-			totalTrans = temp;
+			_math.matrix4DMultiplyInPlace(totalTrans,mirrorY);
 		}
 	}
 	//Cache the change
 	_modelToWorld = totalTrans;
 
-	//Apply the changes to the GL matrix stack (model view)
-    //Camera transform
-    float camMatrixArray [16];
-    _cameraMatrix.arrayRepresentation(camMatrixArray);
-    glLoadMatrixf(camMatrixArray);
-    
-    //Actual object transform
-    float matrixArray [16];
-    totalTrans.arrayRepresentation(matrixArray);
-	glMultMatrixf(matrixArray);
+	//ModelView matrix will be camera * modelToWorld
+    _math.matrix4DMultiply(_cameraMatrix, _modelToWorld, _shaderModelViewMatrix);
 
 	// ----- Return World Matrix (in IndieLib format) ----
 	//Transformations have been applied where needed
@@ -264,14 +228,7 @@ void OpenGLES2Render::setTransform2d(int pX,
 
 void OpenGLES2Render::setTransform2d(IND_Matrix &pMatrix) {
 	// ----- Applies the transformation -----
-    float camMatrixArray [16];
-    _cameraMatrix.arrayRepresentation(camMatrixArray);
-    glLoadMatrixf(camMatrixArray);
-    
-    //Object transform
-    float matrixArray [16];
-    pMatrix.arrayRepresentation(matrixArray);
-	glMultMatrixf(matrixArray);
+    _math.matrix4DMultiply(_cameraMatrix, pMatrix, _shaderModelViewMatrix);
 
 	//Finally cache the change
 	_modelToWorld = pMatrix;
@@ -279,9 +236,7 @@ void OpenGLES2Render::setTransform2d(IND_Matrix &pMatrix) {
 
 void OpenGLES2Render::setIdentityTransform2d ()  {
 	// ----- Applies the transformation -----
-	float camMatrixArray [16];
-    _cameraMatrix.arrayRepresentation(camMatrixArray);
-    glLoadMatrixf(camMatrixArray);
+    _shaderModelViewMatrix = _cameraMatrix;
 
 	//Finally cache the change
 	_math.matrix4DSetIdentity(_modelToWorld);
@@ -357,8 +312,6 @@ void OpenGLES2Render::setRainbow2d(IND_Type pType,
 	// ----- Blending -----
 	switch (pType) {
         case IND_OPAQUE: {
-            // Alphablending and alpha test = OFF
-            glDisable(GL_ALPHA_TEST);
             glEnable(GL_BLEND);
             glBlendFunc(GL_ONE, GL_ZERO);
             
@@ -367,28 +320,29 @@ void OpenGLES2Render::setRainbow2d(IND_Type pType,
 				blendR = static_cast<float>(pR) / 255.0f;
 				blendG = static_cast<float>(pG) / 255.0f;
 				blendB = static_cast<float>(pB) / 255.0f;
-                glColor4f(blendR, blendG, blendB, blendA);
+                // FIXME: SHADERS
+//                glColor4f(blendR, blendG, blendB, blendA);
             }
             
             // Alpha
             if (pA != 255) {
-				glDisable(GL_ALPHA_TEST);
 				glEnable(GL_BLEND);
 				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 				blendA = static_cast<float>(pA) / 255.0f;
-                glColor4f(blendR, blendG, blendB, blendA);
+                // FIXME: SHADERS
+//                glColor4f(blendR, blendG, blendB, blendA);
             }
             
             // Fade to color
             if (pFadeA != 255) {
-                glDisable(GL_ALPHA_TEST);
 				glEnable(GL_BLEND);
 				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 				blendA = static_cast<float>(pFadeA) / 255.0f;
                 blendR = static_cast<float>(pFadeR) / 255.0f;
                 blendG = static_cast<float>(pFadeG) / 255.0f;
                 blendB = static_cast<float>(pFadeB) / 255.0f;
-                glColor4f(blendR, blendG, blendB, blendA);
+                // FIXME: SHADERS
+//                glColor4f(blendR, blendG, blendB, blendA);
             }
             
             if (pSo && pDs) {
@@ -399,26 +353,27 @@ void OpenGLES2Render::setRainbow2d(IND_Type pType,
             
         case IND_ALPHA: {
             // Alpha test = OFF
-            glDisable(GL_ALPHA_TEST);
             glEnable(GL_BLEND);
             glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-            glColor4f(blendR, blendG, blendB, blendA);
+            // FIXME: SHADERS
+//            glColor4f(blendR, blendG, blendB, blendA);
             
             // Tinting
             if (pR != 255 || pG != 255 || pB != 255) {
 				blendR = static_cast<float>(pR) / 255.0f;
 				blendG = static_cast<float>(pG) / 255.0f;
 				blendB = static_cast<float>(pB) / 255.0f;
-                glColor4f(blendR, blendG, blendB, blendA);
+                // FIXME: SHADERS
+//                glColor4f(blendR, blendG, blendB, blendA);
             }
             
             // Alpha
             if (pA != 255) {
-				glDisable(GL_ALPHA_TEST);
 				glEnable(GL_BLEND);
 				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 				blendA = static_cast<float>(pA) / 255.0f;
-                glColor4f(blendR, blendG, blendB, blendA);
+                // FIXME: SHADERS
+//                glColor4f(blendR, blendG, blendB, blendA);
             }
             
             // Fade to color
@@ -427,7 +382,8 @@ void OpenGLES2Render::setRainbow2d(IND_Type pType,
                 blendR = static_cast<float>(pFadeR) / 255.0f;
                 blendG = static_cast<float>(pFadeG) / 255.0f;
                 blendB = static_cast<float>(pFadeB) / 255.0f;
-                glColor4f(blendR, blendG, blendB, blendA);
+                // FIXME: SHADERS
+//                glColor4f(blendR, blendG, blendB, blendA);
             }
             
             if (!pSo || !pDs) {
@@ -449,14 +405,9 @@ void OpenGLES2Render::setDefaultGLState() {
     // ----- 2d GLState -----
 	//Many defaults are GL_FALSE, but for the sake of explicitly safe operations (and code clearness)
 	//I include glDisable explicits
-	glDisable(GL_LIGHTING); //We don't want lighting (may change in successive versions! for modern 2d..)
 	glDisable(GL_DEPTH_TEST); //No depth testing
-	glDisable(GL_NORMALIZE); //Don't normalize normal vectors after submitting them
-	glShadeModel(GL_SMOOTH); //Default shading mode (will change it where it is necessary)
     
 	// ----- Texturing settings  -----
-	// the texture wraps over at the edges (repeat)
-    glEnable(GL_TEXTURE_2D);
 	//Generally we work with byte-aligned textures.
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 	glPixelStorei(GL_PACK_ALIGNMENT, 1);
@@ -465,21 +416,11 @@ void OpenGLES2Render::setDefaultGLState() {
 }
 
 void OpenGLES2Render::setGLClientStateToPrimitive() {
-    glDisable(GL_TEXTURE_2D);
-    glEnableClientState(GL_VERTEX_ARRAY);
-    glEnableClientState(GL_COLOR_ARRAY);
-    
-    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-    glDisableClientState(GL_NORMAL_ARRAY);
+    // TODO: SHADERS
 }
 
 void OpenGLES2Render::setGLClientStateToTexturing() {
-    glEnable(GL_TEXTURE_2D);
-    glEnableClientState(GL_VERTEX_ARRAY);
-    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-    
-    glDisableClientState(GL_COLOR_ARRAY);
-    glDisableClientState(GL_NORMAL_ARRAY);
+    // TODO: SHADERS
 }
 
 void OpenGLES2Render::setGLBoundTextureParams() {

@@ -1,1 +1,0 @@
-http://www.khronos.org/opengles/1_X/

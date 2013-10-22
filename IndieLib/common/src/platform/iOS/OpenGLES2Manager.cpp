@@ -62,8 +62,8 @@ void OpenGLES2Manager::setOpenGLContextParams(IND_ColorFormat colorFormat, int n
 		SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 0 ) ;
 	}
     
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 1);
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_ES);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
 
 	_numBitsPerColor = numBitsPerColor;
 	_numDepthBits = numDepthBits;

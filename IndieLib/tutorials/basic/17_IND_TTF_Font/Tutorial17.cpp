@@ -17,8 +17,8 @@ Main
 Indielib_Main			
 {
     
-    //Sets the working path as the 'exe' directory. All resource paths are relative to this directory
-	if (!WorkingPathSetup::setWorkingPath(NULL)) {
+    //Sets the working path at the resources directory. Resources paths are relative to that directory
+	if (!WorkingPathSetup::setWorkingPath(WorkingPathSetup::resourcesDirectory())) {
 		std::cout<<"\nUnable to Set the working path !";
     }
         

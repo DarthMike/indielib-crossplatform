@@ -318,10 +318,6 @@ public:
 	                         IND_BlendingType pSo,
 	                         IND_BlendingType pDs);
 
-	inline void lookAt(float pEyeX, float pEyeY, float pEyeZ,
-	                   float pLookAtX, float pLookAtY, float pLookAtZ,
-	                   float pUpX, float pUpY, float pUpZ);
-
 	inline void perspectiveFov(float pFov, float pAspect, float pNearClippingPlane, float pFarClippingPlane);
 
 	inline void perspectiveOrtho(float pWidth, float pHeight, float pNearClippingPlane, float pFarClippingPlane);

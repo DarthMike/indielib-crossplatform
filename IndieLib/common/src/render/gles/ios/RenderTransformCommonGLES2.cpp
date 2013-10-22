@@ -46,47 +46,12 @@ void   OpenGLES2Render::clearViewPort(unsigned char pR,
 	glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void OpenGLES2Render::lookAt(float pEyeX, float pEyeY, float pEyeZ,
-                          float pLookAtX, float pLookAtY, float pLookAtZ,
-                          float pUpX, float pUpY, float pUpZ) {
-    
-                                 
-    //Build the view matrix from given vectors
-	IND_Matrix lookatmatrix; 
-	_math.matrix4DLookAtMatrixEyeLookUpLH(IND_Vector3(pEyeX,pEyeY,pEyeZ),
-	                           IND_Vector3(pLookAtX,pLookAtY,pLookAtZ),
-	                           IND_Vector3(pUpX,pUpY,pUpZ),
-	                           lookatmatrix);
-
-#ifdef _DEBUG
-	int mmode;
-	glGetIntegerv(GL_MATRIX_MODE,&mmode);
-	assert( mmode == GL_MODELVIEW);
-#endif
-    glLoadIdentity();
-    glMultMatrixf(reinterpret_cast<GLfloat *>(&lookatmatrix));
-}
-
 void OpenGLES2Render::perspectiveFov(float pFov, float pAspect, float pNearClippingPlane, float pFarClippingPlane) {
 	//TODO
 }
 
 void OpenGLES2Render::perspectiveOrtho(float pWidth, float pHeight, float pNearClippingPlane, float pFarClippingPlane) {
-	//Projection matrix modification
-	glMatrixMode(GL_PROJECTION);
-	IND_Matrix orthoMatrix;
-	_math.matrix4DOrthographicProjectionLH(-pWidth/2,pWidth/2,-pHeight/2,pHeight/2,pNearClippingPlane,pFarClippingPlane,orthoMatrix);
-	glLoadMatrixf(reinterpret_cast<GLfloat *>(&orthoMatrix));
-	
-	//float m[16];
-	//glGetFloatv(GL_PROJECTION_MATRIX, m);
-	//for (size_t i = 0; i < 4; ++i) {    
-	//	for (size_t j = 0; j < 4; ++j) {        
-	//		std::cout << m[i + j * 4] << " ";    
-	//	}    
-	//	std::cout << std::endl;
-	//}
-	glMatrixMode(GL_MODELVIEW);
+	_math.matrix4DOrthographicProjectionLH(-pWidth/2,pWidth/2,-pHeight/2,pHeight/2,pNearClippingPlane,pFarClippingPlane,_shaderProjectionMatrix);
 }
 
 /** @endcond */

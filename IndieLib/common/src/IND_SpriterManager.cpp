@@ -545,7 +545,7 @@ void  IND_SpriterManager::drawTransientObject(IND_SpriterEntity *ent, MainlineOb
     
     g_debug->header(surface->getTypeString(), DebugApi::LogHeaderError);
     
-    IND_Matrix *mMatrix = new IND_Matrix(); // TODO: do we need this?
+    IND_Matrix mMatrix = IND_Matrix(); // TODO: do we need this?
     
 	int objx = static_cast<int>(tObject->x);
     int objy = static_cast<int>(tObject->y);
@@ -578,7 +578,7 @@ void  IND_SpriterManager::drawTransientObject(IND_SpriterEntity *ent, MainlineOb
                             false,                          // Mirror y
                             0,                          // Width
                             0,                          // Height
-                            mMatrix);                   // Matrix in wich the transformation will be applied (optional)
+                            &mMatrix);                   // Matrix in wich the transformation will be applied (optional)
     
     
     
@@ -603,9 +603,6 @@ void  IND_SpriterManager::drawTransientObject(IND_SpriterEntity *ent, MainlineOb
     
     // Blit the IND_Surface
     _render->blitRegionSurface(surface, 0, 0, surface->getWidth(), surface->getHeight());
-    
-    
-    delete mMatrix; // TODO : optimize this...
 }
 
 

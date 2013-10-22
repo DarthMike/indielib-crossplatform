@@ -39,10 +39,8 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "IND_Animation.h"
 #include "IND_Camera2d.h"
 #include "platform/iOS/OpenGLES2Manager.h"
-
-//Constants
-#define MINIMUM_OPENGL_VERSION_STRING "GL_VERSION_1_5"  //The minimum GL version supported by this renderer  
 #include <OpenGLES/ES2/gl.h>
+
 /** @cond DOCUMENT_PRIVATEAPI */
 // --------------------------------------------------------------------------------
 //							  Initialization / Destruction
@@ -115,7 +113,7 @@ IND_Window* OpenGLES2Render::initRenderAndWindow(IND_WindowProperties& props) {
 
 	writeInfo();
 
-	g_debug->header("OpenGL Render Created", DebugApi::LogHeaderEnd);
+	g_debug->header("OpenGL ES 2 Render Created", DebugApi::LogHeaderEnd);
 	return _window;
 }
 
@@ -265,11 +263,6 @@ Check OpenGL extensions
 ==================
 */
 bool OpenGLES2Render::checkGLExtensions() {
-
-    //TODO : GLES 2
-
-	//TODO: Other extensions
-
 	return true;
 }
 
@@ -296,9 +289,18 @@ void OpenGLES2Render::getInfo() {
     strcpy(_info._vendor,(char*)renderer);
     const GLubyte* version = glGetString(GL_VERSION);
     strcpy (_info._version,(char*)version);
-    
+  
     glGetIntegerv(GL_MAX_TEXTURE_SIZE,&_info._maxTextureSize);
-	glGetIntegerv(GL_MAX_TEXTURE_UNITS, &_info._textureUnits);
+    glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &_info._maxVertexAttributes);
+    glGetIntegerv(GL_MAX_VERTEX_UNIFORM_VECTORS, &_info._maxVertexUniformComponents);
+    glGetIntegerv(GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS, &_info._maxVertexTextureUnits);
+    glGetIntegerv(GL_MAX_VARYING_VECTORS, &_info._maxVaryingVectors);
+    glGetIntegerv(GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS, &_info._maxCombinedTextureImageUnits);
+    glGetIntegerv(GL_MAX_TEXTURE_IMAGE_UNITS, &_info._maxCombinedTextureImageUnits);
+    glGetIntegerv(GL_MAX_FRAGMENT_UNIFORM_VECTORS, &_info._maxfragmentUniformVectors);
+    
+    const GLubyte* shaderVersion = glGetString(GL_SHADING_LANGUAGE_VERSION);
+    strcpy(_info._glslVersion, (char*)shaderVersion);
 }
 
 /*
@@ -338,29 +340,26 @@ void OpenGLES2Render::writeInfo() {
 	g_debug->dataInt(_info._maxTextureSize, 0);
 	g_debug->dataChar("x", 0);
 	g_debug->dataInt(_info._maxTextureSize, 1);
-	g_debug->header("Texture units:" , DebugApi::LogHeaderInfo);
-	g_debug->dataInt(_info._textureUnits, 0);
+    g_debug->header("Maximum number of vertex attributes:" , DebugApi::LogHeaderInfo);
+	g_debug->dataInt(_info._maxVertexAttributes, 1);
+    g_debug->header("Maximum number of vertex uniform vectors:" , DebugApi::LogHeaderInfo);
+	g_debug->dataInt(_info._maxVertexUniformComponents, 1);
+    g_debug->header("Maximum number of vertex texture units:" , DebugApi::LogHeaderInfo);
+	g_debug->dataInt(_info._maxVertexTextureUnits, 1);
+    g_debug->header("Maximum number of varying vectors:" , DebugApi::LogHeaderInfo);
+	g_debug->dataInt(_info._maxVaryingVectors, 1);
+    g_debug->header("Maximum number of combined texture image units:" , DebugApi::LogHeaderInfo);
+	g_debug->dataInt(_info._maxCombinedTextureImageUnits, 1);
+    g_debug->header("Maximum number of texture units:" , DebugApi::LogHeaderInfo);
+	g_debug->dataInt(_info._maxTextureImageUnits, 1);
+    g_debug->header("Maximum number of fragment uniform vectors:" , DebugApi::LogHeaderInfo);
+	g_debug->dataInt(_info._maxfragmentUniformVectors, 1);
 
 
-	// ----- Vertex Shader version  -----
-
-	/*g_debug->Header ("Vertex Shader:" , DebugApi::LogHeaderInfo);
-	g_debug->DataInt (D3DSHADER_VERSION_MAJOR (_info._vertexShaderVersion), 0);
-	g_debug->DataChar (".", 0);
-	g_debug->DataInt (D3DSHADER_VERSION_MINOR (_info._vertexShaderVersion), 0);
-
-	if (_info._softwareVertexProcessing)
-	    g_debug->DataChar ("(Software)", 1);
-	else
-	    g_debug->DataChar ("", 1);*/
-
-	// ----- Pixel Shader version -----
-
-	/*g_debug->Header ("Pixel Shader:" , DebugApi::LogHeaderInfo);
-	g_debug->DataInt (D3DSHADER_VERSION_MAJOR (_info._pixelShaderVersion), 0);
-	g_debug->DataChar (".", 0);
-	g_debug->DataInt (D3DSHADER_VERSION_MINOR (_info._pixelShaderVersion), 1);*/
-
+	// ----- Shading language version  -----
+	g_debug->header ("Shading language version:" , DebugApi::LogHeaderInfo);
+	g_debug->dataChar(_info._glslVersion, 1);
+    
 	g_debug->header("Hardware Ok" , DebugApi::LogHeaderEnd);
 }
 

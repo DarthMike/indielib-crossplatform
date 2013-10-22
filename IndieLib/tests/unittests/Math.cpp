@@ -38,16 +38,22 @@
     // ----- Matrix4/Vector3 utilities -----
     inline void TransformVector3DbyMatrix4D(IND_Vector3& vector, IND_Matrix& mat);
 */
-#if defined (INDIERENDER_OPENGL) || defined (INDIERENDER_GLES_IOS)
 
-TEST(MatrixMultiplyIdentity) {
-	CIndieLib *iLib = CIndieLib::instance();
+struct INDMathTests
+{
+    INDMathTests() { math = new IND_Math(); }
+    ~INDMathTests() { DISPOSE(math); }
+    
+    IND_Math* math;
+};
+
+TEST_FIXTURE(INDMathTests,MatrixMultiplyIdentity) {
 	IND_Matrix m1;
 	IND_Matrix m2;
 	IND_Matrix result;
 
 	//Construct first matrix
-	iLib->_math->matrix4DSetIdentity(m1);
+	math->matrix4DSetIdentity(m1);
 	//Construct second matrix
 	m2._11 = 11.0f;
 	m2._12 = 12.0f;
@@ -67,7 +73,7 @@ TEST(MatrixMultiplyIdentity) {
 	m2._44 = 44.0f;
 
 	//Perform matrix multiplication
-	iLib->_math->matrix4DMultiply(m1, m2, result);
+	math->matrix4DMultiply(m1, m2, result);
 
 	//Checkings
 	CHECK_CLOSE(m2._11, result._11, 0.01f);
@@ -91,8 +97,7 @@ TEST(MatrixMultiplyIdentity) {
 	CHECK_CLOSE(m2._44, result._44, 0.01f);
 }
 
-TEST(MatrixMultiply) {
-	CIndieLib *iLib = CIndieLib::instance();
+TEST_FIXTURE(INDMathTests,MatrixMultiply) {
 	IND_Matrix m1;
 	IND_Matrix m2;
 	IND_Matrix result;
@@ -133,7 +138,7 @@ TEST(MatrixMultiply) {
 	m2._44 = 16.0f;
 
 	//Perform matrix multiplication
-	iLib->_math->matrix4DMultiply(m1, m2, result);
+	math->matrix4DMultiply(m1, m2, result);
 
 	//Checkings
 	CHECK_CLOSE(90.0f, result._11, 0.01f);
@@ -157,72 +162,127 @@ TEST(MatrixMultiply) {
 	CHECK_CLOSE(600.0f, result._44, 0.01f);
 }
 
-TEST(TranslateVector) {
-	CIndieLib *iLib = CIndieLib::instance();
+TEST_FIXTURE(INDMathTests,MatrixMultiplyInPlace) {
+	IND_Matrix m1;
+	IND_Matrix m2;
+    
+	//Construct first matrix
+	m1._11 = 1.0f;
+	m1._12 = 2.0f;
+	m1._13 = 3.0f;
+	m1._14 = 4.0f;
+	m1._21 = 5.0f;
+	m1._22 = 6.0f;
+	m1._23 = 7.0f;
+	m1._24 = 8.0f;
+	m1._31 = 9.0f;
+	m1._32 = 10.0f;
+	m1._33 = 11.0f;
+	m1._34 = 12.0f;
+	m1._41 = 13.0f;
+	m1._42 = 14.0f;
+	m1._43 = 15.0f;
+	m1._44 = 16.0f;
+	//Construct second matrix
+	m2._11 = 1.0f;
+	m2._12 = 2.0f;
+	m2._13 = 3.0f;
+	m2._14 = 4.0f;
+	m2._21 = 5.0f;
+	m2._22 = 6.0f;
+	m2._23 = 7.0f;
+	m2._24 = 8.0f;
+	m2._31 = 9.0f;
+	m2._32 = 10.0f;
+	m2._33 = 11.0f;
+	m2._34 = 12.0f;
+	m2._41 = 13.0f;
+	m2._42 = 14.0f;
+	m2._43 = 15.0f;
+	m2._44 = 16.0f;
+    
+	//Perform matrix multiplication
+	math->matrix4DMultiplyInPlace(m1, m2);
+    
+	//Checkings
+	CHECK_CLOSE(90.0f, m1._11, 0.01f);
+	CHECK_CLOSE(100.0f, m1._12, 0.01f);
+	CHECK_CLOSE(110.0f, m1._13, 0.01f);
+	CHECK_CLOSE(120.0f, m1._14, 0.01f);
+    
+	CHECK_CLOSE(202.0f, m1._21, 0.01f);
+	CHECK_CLOSE(228.0f, m1._22, 0.01f);
+	CHECK_CLOSE(254.0f, m1._23, 0.01f);
+	CHECK_CLOSE(280.0f, m1._24, 0.01f);
+    
+	CHECK_CLOSE(314.0f, m1._31, 0.01f);
+	CHECK_CLOSE(356.0f, m1._32, 0.01f);
+	CHECK_CLOSE(398.0f, m1._33, 0.01f);
+	CHECK_CLOSE(440.0f, m1._34, 0.01f);
+    
+	CHECK_CLOSE(426.0f, m1._41, 0.01f);
+	CHECK_CLOSE(484.0f, m1._42, 0.01f);
+	CHECK_CLOSE(542.0f, m1._43, 0.01f);
+	CHECK_CLOSE(600.0f, m1._44, 0.01f);
+}
 
+TEST_FIXTURE(INDMathTests,TranslateVector) {
 	//Translation matrix
 	IND_Matrix mtrans;
-	iLib->_math->matrix4DSetTranslation(mtrans, 10.0f, 10.0f, 10.0f);
+	math->matrix4DSetTranslation(mtrans, 10.0f, 10.0f, 10.0f);
 	//Vector to translate
 	IND_Vector3 vec(1.0f, 1.0f, 1.0f);
 	//Translation
-	iLib->_math->transformVector3DbyMatrix4D(vec, mtrans);
+	math->transformVector3DbyMatrix4D(vec, mtrans);
 
 	CHECK_CLOSE(11.0f, vec._x, 0.01f);
 	CHECK_CLOSE(11.0f, vec._y, 0.01f);
 	CHECK_CLOSE(11.0f, vec._z, 0.01f);
 }
 
-TEST(TranslateVectorX) {
-	CIndieLib *iLib = CIndieLib::instance();
-
+TEST_FIXTURE(INDMathTests,TranslateVectorX) {
 	//Translation matrix
 	IND_Matrix mtrans;
-	iLib->_math->matrix4DSetTranslation(mtrans, 10.0f, 0.0f, 0.0f);
+	math->matrix4DSetTranslation(mtrans, 10.0f, 0.0f, 0.0f);
 	//Vector to translate
 	IND_Vector3 vec(1.0f, 1.0f, 1.0f);
 	//Translation
-	iLib->_math->transformVector3DbyMatrix4D(vec, mtrans);
+	math->transformVector3DbyMatrix4D(vec, mtrans);
 
 	CHECK_CLOSE(11.0f, vec._x, 0.01f);
 	CHECK_CLOSE(1.0f, vec._y, 0.01f);
 	CHECK_CLOSE(1.0f, vec._z, 0.01f);
 }
 
-TEST(TranslateVectorY) {
-	CIndieLib *iLib = CIndieLib::instance();
-
+TEST_FIXTURE(INDMathTests,TranslateVectorY) {
 	//Translation matrix
 	IND_Matrix mtrans;
-	iLib->_math->matrix4DSetTranslation(mtrans, 0.0f, 10.0f, 0.0f);
+	math->matrix4DSetTranslation(mtrans, 0.0f, 10.0f, 0.0f);
 	//Vector to translate
 	IND_Vector3 vec(1.0f, 1.0f, 1.0f);
 	//Translation
-	iLib->_math->transformVector3DbyMatrix4D(vec, mtrans);
+	math->transformVector3DbyMatrix4D(vec, mtrans);
 
 	CHECK_CLOSE(1.0f, vec._x, 0.01f);
 	CHECK_CLOSE(11.0f, vec._y, 0.01f);
 	CHECK_CLOSE(1.0f, vec._z, 0.01f);
 }
 
-TEST(TranslateVectorZ) {
-	CIndieLib *iLib = CIndieLib::instance();
-
+TEST_FIXTURE(INDMathTests,TranslateVectorZ) {
 	//Translation matrix
 	IND_Matrix mtrans;
-	iLib->_math->matrix4DSetTranslation(mtrans, 0.0f, 0.0f, 10.0f);
+	math->matrix4DSetTranslation(mtrans, 0.0f, 0.0f, 10.0f);
 	//Vector to translate
 	IND_Vector3 vec(1.0f, 1.0f, 1.0f);
 	//Translation
-	iLib->_math->transformVector3DbyMatrix4D(vec, mtrans);
+	math->transformVector3DbyMatrix4D(vec, mtrans);
 
 	CHECK_CLOSE(1.0f, vec._x, 0.01f);
 	CHECK_CLOSE(1.0f, vec._y, 0.01f);
 	CHECK_CLOSE(11.0f, vec._z, 0.01f);
 }
 
-TEST(RotateVector) {
-	CIndieLib *iLib = CIndieLib::instance();
+TEST_FIXTURE(INDMathTests,RotateVector) {
 	//Rotation matrix
 	IND_Matrix mrot;
 	//Vector to rotate
@@ -231,10 +291,10 @@ TEST(RotateVector) {
     //------------Rotation around Z axis-------------------------------
 	//90 degress around z axis (x axis vector)
 	vec = IND_Vector3(1.0f, 0.0f, 0.0f);
-    iLib->_math->matrix4DSetRotationAroundAxis(mrot, 90.f, IND_Vector3(0.0f, 0.0f, 1.0f));
+    math->matrix4DSetRotationAroundAxis(mrot, 90.f, IND_Vector3(0.0f, 0.0f, 1.0f));
 	
     //Rotation
-	iLib->_math->transformVector3DbyMatrix4D(vec, mrot);
+	math->transformVector3DbyMatrix4D(vec, mrot);
 
 	CHECK_CLOSE(0.0f, vec._x, 0.01f);
 	CHECK_CLOSE(1.0f, vec._y, 0.01f);
@@ -242,10 +302,10 @@ TEST(RotateVector) {
 
     //45 degress around z axis (x axis vector)
 	vec = IND_Vector3(1.0f, 0.0f, 0.0f);
-	iLib->_math->matrix4DSetRotationAroundAxis(mrot, 45.0f, IND_Vector3(0.0f, 0.0f, 1.0f));
+	math->matrix4DSetRotationAroundAxis(mrot, 45.0f, IND_Vector3(0.0f, 0.0f, 1.0f));
 
 	//Rotation
-	iLib->_math->transformVector3DbyMatrix4D(vec, mrot);
+	math->transformVector3DbyMatrix4D(vec, mrot);
 
 	CHECK_CLOSE(0.7f, vec._x, 0.01f);
 	CHECK_CLOSE(0.7f, vec._y, 0.01f);
@@ -253,10 +313,10 @@ TEST(RotateVector) {
 
 	//90 degress around z axis (y axis vector)
 	vec = IND_Vector3(0.0f, 1.0f, 0.0f);
-	iLib->_math->matrix4DSetRotationAroundAxis(mrot, 90.f, IND_Vector3(0.0f, 0.0f, 1.0f));
+	math->matrix4DSetRotationAroundAxis(mrot, 90.f, IND_Vector3(0.0f, 0.0f, 1.0f));
 
 	//Rotation
-	iLib->_math->transformVector3DbyMatrix4D(vec, mrot);
+	math->transformVector3DbyMatrix4D(vec, mrot);
 
 	CHECK_CLOSE(-1.0f, vec._x, 0.01f);
 	CHECK_CLOSE(0.0f, vec._y, 0.01f);
@@ -264,10 +324,10 @@ TEST(RotateVector) {
 
     //45 degress around z axis (y axis vector)
 	vec = IND_Vector3(0.0f, 1.0f, 0.0f);
-	iLib->_math->matrix4DSetRotationAroundAxis(mrot, 45.0f, IND_Vector3(0.0f, 0.0f, 1.0f));
+	math->matrix4DSetRotationAroundAxis(mrot, 45.0f, IND_Vector3(0.0f, 0.0f, 1.0f));
 
 	//Rotation
-	iLib->_math->transformVector3DbyMatrix4D(vec, mrot);
+	math->transformVector3DbyMatrix4D(vec, mrot);
 
 	CHECK_CLOSE(-0.7f, vec._x, 0.01f);
 	CHECK_CLOSE(0.7f, vec._y, 0.01f);
@@ -275,10 +335,10 @@ TEST(RotateVector) {
 
 	//90 degress around z axis (z axis vector)
 	vec = IND_Vector3(0.0f, 0.0f, 1.0f);
-	iLib->_math->matrix4DSetRotationAroundAxis(mrot, 90.f, IND_Vector3(0.0f, 0.0f, 1.0f));
+	math->matrix4DSetRotationAroundAxis(mrot, 90.f, IND_Vector3(0.0f, 0.0f, 1.0f));
 
 	//Rotation
-	iLib->_math->transformVector3DbyMatrix4D(vec, mrot);
+	math->transformVector3DbyMatrix4D(vec, mrot);
 
 	CHECK_CLOSE(0.0f, vec._x, 0.01f);
 	CHECK_CLOSE(0.0f, vec._y, 0.01f);
@@ -286,10 +346,10 @@ TEST(RotateVector) {
 
     //45 degress around z axis (z axis vector)
 	vec = IND_Vector3(0.0f, 0.0f, 1.0f);
-	iLib->_math->matrix4DSetRotationAroundAxis(mrot, 45.0f, IND_Vector3(0.0f, 0.0f, 1.0f));
+	math->matrix4DSetRotationAroundAxis(mrot, 45.0f, IND_Vector3(0.0f, 0.0f, 1.0f));
 
 	//Rotation
-	iLib->_math->transformVector3DbyMatrix4D(vec, mrot);
+	math->transformVector3DbyMatrix4D(vec, mrot);
 
 	CHECK_CLOSE(0.0f, vec._x, 0.01f);
 	CHECK_CLOSE(0.0f, vec._y, 0.01f);
@@ -298,10 +358,10 @@ TEST(RotateVector) {
     //------------Rotation around Y axis-------------------------------
 	//90 degress around y axis (x axis vector)
 	vec = IND_Vector3(1.0f, 0.0f, 0.0f);
-	iLib->_math->matrix4DSetRotationAroundAxis(mrot, 90.f, IND_Vector3(0.0f, 1.0f, 0.0f));
+	math->matrix4DSetRotationAroundAxis(mrot, 90.f, IND_Vector3(0.0f, 1.0f, 0.0f));
 
 	//Rotation
-	iLib->_math->transformVector3DbyMatrix4D(vec, mrot);
+	math->transformVector3DbyMatrix4D(vec, mrot);
 
 	CHECK_CLOSE(0.0f, vec._x, 0.01f);
 	CHECK_CLOSE(0.0f, vec._y, 0.01f);
@@ -309,10 +369,10 @@ TEST(RotateVector) {
 
     //45 degress around y axis (x axis vector)
 	vec = IND_Vector3(1.0f, 0.0f, 0.0f);
-	iLib->_math->matrix4DSetRotationAroundAxis(mrot, 45.0f, IND_Vector3(0.0f, 1.0f, 0.0f));
+	math->matrix4DSetRotationAroundAxis(mrot, 45.0f, IND_Vector3(0.0f, 1.0f, 0.0f));
 
 	//Rotation
-	iLib->_math->transformVector3DbyMatrix4D(vec, mrot);
+	math->transformVector3DbyMatrix4D(vec, mrot);
 
 	CHECK_CLOSE(0.7f, vec._x, 0.01f);
 	CHECK_CLOSE(0.0f, vec._y, 0.01f);
@@ -320,10 +380,10 @@ TEST(RotateVector) {
 
 	//90 degress around y axis (y axis vector)
 	vec = IND_Vector3(0.0f, 1.0f, 0.0f);
-	iLib->_math->matrix4DSetRotationAroundAxis(mrot, 90.f, IND_Vector3(0.0f, 1.0f, 0.0f));
+	math->matrix4DSetRotationAroundAxis(mrot, 90.f, IND_Vector3(0.0f, 1.0f, 0.0f));
 
 	//Rotation
-	iLib->_math->transformVector3DbyMatrix4D(vec, mrot);
+	math->transformVector3DbyMatrix4D(vec, mrot);
 
 	CHECK_CLOSE(0.0f, vec._x, 0.01f);
 	CHECK_CLOSE(1.0f, vec._y, 0.01f);
@@ -331,10 +391,10 @@ TEST(RotateVector) {
 
     //45 degress around y axis (y axis vector)
 	vec = IND_Vector3(0.0f, 1.0f, 0.0f);
-	iLib->_math->matrix4DSetRotationAroundAxis(mrot, 45.0f, IND_Vector3(0.0f, 1.0f, 0.0f));
+	math->matrix4DSetRotationAroundAxis(mrot, 45.0f, IND_Vector3(0.0f, 1.0f, 0.0f));
 
 	//Rotation
-	iLib->_math->transformVector3DbyMatrix4D(vec, mrot);
+	math->transformVector3DbyMatrix4D(vec, mrot);
 
 	CHECK_CLOSE(0.0f, vec._x, 0.01f);
 	CHECK_CLOSE(1.0f, vec._y, 0.01f);
@@ -343,10 +403,10 @@ TEST(RotateVector) {
 
     //90 degress around y axis (z axis vector)
 	vec = IND_Vector3(0.0f, 0.0f, 1.0f);
-	iLib->_math->matrix4DSetRotationAroundAxis(mrot, 90.f, IND_Vector3(0.0f, 1.0f, 0.0f));
+	math->matrix4DSetRotationAroundAxis(mrot, 90.f, IND_Vector3(0.0f, 1.0f, 0.0f));
 
 	//Rotation
-	iLib->_math->transformVector3DbyMatrix4D(vec, mrot);
+	math->transformVector3DbyMatrix4D(vec, mrot);
 
 	CHECK_CLOSE(1.0f, vec._x, 0.01f);
 	CHECK_CLOSE(0.0f, vec._y, 0.01f);
@@ -354,10 +414,10 @@ TEST(RotateVector) {
 
     //45 degress around y axis (z axis vector)
 	vec = IND_Vector3(0.0f, 0.0f, 1.0f);
-	iLib->_math->matrix4DSetRotationAroundAxis(mrot, 45.0f, IND_Vector3(0.0f, 1.0f, 0.0f));
+	math->matrix4DSetRotationAroundAxis(mrot, 45.0f, IND_Vector3(0.0f, 1.0f, 0.0f));
 
 	//Rotation
-	iLib->_math->transformVector3DbyMatrix4D(vec, mrot);
+	math->transformVector3DbyMatrix4D(vec, mrot);
 
 	CHECK_CLOSE(0.7f, vec._x, 0.01f);
 	CHECK_CLOSE(0.0f, vec._y, 0.01f);
@@ -366,10 +426,10 @@ TEST(RotateVector) {
     //------------Rotation around X axis-------------------------------
     //90 degress around x axis (x axis vector)
 	vec = IND_Vector3(1.0f, 0.0f, 0.0f);
-	iLib->_math->matrix4DSetRotationAroundAxis(mrot, 90.f, IND_Vector3(1.0f, 0.0f, 0.0f));
+	math->matrix4DSetRotationAroundAxis(mrot, 90.f, IND_Vector3(1.0f, 0.0f, 0.0f));
 
 	//Rotation
-	iLib->_math->transformVector3DbyMatrix4D(vec, mrot);
+	math->transformVector3DbyMatrix4D(vec, mrot);
 
 	CHECK_CLOSE(1.0f, vec._x, 0.01f);
 	CHECK_CLOSE(0.0f, vec._y, 0.01f);
@@ -377,10 +437,10 @@ TEST(RotateVector) {
 
     //45 degress around x axis (x axis vector)
 	vec = IND_Vector3(1.0f, 0.0f, 0.0f);
-	iLib->_math->matrix4DSetRotationAroundAxis(mrot, 45.0f, IND_Vector3(1.0f, 0.0f, 0.0f));
+	math->matrix4DSetRotationAroundAxis(mrot, 45.0f, IND_Vector3(1.0f, 0.0f, 0.0f));
 
 	//Rotation
-	iLib->_math->transformVector3DbyMatrix4D(vec, mrot);
+	math->transformVector3DbyMatrix4D(vec, mrot);
 
 	CHECK_CLOSE(1.0f, vec._x, 0.01f);
 	CHECK_CLOSE(0.0f, vec._y, 0.01f);
@@ -388,10 +448,10 @@ TEST(RotateVector) {
 
 	//90 degress around x axis (y axis vector)
 	vec = IND_Vector3(0.0f, 1.0f, 0.0f);
-	iLib->_math->matrix4DSetRotationAroundAxis(mrot, 90.f, IND_Vector3(1.0f, 0.0f, 0.0f));
+	math->matrix4DSetRotationAroundAxis(mrot, 90.f, IND_Vector3(1.0f, 0.0f, 0.0f));
 
 	//Rotation
-	iLib->_math->transformVector3DbyMatrix4D(vec, mrot);
+	math->transformVector3DbyMatrix4D(vec, mrot);
 
 	CHECK_CLOSE(0.0f, vec._x, 0.01f);
 	CHECK_CLOSE(0.0f, vec._y, 0.01f);
@@ -399,10 +459,10 @@ TEST(RotateVector) {
 
     //45 degress around x axis (y axis vector)
 	vec = IND_Vector3(0.0f, 1.0f, 0.0f);
-	iLib->_math->matrix4DSetRotationAroundAxis(mrot, 45.0f, IND_Vector3(1.0f, 0.0f, 0.0f));
+	math->matrix4DSetRotationAroundAxis(mrot, 45.0f, IND_Vector3(1.0f, 0.0f, 0.0f));
 
 	//Rotation
-	iLib->_math->transformVector3DbyMatrix4D(vec, mrot);
+	math->transformVector3DbyMatrix4D(vec, mrot);
 
 	CHECK_CLOSE(0.0f, vec._x, 0.01f);
 	CHECK_CLOSE(0.7f, vec._y, 0.01f);
@@ -410,10 +470,10 @@ TEST(RotateVector) {
 	
     //90 degress around x axis (z axis vector)
 	vec = IND_Vector3(0.0f, 0.0f, 1.0f);
-	iLib->_math->matrix4DSetRotationAroundAxis(mrot, 90.f, IND_Vector3(1.0f, 0.0f, 0.0f));
+	math->matrix4DSetRotationAroundAxis(mrot, 90.f, IND_Vector3(1.0f, 0.0f, 0.0f));
 
 	//Rotation
-	iLib->_math->transformVector3DbyMatrix4D(vec, mrot);
+	math->transformVector3DbyMatrix4D(vec, mrot);
 
 	CHECK_CLOSE(0.0f, vec._x, 0.01f);
 	CHECK_CLOSE(-1.0f, vec._y, 0.01f);
@@ -421,34 +481,31 @@ TEST(RotateVector) {
 
     //45 degress around x axis (z axis vector)
 	vec = IND_Vector3(0.0f, 0.0f, 1.0f);
-	iLib->_math->matrix4DSetRotationAroundAxis(mrot, 45.0f, IND_Vector3(1.0f, 0.0f, 0.0f));
+	math->matrix4DSetRotationAroundAxis(mrot, 45.0f, IND_Vector3(1.0f, 0.0f, 0.0f));
 
 	//Rotation
-	iLib->_math->transformVector3DbyMatrix4D(vec, mrot);
+	math->transformVector3DbyMatrix4D(vec, mrot);
 
 	CHECK_CLOSE(0.0f, vec._x, 0.01f);
 	CHECK_CLOSE(-0.7f, vec._y, 0.01f);
 	CHECK_CLOSE(0.7f, vec._z, 0.01f);
 }
 
-TEST(ScaleVector) {
-	CIndieLib *iLib = CIndieLib::instance();
+TEST_FIXTURE(INDMathTests,ScaleVector) {
 	//Scale matrix
 	IND_Matrix mscale;
 	//Vector to scale
 	IND_Vector3 vec(1.0f, 1.0f, 1.0f);
 
-	iLib->_math->matrix4DSetScale(mscale, 10.f, 11.0f, 12.0f);
-	iLib->_math->transformVector3DbyMatrix4D(vec, mscale);
+	math->matrix4DSetScale(mscale, 10.f, 11.0f, 12.0f);
+	math->transformVector3DbyMatrix4D(vec, mscale);
 
 	CHECK_CLOSE(10.0f, vec._x, 0.01f);
 	CHECK_CLOSE(11.0f, vec._y, 0.01f);
 	CHECK_CLOSE(12.0f, vec._z, 0.01f);
 }
 
-TEST(LookAtMatrixLH) {
-	CIndieLib *iLib = CIndieLib::instance();
-
+TEST_FIXTURE(INDMathTests,LookAtMatrixLH) {
 	//Result
 	IND_Matrix result;
 	IND_Vector3 up(0.0f, 1.0f, 0.0f);
@@ -456,7 +513,7 @@ TEST(LookAtMatrixLH) {
 	IND_Vector3 look(0.0f, 0.0f, -1.0f);
 	IND_Vector3 pos(1.0f, 2.0f, 3.0f);
 
-	iLib->_math->matrix4DLookAtMatrixLH(right, up, look, pos, result);
+	math->matrix4DLookAtMatrixLH(right, up, look, pos, result);
 
 	CHECK_CLOSE(right._x, result._11, 0.01f);
 	CHECK_CLOSE(right._y, result._12, 0.01f);
@@ -479,16 +536,14 @@ TEST(LookAtMatrixLH) {
 	CHECK_CLOSE(1.0f, result._44, 0.01f);
 }
 
-TEST(LookAtMatrixEyeLookUpLH) {
-	CIndieLib *iLib = CIndieLib::instance();
-
+TEST_FIXTURE(INDMathTests,LookAtMatrixEyeLookUpLH) {
 	//Result
 	IND_Matrix result;
 	IND_Vector3 eye(1.0f, 2.0f, 3.0f);
 	IND_Vector3 look(1.0f, 2.0f, 2.0f);  //Just on z coord lower
 	IND_Vector3 up(0.0f, -1.0f, 0.0f);
 
-    iLib->_math->matrix4DLookAtMatrixEyeLookUpLH(eye,look,up,result);
+    math->matrix4DLookAtMatrixEyeLookUpLH(eye,look,up,result);
 
 	IND_Vector3 x(1.0f, 0.0f, 0.0f);
     IND_Vector3 y(0.0f, -1.0f, 0.0f);
@@ -515,5 +570,23 @@ TEST(LookAtMatrixEyeLookUpLH) {
 	CHECK_CLOSE(1.0f, result._44, 0.01f);
 }
 
-
-#endif
+TEST_FIXTURE(INDMathTests,idendityMatrix) {
+    IND_Matrix matrix = IND_Matrix::identity();
+    
+    CHECK_CLOSE(1.f, matrix._11, 0.01f);
+    CHECK_CLOSE(0.f, matrix._12, 0.01f);
+    CHECK_CLOSE(0.f, matrix._13, 0.01f);
+    CHECK_CLOSE(0.f, matrix._14, 0.01f);
+    CHECK_CLOSE(0.f, matrix._21, 0.01f);
+    CHECK_CLOSE(1.f, matrix._22, 0.01f);
+    CHECK_CLOSE(0.f, matrix._23, 0.01f);
+    CHECK_CLOSE(0.f, matrix._24, 0.01f);
+    CHECK_CLOSE(0.f, matrix._31, 0.01f);
+    CHECK_CLOSE(0.f, matrix._32, 0.01f);
+    CHECK_CLOSE(1.f, matrix._33, 0.01f);
+    CHECK_CLOSE(0.f, matrix._34, 0.01f);
+    CHECK_CLOSE(0.f, matrix._41, 0.01f);
+    CHECK_CLOSE(0.f, matrix._42, 0.01f);
+    CHECK_CLOSE(0.f, matrix._43, 0.01f);
+    CHECK_CLOSE(1.f, matrix._44, 0.01f);
+}

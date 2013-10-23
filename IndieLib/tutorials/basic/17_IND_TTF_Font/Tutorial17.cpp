@@ -33,7 +33,7 @@ Indielib_Main
 	IND_Surface *mMouseSurface = IND_Surface::newSurface();
 	IND_Entity2d *mMouseEntity = IND_Entity2d::newEntity2d();
 	// Load the mouse pointer, it is loaded to and IndieLib surface
-	if (!mI->_surfaceManager->add(mMouseSurface, "../../resources/cursor.png", IND_ALPHA, IND_32))
+	if (!mI->_surfaceManager->add(mMouseSurface, "cursor.png", IND_ALPHA, IND_32))
 		return 0;
 	
 	// Add the Mouse entity to the IndieLib Entity Manager
@@ -48,17 +48,17 @@ Indielib_Main
 		
 	// Loading Background
 	IND_Surface *mSurfaceBack = IND_Surface::newSurface();
-	if (!mI->_surfaceManager->add(mSurfaceBack, "../../resources/blue_background.jpg", IND_OPAQUE, IND_32)) return 0;
+	if (!mI->_surfaceManager->add(mSurfaceBack, "blue_background.jpg", IND_OPAQUE, IND_32)) return 0;
 
 	// ----- Animations loading -----
 
 	// Characters animations, we apply a color key of (0, 48, 152)
 	IND_Animation *mAnimationCharacter1 = IND_Animation::newAnimation();
-	if (!mI->_animationManager->addToSurface(mAnimationCharacter1, "../../resources/animations/character1.xml", IND_ALPHA, IND_32, 0, 48, 152)) return 0;
+	if (!mI->_animationManager->addToSurface(mAnimationCharacter1, "animations/character1.xml", IND_ALPHA, IND_32, 0, 48, 152)) return 0;
 
 	// Dust animation, we apply a color key of (255, 0, 255)
 	IND_Animation *mAnimationDust = IND_Animation::newAnimation();
-	if (!mI->_animationManager->addToSurface(mAnimationDust, "../../resources/animations/dust.xml", IND_ALPHA, IND_16, 255, 0, 255)) return 0;
+	if (!mI->_animationManager->addToSurface(mAnimationDust, "animations/dust.xml", IND_ALPHA, IND_16, 255, 0, 255)) return 0;
 
 	// ----- Set the surface and animations into 2d entities -----
 

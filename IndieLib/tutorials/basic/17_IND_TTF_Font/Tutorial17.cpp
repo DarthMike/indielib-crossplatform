@@ -86,31 +86,40 @@ Indielib_Main
 		
 	// Dust explosion
 	mDust->setPosition(360, 250, 0);
-		
+
+
+    mI->_TTFFontManager->addFont("Tangerine", "font/ttf/Tangerine/Tangerine_Regular.ttf", 16);
+    //mI->_TTFFontManager->SetFontColor("Tangerine", RGBCOLOR(255,255,255));
+    mI->_TTFFontManager->CacheFontString("Tangerine", L"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
+     
+    mI->_TTFFontManager->drawText(1, "Tangerine", L"Blue Font 50% Transparency",200, 260, RGBCOLOR(0,0,255),false, false,0, 128);
+    
+        
+        
 	//////////////////////////////////////////////////////////////////////////////////////////////
 	//TTF font testing
 	//simsun is a Chinese ttf font
-	mI->_TTFFontManager->addFont("SimSun", "c:\\windows\\fonts\\simsun.ttc", 19, true);
-//	mI->_TTFFontManager->SetFontColor("SimSun", RGBCOLOR(255,255,255));
+//	mI->_TTFFontManager->addFont("SimSun", "c:\\windows\\fonts\\simsun.ttc", 19, true);
+	//mI->_TTFFontManager->SetFontColor("SimSun", RGBCOLOR(255,255,255));
 
-	mI->_TTFFontManager->addFont("Arial", "C:\\WINDOWS\\Fonts\\arial.TTF", 16);
-//	mI->_TTFFontManager->SetFontColor("Arial", RGBCOLOR(255,255,255));
-	mI->_TTFFontManager->CacheFontString("Arial", L"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
+//	mI->_TTFFontManager->addFont("Arial", "C:\\WINDOWS\\Fonts\\arial.TTF", 16);
+	//mI->_TTFFontManager->SetFontColor("Arial", RGBCOLOR(255,255,255));
+//	mI->_TTFFontManager->CacheFontString("Arial", L"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
 
-	mI->_TTFFontManager->addFont("ArialBold", "C:\\WINDOWS\\Fonts\\arial.TTF", 16, true);
-//	mI->_TTFFontManager->SetFontColor("ArialBold", RGBCOLOR(255,255,255));
-	mI->_TTFFontManager->CacheFontString("ArialBold", L"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
+//	mI->_TTFFontManager->addFont("ArialBold", "C:\\WINDOWS\\Fonts\\arial.TTF", 16, true);
+	//mI->_TTFFontManager->SetFontColor("ArialBold", RGBCOLOR(255,255,255));
+//	mI->_TTFFontManager->CacheFontString("ArialBold", L"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
 
-	mI->_TTFFontManager->addFont("ArialItalic", "C:\\WINDOWS\\Fonts\\arial.TTF", 16, false, true);
-//	mI->_TTFFontManager->SetFontColor("ArialItalic", RGBCOLOR(255,255,255));
-	mI->_TTFFontManager->CacheFontString("ArialItalic", L"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
+//	mI->_TTFFontManager->addFont("ArialItalic", "C:\\WINDOWS\\Fonts\\arial.TTF", 16, false, true);
+	//mI->_TTFFontManager->SetFontColor("ArialItalic", RGBCOLOR(255,255,255));
+//	mI->_TTFFontManager->CacheFontString("ArialItalic", L"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
 
-	mI->_TTFFontManager->addFont("ArialBoldItalic", "C:\\WINDOWS\\Fonts\\arial.TTF", 16, true, true);
-//	mI->_TTFFontManager->SetFontColor("ArialBoldItalic", RGBCOLOR(255,255,255));
-	mI->_TTFFontManager->CacheFontString("ArialBoldItalic", L"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
+//	mI->_TTFFontManager->addFont("ArialBoldItalic", "C:\\WINDOWS\\Fonts\\arial.TTF", 16, true, true);
+	//mI->_TTFFontManager->SetFontColor("ArialBoldItalic", RGBCOLOR(255,255,255));
+//	mI->_TTFFontManager->CacheFontString("ArialBoldItalic", L"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
 		
-	mI->_TTFFontManager->addFont("Comic", "c:\\windows\\fonts\\comic.ttf", 30);
-//	mI->_TTFFontManager->SetFontColor("Comic", RGBCOLOR(0,0,255));
+//	mI->_TTFFontManager->addFont("Comic", "c:\\windows\\fonts\\comic.ttf", 30);
+	//mI->_TTFFontManager->SetFontColor("Comic", RGBCOLOR(0,0,255));
 
 	//Chinese text test
 	std::wstring str = L"";
@@ -124,31 +133,31 @@ Indielib_Main
 	//str += L"梧桐更兼细雨 到黄昏\n点点滴滴 这次第\n怎一个 愁字了得";
 
 	// transparency
-	mI->_TTFFontManager->drawText(1, "Comic", L"Blue Font 50% Transparency",200, 260,
-										RGBCOLOR(0,0,255),false, false,0, 128);
+//	mI->_TTFFontManager->drawText(1, "Comic", L"Blue Font 50% Transparency",200, 260,
+//										RGBCOLOR(0,0,255),false, false,0, 128);
 			
 	// transparency & flipX
-	mI->_TTFFontManager->drawText(2, "Comic", L"Mirrored MS Comic",300, 340,
-									RGBCOLOR(0,0,255),true, false, 0, 128);
+//	mI->_TTFFontManager->drawText(2, "Comic", L"Mirrored MS Comic",300, 340,
+//									RGBCOLOR(0,0,255),true, false, 0, 128);
 
 	// rotated
-	mI->_TTFFontManager->drawText(3, "ArialBold", L"Hey,don't piss me off (rotated text :-)",260, 400,
-										RGBCOLOR(255,255,255),
-										false, false, -15);
+//	mI->_TTFFontManager->drawText(3, "ArialBold", L"Hey,don't piss me off (rotated text :-)",260, 400,
+//										RGBCOLOR(255,255,255),
+//										false, false, -15);
 
 
 
-	mI->_TTFFontManager->drawTextEx(4, "SimSun", str,300, 20, 780, 260,
-								DT_EX_VERTICAL | DT_EX_LINEWRAP | DT_EX_RIGHT | DT_EX_TOP | DT_EX_BORDER | DT_EX_RTOLREADING| DT_EX_BACKCOLOR, 
-								RGBCOLOR(0,255,0), 0, RGBCOLOR(255,255,255), 55, 55);
+//	mI->_TTFFontManager->drawTextEx(4, "SimSun", str,300, 20, 780, 260,
+//								DT_EX_VERTICAL | DT_EX_LINEWRAP | DT_EX_RIGHT | DT_EX_TOP | DT_EX_BORDER | DT_EX_RTOLREADING| DT_EX_BACKCOLOR,
+//								RGBCOLOR(0,255,0), 0, RGBCOLOR(255,255,255), 55, 55);
 
 	
 	std::wstring str1 = L"(Underline wraped text centered in both H & V)\nIndieLib is a c++ 2.5d engine for game development and fast game prototyping in a really easy way. Internally it uses Direct3d for hardware acceleration, but doesn't use DirectDraw or ID3DXSprite, it directly draws textures on polygons.";
-	mI->_TTFFontManager->drawTextEx(5, "Arial", str1,
-								20, 430, 600, 570, 
-								DT_EX_LINEWRAP | DT_EX_CENTER | DT_EX_VCENTER | DT_EX_BORDER/* | DT_EX_RTOLREADING| DT_EX_BACKCOLOR*/, 
-								RGBCOLOR(255,0,0), 0, RGBCOLOR(0,255,0), 55, 55, 
-								false, false, 0, 255, true,true);
+//	mI->_TTFFontManager->drawTextEx(5, "Arial", str1,
+//								20, 430, 600, 570,
+//								DT_EX_LINEWRAP | DT_EX_CENTER | DT_EX_VCENTER | DT_EX_BORDER/* | DT_EX_RTOLREADING| DT_EX_BACKCOLOR*/,
+//								RGBCOLOR(255,0,0), 0, RGBCOLOR(0,255,0), 55, 55,
+//								false, false, 0, 255, true,true);
 
 	std::wstring str2 = L"The quick brown fox\njumps over\nthe lazy dog";
 	
@@ -191,19 +200,18 @@ Indielib_Main
 			mSpeed = 30;
 			
 		//draw string		
-		mI->_TTFFontManager->drawText(6, "Arial", xPos, 0, RGBCOLOR(0,iBlk * 255 / 15,iBlk * 255 / 15), false, false, 0, 255, false, false, L"FPS:%d", mI->_render->getFpsInt());
-		mI->_TTFFontManager->drawText(7, "ArialBold", 0, 20, RGBCOLOR(255,128,255),false, false, 0, 255 * iBlk /14, false, false,L"Bold FPS:%d", mI->_render->getFpsInt());
-		mI->_TTFFontManager->drawText(8, "ArialItalic", 0, 40, RGBCOLOR(128,255,128),false, false, 0, 255, false, false,L"Italic FPS:%d", mI->_render->getFpsInt());
-		mI->_TTFFontManager->drawText(9, "ArialBoldItalic", 0, 60, RGBCOLOR(255,255,128),false, false, 0, 255, false, true,L"Bold Italic FPS (Underline):%d", mI->_render->getFpsInt());
+//		mI->_TTFFontManager->drawText(6, "Arial", xPos, 0, RGBCOLOR(0,iBlk * 255 / 15,iBlk * 255 / 15), false, false, 0, 255, false, false, L"FPS:%d", mI->_render->getFpsInt());
+//		mI->_TTFFontManager->drawText(7, "ArialBold", 0, 20, RGBCOLOR(255,128,255),false, false, 0, 255 * iBlk /14, false, false,L"Bold FPS:%d", mI->_render->getFpsInt());
+//		mI->_TTFFontManager->drawText(8, "ArialItalic", 0, 40, RGBCOLOR(128,255,128),false, false, 0, 255, false, false,L"Italic FPS:%d", mI->_render->getFpsInt());
+//		mI->_TTFFontManager->drawText(9, "ArialBoldItalic", 0, 60, RGBCOLOR(255,255,128),false, false, 0, 255, false, true,L"Bold Italic FPS (Underline):%d", mI->_render->getFpsInt());
 
-		yPos -= mSpeed2 * mDelta;
-		if(yPos < 300)
-			yPos = 555;
+//		yPos -= mSpeed2 * mDelta;
+//		if(yPos < 300)
+//			yPos = 555;
 
-		mI->_TTFFontManager->drawText(10, "ArialBold", str2, 610, (int)yPos, RGBCOLOR(255,255,255), false, false, 0, yPos - 300, false, false);
+//		mI->_TTFFontManager->drawText(10, "ArialBold", str2, 610, (int)yPos, RGBCOLOR(255,255,255), false, false, 0, yPos - 300, false, false);
 
 
-		//Added by Joel Gao
 		//Render all texts
 		mI->_TTFFontManager->renderAllTexts();
 

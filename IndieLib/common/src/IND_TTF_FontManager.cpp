@@ -27,8 +27,10 @@
 
 #include "Global.h"
 #include "IND_TTF_FontManager.h"
+#include "IND_Math.h"
 #include "FreeTypeHandle.h"
 #include <assert.h>
+
 
 #include <ft2build.h>
 #include FT_FREETYPE_H
@@ -96,16 +98,55 @@ bool IND_TTF_FontManager::init(IND_Render *pRender, IND_ImageManager *pImageMana
 		return _bInit;
 	}
     
-    _freetype = new free_type_ptr_wrapped_impl(); // TODO delete this object when finished
-
     
 	if(_bInit)
 		return true;
+    
+    _math = new IND_Math();                        // TODO delete this object when finished
+	_math->init();
+    
+    _freetype = new free_type_ptr_wrapped_impl(); // TODO delete this object when finished
 
-	if(FT_Init_FreeType(&_freetype->_FTLib) != 0)
+	if(FT_Init_FreeType(&_freetype->_FTLib) != 0) {
+        g_debug->header("FreeType library is not correctly initialized", DebugApi::LogHeaderError);
 		_bInit = false;
-	else
+        return _bInit;
+    }
+    else {
 		_bInit = true;
+    }
+    
+        
+    FT_Int major;
+    FT_Int minor;
+    FT_Int pitch;
+    
+    FT_Library_Version(_freetype->_FTLib, &major, &minor, &pitch);
+    
+    char freeTypeVer[15];
+    char tempMajor[4];
+    char tempMinor[4];
+    char tempPitch[4];
+	
+    _math->itoa(major,tempMajor);
+    _math->itoa(minor,tempMinor);
+    _math->itoa(pitch,tempPitch);
+    
+    strcat (freeTypeVer, tempMajor);
+    strcat (freeTypeVer, ".");
+    strcat (freeTypeVer, tempMinor);
+    strcat (freeTypeVer, ".");
+    strcat (freeTypeVer, tempPitch);
+    
+    
+    const char* freeTypeCopyright = "This program uses FreeType, a freely available software library to render fonts. See http://www.freetype.org for details.";
+    
+    g_debug->header("Using FreeType version: ",DebugApi::LogHeaderInfo);
+	g_debug->dataChar(freeTypeVer, true);
+    g_debug->header("Copyright: ", DebugApi::LogHeaderInfo);
+    g_debug->dataChar(freeTypeCopyright, true);
+	g_debug->header("IND_TTF_FontManager Initialised", DebugApi::LogHeaderEnd);
+    
 
 	return _bInit;
 }

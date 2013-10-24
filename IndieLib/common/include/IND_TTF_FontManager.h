@@ -33,6 +33,7 @@
 #include <map>
 #include "IND_TTF_Font.h"
 
+class IND_Math;
 class free_type_ptr_wrapped_impl;  // forward-declare private "implementation" class.
 
 // NOTE that this class uses STL, the performance will be a lot better in Release version
@@ -91,6 +92,7 @@ private:
     
 	IND_TTF_FontList            _FontList;
 	bool                        _bInit;
+    IND_Math                    *_math;
 	free_type_ptr_wrapped_impl	*_freetype;
 	IND_Render                  *_pIndieRender;
 	IND_ImageManager            *_pIndieImageManager;

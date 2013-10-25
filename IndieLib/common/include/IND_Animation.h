@@ -143,6 +143,7 @@ public:
 
 	//FIXME: NOT DOCUMENTED
 	unsigned int                     getActualFramePos(unsigned int pSequence);
+	unsigned int                     getActualFramePosInVec(unsigned int pSequence);
 	unsigned int                     getActualFrameTime(unsigned int pSequence);
 	unsigned int                     getActualOffsetX(unsigned int pSequence);
 	unsigned int                     getActualOffsetY(unsigned int pSequence);

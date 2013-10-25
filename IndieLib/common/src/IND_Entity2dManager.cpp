@@ -667,7 +667,7 @@ bool IND_Entity2dManager::isCollision(IND_Entity2d *pEn1, const char *pId1, IND_
 	}
 	// Is an animation
 	else {
-		mBoundingList1 = (*(pEn1->_an->getVectorFrames())) [pEn1->_an->getActualFramePos(pEn1->getSequence())]->GetListBoundingCollision();
+		mBoundingList1 = (*(pEn1->_an->getVectorFrames())) [pEn1->_an->getActualFramePosInVec(pEn1->getSequence())]->GetListBoundingCollision();
 	}
 
 	// Is a surface
@@ -676,7 +676,7 @@ bool IND_Entity2dManager::isCollision(IND_Entity2d *pEn1, const char *pId1, IND_
 	}
 	// Is an animation
 	else {
-		mBoundingList2 = (*(pEn2->_an->getVectorFrames())) [pEn2->_an->getActualFramePos(pEn2->getSequence())]->GetListBoundingCollision();
+		mBoundingList2 = (*(pEn2->_an->getVectorFrames())) [pEn2->_an->getActualFramePosInVec(pEn2->getSequence())]->GetListBoundingCollision();
 	}
 
 	if (isCollision(mBoundingList1, mBoundingList2,

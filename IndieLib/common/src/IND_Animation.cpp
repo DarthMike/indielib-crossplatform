@@ -137,7 +137,7 @@ const char* const IND_Animation::getName(unsigned int pSequence) {
 }
 
 /**
- * TODO describtion.
+ * Get the current position of the frame in the list of frames of the sequence
  * @param pSequence			The sequence number of a sequence in the list of sequences.
  */
 unsigned int IND_Animation::getActualFramePos(unsigned int pSequence) {
@@ -145,6 +145,19 @@ unsigned int IND_Animation::getActualFramePos(unsigned int pSequence) {
 	vector <IND_Sequence *> *sequences = getListSequences();
 	if (sequences && sequences->size() > pSequence) {
 		framePos = (*sequences) [pSequence]->getActualFramePos();
+	}
+	return framePos;
+}
+
+/**
+ * Get the current position of the frame in the vector of frames of the animation
+ * @param pSequence			The sequence number of a sequence in the list of sequences.
+ */
+unsigned int IND_Animation::getActualFramePosInVec(unsigned int pSequence) {
+	unsigned int framePos = 0;
+	vector <IND_Sequence *> *sequences = getListSequences();
+	if (sequences && sequences->size() > pSequence) {
+		framePos = (*sequences) [pSequence]->getActualFramePosInVec();
 	}
 	return framePos;
 }

@@ -3,35 +3,41 @@
  * Desc: TrueType Fontobject
  *****************************************************************************************/
 
-/*
- Created by Joel Gao a.k.a venomJ (joel_gao@yahoo.com), Feb 17, 2009 and with his
- blessing added to:
- 
- IndieLib 2d library Copyright (C) 2005 Javier LÛpez LÛpez (info@pixelartgames.com)
- 
- This library is free software; you can redistribute it and/or modify it under the
- terms of the GNU Lesser General Public License as published by the Free Software
- Foundation; either version 2.1 of the License, or (at your option) any later version.
- 
- This library is distributed in the hope that it will be useful, but WITHOUT ANY
- WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
- PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
- 
- You should have received a copy of the GNU Lesser General Public License along with
- this library; if not, write to the Free Software Foundation, Inc., 59 Temple Place,
- Suite 330, Boston, MA 02111-1307 USA
- */
+/*********************************** The zlib License ************************************
+ *
+ * Copyright (c) 2013 Indielib-crossplatform Development Team
+ *
+ * This software is provided 'as-is', without any express or implied
+ * warranty. In no event will the authors be held liable for any damages
+ * arising from the use of this software.
+ *
+ * Permission is granted to anyone to use this software for any purpose,
+ * including commercial applications, and to alter it and redistribute it
+ * freely, subject to the following restrictions:
+ *
+ * 1. The origin of this software must not be misrepresented; you must not
+ * claim that you wrote the original software. If you use this software
+ * in a product, an acknowledgment in the product documentation would be
+ * appreciated but is not required.
+ *
+ * 2. Altered source versions must be plainly marked as such, and must not be
+ * misrepresented as being the original software.
+ *
+ * 3. This notice may not be removed or altered from any source
+ * distribution.
+ *
+ *****************************************************************************************/
 
 
 #ifndef IND_TTF_FONT_H
 #define IND_TTF_FONT_H
 
+
+// ----- Includes -----
+
 #include "Indie.h"
 #include "IND_Image.h"
 #include "IND_Surface.h"
-
-//#include <ft2build.h>
-//#include FT_FREETYPE_H
 
 #include <map>
 
@@ -54,7 +60,7 @@
 #define DT_EX_BACKCOLOR	               0x00000400
 
 class free_type_impl;               // forward-declare private "implementation" class.
-struct free_type_ptr_wrapped_impl;   // forward-declare the freetype wrapped pointer delivered by the manger in the init method
+class free_type_ptr_wrapped_impl;   // forward-declare the freetype wrapped pointer delivered by the manger in the init method
 
 // --------------------------------------------------------------------------------
 //									 IND_TTF_Font
@@ -64,8 +70,8 @@ struct free_type_ptr_wrapped_impl;   // forward-declare the freetype wrapped poi
 class LIB_EXP IND_TTF_Font {
 
 public:
-	typedef unsigned char byte;             // TODO : should be moved to the defines setup
-	typedef unsigned int uint32_t;          // TODO : should be moved to the defines setup
+	typedef unsigned char byte;     // TODO : should be moved to the defines setup
+	typedef unsigned int uint32_t;  // TODO : should be moved to the defines setup
 
 	// ----- Init/End -----
     
@@ -157,10 +163,10 @@ private:
 	static const unsigned int nTabSize = 4;
 
    
-    free_type_impl          *_impl;         // free type library wrapper
+    free_type_impl          *_impl;                 // free type library wrapper
     
-	//FT_Library				_FTLib;                 // freetype lib
-	//FT_Face					_Face;                  // THIS font face
+	//FT_Library				_FTLib;             // freetype lib
+	//FT_Face					_Face;              // THIS font face
 	float					_fFaceAscender;
 
 	IND_Render				*_pIndieRender;

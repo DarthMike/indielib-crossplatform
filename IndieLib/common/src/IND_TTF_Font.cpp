@@ -55,22 +55,24 @@ public:
 //							  Initialization / Destruction
 // --------------------------------------------------------------------------------
 
-IND_TTF_Font::IND_TTF_Font( free_type_ptr_wrapped_impl *freetype_wrapped, IND_Render *pIndieRender, IND_ImageManager *pIndieImageManager,
-							IND_SurfaceManager *pIndieSurfaceManager)
-:_pIndieRender(pIndieRender),
-_pIndieImageManager(pIndieImageManager),
-_pIndieSurfaceManager(pIndieSurfaceManager),
-_CharWidth(20),
-_CharHeight(20),
-_bAutoCache(true),
-_bHasKerning(false),
-_fXScale(1.0f),
-_fYScale(1.0f),
-_fXHotSpot(0.5f),
-_fYHotSpot(0.5f),
-_bBold(false),
-_bItalic(false) {
+IND_TTF_Font::IND_TTF_Font( free_type_ptr_wrapped_impl *freetype_wrapped, IND_Render *pIndieRender,
+                            IND_ImageManager *pIndieImageManager, IND_SurfaceManager *pIndieSurfaceManager) {
+    
+    _pIndieRender           = pIndieRender;
+    _pIndieImageManager     = pIndieImageManager;
+    _pIndieSurfaceManager   = pIndieSurfaceManager;
+    _CharWidth              = 20;
+    _CharHeight             = 20;
+    _bAutoCache             = true;
+    _bHasKerning            = false;
+    _fXScale                = 1.0f;
+    _fYScale                = 1.0f;
+    _fXHotSpot              = 0.5f;
+    _fYHotSpot              = 0.5f;
+    _bBold                  = false;
+    _bItalic                = false;
 
+    _impl = new free_type_impl();               // TODO: remember to delete this
     _impl->_FTLib = freetype_wrapped->_FTLib;
     _impl->_Face = NULL;
 	_impl->_matItalic.xx = 1 << 16;
@@ -151,7 +153,7 @@ void IND_TTF_Font::clearAllCache() {
 		// delete surface object firstly
 		if(pNode->pSurface) {
 			_pIndieSurfaceManager->remove(pNode->pSurface);
-			DISPOSEMANAGED(pNode->pSurface);
+			//DISPOSEMANAGED(pNode->pSurface); // TODO: figure out why a diposemanaged gives an exeption, ... the surface needs to be deleted
 		}
 				
 		delete pNode;
@@ -587,8 +589,9 @@ bool IND_TTF_Font::buildCharCache(wchar_t charCode) {
     
 	// free the image
 	_pIndieImageManager->remove(pImage);
-	DISPOSEMANAGED(pImage);
-
+	//DISPOSEMANAGED(pImage);  // TODO: figure out why a diposemanaged gives an exeption, ... the image needs to be deleted
+    // pImage->destroy();      // TODO: ... this also does not work ..
+    
 	if(!bOK) {
 		delete pNode;
 		return false;

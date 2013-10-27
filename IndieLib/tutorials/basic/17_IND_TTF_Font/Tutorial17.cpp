@@ -88,11 +88,11 @@ Indielib_Main
 	mDust->setPosition(360, 250, 0);
 
 
-    mI->_TTFFontManager->addFont("Tangerine", "font/ttf/Tangerine/Tangerine_Regular.ttf", 16);
+    mI->_TTFFontManager->addFont("Tangerine", "font/ttf/Tangerine/Tangerine_Regular.ttf", 64);
     //mI->_TTFFontManager->SetFontColor("Tangerine", RGBCOLOR(255,255,255));
     mI->_TTFFontManager->CacheFontString("Tangerine", L"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
      
-    mI->_TTFFontManager->drawText(1, "Tangerine", L"Blue Font 50% Transparency",200, 260, RGBCOLOR(0,0,255),false, false,0, 128);
+    mI->_TTFFontManager->drawText(1, "Tangerine", L"Blue Font 50% Transparency",200, 260, RGBCOLOR(255,255,255),false, true,0, 255);
     
         
         

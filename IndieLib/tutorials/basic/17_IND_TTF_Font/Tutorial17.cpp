@@ -88,11 +88,33 @@ Indielib_Main
 	mDust->setPosition(360, 250, 0);
 
 
-    mI->_TTFFontManager->addFont("Tangerine", "font/ttf/Tangerine/Tangerine_Regular.ttf", 64);
+    mI->_TTFFontManager->addFont("Tangerine", "font/ttf/Tangerine/Tangerine_Regular.ttf", 48, true, true );
     //mI->_TTFFontManager->SetFontColor("Tangerine", RGBCOLOR(255,255,255));
-    mI->_TTFFontManager->CacheFontString("Tangerine", L"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
-     
-    mI->_TTFFontManager->drawText(1, "Tangerine", L"Blue Font 50% Transparency",200, 260, RGBCOLOR(255,255,255),false, true,0, 255);
+    mI->_TTFFontManager->CacheFontString("Tangerine", L"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ");
+    mI->_TTFFontManager->drawText(1, "Tangerine", L"Tangerine Font",250, 40, RGBCOLOR(255,255,255),false, true,0, 255);
+
+    
+    mI->_TTFFontManager->addFont("SpicyRice", "font/ttf/spicy-rice/SpicyRice-Regular.otf", 32, false, false );
+    //mI->_TTFFontManager->SetFontColor("SpicyRice", RGBCOLOR(255,255,255));
+    mI->_TTFFontManager->CacheFontString("SpicyRice", L"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ");
+    mI->_TTFFontManager->drawText(2, "SpicyRice", L"SpicyRice Font",250, 240, RGBCOLOR(255,255,255),false, true,0, 255);
+        
+        
+    mI->_TTFFontManager->addFont("droid-serif", "font/ttf/droid-serif/DroidSerif.ttf", 16, false, false );
+    //mI->_TTFFontManager->SetFontColor("droid-serif", RGBCOLOR(255,255,255));
+    mI->_TTFFontManager->CacheFontString("droid-serif", L"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ");
+    mI->_TTFFontManager->drawText(3, "droid-serif", L"droid-serif Font\nmulti-line\ntext",50, 300, RGBCOLOR(255,255,255),false, true,0, 255);
+        
+    mI->_TTFFontManager->addFont("ostrich", "font/ttf/ostrich-sans/ostrich-regular.ttf", 32, false, false );
+    //mI->_TTFFontManager->SetFontColor("ostrich", RGBCOLOR(255,255,255));
+    mI->_TTFFontManager->CacheFontString("ostrich", L"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ");
+    mI->_TTFFontManager->drawText(4, "ostrich", L"ostrich Font\nmulti-line\ntext",500, 300, RGBCOLOR(255,255,255),false, true,0, 255);
+
+
+    mI->_TTFFontManager->addFont("alex-brush", "font/ttf/alex-brush/AlexBrush-Regular.ttf", 32, false, false );
+    //mI->_TTFFontManager->SetFontColor("alex-brush", RGBCOLOR(255,255,255));
+    mI->_TTFFontManager->CacheFontString("alex-brush", L"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ");
+    mI->_TTFFontManager->drawText(5, "alex-brush", L"alex-brush Font\nmulti-line\ntext",300, 425, RGBCOLOR(255,255,255),false, true,0, 255);
     
         
         

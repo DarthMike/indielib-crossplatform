@@ -64,10 +64,10 @@ bool CIndieLib::init() {
 	//_meshManager           =   new     IND_3dMeshManager;
 	_animationManager    =   new     IND_AnimationManager;
 	_fontManager         =   new     IND_FontManager;
+    _TTFFontManager      =   new     IND_TTF_FontManager;
 	_entity2dManager     =   new     IND_Entity2dManager;
 	//_entity3dManager       =   new     IND_Entity3dManager;
 	_math                =   new     IND_Math;
-    _TTFFontManager      =   new     IND_TTF_FontManager;
     
 	IND_WindowProperties props ("IndieLib", 800, 600, 32, 0, 0, 1);
 	
@@ -81,12 +81,12 @@ bool CIndieLib::init() {
 	if (!_surfaceManager     ->init(_imageManager, _render))                     return 0;
 	if (!_animationManager   ->init(_imageManager, _surfaceManager))             return 0;
 	if (!_fontManager        ->init(_imageManager, _surfaceManager))             return 0;
+    if (!_TTFFontManager     ->init(_render, _imageManager, _surfaceManager))    return 0;
 	if (!_entity2dManager    ->init(_render))                                    return 0;
 	//if (!_entity3dManager  ->init (_render))                                    return 0;
 	//if (!_meshManager      ->init (_render))                                    return 0;
 	if (!_input              ->init(_render))                                    return 0;
 	if (!_math               ->init())                                           return 0;
-    if (!_TTFFontManager     ->init(_render, _imageManager, _surfaceManager))    return 0;
     
 	return 1;
 }
@@ -107,12 +107,13 @@ void CIndieLib::end() {
 	_entity2dManager     ->end();
 	//_entity3dManager       ->end();
 	_fontManager         ->end();
+	_TTFFontManager      ->end();
 	_animationManager    ->end();
-	_surfaceManager      ->end();
+    _surfaceManager      ->end();
 	_imageManager        ->end();
 	//_lightManager      ->end();
 	_render              ->end();
-    _TTFFontManager      ->end();
+    
     
 	DISPOSE(_math);
 	//DISPOSE(_meshManager);
@@ -120,12 +121,13 @@ void CIndieLib::end() {
 	DISPOSE(_entity2dManager);
 	//DISPOSE(_entity3dManager);
 	DISPOSE(_fontManager);
+    DISPOSE(_TTFFontManager);
 	DISPOSE(_animationManager);
 	DISPOSE(_surfaceManager);
     DISPOSE(_imageManager);
 	//DISPOSE(_lightManager);
 	DISPOSE(_render);
-    DISPOSE(_TTFFontManager);
+    
     
 	IndieLib::end();
     

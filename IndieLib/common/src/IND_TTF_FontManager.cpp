@@ -55,6 +55,9 @@ _freetype(NULL)
 }
 
 IND_TTF_FontManager::~IND_TTF_FontManager(void) {
+	if (_bInit) {
+		g_debug->header("Finalizing TTF FontManager", DebugApi::LogHeaderBegin);
+    }
 	end();
 }
 
@@ -100,7 +103,7 @@ bool IND_TTF_FontManager::init(IND_Render *pRender, IND_ImageManager *pImageMana
 	if(_bInit)
 		return true;
     
-    _freetype = new free_type_ptr_wrapped_impl(); // TODO delete this object when finished
+    _freetype = new free_type_ptr_wrapped_impl();
 
 	if(FT_Init_FreeType(&_freetype->_FTLib) != 0) {
         g_debug->header("FreeType library is not correctly initialized", DebugApi::LogHeaderError);
@@ -124,7 +127,7 @@ bool IND_TTF_FontManager::init(IND_Render *pRender, IND_ImageManager *pImageMana
     char tempPitch[4];
 	
     
-    _math = new IND_Math();                        // TODO delete this object when finished
+    _math = new IND_Math();                        
 	_math->init();
     _math->itoa(major,tempMajor);
     _math->itoa(minor,tempMinor);
@@ -222,6 +225,14 @@ void IND_TTF_FontManager::end() {
 		FT_Done_FreeType(_freetype->_FTLib);
 		_bInit = false;
 	}
+    
+    // free wrapper object
+    delete _freetype;
+    
+    // free math object;
+    _math->end();
+    delete _math;
+    
 }
 
 /**

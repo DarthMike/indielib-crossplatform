@@ -68,6 +68,7 @@
 		E75BD9671772624100C5185F /* RenderObject2dGLES2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75BD95C1772624100C5185F /* RenderObject2dGLES2.cpp */; };
 		E75BD9681772624100C5185F /* RenderCullingGLES2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75BD95D1772624100C5185F /* RenderCullingGLES2.cpp */; };
 		E75BD96A1772624100C5185F /* OpenGLES2Render.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75BD9601772624100C5185F /* OpenGLES2Render.cpp */; };
+		E7C2820D1826D03F00116982 /* IND_ShaderProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7C2820B1826D03F00116982 /* IND_ShaderProgram.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -234,6 +235,8 @@
 		E75BD95C1772624100C5185F /* RenderObject2dGLES2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderObject2dGLES2.cpp; path = ../../common/src/render/gles/ios/RenderObject2dGLES2.cpp; sourceTree = "<group>"; };
 		E75BD95D1772624100C5185F /* RenderCullingGLES2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderCullingGLES2.cpp; path = ../../common/src/render/gles/ios/RenderCullingGLES2.cpp; sourceTree = "<group>"; };
 		E75BD9601772624100C5185F /* OpenGLES2Render.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OpenGLES2Render.cpp; path = ../../common/src/render/gles/ios/OpenGLES2Render.cpp; sourceTree = "<group>"; };
+		E7C2820B1826D03F00116982 /* IND_ShaderProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IND_ShaderProgram.cpp; path = ../../common/src/IND_ShaderProgram.cpp; sourceTree = "<group>"; };
+		E7C2820F1826D05900116982 /* IND_ShaderProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IND_ShaderProgram.h; path = ../../common/include/IND_ShaderProgram.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -314,6 +317,7 @@
 				E72010981770FEFF00D14384 /* IND_Object.h */,
 				E72010991770FEFF00D14384 /* IND_Render.h */,
 				E720109A1770FEFF00D14384 /* IND_Sequence.h */,
+				E7C2820F1826D05900116982 /* IND_ShaderProgram.h */,
 				E73B869217F8AE8B0040F195 /* IND_SpriterEntity.h */,
 				E73B869117F8AE8B0040F195 /* IND_SpriterManager.h */,
 				E720109B1770FEFF00D14384 /* IND_Surface.h */,
@@ -356,6 +360,7 @@
 				E72010B51770FF4200D14384 /* IND_Input.cpp */,
 				E7201086176E420E00D14384 /* IND_Math.cpp */,
 				E72010B61770FF4200D14384 /* IND_Render.cpp */,
+				E7C2820B1826D03F00116982 /* IND_ShaderProgram.cpp */,
 				E73B868D17F8AE6B0040F195 /* IND_SpriterEntity.cpp */,
 				E73B868C17F8AE6B0040F195 /* IND_SpriterManager.cpp */,
 				E72010B71770FF4200D14384 /* IND_Surface.cpp */,
@@ -491,13 +496,13 @@
 		E75BD96C1772625D00C5185F /* gles */ = {
 			isa = PBXGroup;
 			children = (
-				E755230D1777679B005B7F34 /* OpenGLTextureBuilder.h */,
-				E755230E1777679B005B7F34 /* OpenGLTextureBuilder.cpp */,
-				E7552308177766EC005B7F34 /* OSOpenGLManager.h */,
-				E7552309177766EC005B7F34 /* OSOpenGLManager.cpp */,
-				E75523051777262A005B7F34 /* OpenGLES2Manager.h */,
-				E75523061777262A005B7F34 /* OpenGLES2Manager.cpp */,
 				E75BD96B1772624800C5185F /* ios */,
+				E75523061777262A005B7F34 /* OpenGLES2Manager.cpp */,
+				E75523051777262A005B7F34 /* OpenGLES2Manager.h */,
+				E755230E1777679B005B7F34 /* OpenGLTextureBuilder.cpp */,
+				E755230D1777679B005B7F34 /* OpenGLTextureBuilder.h */,
+				E7552309177766EC005B7F34 /* OSOpenGLManager.cpp */,
+				E7552308177766EC005B7F34 /* OSOpenGLManager.h */,
 			);
 			name = gles;
 			sourceTree = "<group>";
@@ -618,6 +623,7 @@
 				E75BD9671772624100C5185F /* RenderObject2dGLES2.cpp in Sources */,
 				E73B86C117F8AEB00040F195 /* TmxImage.cpp in Sources */,
 				E75BD9681772624100C5185F /* RenderCullingGLES2.cpp in Sources */,
+				E7C2820D1826D03F00116982 /* IND_ShaderProgram.cpp in Sources */,
 				E75BD96A1772624100C5185F /* OpenGLES2Render.cpp in Sources */,
 				E75522FD17761C8A005B7F34 /* tinystr.cpp in Sources */,
 				E73B86C417F8AEB00040F195 /* TmxObject.cpp in Sources */,

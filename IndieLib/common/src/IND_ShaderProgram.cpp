@@ -83,6 +83,10 @@ void IND_ShaderProgram::init() {
 }
 
 void IND_ShaderProgram::end() {
+    if (_impl->_program) {
+        glDeleteProgram(_impl->_program);
+    }
+    
     DISPOSE(_impl);
 }
 

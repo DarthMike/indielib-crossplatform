@@ -32,15 +32,16 @@ const char* IND_VertexAttribute_Position = "aPosition";
 
 const char* IND_VertexShader_UniformColor =
 "                                                   \n\
+#version 100                                        \n\
 attribute vec4 aPosition;							\n\
-uniform	vec4 uColor;								\n\
-uniform mat4 uMVmatrix                              \n\
-uniform mat4 uPMatrix                               \n\
 #ifdef GL_ES										\n\
 varying lowp vec4 varFragmentColor;					\n\
 #else												\n\
 varying vec4 varFragmentColor;						\n\
 #endif												\n\
+uniform	vec4 uColor;								\n\
+uniform mat4 uMVmatrix;                             \n\
+uniform mat4 uPMatrix;                              \n\
                                                     \n\
 void main()											\n\
 {													\n\
@@ -51,7 +52,8 @@ void main()											\n\
 
 
 const char* IND_FragmentShader_UniformColor =
-"										\n\
+"                                       \n\
+#version 100 							\n\
 #ifdef GL_ES							\n\
 precision lowp float;					\n\
 #endif									\n\

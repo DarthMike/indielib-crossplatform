@@ -98,20 +98,22 @@ bool IND_ShaderProgram::compile(const char* vertexShader, const char* fragmentSh
     g_debug->header("Compiling vertex shader", DebugApi::LogHeaderBegin);
     success = _impl->compileShader(vertexShader, GL_VERTEX_SHADER, &_impl->_vertexShader);
     if (!success) {
-        g_debug->header("Error compiling vertex shader", DebugApi::LogHeaderError);
         g_debug->dataChar(_impl->shaderSource(_impl->_vertexShader), true);
         g_debug->dataChar(_impl->compileLog(_impl->_vertexShader), true);
+        g_debug->header("Error compiling vertex shader", DebugApi::LogHeaderError);
+    } else {
+        g_debug->header("Compiling vertex shader finished", DebugApi::LogHeaderEnd);
     }
-    g_debug->header("Compiling vertex shader finished", DebugApi::LogHeaderEnd);
     
     g_debug->header("Compiling fragment shader", DebugApi::LogHeaderBegin);
-    success = success && _impl->compileShader(vertexShader, GL_FRAGMENT_SHADER, &_impl->_fragmentShader);
+    success = success && _impl->compileShader(fragmentShader, GL_FRAGMENT_SHADER, &_impl->_fragmentShader);
     if (!success) {
-        g_debug->header("Error compiling fragment shader", DebugApi::LogHeaderError);
         g_debug->dataChar(_impl->shaderSource(_impl->_vertexShader), true);
         g_debug->dataChar(_impl->compileLog(_impl->_vertexShader), true);
+        g_debug->header("Error compiling fragment shader", DebugApi::LogHeaderError);
+    } else {
+        g_debug->header("Compiling fragment shader finished", DebugApi::LogHeaderEnd);
     }
-    g_debug->header("Compiling fragment shader finished", DebugApi::LogHeaderEnd);
     
     return success;
 }

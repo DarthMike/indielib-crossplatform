@@ -240,6 +240,7 @@
 		E7C2820F1826D05900116982 /* IND_ShaderProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IND_ShaderProgram.h; path = ../../common/include/IND_ShaderProgram.h; sourceTree = "<group>"; };
 		E7C282131826FD7E00116982 /* IND_Shaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IND_Shaders.h; path = ../../common/include/IND_Shaders.h; sourceTree = "<group>"; };
 		E7C282141826FDDE00116982 /* IND_Shaders.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IND_Shaders.cpp; path = ../../common/src/IND_Shaders.cpp; sourceTree = "<group>"; };
+		E7C2821718285FBD00116982 /* RenderMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RenderMacros.h; path = ../../common/src/render/gles/RenderMacros.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -508,6 +509,7 @@
 				E755230D1777679B005B7F34 /* OpenGLTextureBuilder.h */,
 				E7552309177766EC005B7F34 /* OSOpenGLManager.cpp */,
 				E7552308177766EC005B7F34 /* OSOpenGLManager.h */,
+				E7C2821718285FBD00116982 /* RenderMacros.h */,
 			);
 			name = gles;
 			sourceTree = "<group>";

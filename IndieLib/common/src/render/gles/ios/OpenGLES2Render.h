@@ -455,7 +455,7 @@ private:
 	bool checkGLExtensions();        //GL extensions managing
 
 	//Blitting helpers
-	void fillPixel(PIXEL *pPixel, float pX, float pY,  float pR, float pG, float pB, float pA);
+	void fillPixel(PIXEL *pPixel, float pX, float pY);
 	void fillVertex2d(CUSTOMVERTEX2D *pVertex2d, float pX, float pY, float pU, float pV);
 	void setForPrimitive(unsigned char pA, bool pResetTransform);
 

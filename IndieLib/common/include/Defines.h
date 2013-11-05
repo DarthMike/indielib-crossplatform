@@ -198,11 +198,6 @@ struct structPixelPos {
 	float _x; ///< Point position x
     float _y; ///< Point position y
     float _z; ///< Point position z
-	//Color
-	float _colorR; ///< Point color R
-    float _colorG; ///< Point color G
-    float _colorB; ///< Point color B
-    float _colorA; ///< Point color A
 };
 //! Alias for the pixel structure
 typedef struct structPixelPos PIXEL;

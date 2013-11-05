@@ -375,19 +375,11 @@ bool OpenGLES2Render::blitRegularPoly(int pX,
 // --------------------------------------------------------------------------------
 void OpenGLES2Render::fillPixel(PIXEL *pPixel,
                              float pX,
-                             float pY,
-                             float pR,
-                             float pG,
-                             float pB,
-                             float pA) {
+                             float pY) {
 	// Pixel
 	pPixel->_x      =  pX;
 	pPixel->_y      =  pY;
 	pPixel->_z      = 0.0f;
-	pPixel->_colorR = pR;
-	pPixel->_colorG = pG;
-	pPixel->_colorB = pB;
-	pPixel->_colorA = pA;
 }
 
 

@@ -25,7 +25,7 @@
 
 #include "IND_Shaders.h"
 
-const char* IND_Uniform_MVPMatrix = "uMVmatrix";
+const char* IND_Uniform_MVMatrix = "uMVmatrix";
 const char* IND_Uniform_PMatrix = "uPMatrix";
 const char* IND_Uniform_Color = "uColor";
 const char* IND_VertexAttribute_Position = "aPosition";
@@ -33,7 +33,7 @@ const char* IND_VertexAttribute_Position = "aPosition";
 const char* IND_VertexShader_UniformColor =
 "                                                   \n\
 #version 100                                        \n\
-attribute vec4 aPosition;							\n\
+attribute vec3 aPosition;							\n\
 #ifdef GL_ES										\n\
 varying lowp vec4 varFragmentColor;					\n\
 #else												\n\
@@ -44,8 +44,9 @@ uniform mat4 uMVmatrix;                             \n\
 uniform mat4 uPMatrix;                              \n\
                                                     \n\
 void main()											\n\
-{													\n\
-    gl_Position = uMVmatrix * uPMatrix * aPosition; \n\
+{                                                   \n\
+    vec4 pos4 = vec4(aPosition, 0.0);               \n\
+    gl_Position = uMVmatrix * uPMatrix * pos4;      \n\
     varFragmentColor = uColor;                      \n\
 }													\n\
 ";

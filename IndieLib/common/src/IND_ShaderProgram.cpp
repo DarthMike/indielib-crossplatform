@@ -138,6 +138,9 @@ bool  IND_ShaderProgram::link() {
         return false;
     }
     
+    glDeleteShader(_impl->_vertexShader);
+    glDeleteShader(_impl->_fragmentShader);
+    
     return true;
 }
 

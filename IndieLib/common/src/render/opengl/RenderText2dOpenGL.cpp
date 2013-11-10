@@ -157,15 +157,15 @@ void OpenGLRender::blitText(IND_Font *pFo,
 //#warning lookout
 					//mvTransformPresetState();  //Need to preset transform state, as the blit operation will reset the state!!!!
 					blitRegionSurface(pFo->getSurface(),
-									  pFo->getLetters() [mCont2]._offsetX + 1,
-									  pFo->getLetters() [mCont2]._offsetY + 1,
-									  pFo->getLetters() [mCont2]._widthChar - 1,
-									  pFo->getLetters() [mCont2]._heightChar - 1);
+									  pFo->getLetters() [mCont2]._x + 1,
+									  pFo->getLetters() [mCont2]._y + 1,
+									  pFo->getLetters() [mCont2]._width - 1,
+									  pFo->getLetters() [mCont2]._height - 1);
 				}
 
 				//Displacement of the character.
 				//Displacement transform accumulates for every character in the line
-				float charTranslateX = ((pFo->getLetters() [mCont2]._widthChar) + pOffset) * pScaleX;
+				float charTranslateX = ((pFo->getLetters() [mCont2]._width) + pOffset) * pScaleX;
 				glTranslatef(charTranslateX,0.0f,0.0f);
 			}//Was normal character
 
@@ -207,7 +207,7 @@ int OpenGLRender::getLongInPixels(IND_Font *pFo, char *pText, int pPos, int pOff
 			mErrorChar = 1;
 
 		if (!mErrorChar)
-			mWidthSentence += pFo->getLetters() [mCont2 - 1]._widthChar + pOffset;
+			mWidthSentence += pFo->getLetters() [mCont2 - 1]._width + pOffset;
 
 		mChar1 = pText [mCont1++];
 	}

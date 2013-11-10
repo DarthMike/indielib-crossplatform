@@ -328,7 +328,7 @@ bool IND_FontManager::parseMudFont(IND_Font *pNewFont,const char *pFontName) {
 
 		// x
 		if (mXChar->Attribute("x")) {
-			pNewFont->getLetters() [mCont]._offsetX = atoi(mXChar->Attribute("x"));
+			pNewFont->getLetters() [mCont]._x = atoi(mXChar->Attribute("x"));
 		} else {
 			g_debug->header("The char doesn't have a \"x\" attribute", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();
@@ -338,7 +338,7 @@ bool IND_FontManager::parseMudFont(IND_Font *pNewFont,const char *pFontName) {
 
 		// y
 		if (mXChar->Attribute("y")) {
-			pNewFont->getLetters() [mCont]._offsetY = atoi(mXChar->Attribute("y"));
+			pNewFont->getLetters() [mCont]._y = atoi(mXChar->Attribute("y"));
 		} else {
 			g_debug->header("The char doesn't have a \"y\" attribute", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();
@@ -348,7 +348,7 @@ bool IND_FontManager::parseMudFont(IND_Font *pNewFont,const char *pFontName) {
 
 		// width
 		if (mXChar->Attribute("width")) {
-			pNewFont->getLetters() [mCont]._widthChar = atoi(mXChar->Attribute("width"));
+			pNewFont->getLetters() [mCont]._width = atoi(mXChar->Attribute("width"));
 		} else {
 			g_debug->header("The char doesn't have a \"width\" attribute", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();
@@ -358,7 +358,7 @@ bool IND_FontManager::parseMudFont(IND_Font *pNewFont,const char *pFontName) {
 
 		// height
 		if (mXChar->Attribute("height")) {
-			pNewFont->getLetters() [mCont]._heightChar = atoi(mXChar->Attribute("height"));
+			pNewFont->getLetters() [mCont]._height = atoi(mXChar->Attribute("height"));
 		} else {
 			g_debug->header("The char doesn't have a \"height\" attribute", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();

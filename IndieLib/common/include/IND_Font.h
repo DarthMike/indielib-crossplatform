@@ -81,41 +81,78 @@ private:
 
 	// LETTER
 	struct structLetter {
-		unsigned char _letter;          // Character
-		int _offsetX;                   // Offset x in the bitmap
-		int _offsetY;                   // Offset y in the bitmap
-		int _widthChar;                 // Character width
-		int _heightChar;                // Character height
+		unsigned char _letter;  // Character
+		int _x;                 // The left position of the character image in the texture
+		int _y;                 // The top position of the character image in the texture
+		int _width;             // The width of the character image in the texture
+		int _height;            // The height of the character image in the texture
 
+        // angelcode specific
+        int _xOffset;            // How much the current position should be offset when copying the image from the texture to the screen
+        int _yOffset;            // How much the current position should be offset when copying the image from the texture to the screen
+        int _xAdvance;           // How much the current position should be advanced after drawing the character
+        int _page;               // The texture page where the character image is found
+        int _chnl;               // The texture channel where the character image is found (1 = blue, 2 = green, 4 = red, 8 = alpha, 15 = all channels)
+        
 		// Attributes initialization
 		structLetter(): 
 			_letter (0),
-			_offsetX (0),
-			_offsetY (0),
-			_widthChar (0),
-			_heightChar (0){
+			_x (0),
+			_y (0),
+			_width (0),
+			_height (0),
+        
+            // angelcode specific
+            _xOffset(0),
+            _yOffset(0),
+            _xAdvance(0),
+            _page(0),
+            _chnl(0){
 		}
 	};
 	typedef struct structLetter LETTER;
+    
+    
+    // KERNING (angelcode specific)
+    // The kerning information is used to adjust the distance between certain characters, e.g. some characters should be placed closer to each other than others.
+    struct structKerning {
+        int _first;             // The first character id.
+        int _second;            // The second character id.
+        int _amount;            // How much the x position should be adjusted when drawing the second character immediately following the first.
+        structKerning():
+            _first(0),
+            _second(0),
+            _amount(0){
+		}
+	};
+	typedef struct structKerning KERNING;
+    
+        
 
 	// FONT
 	struct structFont {
-		LETTER *_letters;               // Letter array
-		int     _numChars;              // Num of chars
-		char    *_name;                 // Font name
-		IND_Surface *_surface;          // Bitmap (IND_Surface object) with the letters
+		LETTER *_letters;       // Letter array
+		int     _numChars;      // Num of chars
+		char    *_name;         // Font name
+		IND_Surface *_surface;  // Bitmap (IND_Surface object) with the letters // TODO: This needs to be a list of surfaces, since angelcode can make use of more than one image....
+        
+        KERNING *_kernings;     // Kerning array (angelcode specific).
+        
+                                // TODO: add the toplevel info variables here ( see angelcode documentation )
 
 		structFont() :
 		    _letters (NULL),
 			_numChars(0),
 			_name(NULL),
-			_surface(NULL){
+			_surface(NULL),
+            _kernings(NULL){
                 _name = new char[MAX_TOKEN];
                 memset(_name, (int)'\0', MAX_TOKEN);
 		}
         ~structFont() {
             DISPOSEARRAY(_name);
             DISPOSEARRAY(_letters);
+            DISPOSEARRAY(_kernings);
         }
 	};
 	typedef struct structFont FONT;
@@ -124,25 +161,25 @@ private:
 
 	// ----- Private sets ------
 
-	void        setLetters(LETTER *pLetters)      {
+	void setLetters(LETTER *pLetters) {
 		_font._letters = pLetters;
 	}
-	void        setNumChars(int pNumChars)         {
+	void setNumChars(int pNumChars) {
 		_font._numChars = pNumChars;
 	}
-	void        setFileName(const char *pName)           {
+	void setFileName(const char *pName) {
 		strcpy(_font._name,pName);
 	}
-	void        setSurface(IND_Surface *pSurface) {
+	void setSurface(IND_Surface *pSurface) {
 		_font._surface = pSurface;
 	}
 
 	// ----- Private gets ------
 
-	LETTER      *getLetters()                      {
+	LETTER *getLetters() {
 		return _font._letters;
 	}
-	IND_Surface *getSurface()                      {
+	IND_Surface *getSurface() {
 		return _font._surface;
 	}
 

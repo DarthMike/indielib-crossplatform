@@ -162,7 +162,7 @@ bool IND_FontManager::addMudFont(IND_Font		*pNewFont,
                                  const char     *pFile,
                                  IND_Type		pType,
                                  IND_Quality	pQuality) {
-	g_debug->header("Parsing and loading font", DebugApi::LogHeaderBegin);
+	g_debug->header("Parsing and loading MudFont font", DebugApi::LogHeaderBegin);
 	g_debug->header("File name:", DebugApi::LogHeaderInfo);
 	g_debug->dataChar(pFile, 1);
 
@@ -179,14 +179,14 @@ bool IND_FontManager::addMudFont(IND_Font		*pNewFont,
 	        !mMath.isPowerOfTwo(pImage->getHeight())) {
 		g_debug->header("This operation can not be done", DebugApi::LogHeaderInfo);
 		g_debug->dataChar("", 1);
-		g_debug->header("The height and width of the font must be power of 2", DebugApi::LogHeaderError);
+		g_debug->header("The height and width of the MudFont font must be power of 2", DebugApi::LogHeaderError);
 		return 0;
 	}
     
     // ----- XML font parsing -----
     
 	if (!parseMudFont(pNewFont, pFile)) {
-		g_debug->header("Fatal error, cannot load the font xml file", DebugApi::LogHeaderError);
+		g_debug->header("Fatal error, cannot load the MudFont font xml file", DebugApi::LogHeaderError);
 		return 0;
 	}
     
@@ -269,7 +269,8 @@ bool IND_FontManager::remove(IND_Font  *pFo) {
 
 /*
 ==================
-Parses and XML font file
+Parses an MudFont
+XML font file
 Uses Tinyxml
 ==================
 */
@@ -377,6 +378,289 @@ bool IND_FontManager::parseMudFont(IND_Font *pNewFont,const char *pFontName) {
 
 	return 1;
 }
+
+
+/*
+ ==================
+ Parses an Angelcode
+ XML font file
+ Uses Tinyxml
+ ==================
+ */
+bool IND_FontManager::parseAngelCodeFont(IND_Font *pNewFont,const char *pFontName) {
+	TiXmlDocument   *mXmlDoc = new TiXmlDocument(pFontName);
+    
+	// Fatal error, cannot load
+	if (!mXmlDoc->LoadFile()) {
+        DISPOSE(mXmlDoc);
+     	return 0;
+    }
+    
+	// Document root
+	TiXmlElement *mXFont = 0;
+	mXFont = mXmlDoc->FirstChildElement("font");
+    
+	if (!mXFont) {
+		g_debug->header("Invalid name for document root, should be <font>", DebugApi::LogHeaderError);
+		mXmlDoc->Clear();
+		delete mXmlDoc;
+		return 0;
+	}
+    
+    
+    //TODO : info
+    
+    //TODO : common
+    
+    //TODO : pages 
+    
+    
+   
+    // Chars element
+    TiXmlElement *mXChars = 0;
+	mXChars = mXFont->FirstChildElement("chars");
+    
+    if (!mXChars) {
+		g_debug->header("The <font> element doesn't have a <chars> child element", DebugApi::LogHeaderError);
+		mXmlDoc->Clear();
+		delete mXmlDoc;
+		return 0;
+	}
+    
+    
+    if (mXChars->Attribute("count")) {
+		pNewFont->setNumChars(atoi(mXChars->Attribute("count")));
+		pNewFont->setLetters(new IND_Font::LETTER [pNewFont->getNumChars()]);
+	} else {
+		g_debug->header("The <chars> element doesn't have a \"count\" attribute", DebugApi::LogHeaderError);
+		mXmlDoc->Clear();
+		delete mXmlDoc;
+		return 0;
+	}
+    
+    
+    // Char element
+	TiXmlElement *mXChar = 0;
+	mXChar = mXChars->FirstChildElement("char");
+    
+	if (!mXChar) {
+		g_debug->header("There are no <char> elements to parse", DebugApi::LogHeaderError);
+		mXmlDoc->Clear();
+		delete mXmlDoc;
+		return 0;
+	}
+    
+	// Parse all the chars
+	int mCont = 0;
+	while (mXChar) {
+		// Id
+		if (mXChar->Attribute("id")) {
+			pNewFont->getLetters() [mCont]._letter = static_cast<unsigned char>(atoi(mXChar->Attribute("id")));
+		} else {
+			g_debug->header("The <char> element doesn't have a \"id\" attribute", DebugApi::LogHeaderError);
+			mXmlDoc->Clear();
+			delete mXmlDoc;
+			return 0;
+		}
+        
+		// x
+		if (mXChar->Attribute("x")) {
+			pNewFont->getLetters() [mCont]._x = atoi(mXChar->Attribute("x"));
+		} else {
+			g_debug->header("The <char> element doesn't have a \"x\" attribute", DebugApi::LogHeaderError);
+			mXmlDoc->Clear();
+			delete mXmlDoc;
+			return 0;
+		}
+        
+		// y
+		if (mXChar->Attribute("y")) {
+			pNewFont->getLetters() [mCont]._y = atoi(mXChar->Attribute("y"));
+		} else {
+			g_debug->header("The <char> element doesn't have a \"y\" attribute", DebugApi::LogHeaderError);
+			mXmlDoc->Clear();
+			delete mXmlDoc;
+			return 0;
+		}
+        
+		// width
+		if (mXChar->Attribute("width")) {
+			pNewFont->getLetters() [mCont]._width = atoi(mXChar->Attribute("width"));
+		} else {
+			g_debug->header("The <char> element doesn't have a \"width\" attribute", DebugApi::LogHeaderError);
+			mXmlDoc->Clear();
+			delete mXmlDoc;
+			return 0;
+		}
+        
+		// height
+		if (mXChar->Attribute("height")) {
+			pNewFont->getLetters() [mCont]._height = atoi(mXChar->Attribute("height"));
+		} else {
+			g_debug->header("The <char> element doesn't have a \"height\" attribute", DebugApi::LogHeaderError);
+			mXmlDoc->Clear();
+			delete mXmlDoc;
+			return 0;
+		}
+        
+		// xoffset
+		if (mXChar->Attribute("xoffset")) {
+			pNewFont->getLetters() [mCont]._xOffset = atoi(mXChar->Attribute("xoffset"));
+		} else {
+			g_debug->header("The char doesn't have a \"xoffset\" attribute", DebugApi::LogHeaderError);
+			mXmlDoc->Clear();
+			delete mXmlDoc;
+			return 0;
+		}
+
+		// yoffset
+		if (mXChar->Attribute("yoffset")) {
+			pNewFont->getLetters() [mCont]._yOffset = atoi(mXChar->Attribute("yoffset"));
+		} else {
+			g_debug->header("The <char> element doesn't have a \"yoffset\" attribute", DebugApi::LogHeaderError);
+			mXmlDoc->Clear();
+			delete mXmlDoc;
+			return 0;
+		}
+        
+        // xadvance
+		if (mXChar->Attribute("xadvance")) {
+			pNewFont->getLetters() [mCont]._xAdvance = atoi(mXChar->Attribute("xadvance"));
+		} else {
+			g_debug->header("The <char> element doesn't have a \"xadvance\" attribute", DebugApi::LogHeaderError);
+			mXmlDoc->Clear();
+			delete mXmlDoc;
+			return 0;
+		}
+
+        // page
+		if (mXChar->Attribute("page")) {
+			pNewFont->getLetters() [mCont]._page = atoi(mXChar->Attribute("page"));
+		} else {
+			g_debug->header("The <char> element doesn't have a \"page\" attribute", DebugApi::LogHeaderError);
+			mXmlDoc->Clear();
+			delete mXmlDoc;
+			return 0;
+		}
+ 
+        // chnl
+		if (mXChar->Attribute("chnl")) {
+			pNewFont->getLetters() [mCont]._chnl = atoi(mXChar->Attribute("chnl"));
+		} else {
+			g_debug->header("The <char> element doesn't have a \"chnl\" attribute", DebugApi::LogHeaderError);
+			mXmlDoc->Clear();
+			delete mXmlDoc;
+			return 0;
+		}
+
+        
+		// Move to the next char declaration
+		mXChar = mXChar->NextSiblingElement("char");
+        
+		mCont++;
+	}
+    
+    
+    
+    
+    
+    // Chars element
+    TiXmlElement *mXKernings = 0;
+	mXKernings = mXFont->FirstChildElement("kernings");
+    
+    if (!mXKernings) {
+		g_debug->header("The <font> element doesn't have a <kernings> child element", DebugApi::LogHeaderError);
+		mXmlDoc->Clear();
+		delete mXmlDoc;
+		return 0;
+	}
+    
+    
+    if (mXKernings->Attribute("count")) {
+		
+        // TODO: add kernings methods on font element
+        
+        //pNewFont->setNumKernings(atoi(mXKernings->Attribute("count")));
+		//pNewFont->setKernings(new IND_Font::KERNING [pNewFont->getNumKernings()]);
+	} else {
+		g_debug->header("The <kernings> element doesn't have a \"count\" attribute", DebugApi::LogHeaderError);
+		mXmlDoc->Clear();
+		delete mXmlDoc;
+		return 0;
+	}
+    
+    
+    // Kerning element
+	TiXmlElement *mXKerning = 0;
+	mXKerning = mXKernings->FirstChildElement("kerning");
+    
+	if (!mXKerning) {
+		g_debug->header("There are no <kerning> elements to parse", DebugApi::LogHeaderError);
+		mXmlDoc->Clear();
+		delete mXmlDoc;
+		return 0;
+	}
+    
+	// Parse all kerning
+	int mKerCount = 0;
+	while (mXKerning) {
+		
+        // First
+		if (mXKerning->Attribute("first")) {
+            
+            // TODO: add kernings methods on font element
+            
+            //pNewFont->getKernings()[mKerCount]._first = atoi(mXKerning->Attribute("first"));
+		} else {
+			g_debug->header("The <kerning> element doesn't have a \"first\" attribute", DebugApi::LogHeaderError);
+			mXmlDoc->Clear();
+			delete mXmlDoc;
+			return 0;
+		}
+        
+        // Second
+		if (mXKerning->Attribute("second")) {
+            
+            // TODO: add kernings methods on font element
+            
+			//pNewFont->getKernings()[mKerCount]._second = atoi(mXKerning->Attribute("second"));
+		} else {
+			g_debug->header("The <kerning> element doesn't have a \"second\" attribute", DebugApi::LogHeaderError);
+			mXmlDoc->Clear();
+			delete mXmlDoc;
+			return 0;
+		}
+                
+        // Amount
+		if (mXKerning->Attribute("amount")) {
+            
+            // TODO: add kernings methods on font element
+            
+			//pNewFont->getKernings()[mKerCount]._amount = atoi(mXKerning->Attribute("amount"));
+		} else {
+			g_debug->header("The <kerning> element doesn't have a \"second\" attribute", DebugApi::LogHeaderError);
+			mXmlDoc->Clear();
+			delete mXmlDoc;
+			return 0;
+		}
+        
+        // Move to the next kerning declaration
+		mXKerning = mXKerning->NextSiblingElement("kerning");
+        
+		mKerCount++;
+	}
+
+
+    
+    
+    
+	mXmlDoc->Clear();
+	delete mXmlDoc;
+    
+	return 1;
+}
+
+
 
 /*
 ==================

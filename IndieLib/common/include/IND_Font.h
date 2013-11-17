@@ -64,11 +64,17 @@ public:
 	// ----- Public Gets ------
 
 	//! This function returns the number of characters of the font.
-	int getNumChars()      {
+	int getNumChars() {
 		return _font._numChars;
 	}
+    
+    //! This function returns the number of kernings of the font (angelcode specific).
+	int getNumKernings() {
+		return _font._numKernings;
+	}
+    
 	//! This function returns the name of the font configuration file.
-	const char* const getFileName()      {
+	const char* const getFileName() {
 		return _font._name;
 	}
 
@@ -136,15 +142,17 @@ private:
 		char    *_name;         // Font name
 		IND_Surface *_surface;  // Bitmap (IND_Surface object) with the letters // TODO: This needs to be a list of surfaces, since angelcode can make use of more than one image....
         
+        int     _numKernings;   // Num of kernings (angelcode specific).
         KERNING *_kernings;     // Kerning array (angelcode specific).
         
-                                // TODO: add the toplevel info variables here ( see angelcode documentation )
+                                // TODO: add the toplevel info variables here if needed ( see angelcode documentation )
 
 		structFont() :
 		    _letters (NULL),
 			_numChars(0),
 			_name(NULL),
 			_surface(NULL),
+            _numKernings(0),
             _kernings(NULL){
                 _name = new char[MAX_TOKEN];
                 memset(_name, (int)'\0', MAX_TOKEN);
@@ -167,6 +175,12 @@ private:
 	void setNumChars(int pNumChars) {
 		_font._numChars = pNumChars;
 	}
+    void setKernings(KERNING *pKernings) {
+		_font._kernings = pKernings;
+	}
+	void setNumKernings(int pNumKernings) {
+		_font._numKernings = pNumKernings;
+	}
 	void setFileName(const char *pName) {
 		strcpy(_font._name,pName);
 	}
@@ -178,6 +192,9 @@ private:
 
 	LETTER *getLetters() {
 		return _font._letters;
+	}
+    KERNING *getKernings() {
+		return _font._kernings;
 	}
 	IND_Surface *getSurface() {
 		return _font._surface;

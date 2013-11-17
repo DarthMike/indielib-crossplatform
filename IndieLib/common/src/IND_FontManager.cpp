@@ -408,11 +408,11 @@ bool IND_FontManager::parseAngelCodeFont(IND_Font *pNewFont,const char *pFontNam
 	}
     
     
-    //TODO : info
+    //TODO : info element variables ... maybe
     
-    //TODO : common
+    //TODO : common element variables ... maybe
     
-    //TODO : pages 
+    //TODO : pages, this one needs to be done ... MudFont have aalways? just one page .. Angelcode can have multiple
     
     
    
@@ -450,12 +450,13 @@ bool IND_FontManager::parseAngelCodeFont(IND_Font *pNewFont,const char *pFontNam
 		return 0;
 	}
     
-	// Parse all the chars
-	int mCont = 0;
+	// Parse each char
+	int mCharCount = 0;
 	while (mXChar) {
-		// Id
+		
+        // Id
 		if (mXChar->Attribute("id")) {
-			pNewFont->getLetters() [mCont]._letter = static_cast<unsigned char>(atoi(mXChar->Attribute("id")));
+			pNewFont->getLetters() [mCharCount]._letter = static_cast<unsigned char>(atoi(mXChar->Attribute("id")));
 		} else {
 			g_debug->header("The <char> element doesn't have a \"id\" attribute", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();
@@ -465,7 +466,7 @@ bool IND_FontManager::parseAngelCodeFont(IND_Font *pNewFont,const char *pFontNam
         
 		// x
 		if (mXChar->Attribute("x")) {
-			pNewFont->getLetters() [mCont]._x = atoi(mXChar->Attribute("x"));
+			pNewFont->getLetters() [mCharCount]._x = atoi(mXChar->Attribute("x"));
 		} else {
 			g_debug->header("The <char> element doesn't have a \"x\" attribute", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();
@@ -475,7 +476,7 @@ bool IND_FontManager::parseAngelCodeFont(IND_Font *pNewFont,const char *pFontNam
         
 		// y
 		if (mXChar->Attribute("y")) {
-			pNewFont->getLetters() [mCont]._y = atoi(mXChar->Attribute("y"));
+			pNewFont->getLetters() [mCharCount]._y = atoi(mXChar->Attribute("y"));
 		} else {
 			g_debug->header("The <char> element doesn't have a \"y\" attribute", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();
@@ -485,7 +486,7 @@ bool IND_FontManager::parseAngelCodeFont(IND_Font *pNewFont,const char *pFontNam
         
 		// width
 		if (mXChar->Attribute("width")) {
-			pNewFont->getLetters() [mCont]._width = atoi(mXChar->Attribute("width"));
+			pNewFont->getLetters() [mCharCount]._width = atoi(mXChar->Attribute("width"));
 		} else {
 			g_debug->header("The <char> element doesn't have a \"width\" attribute", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();
@@ -495,7 +496,7 @@ bool IND_FontManager::parseAngelCodeFont(IND_Font *pNewFont,const char *pFontNam
         
 		// height
 		if (mXChar->Attribute("height")) {
-			pNewFont->getLetters() [mCont]._height = atoi(mXChar->Attribute("height"));
+			pNewFont->getLetters() [mCharCount]._height = atoi(mXChar->Attribute("height"));
 		} else {
 			g_debug->header("The <char> element doesn't have a \"height\" attribute", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();
@@ -505,7 +506,7 @@ bool IND_FontManager::parseAngelCodeFont(IND_Font *pNewFont,const char *pFontNam
         
 		// xoffset
 		if (mXChar->Attribute("xoffset")) {
-			pNewFont->getLetters() [mCont]._xOffset = atoi(mXChar->Attribute("xoffset"));
+			pNewFont->getLetters() [mCharCount]._xOffset = atoi(mXChar->Attribute("xoffset"));
 		} else {
 			g_debug->header("The char doesn't have a \"xoffset\" attribute", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();
@@ -515,7 +516,7 @@ bool IND_FontManager::parseAngelCodeFont(IND_Font *pNewFont,const char *pFontNam
 
 		// yoffset
 		if (mXChar->Attribute("yoffset")) {
-			pNewFont->getLetters() [mCont]._yOffset = atoi(mXChar->Attribute("yoffset"));
+			pNewFont->getLetters() [mCharCount]._yOffset = atoi(mXChar->Attribute("yoffset"));
 		} else {
 			g_debug->header("The <char> element doesn't have a \"yoffset\" attribute", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();
@@ -525,7 +526,7 @@ bool IND_FontManager::parseAngelCodeFont(IND_Font *pNewFont,const char *pFontNam
         
         // xadvance
 		if (mXChar->Attribute("xadvance")) {
-			pNewFont->getLetters() [mCont]._xAdvance = atoi(mXChar->Attribute("xadvance"));
+			pNewFont->getLetters() [mCharCount]._xAdvance = atoi(mXChar->Attribute("xadvance"));
 		} else {
 			g_debug->header("The <char> element doesn't have a \"xadvance\" attribute", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();
@@ -535,7 +536,7 @@ bool IND_FontManager::parseAngelCodeFont(IND_Font *pNewFont,const char *pFontNam
 
         // page
 		if (mXChar->Attribute("page")) {
-			pNewFont->getLetters() [mCont]._page = atoi(mXChar->Attribute("page"));
+			pNewFont->getLetters() [mCharCount]._page = atoi(mXChar->Attribute("page"));
 		} else {
 			g_debug->header("The <char> element doesn't have a \"page\" attribute", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();
@@ -545,7 +546,7 @@ bool IND_FontManager::parseAngelCodeFont(IND_Font *pNewFont,const char *pFontNam
  
         // chnl
 		if (mXChar->Attribute("chnl")) {
-			pNewFont->getLetters() [mCont]._chnl = atoi(mXChar->Attribute("chnl"));
+			pNewFont->getLetters() [mCharCount]._chnl = atoi(mXChar->Attribute("chnl"));
 		} else {
 			g_debug->header("The <char> element doesn't have a \"chnl\" attribute", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();
@@ -557,14 +558,13 @@ bool IND_FontManager::parseAngelCodeFont(IND_Font *pNewFont,const char *pFontNam
 		// Move to the next char declaration
 		mXChar = mXChar->NextSiblingElement("char");
         
-		mCont++;
+		mCharCount++;
 	}
     
     
     
     
-    
-    // Chars element
+    // Kernings element
     TiXmlElement *mXKernings = 0;
 	mXKernings = mXFont->FirstChildElement("kernings");
     
@@ -577,11 +577,8 @@ bool IND_FontManager::parseAngelCodeFont(IND_Font *pNewFont,const char *pFontNam
     
     
     if (mXKernings->Attribute("count")) {
-		
-        // TODO: add kernings methods on font element
-        
-        //pNewFont->setNumKernings(atoi(mXKernings->Attribute("count")));
-		//pNewFont->setKernings(new IND_Font::KERNING [pNewFont->getNumKernings()]);
+        pNewFont->setNumKernings(atoi(mXKernings->Attribute("count")));
+		pNewFont->setKernings(new IND_Font::KERNING [pNewFont->getNumKernings()]);
 	} else {
 		g_debug->header("The <kernings> element doesn't have a \"count\" attribute", DebugApi::LogHeaderError);
 		mXmlDoc->Clear();
@@ -601,16 +598,13 @@ bool IND_FontManager::parseAngelCodeFont(IND_Font *pNewFont,const char *pFontNam
 		return 0;
 	}
     
-	// Parse all kerning
+	// Parse each kerning
 	int mKerCount = 0;
 	while (mXKerning) {
 		
         // First
 		if (mXKerning->Attribute("first")) {
-            
-            // TODO: add kernings methods on font element
-            
-            //pNewFont->getKernings()[mKerCount]._first = atoi(mXKerning->Attribute("first"));
+            pNewFont->getKernings()[mKerCount]._first = atoi(mXKerning->Attribute("first"));
 		} else {
 			g_debug->header("The <kerning> element doesn't have a \"first\" attribute", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();
@@ -620,10 +614,7 @@ bool IND_FontManager::parseAngelCodeFont(IND_Font *pNewFont,const char *pFontNam
         
         // Second
 		if (mXKerning->Attribute("second")) {
-            
-            // TODO: add kernings methods on font element
-            
-			//pNewFont->getKernings()[mKerCount]._second = atoi(mXKerning->Attribute("second"));
+			pNewFont->getKernings()[mKerCount]._second = atoi(mXKerning->Attribute("second"));
 		} else {
 			g_debug->header("The <kerning> element doesn't have a \"second\" attribute", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();
@@ -633,10 +624,7 @@ bool IND_FontManager::parseAngelCodeFont(IND_Font *pNewFont,const char *pFontNam
                 
         // Amount
 		if (mXKerning->Attribute("amount")) {
-            
-            // TODO: add kernings methods on font element
-            
-			//pNewFont->getKernings()[mKerCount]._amount = atoi(mXKerning->Attribute("amount"));
+			pNewFont->getKernings()[mKerCount]._amount = atoi(mXKerning->Attribute("amount"));
 		} else {
 			g_debug->header("The <kerning> element doesn't have a \"second\" attribute", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();

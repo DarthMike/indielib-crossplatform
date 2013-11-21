@@ -195,12 +195,10 @@ void OpenGLES2Render::blitTriangleList(IND_Point *pTrianglePoints,
 	if (pNumPoints < 3)
 		return;
     
-	//LOOP - Fill pixels structure
 	for (int i = 0; i < pNumPoints; i++) {
 		fillPixel(&_points[i], static_cast<float>(pTrianglePoints[i].x), static_cast<float>(pTrianglePoints[i].y));
-	}//LOOP END
+	}
 
-	// Color and transformation
 	setForPrimitive(pA,true);
 
     _defaultProgram->use();
@@ -244,7 +242,6 @@ void OpenGLES2Render::blitColoredTriangle(int pX1,
 	fillPixel (&_points[1], static_cast<float>(pX2), static_cast<float>(pY2));
 	fillPixel (&_points[2], static_cast<float>(pX3), static_cast<float>(pY3));
     
-	// Color and transformation
 	setForPrimitive(pA,true);
     
     _defaultProgram->use();
@@ -280,13 +277,10 @@ bool OpenGLES2Render::blitPoly2d(IND_Point *pPolyPoints,
 	if (!pPolyPoints)   return 0;
 	if (pNumLines < 1)  return 0;
 
-	// Fill PIXEL structures
     for (int i = 0; i < pNumLines + 1; i++){
 	    fillPixel (&_points[i], static_cast<float>(pPolyPoints [i].x), static_cast<float>(pPolyPoints [i].y));
     }
 
-
-	// Color and transformation
 	setForPrimitive(pA,true);
 
     _defaultProgram->use();

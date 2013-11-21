@@ -418,16 +418,6 @@ void OpenGLES2Render::setDefaultGLState() {
 	//Generally we work with byte-aligned textures.
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 	glPixelStorei(GL_PACK_ALIGNMENT, 1);
-    
-    setGLClientStateToTexturing();
-}
-
-void OpenGLES2Render::setGLClientStateToPrimitive() {
-    // TODO: SHADERS
-}
-
-void OpenGLES2Render::setGLClientStateToTexturing() {
-    // TODO: SHADERS
 }
 
 void OpenGLES2Render::setGLBoundTextureParams() {

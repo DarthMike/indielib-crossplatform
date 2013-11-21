@@ -66,6 +66,7 @@ class IND_Animation;
 class IND_Camera2d;
 class IND_Camera3d;
 class OpenGLES2Manager;
+class IND_ShaderProgram;
 
 // ----- Libs -----
 #include <OpenGLES/ES2/gl.h>
@@ -452,6 +453,8 @@ private:
 	void writeInfo();
 
 	bool initializeOpenGLES2Render();   //Render init
+    void initializeBuffers();
+    bool initializeDefaultPrograms();
 	bool checkGLExtensions();        //GL extensions managing
 
 	//Blitting helpers
@@ -475,10 +478,6 @@ private:
     
     //GL state helpers
     void setDefaultGLState();
-    
-    void setGLClientStateToPrimitive();
-    void setGLClientStateToTexturing();
-
     void setGLBoundTextureParams();
     
 	// ----- Collisions -----
@@ -525,13 +524,13 @@ private:
     IND_Matrix _shaderProjectionMatrix;
     
 	// ----- Primitives vertices -----
-
-	// Temporal buffer of pixels for drawing primitives
-	PIXEL _pixels [MAX_PIXELS];
+    GLuint  _blitbuffer;
 
 	// ----- Vertex array -----
+    IND_ShaderProgram* _defaultProgram;
 
-	// Temporal buffer of vertices for drawing regions of an IND_Surface
+    // Temporal buffers
+    PIXEL _points [MAX_PIXELS];
 	CUSTOMVERTEX2D _vertices2d [MAX_PIXELS];
 
 	// ----- Primitives vertices -----

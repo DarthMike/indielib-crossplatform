@@ -46,6 +46,9 @@
 #include "IND_Animation.h"
 #include "IND_Camera2d.h"
 #include "platform/iOS/OpenGLES2Manager.h"
+#include "IND_ShaderProgram.h"
+#include "IND_Shaders.h"
+
 #include <OpenGLES/ES2/gl.h>
 
 /** @cond DOCUMENT_PRIVATEAPI */
@@ -120,6 +123,14 @@ IND_Window* OpenGLES2Render::initRenderAndWindow(IND_WindowProperties& props) {
 
 	writeInfo();
 
+    initializeBuffers();
+    
+    _ok = initializeDefaultPrograms();
+    if (!_ok) {
+        g_debug->header("Error compiling default shaders", DebugApi::LogHeaderError);
+        return NULL;
+    }
+    
 	g_debug->header("OpenGL ES 2 Render Created", DebugApi::LogHeaderEnd);
 	return _window;
 }
@@ -262,6 +273,26 @@ bool OpenGLES2Render::initializeOpenGLES2Render() {
 
 	// ViewPort initialization
 	return resetViewport(_window->getWidth(),_window->getHeight());
+}
+
+void OpenGLES2Render::initializeBuffers() {
+    glGenBuffers(1, &_blitbuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, _blitbuffer);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(PIXEL)*MAX_PIXELS, NULL, GL_DYNAMIC_DRAW);
+}
+
+bool OpenGLES2Render::initializeDefaultPrograms() {
+    _defaultProgram = IND_ShaderProgram::newShaderProgram();
+    
+    if (!_defaultProgram->compile(IND_VertexShader_UniformColor, IND_FragmentShader_UniformColor)) {
+        return false;
+    }
+    
+    if (!_defaultProgram->link()) {
+        return false;
+    }
+    
+    return true;
 }
 
 /*

@@ -45,8 +45,8 @@ uniform mat4 uPMatrix;                              \n\
                                                     \n\
 void main()											\n\
 {                                                   \n\
-    vec4 pos4 = vec4(aPosition, 0.0);               \n\
-    gl_Position = uMVmatrix * uPMatrix * pos4;      \n\
+    vec4 pos4 = vec4(aPosition, 1.0);               \n\
+    gl_Position = uPMatrix * uMVmatrix  * pos4;     \n\
     varFragmentColor = uColor;                      \n\
 }													\n\
 ";

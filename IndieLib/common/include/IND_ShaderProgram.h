@@ -28,10 +28,13 @@
 #define __IND_SHADERPROGRAM_H_
 
 #include "IND_Object.h"
+#include "Defines.h"
 #include <string>
-using namespace std;
+#include <map>
 
+using namespace std;
 struct IND_ShaderProgramImpl;
+
 class LIB_EXP IND_ShaderProgram : public IND_Object{
 public:
     static IND_ShaderProgram* newShaderProgram() {
@@ -46,7 +49,13 @@ public:
     bool link();
     void use();
     
+    void setValueForUniform4f(const char* uniformName, float x, float y, float z, float w);
+    void setValueForUniformMat(const char* uniformName, IND_Matrix matrix);
+    int getPositionForVertexAttribute(const char* vertextAttribureName);
+    
     string errorLog();
+
+    typedef map<string,int> UniformToLocationMap;
     
 private:
     IND_ShaderProgram() : _impl(NULL) { init(); }
@@ -55,6 +64,7 @@ private:
     void init();
     void end();
 
+    UniformToLocationMap uniformsMap;
     IND_ShaderProgramImpl* _impl;
 };
 

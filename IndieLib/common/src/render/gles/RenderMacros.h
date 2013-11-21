@@ -26,16 +26,41 @@
 #ifndef __INDIELIBIOS_RENDERMACROS_H__
 #define __INDIELIBIOS_RENDERMACROS_H__
 
-#ifdef DEBUG
-//#define CHECK_GL_ERROR_DEBUG() ({ GLenum __error = glGetError(); if(__error) printf("OpenGL error 0x%04X in %s %d\n", __error, __FUNCTION__, __LINE__); })
-//#else
-//#define CHECK_GL_ERROR_DEBUG()
-//#endif
+#import <string>
+#import <sstream>
 
-#define CHECKGLERRORS() GLenum glerror = glGetError(); \
-if (glerror) { \
-g_debug->header("OpenGL error ", DebugApi::LogHeaderError);\
+#ifdef DEBUG
+using namespace std;
+
+string checkGLError(const char* srcFile, int srcLine) {
+    GLenum err (glGetError());
+    stringstream errors;
+    
+    while(err!=GL_NO_ERROR) {
+        string error;
+        switch(err) {
+            case GL_INVALID_OPERATION:      error="GL_INVALID_OPERATION";      break;
+            case GL_INVALID_ENUM:           error="GL_INVALID_ENUM";           break;
+            case GL_INVALID_VALUE:          error="GL_INVALID_VALUE";          break;
+            case GL_OUT_OF_MEMORY:          error="GL_OUT_OF_MEMORY";          break;
+            case GL_INVALID_FRAMEBUFFER_OPERATION:  error="GL_INVALID_FRAMEBUFFER_OPERATION";  break;
+        }
+        
+        errors << error.c_str() <<" AT - "<<srcFile<<":"<<srcLine<<endl;
+        err=glGetError();
+    }
+    
+    return errors.str();
 }
+
+void logDebugGLError(string error) {
+    if (error.length()) {
+        g_debug->header(error, DebugApi::LogHeaderError);
+    }
+}
+
+#define CHECKGLERRORS() logDebugGLError(checkGLError(__FILE__,__LINE__));
+
 #else
 #define CHECKGLERRORS()
 #endif

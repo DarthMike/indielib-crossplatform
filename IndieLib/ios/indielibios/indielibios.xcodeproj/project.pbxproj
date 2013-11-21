@@ -70,6 +70,7 @@
 		E75BD96A1772624100C5185F /* OpenGLES2Render.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75BD9601772624100C5185F /* OpenGLES2Render.cpp */; };
 		E7C2820D1826D03F00116982 /* IND_ShaderProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7C2820B1826D03F00116982 /* IND_ShaderProgram.cpp */; };
 		E7C282161826FDDE00116982 /* IND_Shaders.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7C282141826FDDE00116982 /* IND_Shaders.cpp */; };
+		E7C67F04183EB4E8002B2111 /* IND_ShaderManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7C67F03183EB4E8002B2111 /* IND_ShaderManager.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -241,6 +242,8 @@
 		E7C282131826FD7E00116982 /* IND_Shaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IND_Shaders.h; path = ../../common/include/IND_Shaders.h; sourceTree = "<group>"; };
 		E7C282141826FDDE00116982 /* IND_Shaders.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IND_Shaders.cpp; path = ../../common/src/IND_Shaders.cpp; sourceTree = "<group>"; };
 		E7C2821718285FBD00116982 /* RenderMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RenderMacros.h; path = ../../common/src/render/gles/RenderMacros.h; sourceTree = "<group>"; };
+		E7C67F02183EB4E8002B2111 /* IND_ShaderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IND_ShaderManager.h; path = ../../common/src/IND_ShaderManager.h; sourceTree = "<group>"; };
+		E7C67F03183EB4E8002B2111 /* IND_ShaderManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IND_ShaderManager.cpp; path = ../../common/src/IND_ShaderManager.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -311,7 +314,6 @@
 				E720108F1770FEFF00D14384 /* IND_Entity2dManager.h */,
 				E72010901770FEFF00D14384 /* IND_Font.h */,
 				E72010911770FEFF00D14384 /* IND_FontManager.h */,
-				E7C282131826FD7E00116982 /* IND_Shaders.h */,
 				E72010921770FEFF00D14384 /* IND_Frame.h */,
 				E72010931770FEFF00D14384 /* IND_Image.h */,
 				E72010941770FEFF00D14384 /* IND_ImageManager.h */,
@@ -323,6 +325,7 @@
 				E72010991770FEFF00D14384 /* IND_Render.h */,
 				E720109A1770FEFF00D14384 /* IND_Sequence.h */,
 				E7C2820F1826D05900116982 /* IND_ShaderProgram.h */,
+				E7C282131826FD7E00116982 /* IND_Shaders.h */,
 				E73B869217F8AE8B0040F195 /* IND_SpriterEntity.h */,
 				E73B869117F8AE8B0040F195 /* IND_SpriterManager.h */,
 				E720109B1770FEFF00D14384 /* IND_Surface.h */,
@@ -365,6 +368,8 @@
 				E72010B51770FF4200D14384 /* IND_Input.cpp */,
 				E7201086176E420E00D14384 /* IND_Math.cpp */,
 				E72010B61770FF4200D14384 /* IND_Render.cpp */,
+				E7C67F03183EB4E8002B2111 /* IND_ShaderManager.cpp */,
+				E7C67F02183EB4E8002B2111 /* IND_ShaderManager.h */,
 				E7C2820B1826D03F00116982 /* IND_ShaderProgram.cpp */,
 				E7C282141826FDDE00116982 /* IND_Shaders.cpp */,
 				E73B868D17F8AE6B0040F195 /* IND_SpriterEntity.cpp */,
@@ -600,6 +605,7 @@
 				E72010CB1770FF4200D14384 /* IND_Image.cpp in Sources */,
 				E72010CC1770FF4200D14384 /* IND_ImageManager.cpp in Sources */,
 				E7C282161826FDDE00116982 /* IND_Shaders.cpp in Sources */,
+				E7C67F04183EB4E8002B2111 /* IND_ShaderManager.cpp in Sources */,
 				E72010CD1770FF4200D14384 /* IND_Input.cpp in Sources */,
 				E72010CE1770FF4200D14384 /* IND_Render.cpp in Sources */,
 				E72010CF1770FF4200D14384 /* IND_Surface.cpp in Sources */,

@@ -71,6 +71,7 @@
 		E7C2820D1826D03F00116982 /* IND_ShaderProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7C2820B1826D03F00116982 /* IND_ShaderProgram.cpp */; };
 		E7C282161826FDDE00116982 /* IND_Shaders.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7C282141826FDDE00116982 /* IND_Shaders.cpp */; };
 		E7C67F04183EB4E8002B2111 /* IND_ShaderManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7C67F03183EB4E8002B2111 /* IND_ShaderManager.cpp */; };
+		E7C67F07183FE1C1002B2111 /* IND_GLShaderUniform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7C67F06183FE1C1002B2111 /* IND_GLShaderUniform.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -244,6 +245,8 @@
 		E7C2821718285FBD00116982 /* RenderMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RenderMacros.h; path = ../../common/src/render/gles/RenderMacros.h; sourceTree = "<group>"; };
 		E7C67F02183EB4E8002B2111 /* IND_ShaderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IND_ShaderManager.h; path = ../../common/src/IND_ShaderManager.h; sourceTree = "<group>"; };
 		E7C67F03183EB4E8002B2111 /* IND_ShaderManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IND_ShaderManager.cpp; path = ../../common/src/IND_ShaderManager.cpp; sourceTree = "<group>"; };
+		E7C67F05183FE1A5002B2111 /* IND_GLShaderUniform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IND_GLShaderUniform.h; path = ../../common/include/IND_GLShaderUniform.h; sourceTree = "<group>"; };
+		E7C67F06183FE1C1002B2111 /* IND_GLShaderUniform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IND_GLShaderUniform.cpp; path = ../../common/src/render/gles/ios/IND_GLShaderUniform.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -315,6 +318,7 @@
 				E72010901770FEFF00D14384 /* IND_Font.h */,
 				E72010911770FEFF00D14384 /* IND_FontManager.h */,
 				E72010921770FEFF00D14384 /* IND_Frame.h */,
+				E7C67F05183FE1A5002B2111 /* IND_GLShaderUniform.h */,
 				E72010931770FEFF00D14384 /* IND_Image.h */,
 				E72010941770FEFF00D14384 /* IND_ImageManager.h */,
 				E72010951770FEFF00D14384 /* IND_Input.h */,
@@ -490,16 +494,17 @@
 		E75BD96B1772624800C5185F /* ios */ = {
 			isa = PBXGroup;
 			children = (
-				E75BD9511771085100C5185F /* OpenGLES2Render.h */,
+				E7C67F06183FE1C1002B2111 /* IND_GLShaderUniform.cpp */,
 				E75BD9601772624100C5185F /* OpenGLES2Render.cpp */,
-				E75BD9561772624100C5185F /* RenderTransformCommonGLES2.cpp */,
-				E75BD9571772624100C5185F /* RenderTransform3dGLES2.cpp */,
-				E75BD9581772624100C5185F /* RenderTransform2dGLES2.cpp */,
-				E75BD9591772624100C5185F /* RenderText2dGLES2.cpp */,
-				E75BD95A1772624100C5185F /* RenderPrimitive2dGLES2.cpp */,
-				E75BD95B1772624100C5185F /* RenderObject3dGLES2.cpp */,
-				E75BD95C1772624100C5185F /* RenderObject2dGLES2.cpp */,
+				E75BD9511771085100C5185F /* OpenGLES2Render.h */,
 				E75BD95D1772624100C5185F /* RenderCullingGLES2.cpp */,
+				E75BD95C1772624100C5185F /* RenderObject2dGLES2.cpp */,
+				E75BD95B1772624100C5185F /* RenderObject3dGLES2.cpp */,
+				E75BD95A1772624100C5185F /* RenderPrimitive2dGLES2.cpp */,
+				E75BD9591772624100C5185F /* RenderText2dGLES2.cpp */,
+				E75BD9581772624100C5185F /* RenderTransform2dGLES2.cpp */,
+				E75BD9571772624100C5185F /* RenderTransform3dGLES2.cpp */,
+				E75BD9561772624100C5185F /* RenderTransformCommonGLES2.cpp */,
 			);
 			name = ios;
 			sourceTree = "<group>";
@@ -605,6 +610,7 @@
 				E72010CB1770FF4200D14384 /* IND_Image.cpp in Sources */,
 				E72010CC1770FF4200D14384 /* IND_ImageManager.cpp in Sources */,
 				E7C282161826FDDE00116982 /* IND_Shaders.cpp in Sources */,
+				E7C67F07183FE1C1002B2111 /* IND_GLShaderUniform.cpp in Sources */,
 				E7C67F04183EB4E8002B2111 /* IND_ShaderManager.cpp in Sources */,
 				E72010CD1770FF4200D14384 /* IND_Input.cpp in Sources */,
 				E72010CE1770FF4200D14384 /* IND_Render.cpp in Sources */,

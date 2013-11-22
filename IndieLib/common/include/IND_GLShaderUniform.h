@@ -24,52 +24,46 @@
  *****************************************************************************************/
 
 
-#ifndef __IND_SHADERPROGRAM_H_
-#define __IND_SHADERPROGRAM_H_
+#ifndef __IND_GLSHADERUNIFORM_H_
+#define __IND_GLSHADERUNIFORM_H_
 
 #include "IND_Object.h"
 #include "Defines.h"
-#include "IND_GLShaderUniform.h"
 
 #include <string>
-#include <map>
+#include <OpenGLES/ES2/gl.h>
 
 using namespace std;
-struct IND_ShaderProgramImpl;
 
-class LIB_EXP IND_ShaderProgram : public IND_Object{
+class LIB_EXP IND_GLSLShaderUniform : public IND_Object{
 public:
-    static IND_ShaderProgram* newShaderProgram() {
-        return new IND_ShaderProgram();
+    static IND_GLSLShaderUniform* newUniform() {
+        return new IND_GLSLShaderUniform();
     }
     
     virtual void destroy() {
         delete this;
     }
     
-    bool compile(const char* vertexShader, const char* fragmentShader);
-    bool link();
-    void use();
+    typedef enum UniformType {
+        UniformTypeUnknown,
+        UniformTypeInteger,
+        UniformTypeFloat,
+        UniformTypeIntVector,
+        UniformTypeIntMatrix,
+        UniformTypeFloatVector,
+        UniformTypeFloatMatrix,
+        UniformTypeSampler2D
+    } UniformType;
     
-    void setValueForUniform4f(const char* uniformName, float x, float y, float z, float w);
-    void setValueForUniformMat(const char* uniformName, IND_Matrix matrix);
-    int getPositionForVertexAttribute(const char* vertextAttribureName);
+    string _nameInShader;
+    GLint _glLocation;
+    GLenum _glType;
     
-    string errorLog();
-
-    typedef map<string,IND_GLSLShaderUniform*> UniformsMap;
-    
-private:
-    IND_ShaderProgram() : _impl(NULL) { init(); }
-    virtual ~IND_ShaderProgram() { end(); }
-    
-    void init();
-    void end();
-    
-    void readProgramUniforms();
-
-    UniformsMap _uniformsMap;
-    IND_ShaderProgramImpl* _impl;
+    UniformType getType();
+    int arrayLength();
+    int matrixLength();
 };
 
-#endif //__IND_SHADER_H_
+//+(GLK2Uniform*) uniformNamed:(NSString*) nameOfUniform GLType:(GLenum) openGLType GLLocation:(GLint) openGLLocation numElementsInArray:(GLint) numElements
+#endif //__IND_GLSHADERUNIFORM_H_

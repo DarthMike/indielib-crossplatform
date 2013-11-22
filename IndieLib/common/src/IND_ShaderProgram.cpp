@@ -84,29 +84,8 @@ struct IND_ShaderProgramImpl {
         return numChars;
     }
     
-    void populateUniformMap(GLuint program, IND_ShaderProgram::UniformsMap map) {
-        GLint uniformsCount = numberOfUniformsInProgram(program);
-        GLint maxNameLength = maxUniformNameLength(program);
-        char* uniformName = (char*)malloc( sizeof(char) * maxNameLength );
-        
-        for (GLint i = 0; i<uniformsCount; ++i) {
-            GLenum uniformType;
-            GLint uniformSize;
-            glGetActiveUniform(program, i, maxNameLength, NULL, &uniformSize, &uniformType, uniformName);
-            GLint uniformLocation = glGetUniformLocation( program, uniformName );
-            string name (uniformName);
-            
-            IND_GLSLShaderUniform* uniform = IND_GLSLShaderUniform::newUniform();
-            uniform->_nameInShader = name;
-            uniform->_glLocation = uniformLocation;
-            uniform->_glType = uniformType;
-            map[name] = uniform;
-        }
-        
-        free(uniformName);
-    }
-    
-
+    typedef map<string,IND_GLSLShaderUniform*> UniformsMap;
+    UniformsMap _uniformsMap;
     
     GLuint _program;
     GLuint _vertexShader;
@@ -177,7 +156,25 @@ bool  IND_ShaderProgram::link() {
     glDeleteShader(_impl->_vertexShader);
     glDeleteShader(_impl->_fragmentShader);
     
-    _impl->populateUniformMap(_impl->_program, _uniformsMap);
+    GLint uniformsCount = _impl->numberOfUniformsInProgram(_impl->_program);
+    GLint maxNameLength = _impl->maxUniformNameLength(_impl->_program);
+    char* uniformName = (char*)malloc( sizeof(char) * maxNameLength );
+    
+    for (GLint i = 0; i<uniformsCount; ++i) {
+        GLenum uniformType;
+        GLint uniformSize;
+        glGetActiveUniform(_impl->_program, i, maxNameLength, NULL, &uniformSize, &uniformType, uniformName);
+        GLint uniformLocation = glGetUniformLocation( _impl->_program, uniformName );
+        string name (uniformName);
+        
+        IND_GLSLShaderUniform* uniform = IND_GLSLShaderUniform::newUniform();
+        uniform->_nameInShader = name;
+        uniform->_glLocation = uniformLocation;
+        uniform->_glType = uniformType;
+        _uniformsMap[name] = uniform;
+    }
+    
+    free(uniformName);
     
     return true;
 }
@@ -186,21 +183,101 @@ void IND_ShaderProgram::use() {
     glUseProgram(_impl->_program);
 }
 
-void IND_ShaderProgram::setValueForUniform4f(const char *uniformName, float x, float y, float z, float w) {
-    GLint location = glGetUniformLocation(_impl->_program, uniformName);
-    if (-1  != location) {
-        glUniform4f(location, x, y, z, w);
+IND_GLSLShaderUniform* IND_ShaderProgram::getUniform(const char* uniformName) {
+    string name(uniformName);
+    
+    IND_GLSLShaderUniform* uniform = NULL;
+    UniformsMap::iterator it = _uniformsMap.find(name);
+    if (it != _uniformsMap.end()) {
+        uniform = it->second;
     }
+    
+    return uniform;
 }
 
-void IND_ShaderProgram::setValueForUniformMat(const char* uniformName, IND_Matrix matrix) {
-    GLint location = glGetUniformLocation(_impl->_program, uniformName);
-    if (-1 != location) {
-        GLfloat matArray[16];
-        matrix.arrayRepresentation(matArray);
-        glUniformMatrix4fv(location, 1, GL_FALSE, matArray);
+void IND_ShaderProgram::setSingleUniformValue(const void* value, const char* uniformName) {
+    IND_GLSLShaderUniform* uniform = getUniform(uniformName);
+    
+    if (!uniform) return;
+    
+    GLint location = uniform->_glLocation;
+    switch( uniform->getType() )
+    {
+        case IND_GLSLShaderUniform::UniformTypeFloat:
+            glUniform1fv(location, 1, static_cast<const GLfloat*>(value));
+            break;
+        case IND_GLSLShaderUniform::UniformTypeFloatMatrix:
+            switch (uniform->matrixSize()) {
+                case 2:
+                    glUniformMatrix2fv(location, 1, false, static_cast<const GLfloat*>(value));
+                    break;
+                case 3:
+                    glUniformMatrix3fv(location, 1, false, static_cast<const GLfloat*>(value));
+                    break;
+                case 4:
+                    glUniformMatrix4fv(location, 1, false, static_cast<const GLfloat*>(value));
+                    break;
+                default:
+                    break;
+            }
+            break;
+        case IND_GLSLShaderUniform::UniformTypeFloatVector:
+            switch (uniform->arrayLength()) {
+                case 2:
+                    glUniform2fv(location, 1, static_cast<const GLfloat*>(value));
+                    break;
+                case 3:
+                    glUniform3fv(location, 1, static_cast<const GLfloat*>(value));
+                    break;
+                case 4:
+                    glUniform4fv(location, 1, static_cast<const GLfloat*>(value));
+                    break;
+                default:
+                    break;
+            }
+            break;
+        case IND_GLSLShaderUniform::UniformTypeInteger:
+            glUniform1iv(location, 1, static_cast<const GLint*>(value));
+            break;
+        case IND_GLSLShaderUniform::UniformTypeIntVector:
+            switch (uniform->arrayLength()) {
+                case 2:
+                    glUniform2iv(location, 1, static_cast<const GLint*>(value));
+                    break;
+                case 3:
+                    glUniform3iv(location, 1, static_cast<const GLint*>(value));
+                    break;
+                case 4:
+                    glUniform4iv(location, 1, static_cast<const GLint*>(value));
+                    break;
+                default:
+                    break;
+            }
+            break;
+        case IND_GLSLShaderUniform::UniformTypeSampler2D:
+            glUniform1iv(location, 1, static_cast<const GLint*>(value));
+            break;
+        default:
+            break;
     }
+    
 }
+
+//void IND_ShaderProgram::setValueForUniform4f(const char *uniformName, float x, float y, float z, float w) {
+//    GLint location = glGetUniformLocation(_impl->_program, uniformName);
+//    if (-1  != location) {
+//        glUniform4f(location, x, y, z, w);
+//    }
+//}
+//
+//void IND_ShaderProgram::setValueForUniformMat(const char* uniformName, IND_Matrix matrix) {
+//    GLint location = glGetUniformLocation(_impl->_program, uniformName);
+//    if (-1 != location) {
+//        GLfloat matArray[16];
+//        matrix.arrayRepresentation(matArray);
+//        glUniformMatrix4fv(location, 1, GL_FALSE, matArray);
+//    }
+//}
 
 int IND_ShaderProgram::getPositionForVertexAttribute(const char *vertextAttribureName) {
     return glGetAttribLocation(_impl->_program, vertextAttribureName);

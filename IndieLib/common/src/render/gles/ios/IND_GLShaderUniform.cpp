@@ -90,7 +90,7 @@ int IND_GLSLShaderUniform::arrayLength() {
 }
 
 
-int IND_GLSLShaderUniform::matrixLength() {
+int IND_GLSLShaderUniform::matrixSize() {
     int length;
     switch (_glType) {
         case GL_FLOAT_MAT2:

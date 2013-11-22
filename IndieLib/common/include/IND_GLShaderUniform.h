@@ -50,7 +50,6 @@ public:
         UniformTypeInteger,
         UniformTypeFloat,
         UniformTypeIntVector,
-        UniformTypeIntMatrix,
         UniformTypeFloatVector,
         UniformTypeFloatMatrix,
         UniformTypeSampler2D
@@ -62,7 +61,7 @@ public:
     
     UniformType getType();
     int arrayLength();
-    int matrixLength();
+    int matrixSize();
 };
 
 //+(GLK2Uniform*) uniformNamed:(NSString*) nameOfUniform GLType:(GLenum) openGLType GLLocation:(GLint) openGLLocation numElementsInArray:(GLint) numElements

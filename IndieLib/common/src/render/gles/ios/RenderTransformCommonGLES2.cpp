@@ -68,11 +68,16 @@ void OpenGLES2Render::perspectiveOrtho(float pWidth, float pHeight, float pNearC
 IND_ShaderProgram* OpenGLES2Render::prepareUniformColorProgram (unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA) {
     IND_ShaderProgram* program =  _shaderManager->getProgram(IND_UniformColorNoTextureProgram);
     program->use();
-    
+
+    float matrixArray [16];
     float r(static_cast<float>(pR) / 255.0f), g(static_cast<float>(pG) / 255.0f), b(static_cast<float>(pB) / 255.0f), a(static_cast<float>(pA) / 255.0f);
-    program->setValueForUniform4f(IND_Uniform_Color, r, g, b, a);
-    program->setValueForUniformMat(IND_Uniform_MVMatrix, _shaderModelViewMatrix);
-    program->setValueForUniformMat(IND_Uniform_PMatrix, _shaderProjectionMatrix);
+    float colors [4] = {r,g,b,a};
+    
+    program->setSingleUniformValue(colors, IND_Uniform_Color);
+    _shaderModelViewMatrix.arrayRepresentation(matrixArray);
+    program->setSingleUniformValue(matrixArray, IND_Uniform_MVMatrix);
+    _shaderProjectionMatrix.arrayRepresentation(matrixArray);
+    program->setSingleUniformValue(matrixArray, IND_Uniform_PMatrix);
     
     return program;
 }

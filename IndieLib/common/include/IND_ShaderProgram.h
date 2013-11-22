@@ -51,8 +51,9 @@ public:
     bool link();
     void use();
     
-    void setValueForUniform4f(const char* uniformName, float x, float y, float z, float w);
-    void setValueForUniformMat(const char* uniformName, IND_Matrix matrix);
+    IND_GLSLShaderUniform* getUniform(const char* uniformName);
+    
+    void setSingleUniformValue(const void* value, const char* uniformName);
     int getPositionForVertexAttribute(const char* vertextAttribureName);
     
     string errorLog();

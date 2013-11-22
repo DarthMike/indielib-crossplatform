@@ -27,14 +27,13 @@
 /** @cond DOCUMENT_PRIVATEAPI */
 
 #include "IND_ShaderManager.h"
-#include "IND_Shaders.h"
 #include "IND_ShaderProgram.h"
 #include "Global.h"
 
 bool IND_ShaderManager::init() {
     initVars();
     
-    _ok =  createDefaultShaders();
+    _ok = true;
     
     return _ok;
 }
@@ -45,28 +44,45 @@ void IND_ShaderManager::end() {
 }
 
 void IND_ShaderManager::initVars() {
-    
 }
 
 void IND_ShaderManager::freeVars() {
-    
+    ProgramsMapIterator it;
+    for (it = programs.begin(); it != programs.end(); ++it) {
+        DISPOSEMANAGED(it->second);
+    }
+    programs.clear();
 }
 
 bool IND_ShaderManager::add(IND_ShaderProgram* program, const char* programName) {
-    return true;
-}
-
-bool IND_ShaderManager::add(IND_ShaderProgram* program, const char* vertexSourcePath, const char* fragmentSourcePath, const char* programName) {
-    return true;
+    std::string name (programName);
+    
+    if (programs.find(name) == programs.end()) {
+        programs[name] = program;
+        return true;
+    }
+    return false;
 }
 
 bool IND_ShaderManager::remove(const char* programName) {
+    std::string name (programName);
+    ProgramsMapIterator it = programs.find(name);
+    if (it != programs.end()) {
+        DISPOSEMANAGED(it->second);
+        programs.erase(it);
+    }
+    
     return true;
 }
 
-bool IND_ShaderManager::createDefaultShaders() {
-    g_debug->header("Error compiling default shaders", DebugApi::LogHeaderError);
-    return false;
+IND_ShaderProgram* IND_ShaderManager::getProgram (const char* programName) {
+    std::string name (programName);
+    ProgramsMapIterator it = programs.find(name);
+    if (it != programs.end()) {
+        return it->second;
+    }
+    
+    return  NULL;
 }
 
 /** @endcond */

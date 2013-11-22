@@ -51,8 +51,8 @@ public:
 	// ----- Public methods -----
     
 	bool add(IND_ShaderProgram* program, const char* programName);
-    bool add(IND_ShaderProgram* program, const char* vertexSourcePath, const char* fragmentSourcePath, const char* programName);
 	bool remove(const char* programName);
+    IND_ShaderProgram* getProgram (const char* programName);
     
 private:
 	// ----- Private -----
@@ -60,10 +60,10 @@ private:
 	bool _ok;
     
 	// ----- Containers -----
-    typedef std::map<std::string, IND_ShaderProgram*> shadersMap;
-    
+    typedef std::map<std::string, IND_ShaderProgram*> ProgramsMap;
+    typedef ProgramsMap::iterator ProgramsMapIterator;
+    ProgramsMap programs;
 	// ----- Private Methods -----
-    bool createDefaultShaders();
 	void initVars();
 	void freeVars();
 };

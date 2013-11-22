@@ -25,6 +25,11 @@
 
 #include "IND_Shaders.h"
 
+const char* IND_UniformColorNoTextureProgram = "IND_UniformColorNoTextureProgram";
+const char* IND_PerVertexColorNoTextureProgram = "IND_PerVertexColorNoTextureProgram";
+const char* IND_Simple2DTextureShader = "IND_Simple2DTextureShader";
+
+
 const char* IND_Uniform_MVMatrix = "uMVmatrix";
 const char* IND_Uniform_PMatrix = "uPMatrix";
 const char* IND_Uniform_Color = "uColor";

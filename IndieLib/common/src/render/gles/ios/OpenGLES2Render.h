@@ -67,6 +67,7 @@ class IND_Camera2d;
 class IND_Camera3d;
 class OpenGLES2Manager;
 class IND_ShaderProgram;
+class IND_ShaderManager;
 
 // ----- Libs -----
 #include <OpenGLES/ES2/gl.h>
@@ -523,11 +524,10 @@ private:
     IND_Matrix _shaderModelViewMatrix;
     IND_Matrix _shaderProjectionMatrix;
     
+    IND_ShaderManager* _shaderManager;
+    
 	// ----- Primitives vertices -----
     GLuint  _blitbuffer;
-
-	// ----- Vertex array -----
-    IND_ShaderProgram* _defaultProgram;
 
     // Temporal buffers
     PIXEL _points [MAX_PIXELS];

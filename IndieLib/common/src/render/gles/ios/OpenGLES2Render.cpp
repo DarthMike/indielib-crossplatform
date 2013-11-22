@@ -48,6 +48,7 @@
 #include "platform/iOS/OpenGLES2Manager.h"
 #include "IND_ShaderProgram.h"
 #include "IND_Shaders.h"
+#include "IND_ShaderManager.h"
 
 #include <OpenGLES/ES2/gl.h>
 
@@ -237,6 +238,7 @@ void OpenGLES2Render::initVars() {
 	_window = NULL;
 	_math.init();
 	_osOpenGLMgr = NULL;
+    _shaderManager = new IND_ShaderManager();
 
 }
 
@@ -282,17 +284,18 @@ void OpenGLES2Render::initializeBuffers() {
 }
 
 bool OpenGLES2Render::initializeDefaultPrograms() {
-    _defaultProgram = IND_ShaderProgram::newShaderProgram();
-    
-    if (!_defaultProgram->compile(IND_VertexShader_UniformColor, IND_FragmentShader_UniformColor)) {
-        return false;
+    bool success = _shaderManager->init();
+    IND_ShaderProgram* uniformColorNoTexture = IND_ShaderProgram::newShaderProgram();
+    if (!uniformColorNoTexture->compile(IND_VertexShader_UniformColor, IND_FragmentShader_UniformColor)) {
+        success = false;
+    }
+    if (!uniformColorNoTexture->link()) {
+        success = false;
     }
     
-    if (!_defaultProgram->link()) {
-        return false;
-    }
+    success = _shaderManager->add(uniformColorNoTexture, IND_UniformColorNoTextureProgram);
     
-    return true;
+    return success;
 }
 
 /*
@@ -312,6 +315,7 @@ Free memory
 void OpenGLES2Render::freeVars() {
 	DISPOSE(_osOpenGLMgr);
 	DISPOSE(_window);
+    DISPOSE(_shaderManager);
 	_ok = false;
 }
 

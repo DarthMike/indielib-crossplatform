@@ -495,6 +495,10 @@ private:
 											IND_Vector3 *mP2Res,
 											IND_Vector3 *mP3Res,
 											IND_Vector3 *mP4Res);
+    
+    // ----- Shader helpers ----
+    IND_ShaderProgram* prepareUniformColorProgram (unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA);
+    
 	// ----- Objects -----
 	IND_Math _math;
 	IND_Window *_window;

@@ -37,6 +37,9 @@
 #include "Defines.h"
 #include "OpenGLES2Render.h"
 #include <iostream>
+#include "IND_Shaders.h"
+#include "IND_ShaderProgram.h"
+#include "IND_ShaderManager.h"
 
 /** @cond DOCUMENT_PRIVATEAPI */
 
@@ -60,6 +63,18 @@ void OpenGLES2Render::perspectiveFov(float pFov, float pAspect, float pNearClipp
 
 void OpenGLES2Render::perspectiveOrtho(float pWidth, float pHeight, float pNearClippingPlane, float pFarClippingPlane) {
 	_math.matrix4DOrthographicProjectionLH(-pWidth/2,pWidth/2,-pHeight/2,pHeight/2,pNearClippingPlane,pFarClippingPlane,_shaderProjectionMatrix);
+}
+
+IND_ShaderProgram* OpenGLES2Render::prepareUniformColorProgram (unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA) {
+    IND_ShaderProgram* program =  _shaderManager->getProgram(IND_UniformColorNoTextureProgram);
+    program->use();
+    
+    float r(static_cast<float>(pR) / 255.0f), g(static_cast<float>(pG) / 255.0f), b(static_cast<float>(pB) / 255.0f), a(static_cast<float>(pA) / 255.0f);
+    program->setValueForUniform4f(IND_Uniform_Color, r, g, b, a);
+    program->setValueForUniformMat(IND_Uniform_MVMatrix, _shaderModelViewMatrix);
+    program->setValueForUniformMat(IND_Uniform_PMatrix, _shaderProjectionMatrix);
+    
+    return program;
 }
 
 /** @endcond */

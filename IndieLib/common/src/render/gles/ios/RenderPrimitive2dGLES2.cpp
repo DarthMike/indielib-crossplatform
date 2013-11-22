@@ -63,16 +63,10 @@ void OpenGLES2Render::blitPixel(int pX,
 	fillPixel (&_points[0], static_cast<float>(pX), static_cast<float>(pY));
 	
 	setForPrimitive (pA, true);
+    IND_ShaderProgram* primitiveRenderProgram = prepareUniformColorProgram(pR, pG, pB, pA);
     
-    IND_ShaderProgram* primitiveRenderProgram = _shaderManager->getProgram(IND_UniformColorNoTextureProgram);
-    primitiveRenderProgram->use();
     glBindBuffer(GL_ARRAY_BUFFER, _blitbuffer);
     glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(PIXEL), &_points[0]._x);
-    
-    float r(static_cast<float>(pR) / 255.0f), g(static_cast<float>(pG) / 255.0f), b(static_cast<float>(pB) / 255.0f), a(static_cast<float>(pA) / 255.0f);
-    primitiveRenderProgram->setValueForUniform4f(IND_Uniform_Color, r, g, b, a);
-    primitiveRenderProgram->setValueForUniformMat(IND_Uniform_MVMatrix, _shaderModelViewMatrix);
-    primitiveRenderProgram->setValueForUniformMat(IND_Uniform_PMatrix, _shaderProjectionMatrix);
     
     GLint attribLoc = primitiveRenderProgram->getPositionForVertexAttribute(IND_VertexAttribute_Position);
     glEnableVertexAttribArray(attribLoc);
@@ -97,16 +91,10 @@ void OpenGLES2Render::blitLine(int pX1,
 	fillPixel(&_points[1], static_cast<float>(pX2), static_cast<float>(pY2));
     
 	setForPrimitive(pA,true);
-
-    IND_ShaderProgram* primitiveRenderProgram = _shaderManager->getProgram(IND_UniformColorNoTextureProgram);
-    primitiveRenderProgram->use();
+    IND_ShaderProgram* primitiveRenderProgram = prepareUniformColorProgram(pR, pG, pB, pA);
+    
     glBindBuffer(GL_ARRAY_BUFFER, _blitbuffer);
     glBufferSubData(GL_ARRAY_BUFFER, 0, 2*sizeof(PIXEL), &_points[0]._x);
-    
-    float r(static_cast<float>(pR) / 255.0f), g(static_cast<float>(pG) / 255.0f), b(static_cast<float>(pB) / 255.0f), a(static_cast<float>(pA) / 255.0f);
-    primitiveRenderProgram->setValueForUniform4f(IND_Uniform_Color, r, g, b, a);
-    primitiveRenderProgram->setValueForUniformMat(IND_Uniform_MVMatrix, _shaderModelViewMatrix);
-    primitiveRenderProgram->setValueForUniformMat(IND_Uniform_PMatrix, _shaderProjectionMatrix);
     
     GLint attribLoc = primitiveRenderProgram->getPositionForVertexAttribute(IND_VertexAttribute_Position);
     glEnableVertexAttribArray(attribLoc);
@@ -134,17 +122,10 @@ void OpenGLES2Render::blitRectangle(int pX1,
 	fillPixel (&_points[4], static_cast<float>(pX1), static_cast<float>(pY1));
 
 	setForPrimitive (pA,true);
-
-    IND_ShaderProgram* primitiveRenderProgram = _shaderManager->getProgram(IND_UniformColorNoTextureProgram);
-    primitiveRenderProgram->use();
+    IND_ShaderProgram* primitiveRenderProgram = prepareUniformColorProgram(pR, pG, pB, pA);
     
     glBindBuffer(GL_ARRAY_BUFFER, _blitbuffer);
     glBufferSubData(GL_ARRAY_BUFFER, 0, 5*sizeof(PIXEL), &_points[0]._x);
-    
-    float r(static_cast<float>(pR) / 255.0f), g(static_cast<float>(pG) / 255.0f), b(static_cast<float>(pB) / 255.0f), a(static_cast<float>(pA) / 255.0f);
-    primitiveRenderProgram->setValueForUniform4f(IND_Uniform_Color, r, g, b, a);
-    primitiveRenderProgram->setValueForUniformMat(IND_Uniform_MVMatrix, _shaderModelViewMatrix);
-    primitiveRenderProgram->setValueForUniformMat(IND_Uniform_PMatrix, _shaderProjectionMatrix);
     
     GLint attribLoc = primitiveRenderProgram->getPositionForVertexAttribute(IND_VertexAttribute_Position);
     glEnableVertexAttribArray(attribLoc);
@@ -172,17 +153,11 @@ void OpenGLES2Render::blitFillRectangle(int pX1,
 	fillPixel (&_points [3], static_cast<float>(pX2), static_cast<float>(pY2));
 
 	setForPrimitive (pA,true);
-    
-    IND_ShaderProgram* primitiveRenderProgram = _shaderManager->getProgram(IND_UniformColorNoTextureProgram);
-    primitiveRenderProgram->use();
-    
-    float r(static_cast<float>(pR) / 255.0f), g(static_cast<float>(pG) / 255.0f), b(static_cast<float>(pB) / 255.0f), a(static_cast<float>(pA) / 255.0f);
-    primitiveRenderProgram->setValueForUniform4f(IND_Uniform_Color, r, g, b, a);
-    primitiveRenderProgram->setValueForUniformMat(IND_Uniform_MVMatrix, _shaderModelViewMatrix);
-    primitiveRenderProgram->setValueForUniformMat(IND_Uniform_PMatrix, _shaderProjectionMatrix);
+    IND_ShaderProgram* primitiveRenderProgram = prepareUniformColorProgram(pR, pG, pB, pA);
 
     glBindBuffer(GL_ARRAY_BUFFER, _blitbuffer);
 	glBufferSubData(GL_ARRAY_BUFFER, 0, 4*sizeof(PIXEL), &_points[0]._x);
+    
     GLint attribLoc = primitiveRenderProgram->getPositionForVertexAttribute(IND_VertexAttribute_Position);
     glEnableVertexAttribArray(attribLoc);
     glVertexAttribPointer(attribLoc, 3, GL_FLOAT, GL_FALSE, 0, 0);
@@ -208,17 +183,11 @@ void OpenGLES2Render::blitTriangleList(IND_Point *pTrianglePoints,
 	}
 
 	setForPrimitive(pA,true);
-
-    IND_ShaderProgram* primitiveRenderProgram = _shaderManager->getProgram(IND_UniformColorNoTextureProgram);
-    primitiveRenderProgram->use();
-    
-    float r(static_cast<float>(pR) / 255.0f), g(static_cast<float>(pG) / 255.0f), b(static_cast<float>(pB) / 255.0f), a(static_cast<float>(pA) / 255.0f);
-    primitiveRenderProgram->setValueForUniform4f(IND_Uniform_Color, r, g, b, a);
-    primitiveRenderProgram->setValueForUniformMat(IND_Uniform_MVMatrix, _shaderModelViewMatrix);
-    primitiveRenderProgram->setValueForUniformMat(IND_Uniform_PMatrix, _shaderProjectionMatrix);
+    IND_ShaderProgram* primitiveRenderProgram = prepareUniformColorProgram(pR, pG, pB, pA);
     
     glBindBuffer(GL_ARRAY_BUFFER, _blitbuffer);
 	glBufferSubData(GL_ARRAY_BUFFER, 0, pNumPoints*sizeof(PIXEL), &_points[0]._x);
+    
     GLint attribLoc = primitiveRenderProgram->getPositionForVertexAttribute(IND_VertexAttribute_Position);
     glEnableVertexAttribArray(attribLoc);
     glVertexAttribPointer(attribLoc, 3, GL_FLOAT, GL_FALSE, 0, 0);
@@ -252,17 +221,10 @@ void OpenGLES2Render::blitColoredTriangle(int pX1,
 	fillPixel (&_points[2], static_cast<float>(pX3), static_cast<float>(pY3));
     
 	setForPrimitive(pA,true);
-    
-    IND_ShaderProgram* primitiveRenderProgram = _shaderManager->getProgram(IND_UniformColorNoTextureProgram);
-    primitiveRenderProgram->use();
+    IND_ShaderProgram* primitiveRenderProgram = prepareUniformColorProgram(pR1, pG1, pB1, pA);
     
     glBindBuffer(GL_ARRAY_BUFFER, _blitbuffer);
     glBufferSubData(GL_ARRAY_BUFFER, 0, 3*sizeof(PIXEL), &_points[0]._x);
-    
-    float r(static_cast<float>(pR1) / 255.0f), g(static_cast<float>(pG1) / 255.0f), b(static_cast<float>(pB1) / 255.0f), a(static_cast<float>(pA) / 255.0f);
-    primitiveRenderProgram->setValueForUniform4f(IND_Uniform_Color, r, g, b, a);
-    primitiveRenderProgram->setValueForUniformMat(IND_Uniform_MVMatrix, _shaderModelViewMatrix);
-    primitiveRenderProgram->setValueForUniformMat(IND_Uniform_PMatrix, _shaderProjectionMatrix);
     
     GLint attribLoc = primitiveRenderProgram->getPositionForVertexAttribute(IND_VertexAttribute_Position);
     glEnableVertexAttribArray(attribLoc);
@@ -292,17 +254,10 @@ bool OpenGLES2Render::blitPoly2d(IND_Point *pPolyPoints,
     }
 
 	setForPrimitive(pA,true);
-
-    IND_ShaderProgram* primitiveRenderProgram = _shaderManager->getProgram(IND_UniformColorNoTextureProgram);
-    primitiveRenderProgram->use();
+    IND_ShaderProgram* primitiveRenderProgram = prepareUniformColorProgram(pR, pG, pB, pA);
     
     glBindBuffer(GL_ARRAY_BUFFER, _blitbuffer);
     glBufferSubData(GL_ARRAY_BUFFER, 0, (pNumLines+1)*sizeof(PIXEL), &_points[0]._x);
-    
-    float r(static_cast<float>(pR) / 255.0f), g(static_cast<float>(pG) / 255.0f), b(static_cast<float>(pB) / 255.0f), a(static_cast<float>(pA) / 255.0f);
-    primitiveRenderProgram->setValueForUniform4f(IND_Uniform_Color, r, g, b, a);
-    primitiveRenderProgram->setValueForUniformMat(IND_Uniform_MVMatrix, _shaderModelViewMatrix);
-    primitiveRenderProgram->setValueForUniformMat(IND_Uniform_PMatrix, _shaderProjectionMatrix);
     
     GLint attribLoc = primitiveRenderProgram->getPositionForVertexAttribute(IND_VertexAttribute_Position);
     glEnableVertexAttribArray(attribLoc);
@@ -313,6 +268,7 @@ bool OpenGLES2Render::blitPoly2d(IND_Point *pPolyPoints,
     glDisableVertexAttribArray(attribLoc);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     CHECKGLERRORS();
+    
 	return 1;
 }
 
@@ -338,17 +294,10 @@ bool OpenGLES2Render::blitRegularPoly(int pX,
 	fillPixel(&_points[i], pX + (pRadius * cos(_math.angleToRadians(pAngle))), pY + (pRadius * sin(_math.angleToRadians(pAngle))));
 	
 	setForPrimitive(pA,true);
-
-    IND_ShaderProgram* primitiveRenderProgram = _shaderManager->getProgram(IND_UniformColorNoTextureProgram);
-    primitiveRenderProgram->use();
+    IND_ShaderProgram* primitiveRenderProgram = prepareUniformColorProgram(pR, pG, pB, pA);
     
     glBindBuffer(GL_ARRAY_BUFFER, _blitbuffer);
     glBufferSubData(GL_ARRAY_BUFFER, 0, (pN+1)*sizeof(PIXEL), &_points[0]._x);
-    
-    float r(static_cast<float>(pR) / 255.0f), g(static_cast<float>(pG) / 255.0f), b(static_cast<float>(pB) / 255.0f), a(static_cast<float>(pA) / 255.0f);
-    primitiveRenderProgram->setValueForUniform4f(IND_Uniform_Color, r, g, b, a);
-    primitiveRenderProgram->setValueForUniformMat(IND_Uniform_MVMatrix, _shaderModelViewMatrix);
-    primitiveRenderProgram->setValueForUniformMat(IND_Uniform_PMatrix, _shaderProjectionMatrix);
     
     GLint attribLoc = primitiveRenderProgram->getPositionForVertexAttribute(IND_VertexAttribute_Position);
     glEnableVertexAttribArray(attribLoc);

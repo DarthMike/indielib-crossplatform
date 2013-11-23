@@ -263,22 +263,6 @@ void IND_ShaderProgram::setSingleUniformValue(const void* value, const char* uni
     
 }
 
-//void IND_ShaderProgram::setValueForUniform4f(const char *uniformName, float x, float y, float z, float w) {
-//    GLint location = glGetUniformLocation(_impl->_program, uniformName);
-//    if (-1  != location) {
-//        glUniform4f(location, x, y, z, w);
-//    }
-//}
-//
-//void IND_ShaderProgram::setValueForUniformMat(const char* uniformName, IND_Matrix matrix) {
-//    GLint location = glGetUniformLocation(_impl->_program, uniformName);
-//    if (-1 != location) {
-//        GLfloat matArray[16];
-//        matrix.arrayRepresentation(matArray);
-//        glUniformMatrix4fv(location, 1, GL_FALSE, matArray);
-//    }
-//}
-
 int IND_ShaderProgram::getPositionForVertexAttribute(const char *vertextAttribureName) {
     return glGetAttribLocation(_impl->_program, vertextAttribureName);
 }

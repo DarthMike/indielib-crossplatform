@@ -459,9 +459,11 @@ private:
 	bool checkGLExtensions();        //GL extensions managing
 
 	//Blitting helpers
-	void fillPixel(PIXEL *pPixel, float pX, float pY);
+	void fillPoint(VERTEX_POS *pPoint, float pX, float pY);
+	void fillPointWithColor(VERTEX_POSANDCOLOR *pPoint, float pX, float pY, float pR, float pG, float pB, float pA);
 	void fillVertex2d(CUSTOMVERTEX2D *pVertex2d, float pX, float pY, float pU, float pV);
-	void setForPrimitive(unsigned char pA, bool pResetTransform);
+    
+	void setTransformAndGLStateForPrimitive(unsigned char pA, bool pResetTransform);
 
 	void blitGridQuad    (int pAx, int pAy,
                           int pBx, int pBy,
@@ -498,7 +500,7 @@ private:
     
     // ----- Shader helpers ----
     IND_ShaderProgram* prepareUniformColorProgram (unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA);
-    
+    IND_ShaderProgram* preparePervertexColorProgram();
 	// ----- Objects -----
 	IND_Math _math;
 	IND_Window *_window;
@@ -531,10 +533,12 @@ private:
     IND_ShaderManager* _shaderManager;
     
 	// ----- Primitives vertices -----
-    GLuint  _blitbuffer;
-
+    GLuint _pointBuffer;
+    GLuint _pointWithColorBuffer;
+    
     // Temporal buffers
-    PIXEL _points [MAX_PIXELS];
+    VERTEX_POS _points [MAX_PIXELS];
+    VERTEX_POSANDCOLOR _pointsWithColor [MAX_PIXELS];
 	CUSTOMVERTEX2D _vertices2d [MAX_PIXELS];
 
 	// ----- Primitives vertices -----

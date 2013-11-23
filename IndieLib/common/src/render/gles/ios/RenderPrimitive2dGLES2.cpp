@@ -60,13 +60,13 @@ void OpenGLES2Render::blitPixel(int pX,
                              unsigned char pB,
                              unsigned char pA) {
 	
-	fillPixel (&_points[0], static_cast<float>(pX), static_cast<float>(pY));
+	fillPoint (_points, static_cast<float>(pX), static_cast<float>(pY));
 	
-	setForPrimitive (pA, true);
+	setTransformAndGLStateForPrimitive (pA, true);
     IND_ShaderProgram* primitiveRenderProgram = prepareUniformColorProgram(pR, pG, pB, pA);
     
-    glBindBuffer(GL_ARRAY_BUFFER, _blitbuffer);
-    glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(PIXEL), &_points[0]._x);
+    glBindBuffer(GL_ARRAY_BUFFER, _pointBuffer);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(VERTEX_POS), _points);
     
     GLint attribLoc = primitiveRenderProgram->getPositionForVertexAttribute(IND_VertexAttribute_Position);
     glEnableVertexAttribArray(attribLoc);
@@ -87,14 +87,14 @@ void OpenGLES2Render::blitLine(int pX1,
                             unsigned char pG,
                             unsigned char pB,
                             unsigned char pA) {
-	fillPixel(&_points[0], static_cast<float>(pX1), static_cast<float>(pY1));
-	fillPixel(&_points[1], static_cast<float>(pX2), static_cast<float>(pY2));
+	fillPoint(&_points[0], static_cast<float>(pX1), static_cast<float>(pY1));
+	fillPoint(&_points[1], static_cast<float>(pX2), static_cast<float>(pY2));
     
-	setForPrimitive(pA,true);
+	setTransformAndGLStateForPrimitive(pA,true);
     IND_ShaderProgram* primitiveRenderProgram = prepareUniformColorProgram(pR, pG, pB, pA);
     
-    glBindBuffer(GL_ARRAY_BUFFER, _blitbuffer);
-    glBufferSubData(GL_ARRAY_BUFFER, 0, 2*sizeof(PIXEL), &_points[0]._x);
+    glBindBuffer(GL_ARRAY_BUFFER, _pointBuffer);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, 2*sizeof(VERTEX_POS), _points);
     
     GLint attribLoc = primitiveRenderProgram->getPositionForVertexAttribute(IND_VertexAttribute_Position);
     glEnableVertexAttribArray(attribLoc);
@@ -115,17 +115,17 @@ void OpenGLES2Render::blitRectangle(int pX1,
                                  unsigned char pG,
                                  unsigned char pB,
                                  unsigned char pA) {
-	fillPixel (&_points[0], static_cast<float>(pX1),static_cast<float>(pY1));
-	fillPixel (&_points[1], static_cast<float>(pX2), static_cast<float>(pY1));
-	fillPixel (&_points[2], static_cast<float>(pX2), static_cast<float>(pY2));
-	fillPixel (&_points[3], static_cast<float>(pX1), static_cast<float>(pY2));
-	fillPixel (&_points[4], static_cast<float>(pX1), static_cast<float>(pY1));
+	fillPoint (&_points[0], static_cast<float>(pX1),static_cast<float>(pY1));
+	fillPoint (&_points[1], static_cast<float>(pX2), static_cast<float>(pY1));
+	fillPoint (&_points[2], static_cast<float>(pX2), static_cast<float>(pY2));
+	fillPoint (&_points[3], static_cast<float>(pX1), static_cast<float>(pY2));
+	fillPoint (&_points[4], static_cast<float>(pX1), static_cast<float>(pY1));
 
-	setForPrimitive (pA,true);
+	setTransformAndGLStateForPrimitive (pA,true);
     IND_ShaderProgram* primitiveRenderProgram = prepareUniformColorProgram(pR, pG, pB, pA);
     
-    glBindBuffer(GL_ARRAY_BUFFER, _blitbuffer);
-    glBufferSubData(GL_ARRAY_BUFFER, 0, 5*sizeof(PIXEL), &_points[0]._x);
+    glBindBuffer(GL_ARRAY_BUFFER, _pointBuffer);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, 5*sizeof(VERTEX_POS), _points);
     
     GLint attribLoc = primitiveRenderProgram->getPositionForVertexAttribute(IND_VertexAttribute_Position);
     glEnableVertexAttribArray(attribLoc);
@@ -147,16 +147,16 @@ void OpenGLES2Render::blitFillRectangle(int pX1,
                                      unsigned char pB,
                                      unsigned char pA) {
  	
-	fillPixel (&_points [0], static_cast<float>(pX1),static_cast<float>(pY1));
-	fillPixel (&_points [1], static_cast<float>(pX2), static_cast<float>(pY1));
-	fillPixel (&_points [2], static_cast<float>(pX1), static_cast<float>(pY2));
-	fillPixel (&_points [3], static_cast<float>(pX2), static_cast<float>(pY2));
+	fillPoint (&_points [0], static_cast<float>(pX1),static_cast<float>(pY1));
+	fillPoint (&_points [1], static_cast<float>(pX2), static_cast<float>(pY1));
+	fillPoint (&_points [2], static_cast<float>(pX1), static_cast<float>(pY2));
+	fillPoint (&_points [3], static_cast<float>(pX2), static_cast<float>(pY2));
 
-	setForPrimitive (pA,true);
+	setTransformAndGLStateForPrimitive (pA,true);
     IND_ShaderProgram* primitiveRenderProgram = prepareUniformColorProgram(pR, pG, pB, pA);
 
-    glBindBuffer(GL_ARRAY_BUFFER, _blitbuffer);
-	glBufferSubData(GL_ARRAY_BUFFER, 0, 4*sizeof(PIXEL), &_points[0]._x);
+    glBindBuffer(GL_ARRAY_BUFFER, _pointBuffer);
+	glBufferSubData(GL_ARRAY_BUFFER, 0, 4*sizeof(VERTEX_POS), _points);
     
     GLint attribLoc = primitiveRenderProgram->getPositionForVertexAttribute(IND_VertexAttribute_Position);
     glEnableVertexAttribArray(attribLoc);
@@ -179,14 +179,14 @@ void OpenGLES2Render::blitTriangleList(IND_Point *pTrianglePoints,
 		return;
     
 	for (int i = 0; i < pNumPoints; i++) {
-		fillPixel(&_points[i], static_cast<float>(pTrianglePoints[i].x), static_cast<float>(pTrianglePoints[i].y));
+		fillPoint(&_points[i], static_cast<float>(pTrianglePoints[i].x), static_cast<float>(pTrianglePoints[i].y));
 	}
 
-	setForPrimitive(pA,true);
+	setTransformAndGLStateForPrimitive(pA,true);
     IND_ShaderProgram* primitiveRenderProgram = prepareUniformColorProgram(pR, pG, pB, pA);
     
-    glBindBuffer(GL_ARRAY_BUFFER, _blitbuffer);
-	glBufferSubData(GL_ARRAY_BUFFER, 0, pNumPoints*sizeof(PIXEL), &_points[0]._x);
+    glBindBuffer(GL_ARRAY_BUFFER, _pointBuffer);
+	glBufferSubData(GL_ARRAY_BUFFER, 0, pNumPoints*sizeof(VERTEX_POS), _points);
     
     GLint attribLoc = primitiveRenderProgram->getPositionForVertexAttribute(IND_VertexAttribute_Position);
     glEnableVertexAttribArray(attribLoc);
@@ -210,32 +210,35 @@ void OpenGLES2Render::blitColoredTriangle(int pX1,
                                        unsigned char pR2, unsigned char pG2, unsigned char pB2,
                                        unsigned char pR3, unsigned char pG3, unsigned char pB3,
                                        unsigned char pA) {
-	//TODO: per-vertex color
-//    float r1(static_cast<float>(pR1) / 255.0f), g1(static_cast<float>(pG1) / 255.0f), b1(static_cast<float>(pB1) / 255.0f);
-//    float r2(static_cast<float>(pR2) / 255.0f), g2(static_cast<float>(pG2) / 255.0f), b2(static_cast<float>(pB2) / 255.0f);
-//    float r3(static_cast<float>(pR3) / 255.0f), g3(static_cast<float>(pG3) / 255.0f), b3(static_cast<float>(pB3) / 255.0f);
-//    float a(static_cast<float>(pA) / 255.0f);
+    float r1(static_cast<float>(pR1) / 255.0f), g1(static_cast<float>(pG1) / 255.0f), b1(static_cast<float>(pB1) / 255.0f);
+    float r2(static_cast<float>(pR2) / 255.0f), g2(static_cast<float>(pG2) / 255.0f), b2(static_cast<float>(pB2) / 255.0f);
+    float r3(static_cast<float>(pR3) / 255.0f), g3(static_cast<float>(pG3) / 255.0f), b3(static_cast<float>(pB3) / 255.0f);
+    float a(static_cast<float>(pA) / 255.0f);
 
-	fillPixel (&_points[0], static_cast<float>(pX1), static_cast<float>(pY1));
-	fillPixel (&_points[1], static_cast<float>(pX2), static_cast<float>(pY2));
-	fillPixel (&_points[2], static_cast<float>(pX3), static_cast<float>(pY3));
+	fillPointWithColor (&_pointsWithColor[0], static_cast<float>(pX1), static_cast<float>(pY1), r1,g1,b1,a);
+	fillPointWithColor (&_pointsWithColor[1], static_cast<float>(pX2), static_cast<float>(pY2), r2,g2,b2,a);
+	fillPointWithColor (&_pointsWithColor[2], static_cast<float>(pX3), static_cast<float>(pY3), r3,g3,b3,a);
     
-	setForPrimitive(pA,true);
-    IND_ShaderProgram* primitiveRenderProgram = prepareUniformColorProgram(pR1, pG1, pB1, pA);
+	setTransformAndGLStateForPrimitive(pA,true);
+    IND_ShaderProgram* primitiveRenderProgram = preparePervertexColorProgram();
     
-    glBindBuffer(GL_ARRAY_BUFFER, _blitbuffer);
-    glBufferSubData(GL_ARRAY_BUFFER, 0, 3*sizeof(PIXEL), &_points[0]._x);
+    glBindBuffer(GL_ARRAY_BUFFER, _pointWithColorBuffer);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, 3*sizeof(VERTEX_POSANDCOLOR), _pointsWithColor);
     
-    GLint attribLoc = primitiveRenderProgram->getPositionForVertexAttribute(IND_VertexAttribute_Position);
-    glEnableVertexAttribArray(attribLoc);
-    glVertexAttribPointer(attribLoc, 3, GL_FLOAT, GL_FALSE, 0, 0);
+    GLint posLoc = primitiveRenderProgram->getPositionForVertexAttribute(IND_VertexAttribute_Position);
+    glEnableVertexAttribArray(posLoc);
+    glVertexAttribPointer(posLoc, 3, GL_FLOAT, GL_FALSE, sizeof(VERTEX_POSANDCOLOR), 0);
+    
+    GLint colorLoc = primitiveRenderProgram->getPositionForVertexAttribute(IND_VertexAttribute_RGBAColor);
+    glEnableVertexAttribArray(colorLoc);
+    glVertexAttribPointer(colorLoc, 4, GL_FLOAT, GL_FALSE, sizeof(VERTEX_POSANDCOLOR), reinterpret_cast<void*>(sizeof(VERTEX_POS)));
     
     glDrawArrays(GL_TRIANGLES, 0, 3);
     
-    glDisableVertexAttribArray(attribLoc);
+    glDisableVertexAttribArray(posLoc);
+    glDisableVertexAttribArray(colorLoc);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     CHECKGLERRORS();
-
 }
 
 
@@ -250,14 +253,14 @@ bool OpenGLES2Render::blitPoly2d(IND_Point *pPolyPoints,
 	if (pNumLines < 1)  return 0;
 
     for (int i = 0; i < pNumLines + 1; i++){
-	    fillPixel (&_points[i], static_cast<float>(pPolyPoints [i].x), static_cast<float>(pPolyPoints [i].y));
+	    fillPoint (&_points[i], static_cast<float>(pPolyPoints [i].x), static_cast<float>(pPolyPoints [i].y));
     }
 
-	setForPrimitive(pA,true);
+	setTransformAndGLStateForPrimitive(pA,true);
     IND_ShaderProgram* primitiveRenderProgram = prepareUniformColorProgram(pR, pG, pB, pA);
     
-    glBindBuffer(GL_ARRAY_BUFFER, _blitbuffer);
-    glBufferSubData(GL_ARRAY_BUFFER, 0, (pNumLines+1)*sizeof(PIXEL), &_points[0]._x);
+    glBindBuffer(GL_ARRAY_BUFFER, _pointBuffer);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, (pNumLines+1)*sizeof(VERTEX_POS), _points);
     
     GLint attribLoc = primitiveRenderProgram->getPositionForVertexAttribute(IND_VertexAttribute_Position);
     glEnableVertexAttribArray(attribLoc);
@@ -288,16 +291,16 @@ bool OpenGLES2Render::blitRegularPoly(int pX,
 		x = static_cast<int>(pX + (pRadius * cos(c + _math.angleToRadians(pAngle))));
 		y = static_cast<int>(pY + (pRadius * sin(c + _math.angleToRadians(pAngle))));
 
-		fillPixel(&_points[i], static_cast<float>(x), static_cast<float>(y));
+		fillPoint(&_points[i], static_cast<float>(x), static_cast<float>(y));
 	}
 
-	fillPixel(&_points[i], pX + (pRadius * cos(_math.angleToRadians(pAngle))), pY + (pRadius * sin(_math.angleToRadians(pAngle))));
+	fillPoint(&_points[i], pX + (pRadius * cos(_math.angleToRadians(pAngle))), pY + (pRadius * sin(_math.angleToRadians(pAngle))));
 	
-	setForPrimitive(pA,true);
+	setTransformAndGLStateForPrimitive(pA,true);
     IND_ShaderProgram* primitiveRenderProgram = prepareUniformColorProgram(pR, pG, pB, pA);
     
-    glBindBuffer(GL_ARRAY_BUFFER, _blitbuffer);
-    glBufferSubData(GL_ARRAY_BUFFER, 0, (pN+1)*sizeof(PIXEL), &_points[0]._x);
+    glBindBuffer(GL_ARRAY_BUFFER, _pointBuffer);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, (pN+1)*sizeof(VERTEX_POS), _points);
     
     GLint attribLoc = primitiveRenderProgram->getPositionForVertexAttribute(IND_VertexAttribute_Position);
     glEnableVertexAttribArray(attribLoc);
@@ -314,17 +317,26 @@ bool OpenGLES2Render::blitRegularPoly(int pX,
 // --------------------------------------------------------------------------------
 //							         Private methods
 // --------------------------------------------------------------------------------
-void OpenGLES2Render::fillPixel(PIXEL *pPixel,
+void OpenGLES2Render::fillPoint(VERTEX_POS *pVertex,
                              float pX,
                              float pY) {
-	// Pixel
-	pPixel->_x      =  pX;
-	pPixel->_y      =  pY;
-	pPixel->_z      = 0.0f;
+	pVertex->_x = pX;
+	pVertex->_y = pY;
+	pVertex->_z = 0.0f;
+}
+
+void OpenGLES2Render::fillPointWithColor(VERTEX_POSANDCOLOR *pVertex, float pX, float pY, float pR, float pG, float pB, float pA) {
+	pVertex->_pos._x = pX;
+	pVertex->_pos._y = pY;
+	pVertex->_pos._z = 0.0f;
+    pVertex->_color._colorR = pR;
+	pVertex->_color._colorG = pG;
+	pVertex->_color._colorB = pB;
+	pVertex->_color._colorA = pA;
 }
 
 
-void OpenGLES2Render::setForPrimitive(unsigned char pA, bool pResetTransform) {
+void OpenGLES2Render::setTransformAndGLStateForPrimitive(unsigned char pA, bool pResetTransform) {
 	// Transformation reset
 	if (pResetTransform) {
 		setTransform2d(0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0);
@@ -347,8 +359,8 @@ Blits a bounding line
 {	
 //	float r(static_cast<float>(pR) / 255.0f), g(static_cast<float>(pG) / 255.0f), b(static_cast<float>(pB) / 255.0f), a(static_cast<float>(pA) / 255.0f);
 //	// Filling pixels
-//    fillPixel (&_pixels[0], static_cast<float>(pPosX1), static_cast<float>(pPosY1), r, g, b, a);
-//    fillPixel (&_pixels[1], static_cast<float>(pPosX2), static_cast<float>(pPosY2), r, g, b, a);
+//    fillPoint (&_pixels[0], static_cast<float>(pPosX1), static_cast<float>(pPosY1), r, g, b, a);
+//    fillPoint (&_pixels[1], static_cast<float>(pPosX2), static_cast<float>(pPosY2), r, g, b, a);
 //
 //	//Render primitive - No textures
 //	setGLClientStateToPrimitive();
@@ -357,8 +369,8 @@ Blits a bounding line
 //    setRainbow2d (IND_OPAQUE, 1, 0, 0, IND_FILTER_POINT, pR, pG, pB, pA, 0, 0, 0, 255, 0, 0);
 //
 //	//Polygon blitting
-//	glVertexPointer(3, GL_FLOAT, sizeof(PIXEL), &_pixels[0]._x);
-//	glColorPointer(4, GL_FLOAT, sizeof(PIXEL), &_pixels[0]._colorR);
+//	glVertexPointer(3, GL_FLOAT, sizeof(VERTEX_POS), &_pixels[0);
+//	glColorPointer(4, GL_FLOAT, sizeof(VERTEX_POS), &_pixels[0]._colorR);
 //	glDrawArrays(GL_LINE_STRIP, 0, 2);
 //
 //#ifdef _DEBUG
@@ -403,7 +415,7 @@ void OpenGLES2Render::blitCollisionCircle(int pPosX, int pPosY, int pRadius, flo
 //	for (int i = 0; i <= points ; i++) {
 //		x = pPosX + (pRadius * cosf(angle*i));
 //		y = pPosY + (pRadius * sinf(angle*i));
-//		fillPixel (&_pixels[i], x, y, r, g, b, a);
+//		fillPoint (&_pixels[i], x, y, r, g, b, a);
 //	}
 //    
 //	//Render primitive - No textures
@@ -416,8 +428,8 @@ void OpenGLES2Render::blitCollisionCircle(int pPosX, int pPosY, int pRadius, flo
 //    setRainbow2d (IND_OPAQUE, 1, 0, 0, IND_FILTER_POINT, pR, pG, pB, pA, 0, 0, 0, 255, 0, 0);
 //
 //	//Polygon blitting
-//	glVertexPointer(3, GL_FLOAT, sizeof(PIXEL), &_pixels[0]._x);
-//	glColorPointer(4, GL_FLOAT, sizeof(PIXEL), &_pixels[0]._colorR);
+//	glVertexPointer(3, GL_FLOAT, sizeof(VERTEX_POS), &_pixels[0);
+//	glColorPointer(4, GL_FLOAT, sizeof(VERTEX_POS), &_pixels[0]._colorR);
 //	glDrawArrays(GL_LINE_STRIP, 0, points);
 //
 //#ifdef _DEBUG

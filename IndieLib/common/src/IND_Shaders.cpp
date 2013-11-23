@@ -34,6 +34,7 @@ const char* IND_Uniform_MVMatrix = "uMVmatrix";
 const char* IND_Uniform_PMatrix = "uPMatrix";
 const char* IND_Uniform_Color = "uColor";
 const char* IND_VertexAttribute_Position = "aPosition";
+const char* IND_VertexAttribute_RGBAColor = "aRGBAColor";
 
 const char* IND_VertexShader_UniformColor =
 "                                                   \n\
@@ -57,7 +58,7 @@ void main()											\n\
 ";
 
 
-const char* IND_FragmentShader_UniformColor =
+const char* IND_FragmentShader_Color =
 "                                       \n\
 #version 100 							\n\
 #ifdef GL_ES							\n\
@@ -70,6 +71,27 @@ void main()								\n\
 {										\n\
     gl_FragColor = varFragmentColor;		\n\
 }										\n\
+";
+
+const char* IND_VertexShader_PerVertexColor =
+"                                                   \n\
+#version 100                                        \n\
+attribute vec3 aPosition;                           \n\
+attribute vec4 aRGBAColor;                          \n\
+#ifdef GL_ES										\n\
+varying lowp vec4 varFragmentColor;					\n\
+#else												\n\
+varying vec4 varFragmentColor;						\n\
+#endif												\n\
+uniform mat4 uMVmatrix;                             \n\
+uniform mat4 uPMatrix;                              \n\
+\n\
+void main()											\n\
+{                                                   \n\
+vec4 pos4 = vec4(aPosition, 1.0);                   \n\
+gl_Position = uPMatrix * uMVmatrix  * pos4;         \n\
+varFragmentColor = aRGBAColor;                      \n\
+}													\n\
 ";
 
 

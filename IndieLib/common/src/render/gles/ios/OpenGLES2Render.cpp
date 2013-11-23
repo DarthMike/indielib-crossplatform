@@ -278,23 +278,28 @@ bool OpenGLES2Render::initializeOpenGLES2Render() {
 }
 
 void OpenGLES2Render::initializeBuffers() {
-    glGenBuffers(1, &_blitbuffer);
-    glBindBuffer(GL_ARRAY_BUFFER, _blitbuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(PIXEL)*MAX_PIXELS, NULL, GL_DYNAMIC_DRAW);
+    glGenBuffers(1, &_pointBuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, _pointBuffer);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(VERTEX_POS)*MAX_PIXELS, NULL, GL_DYNAMIC_DRAW);
+    glGenBuffers(1, &_pointWithColorBuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, _pointWithColorBuffer);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(VERTEX_POSANDCOLOR)*MAX_PIXELS, NULL, GL_DYNAMIC_DRAW);
+    
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
 bool OpenGLES2Render::initializeDefaultPrograms() {
     bool success = _shaderManager->init();
     IND_ShaderProgram* uniformColorNoTexture = IND_ShaderProgram::newShaderProgram();
-    if (!uniformColorNoTexture->compile(IND_VertexShader_UniformColor, IND_FragmentShader_UniformColor)) {
-        success = false;
-    }
-    if (!uniformColorNoTexture->link()) {
-        success = false;
-    }
+    success &= uniformColorNoTexture->compile(IND_VertexShader_UniformColor, IND_FragmentShader_Color);
+    success &= uniformColorNoTexture->link();
+    success &= _shaderManager->add(uniformColorNoTexture, IND_UniformColorNoTextureProgram);
     
-    success = _shaderManager->add(uniformColorNoTexture, IND_UniformColorNoTextureProgram);
-    
+    IND_ShaderProgram* pervertexColorNoTexture = IND_ShaderProgram::newShaderProgram();
+    success &= pervertexColorNoTexture->compile(IND_VertexShader_PerVertexColor, IND_FragmentShader_Color);
+    success &= pervertexColorNoTexture->link();
+    success &= _shaderManager->add(pervertexColorNoTexture, IND_PerVertexColorNoTextureProgram);
+
     return success;
 }
 

@@ -33,10 +33,12 @@ extern const char* IND_Uniform_Color;
 
 /// Standard vertex attribute names used in many programs
 extern const char* IND_VertexAttribute_Position;
+extern const char* IND_VertexAttribute_RGBAColor;
 
 /// Sources for shaders, embedded in a string in code for faster loading
 extern const char* IND_VertexShader_UniformColor;
-extern const char* IND_FragmentShader_UniformColor;
+extern const char* IND_FragmentShader_Color;
+extern const char* IND_VertexShader_PerVertexColor;
 
 /// Default engine existing shader programs. Compiled and linked, added to internal manager.
 extern const char* IND_UniformColorNoTextureProgram;

@@ -82,6 +82,19 @@ IND_ShaderProgram* OpenGLES2Render::prepareUniformColorProgram (unsigned char pR
     return program;
 }
 
+IND_ShaderProgram* OpenGLES2Render::preparePervertexColorProgram() {
+    IND_ShaderProgram* program =  _shaderManager->getProgram(IND_PerVertexColorNoTextureProgram);
+    program->use();
+    
+    float matrixArray [16];
+    _shaderModelViewMatrix.arrayRepresentation(matrixArray);
+    program->setSingleUniformValue(matrixArray, IND_Uniform_MVMatrix);
+    _shaderProjectionMatrix.arrayRepresentation(matrixArray);
+    program->setSingleUniformValue(matrixArray, IND_Uniform_PMatrix);
+    
+    return program;
+}
+
 /** @endcond */
 
 #endif //INDIERENDER_GLES_IOS

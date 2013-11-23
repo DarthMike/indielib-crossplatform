@@ -193,14 +193,33 @@ typedef struct structPixelPos PIXEL;
 #endif
 
 #ifdef INDIERENDER_GLES_IOS
-//!Pixel - When not rendering textures
-struct structPixelPos {
+//!Vertex - When not rendering textures, with uniform color
+struct structVertexPos {
 	float _x; ///< Point position x
     float _y; ///< Point position y
     float _z; ///< Point position z
 };
-//! Alias for the pixel structure
-typedef struct structPixelPos PIXEL;
+//! Alias for the vertex structure
+typedef struct structVertexPos VERTEX_POS;
+
+//!Vertex color attribute
+struct structVertexColor {
+    //Color
+	float _colorR; ///< Point color R
+    float _colorG; ///< Point color G
+    float _colorB; ///< Point color B
+    float _colorA; ///< Point color A
+};
+//! Alias for the vertex structure
+typedef struct structVertexColor VERTEX_COLOR;
+
+//!Vertex - When not rendering textures, with per-vertex color
+struct structVertexPosColor {
+    VERTEX_POS _pos;
+    VERTEX_COLOR _color;
+};
+//! Alias for the vertex structure
+typedef struct structVertexPosColor VERTEX_POSANDCOLOR;
 #endif
 
 //Win32 (DirectX used)

@@ -460,7 +460,7 @@ private:
 
 	//Blitting helpers
 	void fillPoint(VERTEX_POS *pPoint, float pX, float pY);
-	void fillPointWithColor(VERTEX_POSANDCOLOR *pPoint, float pX, float pY, float pR, float pG, float pB, float pA);
+	void fillPointWithColor(VERTEX_POSANDCOLOR *pVertex, float pX, float pY, unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA);
 	void fillVertex2d(CUSTOMVERTEX2D *pVertex2d, float pX, float pY, float pU, float pV);
     
 	void setTransformAndGLStateForPrimitive(unsigned char pA, bool pResetTransform);

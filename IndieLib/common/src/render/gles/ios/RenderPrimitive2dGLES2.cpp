@@ -210,14 +210,9 @@ void OpenGLES2Render::blitColoredTriangle(int pX1,
                                        unsigned char pR2, unsigned char pG2, unsigned char pB2,
                                        unsigned char pR3, unsigned char pG3, unsigned char pB3,
                                        unsigned char pA) {
-    float r1(static_cast<float>(pR1) / 255.0f), g1(static_cast<float>(pG1) / 255.0f), b1(static_cast<float>(pB1) / 255.0f);
-    float r2(static_cast<float>(pR2) / 255.0f), g2(static_cast<float>(pG2) / 255.0f), b2(static_cast<float>(pB2) / 255.0f);
-    float r3(static_cast<float>(pR3) / 255.0f), g3(static_cast<float>(pG3) / 255.0f), b3(static_cast<float>(pB3) / 255.0f);
-    float a(static_cast<float>(pA) / 255.0f);
-
-	fillPointWithColor (&_pointsWithColor[0], static_cast<float>(pX1), static_cast<float>(pY1), r1,g1,b1,a);
-	fillPointWithColor (&_pointsWithColor[1], static_cast<float>(pX2), static_cast<float>(pY2), r2,g2,b2,a);
-	fillPointWithColor (&_pointsWithColor[2], static_cast<float>(pX3), static_cast<float>(pY3), r3,g3,b3,a);
+	fillPointWithColor (&_pointsWithColor[0], static_cast<float>(pX1), static_cast<float>(pY1), pR1,pG1,pB1,pA);
+	fillPointWithColor (&_pointsWithColor[1], static_cast<float>(pX2), static_cast<float>(pY2), pR2,pG2,pB2,pA);
+	fillPointWithColor (&_pointsWithColor[2], static_cast<float>(pX3), static_cast<float>(pY3), pR3,pG3,pB3,pA);
     
 	setTransformAndGLStateForPrimitive(pA,true);
     IND_ShaderProgram* primitiveRenderProgram = preparePervertexColorProgram();
@@ -231,7 +226,7 @@ void OpenGLES2Render::blitColoredTriangle(int pX1,
     
     GLint colorLoc = primitiveRenderProgram->getPositionForVertexAttribute(IND_VertexAttribute_RGBAColor);
     glEnableVertexAttribArray(colorLoc);
-    glVertexAttribPointer(colorLoc, 4, GL_FLOAT, GL_FALSE, sizeof(VERTEX_POSANDCOLOR), reinterpret_cast<void*>(sizeof(VERTEX_POS)));
+    glVertexAttribPointer(colorLoc, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(VERTEX_POSANDCOLOR), reinterpret_cast<void*>(sizeof(VERTEX_POS)));
     
     glDrawArrays(GL_TRIANGLES, 0, 3);
     
@@ -325,7 +320,7 @@ void OpenGLES2Render::fillPoint(VERTEX_POS *pVertex,
 	pVertex->_z = 0.0f;
 }
 
-void OpenGLES2Render::fillPointWithColor(VERTEX_POSANDCOLOR *pVertex, float pX, float pY, float pR, float pG, float pB, float pA) {
+void OpenGLES2Render::fillPointWithColor(VERTEX_POSANDCOLOR *pVertex, float pX, float pY, unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA) {
 	pVertex->_pos._x = pX;
 	pVertex->_pos._y = pY;
 	pVertex->_pos._z = 0.0f;

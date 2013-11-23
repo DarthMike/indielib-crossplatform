@@ -205,10 +205,10 @@ typedef struct structVertexPos VERTEX_POS;
 //!Vertex color attribute
 struct structVertexColor {
     //Color
-	float _colorR; ///< Point color R
-    float _colorG; ///< Point color G
-    float _colorB; ///< Point color B
-    float _colorA; ///< Point color A
+    unsigned char _colorR; ///< Point color R
+    unsigned char _colorG; ///< Point color G
+    unsigned char _colorB; ///< Point color B
+    unsigned char _colorA; ///< Point color A
 };
 //! Alias for the vertex structure
 typedef struct structVertexColor VERTEX_COLOR;

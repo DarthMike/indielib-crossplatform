@@ -351,29 +351,8 @@ Blits a bounding line
 ==================
 */
  void OpenGLES2Render::blitGridLine (int pPosX1, int pPosY1, int pPosX2, int pPosY2,  unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA)
-{	
-//	float r(static_cast<float>(pR) / 255.0f), g(static_cast<float>(pG) / 255.0f), b(static_cast<float>(pB) / 255.0f), a(static_cast<float>(pA) / 255.0f);
-//	// Filling pixels
-//    fillPoint (&_pixels[0], static_cast<float>(pPosX1), static_cast<float>(pPosY1), r, g, b, a);
-//    fillPoint (&_pixels[1], static_cast<float>(pPosX2), static_cast<float>(pPosY2), r, g, b, a);
-//
-//	//Render primitive - No textures
-//	setGLClientStateToPrimitive();
-//    
-//	// Color settings
-//    setRainbow2d (IND_OPAQUE, 1, 0, 0, IND_FILTER_POINT, pR, pG, pB, pA, 0, 0, 0, 255, 0, 0);
-//
-//	//Polygon blitting
-//	glVertexPointer(3, GL_FLOAT, sizeof(VERTEX_POS), &_pixels[0);
-//	glColorPointer(4, GL_FLOAT, sizeof(VERTEX_POS), &_pixels[0]._colorR);
-//	glDrawArrays(GL_LINE_STRIP, 0, 2);
-//
-//#ifdef _DEBUG
-//    GLenum glerror = glGetError();
-//	if (glerror) {
-//		g_debug->header("OpenGL error in grid line blitting ", DebugApi::LogHeaderError);
-//	}
-//#endif
+{
+    blitLine(pPosX1, pPosY1, pPosX2, pPosY2, pR, pG, pB, pA);
 }
 
 /*
@@ -399,40 +378,34 @@ Blits a bounding circle area
 ==================
 */
 void OpenGLES2Render::blitCollisionCircle(int pPosX, int pPosY, int pRadius, float pScale,  unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA, IND_Matrix pIndWorldMatrix) {
-//	float r(static_cast<float>(pR) / 255.0f), g(static_cast<float>(pG) / 255.0f), b(static_cast<float>(pB) / 255.0f), a(static_cast<float>(pA) / 255.0f);
-//
-//	// Filling pixels
-//	float x (0.0f);
-//	float y (0.0f);
-//	int points (SIDES_PER_CIRCLE + 1);
-//	assert(0 != points);
-//	float angle (2*PI / SIDES_PER_CIRCLE);
-//	for (int i = 0; i <= points ; i++) {
-//		x = pPosX + (pRadius * cosf(angle*i));
-//		y = pPosY + (pRadius * sinf(angle*i));
-//		fillPoint (&_pixels[i], x, y, r, g, b, a);
-//	}
-//    
-//	//Render primitive - No textures
-//	setGLClientStateToPrimitive();
-//    
-//	//Transform
-//	setTransform2d(pIndWorldMatrix);
-//
-//	// Color settings
-//    setRainbow2d (IND_OPAQUE, 1, 0, 0, IND_FILTER_POINT, pR, pG, pB, pA, 0, 0, 0, 255, 0, 0);
-//
-//	//Polygon blitting
-//	glVertexPointer(3, GL_FLOAT, sizeof(VERTEX_POS), &_pixels[0);
-//	glColorPointer(4, GL_FLOAT, sizeof(VERTEX_POS), &_pixels[0]._colorR);
-//	glDrawArrays(GL_LINE_STRIP, 0, points);
-//
-//#ifdef _DEBUG
-//    GLenum glerror = glGetError();
-//	if (glerror) {
-//		g_debug->header("OpenGL error in circle blitting ", DebugApi::LogHeaderError);
-//	}
-//#endif
+    
+	float x (0.0f);
+	float y (0.0f);
+	int points (SIDES_PER_CIRCLE + 1);
+	assert(0 != points);
+	float angle (2*PI / SIDES_PER_CIRCLE);
+	for (int i = 0; i <= points ; i++) {
+		x = pPosX + (pRadius * cosf(angle*i));
+		y = pPosY + (pRadius * sinf(angle*i));
+		fillPoint (&_points[i], x, y);
+	}
+    
+	setTransform2d(pIndWorldMatrix);
+    setRainbow2d (IND_OPAQUE, 1, 0, 0, IND_FILTER_POINT, pR, pG, pB, pA, 0, 0, 0, 255, 0, 0);
+    IND_ShaderProgram* primitiveRenderProgram = prepareUniformColorProgram(pR, pG, pB, pA);
+    
+    glBindBuffer(GL_ARRAY_BUFFER, _pointBuffer);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, points*sizeof(VERTEX_POS), _points);
+    
+    GLint attribLoc = primitiveRenderProgram->getPositionForVertexAttribute(IND_VertexAttribute_Position);
+    glEnableVertexAttribArray(attribLoc);
+    glVertexAttribPointer(attribLoc, 3, GL_FLOAT, GL_FALSE, 0, 0);
+    
+	glDrawArrays(GL_LINE_STRIP, 0, points);
+    
+    glDisableVertexAttribArray(attribLoc);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    CHECKGLERRORS();
 }
 
 

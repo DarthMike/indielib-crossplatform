@@ -186,7 +186,7 @@ void OpenGLES2Render::setTransform2d(int pX,
 		_math.matrix4DMultiplyInPlace(totalTrans,hotspot);
 	}
 
-    // Mirroring (180º rotations) and translation
+    // Mirroring (180 degrees rotations) and translation
 	if (pMirrorX || pMirrorY) {
 		//A mirror is a rotation in desired axis (the actual mirror) and a repositioning because rotation
 		//also moves 'out of place' the entity translation-wise
@@ -220,12 +220,13 @@ void OpenGLES2Render::setTransform2d(int pX,
 			_math.matrix4DMultiplyInPlace(totalTrans,mirrorY);
 		}
 	}
-	//Cache the change
-	_modelToWorld = totalTrans;
-
-	//ModelView matrix will be camera * modelToWorld
+    
+    // Cache the change
+    _modelToWorld = totalTrans;
+    
+    // Affect modelView Matrix
     _math.matrix4DMultiply(_cameraMatrix, _modelToWorld, _shaderModelViewMatrix);
-
+    
 	// ----- Return World Matrix (in IndieLib format) ----
 	//Transformations have been applied where needed
 	if (pMatrix) {
@@ -234,10 +235,10 @@ void OpenGLES2Render::setTransform2d(int pX,
 }
 
 void OpenGLES2Render::setTransform2d(IND_Matrix &pMatrix) {
-	// ----- Applies the transformation -----
+    // Affect modelView Matrix
     _math.matrix4DMultiply(_cameraMatrix, pMatrix, _shaderModelViewMatrix);
 
-	//Finally cache the change
+    // Cache the change
 	_modelToWorld = pMatrix;
 }
 

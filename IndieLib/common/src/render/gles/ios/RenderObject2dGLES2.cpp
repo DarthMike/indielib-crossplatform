@@ -110,30 +110,26 @@ void OpenGLES2Render::blitSurface(IND_Surface *pSu) {
 
 void OpenGLES2Render::blitGrid(IND_Surface *pSu, unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA) {
 
-//	//LOOP - All texture blocks of the surface
-//	for (int i = 0; i < pSu->getNumBlocks() * 4; i += 4) {
-//        //Get vertex world coords, to perform frustrum culling test in world coords
-//		IND_Vector3 mP1, mP2, mP3, mP4;
-//        transformVerticesToWorld(static_cast<float>(pSu->_surface->_vertexArray[i]._x), static_cast<float>(pSu->_surface->_vertexArray[i]._y),
-//                                 static_cast<float>(pSu->_surface->_vertexArray[i + 1]._x), static_cast<float>(pSu->_surface->_vertexArray[i + 1]._y),
-//                                 static_cast<float>(pSu->_surface->_vertexArray[i + 2]._x), static_cast<float>(pSu->_surface->_vertexArray[i + 2]._y),
-//                                 static_cast<float>(pSu->_surface->_vertexArray[i + 3]._x), static_cast<float>(pSu->_surface->_vertexArray[i + 3]._y),
-//                                 &mP1, &mP2, &mP3, &mP4);
-//        
-//        //Calculate the bounding rectangle that we are going to try to discard
-//		_math.calculateBoundingRectangle(&mP1, &mP2, &mP3, &mP4);
-//        
-//        //Discard bounding rectangle using frustum culling if possible
-//        if (_math.cullFrustumBox(mP1, mP2,_frustrumPlanes)) {
-//			blitGridQuad((int) pSu->_surface->_vertexArray[i]._x, (int) pSu->_surface->_vertexArray[i]._y,
-//			             (int) pSu->_surface->_vertexArray[i + 1]._x, (int) pSu->_surface->_vertexArray[i + 1]._y,
-//			             (int) pSu->_surface->_vertexArray[i + 2]._x, (int) pSu->_surface->_vertexArray[i + 2]._y,
-//			             (int) pSu->_surface->_vertexArray[i + 3]._x, (int) pSu->_surface->_vertexArray[i + 3]._y,
-//			             pR, pG, pB, pA);
-//        }
-//		
-//	}//LOOP END
-
+	for (int i = 0; i < pSu->getNumBlocks() * 4; i += 4) {
+        //Get vertex world coords, to perform frustrum culling test in world coords
+		IND_Vector3 mP1, mP2, mP3, mP4;
+        transformVerticesToWorld(static_cast<float>(pSu->_surface->_vertexArray[i]._x), static_cast<float>(pSu->_surface->_vertexArray[i]._y),
+                                 static_cast<float>(pSu->_surface->_vertexArray[i + 1]._x), static_cast<float>(pSu->_surface->_vertexArray[i + 1]._y),
+                                 static_cast<float>(pSu->_surface->_vertexArray[i + 2]._x), static_cast<float>(pSu->_surface->_vertexArray[i + 2]._y),
+                                 static_cast<float>(pSu->_surface->_vertexArray[i + 3]._x), static_cast<float>(pSu->_surface->_vertexArray[i + 3]._y),
+                                 &mP1, &mP2, &mP3, &mP4);
+        
+		_math.calculateBoundingRectangle(&mP1, &mP2, &mP3, &mP4);
+        
+        if (_math.cullFrustumBox(mP1, mP2,_frustrumPlanes)) {
+			blitGridQuad((int) pSu->_surface->_vertexArray[i]._x, (int) pSu->_surface->_vertexArray[i]._y,
+			             (int) pSu->_surface->_vertexArray[i + 1]._x, (int) pSu->_surface->_vertexArray[i + 1]._y,
+			             (int) pSu->_surface->_vertexArray[i + 2]._x, (int) pSu->_surface->_vertexArray[i + 2]._y,
+			             (int) pSu->_surface->_vertexArray[i + 3]._x, (int) pSu->_surface->_vertexArray[i + 3]._y,
+			             pR, pG, pB, pA);
+        }
+		
+	}
 }
 
 

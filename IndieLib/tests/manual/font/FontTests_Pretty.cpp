@@ -59,7 +59,7 @@ void FontTests_Pretty::performTests(float dt) {
 	CIndieLib *iLib = CIndieLib::instance();
 	
 	//Toggling of entity border lines in entities
-	if(iLib->_input->onKeyPress(IND_F1) && _active) {
+	if(iLib->_input->onKeyPress(IND_G) && _active) {
 		_back->showGridAreas(!_back->isShowGridAreas());
 		_tip->showGridAreas(!_tip->isShowGridAreas());
 		_textTitle->showGridAreas(!_textTitle->isShowGridAreas());

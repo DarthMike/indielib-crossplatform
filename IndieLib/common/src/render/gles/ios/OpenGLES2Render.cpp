@@ -299,6 +299,11 @@ bool OpenGLES2Render::initializeDefaultPrograms() {
     success &= pervertexColorNoTexture->compile(IND_VertexShader_PerVertexColor, IND_FragmentShader_Color);
     success &= pervertexColorNoTexture->link();
     success &= _shaderManager->add(pervertexColorNoTexture, IND_PerVertexColorNoTextureProgram);
+    
+    IND_ShaderProgram* simple2dTexture = IND_ShaderProgram::newShaderProgram();
+    success &= simple2dTexture->compile(IND_VertexShader_Simple2DTexture, IND_FragmentShader_Simple2DTexture);
+    success &= simple2dTexture->link();
+    success &= _shaderManager->add(simple2dTexture, IND_Simple2DTextureShader);
 
     return success;
 }

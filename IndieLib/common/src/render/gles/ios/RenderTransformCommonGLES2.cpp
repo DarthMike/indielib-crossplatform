@@ -95,6 +95,20 @@ IND_ShaderProgram* OpenGLES2Render::preparePervertexColorProgram() {
     return program;
 }
 
+IND_ShaderProgram* OpenGLES2Render::prepareSimple2DTexturingProgram() {
+    IND_ShaderProgram* program =  _shaderManager->getProgram(IND_Simple2DTextureShader);
+    program->use();
+    
+    float matrixArray [16];
+    _shaderModelViewMatrix.arrayRepresentation(matrixArray);
+    program->setSingleUniformValue(matrixArray, IND_Uniform_MVMatrix);
+    _shaderProjectionMatrix.arrayRepresentation(matrixArray);
+    program->setSingleUniformValue(matrixArray, IND_Uniform_PMatrix);
+    GLint texUnit = 0;
+    program->setSingleUniformValue(&texUnit, IND_Uniform_SpriteTexture);
+    
+    return program;
+}
 /** @endcond */
 
 #endif //INDIERENDER_GLES_IOS

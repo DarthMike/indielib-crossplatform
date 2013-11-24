@@ -39,6 +39,9 @@
 #include "IND_Surface.h"
 #include "IND_Animation.h"
 #include "TextureDefinitions.h"
+#include "RenderMacros.h"
+#include "IND_ShaderProgram.h"
+#include "IND_Shaders.h"
 
 /** @cond DOCUMENT_PRIVATEAPI */
 
@@ -47,64 +50,63 @@
 // --------------------------------------------------------------------------------
 
 void OpenGLES2Render::blitSurface(IND_Surface *pSu) {
-//    // ----- Blitting -----
-//	int mCont = 0;
-//    //LOOP - Blit textures in surface
-//	for (int i = 0; i < pSu->getNumBlocks(); i++) {
-//        //Get vertex world coords, to perform frustrum culling test in world coords
-//		IND_Vector3 mP1, mP2, mP3, mP4;
-//        transformVerticesToWorld(static_cast<float>(pSu->_surface->_vertexArray[mCont]._x), static_cast<float>(pSu->_surface->_vertexArray[mCont]._y),
-//		                   static_cast<float>(pSu->_surface->_vertexArray[mCont + 1]._x), static_cast<float>(pSu->_surface->_vertexArray[mCont + 1]._y),
-//		                   static_cast<float>(pSu->_surface->_vertexArray[mCont + 2]._x), static_cast<float>(pSu->_surface->_vertexArray[mCont + 2]._y),
-//		                   static_cast<float>(pSu->_surface->_vertexArray[mCont + 3]._x), static_cast<float>(pSu->_surface->_vertexArray[mCont + 3]._y),
-//		                   &mP1, &mP2, &mP3, &mP4);
-//
-//		//Calculate the bounding rectangle that we are going to try to discard
-//		_math.calculateBoundingRectangle(&mP1, &mP2, &mP3, &mP4);
-//
-//		//Discard bounding rectangle using frustum culling if possible
-//
-//		if (!_math.cullFrustumBox(mP1, mP2,_frustrumPlanes)) {
-//			_numDiscardedObjects++;
-//		} else {
-//#ifdef _DEBUG
-//            GLboolean enabled;
-//            glGetBooleanv(GL_TEXTURE_2D,&enabled);
-//            assert(GL_FALSE != enabled); //Should have texturing enabled
-//#endif
-//			
-//			if (!pSu->isHaveGrid()) {
-//				//Texture ID - If it doesn't have a grid, every other block must be blit by 
-//				//a different texture in texture array ID. 
-//				glBindTexture(GL_TEXTURE_2D,pSu->_surface->_texturesArray[i]);
-//			} else {
-//				//In a case of rendering a grid. Same texture (but different vertex position)
-//				//is rendered all the time. In other words, different pieces of same texture are rendered
-//				glBindTexture(GL_TEXTURE_2D,pSu->_surface->_texturesArray[0]);
-//			}
-//            
-//            //Set texture params requested before (via rainbow2d API)
-//            setGLBoundTextureParams();
-//            
-//			//Override CLAMP for texture
-//			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-//			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-//	        
-//			glVertexPointer(3, GL_FLOAT, sizeof(CUSTOMVERTEX2D), &pSu->_surface->_vertexArray[mCont]._x);
-//			glTexCoordPointer(2, GL_FLOAT, sizeof(CUSTOMVERTEX2D), &pSu->_surface->_vertexArray[mCont]._u);
-//			glDrawArrays(GL_TRIANGLE_STRIP, 0,4);	
-//	    	
-//		#ifdef _DEBUG
-//			GLenum glerror = glGetError();
-//			if (glerror) {
-//				g_debug->header("OpenGL error in surface blitting ", DebugApi::LogHeaderError);
-//			}
-//		#endif
-//			_numrenderedObjects++;
-//		}
-//  		
-//		mCont += 4;
-//	}//LOOP END
+    // ----- Blitting -----
+	int mCont = 0;
+
+	for (int i = 0; i < pSu->getNumBlocks(); i++) {
+        //Get vertex world coords, to perform frustrum culling test in world coords
+		IND_Vector3 mP1, mP2, mP3, mP4;
+        transformVerticesToWorld(static_cast<float>(pSu->_surface->_vertexArray[mCont]._pos._x), static_cast<float>(pSu->_surface->_vertexArray[mCont]._pos._y),
+		                   static_cast<float>(pSu->_surface->_vertexArray[mCont + 1]._pos._x), static_cast<float>(pSu->_surface->_vertexArray[mCont + 1]._pos._y),
+		                   static_cast<float>(pSu->_surface->_vertexArray[mCont + 2]._pos._x), static_cast<float>(pSu->_surface->_vertexArray[mCont + 2]._pos._y),
+		                   static_cast<float>(pSu->_surface->_vertexArray[mCont + 3]._pos._x), static_cast<float>(pSu->_surface->_vertexArray[mCont + 3]._pos._y),
+		                   &mP1, &mP2, &mP3, &mP4);
+
+		//Discard bounding rectangle using frustum culling if possible
+		_math.calculateBoundingRectangle(&mP1, &mP2, &mP3, &mP4);
+		if (!_math.cullFrustumBox(mP1, mP2,_frustrumPlanes)) {
+			_numDiscardedObjects++;
+		} else {
+            glActiveTexture(GL_TEXTURE0);
+            
+			if (!pSu->isHaveGrid()) {
+				//Texture ID - If it doesn't have a grid, every other block must be blit by 
+				//a different texture in texture array ID. 
+				glBindTexture(GL_TEXTURE_2D,pSu->_surface->_texturesArray[i]);
+			} else {
+				//In a case of rendering a grid. Same texture (but different vertex position)
+				//is rendered all the time. In other words, different pieces of same texture are rendered
+				glBindTexture(GL_TEXTURE_2D,pSu->_surface->_texturesArray[0]);
+			}
+            
+            //Set texture params requested before (via rainbow2d API)
+            setGLBoundTextureParams();
+            
+			//Override CLAMP for texture
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	        
+            IND_ShaderProgram* program = prepareSimple2DTexturingProgram();
+
+            GLint posLoc = program->getPositionForVertexAttribute(IND_VertexAttribute_Position);
+            glEnableVertexAttribArray(posLoc);
+            glVertexAttribPointer(posLoc, 3, GL_FLOAT, GL_FALSE, sizeof(CUSTOMVERTEX2D), &pSu->_surface->_vertexArray[mCont]._pos._x);
+
+            GLint texCoordLoc = program->getPositionForVertexAttribute(IND_VertexAttribute_TexCoord);
+            glEnableVertexAttribArray(texCoordLoc);
+            glVertexAttribPointer(texCoordLoc, 2, GL_FLOAT, GL_FALSE, sizeof(CUSTOMVERTEX2D), &pSu->_surface->_vertexArray[mCont]._texCoord._u);
+
+			glDrawArrays(GL_TRIANGLE_STRIP, 0,4);	
+
+            glDisableVertexAttribArray(posLoc);
+            glDisableVertexAttribArray(texCoordLoc);
+            
+            CHECKGLERRORS();
+			_numrenderedObjects++;
+		}
+  		
+		mCont += 4;
+	}
 }
 
 
@@ -113,19 +115,19 @@ void OpenGLES2Render::blitGrid(IND_Surface *pSu, unsigned char pR, unsigned char
 	for (int i = 0; i < pSu->getNumBlocks() * 4; i += 4) {
         //Get vertex world coords, to perform frustrum culling test in world coords
 		IND_Vector3 mP1, mP2, mP3, mP4;
-        transformVerticesToWorld(static_cast<float>(pSu->_surface->_vertexArray[i]._x), static_cast<float>(pSu->_surface->_vertexArray[i]._y),
-                                 static_cast<float>(pSu->_surface->_vertexArray[i + 1]._x), static_cast<float>(pSu->_surface->_vertexArray[i + 1]._y),
-                                 static_cast<float>(pSu->_surface->_vertexArray[i + 2]._x), static_cast<float>(pSu->_surface->_vertexArray[i + 2]._y),
-                                 static_cast<float>(pSu->_surface->_vertexArray[i + 3]._x), static_cast<float>(pSu->_surface->_vertexArray[i + 3]._y),
+        transformVerticesToWorld(static_cast<float>(pSu->_surface->_vertexArray[i]._pos._x), static_cast<float>(pSu->_surface->_vertexArray[i]._pos._y),
+                                 static_cast<float>(pSu->_surface->_vertexArray[i + 1]._pos._x), static_cast<float>(pSu->_surface->_vertexArray[i + 1]._pos._y),
+                                 static_cast<float>(pSu->_surface->_vertexArray[i + 2]._pos._x), static_cast<float>(pSu->_surface->_vertexArray[i + 2]._pos._y),
+                                 static_cast<float>(pSu->_surface->_vertexArray[i + 3]._pos._x), static_cast<float>(pSu->_surface->_vertexArray[i + 3]._pos._y),
                                  &mP1, &mP2, &mP3, &mP4);
         
 		_math.calculateBoundingRectangle(&mP1, &mP2, &mP3, &mP4);
         
         if (_math.cullFrustumBox(mP1, mP2,_frustrumPlanes)) {
-			blitGridQuad((int) pSu->_surface->_vertexArray[i]._x, (int) pSu->_surface->_vertexArray[i]._y,
-			             (int) pSu->_surface->_vertexArray[i + 1]._x, (int) pSu->_surface->_vertexArray[i + 1]._y,
-			             (int) pSu->_surface->_vertexArray[i + 2]._x, (int) pSu->_surface->_vertexArray[i + 2]._y,
-			             (int) pSu->_surface->_vertexArray[i + 3]._x, (int) pSu->_surface->_vertexArray[i + 3]._y,
+			blitGridQuad((int) pSu->_surface->_vertexArray[i]._pos._x, (int) pSu->_surface->_vertexArray[i]._pos._y,
+			             (int) pSu->_surface->_vertexArray[i + 1]._pos._x, (int) pSu->_surface->_vertexArray[i + 1]._pos._y,
+			             (int) pSu->_surface->_vertexArray[i + 2]._pos._x, (int) pSu->_surface->_vertexArray[i + 2]._pos._y,
+			             (int) pSu->_surface->_vertexArray[i + 3]._pos._x, (int) pSu->_surface->_vertexArray[i + 3]._pos._y,
 			             pR, pG, pB, pA);
         }
 		
@@ -358,11 +360,11 @@ void OpenGLES2Render::fillVertex2d(CUSTOMVERTEX2D *pVertex2d,
 								 float pU,
 								 float pV) {
 	// Vertex
-	pVertex2d->_x       = pX;
-	pVertex2d->_y       = pY;
-	pVertex2d->_z       = 0.0f;
-	pVertex2d->_u       = pU;
-	pVertex2d->_v       = pV;
+	pVertex2d->_pos._x       = pX;
+	pVertex2d->_pos._y       = pY;
+	pVertex2d->_pos._z       = 0.0f;
+	pVertex2d->_texCoord._u       = pU;
+	pVertex2d->_texCoord._v       = pV;
 }
 /** @endcond */
 #endif //INDIERENDER_GLES_IOS

@@ -252,13 +252,18 @@ typedef struct structVertex2d CUSTOMVERTEX2D;
 #endif
 
 #ifdef INDIERENDER_GLES_IOS
-//!Vertex - When rendering with textures
-struct structVertex2d {
-	float _x; ///< Point position x
-    float _y; ///< Point position y
-    float _z; ///< Point position z
+//!Vertex u and t values - When rendering with textures
+struct structTexCoord {
 	float _u; ///< Texture mapping coordinate u
     float _v; ///< Texture mapping coordinate v
+};
+//! Alias for the 2d vertex structure
+typedef struct structTexCoord VERTEX_TEXCOORD;
+
+//!Vertex - When rendering with textures
+struct structVertex2d {
+    VERTEX_POS _pos;
+    VERTEX_TEXCOORD _texCoord;
 };
 //! Alias for the 2d vertex structure
 typedef struct structVertex2d CUSTOMVERTEX2D;

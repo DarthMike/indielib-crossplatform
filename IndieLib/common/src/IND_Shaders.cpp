@@ -29,12 +29,13 @@ const char* IND_UniformColorNoTextureProgram = "IND_UniformColorNoTextureProgram
 const char* IND_PerVertexColorNoTextureProgram = "IND_PerVertexColorNoTextureProgram";
 const char* IND_Simple2DTextureShader = "IND_Simple2DTextureShader";
 
-
 const char* IND_Uniform_MVMatrix = "uMVmatrix";
 const char* IND_Uniform_PMatrix = "uPMatrix";
 const char* IND_Uniform_Color = "uColor";
+const char* IND_Uniform_SpriteTexture = "uTexture";
 const char* IND_VertexAttribute_Position = "aPosition";
 const char* IND_VertexAttribute_RGBAColor = "aRGBAColor";
+const char* IND_VertexAttribute_TexCoord = "aTexCoord";
 
 const char* IND_VertexShader_UniformColor =
 "                                                   \n\
@@ -93,5 +94,42 @@ gl_Position = uPMatrix * uMVmatrix  * pos4;         \n\
 varFragmentColor = aRGBAColor;                      \n\
 }													\n\
 ";
+
+const char* IND_VertexShader_Simple2DTexture =
+"                                                   \n\
+#version 100                                        \n\
+attribute vec3 aPosition;							\n\
+attribute vec2 aTexCoord;							\n\
+#ifdef GL_ES                                        \n\
+varying lowp vec2 varTexCoord;                      \n\
+#else                                               \n\
+varying vec2 varTexCoord;                           \n\
+#endif                                              \n\
+uniform mat4 uMVmatrix;                             \n\
+uniform mat4 uPMatrix;                              \n\
+\n\
+void main()											\n\
+{                                                   \n\
+vec4 pos4 = vec4(aPosition, 1.0);                   \n\
+gl_Position = uPMatrix * uMVmatrix  * pos4;         \n\
+varTexCoord = aTexCoord;                            \n\
+}													\n\
+";
+
+const char* IND_FragmentShader_Simple2DTexture =
+"                                                   \n\
+#version 100                                        \n\
+#ifdef GL_ES                                        \n\
+precision lowp float;                              \n\
+#endif                                              \n\
+varying vec2 varTexCoord;                           \n\
+uniform sampler2D uTexture;                         \n\
+\n\
+void main()											\n\
+{                                                   \n\
+    gl_FragColor = texture2D(uTexture,varTexCoord); \n\
+}													\n\
+";
+
 
 

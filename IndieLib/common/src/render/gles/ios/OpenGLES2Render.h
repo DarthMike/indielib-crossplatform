@@ -501,6 +501,8 @@ private:
     // ----- Shader helpers ----
     IND_ShaderProgram* prepareUniformColorProgram (unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA);
     IND_ShaderProgram* preparePervertexColorProgram();
+    IND_ShaderProgram* prepareSimple2DTexturingProgram();
+    
 	// ----- Objects -----
 	IND_Math _math;
 	IND_Window *_window;

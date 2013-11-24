@@ -42,7 +42,8 @@ extern const char* IND_VertexShader_UniformColor;
 extern const char* IND_FragmentShader_Color;
 extern const char* IND_VertexShader_PerVertexColor;
 extern const char* IND_VertexShader_Simple2DTexture;
-extern const char* IND_FragmentShader_Simple2DTexture;
+extern const char* IND_FragmentShader_Simple2DTexture_RGBA;
+extern const char* IND_FragmentShader_Simple2DTexture_BGRA;
 
 /// Default engine existing shader programs. Compiled and linked, added to internal manager.
 extern const char* IND_UniformColorNoTextureProgram;

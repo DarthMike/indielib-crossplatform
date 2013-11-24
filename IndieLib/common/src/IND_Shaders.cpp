@@ -116,7 +116,7 @@ varTexCoord = aTexCoord;                            \n\
 }													\n\
 ";
 
-const char* IND_FragmentShader_Simple2DTexture =
+const char* IND_FragmentShader_Simple2DTexture_BGRA =
 "                                                   \n\
 #version 100                                        \n\
 #ifdef GL_ES                                        \n\
@@ -127,9 +127,26 @@ uniform sampler2D uTexture;                         \n\
 \n\
 void main()											\n\
 {                                                   \n\
-    gl_FragColor = texture2D(uTexture,varTexCoord); \n\
+    vec4 rgbColor = texture2D(uTexture,varTexCoord);\n\
+    gl_FragColor = rgbColor.bgra;                   \n\
 }													\n\
 ";
+
+const char* IND_FragmentShader_Simple2DTexture_RGBA =
+"                                                   \n\
+#version 100                                        \n\
+#ifdef GL_ES                                        \n\
+precision lowp float;                               \n\
+#endif                                              \n\
+varying vec2 varTexCoord;                           \n\
+uniform sampler2D uTexture;                         \n\
+\n\
+void main()											\n\
+{                                                   \n\
+gl_FragColor = rtexture2D(uTexture,varTexCoord);    \n\
+}													\n\
+";
+
 
 
 

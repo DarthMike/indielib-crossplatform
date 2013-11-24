@@ -282,6 +282,9 @@ bool IND_FontManager::parseMudFont(IND_Font *pNewFont,const char *pFontName) {
         DISPOSE(mXmlDoc);
      	return 0;
     }
+    
+    // Setting the type of the font
+    pNewFont->setFontType(IND_Font::FONTTYPE_MudFont);
 
 	// Document root
 	TiXmlElement *mXFont = 0;
@@ -396,6 +399,11 @@ bool IND_FontManager::parseAngelCodeFont(IND_Font *pNewFont,const char *pFontNam
      	return 0;
     }
     
+    
+    // Setting the type of the font
+    pNewFont->setFontType(IND_Font::FONTTYPE_AngelCode);
+    
+    
 	// Document root
 	TiXmlElement *mXFont = 0;
 	mXFont = mXmlDoc->FirstChildElement("font");
@@ -412,9 +420,73 @@ bool IND_FontManager::parseAngelCodeFont(IND_Font *pNewFont,const char *pFontNam
     
     //TODO : common element variables ... maybe
     
-    //TODO : pages, this one needs to be done ... MudFont have aalways? just one page .. Angelcode can have multiple
+    //TODO : pages, this one needs to be done ... MudFont have (allways?) just one page .. Angelcode can have multiple
     
+    // Image loading
     
+    // Pages element
+    TiXmlElement *mXPages = 0;
+	mXPages = mXFont->FirstChildElement("pages");
+    
+    if (!mXPages) {
+		g_debug->header("The <font> element doesn't have a <pages> child element", DebugApi::LogHeaderError);
+		mXmlDoc->Clear();
+		delete mXmlDoc;
+		return 0;
+	}
+    
+    // Page element
+	TiXmlElement *mXPage = 0;
+	mXPage = mXPages->FirstChildElement("page");
+    
+	if (!mXPage) {
+		g_debug->header("There are no <page> elements to parse", DebugApi::LogHeaderError);
+		mXmlDoc->Clear();
+		delete mXmlDoc;
+		return 0;
+	}
+    
+	// Parse each page
+	int mPageCount = 0;
+	while (mXPage) {
+        
+        // Id
+		if (mXPage->Attribute("id")) {
+			//pNewFont->getLetters() [mCharCount]._letter = static_cast<unsigned char>(atoi(mXChar->Attribute("id")));  //TODO : FIXME
+		} else {
+			g_debug->header("The <page> element doesn't have a \"id\" attribute", DebugApi::LogHeaderError);
+			mXmlDoc->Clear();
+			delete mXmlDoc;
+			return 0;
+		}
+        
+        // File
+		if (mXPage->Attribute("file")) {
+            
+            IND_Image *mNewImage = IND_Image::newImage();
+            bool noImgError = _imageManager->add(mNewImage, mXPage->Attribute("file"));
+            if (!noImgError) {
+                DISPOSEMANAGED(mNewImage);
+                g_debug->header("Failed at adding page image for Angelcode font", DebugApi::LogHeaderError);
+                mXmlDoc->Clear();
+                delete mXmlDoc;
+                return 0;
+            }
+            
+		} else {
+			g_debug->header("The <page> element doesn't have a \"file\" attribute", DebugApi::LogHeaderError);
+			mXmlDoc->Clear();
+			delete mXmlDoc;
+			return 0;
+		}
+        
+        // Move to the next char declaration
+        mXPage = mXPage->NextSiblingElement("page");
+        
+		mPageCount++;
+	
+    }
+   
    
     // Chars element
     TiXmlElement *mXChars = 0;

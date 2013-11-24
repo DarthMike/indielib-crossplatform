@@ -61,6 +61,14 @@ public:
         delete this;
     }
     
+    // ----- Enums ------------
+    
+    enum FONTTYPE {
+        FONTTYPE_MudFont,
+        FONTTYPE_AngelCode,
+    };
+    
+    
 	// ----- Public Gets ------
 
 	//! This function returns the number of characters of the font.
@@ -78,12 +86,14 @@ public:
 		return _font._name;
 	}
 
+
 private:
 	/** @cond DOCUMENT_PRIVATEAPI */
     IND_Font() {}
     virtual ~IND_Font() {}
     
 	// ----- Structures ------
+    
 
 	// LETTER
 	struct structLetter {
@@ -132,8 +142,6 @@ private:
 		}
 	};
 	typedef struct structKerning KERNING;
-    
-        
 
 	// FONT
 	struct structFont {
@@ -141,17 +149,20 @@ private:
 		int     _numChars;      // Num of chars
 		char    *_name;         // Font name
 		IND_Surface *_surface;  // Bitmap (IND_Surface object) with the letters // TODO: This needs to be a list of surfaces, since angelcode can make use of more than one image....
-        
+
+        FONTTYPE _type;         // Font type that is being used. ( MudFont / AngelCode )
         int     _numKernings;   // Num of kernings (angelcode specific).
         KERNING *_kernings;     // Kerning array (angelcode specific).
         
                                 // TODO: add the toplevel info variables here if needed ( see angelcode documentation )
+        
 
 		structFont() :
 		    _letters (NULL),
 			_numChars(0),
 			_name(NULL),
 			_surface(NULL),
+            _type(FONTTYPE_MudFont),
             _numKernings(0),
             _kernings(NULL){
                 _name = new char[MAX_TOKEN];
@@ -187,6 +198,10 @@ private:
 	void setSurface(IND_Surface *pSurface) {
 		_font._surface = pSurface;
 	}
+    
+    void setFontType(FONTTYPE type) {
+		_font._type = type;
+	}
 
 	// ----- Private gets ------
 
@@ -196,9 +211,14 @@ private:
     KERNING *getKernings() {
 		return _font._kernings;
 	}
-	IND_Surface *getSurface() {
+	IND_Surface *getSurface() { // TODO: needs to take an index (angelcode font support)
 		return _font._surface;
 	}
+    
+    FONTTYPE getFontType() {
+		return _font._type;
+	}
+
 
 	// ----- Friends -----
 

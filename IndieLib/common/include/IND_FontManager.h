@@ -97,16 +97,9 @@ public:
                     IND_Quality pQuality);
     
     bool addAngelcodeFont(IND_Font      *pNewFont,
-                          const char    *pName,
                           const char    *pFile,
                           IND_Type      pType,
-                          IND_Quality   pQuality);
-    
-	bool addAngelcodeFont(IND_Font      *pNewFont,
-                          IND_Image     *pImage,
-                          const char    *pFile,
-                          IND_Type      pType,
-                          IND_Quality   pQuality);
+                          IND_Quality   pQuality);    
 
 	bool remove(IND_Font *pFo);
 

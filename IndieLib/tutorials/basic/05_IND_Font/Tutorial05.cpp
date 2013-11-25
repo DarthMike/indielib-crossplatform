@@ -47,11 +47,13 @@ Indielib_Main
 		std::cout<<"\nUnable to Set the working path !";
 	}
 	
+        
 	// ----- IndieLib intialization -----
 
 	CIndieLib *mI = CIndieLib::instance();
 	if (!mI->init()) return 0;								
 
+        
 	// ----- Surface and font loading -----
 
 	// Loading Background
@@ -69,34 +71,45 @@ Indielib_Main
 	// Font 2
 	IND_Font *mFontBig = IND_Font::newFont();
 	if (!mI->_fontManager->addMudFont(mFontBig, "font_big.png", "font_big.xml", IND_ALPHA, IND_32)) return 0;
+        
+    // Font 3
+    IND_Font *mFontCooper = IND_Font::newFont();
+    if (!mI->_fontManager->addAngelcodeFont(mFontCooper, "cooper.xml", IND_ALPHA, IND_32)) return 0;
+
 
 	// ----- Set the surfaces and fonts into 2d entities -----
 
 	// Creating 2d entity for the background
 	IND_Entity2d *mBack = IND_Entity2d::newEntity2d();					
-	mI->_entity2dManager->add(mBack);				// Entity adding
-	mBack->setSurface(mSurfaceBack);				// Set the surface into the entity
+	mI->_entity2dManager->add(mBack);                           // Entity adding
+	mBack->setSurface(mSurfaceBack);                            // Set the surface into the entity
 
 	// Creating 2d entity for the tips page
 	IND_Entity2d *mTip = IND_Entity2d::newEntity2d();					
-	mI->_entity2dManager->add(mTip);				// Entity adding
-	mTip->setSurface(mSurfaceTip);					// Set the surface into the entity
+	mI->_entity2dManager->add(mTip);                            // Entity adding
+	mTip->setSurface(mSurfaceTip);                              // Set the surface into the entity
 
 	// Title text
 	IND_Entity2d *mTextTitle = IND_Entity2d::newEntity2d();					
-	mI->_entity2dManager->add(mTextTitle);				// Entity adding
-	mTextTitle->setFont(mFontBig);					// Set the font into the entity
+	mI->_entity2dManager->add(mTextTitle);                      // Entity adding
+	mTextTitle->setFont(mFontBig);                              // Set the font into the entity
 
 	// Text small black
 	IND_Entity2d *mTextSmallBlack = IND_Entity2d::newEntity2d();					
-	mI->_entity2dManager->add(mTextSmallBlack);			// Entity adding
-	mTextSmallBlack->setFont(mFontSmall);				// Set the font into the entity
+	mI->_entity2dManager->add(mTextSmallBlack);                 // Entity adding
+	mTextSmallBlack->setFont(mFontSmall);                       // Set the font into the entity
 
 	// Text small white
 	IND_Entity2d *mTextSmallWhite = IND_Entity2d::newEntity2d();					
-	mI->_entity2dManager->add(mTextSmallWhite);			// Entity adding
-	mTextSmallWhite->setFont(mFontSmall);				// Set the font into the entity
+	mI->_entity2dManager->add(mTextSmallWhite);                 // Entity adding
+	mTextSmallWhite->setFont(mFontSmall);                       // Set the font into the entity
 
+    // Text small cooper
+    IND_Entity2d *mTextSmallCooper = IND_Entity2d::newEntity2d();
+    mI->_entity2dManager->add(mTextSmallCooper);                // Entity adding
+    mTextSmallWhite->setFont(mFontCooper);                      // Set the font into the entity
+        
+        
 	// ----- Changing the attributes of the 2d entities -----
 
 	mTip->setHotSpot(0.5f, 0.5f);
@@ -120,7 +133,14 @@ Indielib_Main
 	mTextSmallWhite->setCharSpacing(-7);
 	mTextSmallWhite->setPosition(400, 230, 1);
 	mTextSmallWhite->setAlign(IND_LEFT);
+        
+    mTextSmallCooper->setText("This is a another paragraph. This time we're fooling around with\nthe AngelCode font format");
+    mTextSmallCooper->setLineSpacing(18);
+    mTextSmallCooper->setCharSpacing(-7);
+    mTextSmallCooper->setPosition(450, 230, 1);
+    mTextSmallCooper->setAlign(IND_LEFT);
 
+        
 	// ----- Main Loop -----
 
 	while (!mI->_input->onKeyPress(IND_ESCAPE) && !mI->_input->quit())
@@ -131,6 +151,7 @@ Indielib_Main
 		mI->_render->endScene();	
 	}
 
+        
 	// ----- Free -----
 
 	mI->end();

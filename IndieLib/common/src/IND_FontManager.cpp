@@ -212,7 +212,7 @@ bool IND_FontManager::addMudFont(IND_Font		*pNewFont,
 
 	// ----- g_debug -----
 
-	g_debug->header("Font parsed and loaded", DebugApi::LogHeaderEnd);
+	g_debug->header("MudFont font parsed and loaded", DebugApi::LogHeaderEnd);
 
 	return 1;
 }
@@ -230,30 +230,33 @@ bool IND_FontManager::addAngelcodeFont(IND_Font     *pNewFont,
                                        const char   *pFile,
                                        IND_Type     pType,
                                        IND_Quality  pQuality) {
-	// Image loading
-	//IND_Image *mNewImage = IND_Image::newImage();
-    //bool noImgError = _imageManager->add(mNewImage, pName);
-    //if (!noImgError) {
-    //    DISPOSEMANAGED(mNewImage);
-    //}
+	
     
-    //bool noError(noImgError);
+    g_debug->header("Parsing and loading AngelCode font", DebugApi::LogHeaderBegin);
+	g_debug->header("File name:", DebugApi::LogHeaderInfo);
+	g_debug->dataChar(pFile, 1);
     
-	// IND_Surface creation
-	//if (noError) {
-    //    noError = addMudFont(pNewFont, mNewImage, pFile, pType, pQuality);
-    //}
-    
-    //if (noImgError) {
-    //    _imageManager->remove(mNewImage);
-    //}
-    
-	//return noError;
-    
-    bool status = parseAngelCodeFont(pNewFont,pFile);
+	if (!_ok) {
+		writeMessage();
+		return 0;
+	}
+
     
     
-    return status;
+    if(!parseAngelCodeFont(pNewFont,pFile, pType, pQuality))
+        return 0;
+    
+    
+    // ----- Puts the object into the manager -----
+    
+	addToList(pNewFont);
+    
+    
+    // ----- g_debug -----
+    
+	g_debug->header("AngelCode font parsed and loaded", DebugApi::LogHeaderEnd);
+    
+	return 1;
 }
 
 
@@ -432,8 +435,8 @@ bool IND_FontManager::parseMudFont(IND_Font *pNewFont,const char *pFontName) {
  Uses Tinyxml
  ==================
  */
-bool IND_FontManager::parseAngelCodeFont(IND_Font *pNewFont,const char *pFontName) {
-	TiXmlDocument   *mXmlDoc = new TiXmlDocument(pFontName);
+bool IND_FontManager::parseAngelCodeFont(IND_Font *pNewFont,const char *pFileName, IND_Type pType, IND_Quality pQuality) {
+	TiXmlDocument   *mXmlDoc = new TiXmlDocument(pFileName);
     
 	// Fatal error, cannot load
 	if (!mXmlDoc->LoadFile()) {
@@ -441,12 +444,14 @@ bool IND_FontManager::parseAngelCodeFont(IND_Font *pNewFont,const char *pFontNam
      	return 0;
     }
     
+    // Setting font filename
+    pNewFont->setFileName(pFileName);
     
     // Setting the type of the font
     pNewFont->setFontType(IND_Font::FONTTYPE_AngelCode);
     
     
-	// Document root
+    // Document root
 	TiXmlElement *mXFont = 0;
 	mXFont = mXmlDoc->FirstChildElement("font");
     
@@ -494,7 +499,7 @@ bool IND_FontManager::parseAngelCodeFont(IND_Font *pNewFont,const char *pFontNam
         
         // Id
 		if (mXPage->Attribute("id")) {
-			//pNewFont->getLetters() [mCharCount]._letter = static_cast<unsigned char>(atoi(mXChar->Attribute("id")));  //TODO : FIXME
+			//pNewFont->getLetters() [mCharCount]._letter = static_cast<unsigned char>(atoi(mXChar->Attribute("id")));  //TODO : FIXME !! id refers to font image, starting from 0 -> 
 		} else {
 			g_debug->header("The <page> element doesn't have a \"id\" attribute", DebugApi::LogHeaderError);
 			mXmlDoc->Clear();
@@ -503,10 +508,7 @@ bool IND_FontManager::parseAngelCodeFont(IND_Font *pNewFont,const char *pFontNam
 		}
         
         // File
-        // TODO: handle check power of two
-        // TODO: add to surface manganger
-        
-		if (mXPage->Attribute("file")) {
+        if (mXPage->Attribute("file")) {
             
             IND_Image *mNewImage = IND_Image::newImage();
             bool noImgError = _imageManager->add(mNewImage, mXPage->Attribute("file"));
@@ -517,6 +519,39 @@ bool IND_FontManager::parseAngelCodeFont(IND_Font *pNewFont,const char *pFontNam
                 delete mXmlDoc;
                 return 0;
             }
+            
+            // ----- Width and height of the bitmap font MUST be power of two -----
+            
+            IND_Math mMath;
+            
+            if (!mMath.isPowerOfTwo(mNewImage->getWidth()) ||
+                !mMath.isPowerOfTwo(mNewImage->getHeight())) {
+                g_debug->header("This operation can not be done", DebugApi::LogHeaderInfo);
+                g_debug->dataChar("", 1);
+                g_debug->header("The height and width of the AngelCode font font must be power of 2", DebugApi::LogHeaderError);
+                mXmlDoc->Clear();
+                delete mXmlDoc;
+                return 0;
+            }
+            
+            // ----- Bitmap (IND_Surface object) creation -----
+            
+            IND_Surface *mNewSurface = IND_Surface::newSurface();
+            if (!_surfaceManager->add(mNewSurface, mNewImage, pType, pQuality)) {
+                mXmlDoc->Clear();
+                delete mXmlDoc;
+                return 0;
+            }   
+            
+            // IND_Surface object MUST have one block ONLY
+            if (mNewSurface->getNumBlocks() > 1) {
+                mXmlDoc->Clear();
+                delete mXmlDoc;
+                _surfaceManager->remove(mNewSurface);
+                return 0;
+            }
+            
+            pNewFont->setSurface(mNewSurface); // TODO: somehow handle more than one font surface, - this relates to the "id" attribute parsed..
             
 		} else {
 			g_debug->header("The <page> element doesn't have a \"file\" attribute", DebugApi::LogHeaderError);

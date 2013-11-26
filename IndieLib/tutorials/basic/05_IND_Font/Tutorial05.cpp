@@ -107,7 +107,7 @@ Indielib_Main
     // Text small cooper
     IND_Entity2d *mTextSmallCooper = IND_Entity2d::newEntity2d();
     mI->_entity2dManager->add(mTextSmallCooper);                // Entity adding
-    mTextSmallWhite->setFont(mFontCooper);                      // Set the font into the entity
+    mTextSmallCooper->setFont(mFontCooper);                      // Set the font into the entity
         
         
 	// ----- Changing the attributes of the 2d entities -----
@@ -134,10 +134,10 @@ Indielib_Main
 	mTextSmallWhite->setPosition(400, 230, 1);
 	mTextSmallWhite->setAlign(IND_LEFT);
         
-    mTextSmallCooper->setText("This is a another paragraph. This time we're fooling around with\nthe AngelCode font format");
-    mTextSmallCooper->setLineSpacing(18);
-    mTextSmallCooper->setCharSpacing(-7);
-    mTextSmallCooper->setPosition(450, 230, 1);
+    mTextSmallCooper->setText("This time we're fooling around with\nthe AngelCode font format");
+    mTextSmallCooper->setLineSpacing(25);
+    mTextSmallCooper->setCharSpacing(1);
+    mTextSmallCooper->setPosition(150, 475, 1);
     mTextSmallCooper->setAlign(IND_LEFT);
 
         

@@ -132,7 +132,7 @@ private:
 	// ----- Private methods -----
 
 	bool                parseMudFont(IND_Font *pNewFont,const char *pFontName);
-    bool                parseAngelCodeFont(IND_Font *pNewFont,const char *pFontName);
+    bool                parseAngelCodeFont(IND_Font *pNewFont,const char *pFontName, IND_Type pType, IND_Quality pQuality);
 
 	void                addToList(IND_Font *pNewFont);
 	void                delFromlist(IND_Font *pFo);

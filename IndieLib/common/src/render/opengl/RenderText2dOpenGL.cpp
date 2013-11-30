@@ -190,10 +190,10 @@ void OpenGLRender::blitCharsAngelCodeFont(IND_Font *pFo, char *pText, IND_Align 
                 //#warning lookout
                 //mvTransformPresetState();  //Need to preset transform state, as the blit operation will reset the state!!!!
                 blitRegionSurface(pFo->getSurface(),
-                                  pFo->getLetters() [mCont2]._x + 1,
-                                  pFo->getLetters() [mCont2]._y + 1,
-                                  pFo->getLetters() [mCont2]._width - 1,
-                                  pFo->getLetters() [mCont2]._height - 1);
+                                  pFo->getLetters() [mCont2]._x,
+                                  pFo->getLetters() [mCont2]._y,
+                                  pFo->getLetters() [mCont2]._width,
+                                  pFo->getLetters() [mCont2]._height);
                 
                 // Restore the untranslated coordinate system.
                 glPopMatrix();

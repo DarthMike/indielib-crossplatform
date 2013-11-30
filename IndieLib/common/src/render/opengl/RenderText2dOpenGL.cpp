@@ -179,6 +179,14 @@ void OpenGLRender::blitCharsAngelCodeFont(IND_Font *pFo, char *pText, IND_Align 
             
             mCont2--;
             if (!mErrorChar) {
+                
+                // To avoid that Y displacement transform accumulates for every character in the line,
+                // save the untranslated coordinate system.
+                glPushMatrix();
+                
+                float charTranslateY = (pFo->getLetters() [mCont2]._yOffset);
+                glTranslatef(0.0f, charTranslateY ,0.0f);
+
                 //#warning lookout
                 //mvTransformPresetState();  //Need to preset transform state, as the blit operation will reset the state!!!!
                 blitRegionSurface(pFo->getSurface(),
@@ -186,10 +194,13 @@ void OpenGLRender::blitCharsAngelCodeFont(IND_Font *pFo, char *pText, IND_Align 
                                   pFo->getLetters() [mCont2]._y + 1,
                                   pFo->getLetters() [mCont2]._width - 1,
                                   pFo->getLetters() [mCont2]._height - 1);
+                
+                // Restore the untranslated coordinate system.
+                glPopMatrix();
             }
             
-            //Displacement of the character.
-            //Displacement transform accumulates for every character in the line
+            //X displacement of the character.
+            //X displacement transform accumulates for every character in the line
             float charTranslateX = ((pFo->getLetters() [mCont2]._width) + pOffset) * pScaleX;
             glTranslatef(charTranslateX,0.0f,0.0f);
         }//Was normal character

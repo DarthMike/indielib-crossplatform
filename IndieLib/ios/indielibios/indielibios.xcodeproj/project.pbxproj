@@ -72,6 +72,7 @@
 		E7C282161826FDDE00116982 /* IND_Shaders.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7C282141826FDDE00116982 /* IND_Shaders.cpp */; };
 		E7C67F04183EB4E8002B2111 /* IND_ShaderManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7C67F03183EB4E8002B2111 /* IND_ShaderManager.cpp */; };
 		E7C67F07183FE1C1002B2111 /* IND_GLShaderUniform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7C67F06183FE1C1002B2111 /* IND_GLShaderUniform.cpp */; };
+		E7C67F09185E4567002B2111 /* RenderMacros.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7C67F08185E4567002B2111 /* RenderMacros.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -247,6 +248,7 @@
 		E7C67F03183EB4E8002B2111 /* IND_ShaderManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IND_ShaderManager.cpp; path = ../../common/src/IND_ShaderManager.cpp; sourceTree = "<group>"; };
 		E7C67F05183FE1A5002B2111 /* IND_GLShaderUniform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IND_GLShaderUniform.h; path = ../../common/include/IND_GLShaderUniform.h; sourceTree = "<group>"; };
 		E7C67F06183FE1C1002B2111 /* IND_GLShaderUniform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IND_GLShaderUniform.cpp; path = ../../common/src/render/gles/ios/IND_GLShaderUniform.cpp; sourceTree = "<group>"; };
+		E7C67F08185E4567002B2111 /* RenderMacros.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderMacros.cpp; path = ../../common/src/render/gles/RenderMacros.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -520,6 +522,7 @@
 				E7552309177766EC005B7F34 /* OSOpenGLManager.cpp */,
 				E7552308177766EC005B7F34 /* OSOpenGLManager.h */,
 				E7C2821718285FBD00116982 /* RenderMacros.h */,
+				E7C67F08185E4567002B2111 /* RenderMacros.cpp */,
 			);
 			name = gles;
 			sourceTree = "<group>";
@@ -600,6 +603,7 @@
 				E72010C31770FF4200D14384 /* DebugApi.cpp in Sources */,
 				E72010C41770FF4200D14384 /* FreeImageHelper.cpp in Sources */,
 				E73B86C717F8AEB00040F195 /* TmxPolyline.cpp in Sources */,
+				E7C67F09185E4567002B2111 /* RenderMacros.cpp in Sources */,
 				E72010C51770FF4200D14384 /* Global.cpp in Sources */,
 				E72010C61770FF4200D14384 /* IND_Animation.cpp in Sources */,
 				E72010C71770FF4200D14384 /* IND_Camera2d.cpp in Sources */,

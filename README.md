@@ -57,6 +57,7 @@ This library bases on several others to achieve some of it's functionality:
 * [FreeImage](http://freeimage.sourceforge.net/)
 * [SDL](http://www.libsdl.org/)
 * [TinyXML](http://www.grinninglizard.com/tinyxml/)
+* [FreeType](http://www.freetype.org/)
 * [Unittest++](http://unittest-cpp.sourceforge.net/)
 * [GLEW](http://glew.sourceforge.net/)
 

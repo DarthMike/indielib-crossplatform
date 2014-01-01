@@ -35,13 +35,15 @@
 
 // ----- Library Dependencies -----
 #include "dependencies/SDL-2.0/include/SDL.h"
-#ifdef PLATFORM_WIN32
-#include "platform/win32/guicon.h"
-#endif
 
 // ----- Header -----
 
 #include "IndieLib.h"
+
+
+#ifdef PLATFORM_WIN32
+#include "platform/win32/guicon.h"
+#endif
 
 
 // --------------------------------------------------------------------------------

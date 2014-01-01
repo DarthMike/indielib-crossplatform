@@ -184,7 +184,7 @@ void OpenGLRender::blitCharsAngelCodeFont(IND_Font *pFo, char *pText, IND_Align 
                 // save the untranslated coordinate system.
                 glPushMatrix();
                 
-                float charTranslateY = (pFo->getLetters() [mCont2]._yOffset);
+                float charTranslateY = static_cast<float>(pFo->getLetters()[mCont2]._yOffset);
                 glTranslatef(0.0f, charTranslateY ,0.0f);
 
                 //#warning lookout

@@ -1,16 +1,17 @@
-Indielib-crossplatform Team
+﻿Indielib-crossplatform Team
 ***************************
 
-    Miguel Angel Quiñones	-   Project Leader
-    Michael Fogh Kristensen	-   Linux porter, tools support
+    Miguel Angel Quiñones (DarthMike)	-   Project Leader
+    Michael Fogh Kristensen (MFK)	-   Linux porter, tools support
 
-    Javier López López		-   Original Indielib founder (retired)
+    Javier López López			-   Original Indielib founder (retired)
 
 Code contributions
 ------------------
 
-    Joel Gao 			- True Type Font support
-
+    Ian T. Jacobsen (smilex)		-   Partial CMake build support
+    Joel Gao (venomjj)			-   True Type Font support
+    
 Patch contributions
 -------------------
 

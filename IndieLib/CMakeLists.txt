@@ -28,6 +28,13 @@ project(IndieLib)
 
 option(USE_OPENGLES "Compile with OpenGL ES support" NO)
 
+# this is only for testing the linux output dir (run cmake ../ -G "Unix Makefiles" in the "bin" dir)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/linux)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/linux)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/linux)
+# end testing linux output dir
+
+
 set ( SRC	${CMAKE_CURRENT_SOURCE_DIR}/common/src/CollisionParser.cpp
 			${CMAKE_CURRENT_SOURCE_DIR}/common/src/DebugApi.cpp
 			${CMAKE_CURRENT_SOURCE_DIR}/common/src/FreeImageHelper.cpp

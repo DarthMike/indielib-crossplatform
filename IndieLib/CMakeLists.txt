@@ -113,6 +113,9 @@ set ( TmxParser_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/common/dependencies/TmxP
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/common/dependencies/glew-1.9.0)
 set ( GLEW_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/common/dependencies/glew-1.9.0/include)
 
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/common/dependencies/freetype-2.5.0.1)
+set ( freetype_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/common/dependencies/freetype-2.5.0.1/include)
+
 if (USE_OPENGLES)
 	find_package(OpenGLES)
 
@@ -131,6 +134,7 @@ include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/common/include"
 					 TmxParser_INCLUDE_DIR
 					 UnitTest++_INCLUDE_DIR
 					 TINYXML_INCLUDE_DIR
+					 freetype_INCLUDE_DIR
 					)
 
 add_subdirectory(common/dependencies/SpriterParser)
@@ -147,4 +151,4 @@ add_definitions("-fPIC")
 
 add_library( IndieLib ${IndieLib_BUILD_TYPE} ${SRC} ${INC} )
 
-target_link_libraries( IndieLib SpriterParser TinyXML GLEW SDL2 FreeImage TmxParser UnitTest++  )
+target_link_libraries( IndieLib SpriterParser TinyXML GLEW SDL2 FreeImage TmxParser freeType UnitTest++  )

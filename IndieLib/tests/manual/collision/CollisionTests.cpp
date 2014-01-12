@@ -56,7 +56,7 @@ void CollisionTests::prepareTests() {
 	// ----- Font loading -----
 
 	// Font
-	if (!iLib->_fontManager->add(_fonts[0], const_cast<char *>("font_small.png"), const_cast<char *>("font_small.xml"), IND_ALPHA, IND_32)) return;
+	if (!iLib->_fontManager->addMudFont(_fonts[0], const_cast<char *>("font_small.png"), const_cast<char *>("font_small.xml"), IND_ALPHA, IND_32)) return;
 
 	// Rocket
 	_entities[0]->setSurface(_surfaces[0]);

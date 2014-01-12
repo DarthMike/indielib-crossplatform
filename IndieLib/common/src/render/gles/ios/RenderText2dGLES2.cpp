@@ -184,31 +184,32 @@ Returns a long in pixels of the sentence that starts in pPos
 A sentence is an array of chars that ends in \n or \0
 ==================
 */
+// TODO: Repetition of code between renderers for this getter. Should be moved to utils of font object
 int OpenGLES2Render::getLongInPixels(IND_Font *pFo, char *pText, int pPos, int pOffset) {
 	unsigned char mChar1;
 	unsigned char mChar2;
 	int mCont1 = pPos;
 	int mCont2 = 0;
 	bool mErrorChar;    // Error when nonexistant char
-
+    
 	int mWidthSentence = 0;
 	mChar1 = pText [mCont1++];
 	while (mChar1 != '\0' && mChar1 != '\n') {
 		mErrorChar = 0;
 		mCont2 = 0;
 		mChar2 = pFo->getLetters() [mCont2++]._letter;
-
+        
 		// Search the position
 		while (mChar2 != mChar1 && mCont2 < pFo->getNumChars()) mChar2 = pFo->getLetters() [mCont2++]._letter;
 		if (mCont2  ==  pFo->getNumChars())
 			mErrorChar = 1;
-
+        
 		if (!mErrorChar)
-			mWidthSentence += pFo->getLetters() [mCont2 - 1]._widthChar + pOffset;
-
+			mWidthSentence += pFo->getLetters() [mCont2 - 1]._width + pOffset;
+        
 		mChar1 = pText [mCont1++];
 	}
-
+    
 	return mWidthSentence;
 }
 /** @endcond */

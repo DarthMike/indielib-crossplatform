@@ -44,10 +44,10 @@ void FontTests_Pretty::prepareTests() {
 	iLib->_surfaceManager->add(_surfaceTip, const_cast<char *>("tip.png"), IND_ALPHA, IND_32);
 
 	// Font 1
-	iLib->_fontManager->add(_fontSmall, const_cast<char *>("font_small.png"), const_cast<char *>("font_small.xml"), IND_ALPHA, IND_32);
+	iLib->_fontManager->addMudFont(_fontSmall, const_cast<char *>("font_small.png"), const_cast<char *>("font_small.xml"), IND_ALPHA, IND_32);
 
 	// Font 2
-	iLib->_fontManager->add(_fontBig, const_cast<char *>("font_big.png"), const_cast<char *>("font_big.xml"), IND_ALPHA, IND_32);
+	iLib->_fontManager->addMudFont(_fontBig, const_cast<char *>("font_big.png"), const_cast<char *>("font_big.xml"), IND_ALPHA, IND_32);
 }
 
 void FontTests_Pretty::performTests(float dt) {

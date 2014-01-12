@@ -51,7 +51,7 @@ void EntityTests_interactions::prepareTests() {
 	iLib->_animationManager->addToSurface(_animations[0], const_cast<char *>("animations/dust.xml"), IND_ALPHA, IND_16, 255, 0, 255);
 
 	//Fonts
-	iLib->_fontManager->add(_fonts[0], const_cast<char *>("font_big.png"), const_cast<char *>("font_big.xml"), IND_ALPHA, IND_32);
+	iLib->_fontManager->addMudFont(_fonts[0], const_cast<char *>("font_big.png"), const_cast<char *>("font_big.xml"), IND_ALPHA, IND_32);
 }
 
 void EntityTests_interactions::performTests(float dt) {

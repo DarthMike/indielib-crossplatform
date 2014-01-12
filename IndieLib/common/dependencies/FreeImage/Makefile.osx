@@ -5,10 +5,10 @@
 include Makefile.srcs
 
 # General configuration variables:
-CC_I386 = llvm-gcc-4.2
-CC_X86_64 = llvm-gcc-4.2
-CPP_I386 = llvm-g++-4.2
-CPP_X86_64 = llvm-g++-4.2
+CC_I386 = llvm-gcc
+CC_X86_64 = llvm-gcc
+CPP_I386 = llvm-g++
+CPP_X86_64 = llvm-g++
 COMPILERFLAGS = -Os -fexceptions -fvisibility=hidden -DNO_LCMS
 COMPILERFLAGS_I386 = -arch i386
 COMPILERFLAGS_X86_64 = -arch x86_64

@@ -301,50 +301,52 @@ int OpenGLES2Render::blitAnimation(IND_Animation *pAn, unsigned int pSequence,
 
 	int mFinish = 1;
 
-//	if (pSequence < pAn->getNumSequences()) {
-//		if (!pAn->getIsActive(pSequence)) {
-//			pAn->getSequenceTimer(pSequence)->start();
-//			pAn->setIsActive(pSequence, 1);
-//		}
-//
-//		// If the time of a frame have passed, go to the next frame
-//		if (pAn->getSequenceTimer(pSequence)->getTicks() > (unsigned long) pAn->getActualFrameTime(pSequence)) {
-//			// Put timer to zero
-//			pAn->getSequenceTimer(pSequence)->start();
-//
-//			// Point to the next frame increasing the counter
-//			int i = pAn->getActualFramePos(pSequence);
-//			pAn->setActualFramePos(pSequence, i + 1);
-//
-//			// If the counter is higher than the number of frames of the sequence, we put it to zero
-//			if (pAn->getActualFramePos(pSequence) > pAn->getNumFrames(pSequence) - 1) {
-//				pAn->setActualFramePos(pSequence, pAn->getNumFrames(pSequence) - 1);
-//				pAn->setIsActive(pSequence, 0);
-//				mFinish = -1;
-//			}
-//		}
-//		
-//		glTranslatef(static_cast<float>(pAn->getActualOffsetX(pSequence)),
-//					 static_cast<float>(pAn->getActualOffsetY(pSequence)),
-//					 0.0f);
-//
-//		// Blits all the IND_Surface (all the blocks)
-//		if (!pX && !pY && !pWidth && !pHeight) {
-//			blitSurface(pAn->getActualSurface(pSequence));
-//		} else
-//			// Blits a region of the IND_Surface
-//			if (!pToggleWrap) {
-//				if (pAn->getActualSurface(pSequence)->getNumTextures() > 1)
-//					return 0;
-//				blitRegionSurface(pAn->getActualSurface(pSequence), pX, pY, pWidth, pHeight);
-//		}
-//		// Blits a wrapping IND_Surface
-//		else {
-//			if (pAn->getActualSurface(pSequence)->getNumTextures() > 1)
-//				return 0;
-//			blitWrapSurface(pAn->getActualSurface(pSequence), pWidth, pHeight, pUDisplace, pVDisplace);
-//		}
-//	}
+	if (pSequence < pAn->getNumSequences()) {
+		if (!pAn->getIsActive(pSequence)) {
+			pAn->getSequenceTimer(pSequence)->start();
+			pAn->setIsActive(pSequence, 1);
+		}
+
+		// If the time of a frame have passed, go to the next frame
+		if (pAn->getSequenceTimer(pSequence)->getTicks() > (unsigned long) pAn->getActualFrameTime(pSequence)) {
+			// Put timer to zero
+			pAn->getSequenceTimer(pSequence)->start();
+
+			// Point to the next frame increasing the counter
+			int i = pAn->getActualFramePos(pSequence);
+			pAn->setActualFramePos(pSequence, i + 1);
+
+			// If the counter is higher than the number of frames of the sequence, we put it to zero
+			if (pAn->getActualFramePos(pSequence) > pAn->getNumFrames(pSequence) - 1) {
+				pAn->setActualFramePos(pSequence, pAn->getNumFrames(pSequence) - 1);
+				pAn->setIsActive(pSequence, 0);
+				mFinish = -1;
+			}
+		}
+		
+        IND_Matrix translation;
+        _math.matrix4DSetTranslation(translation,static_cast<float>(pAn->getActualOffsetX(pSequence)),
+                                      static_cast<float>(pAn->getActualOffsetY(pSequence)),
+                                      0.0f);
+        _math.matrix4DMultiplyInPlace(_modelToWorld, translation);
+        
+		// Blits all the IND_Surface (all the blocks)
+		if (!pX && !pY && !pWidth && !pHeight) {
+			blitSurface(pAn->getActualSurface(pSequence));
+		} else
+			// Blits a region of the IND_Surface
+			if (!pToggleWrap) {
+				if (pAn->getActualSurface(pSequence)->getNumTextures() > 1)
+					return 0;
+				blitRegionSurface(pAn->getActualSurface(pSequence), pX, pY, pWidth, pHeight);
+		}
+		// Blits a wrapping IND_Surface
+		else {
+			if (pAn->getActualSurface(pSequence)->getNumTextures() > 1)
+				return 0;
+			blitWrapSurface(pAn->getActualSurface(pSequence), pWidth, pHeight, pUDisplace, pVDisplace);
+		}
+	}
 
 	return mFinish;
 }

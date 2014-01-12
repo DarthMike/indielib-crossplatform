@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4CFFEAFF18182C30008BF935 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = E759E7F817B0556A007D4DC3 /* assets */; };
+		E700A1B717EF0174001327E5 /* WorkingPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7DFACA0165C1A86004507C5 /* WorkingPath.cpp */; };
+		E700A1B917EF0174001327E5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DBCB1C159C78F600C8B2D9 /* Cocoa.framework */; };
+		E700A1BB17EF0174001327E5 /* IndielibTutorials-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA415E6B5FF00250CEE /* IndielibTutorials-Info.plist */; };
+		E700A1BC17EF0174001327E5 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA915E6B67800250CEE /* Credits.rtf */; };
+		E700A1BD17EF0174001327E5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCAB15E6B67800250CEE /* InfoPlist.strings */; };
+		E700A1C517EF01BA001327E5 /* CIndieLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CD86C0B17DE36CB00DB911B /* CIndieLib.cpp */; };
+		E700A1C617EF01BA001327E5 /* Tutorial17.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CD86C0D17DE36CB00DB911B /* Tutorial17.cpp */; };
 		E72ECCA615E6B5FF00250CEE /* IndielibTutorials-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA415E6B5FF00250CEE /* IndielibTutorials-Info.plist */; };
 		E72ECCAD15E6B67800250CEE /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCA915E6B67800250CEE /* Credits.rtf */; };
 		E72ECCAE15E6B67800250CEE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E72ECCAB15E6B67800250CEE /* InfoPlist.strings */; };
@@ -165,6 +173,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		E700A1BE17EF0174001327E5 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E773A55416AC3166004E6FDD /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -339,6 +356,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4CD86C0B17DE36CB00DB911B /* CIndieLib.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = CIndieLib.cpp; path = ../basic/17_IND_TTF_Font/CIndieLib.cpp; sourceTree = "<group>"; };
+		4CD86C0C17DE36CB00DB911B /* CIndieLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CIndieLib.h; path = ../basic/17_IND_TTF_Font/CIndieLib.h; sourceTree = "<group>"; };
+		4CD86C0D17DE36CB00DB911B /* Tutorial17.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Tutorial17.cpp; path = ../basic/17_IND_TTF_Font/Tutorial17.cpp; sourceTree = "<group>"; };
+		E700A1C317EF0174001327E5 /* Tutorial17.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tutorial17.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E72ECCA415E6B5FF00250CEE /* IndielibTutorials-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "IndielibTutorials-Info.plist"; path = "IndielibTutorials/IndielibTutorials-Info.plist"; sourceTree = SOURCE_ROOT; };
 		E72ECCA515E6B5FF00250CEE /* IndielibTutorials-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "IndielibTutorials-Prefix.pch"; path = "IndielibTutorials/IndielibTutorials-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		E72ECCAA15E6B67800250CEE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = IndielibTutorials/en.lproj/Credits.rtf; sourceTree = SOURCE_ROOT; };
@@ -435,6 +456,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		E700A1B817EF0174001327E5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E700A1B917EF0174001327E5 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E73EAF1D15E6BF7E00B95FE4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -590,6 +619,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4CD86C0A17DE358B00DB911B /* 17_IND_TTF_Font */ = {
+			isa = PBXGroup;
+			children = (
+				4CD86C0B17DE36CB00DB911B /* CIndieLib.cpp */,
+				4CD86C0C17DE36CB00DB911B /* CIndieLib.h */,
+				4CD86C0D17DE36CB00DB911B /* Tutorial17.cpp */,
+			);
+			name = 17_IND_TTF_Font;
+			sourceTree = "<group>";
+		};
 		E72ECCB715E6BBC300250CEE /* 01_Installing */ = {
 			isa = PBXGroup;
 			children = (
@@ -708,7 +747,7 @@
 				E73EB01F15E6D54D00B95FE4 /* Tutorial15.cpp */,
 			);
 			name = 15_Parallax_Scrolling;
-			path = ../../tutorials/basic/15_Parallax_Scrolling;
+			path = ../basic/15_Parallax_Scrolling;
 			sourceTree = "<group>";
 		};
 		E73EB03615E6D6D000B95FE4 /* 16_IND_Timer */ = {
@@ -719,7 +758,7 @@
 				E73EB03B15E6D6D000B95FE4 /* Tutorial16.cpp */,
 			);
 			name = 16_IND_Timer;
-			path = ../../tutorials/basic/16_IND_Timer;
+			path = ../basic/16_IND_Timer;
 			sourceTree = "<group>";
 		};
 		E74485A215E7E9EC00DDE3BF /* 01_IND_Surface_Grids */ = {
@@ -748,6 +787,7 @@
 				E73EB00215E6D4A300B95FE4 /* 13_2d_Camera */,
 				E73EB01C15E6D54D00B95FE4 /* 15_Parallax_Scrolling */,
 				E73EB03615E6D6D000B95FE4 /* 16_IND_Timer */,
+				4CD86C0A17DE358B00DB911B /* 17_IND_TTF_Font */,
 			);
 			name = Basic;
 			sourceTree = "<group>";
@@ -882,6 +922,7 @@
 				E744860515E7EBF900DDE3BF /* Benchmark01.app */,
 				E744862615E7EC2900DDE3BF /* Benchmark02.app */,
 				E7B4FEC317381286003E4489 /* TutorialAdvanced06.app */,
+				E700A1C317EF0174001327E5 /* Tutorial17.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -928,6 +969,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		E700A1B317EF0174001327E5 /* Tutorial17 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E700A1C017EF0174001327E5 /* Build configuration list for PBXNativeTarget "Tutorial17" */;
+			buildPhases = (
+				E700A1B417EF0174001327E5 /* Sources */,
+				E700A1B817EF0174001327E5 /* Frameworks */,
+				E700A1BA17EF0174001327E5 /* Resources */,
+				E700A1BE17EF0174001327E5 /* CopyFiles */,
+				E700A1BF17EF0174001327E5 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tutorial17;
+			productName = IndielibTests;
+			productReference = E700A1C317EF0174001327E5 /* Tutorial17.app */;
+			productType = "com.apple.product-type.application";
+		};
 		E73EAF1715E6BF7E00B95FE4 /* Tutorial02 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E73EAF2615E6BF7E00B95FE4 /* Build configuration list for PBXNativeTarget "Tutorial02" */;
@@ -1321,6 +1381,7 @@
 				E73EAFEE15E6D46A00B95FE4 /* Tutorial13 */,
 				E73EB00815E6D51800B95FE4 /* Tutorial15 */,
 				E73EB02215E6D66300B95FE4 /* Tutorial16 */,
+				E700A1B317EF0174001327E5 /* Tutorial17 */,
 				E744858C15E7E9B600DDE3BF /* TutorialAdvanced01 */,
 				E74485A915E7EA2400DDE3BF /* TutorialAdvanced02 */,
 				E74485C215E7EA5900DDE3BF /* TutorialAdvanced04 */,
@@ -1333,6 +1394,17 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		E700A1BA17EF0174001327E5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E700A1BB17EF0174001327E5 /* IndielibTutorials-Info.plist in Resources */,
+				E700A1BC17EF0174001327E5 /* Credits.rtf in Resources */,
+				E700A1BD17EF0174001327E5 /* InfoPlist.strings in Resources */,
+				4CFFEAFF18182C30008BF935 /* assets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E73EAF2015E6BF7E00B95FE4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1545,6 +1617,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		E700A1BF17EF0174001327E5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "printenv\nLIBPATH=\"$SRCROOT/../../bin$INSTALL_PATH/libIndielib.dylib\"\nEXEPATH=\"$SRCROOT/../../bin$INSTALL_PATH/$PRODUCT_NAME.app/Contents/MacOS\"\n\ncp \"$LIBPATH\" \"$EXEPATH\"";
+		};
 		E737639916B20A3F0043EF0D /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1795,6 +1880,16 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		E700A1B417EF0174001327E5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E700A1C517EF01BA001327E5 /* CIndieLib.cpp in Sources */,
+				E700A1B717EF0174001327E5 /* WorkingPath.cpp in Sources */,
+				E700A1C617EF01BA001327E5 /* Tutorial17.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E73EAF1A15E6BF7E00B95FE4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2010,6 +2105,42 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		E700A1C117EF0174001327E5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INFOPLIST_FILE = "$(SRCROOT)/IndielibTutorials/IndielibTutorials-Info.plist";
+				INSTALL_PATH = /mac;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = Tutorial17;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E700A1C217EF0174001327E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(SRCROOT)/../../bin";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INFOPLIST_FILE = "$(SRCROOT)/IndielibTutorials/IndielibTutorials-Info.plist";
+				INSTALL_PATH = /mac;
+				PRODUCT_NAME = Tutorial17;
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 		E73EAF2715E6BF7E00B95FE4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2710,6 +2841,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E700A1C017EF0174001327E5 /* Build configuration list for PBXNativeTarget "Tutorial17" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E700A1C117EF0174001327E5 /* Debug */,
+				E700A1C217EF0174001327E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E73EAF2615E6BF7E00B95FE4 /* Build configuration list for PBXNativeTarget "Tutorial02" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

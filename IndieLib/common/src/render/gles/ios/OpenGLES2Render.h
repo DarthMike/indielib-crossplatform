@@ -337,7 +337,7 @@ public:
 	// ----- Render Object 2d -----
 
 	void blitSurface(IND_Surface *pSu);
-
+    
 	void blitGrid(IND_Surface *pSu, unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA);
 
 	void blitRegionSurface(IND_Surface *pSu,
@@ -347,18 +347,24 @@ public:
 	                       int pHeight);
 
 	bool blitWrapSurface(IND_Surface *pSu,
-	                     int pWidth,
-	                     int pHeight,
-	                     float pUDisplace,
-	                     float pVDisplace);
+                         int pBlitWidth,
+                         int pBlitHeight,
+                         float pUOffset,
+                         float pVOffset);
 
 	int blitAnimation(IND_Animation *pAn,
 	                  unsigned int pSequence,
 	                  int pX, int pY,
 	                  int pWidth, int pHeight,
 	                  bool pToggleWrap,
-	                  float pUDisplace,
-	                  float pVDisplace);
+	                  float pUOffset,
+	                  float pVOffset);
+    
+    void blitSurfaceImpl(IND_Surface *pSu,
+                         float pBlitWidth,
+                         float pBlitHeight,
+                         float pUOffset,
+                         float pVOffset);
 
 	// ------ Render Text 2d -----
 	void blitText(IND_Font *pFo,

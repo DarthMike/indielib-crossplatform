@@ -343,8 +343,8 @@ public:
 	bool blitWrapSurface(IND_Surface *pSu,
 	                     int pWidth,
 	                     int pHeight,
-	                     float pUDisplace,
-	                     float pVDisplace);
+	                     float pUOffset,
+	                     float pVOffset);
 
 	int blitAnimation(IND_Animation *pAn,
 	                  unsigned int pSequence,
@@ -353,8 +353,8 @@ public:
 	                  int pWidth,
 			  int pHeight,
 	                  bool pToggleWrap,
-	                  float pUDisplace,
-	                  float pVDisplace);
+	                  float pUOffset,
+	                  float pVOffset);
 
 	// ------ Render Text 2d -----
 

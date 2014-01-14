@@ -55,89 +55,6 @@ void OpenGLES2Render::blitSurface(IND_Surface *pSu) {
     blitSurfaceImpl(pSu,0,0,0,0);
 }
 
-void OpenGLES2Render::blitRegionSurface(IND_Surface *pSu,
-                                     int pX,
-                                     int pY,
-                                     int pWidth,
-                                     int pHeight) {
-
-//	//If the region is the same as the image area, we blit normally
-//	if (!pX && !pY && (pWidth == pSu->getWidth()) && (pHeight == pSu->getHeight())) {
-//		blitSurface(pSu);
-//	} else {
-//		bool correctParams = true;
-//		if (pSu->getNumTextures() > 1 || 
-//			pX < 0 || pX + pWidth > pSu->getWidth()
-//			||
-//			pY < 0 || pY + pHeight > pSu->getHeight()) {
-//			correctParams = false;
-//		}
-//		
-//		if (correctParams) {
-//			//Only draws first texture block in texture
-//			// Prepare the quad that is going to be blitted
-//			// Calculates the position and mapping coords for that block
-//			float x (static_cast<float>(pX));
-//			float y (static_cast<float>(pY));
-//			float height (static_cast<float>(pHeight));
-//			float width (static_cast<float>(pWidth));
-//			float bWidth (static_cast<float>(pSu->getWidthBlock()));
-//			float bHeight (static_cast<float>(pSu->getHeightBlock()));
-//			float spareY (static_cast<float>(pSu->getSpareY()));
-//			fillVertex2d(&_vertices2d [0], width, 0.0f, ((x + width) / bWidth), (1.0f - ((y + spareY) / bHeight)));
-//			fillVertex2d(&_vertices2d [1], width, height, (x + width) / bWidth, (1.0f - ((y + height + spareY) / bHeight)));
-//			fillVertex2d(&_vertices2d [2], 0.0f, 0.0f , (x/bWidth), (1.0f - ((y+ spareY) / bHeight)));
-//			fillVertex2d(&_vertices2d [3], 0.0f, height, (x/bWidth), (1.0f - (y + height + spareY) / bHeight));
-//		        
-//        	//Get vertex world coords, to perform frustrum culling test in world coords
-//            IND_Vector3 mP1, mP2, mP3, mP4;
-//            transformVerticesToWorld(_vertices2d[0]._x, _vertices2d[0]._y,
-//                                     _vertices2d[1]._x, _vertices2d[1]._y,
-//                                     _vertices2d[2]._x, _vertices2d[2]._y,
-//                                     _vertices2d[3]._x, _vertices2d[3]._y,
-//                                     &mP1, &mP2, &mP3, &mP4);
-//            
-//            //Calculate the bounding rectangle that we are going to try to discard
-//            _math.calculateBoundingRectangle(&mP1, &mP2, &mP3, &mP4);
-//            
-//            //Discard bounding rectangle using frustum culling if possible
-//            if (!_math.cullFrustumBox(mP1, mP2, _frustrumPlanes)) {
-//                _numDiscardedObjects++;
-//            } else {
-//#ifdef _DEBUG
-//                GLboolean enabled;
-//                glGetBooleanv(GL_TEXTURE_2D,&enabled);
-//                assert(GL_FALSE != enabled); //Should have texturing enabled
-//#endif
-//                
-//                glBindTexture(GL_TEXTURE_2D,pSu->_surface->_texturesArray[0]);
-//                
-//                //Set texture params requested before (via rainbow2d API)
-//                setGLBoundTextureParams();
-//                
-//                //Override CLAMP for texture
-//                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-//                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-//                
-//                glVertexPointer(3, GL_FLOAT, sizeof(CUSTOMVERTEX2D), &_vertices2d[0]._x);
-//                glTexCoordPointer(2, GL_FLOAT, sizeof(CUSTOMVERTEX2D), &_vertices2d[0]._u);
-//                glDrawArrays(GL_TRIANGLE_STRIP, 0,4);
-//		    	
-//#ifdef _DEBUG
-//				GLenum glerror = glGetError();
-//				if (glerror) {
-//					g_debug->header("OpenGL error in surface blitting ", DebugApi::LogHeaderError);
-//				}
-//#endif
-//                _numrenderedObjects++;
-//            }
-//		}
-//		
-//	}
-	
-}
-
-
 bool OpenGLES2Render::blitWrapSurface(IND_Surface *pSu,
                                       int pBlitWidth,
                                       int pBlitHeight,
@@ -156,6 +73,89 @@ bool OpenGLES2Render::blitWrapSurface(IND_Surface *pSu,
    }
 	return correctParams;
 }
+
+void OpenGLES2Render::blitRegionSurface(IND_Surface *pSu,
+                                        int pX,
+                                        int pY,
+                                        int pWidth,
+                                        int pHeight) {
+    
+    //If the region is the same as the image area, we blit normally
+    if (!pX && !pY && (pWidth == pSu->getWidth()) && (pHeight == pSu->getHeight())) {
+        blitSurface(pSu);
+    } else {
+        bool correctParams = true;
+        if (pSu->getNumTextures() > 1 ||
+            pX < 0 || pX + pWidth > pSu->getWidth()
+            ||
+            pY < 0 || pY + pHeight > pSu->getHeight()) {
+            correctParams = false;
+		}
+        
+        if (correctParams) {
+            //Only draws first texture block in texture
+            // Prepare the quad that is going to be blit
+            // Calculates the position and mapping coords for that block
+            float x (static_cast<float>(pX));
+            float y (static_cast<float>(pY));
+            float height (static_cast<float>(pHeight));
+            float width (static_cast<float>(pWidth));
+            float bWidth (static_cast<float>(pSu->getWidthBlock()));
+            float bHeight (static_cast<float>(pSu->getHeightBlock()));
+            float spareY (static_cast<float>(pSu->getSpareY()));
+            fillVertex2d(&_vertices2d [0], width, 0.0f, ((x + width) / bWidth), (1.0f - ((y + spareY) / bHeight)));
+            fillVertex2d(&_vertices2d [1], width, height, (x + width) / bWidth, (1.0f - ((y + height + spareY) / bHeight)));
+            fillVertex2d(&_vertices2d [2], 0.0f, 0.0f , (x/bWidth), (1.0f - ((y+ spareY) / bHeight)));
+            fillVertex2d(&_vertices2d [3], 0.0f, height, (x/bWidth), (1.0f - (y + height + spareY) / bHeight));
+            
+            //Get vertex world coords, to perform frustrum culling test in world coords
+            IND_Vector3 mP1, mP2, mP3, mP4;
+            transformVerticesToWorld(_vertices2d[0]._pos._x, _vertices2d[0]._pos._y,
+                                     _vertices2d[1]._pos._x, _vertices2d[1]._pos._y,
+                                     _vertices2d[2]._pos._x, _vertices2d[2]._pos._y,
+                                     _vertices2d[3]._pos._x, _vertices2d[3]._pos._y,
+                                     &mP1, &mP2, &mP3, &mP4);
+            
+            //Calculate the bounding rectangle that we are going to try to discard
+            _math.calculateBoundingRectangle(&mP1, &mP2, &mP3, &mP4);
+            
+            //Discard bounding rectangle using frustum culling if possible
+            if (!_math.cullFrustumBox(mP1, mP2, _frustrumPlanes)) {
+                _numDiscardedObjects++;
+            } else {
+                glActiveTexture(GL_TEXTURE0);
+                
+                // FIXME: This implies a perf. problem by swicthing textures for every block. Need better solution to send
+                // all blocks to graphics card in same GL call.
+                glBindTexture(GL_TEXTURE_2D,pSu->_surface->_texturesArray[0]);
+                
+                //Set texture params as cached
+                _tex2dState.wrapT = GL_CLAMP_TO_EDGE;
+                _tex2dState.wrapS = GL_CLAMP_TO_EDGE;
+                setGLBoundTextureParams();
+                
+                IND_ShaderProgram* program = prepareSimple2DTexturingProgram();
+                
+                GLint posLoc = program->getPositionForVertexAttribute(IND_VertexAttribute_Position);
+                glEnableVertexAttribArray(posLoc);
+                glVertexAttribPointer(posLoc, 3, GL_FLOAT, GL_FALSE, sizeof(CUSTOMVERTEX2D), &_vertices2d[0]._pos._x);
+                
+                GLint texCoordLoc = program->getPositionForVertexAttribute(IND_VertexAttribute_TexCoord);
+                glEnableVertexAttribArray(texCoordLoc);
+                glVertexAttribPointer(texCoordLoc, 2, GL_FLOAT, GL_FALSE, sizeof(CUSTOMVERTEX2D), &_vertices2d[0]._texCoord._u);
+                
+                glDrawArrays(GL_TRIANGLE_STRIP, 0,4);
+                
+                glDisableVertexAttribArray(posLoc);
+                glDisableVertexAttribArray(texCoordLoc);
+                
+                CHECKGLERRORS();
+                _numrenderedObjects++;
+            }
+        }
+    }
+}
+
 
 void OpenGLES2Render::blitSurfaceImpl(IND_Surface *pSu, float pBlitWidth, float pBlitHeight, float pUOffset, float pVOffset) {
     // ----- Blitting -----

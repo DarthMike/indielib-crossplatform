@@ -193,14 +193,21 @@ string IND_Surface::getQualityString() {
 }
 
 /**
- * TODO: Describtion.
+ * Returns the internal vertexes of a surface
+ */
+CUSTOMVERTEX2D* IND_Surface::getVertexArray() {
+    return _surface->_vertexArray;
+}
+
+/**
+ * TODO: Description.
  */
 int IND_Surface::getSpareX() {
 	return _surface->_attributes._spareX;
 }
 
 /**
- * TODO: Describtion.
+ * TODO: Description.
  */
 int IND_Surface::getSpareY() {
 	return _surface->_attributes._spareY;

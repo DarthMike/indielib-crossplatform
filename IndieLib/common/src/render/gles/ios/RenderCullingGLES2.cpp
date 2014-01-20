@@ -54,7 +54,7 @@ To perform culling calculations, the comparisons need to be in same space. In ou
 ==================
 */
 void OpenGLES2Render::reCalculateFrustrumPlanes() {
-	// Get combined matrix
+
 	IND_Matrix matComb (_shaderProjectionMatrix);
 
 	// Left clipping plane
@@ -96,41 +96,6 @@ void OpenGLES2Render::reCalculateFrustrumPlanes() {
 	for (int i = 0;i<6;++i) {
 		_frustrumPlanes._planes[i].normalise();
 	}
-}
-
-/*
-==================
-Transforms vertices (supposedly from a quad) to world coordinates using the cached
-model-to-world transform, already loaded in GL state
-==================
-*/
-void OpenGLES2Render::transformVerticesToWorld(float pX1, float pY1,
-											float pX2, float pY2,
-											float pX3, float pY3,
-											float pX4, float pY4,
-											IND_Vector3 *mP1Res,
-											IND_Vector3 *mP2Res,
-											IND_Vector3 *mP3Res,
-											IND_Vector3 *mP4Res) {
-	if (!mP1Res || !mP2Res || !mP3Res || !mP4Res) {
-		return;
-	}
-
-	IND_Vector3 mP1(pX1, pY1,0.0f);
-	IND_Vector3 mP2(pX2, pY2,0.0f);
-	IND_Vector3 mP3(pX3, pY3,0.0f);
-	IND_Vector3 mP4(pX4, pY4,0.0f);
-
-	_math.transformVector3DbyMatrix4D(mP1,_modelToWorld);
-	_math.transformVector3DbyMatrix4D(mP2,_modelToWorld);
-	_math.transformVector3DbyMatrix4D(mP3,_modelToWorld);
-	_math.transformVector3DbyMatrix4D(mP4,_modelToWorld);
-
-	//What we want to do here is copy members, not pointers. We rely on operator overloading
-	*mP1Res = mP1;
-	*mP2Res = mP2;
-	*mP3Res = mP3;
-	*mP4Res = mP4;
 }
 
 /** @endcond */

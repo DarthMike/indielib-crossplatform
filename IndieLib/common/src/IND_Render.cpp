@@ -1447,13 +1447,6 @@ void IND_Render::reCalculateFrustrumPlanes() {
 	_wrappedRenderer->reCalculateFrustrumPlanes();
 }
 
-
-/*
-==================
-Calculates 6 planes defining the frustum
-==================
-*/
-
 /*
  ==================
  Blits a bounding circle area

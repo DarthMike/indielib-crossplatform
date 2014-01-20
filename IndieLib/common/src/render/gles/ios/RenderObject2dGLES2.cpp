@@ -44,6 +44,17 @@
 #include "IND_Shaders.h"
 
 /** @cond DOCUMENT_PRIVATEAPI */
+void transformVerticesToWorld(IND_Math& pMath, IND_Matrix& pModelToWorld,
+                              float pX1, float pY1,
+                              float pX2, float pY2,
+                              float pX3, float pY3,
+                              float pX4, float pY4,
+                              IND_Vector3 *mP1Res,
+                              IND_Vector3 *mP2Res,
+                              IND_Vector3 *mP3Res,
+                              IND_Vector3 *mP4Res);
+
+bool surfaceBlockIsVisible(IND_Surface* pSu, int pBlock, IND_Math& pMath, FRUSTRUMPLANES pFrustrumPlanes, IND_Matrix pModelToWorld);
 
 // --------------------------------------------------------------------------------
 //							         Public methods
@@ -110,7 +121,8 @@ void OpenGLES2Render::blitRegionSurface(IND_Surface *pSu,
             
             //Get vertex world coords, to perform frustrum culling test in world coords
             IND_Vector3 mP1, mP2, mP3, mP4;
-            transformVerticesToWorld(_vertices2d[0]._pos._x, _vertices2d[0]._pos._y,
+            transformVerticesToWorld(_math, _modelToWorld,
+                                     _vertices2d[0]._pos._x, _vertices2d[0]._pos._y,
                                      _vertices2d[1]._pos._x, _vertices2d[1]._pos._y,
                                      _vertices2d[2]._pos._x, _vertices2d[2]._pos._y,
                                      _vertices2d[3]._pos._x, _vertices2d[3]._pos._y,
@@ -162,17 +174,8 @@ void OpenGLES2Render::blitSurfaceImpl(IND_Surface *pSu, float pBlitWidth, float 
 	int mCont = 0;
 
 	for (int i = 0; i < pSu->getNumBlocks(); i++) {
-        //Get vertex world coords, to perform frustrum culling test in world coords
-		IND_Vector3 mP1, mP2, mP3, mP4;
-        transformVerticesToWorld(static_cast<float>(pSu->_surface->_vertexArray[mCont]._pos._x), static_cast<float>(pSu->_surface->_vertexArray[mCont]._pos._y),
-                                 static_cast<float>(pSu->_surface->_vertexArray[mCont + 1]._pos._x), static_cast<float>(pSu->_surface->_vertexArray[mCont + 1]._pos._y),
-                                 static_cast<float>(pSu->_surface->_vertexArray[mCont + 2]._pos._x), static_cast<float>(pSu->_surface->_vertexArray[mCont + 2]._pos._y),
-                                 static_cast<float>(pSu->_surface->_vertexArray[mCont + 3]._pos._x), static_cast<float>(pSu->_surface->_vertexArray[mCont + 3]._pos._y),
-                                 &mP1, &mP2, &mP3, &mP4);
-        
-		//Discard bounding rectangle using frustum culling if possible
-		_math.calculateBoundingRectangle(&mP1, &mP2, &mP3, &mP4);
-		if (!_math.cullFrustumBox(mP1, mP2,_frustrumPlanes)) {
+
+		if (!surfaceBlockIsVisible(pSu, i, _math, _frustrumPlanes, _modelToWorld)) {
 			_numDiscardedObjects++;
 		} else {
             glActiveTexture(GL_TEXTURE0);
@@ -315,7 +318,8 @@ void OpenGLES2Render::blitGrid(IND_Surface *pSu, unsigned char pR, unsigned char
         cy = pSu->_surface->_vertexArray[i + 2]._pos._y;
         dx = pSu->_surface->_vertexArray[i + 3]._pos._x;
         dy = pSu->_surface->_vertexArray[i + 3]._pos._y;
-        transformVerticesToWorld(static_cast<float>(ax), static_cast<float>(ay),
+        transformVerticesToWorld(_math, _modelToWorld,
+                                 static_cast<float>(ax), static_cast<float>(ay),
                                  static_cast<float>(bx), static_cast<float>(by),
                                  static_cast<float>(cx), static_cast<float>(cy),
                                  static_cast<float>(dx), static_cast<float>(dy),
@@ -351,6 +355,58 @@ void OpenGLES2Render::fillVertex2d(CUSTOMVERTEX2D *pVertex2d,
 	pVertex2d->_pos._z       = 0.0f;
 	pVertex2d->_texCoord._u       = pU;
 	pVertex2d->_texCoord._v       = pV;
+}
+
+/*
+ ==================
+ Transforms vertices (supposedly from a quad) to world coordinates using the cached
+ model-to-world transform, already loaded in GL state
+ ==================
+ */
+void transformVerticesToWorld(IND_Math& pMath, IND_Matrix& pModelToWorld,
+                              float pX1, float pY1,
+                              float pX2, float pY2,
+                              float pX3, float pY3,
+                              float pX4, float pY4,
+                              IND_Vector3 *mP1Res,
+                              IND_Vector3 *mP2Res,
+                              IND_Vector3 *mP3Res,
+                              IND_Vector3 *mP4Res) {
+	if (!mP1Res || !mP2Res || !mP3Res || !mP4Res) {
+		return;
+	}
+    
+	IND_Vector3 mP1(pX1, pY1,0.0f);
+	IND_Vector3 mP2(pX2, pY2,0.0f);
+	IND_Vector3 mP3(pX3, pY3,0.0f);
+	IND_Vector3 mP4(pX4, pY4,0.0f);
+    
+	pMath.transformVector3DbyMatrix4D(mP1,pModelToWorld);
+	pMath.transformVector3DbyMatrix4D(mP2,pModelToWorld);
+	pMath.transformVector3DbyMatrix4D(mP3,pModelToWorld);
+	pMath.transformVector3DbyMatrix4D(mP4,pModelToWorld);
+    
+	//What we want to do here is copy members, not pointers. We rely on operator overloading
+	*mP1Res = mP1;
+	*mP2Res = mP2;
+	*mP3Res = mP3;
+	*mP4Res = mP4;
+}
+
+bool surfaceBlockIsVisible(IND_Surface* pSu, int pBlock, IND_Math& pMath, FRUSTRUMPLANES pFrustrumPlanes, IND_Matrix pModelToWorld) {
+    //Get vertex world coords, to perform frustrum culling test in world coords
+    int vertexInx = 4*pBlock;
+    IND_Vector3 mP1, mP2, mP3, mP4;
+    CUSTOMVERTEX2D* vertexes = pSu->getVertexArray();
+    transformVerticesToWorld(pMath, pModelToWorld,
+                             static_cast<float>(vertexes[vertexInx]._pos._x), static_cast<float>(vertexes[vertexInx]._pos._y),
+                             static_cast<float>(vertexes[vertexInx + 1]._pos._x), static_cast<float>(vertexes[vertexInx + 1]._pos._y),
+                             static_cast<float>(vertexes[vertexInx + 2]._pos._x), static_cast<float>(vertexes[vertexInx + 2]._pos._y),
+                             static_cast<float>(vertexes[vertexInx + 3]._pos._x), static_cast<float>(vertexes[vertexInx + 3]._pos._y),
+                             &mP1, &mP2, &mP3, &mP4);
+    
+    pMath.calculateBoundingRectangle(&mP1, &mP2, &mP3, &mP4);
+    return pMath.cullFrustumBox(mP1, mP2,pFrustrumPlanes);
 }
 /** @endcond */
 #endif //INDIERENDER_GLES_IOS

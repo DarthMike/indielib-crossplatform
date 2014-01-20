@@ -98,7 +98,10 @@ public:
 	string      getTypeString();
 	//! This function returns the quality of the surface in a string. See ::IND_Quality.
 	string      getQualityString();
-
+    // ! This method returns the internal vertexes of a surface.
+    CUSTOMVERTEX2D* getVertexArray();
+    
+    
 	int         getSpareX();
 	int         getSpareY();
 

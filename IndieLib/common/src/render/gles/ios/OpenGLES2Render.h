@@ -495,14 +495,6 @@ private:
 
 	// ---- Culling helpers ----
 	void reCalculateFrustrumPlanes();
-	void transformVerticesToWorld(float pX1, float pY1,
-											float pX2, float pY2,
-											float pX3, float pY3,
-											float pX4, float pY4,
-											IND_Vector3 *mP1Res,
-											IND_Vector3 *mP2Res,
-											IND_Vector3 *mP3Res,
-											IND_Vector3 *mP4Res);
     
     // ----- Shader helpers ----
     IND_ShaderProgram* prepareUniformColorProgram (unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA);

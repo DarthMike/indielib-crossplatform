@@ -56,6 +56,8 @@ void transformVerticesToWorld(IND_Math& pMath, IND_Matrix& pModelToWorld,
 
 bool surfaceBlockIsVisible(IND_Surface* pSu, int pBlock, IND_Math& pMath, FRUSTRUMPLANES pFrustrumPlanes, IND_Matrix pModelToWorld);
 
+void copyVertices(CUSTOMVERTEX2D* pSrc, CUSTOMVERTEX2D* pDest, int count);
+
 // --------------------------------------------------------------------------------
 //							         Public methods
 // --------------------------------------------------------------------------------
@@ -104,37 +106,25 @@ void OpenGLES2Render::blitRegionSurface(IND_Surface *pSu,
 		}
         
         if (correctParams) {
-            //Only draws first texture block in texture
-            // Prepare the quad that is going to be blit
-            // Calculates the position and mapping coords for that block
-            float x (static_cast<float>(pX));
-            float y (static_cast<float>(pY));
-            float height (static_cast<float>(pHeight));
-            float width (static_cast<float>(pWidth));
-            float bWidth (static_cast<float>(pSu->getWidthBlock()));
-            float bHeight (static_cast<float>(pSu->getHeightBlock()));
-            float spareY (static_cast<float>(pSu->getSpareY()));
-            fillVertex2d(&_vertices2d [0], width, 0.0f, ((x + width) / bWidth), (1.0f - ((y + spareY) / bHeight)));
-            fillVertex2d(&_vertices2d [1], width, height, (x + width) / bWidth, (1.0f - ((y + height + spareY) / bHeight)));
-            fillVertex2d(&_vertices2d [2], 0.0f, 0.0f , (x/bWidth), (1.0f - ((y+ spareY) / bHeight)));
-            fillVertex2d(&_vertices2d [3], 0.0f, height, (x/bWidth), (1.0f - (y + height + spareY) / bHeight));
-            
-            //Get vertex world coords, to perform frustrum culling test in world coords
-            IND_Vector3 mP1, mP2, mP3, mP4;
-            transformVerticesToWorld(_math, _modelToWorld,
-                                     _vertices2d[0]._pos._x, _vertices2d[0]._pos._y,
-                                     _vertices2d[1]._pos._x, _vertices2d[1]._pos._y,
-                                     _vertices2d[2]._pos._x, _vertices2d[2]._pos._y,
-                                     _vertices2d[3]._pos._x, _vertices2d[3]._pos._y,
-                                     &mP1, &mP2, &mP3, &mP4);
-            
-            //Calculate the bounding rectangle that we are going to try to discard
-            _math.calculateBoundingRectangle(&mP1, &mP2, &mP3, &mP4);
-            
             //Discard bounding rectangle using frustum culling if possible
-            if (!_math.cullFrustumBox(mP1, mP2, _frustrumPlanes)) {
+            if (!surfaceBlockIsVisible(pSu, 0, _math, _frustrumPlanes, _modelToWorld)) {
                 _numDiscardedObjects++;
             } else {
+                //Only draws first texture block in texture
+                // Prepare the quad that is going to be blit
+                // Calculates the position and mapping coords for that block
+                float x (static_cast<float>(pX));
+                float y (static_cast<float>(pY));
+                float height (static_cast<float>(pHeight));
+                float width (static_cast<float>(pWidth));
+                float bWidth (static_cast<float>(pSu->getWidthBlock()));
+                float bHeight (static_cast<float>(pSu->getHeightBlock()));
+                float spareY (static_cast<float>(pSu->getSpareY()));
+                fillVertex2d(&_vertices2d [0], width, 0.0f, ((x + width) / bWidth), (1.0f - ((y + spareY) / bHeight)));
+                fillVertex2d(&_vertices2d [1], width, height, (x + width) / bWidth, (1.0f - ((y + height + spareY) / bHeight)));
+                fillVertex2d(&_vertices2d [2], 0.0f, 0.0f , (x/bWidth), (1.0f - ((y+ spareY) / bHeight)));
+                fillVertex2d(&_vertices2d [3], 0.0f, height, (x/bWidth), (1.0f - (y + height + spareY) / bHeight));
+                
                 glActiveTexture(GL_TEXTURE0);
                 
                 // FIXME: This implies a perf. problem by swicthing textures for every block. Need better solution to send
@@ -170,7 +160,6 @@ void OpenGLES2Render::blitRegionSurface(IND_Surface *pSu,
 
 
 void OpenGLES2Render::blitSurfaceImpl(IND_Surface *pSu, float pBlitWidth, float pBlitHeight, float pUOffset, float pVOffset) {
-    // ----- Blitting -----
 	int mCont = 0;
 
 	for (int i = 0; i < pSu->getNumBlocks(); i++) {
@@ -209,13 +198,10 @@ void OpenGLES2Render::blitSurfaceImpl(IND_Surface *pSu, float pBlitWidth, float 
                 height = pBlitHeight;
             }
             
-            //Upper-right
+            //Upper-right - lower-right - upper-left - lower-left
             fillVertex2d(&_vertices2d [mCont], width, 0.f, u + pUOffset, v + pVOffset);
-            //Lower-right
             fillVertex2d(&_vertices2d [mCont+1], width, height, u + pUOffset, pVOffset);
-            //Upper-left
             fillVertex2d(&_vertices2d [mCont+2], 0.f, 0.f,pUOffset,v + pVOffset);
-            //Lower-left
             fillVertex2d(&_vertices2d [mCont+3], 0.f, height,pUOffset, pVOffset);
             
             //Set texture params as cached

@@ -360,12 +360,8 @@ public:
 	                  float pUOffset,
 	                  float pVOffset);
     
-    void blitSurfaceImpl(IND_Surface *pSu,
-                         float pBlitWidth,
-                         float pBlitHeight,
-                         float pUOffset,
-                         float pVOffset);
-
+    void blitTexturedQuad(CUSTOMVERTEX2D* pVertexes);
+    
 	// ------ Render Text 2d -----
 	void blitText(IND_Font *pFo,
 	              char *pText,

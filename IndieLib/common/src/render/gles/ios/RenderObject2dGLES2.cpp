@@ -65,7 +65,30 @@ void copyVertices(CUSTOMVERTEX2D* pSrc, CUSTOMVERTEX2D* pDest, int count);
 void OpenGLES2Render::blitSurface(IND_Surface *pSu) {
     _tex2dState.wrapS = GL_CLAMP_TO_EDGE;
     _tex2dState.wrapS = GL_CLAMP_TO_EDGE;
-    blitSurfaceImpl(pSu,0,0,0,0);
+    
+    for (int i = 0; i < pSu->getNumBlocks(); i++) {
+        
+		if (!surfaceBlockIsVisible(pSu, i, _math, _frustrumPlanes, _modelToWorld)) {
+			_numDiscardedObjects++;
+		} else {
+            glActiveTexture(GL_TEXTURE0);
+            
+            // FIXME: This implies a perf. problem by swicthing textures for every block. Need better solution to send
+            // all blocks to graphics card in same GL call.
+			if (!pSu->isHaveGrid()) {
+				//Texture ID - If it doesn't have a grid, every other block must be blit by
+				//a different texture in texture array ID.
+				glBindTexture(GL_TEXTURE_2D,pSu->_surface->_texturesArray[i]);
+			} else {
+				//In a case of rendering a grid. Same texture (but different vertex position)
+				//is rendered all the time. In other words, different pieces of same texture are rendered
+				glBindTexture(GL_TEXTURE_2D,pSu->_surface->_texturesArray[0]);
+			}
+            
+            int firstTextureIdx (4*i);
+            blitTexturedQuad(&pSu->_surface->_vertexArray[firstTextureIdx]);
+		}
+	}
 }
 
 bool OpenGLES2Render::blitWrapSurface(IND_Surface *pSu,
@@ -73,18 +96,60 @@ bool OpenGLES2Render::blitWrapSurface(IND_Surface *pSu,
                                       int pBlitHeight,
                                       float pUOffset,
                                       float pVOffset) {
-   bool correctParams = true;
-   if (pSu->getNumTextures() != 1) {
-		correctParams = false; 
-   }
-
-   if (correctParams) {
-       _tex2dState.wrapS = GL_REPEAT;
-       _tex2dState.wrapT = GL_REPEAT;
-       blitSurfaceImpl(pSu, pBlitWidth, pBlitHeight, pUOffset, pVOffset);
-       
-   }
-	return correctParams;
+    if (pSu->getNumTextures() != 1) {
+        return false;
+    }
+    
+    _tex2dState.wrapS = GL_REPEAT;
+    _tex2dState.wrapT = GL_REPEAT;
+    for (int i = 0; i < pSu->getNumBlocks(); i++) {
+        
+        if (!surfaceBlockIsVisible(pSu, i, _math, _frustrumPlanes, _modelToWorld)) {
+            _numDiscardedObjects++;
+        } else {
+            glActiveTexture(GL_TEXTURE0);
+            
+            // FIXME: This implies a perf. problem by swicthing textures for every block. Need better solution to send
+            // all blocks to graphics card in same GL call.
+            if (!pSu->isHaveGrid()) {
+                //Texture ID - If it doesn't have a grid, every other block must be blit by
+                //a different texture in texture array ID.
+                glBindTexture(GL_TEXTURE_2D,pSu->_surface->_texturesArray[i]);
+            } else {
+                //In a case of rendering a grid. Same texture (but different vertex position)
+                //is rendered all the time. In other words, different pieces of same texture are rendered
+                glBindTexture(GL_TEXTURE_2D,pSu->_surface->_texturesArray[0]);
+            }
+            
+            // Prepare the quad that is going to be blitted
+            // Calculates the position and mapping coords for that block
+            float u (pSu->_surface->_vertexArray[0]._texCoord._u);
+            float v (pSu->_surface->_vertexArray[0]._texCoord._v);
+            float width (static_cast<float>(pSu->getWidth()));
+            float height (static_cast<float>(pSu->getHeight()));
+            
+            if (pBlitWidth > 0.f) {
+                u = static_cast<float>(pBlitWidth)  / static_cast<float>(pSu->getWidthBlock());
+                width = pBlitWidth;
+            }
+            
+            if (pBlitHeight > 0.f) {
+                v = static_cast<float>(pBlitHeight) / static_cast<float>(pSu->getHeightBlock());
+                height = pBlitHeight;
+            }
+            
+            //Upper-right - lower-right - upper-left - lower-left
+            int firstVertexIdx (4*i);
+            fillVertex2d(&_vertices2d [firstVertexIdx], width, 0.f, u + pUOffset, v + pVOffset);
+            fillVertex2d(&_vertices2d [firstVertexIdx+1], width, height, u + pUOffset, pVOffset);
+            fillVertex2d(&_vertices2d [firstVertexIdx+2], 0.f, 0.f,pUOffset,v + pVOffset);
+            fillVertex2d(&_vertices2d [firstVertexIdx+3], 0.f, height,pUOffset, pVOffset);
+            
+            blitTexturedQuad(&_vertices2d[firstVertexIdx]);
+        }
+    }
+    
+    return true;
 }
 
 void OpenGLES2Render::blitRegionSurface(IND_Surface *pSu,
@@ -158,78 +223,28 @@ void OpenGLES2Render::blitRegionSurface(IND_Surface *pSu,
     }
 }
 
-
-void OpenGLES2Render::blitSurfaceImpl(IND_Surface *pSu, float pBlitWidth, float pBlitHeight, float pUOffset, float pVOffset) {
-	int mCont = 0;
-
-	for (int i = 0; i < pSu->getNumBlocks(); i++) {
-
-		if (!surfaceBlockIsVisible(pSu, i, _math, _frustrumPlanes, _modelToWorld)) {
-			_numDiscardedObjects++;
-		} else {
-            glActiveTexture(GL_TEXTURE0);
-            
-            // FIXME: This implies a perf. problem by swicthing textures for every block. Need better solution to send
-            // all blocks to graphics card in same GL call.
-			if (!pSu->isHaveGrid()) {
-				//Texture ID - If it doesn't have a grid, every other block must be blit by
-				//a different texture in texture array ID.
-				glBindTexture(GL_TEXTURE_2D,pSu->_surface->_texturesArray[i]);
-			} else {
-				//In a case of rendering a grid. Same texture (but different vertex position)
-				//is rendered all the time. In other words, different pieces of same texture are rendered
-				glBindTexture(GL_TEXTURE_2D,pSu->_surface->_texturesArray[0]);
-			}
-            
-            // Prepare the quad that is going to be blitted
-            // Calculates the position and mapping coords for that block
-            float u (pSu->_surface->_vertexArray[0]._texCoord._u);
-            float v (pSu->_surface->_vertexArray[0]._texCoord._v);
-            float width (static_cast<float>(pSu->getWidth()));
-            float height (static_cast<float>(pSu->getHeight()));
-
-            if (pBlitWidth > 0.f) {
-                u = static_cast<float>(pBlitWidth)  / static_cast<float>(pSu->getWidthBlock());
-                width = pBlitWidth;
-            }
-            
-            if (pBlitHeight > 0.f) {
-                v = static_cast<float>(pBlitHeight) / static_cast<float>(pSu->getHeightBlock());
-                height = pBlitHeight;
-            }
-            
-            //Upper-right - lower-right - upper-left - lower-left
-            fillVertex2d(&_vertices2d [mCont], width, 0.f, u + pUOffset, v + pVOffset);
-            fillVertex2d(&_vertices2d [mCont+1], width, height, u + pUOffset, pVOffset);
-            fillVertex2d(&_vertices2d [mCont+2], 0.f, 0.f,pUOffset,v + pVOffset);
-            fillVertex2d(&_vertices2d [mCont+3], 0.f, height,pUOffset, pVOffset);
-            
-            //Set texture params as cached
-            setGLBoundTextureParams();
-	        
-            IND_ShaderProgram* program = prepareSimple2DTexturingProgram();
-            
-            GLint posLoc = program->getPositionForVertexAttribute(IND_VertexAttribute_Position);
-            glEnableVertexAttribArray(posLoc);
-            glVertexAttribPointer(posLoc, 3, GL_FLOAT, GL_FALSE, sizeof(CUSTOMVERTEX2D), &_vertices2d[mCont]._pos._x);
-            
-            GLint texCoordLoc = program->getPositionForVertexAttribute(IND_VertexAttribute_TexCoord);
-            glEnableVertexAttribArray(texCoordLoc);
-            glVertexAttribPointer(texCoordLoc, 2, GL_FLOAT, GL_FALSE, sizeof(CUSTOMVERTEX2D), &_vertices2d[mCont]._texCoord._u);
-            
-			glDrawArrays(GL_TRIANGLE_STRIP, 0,4);
-            
-            glDisableVertexAttribArray(posLoc);
-            glDisableVertexAttribArray(texCoordLoc);
-            
-            CHECKGLERRORS();
-			_numrenderedObjects++;
-		}
-  		
-		mCont += 4;
-	}
+void OpenGLES2Render::blitTexturedQuad(CUSTOMVERTEX2D* pVertexes) {
+    //Set texture params as cached
+    setGLBoundTextureParams();
+    
+    IND_ShaderProgram* program = prepareSimple2DTexturingProgram();
+    
+    GLint posLoc = program->getPositionForVertexAttribute(IND_VertexAttribute_Position);
+    glEnableVertexAttribArray(posLoc);
+    glVertexAttribPointer(posLoc, 3, GL_FLOAT, GL_FALSE, sizeof(CUSTOMVERTEX2D), &pVertexes->_pos._x);
+    
+    GLint texCoordLoc = program->getPositionForVertexAttribute(IND_VertexAttribute_TexCoord);
+    glEnableVertexAttribArray(texCoordLoc);
+    glVertexAttribPointer(texCoordLoc, 2, GL_FLOAT, GL_FALSE, sizeof(CUSTOMVERTEX2D), &pVertexes->_texCoord._u);
+    
+    glDrawArrays(GL_TRIANGLE_STRIP, 0,4);
+    
+    glDisableVertexAttribArray(posLoc);
+    glDisableVertexAttribArray(texCoordLoc);
+    
+    CHECKGLERRORS();
+    _numrenderedObjects++;
 }
-
 
 int OpenGLES2Render::blitAnimation(IND_Animation *pAn, unsigned int pSequence,
                                 int pX, int pY,

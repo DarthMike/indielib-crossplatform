@@ -162,63 +162,43 @@ void OpenGLES2Render::blitRegionSurface(IND_Surface *pSu,
     if (!pX && !pY && (pWidth == pSu->getWidth()) && (pHeight == pSu->getHeight())) {
         blitSurface(pSu);
     } else {
-        bool correctParams = true;
         if (pSu->getNumTextures() > 1 ||
             pX < 0 || pX + pWidth > pSu->getWidth()
             ||
             pY < 0 || pY + pHeight > pSu->getHeight()) {
-            correctParams = false;
+            return;
 		}
         
-        if (correctParams) {
-            //Discard bounding rectangle using frustum culling if possible
-            if (!surfaceBlockIsVisible(pSu, 0, _math, _frustrumPlanes, _modelToWorld)) {
-                _numDiscardedObjects++;
-            } else {
-                //Only draws first texture block in texture
-                // Prepare the quad that is going to be blit
-                // Calculates the position and mapping coords for that block
-                float x (static_cast<float>(pX));
-                float y (static_cast<float>(pY));
-                float height (static_cast<float>(pHeight));
-                float width (static_cast<float>(pWidth));
-                float bWidth (static_cast<float>(pSu->getWidthBlock()));
-                float bHeight (static_cast<float>(pSu->getHeightBlock()));
-                float spareY (static_cast<float>(pSu->getSpareY()));
-                fillVertex2d(&_vertices2d [0], width, 0.0f, ((x + width) / bWidth), (1.0f - ((y + spareY) / bHeight)));
-                fillVertex2d(&_vertices2d [1], width, height, (x + width) / bWidth, (1.0f - ((y + height + spareY) / bHeight)));
-                fillVertex2d(&_vertices2d [2], 0.0f, 0.0f , (x/bWidth), (1.0f - ((y+ spareY) / bHeight)));
-                fillVertex2d(&_vertices2d [3], 0.0f, height, (x/bWidth), (1.0f - (y + height + spareY) / bHeight));
-                
-                glActiveTexture(GL_TEXTURE0);
-                
-                // FIXME: This implies a perf. problem by swicthing textures for every block. Need better solution to send
-                // all blocks to graphics card in same GL call.
-                glBindTexture(GL_TEXTURE_2D,pSu->_surface->_texturesArray[0]);
-                
-                //Set texture params as cached
-                _tex2dState.wrapT = GL_CLAMP_TO_EDGE;
-                _tex2dState.wrapS = GL_CLAMP_TO_EDGE;
-                setGLBoundTextureParams();
-                
-                IND_ShaderProgram* program = prepareSimple2DTexturingProgram();
-                
-                GLint posLoc = program->getPositionForVertexAttribute(IND_VertexAttribute_Position);
-                glEnableVertexAttribArray(posLoc);
-                glVertexAttribPointer(posLoc, 3, GL_FLOAT, GL_FALSE, sizeof(CUSTOMVERTEX2D), &_vertices2d[0]._pos._x);
-                
-                GLint texCoordLoc = program->getPositionForVertexAttribute(IND_VertexAttribute_TexCoord);
-                glEnableVertexAttribArray(texCoordLoc);
-                glVertexAttribPointer(texCoordLoc, 2, GL_FLOAT, GL_FALSE, sizeof(CUSTOMVERTEX2D), &_vertices2d[0]._texCoord._u);
-                
-                glDrawArrays(GL_TRIANGLE_STRIP, 0,4);
-                
-                glDisableVertexAttribArray(posLoc);
-                glDisableVertexAttribArray(texCoordLoc);
-                
-                CHECKGLERRORS();
-                _numrenderedObjects++;
-            }
+        
+        _tex2dState.wrapT = GL_CLAMP_TO_EDGE;
+        _tex2dState.wrapS = GL_CLAMP_TO_EDGE;
+        
+        //Discard bounding rectangle using frustum culling if possible
+        if (!surfaceBlockIsVisible(pSu, 0, _math, _frustrumPlanes, _modelToWorld)) {
+            _numDiscardedObjects++;
+        } else {
+            //Only draws first texture block in texture
+            // Prepare the quad that is going to be blit
+            // Calculates the position and mapping coords for that block
+            float x (static_cast<float>(pX));
+            float y (static_cast<float>(pY));
+            float height (static_cast<float>(pHeight));
+            float width (static_cast<float>(pWidth));
+            float bWidth (static_cast<float>(pSu->getWidthBlock()));
+            float bHeight (static_cast<float>(pSu->getHeightBlock()));
+            float spareY (static_cast<float>(pSu->getSpareY()));
+            fillVertex2d(&_vertices2d [0], width, 0.0f, ((x + width) / bWidth), (1.0f - ((y + spareY) / bHeight)));
+            fillVertex2d(&_vertices2d [1], width, height, (x + width) / bWidth, (1.0f - ((y + height + spareY) / bHeight)));
+            fillVertex2d(&_vertices2d [2], 0.0f, 0.0f , (x/bWidth), (1.0f - ((y+ spareY) / bHeight)));
+            fillVertex2d(&_vertices2d [3], 0.0f, height, (x/bWidth), (1.0f - (y + height + spareY) / bHeight));
+            
+            glActiveTexture(GL_TEXTURE0);
+            
+            // FIXME: This implies a perf. problem by swicthing textures for every block. Need better solution to send
+            // all blocks to graphics card in same GL call.
+            glBindTexture(GL_TEXTURE_2D,pSu->_surface->_texturesArray[0]);
+            
+            blitTexturedQuad(_vertices2d);
         }
     }
 }

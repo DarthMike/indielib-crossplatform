@@ -288,8 +288,6 @@ int OpenGLES2Render::blitAnimation(IND_Animation *pAn, unsigned int pSequence,
 void OpenGLES2Render::blitGrid(IND_Surface *pSu, unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA) {
     
 	for (int i = 0; i < pSu->getNumBlocks() * 4; i += 4) {
-        //Get vertex world coords, to perform frustrum culling test in world coords
-		IND_Vector3 mP1, mP2, mP3, mP4;
         int ax, ay, bx, by, cx, cy, dx, dy;
         ax = pSu->_surface->_vertexArray[i]._pos._x;
         ay = pSu->_surface->_vertexArray[i]._pos._y;
@@ -299,17 +297,11 @@ void OpenGLES2Render::blitGrid(IND_Surface *pSu, unsigned char pR, unsigned char
         cy = pSu->_surface->_vertexArray[i + 2]._pos._y;
         dx = pSu->_surface->_vertexArray[i + 3]._pos._x;
         dy = pSu->_surface->_vertexArray[i + 3]._pos._y;
-        transformVerticesToWorld(_math, _modelToWorld,
-                                 static_cast<float>(ax), static_cast<float>(ay),
-                                 static_cast<float>(bx), static_cast<float>(by),
-                                 static_cast<float>(cx), static_cast<float>(cy),
-                                 static_cast<float>(dx), static_cast<float>(dy),
-                                 &mP1, &mP2, &mP3, &mP4);
         
-        blitGridQuad(mP1._x, mP1._y,
-                     mP2._x, mP2._y,
-                     mP3._x, mP3._y,
-                     mP4._x, mP4._y,
+        blitGridQuad(ax, ay,
+                     bx, by,
+                     cx, cy,
+                     dx, dy,
                      pR, pG, pB, pA);
 		
 	}

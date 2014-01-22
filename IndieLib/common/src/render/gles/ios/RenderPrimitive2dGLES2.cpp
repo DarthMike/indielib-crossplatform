@@ -352,7 +352,25 @@ Blits a bounding line
 */
  void OpenGLES2Render::blitGridLine (int pPosX1, int pPosY1, int pPosX2, int pPosY2,  unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA)
 {
-    blitLine(pPosX1, pPosY1, pPosX2, pPosY2, pR, pG, pB, pA);
+	fillPoint(&_points[0], static_cast<float>(pPosX1), static_cast<float>(pPosY1));
+	fillPoint(&_points[1], static_cast<float>(pPosX2), static_cast<float>(pPosY2));
+    // TODO: This repeats code on blitLine, but not resetting transform for primitive.
+    
+	setTransformAndGLStateForPrimitive(pA,false);
+    IND_ShaderProgram* primitiveRenderProgram = prepareUniformColorProgram(pR, pG, pB, pA);
+    
+    glBindBuffer(GL_ARRAY_BUFFER, _pointBuffer);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, 2*sizeof(VERTEX_POS), _points);
+    
+    GLint attribLoc = primitiveRenderProgram->getPositionForVertexAttribute(IND_VertexAttribute_Position);
+    glEnableVertexAttribArray(attribLoc);
+    glVertexAttribPointer(attribLoc, 3, GL_FLOAT, GL_FALSE, 0, 0);
+    
+	glDrawArrays(GL_LINES, 0, 2);
+    
+    glDisableVertexAttribArray(attribLoc);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    CHECKGLERRORS();
 }
 
 /*
@@ -366,6 +384,7 @@ void OpenGLES2Render::blitGridQuad    (int pAx, int pAy,
                                    int pDx, int pDy,
                                    unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA)
 {
+    
 	blitGridLine (pAx, pAy, pBx, pBy, pR, pG, pB, pA);
 	blitGridLine (pBx, pBy, pDx, pDy, pR, pG, pB, pA);
 	blitGridLine (pDx, pDy, pCx, pCy, pR, pG, pB, pA);

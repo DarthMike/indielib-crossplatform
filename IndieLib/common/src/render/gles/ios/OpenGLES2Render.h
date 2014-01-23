@@ -477,7 +477,9 @@ private:
 
 	//Text rendering helpers
 	int getLongInPixels(IND_Font *pFo, char *pText, int pPos, int pOffset);
-
+    void blitCharsMudFont(IND_Font *pFo, char *pText, IND_Align pAlign, int pOffset, float pScaleX, float pScaleY, int pLineSpacing);
+    void blitCharsAngelCodeFont(IND_Font *pFo, char *pText, IND_Align pAlign, int pOffset, float pScaleX, float pScaleY, int pLineSpacing);
+    
 	//Setup helper
 	bool resetViewport(int pWitdh, int pHeight);
     

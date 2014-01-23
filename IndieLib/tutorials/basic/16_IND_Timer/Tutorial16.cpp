@@ -66,7 +66,7 @@ Indielib_Main
 
 	// Font
 	IND_Font *mFontBig = IND_Font::newFont();
-	if (!mI->_fontManager->add(mFontBig, "font_big.png", "font_big.xml", IND_ALPHA, IND_32)) return 0;
+	if (!mI->_fontManager->addMudFont(mFontBig, "font_big.png", "font_big.xml", IND_ALPHA, IND_32)) return 0;
 
 	// Loading draco
 	IND_Surface *mSurfaceDraco = IND_Surface::newSurface();

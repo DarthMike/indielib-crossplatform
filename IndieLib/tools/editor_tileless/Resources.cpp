@@ -114,7 +114,7 @@ bool Resources::LoadEditorElements ()
 	mMouseEntity->setHotSpot (0.5f, 0.5f);
 
 	// Font loading
-	if (!mI->_fontManager->add (mFont, "../../resources/fonts/font_small.png", "../../resources/fonts/font_small.xml", IND_ALPHA, IND_32)) return 0;
+	if (!mI->_fontManager->addMudFont (mFont, "../../resources/fonts/font_small.png", "../../resources/fonts/font_small.xml", IND_ALPHA, IND_32)) return 0;
 	mI->_entity2dManager->add	(GUI_LAYER, mFontEntity);
 	mFontEntity->setFont			(mFont);
 	mFontEntity->setLineSpacing	(18);

@@ -109,7 +109,7 @@ Indielib_Main
 
 	// ----- Terrain creation -----
 
-	CTerrain *mTerrain = new CTerrain(X_TILES, Y_TILES, NUM_HOLES, mSurfaceTerrain, mSurfaceHole1, mSurfaceHole2);
+	new CTerrain(X_TILES, Y_TILES, NUM_HOLES, mSurfaceTerrain, mSurfaceHole1, mSurfaceHole2);
 
 	// ----- Font creation -----
 

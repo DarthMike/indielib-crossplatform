@@ -115,8 +115,8 @@ Indielib_Main
 		// Direct bliting of primitives
 		for (int i = 0; i < 400; i += 5)
 		{	
-			mI->_render->blitLine(70, 150, i * 2, 500, i, 255 -i, 255, 255);
-			mI->_render->blitRegularPoly(600, 600, i, 70, 0, 255 - i, i, i*4, 255);
+			mI->_render->blitLine(70, 150, i * 2, 500,  (unsigned char)i,  (unsigned char)(255 - i),  (unsigned char)255,  (unsigned char)255);
+			mI->_render->blitRegularPoly(600, 600, i, 70, 0.0f, (unsigned char)(255 - i), (unsigned char)i, (unsigned char)(i*4), (unsigned char)255);
 		}
 
 		mI->_entity2dManager->renderEntities2d();

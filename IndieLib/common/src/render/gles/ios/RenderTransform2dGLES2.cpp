@@ -328,8 +328,6 @@ void OpenGLES2Render::setRainbow2d(IND_Type pType,
 				blendR = static_cast<float>(pR) / 255.0f;
 				blendG = static_cast<float>(pG) / 255.0f;
 				blendB = static_cast<float>(pB) / 255.0f;
-                // FIXME: SHADERS
-//                glColor4f(blendR, blendG, blendB, blendA);
             }
             
             // Alpha
@@ -337,8 +335,6 @@ void OpenGLES2Render::setRainbow2d(IND_Type pType,
 				glEnable(GL_BLEND);
 				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 				blendA = static_cast<float>(pA) / 255.0f;
-                // FIXME: SHADERS
-//                glColor4f(blendR, blendG, blendB, blendA);
             }
             
             // Fade to color
@@ -349,8 +345,6 @@ void OpenGLES2Render::setRainbow2d(IND_Type pType,
                 blendR = static_cast<float>(pFadeR) / 255.0f;
                 blendG = static_cast<float>(pFadeG) / 255.0f;
                 blendB = static_cast<float>(pFadeB) / 255.0f;
-                // FIXME: SHADERS
-//                glColor4f(blendR, blendG, blendB, blendA);
             }
             
             if (pSo && pDs) {
@@ -363,16 +357,12 @@ void OpenGLES2Render::setRainbow2d(IND_Type pType,
             // Alpha test = OFF
             glEnable(GL_BLEND);
             glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-            // FIXME: SHADERS
-//            glColor4f(blendR, blendG, blendB, blendA);
             
             // Tinting
             if (pR != 255 || pG != 255 || pB != 255) {
 				blendR = static_cast<float>(pR) / 255.0f;
 				blendG = static_cast<float>(pG) / 255.0f;
 				blendB = static_cast<float>(pB) / 255.0f;
-                // FIXME: SHADERS
-//                glColor4f(blendR, blendG, blendB, blendA);
             }
             
             // Alpha
@@ -380,8 +370,6 @@ void OpenGLES2Render::setRainbow2d(IND_Type pType,
 				glEnable(GL_BLEND);
 				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 				blendA = static_cast<float>(pA) / 255.0f;
-                // FIXME: SHADERS
-//                glColor4f(blendR, blendG, blendB, blendA);
             }
             
             // Fade to color
@@ -390,8 +378,6 @@ void OpenGLES2Render::setRainbow2d(IND_Type pType,
                 blendR = static_cast<float>(pFadeR) / 255.0f;
                 blendG = static_cast<float>(pFadeG) / 255.0f;
                 blendB = static_cast<float>(pFadeB) / 255.0f;
-                // FIXME: SHADERS
-//                glColor4f(blendR, blendG, blendB, blendA);
             }
             
             if (!pSo || !pDs) {

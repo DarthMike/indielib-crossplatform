@@ -71,7 +71,7 @@ Indielib_Main
 
 	// Font
 	IND_Font *mFontSmall = IND_Font::newFont();
-	if (!mI->_fontManager->add(mFontSmall, "font_small.png", "font_small.xml", IND_ALPHA, IND_32)) return 0;
+	if (!mI->_fontManager->addMudFont(mFontSmall, "font_small.png", "font_small.xml", IND_ALPHA, IND_32)) return 0;
 
 	// ----- Font creation -----
 
@@ -105,16 +105,16 @@ Indielib_Main
 
 	// --- Cameras for the parallax layers --- 
 
-	int mMiddleScreenX = mI->_window->getWidth() / 2;
-	int mMiddleScreenY = mI->_window->getHeight() / 2;
+	float mMiddleScreenX = mI->_window->getWidth() / 2.0f;
+	float mMiddleScreenY = mI->_window->getHeight() / 2.0f;
 
 	float mPosXCamera0 = (float) mMiddleScreenX;
 	float mPosXCamera1 = (float) mMiddleScreenX;
 	float mPosXCamera2 = (float) mMiddleScreenX;
 
-	IND_Camera2d *mCamera0 = new IND_Camera2d((int) mPosXCamera0, mMiddleScreenY);
-	IND_Camera2d *mCamera1 = new IND_Camera2d((int) mPosXCamera1, mMiddleScreenY);
-	IND_Camera2d *mCamera2 = new IND_Camera2d((int) mPosXCamera2, mMiddleScreenY);
+	IND_Camera2d *mCamera0 = new IND_Camera2d(mPosXCamera0, mMiddleScreenY);
+	IND_Camera2d *mCamera1 = new IND_Camera2d(mPosXCamera1, mMiddleScreenY);
+	IND_Camera2d *mCamera2 = new IND_Camera2d(mPosXCamera2, mMiddleScreenY);
 
 	int mSpeedLayer0 = 50;
 	int mSpeedLayer1 = 162;
@@ -122,7 +122,7 @@ Indielib_Main
 
 	// --- Camera for showing the text that explain the input controls --- 
 
-	IND_Camera2d *mCameraText = new IND_Camera2d((int) mI->_window->getWidth() / 2, mI->_window->getHeight() / 2);
+	IND_Camera2d *mCameraText = new IND_Camera2d(mI->_window->getWidth() / 2.0f, mI->_window->getHeight() / 2.0f);
 
 	// --- Some variables ---
 
@@ -171,9 +171,9 @@ Indielib_Main
 
 		// ----- Updating cameras-----
 
-		mCamera0->setPosition((int) mPosXCamera0, mMiddleScreenY);
-		mCamera1->setPosition((int) mPosXCamera1, mMiddleScreenY);
-		mCamera2->setPosition((int) mPosXCamera2, mMiddleScreenY);
+		mCamera0->setPosition(mPosXCamera0, mMiddleScreenY);
+		mCamera1->setPosition(mPosXCamera1, mMiddleScreenY);
+		mCamera2->setPosition(mPosXCamera2, mMiddleScreenY);
 
 		// ----- Render  -----
 

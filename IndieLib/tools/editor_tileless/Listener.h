@@ -25,6 +25,7 @@
 #include "CIndieLib.h"
 #include "Resources.h"
 #include "Map.h"
+#include "Node.h"
 
 
 // --------------------------------------------------------------------------------

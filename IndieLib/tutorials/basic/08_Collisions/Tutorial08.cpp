@@ -75,7 +75,7 @@ Indielib_Main
 
 	// Font
 	IND_Font *mFontSmall = IND_Font::newFont();
-	if (!mI->_fontManager->add(mFontSmall, "font_small.png", "font_small.xml", IND_ALPHA, IND_32)) return 0;
+	if (!mI->_fontManager->addMudFont(mFontSmall, "font_small.png", "font_small.xml", IND_ALPHA, IND_32)) return 0;
 
 	// ----- Set the surfaces into 2d entities -----
 

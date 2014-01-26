@@ -64,7 +64,7 @@ Indielib_Main
     // ----- Font -----
 	
     IND_Font *mFontSmall = IND_Font::newFont();
-	if (!mI->_fontManager->add(mFontSmall, "font_small.png", "font_small.xml", IND_ALPHA, IND_32)) return 0;
+	if (!mI->_fontManager->addMudFont(mFontSmall, "font_small.png", "font_small.xml", IND_ALPHA, IND_32)) return 0;
     
 	// ----- Font creation -----
     
@@ -169,7 +169,7 @@ void renderOrthogonalMap(CIndieLib *mI, IND_TmxMap *orthogonalMap,IND_Surface *m
                 
                 const Tmx::Tileset *tileset = orthogonalMap->getTmxMapHandle()->FindTileset(CurTile);
                 int tilesetColumns = (mSurfaceOrthogonalTiles->getWidth() - 2*tileset->GetMargin()) / tileset->GetTileWidth();
-                int tilesetRows = (mSurfaceOrthogonalTiles->getHeight() - 2*tileset->GetMargin()) / tileset->GetTileHeight();
+                //int tilesetRows = (mSurfaceOrthogonalTiles->getHeight() - 2*tileset->GetMargin()) / tileset->GetTileHeight();
                 
                 // 0-based index (as valid gid starts from 1.)
                 CurTile--;
@@ -267,7 +267,7 @@ void renderIsometricMap(CIndieLib *mI, IND_TmxMap *isometricMap,IND_Surface *mSu
                 
                 const Tmx::Tileset *tileset = isometricMap->getTmxMapHandle()->FindTileset(CurTile);
                 int tilesetColumns = (mSurfaceIsometricTiles->getWidth() - 2*tileset->GetMargin()) / tileset->GetTileWidth();
-                int tilesetRows = (mSurfaceIsometricTiles->getHeight() - 2*tileset->GetMargin()) / tileset->GetTileHeight();
+                //int tilesetRows = (mSurfaceIsometricTiles->getHeight() - 2*tileset->GetMargin()) / tileset->GetTileHeight();
                 
                 // 0-based index (as valid gid starts from 1.)
                 CurTile--;

@@ -92,7 +92,7 @@ Indielib_Main
 
 	// Font
 	IND_Font *mFontSmall = IND_Font::newFont();
-	if (!mI->_fontManager->add(mFontSmall, "font_small.png", "font_small.xml", IND_ALPHA, IND_32)) 
+	if (!mI->_fontManager->addMudFont(mFontSmall, "font_small.png", "font_small.xml", IND_ALPHA, IND_32)) 
 		return 0;
 
 	// ----- Animation loading -----
@@ -109,7 +109,7 @@ Indielib_Main
 
 	// ----- Terrain creation -----
 
-	CTerrain *mTerrain = new CTerrain(X_TILES, Y_TILES, NUM_HOLES, mSurfaceTerrain, mSurfaceHole1, mSurfaceHole2);
+	new CTerrain(X_TILES, Y_TILES, NUM_HOLES, mSurfaceTerrain, mSurfaceHole1, mSurfaceHole2);
 
 	// ----- Font creation -----
 
@@ -137,10 +137,10 @@ Indielib_Main
 	// ----- Camera ------
 
 	// Camera used for moving along the terrain
-	IND_Camera2d *mCameraTerrain = new IND_Camera2d(mI->_window->getWidth () / 2, mI->_window->getHeight() / 2);
+	IND_Camera2d *mCameraTerrain = new IND_Camera2d(mI->_window->getWidth () / 2.00f, mI->_window->getHeight() / 2.00f);
 
 	// Camera used for showing the menu options, fps, etc (this camera dosen't change)
-	IND_Camera2d *mCameraGui = new IND_Camera2d(mI->_window->getWidth () / 2, mI->_window->getHeight() / 2);
+	IND_Camera2d *mCameraGui = new IND_Camera2d(mI->_window->getWidth () / 2.00f, mI->_window->getHeight() / 2.00f);
 
 	// ----- Main Loop -----
 
@@ -188,24 +188,24 @@ Indielib_Main
 		if (mI->_input->onKeyPress(IND_1))
 		{
 			//if (!mI->_render->reset("Alien BenchMark", 640, 480, 32, 0, 1)) return 0; //FIXME: this is broken - figure out how to use IND_Windowproperties correctly 
-			mCameraGui->setPosition(mI->_window->getWidth() / 2, mI->_window->getHeight() / 2);
-			mCameraTerrain->setPosition(mI->_window->getWidth() / 2, mI->_window->getHeight() / 2);
+			mCameraGui->setPosition(mI->_window->getWidth() / 2.00f, mI->_window->getHeight() / 2.00f);
+			mCameraTerrain->setPosition(mI->_window->getWidth() / 2.00f, mI->_window->getHeight() / 2.00f);
 		}
 
 		// Change resolution to 800, 600 when pressing 2
 		if (mI->_input->onKeyPress(IND_2))
 		{
 			//if (!mI->_render->reset("Alien BenchMark", 800, 600, 32, 0, 1)) return 0;  //FIXME: this is broken - figure out how to use IND_Windowproperties correctly 
-			mCameraGui->setPosition(mI->_window->getWidth() / 2, mI->_window->getHeight() / 2);
-			mCameraTerrain->setPosition(mI->_window->getWidth() / 2, mI->_window->getHeight() / 2);
+			mCameraGui->setPosition(mI->_window->getWidth() / 2.00f, mI->_window->getHeight() / 2.00f);
+			mCameraTerrain->setPosition(mI->_window->getWidth() / 2.00f, mI->_window->getHeight() / 2.00f);
 		}
 
 		// Change resolution to 1024, 768 when pressing 3
 		if (mI->_input->onKeyPress(IND_3))
 		{
 			//if (!mI->_render->reset("Alien BenchMark", 1024, 768, 32, 0, 1)) return 0;  //FIXME: this is broken - figure out how to use IND_Windowproperties correctly 
-			mCameraGui->setPosition(mI->_window->getWidth() / 2, mI->_window->getHeight() / 2);
-			mCameraTerrain->setPosition(mI->_window->getWidth() / 2, mI->_window->getHeight() / 2);
+			mCameraGui->setPosition(mI->_window->getWidth() / 2.00f, mI->_window->getHeight() / 2.00f);
+			mCameraTerrain->setPosition(mI->_window->getWidth() / 2.00f, mI->_window->getHeight() / 2.00f);
 		}
 
 		// Toogle full screen when pressing "space"

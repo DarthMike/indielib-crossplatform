@@ -26,7 +26,7 @@
 Main
 ==================
 */
-int IndieLib()		
+Indielib_Main		
 {
 	// ----- IndieLib intialization -----
 

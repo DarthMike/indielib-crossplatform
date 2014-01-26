@@ -66,7 +66,7 @@ Indielib_Main
 
 	// Font
 	IND_Font *mFontSmall = IND_Font::newFont();
-	if (!mI->_fontManager->add(mFontSmall, "font_small.png", "font_small.xml", IND_ALPHA, IND_32)) return 0;
+	if (!mI->_fontManager->addMudFont(mFontSmall, "font_small.png", "font_small.xml", IND_ALPHA, IND_32)) return 0;
 
 	// ----- Font creation -----
 
@@ -147,7 +147,7 @@ Indielib_Main
 		mBack->setAngleXYZ(0, 0, mAngle);
 
 		// Update grid vertices for making a "wave" effect
-		mT = mTimer->getTicks() / 1000.0f;
+		mT = (float) mTimer->getTicks() / 1000.0f;
 		
 		for (int i = 1; i < mNumBlocksX; i++)
 			for (int j = 1; j < mNumBlocksY; j++)

@@ -120,10 +120,10 @@ Indielib_Main
 	// ----- Camera ------
 
 	// Camera for the viewport 1
-	IND_Camera2d *mCamera1 = new IND_Camera2d(mI->_window->getWidth () / 2, mI->_window->getHeight() / 4);
+	IND_Camera2d *mCamera1 = new IND_Camera2d(mI->_window->getWidth () / 2.00f, mI->_window->getHeight() / 4.00f);
 
 	// Camera for the viewport 2
-	IND_Camera2d *mCamera2 = new IND_Camera2d(mI->_window->getWidth () / 2, mI->_window->getHeight() / 4);
+	IND_Camera2d *mCamera2 = new IND_Camera2d(mI->_window->getWidth () / 2.00f, mI->_window->getHeight() / 4.00f);
 
 	// ----- Main Loop -----
 

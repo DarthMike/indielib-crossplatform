@@ -104,7 +104,6 @@ Indielib_Main
 	IND_Timer *mTimer = new IND_Timer();
 	mTimer->start();
 
-	int mX = 0;
 	int mSecond;
 
 	while (!mI->_input->onKeyPress(IND_ESCAPE) && !mI->_input->quit())
@@ -138,7 +137,7 @@ Indielib_Main
 		mTextTime->setText(mTimeString);
 
 		// Update Draco position each second
-		mDraco->setAngleXYZ(0, 0, mSecond + 10);
+		mDraco->setAngleXYZ(0.00f, 0.00f, mSecond + 10.00f);
  
 		// ----- Render  -----
 

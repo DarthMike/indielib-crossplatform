@@ -1,11 +1,9 @@
-TODO: describe for each benchmark tutorial what is the tutorial about + what keys are used.
-
-
 benchmark 01: Alien BenchMark
+This bencmark show 8 * 6 * 1024 = 49152 small spinning UFO's (not all at once) on a background consisting of terain tiles with some holes added. key 1, 2 and 3 change screen resolution. Space toggles fullscreen. Mouse pointer moves camera in the direction chosen. Press left or right mousebutton to spin the camera clockwise / anticlockwise. Benchmark stats is shown in upper right corner. Press escape or mouseclick on the close button to exit.
 
 
 benchmark 02: Rabbits BenchMark
-
+This bencmark show 1000 small spinning and moving bunnies (different size, different color) in the same gamescreen. Space toggles fullscreen. Benchmark stats is shown in upper right corner. Press escape or mouseclick on the close button to exit.
 
 
 

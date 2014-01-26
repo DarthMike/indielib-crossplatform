@@ -1,39 +1,46 @@
-TODO: describe for each basic tutorial what is the tutorial about + what keys are used.
-
-
 basic 01: Installing
 This is the very bare tutorial, where  all the components that sum up Indielib is instantiated and a very basic gameloop is created. When this tutorial is exexcuted a blank gamewindow is presented. Press escape or mouseclick on the close button to exit.
 
 
 basic 02: IND_Surface
+This tutorial show how to add and manipulate surfaces. When this tutorial is exexcuted a gamewindow with a blue background is presented and 4 surfaces (3 stars, 1 bad guy) is added. Press escape or mouseclick on the close button to exit.
 
 
 basic 03: IND_Image
+This tutorial focus on how to add and manipulate images. When this tutorial is exexcuted a gamewindow with a blue background is presented and 4 images (4 ladybugs) is added with various image filters. Press escape or mouseclick on the close button to exit.
 
 
 basic 04: IND_Animation
+This tutorial show how to add and manipulate  animations. When this tutorial is exexcuted a gamewindow with a blue background is presented and 3 animations (2 fighters, 1 whirlwind) is added with various animation settings. Press escape or mouseclick on the close button to exit.
 
 
 basic 05: IND_Font
+This tutorial show how to add and use bitmap fonts. When this tutorial is exexcuted a gamewindow with a blue background is presented and an image with a clipboard is added (to demonstrate how to create a nice text container). 4 sections of text, each with different fonts, is used (3 Mudfonts, 1 Angelcode font). Press escape or mouseclick on the close button to exit.
 
 
 basic 06: Primitives
+This tutorial show how to add and use primitives. When this tutorial is exexcuted a gamewindow with a black background is presented and various types, numbers and colors of prmitives are displayed (the types are: pixel, line, polygon, rectangle and filled rectangle. Press escape or mouseclick on the close button to exit.
 
 
 basic 07: IND_Input
+This tutorial show how to capture and use input. When this tutorial is exexcuted a gamewindow with a blue spinning background is presented and 3 images are displayed (beattleboy, planet and a octopusgirl). Keys left + right arrow button will move beattleboy and octupusgirl horizontal ( different direction, beattleboy will also spin clockwise / anti clockwise ). Mouse movement left + right will move the planet in this direction. Press escape or mouseclick on the close button to exit.
 
 
 basic 08: Colissions
+This tutorial show how to do a simple collision detection based on bounding boxes, triangles and circles. When this tutorial is exexcuted a gamewindow with a blue spinning background is presented and 2 images and an animation are displayed (beattleboy, rocketboy and swordmaster ). Mouse will move beattleboy and the text displayed in the top of the screen acordingly to the collison of the visible red bounding geometry. Keys left + right will zoom in / out on the spinning rocketboy. Press escape or mouseclick on the close button to exit.
 
 
 basic 11: Animated Tile Scrolling
+This tutorial show how to do a animated tile scrolling effect. When this tutorial is exexcuted a gamewindow consisting completely of scrolling tiles is shown. The tiles are scrolling form upper left to lower right and are each showing the same looping animation of a happy blue sun turning to an angry blue sun. Press escape or mouseclick on the close button to exit.
 
 
 basic 13: 2d camera.
+This tutorial show how to use a 2d camera. When this tutorial is exexcuted a gamewindow consisting of a blue back, a clockwise spinning beatleboy, an octupussgirl and anticlockwise spinning ladybugg. Press keys WASD to tranlate (move) the camera in each of the four direction. Press left or right mosebutton to rotate the camera clockwise / anticlockwise. Use mousewheel to zoom / unzoom the camera. Press escape or mouseclick on the close button to exit.
 
 
 basic 15: Parallax Scrolling
+This tutorial show how to do parallax scrolling in Indielib. When this tutorial is exexcuted a gamewindow showing a dark cave is presented. Press left or right key to move the camera in the cave (completely to the right is the entrance of the cave). The cave is made up from 3 layers (cave image near, cave image back, and sky), and 3 cameras are used. Press escape or mouseclick on the close button to exit.
 
 
 basic 16: IND_Timer
-
+This tutorial show how to measure time in Indielib. When this tutorial is exexcuted a gamewindow showing Dracp the drogon spinnig clockwise in steps of 1 seconds time (seconds passed is shown in the top). Press space to pause / unpause the spin. Press escape or mouseclick on the close button to exit.

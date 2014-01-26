@@ -204,11 +204,12 @@ void OpenGLES2Render::blitCharsMudFont(IND_Font *pFo, char *pText, IND_Align pAl
 
 
 /*
- ==================
- Returns a long in pixels of the sentence that starts in pPos
- A sentence is an array of chars that ends in \n or \0
- ==================
- */
+==================
+Returns a long in pixels of the sentence that starts in pPos
+A sentence is an array of chars that ends in \n or \0
+==================
+*/
+// TODO: Repetition of code between renderers for this getter. Should be moved to utils of font object
 int OpenGLES2Render::getLongInPixels(IND_Font *pFo, char *pText, int pPos, int pOffset) {
 	unsigned char mChar1;
 	unsigned char mChar2;

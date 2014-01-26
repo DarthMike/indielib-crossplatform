@@ -138,6 +138,7 @@ void initTests() {
 	g_tests.push_back(font1);
 	FontTests_Pretty *font2 = new FontTests_Pretty();
 	g_tests.push_back(font2);
+    // TODO: Need a tests for angelCode fonts.
 	CollisionTests *collision1 = new CollisionTests();
 	g_tests.push_back(collision1);
 	EntityTests_animateRotations * entity1 = new EntityTests_animateRotations();

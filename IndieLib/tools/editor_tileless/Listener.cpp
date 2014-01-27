@@ -37,7 +37,7 @@
 Init
 ====================================== 
 */
-Listener::Listener(Resources *pResources, Map *pMap) 
+Listener::Listener(Resources *pResources, EditorMap *pMap) 
 {
 	// Get IndieLib instante
 	mI = CIndieLib::instance();

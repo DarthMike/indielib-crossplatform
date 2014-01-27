@@ -35,7 +35,7 @@
 
 #include "CIndieLib.h"
 #include "Resources.h"
-#include "Map.h"
+#include "EditorMap.h"
 #include "Node.h"
 
 
@@ -47,7 +47,7 @@ class Listener
 {
 public:
 
-	Listener									(Resources *pResources, Map *mMap);
+	Listener									(Resources *pResources, EditorMap *mMap);
 	void 					Free				();
 
 	void					Listen				();
@@ -66,7 +66,7 @@ private:
 	// Classes
 	CIndieLib *mI;
 	Resources *mResources;
-	Map *mMap;
+	EditorMap *mMap;
 
 	// Time measurement
 	float	mDelta;

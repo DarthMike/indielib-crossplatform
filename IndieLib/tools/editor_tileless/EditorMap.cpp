@@ -1,6 +1,6 @@
 /*****************************************************************************************
- * File: Map.cpp
- * Desc: Map class, for loading and savin maps and creating, cloning and deleting nodes
+ * File: EditorMap.cpp
+ * Desc: EditorMap class, for loading and savin maps and creating, cloning and deleting nodes
  *****************************************************************************************/
 
 /*********************************** The zlib License ************************************
@@ -30,7 +30,7 @@
 
 // ------ Includes -----
 
-#include "Map.h"
+#include "EditorMap.h"
 
 
 /* 
@@ -38,7 +38,7 @@
 Init
 ====================================== 
 */
-Map::Map() 
+EditorMap::EditorMap() 
 {
 	// Get IndieLib instante
 	mI = CIndieLib::instance();
@@ -50,7 +50,7 @@ Map::Map()
 Free memory
 ====================================== 
 */
-void Map::Free() 
+void EditorMap::Free() 
 {
 	// Free all the map nodes
 	FreeMap ();
@@ -62,7 +62,7 @@ void Map::Free()
 Create node
 ====================================== 
 */
-void Map::CreateNode (int pX, int pY, int pZ, int pId, int pLayer, IND_Surface *pSurface)
+void EditorMap::CreateNode (int pX, int pY, int pZ, int pId, int pLayer, IND_Surface *pSurface)
 {
 	Node *mNode = new Node (pX, pY, pZ, pId, pLayer, pSurface);
 	mNode->GetEntity()->setPosition ((float) pX, (float) pY, 0);
@@ -75,7 +75,7 @@ void Map::CreateNode (int pX, int pY, int pZ, int pId, int pLayer, IND_Surface *
 Clone node
 ====================================== 
 */
-void Map::CloneNode (Node *pNode)
+void EditorMap::CloneNode (Node *pNode)
 {
 	// Create a new node
 	Node *mNewNode = new Node	((int) pNode->GetEntity()->getPosX(), 
@@ -105,7 +105,7 @@ void Map::CloneNode (Node *pNode)
 Delete node
 ====================================== 
 */
-void Map::DeleteNode (Node *pNode)
+void EditorMap::DeleteNode (Node *pNode)
 {
 	vector <Node*>::iterator mIter;
 
@@ -131,7 +131,7 @@ void Map::DeleteNode (Node *pNode)
 Save the map (the vector of nodes containing each entity) to an XML file
 ====================================== 
 */
-bool Map::SaveMap (char *pTilesetPath)
+bool EditorMap::SaveMap (char *pTilesetPath)
 {
 	char *mPath = OpenFileDialog ("XML\0*.xml;", false, "Choose a location to save the map file");
 
@@ -205,7 +205,7 @@ bool Map::SaveMap (char *pTilesetPath)
 Load a Map from a XML file and create a node vector
 ====================================== 
 */
-bool Map::LoadMap (Resources *pResources)
+bool EditorMap::LoadMap (Resources *pResources)
 {
 	char *mPath = OpenFileDialog ("XML\0*.xml;", true, "Choose a map file");
 
@@ -485,7 +485,7 @@ bool Map::LoadMap (Resources *pResources)
 Gets the path to the tileset file that we are going to load
 ====================================== 
 */
-char *Map::GetPathToTileset ()
+char *EditorMap::GetPathToTileset ()
 {
 	char *mPath = OpenFileDialog ("XML\0*.xml;", true, "Choose a Tileset file");
 
@@ -504,7 +504,7 @@ char *Map::GetPathToTileset ()
 Delete all the map nodes
 ====================================== 
 */
-void Map::FreeMap ()
+void EditorMap::FreeMap ()
 {
 	vector <Node*>::iterator mIter;
 
@@ -531,7 +531,7 @@ pAction = if true => open dialog if false => save dialog
 ==================
 */
 //TODO: THIS IS NOT PORTABLE!!!!
-char *Map::OpenFileDialog (char *pFilter, bool pAction, char *pTitle)
+char *EditorMap::OpenFileDialog (char *pFilter, bool pAction, char *pTitle)
 {	
 	// If we are in full screen mode, we have to change to screen mode
 	bool mKeepFullScreen = false;
@@ -595,5 +595,3 @@ char *Map::OpenFileDialog (char *pFilter, bool pAction, char *pTitle)
 			return "";
 	}
 }
-
-

@@ -1,6 +1,6 @@
 /*****************************************************************************************
- * File: Map.h
- * Desc: Map class, for loading and savin maps and creating, cloning and deleting nodes
+ * File: EditorMap.h
+ * Desc: EditorMap class, for loading and savin maps and creating, cloning and deleting nodes
  *****************************************************************************************/
 
 /*********************************** The zlib License ************************************
@@ -28,8 +28,8 @@
  *
  *****************************************************************************************/
 
-#ifndef _MAP_
-#define _MAP_
+#ifndef _EDITORMAP_
+#define _EDITORMAP_
 
 // ------ Includes -----
 
@@ -43,14 +43,14 @@ using namespace std;
 
 
 // --------------------------------------------------------------------------------
-//								     	Map
+//								     	EditorMap
 // --------------------------------------------------------------------------------
 
-class Map
+class EditorMap
 {
 public:
 
-	Map												();	
+	EditorMap										();	
 	void						Free				();
 
 	void						CreateNode			(int pX, int pY, int pZ, int pId, int pLayer, IND_Surface *pSurface);
@@ -64,7 +64,7 @@ public:
 
 private:
 
-	CIndieLib *mI;							// IndieLib pointer
+	CIndieLib *mI;								// IndieLib pointer
 	vector <Node*> mVectorNodes;				// Map nodes
 
 	// ----- Private methods -----
@@ -72,4 +72,4 @@ private:
 	char		*OpenFileDialog				(char *pFilter, bool pAction, char *pTitle);
 };
 
-#endif // _MAP_
+#endif // _EDITORMAP_

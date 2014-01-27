@@ -30,7 +30,7 @@
 
 #include "CIndieLib.h"
 #include "Resources.h"
-#include "Map.h"
+#include "EditorMap.h"
 #include "Listener.h"
 
 /*
@@ -55,7 +55,7 @@ Indielib_Main
 	if (!mResources.LoadResources (mPath)) exit (0);
 
 	// Map initialization
-	Map mMap;
+	EditorMap mMap;
 
 	// Listener initialization
 	Listener mListener (&mResources, &mMap);

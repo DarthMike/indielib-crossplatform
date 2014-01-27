@@ -200,8 +200,9 @@ void OpenGLES2Render::setTransform2d(int pX,
 			_math.matrix4DMultiplyInPlace(totalTrans,mirrorX);
             
             //Rotate in y, to invert texture
-			_math.matrix4DSetRotationAroundAxis(mirrorX,180.0f,IND_Vector3(0.0f,1.0f,0.0f));
-			_math.matrix4DMultiplyInPlace(totalTrans,mirrorX);
+            IND_Matrix rotation;
+			_math.matrix4DSetRotationAroundAxis(rotation,180.0f,IND_Vector3(0.0f,1.0f,0.0f));
+			_math.matrix4DMultiplyInPlace(totalTrans,rotation);
 		}
         
 		//A mirror is a rotation in desired axis (the actual mirror) and a repositioning because rotation
@@ -216,8 +217,9 @@ void OpenGLES2Render::setTransform2d(int pX,
 			_math.matrix4DMultiplyInPlace(totalTrans,mirrorY);
             
             //Rotate in x, to invert texture
-			_math.matrix4DSetRotationAroundAxis(mirrorY,180.0f,IND_Vector3(1.0f,0.0f,0.0f));
-			_math.matrix4DMultiplyInPlace(totalTrans,mirrorY);
+            IND_Matrix rotation;
+			_math.matrix4DSetRotationAroundAxis(rotation,180.0f,IND_Vector3(1.0f,0.0f,0.0f));
+			_math.matrix4DMultiplyInPlace(totalTrans,rotation);
 		}
 	}
     

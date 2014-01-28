@@ -141,8 +141,15 @@ struct RenderState {
     RenderState() :
     _cullingEnabled (false),
     _frontFaceIsCW(false),
-    _alphaBlendEnabled(false)
+    _alphaBlendEnabled(false),
+    _srcBlendFactor(GL_ONE),
+    _dstBlendFactor(GL_ZERO),
+    _blendR(1.f),
+    _blendG(1.f),
+    _blendB(1.f),
+    _blendA(1.f)
     {}
+    
     bool _cullingEnabled;
     bool _frontFaceIsCW;
     
@@ -150,10 +157,10 @@ struct RenderState {
     GLenum _srcBlendFactor;
     GLenum _dstBlendFactor;
     
-    GLint _tintR;
-    GLint _tintG;
-    GLint _tintB;
-    GLint _tintA;
+    GLfloat _blendR;
+    GLfloat _blendG;
+    GLfloat _blendB;
+    GLfloat _blendA;
 };
 
 /** @cond DOCUMENT_PRIVATEAPI */

@@ -40,6 +40,44 @@
 
 /** @cond DOCUMENT_PRIVATEAPI */
 
+GLenum blendValueFromIndielibValue(IND_BlendingType pBlendType) {
+    
+    switch (pBlendType) {
+        case IND_ZERO:
+            return GL_ZERO;
+        case IND_ONE:
+            return GL_ONE;
+        case IND_SRCCOLOR:
+            return GL_SRC_COLOR;
+        case IND_INVSRCCOLOR:
+            return GL_ONE_MINUS_SRC_COLOR;
+        case IND_SRCALPHA:
+            return GL_SRC_ALPHA;
+        case IND_INVSRCALPHA:
+            return GL_ONE_MINUS_SRC_ALPHA;
+        case IND_DESTALPHA:
+            return GL_DST_ALPHA;
+        case IND_INVDESTALPHA:
+            return GL_ONE_MINUS_DST_ALPHA;
+        case IND_DESTCOLOR:
+            return GL_DST_COLOR;
+        case IND_INVDESTCOLOR:
+            return GL_ONE_MINUS_DST_COLOR;
+        case IND_SRCALPHASAT:
+            return GL_SRC_ALPHA_SATURATE;
+
+            // Unsupported, DirectX-only
+        case IND_BOTHSRCALPHA:
+        case IND_BOTHINVSRCALPHA:
+        case IND_BLENDFACTOR:
+        case IND_INVBLENDFACTOR:
+            return GL_ZERO;
+        default:
+            break;
+    }
+    return GL_ZERO;
+}
+
 // --------------------------------------------------------------------------------
 //							         Public methods
 // --------------------------------------------------------------------------------
@@ -255,27 +293,27 @@ void OpenGLES2Render::setIdentityTransform2d ()  {
 void OpenGLES2Render::setRainbow2d(IND_Type pType,
                                 bool pCull,
                                 bool pMirrorX,
-                                bool pMirrorY,
-                                IND_Filter pFilter,
-                                unsigned char pR,
-                                unsigned char pG,
-                                unsigned char pB,
-                                unsigned char pA,
-                                unsigned char pFadeR,
-                                unsigned char pFadeG,
-                                unsigned char pFadeB,
-                                unsigned char pFadeA,
-                                IND_BlendingType pSo,
-                                IND_BlendingType pDs) {
+                                   bool pMirrorY,
+                                   IND_Filter pFilter,
+                                   unsigned char pR,
+                                   unsigned char pG,
+                                   unsigned char pB,
+                                   unsigned char pA,
+                                   unsigned char pFadeR,
+                                   unsigned char pFadeG,
+                                   unsigned char pFadeB,
+                                   unsigned char pFadeA,
+                                   IND_BlendingType pSo,
+                                   IND_BlendingType pDs) {
 	//Parameters error correction:
 	if (pA > 255) {
 		pA = 255;
 	}
-
+    
 	//Setup neutral 'blend' for texture stage
 	float blendR, blendG, blendB, blendA;
 	blendR = blendG = blendB = blendA = 1.0f;
-
+    
 	// ----- Filters -----
     // In GL, texture filtering is applied to the bound texture. From this method we don't know which is the
     // bound texture, so we cache the requested state, so before actually rendering, we could set the state
@@ -284,47 +322,24 @@ void OpenGLES2Render::setRainbow2d(IND_Type pType,
 	if (IND_FILTER_LINEAR == pFilter) {
 		filterType = GL_LINEAR;
 	}
-
-    _tex2dState.magFilter = filterType;
-    _tex2dState.minFilter = filterType;
-
+    
+    _tex2dState._magFilter = filterType;
+    _tex2dState._minFilter = filterType;
+    
 	// ----- Back face culling -----
-	if (pCull) {
-		glEnable(GL_CULL_FACE);
-		glFrontFace(GL_CW);    
-	} else {
-		glDisable(GL_CULL_FACE);
-	}
-
-	// ----- Back face culling -----
-	// Mirroring (180º rotations)
-	if (pMirrorX || pMirrorY) {
-		if (pMirrorX && !pMirrorY) {
-			// Back face culling
-			if (pCull) {
-				glEnable(GL_CULL_FACE);
-				glFrontFace(GL_CCW);    
-			} else {
-				glDisable(GL_CULL_FACE);
-			}
-		}
-
-		if (!pMirrorX && pMirrorY) {
-			if (pCull) {
-				glEnable(GL_CULL_FACE);
-				glFrontFace(GL_CCW);    
-			} else {
-				glDisable(GL_CULL_FACE);
-			}
-		}
-	}
-
+    _renderState._cullingEnabled = pCull;
+    _renderState._frontFaceIsCW = true;
+    
+	// Mirroring. When mirrored only in one axis, culling face is inverted
+    if ((pMirrorX && !pMirrorY) ||
+        (!pMirrorX && pMirrorY)) {
+        // Back face culling CCW
+        _renderState._frontFaceIsCW = false;
+    }
+    
 	// ----- Blending -----
 	switch (pType) {
         case IND_OPAQUE: {
-            glEnable(GL_BLEND);
-            glBlendFunc(GL_ONE, GL_ZERO);
-            
             // Tinting
             if (pR != 255 || pG != 255 || pB != 255) {
 				blendR = static_cast<float>(pR) / 255.0f;
@@ -334,15 +349,11 @@ void OpenGLES2Render::setRainbow2d(IND_Type pType,
             
             // Alpha
             if (pA != 255) {
-				glEnable(GL_BLEND);
-				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 				blendA = static_cast<float>(pA) / 255.0f;
             }
             
             // Fade to color
             if (pFadeA != 255) {
-				glEnable(GL_BLEND);
-				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 				blendA = static_cast<float>(pFadeA) / 255.0f;
                 blendR = static_cast<float>(pFadeR) / 255.0f;
                 blendG = static_cast<float>(pFadeG) / 255.0f;
@@ -350,16 +361,19 @@ void OpenGLES2Render::setRainbow2d(IND_Type pType,
             }
             
             if (pSo && pDs) {
-                //Alpha blending
+                // Explicit blending values
+                _renderState._alphaBlendEnabled = true;
+                _renderState._srcBlendFactor = blendValueFromIndielibValue(pSo);
+                _renderState._dstBlendFactor = blendValueFromIndielibValue(pDs);
+            } else {
+                _renderState._alphaBlendEnabled = true;
+                _renderState._srcBlendFactor = GL_ONE;
+                _renderState._dstBlendFactor = GL_ZERO;
             }
         }
             break;
             
         case IND_ALPHA: {
-            // Alpha test = OFF
-            glEnable(GL_BLEND);
-            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-            
             // Tinting
             if (pR != 255 || pG != 255 || pB != 255) {
 				blendR = static_cast<float>(pR) / 255.0f;
@@ -369,8 +383,6 @@ void OpenGLES2Render::setRainbow2d(IND_Type pType,
             
             // Alpha
             if (pA != 255) {
-				glEnable(GL_BLEND);
-				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 				blendA = static_cast<float>(pA) / 255.0f;
             }
             
@@ -382,19 +394,41 @@ void OpenGLES2Render::setRainbow2d(IND_Type pType,
                 blendB = static_cast<float>(pFadeB) / 255.0f;
             }
             
+            _renderState._alphaBlendEnabled = true;
             if (!pSo || !pDs) {
-                //Alpha blending
+                //Default alpha blending
+                _renderState._srcBlendFactor = GL_SRC_ALPHA;
+                _renderState._dstBlendFactor = GL_ONE_MINUS_SRC_ALPHA;
             } else {
-                
+                // Explicit blending values
+                _renderState._srcBlendFactor = blendValueFromIndielibValue(pSo);
+                _renderState._dstBlendFactor = blendValueFromIndielibValue(pDs);
             }
-
+            
+        }
+            break;
+        default: {
+        }
 	}
-	break;
-	default: {
-	}
-	}
-
-
+    
+    
+    if (_renderState._cullingEnabled) {
+		glEnable(GL_CULL_FACE);
+        if (_renderState._frontFaceIsCW) {
+            glFrontFace(GL_CW);
+        } else {
+            glFrontFace(GL_CCW);
+        }
+    } else {
+        glDisable(GL_CULL_FACE);
+    }
+    
+    if (_renderState._alphaBlendEnabled) {
+        glEnable(GL_BLEND);
+        glBlendFunc(_renderState._srcBlendFactor, _renderState._dstBlendFactor);
+    } else {
+        glDisable(GL_BLEND);
+    }
 }
 
 void OpenGLES2Render::setDefaultGLState() {
@@ -411,10 +445,10 @@ void OpenGLES2Render::setDefaultGLState() {
 
 void OpenGLES2Render::setGLBoundTextureParams() {
     //Texture wrap mode
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,_tex2dState.wrapS);
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,_tex2dState.wrapT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, _tex2dState.magFilter);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, _tex2dState.minFilter);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,_tex2dState._wrapS);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,_tex2dState._wrapT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, _tex2dState._magFilter);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, _tex2dState._minFilter);
 }
 
 /** @endcond */

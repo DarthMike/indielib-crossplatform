@@ -125,16 +125,35 @@ struct InfoStruct {
 
 struct TextureSamplerState {
     TextureSamplerState() :
-    minFilter(GL_NEAREST),
-    magFilter(GL_NEAREST),
-    wrapS(GL_CLAMP_TO_EDGE),
-    wrapT(GL_CLAMP_TO_EDGE)
+    _minFilter(GL_NEAREST),
+    _magFilter(GL_NEAREST),
+    _wrapS(GL_CLAMP_TO_EDGE),
+    _wrapT(GL_CLAMP_TO_EDGE)
     {}
     
-    GLint minFilter;
-    GLint magFilter;
-    GLint wrapS;
-    GLint wrapT;
+    GLint _minFilter;
+    GLint _magFilter;
+    GLint _wrapS;
+    GLint _wrapT;
+};
+
+struct RenderState {
+    RenderState() :
+    _cullingEnabled (false),
+    _frontFaceIsCW(false),
+    _alphaBlendEnabled(false)
+    {}
+    bool _cullingEnabled;
+    bool _frontFaceIsCW;
+    
+    bool _alphaBlendEnabled;
+    GLenum _srcBlendFactor;
+    GLenum _dstBlendFactor;
+    
+    GLint _tintR;
+    GLint _tintG;
+    GLint _tintB;
+    GLint _tintA;
 };
 
 /** @cond DOCUMENT_PRIVATEAPI */
@@ -516,8 +535,8 @@ private:
 
 	
 	struct InfoStruct _info;
-    
     struct TextureSamplerState _tex2dState;
+    struct RenderState _renderState;
 
 	//Current 'model-to-world' matrix
 	IND_Matrix _modelToWorld;

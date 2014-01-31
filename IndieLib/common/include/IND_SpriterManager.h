@@ -57,6 +57,17 @@ class IND_Timer;
 //									IND_SpriterManager
 // --------------------------------------------------------------------------------
 
+/**
+@defgroup IND_SpriterManager IND_SpriterManager
+@ingroup Managers
+Manager of IND_SpriterEntity objects. Click in ::IND_SpriterManager to see all the methods of this class.
+*/
+/**@{*/
+
+/**
+TODO: Describtion.
+*/
+
 class LIB_EXP IND_SpriterManager {
 public:
 
@@ -88,7 +99,7 @@ public:
 private:
 
 	// ----- Private -----
-
+	/** @cond DOCUMENT_PRIVATEAPI */
 	bool _ok;
     double _deltaTime;
     double _lastTime;
@@ -134,6 +145,8 @@ private:
     void        writeMessage();
 	void        initVars();
 	void        freeVars();
+	/** @endcond */
 };
+/**@}*/
 
 #endif // _IND_SPRITERMANAGER_

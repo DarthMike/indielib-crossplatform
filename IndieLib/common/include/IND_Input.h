@@ -174,7 +174,7 @@ public:
 /** @endcond */
 
 /**
- @defgroup Touches
+ @defgroup Touches Touches
  @ingroup Input
  
  Touches data is always used in devices with touch screen, like iOS.

@@ -1242,7 +1242,7 @@ typedef struct structBoundingCollision BOUNDING_COLLISION;
 /**@}*/
 
 /**
- * @defgroup Culling
+ * @defgroup Culling Culling
  * @ingroup Types
  */
 /**@{*/

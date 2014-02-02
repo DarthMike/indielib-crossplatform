@@ -1,7 +1,6 @@
 /*****************************************************************************************
- * File: Node.cpp
- * Desc: Node class. Each node is a backdrop of the map that contains an IndieLib entity
- *       that holds all its attributes
+ * File: EditorMap.h
+ * Desc: EditorMap class, for loading and savin maps and creating, cloning and deleting nodes
  *****************************************************************************************/
 
 /*********************************** The zlib License ************************************
@@ -29,47 +28,48 @@
  *
  *****************************************************************************************/
 
+#ifndef _EDITORMAP_
+#define _EDITORMAP_
+
 // ------ Includes -----
 
+#include <vector>
+#include "dependencies/tinyXml/tinyxml.h"
+#include "Resources.h"
 #include "Node.h"
+#include "CIndieLib.h"
+#include "Defines.h"
+using namespace std; 
 
-/* 
-======================================									
-Init
-====================================== 
-*/
-Node::Node (int pX, int pY, int pZ, int pId, int pLayer, IND_Surface *pSurface)
+
+// --------------------------------------------------------------------------------
+//								     	EditorMap
+// --------------------------------------------------------------------------------
+
+class EditorMap
 {
-	// Get IndieLib instante
-	mI = CIndieLib::instance();
+public:
 
-	// Entity 
-	mEntity = IND_Entity2d::newEntity2d();
+	EditorMap										();	
+	void						Free				();
 
-	// Surface id
-	mId = pId;
+	void						CreateNode			(int pX, int pY, int pZ, int pId, int pLayer, IND_Surface *pSurface);
+	void						DeleteNode			(Node *pNode);
+	void						CloneNode			(Node *pNode);
+	bool						SaveMap				(char *pTilesetPath);
+	char						*GetPathToTileset	();
+	bool						LoadMap				(Resources *pResources);
+	vector		<Node*>			*GetVectorNodes		()	{ return &mVectorNodes; }
+	void						FreeMap				();
 
-	// First, we have to add the entity to the manager
-	mI->_entity2dManager->add (pLayer, mEntity);
+private:
 
-	mEntity->setSurface (pSurface); 						// Set the surface into the entity
-	mEntity->setHotSpot (0.5f, 0.5f); 					// Set the hotspot (pivot point) centered
-	mEntity->setPosition ((float) pX, (float) pY, pZ);	// Set the position
-	mLayer = pLayer;									// Layer where it is created
-		
-	// Set a collision bounding rectangle. This is used for checking collisions between the mouse pointer
-	// and the entity, in order to interact with it
-	mEntity->setBoundingRectangle ("editor", 0, 0, pSurface->getWidth(), pSurface->getHeight());
-	mEntity->showGridAreas (false);
-}
+	CIndieLib *mI;								// IndieLib pointer
+	vector <Node*> mVectorNodes;				// Map nodes
 
+	// ----- Private methods -----
 
-/* 
-======================================									
-End
-====================================== 
-*/
-Node::~Node() 
-{
-	mI->_entity2dManager->remove (mEntity);
-}
+	char		*OpenFileDialog				(char *pFilter, bool pAction, char *pTitle);
+};
+
+#endif // _EDITORMAP_

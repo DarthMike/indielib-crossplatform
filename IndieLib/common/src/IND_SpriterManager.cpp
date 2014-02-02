@@ -134,6 +134,11 @@ bool IND_SpriterManager::remove(IND_SpriterEntity *pEn) {
 	return 0;
 }
 
+/**
+ * Returns 1 (true) if the filename passed as a parameter is loaded
+ * and a Spriter entity is successfully added to the manager
+ * @param pSCMLFileName				Filename of a Spriter SCML file.
+ */
 bool IND_SpriterManager::addSpriterFile(const char *pSCMLFileName){
 	if (parseSpriterData(pSCMLFileName)){
 		return 1;
@@ -458,7 +463,6 @@ void IND_SpriterManager::initVars() {
 /**
  * Free manager variables.
  */
-
 void IND_SpriterManager::freeVars() {
 	// Releases everything in the anim
 /*	list <IND_Animation *>::iterator mAnimationListIter;
@@ -481,11 +485,20 @@ void IND_SpriterManager::freeVars() {
     DISPOSE(_timer);
 }
 
-
+/*
+==================
+Char to int helper method
+==================
+*/
 int IND_SpriterManager::toInt(const char* input) {
         return ( input ) ? atoi(input) : 0;
 }
-    
+
+/*
+==================
+Char to float helper method
+==================
+*/
 float IND_SpriterManager::toFloat(const char* input) {
         return ( input ) ? static_cast<float>(atoi(input)) : 0.f;
 }

@@ -80,6 +80,7 @@ public:
 
 	bool    init(IND_SurfaceManager *pSurfaceManager, IND_Render *pRender);
 	void    end();
+    //! True if object initialized correctly, false otherwise
 	bool    isOK() {
 		return _ok;
 	}
@@ -88,7 +89,8 @@ public:
     
 	bool addSpriterFile(const char *pSCMLFileName);
 	bool remove(IND_SpriterEntity *pSen);
-    
+
+    //! Get the list of managed entities
     vector <IND_SpriterEntity *>* getEntities() {
         return _listSpriterEntity;
     }
@@ -140,7 +142,7 @@ private:
     // ----- parser methods -----
 	bool        parseSpriterData(const char *pSCMLFileName);
     int         toInt(const char* input);
-    float      toFloat(const char* input);
+    float       toFloat(const char* input);
 	
     void        writeMessage();
 	void        initVars();

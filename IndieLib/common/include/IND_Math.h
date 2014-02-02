@@ -752,8 +752,8 @@ public:
      [        ][       ]  = target
      [        ][       ]
      
-     @param m1 First matrix (left side)
-     @param m2 Second matrix (right side)
+     @param target First matrix (left side)
+     @param next Second matrix (right side)
      
      @see matrix4DMultiply
      */

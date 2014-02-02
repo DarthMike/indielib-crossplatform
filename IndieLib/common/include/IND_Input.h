@@ -193,8 +193,13 @@ public:
         
     }
     
+	//! ID of the touch
     int64_t identifier;
+
+	//! Position of the touch
     IND_NormalizedPoint position;
+
+	//! State of the touch
     IND_TouchState state;
 } IND_Touch;
 

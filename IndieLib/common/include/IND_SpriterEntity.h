@@ -105,18 +105,18 @@ public:
 
 	// ----- Public gets ------
 
-	
+	//! Get the ID of the entity
     const char* getId() {
         return _id;
     }
-	
+	//! Get the name of the entity
     const char* getName() {
         return _name;
     }
-    
-     std::vector <Animation *>* getAnimations() {
+    //! Get the list of animations that the entity exhebits
+    std::vector <Animation *>* getAnimations() {
          return _animations;
-     }
+    }
 	
 
 private:

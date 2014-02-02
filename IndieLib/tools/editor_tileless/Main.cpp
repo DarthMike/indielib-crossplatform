@@ -49,9 +49,12 @@ Indielib_Main
 
 	// Resource loading
 	Resources mResources;
+	/*
+	FIXME: This is not cross-platform at all. Use the WorkingPath utility we have in tests and tutorials.
 	char mPath [MAX_PATH];
 	GetCurrentDirectory (MAX_PATH, mPath);					// Get the path to the current directory
 	strcat (mPath, "../../resources/tileset_01.xml");		// Add the name of the tileset to the path
+	*/
 	if (!mResources.LoadResources (mPath)) exit (0);
 
 	// Map initialization
@@ -145,12 +148,10 @@ Indielib_Main
 		// --- End Scene ---
 
 		mI->_render->endScene ();
-
-		//mI->_render->ShowFpsInWindowTitle();
 	}
 
 	// ----- Free memory (we don't use destructors becase IndieLib pointers would be pointing to null -----
-
+	// FIXME: This is a hack. Proper memory management please.
 	mListener.Free ();
 	mResources.Free ();
 	mMap.Free ();

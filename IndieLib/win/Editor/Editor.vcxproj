@@ -110,6 +110,7 @@
     <ClCompile Include="..\..\common\dependencies\tinyxml\tinyxmlparser.cpp" />
     <ClCompile Include="..\..\tools\editor_tileless\Node.cpp" />
     <ClCompile Include="..\..\tools\editor_tileless\Resources.cpp" />
+    <ClCompile Include="..\..\tools\editor_tileless\WorkingPath.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\tools\editor_tileless\CIndieLib.h" />
@@ -120,6 +121,7 @@
     <ClInclude Include="..\..\tools\editor_tileless\Listener.h" />
     <ClInclude Include="..\..\tools\editor_tileless\Node.h" />
     <ClInclude Include="..\..\tools\editor_tileless\Resources.h" />
+    <ClInclude Include="..\..\tools\editor_tileless\WorkingPath.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IndieLib.vcxproj">

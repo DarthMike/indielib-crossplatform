@@ -48,6 +48,9 @@
     <ClCompile Include="..\..\tools\editor_tileless\Resources.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\tools\editor_tileless\WorkingPath.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\tools\editor_tileless\CIndieLib.h">
@@ -72,6 +75,9 @@
       <Filter>Classes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\tools\editor_tileless\Resources.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\tools\editor_tileless\WorkingPath.h">
       <Filter>Classes</Filter>
     </ClInclude>
   </ItemGroup>

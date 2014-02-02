@@ -63,8 +63,8 @@ void copyVertices(CUSTOMVERTEX2D* pSrc, CUSTOMVERTEX2D* pDest, int count);
 // --------------------------------------------------------------------------------
 
 void OpenGLES2Render::blitSurface(IND_Surface *pSu) {
-    _tex2dState.wrapS = GL_CLAMP_TO_EDGE;
-    _tex2dState.wrapS = GL_CLAMP_TO_EDGE;
+    _tex2dState._wrapS = GL_CLAMP_TO_EDGE;
+    _tex2dState._wrapS = GL_CLAMP_TO_EDGE;
     
     for (int i = 0; i < pSu->getNumBlocks(); i++) {
         
@@ -100,8 +100,8 @@ bool OpenGLES2Render::blitWrapSurface(IND_Surface *pSu,
         return false;
     }
     
-    _tex2dState.wrapS = GL_REPEAT;
-    _tex2dState.wrapT = GL_REPEAT;
+    _tex2dState._wrapS = GL_REPEAT;
+    _tex2dState._wrapT = GL_REPEAT;
     for (int i = 0; i < pSu->getNumBlocks(); i++) {
         
         if (!surfaceBlockIsVisible(pSu, i, _math, _frustrumPlanes, _modelToWorld)) {
@@ -170,8 +170,8 @@ void OpenGLES2Render::blitRegionSurface(IND_Surface *pSu,
 		}
         
         
-        _tex2dState.wrapT = GL_CLAMP_TO_EDGE;
-        _tex2dState.wrapS = GL_CLAMP_TO_EDGE;
+        _tex2dState._wrapT = GL_CLAMP_TO_EDGE;
+        _tex2dState._wrapS = GL_CLAMP_TO_EDGE;
         
         //Discard bounding rectangle using frustum culling if possible
         if (!surfaceBlockIsVisible(pSu, 0, _math, _frustrumPlanes, _modelToWorld)) {

@@ -792,7 +792,7 @@ typedef int IND_BlendingType;
 #define IND_INVDESTCOLOR                    509
 //! Blend factor (f, f, f, 1); f = min(A, 1 - Ad).
 #define IND_SRCALPHASAT                     510
-//! Obsoleto.
+//! Not used.
 #define IND_BOTHSRCALPHA                    511
 //! Blend factor (1 - As, 1 - As, 1 - As, 1 - As), y el destino (As, As, As, As);
 #define IND_BOTHINVSRCALPHA                 512

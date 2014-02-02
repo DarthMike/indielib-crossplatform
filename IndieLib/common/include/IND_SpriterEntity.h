@@ -77,6 +77,17 @@ struct Fileref {
 //									IND_SpriterEntity
 // --------------------------------------------------------------------------------
 
+/**
+@defgroup IND_SpriterEntity IND_SpriterEntity
+@ingroup Objects
+IND_SpriterEntity class managed by IND_SpriterManager for displaying Spriter animations into the screen. Click in IND_SpriterEntity to see all the methods of this class.
+*/
+/**@{*/
+
+/**
+@b IND_SpriterEntity is an Spriter Entity object from the class ::IND_SpriterManager. Read the explanation in ::IND_SpriterManager for more details.
+*/
+
 class LIB_EXP IND_SpriterEntity : public IND_Object {
 public:
 
@@ -94,22 +105,22 @@ public:
 
 	// ----- Public gets ------
 
-	
+	//! Get the ID of the entity
     const char* getId() {
         return _id;
     }
-	
+	//! Get the name of the entity
     const char* getName() {
         return _name;
     }
-    
-     std::vector <Animation *>* getAnimations() {
+    //! Get the list of animations that the entity exhebits
+    std::vector <Animation *>* getAnimations() {
          return _animations;
-     }
+    }
 	
 
 private:
-	
+	/** @cond DOCUMENT_PRIVATEAPI */
     IND_SpriterEntity();
 	virtual ~IND_SpriterEntity();
 
@@ -152,7 +163,8 @@ private:
 
 	
     friend class IND_SpriterManager;
-
+	/** @endcond */
 };
+/**@}*/
 
 #endif // _IND_SPRITERENTITY_

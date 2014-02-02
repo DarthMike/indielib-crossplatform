@@ -320,6 +320,10 @@ public:
 		_11 = _12 = _13 = _14 = _21 = _22 = _23 = _24 = _31 = _32 = _33 = _34 = _41 = _42 = _43 = _44 = 0;
 	}
     
+	/**
+     @brief Copy constructor
+	 @param other Other matrix to xopy values from
+     */
     IND_Matrix(const IND_Matrix& other) {
         _11 = other._11;
         _21 = other._21;
@@ -354,6 +358,9 @@ public:
 		readFromArray(matrixArray);
 	}
     
+	 /**
+     @brief The identity matrix
+     */
     static IND_Matrix identity() {
         IND_Matrix m = IND_Matrix();
         m._11 = 1.f;
@@ -1261,7 +1268,7 @@ typedef struct structBoundingCollision BOUNDING_COLLISION;
 /**@}*/
 
 /**
- * @defgroup Culling
+ * @defgroup Culling Culling
  * @ingroup Types
  */
 /**@{*/

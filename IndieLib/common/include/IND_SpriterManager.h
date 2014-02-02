@@ -57,6 +57,17 @@ class IND_Timer;
 //									IND_SpriterManager
 // --------------------------------------------------------------------------------
 
+/**
+@defgroup IND_SpriterManager IND_SpriterManager
+@ingroup Managers
+Manager of IND_SpriterEntity objects. Click in ::IND_SpriterManager to see all the methods of this class.
+*/
+/**@{*/
+
+/**
+TODO: Describtion.
+*/
+
 class LIB_EXP IND_SpriterManager {
 public:
 
@@ -69,6 +80,7 @@ public:
 
 	bool    init(IND_SurfaceManager *pSurfaceManager, IND_Render *pRender);
 	void    end();
+    //! True if object initialized correctly, false otherwise
 	bool    isOK() {
 		return _ok;
 	}
@@ -77,7 +89,8 @@ public:
     
 	bool addSpriterFile(const char *pSCMLFileName);
 	bool remove(IND_SpriterEntity *pSen);
-    
+
+    //! Get the list of managed entities
     vector <IND_SpriterEntity *>* getEntities() {
         return _listSpriterEntity;
     }
@@ -88,7 +101,7 @@ public:
 private:
 
 	// ----- Private -----
-
+	/** @cond DOCUMENT_PRIVATEAPI */
 	bool _ok;
     double _deltaTime;
     double _lastTime;
@@ -129,11 +142,13 @@ private:
     // ----- parser methods -----
 	bool        parseSpriterData(const char *pSCMLFileName);
     int         toInt(const char* input);
-    float      toFloat(const char* input);
+    float       toFloat(const char* input);
 	
     void        writeMessage();
 	void        initVars();
 	void        freeVars();
+	/** @endcond */
 };
+/**@}*/
 
 #endif // _IND_SPRITERMANAGER_

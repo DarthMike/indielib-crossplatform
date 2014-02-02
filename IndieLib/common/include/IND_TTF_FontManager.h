@@ -44,6 +44,18 @@ class free_type_ptr_wrapped_impl;  // forward-declare private "implementation" c
 
 // NOTE that this class uses STL, the performance will be a lot better in Release version
 
+/**
+@defgroup IND_TTF_FontManager IND_TTF_FontManager
+@ingroup Managers
+Manager of IND_TTF_Font objects. Click in ::IND_TTF_FontManager to see all the methods of this class.
+*/
+/**@{*/
+
+/**
+TODO: Describtion.
+*/
+
+
 class LIB_EXP IND_TTF_FontManager {
 
 public:
@@ -91,6 +103,9 @@ public:
 	void setFontScale(const std::string& strFontName, float sx, float sy);
 
 private:
+	
+	// ----- Private -----
+	/** @cond DOCUMENT_PRIVATEAPI */
 	typedef std::map<const std::string, IND_TTF_Font*> IND_TTF_FontList;
 	typedef IND_TTF_FontList::iterator IND_TTF_FontListIterator;
 
@@ -149,6 +164,9 @@ private:
 					byte btBorderTrans = 255, byte btBackTrans = 255, bool bFlipX = false, 
 					bool bFlipY = false, float fZRotate = 0, byte btTrans = 255, bool bKerning = false, 
 					bool bUnderl = false);
+	/** @endcond */
 
 };
-#endif
+/**@}*/
+
+#endif // IND_TTF_FONTMANAGER_H

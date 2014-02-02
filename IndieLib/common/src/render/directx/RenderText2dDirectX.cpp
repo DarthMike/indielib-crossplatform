@@ -142,16 +142,16 @@ void DirectXRender::blitText(IND_Font *pFo,
 				mCont2--;
 				if (!mErrorChar) {
 					blitRegionSurface(pFo->getSurface(),
-									  pFo->getLetters() [mCont2]._offsetX + 1,
-									  pFo->getLetters() [mCont2]._offsetY + 1,
-									  pFo->getLetters() [mCont2]._widthChar - 1,
-									  pFo->getLetters() [mCont2]._heightChar - 1);
+									  pFo->getLetters() [mCont2]._x + 1,
+									  pFo->getLetters() [mCont2]._y + 1,
+									  pFo->getLetters() [mCont2]._width - 1,
+									  pFo->getLetters() [mCont2]._height - 1);
 				}
 
 
 				// Displacement of the character
 				//SetTranslation ((pFo->getLetters() [mCont2]._widthChar) + pOffset, 0, &mMatWorld, &mMatTraslation);
-				SetTranslation(static_cast<int>(((pFo->getLetters() [mCont2]._widthChar) + pOffset) * pScaleX), 0, &mMatWorld, &mMatTraslation);
+				SetTranslation(static_cast<int>(((pFo->getLetters() [mCont2]._width) + pOffset) * pScaleX), 0, &mMatWorld, &mMatTraslation);
 			}
 
 			// Advance one character
@@ -190,7 +190,7 @@ int DirectXRender::getLongInPixels(IND_Font *pFo, char *pText, int pPos, int pOf
 			mErrorChar = 1;
 
 		if (!mErrorChar)
-			mWidthSentence += pFo->getLetters() [mCont2 - 1]._widthChar + pOffset;
+			mWidthSentence += pFo->getLetters() [mCont2 - 1]._width + pOffset;
 
 		mChar1 = pText [mCont1++];
 	}

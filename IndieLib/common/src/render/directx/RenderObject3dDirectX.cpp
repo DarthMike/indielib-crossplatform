@@ -39,6 +39,7 @@ Suite 330, Boston, MA 02111-1307 USA
 // --------------------------------------------------------------------------------
 
 void DirectXRender::blit3dMesh(IND_3dMesh *p3dMesh) {
+	/*
 	D3DXMATRIX mMatrix;
 	_info._device->GetTransform(D3DTS_WORLD, &mMatrix);
 
@@ -46,9 +47,11 @@ void DirectXRender::blit3dMesh(IND_3dMesh *p3dMesh) {
 
 	if (p3dMesh->_3dMesh._frameRoot)
 		DrawFrame(p3dMesh->_3dMesh._frameRoot);
+	*/
 }
 
 void DirectXRender::set3dMeshSequence(IND_3dMesh *p3dMesh, unsigned int pIndex) {
+	/*
 	if (pIndex == p3dMesh->_3dMesh._currentAnimationSet)
 		return;
 
@@ -95,6 +98,7 @@ void DirectXRender::set3dMeshSequence(IND_3dMesh *p3dMesh, unsigned int pIndex) 
 
 	// Remember current track
 	p3dMesh->_3dMesh._currentTrack = newTrack;
+	*/
 }
 
 // --------------------------------------------------------------------------------
@@ -109,6 +113,7 @@ frame - frame to render
 ==================
 */
 void DirectXRender::DrawFrame(LPD3DXFRAME pFrame) {
+	/*
 	// Draw all mesh containers in this frame
 	LPD3DXMESHCONTAINER meshContainer = pFrame->pMeshContainer;
 	while (meshContainer) {
@@ -123,6 +128,7 @@ void DirectXRender::DrawFrame(LPD3DXFRAME pFrame) {
 	// Recurse for children
 	if (pFrame->pFrameFirstChild != NULL)
 		DrawFrame(pFrame->pFrameFirstChild);
+		*/
 }
 
 
@@ -135,6 +141,7 @@ frameBase - frame containing the mesh
 ==================
 */
 void DirectXRender::DrawMeshContainer(LPD3DXMESHCONTAINER meshContainerBase, LPD3DXFRAME frameBase) {
+	/*
 	// Cast to our extended frame type
 	D3DXFRAME_EXTENDED *frame = (D3DXFRAME_EXTENDED *)frameBase;
 
@@ -156,6 +163,7 @@ void DirectXRender::DrawMeshContainer(LPD3DXMESHCONTAINER meshContainerBase, LPD
 		// Finally Call the mesh draw function
 		pDrawMesh->DrawSubset(iMaterial);
 	}
+	*/
 }
 
 
@@ -167,6 +175,7 @@ matWorld - current world matrix for the model
 ==================
 */
 void DirectXRender::FrameMove(IND_3dMesh *p3dMesh, float elapsedTime, const D3DXMATRIX *matWorld) {
+	/*
 	// Adjust animation speed
 	elapsedTime /= p3dMesh->_3dMesh._speedAdjust;
 
@@ -213,6 +222,7 @@ void DirectXRender::FrameMove(IND_3dMesh *p3dMesh, float elapsedTime, const D3DX
 		pMesh->_exSkinMesh->UnlockVertexBuffer();
 		pMesh->MeshData.pMesh->UnlockVertexBuffer();
 	}
+	*/
 }
 
 
@@ -224,6 +234,8 @@ parentMatrix - the matrix of our parent (if we have one)
 ==================
 */
 void DirectXRender::UpdateFrameMatrices(const D3DXFRAME *frameBase, const D3DXMATRIX *parentMatrix) {
+	
+	/*
 	D3DXFRAME_EXTENDED *currentFrame = (D3DXFRAME_EXTENDED *)frameBase;
 
 	// If parent matrix exists multiply our frame matrix by it
@@ -239,6 +251,7 @@ void DirectXRender::UpdateFrameMatrices(const D3DXFRAME *frameBase, const D3DXMA
 	// If we have a child recurse
 	if (currentFrame->pFrameFirstChild != NULL)
 		UpdateFrameMatrices(currentFrame->pFrameFirstChild, &currentFrame->_exCombinedTransformationMatrix);
+	*/
 }
 
 /** @endcond */

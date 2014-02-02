@@ -37,11 +37,6 @@
 #include "IndiePlatforms.h"
 #include "IND_Vector3.h"
 
-#ifdef INDIERENDER_DIRECTX
-#include <d3d9.h>
-#include <d3dx9.h>
-#endif
-
 // --------------------------------------------------------------------------------
 //									   IND_Camera
 // --------------------------------------------------------------------------------

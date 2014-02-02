@@ -25,19 +25,19 @@
 
 #include "IND_Shaders.h"
 
-const char* IND_UniformColorNoTextureProgram = "IND_UniformColorNoTextureProgram";
-const char* IND_PerVertexColorNoTextureProgram = "IND_PerVertexColorNoTextureProgram";
-const char* IND_Simple2DTextureShader = "IND_Simple2DTextureShader";
+const char* IND_Program_UniformRGBAColor = "IND_Program_UniformRGBAColor";
+const char* IND_Program_PerVertexRGBAColor = "IND_Program_PerVertexRGBAColor";
+const char* IND_Program_Simple2DTexture = "IND_Program_Simple2DTexture";
 
 const char* IND_Uniform_MVMatrix = "uMVmatrix";
 const char* IND_Uniform_PMatrix = "uPMatrix";
-const char* IND_Uniform_Color = "uColor";
+const char* IND_Uniform_RGBAColor = "uColor";
 const char* IND_Uniform_SpriteTexture = "uTexture";
 const char* IND_VertexAttribute_Position = "aPosition";
 const char* IND_VertexAttribute_RGBAColor = "aRGBAColor";
 const char* IND_VertexAttribute_TexCoord = "aTexCoord";
 
-const char* IND_VertexShader_UniformColor =
+const char* IND_VertexShader_UniformRGBAColor =
 "                                                   \n\
 #version 100                                        \n\
 attribute vec3 aPosition;							\n\
@@ -74,7 +74,7 @@ void main()								\n\
 }										\n\
 ";
 
-const char* IND_VertexShader_PerVertexColor =
+const char* IND_VertexShader_PerVertexRGBAColor =
 "                                                   \n\
 #version 100                                        \n\
 attribute vec3 aPosition;                           \n\

@@ -66,14 +66,14 @@ void OpenGLES2Render::perspectiveOrtho(float pWidth, float pHeight, float pNearC
 }
 
 IND_ShaderProgram* OpenGLES2Render::prepareUniformColorProgram (unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA) {
-    IND_ShaderProgram* program =  _shaderManager->getProgram(IND_UniformColorNoTextureProgram);
+    IND_ShaderProgram* program =  _shaderManager->getProgram(IND_Program_UniformRGBAColor);
     program->use();
 
     float matrixArray [16];
     float r(static_cast<float>(pR) / 255.0f), g(static_cast<float>(pG) / 255.0f), b(static_cast<float>(pB) / 255.0f), a(static_cast<float>(pA) / 255.0f);
     float colors [4] = {r,g,b,a};
     
-    program->setSingleUniformValue(colors, IND_Uniform_Color);
+    program->setSingleUniformValue(colors, IND_Uniform_RGBAColor);
     _shaderModelViewMatrix.arrayRepresentation(matrixArray);
     program->setSingleUniformValue(matrixArray, IND_Uniform_MVMatrix);
     _shaderProjectionMatrix.arrayRepresentation(matrixArray);
@@ -83,7 +83,7 @@ IND_ShaderProgram* OpenGLES2Render::prepareUniformColorProgram (unsigned char pR
 }
 
 IND_ShaderProgram* OpenGLES2Render::preparePervertexColorProgram() {
-    IND_ShaderProgram* program =  _shaderManager->getProgram(IND_PerVertexColorNoTextureProgram);
+    IND_ShaderProgram* program =  _shaderManager->getProgram(IND_Program_PerVertexRGBAColor);
     program->use();
     
     float matrixArray [16];
@@ -96,7 +96,7 @@ IND_ShaderProgram* OpenGLES2Render::preparePervertexColorProgram() {
 }
 
 IND_ShaderProgram* OpenGLES2Render::prepareSimple2DTexturingProgram() {
-    IND_ShaderProgram* program =  _shaderManager->getProgram(IND_Simple2DTextureShader);
+    IND_ShaderProgram* program =  _shaderManager->getProgram(IND_Program_Simple2DTexture);
     program->use();
     
     float matrixArray [16];

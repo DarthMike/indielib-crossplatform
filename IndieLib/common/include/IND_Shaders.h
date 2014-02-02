@@ -29,7 +29,7 @@
 /// Standard uniforms used throughout many programs
 extern const char* IND_Uniform_MVMatrix;
 extern const char* IND_Uniform_PMatrix;
-extern const char* IND_Uniform_Color;
+extern const char* IND_Uniform_RGBAColor;
 extern const char* IND_Uniform_SpriteTexture;
 
 /// Standard vertex attribute names used in many programs
@@ -38,16 +38,16 @@ extern const char* IND_VertexAttribute_RGBAColor;
 extern const char* IND_VertexAttribute_TexCoord;
 
 /// Sources for shaders, embedded in a string in code for faster loading
-extern const char* IND_VertexShader_UniformColor;
+extern const char* IND_VertexShader_UniformRGBAColor;
 extern const char* IND_FragmentShader_Color;
-extern const char* IND_VertexShader_PerVertexColor;
+extern const char* IND_VertexShader_PerVertexRGBAColor;
 extern const char* IND_VertexShader_Simple2DTexture;
 extern const char* IND_FragmentShader_Simple2DTexture_RGBA;
 extern const char* IND_FragmentShader_Simple2DTexture_BGRA;
 
 /// Default engine existing shader programs. Compiled and linked, added to internal manager.
-extern const char* IND_UniformColorNoTextureProgram;
-extern const char* IND_PerVertexColorNoTextureProgram;
-extern const char* IND_Simple2DTextureShader;
+extern const char* IND_Program_UniformRGBAColor;
+extern const char* IND_Program_PerVertexRGBAColor;
+extern const char* IND_Program_Simple2DTexture;
 
 #endif

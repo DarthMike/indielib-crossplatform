@@ -291,19 +291,19 @@ void OpenGLES2Render::initializeBuffers() {
 bool OpenGLES2Render::initializeDefaultPrograms() {
     bool success = _shaderManager->init();
     IND_ShaderProgram* uniformColorNoTexture = IND_ShaderProgram::newShaderProgram();
-    success &= uniformColorNoTexture->compile(IND_VertexShader_UniformColor, IND_FragmentShader_Color);
+    success &= uniformColorNoTexture->compile(IND_VertexShader_UniformRGBAColor, IND_FragmentShader_Color);
     success &= uniformColorNoTexture->link();
-    success &= _shaderManager->add(uniformColorNoTexture, IND_UniformColorNoTextureProgram);
+    success &= _shaderManager->add(uniformColorNoTexture, IND_Program_UniformRGBAColor);
     
     IND_ShaderProgram* pervertexColorNoTexture = IND_ShaderProgram::newShaderProgram();
-    success &= pervertexColorNoTexture->compile(IND_VertexShader_PerVertexColor, IND_FragmentShader_Color);
+    success &= pervertexColorNoTexture->compile(IND_VertexShader_PerVertexRGBAColor, IND_FragmentShader_Color);
     success &= pervertexColorNoTexture->link();
-    success &= _shaderManager->add(pervertexColorNoTexture, IND_PerVertexColorNoTextureProgram);
+    success &= _shaderManager->add(pervertexColorNoTexture, IND_Program_PerVertexRGBAColor);
     
     IND_ShaderProgram* simple2dTexture = IND_ShaderProgram::newShaderProgram();
     success &= simple2dTexture->compile(IND_VertexShader_Simple2DTexture, IND_FragmentShader_Simple2DTexture_BGRA);
     success &= simple2dTexture->link();
-    success &= _shaderManager->add(simple2dTexture, IND_Simple2DTextureShader);
+    success &= _shaderManager->add(simple2dTexture, IND_Program_Simple2DTexture);
 
     return success;
 }

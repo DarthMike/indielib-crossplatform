@@ -64,5 +64,4 @@ public:
     int matrixSize();
 };
 
-//+(GLK2Uniform*) uniformNamed:(NSString*) nameOfUniform GLType:(GLenum) openGLType GLLocation:(GLint) openGLLocation numElementsInArray:(GLint) numElements
 #endif //__IND_GLSHADERUNIFORM_H_

@@ -311,8 +311,10 @@ void OpenGLES2Render::setRainbow2d(IND_Type pType,
 	}
     
 	//Setup neutral 'blend' for texture stage
-	float blendR, blendG, blendB, blendA;
-	blendR = blendG = blendB = blendA = 1.0f;
+    _renderState._blendR = 0.f;
+    _renderState._blendG = 0.f;
+    _renderState._blendB = 0.f;
+    _renderState._blendA = 1.f;
     
 	// ----- Filters -----
     // In GL, texture filtering is applied to the bound texture. From this method we don't know which is the
@@ -342,22 +344,23 @@ void OpenGLES2Render::setRainbow2d(IND_Type pType,
         case IND_OPAQUE: {
             // Tinting
             if (pR != 255 || pG != 255 || pB != 255) {
-				blendR = static_cast<float>(pR) / 255.0f;
-				blendG = static_cast<float>(pG) / 255.0f;
-				blendB = static_cast<float>(pB) / 255.0f;
+				_renderState._blendR = static_cast<float>(pR) / 255.0f;
+				_renderState._blendG = static_cast<float>(pG) / 255.0f;
+				_renderState._blendB = static_cast<float>(pB) / 255.0f;
             }
             
             // Alpha
             if (pA != 255) {
-				blendA = static_cast<float>(pA) / 255.0f;
+                _renderState._blendA = static_cast<float>(pA) / 255.0f;
             }
             
             // Fade to color
             if (pFadeA != 255) {
-				blendA = static_cast<float>(pFadeA) / 255.0f;
-                blendR = static_cast<float>(pFadeR) / 255.0f;
-                blendG = static_cast<float>(pFadeG) / 255.0f;
-                blendB = static_cast<float>(pFadeB) / 255.0f;
+                // TODO
+//				blendA = static_cast<float>(pFadeA) / 255.0f;
+//                blendR = static_cast<float>(pFadeR) / 255.0f;
+//                blendG = static_cast<float>(pFadeG) / 255.0f;
+//                blendB = static_cast<float>(pFadeB) / 255.0f;
             }
             
             if (pSo && pDs) {
@@ -376,22 +379,22 @@ void OpenGLES2Render::setRainbow2d(IND_Type pType,
         case IND_ALPHA: {
             // Tinting
             if (pR != 255 || pG != 255 || pB != 255) {
-				blendR = static_cast<float>(pR) / 255.0f;
-				blendG = static_cast<float>(pG) / 255.0f;
-				blendB = static_cast<float>(pB) / 255.0f;
+				_renderState._blendR = static_cast<float>(pR) / 255.0f;
+				_renderState._blendG = static_cast<float>(pG) / 255.0f;
+				_renderState._blendB = static_cast<float>(pB) / 255.0f;
             }
             
             // Alpha
             if (pA != 255) {
-				blendA = static_cast<float>(pA) / 255.0f;
+				_renderState._blendA = static_cast<float>(pA) / 255.0f;
             }
             
             // Fade to color
             if (pFadeA != 255) {
-                blendA = static_cast<float>(pFadeA) / 255.0f;
-                blendR = static_cast<float>(pFadeR) / 255.0f;
-                blendG = static_cast<float>(pFadeG) / 255.0f;
-                blendB = static_cast<float>(pFadeB) / 255.0f;
+                //				blendA = static_cast<float>(pFadeA) / 255.0f;
+                //                blendR = static_cast<float>(pFadeR) / 255.0f;
+                //                blendG = static_cast<float>(pFadeG) / 255.0f;
+                //                blendB = static_cast<float>(pFadeB) / 255.0f;
             }
             
             _renderState._alphaBlendEnabled = true;

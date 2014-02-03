@@ -305,6 +305,11 @@ bool OpenGLES2Render::initializeDefaultPrograms() {
     success &= simple2dTexture->link();
     success &= _shaderManager->add(simple2dTexture, IND_Program_Simple2DTexture);
 
+    IND_ShaderProgram* texture2dWithTinting = IND_ShaderProgram::newShaderProgram();
+    success &= texture2dWithTinting->compile(IND_VertexShader_Simple2DTexture, IND_FragmentShader_2DTexture_RGBAColor);
+    success &= texture2dWithTinting->link();
+    success &= _shaderManager->add(texture2dWithTinting, IND_Program_2DTexture_RGBATinting);
+    
     return success;
 }
 

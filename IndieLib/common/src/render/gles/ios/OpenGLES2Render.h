@@ -144,10 +144,14 @@ struct RenderState {
     _alphaBlendEnabled(false),
     _srcBlendFactor(GL_ONE),
     _dstBlendFactor(GL_ZERO),
-    _blendR(1.f),
-    _blendG(1.f),
-    _blendB(1.f),
-    _blendA(1.f)
+    _blendR(0.f),
+    _blendG(0.f),
+    _blendB(0.f),
+    _blendA(0.f),
+    _replaceR(0.f),
+    _replaceG(0.f),
+    _replaceB(0.f),
+    _replaceA(0.f)
     {}
     
     bool _cullingEnabled;
@@ -161,6 +165,11 @@ struct RenderState {
     GLfloat _blendG;
     GLfloat _blendB;
     GLfloat _blendA;
+    
+    GLfloat _replaceR;
+    GLfloat _replaceG;
+    GLfloat _replaceB;
+    GLfloat _replaceA;
 };
 
 /** @cond DOCUMENT_PRIVATEAPI */

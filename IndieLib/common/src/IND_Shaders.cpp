@@ -28,6 +28,7 @@
 const char* IND_Program_UniformRGBAColor = "IND_Program_UniformRGBAColor";
 const char* IND_Program_PerVertexRGBAColor = "IND_Program_PerVertexRGBAColor";
 const char* IND_Program_Simple2DTexture = "IND_Program_Simple2DTexture";
+const char* IND_Program_2DTexture_RGBATinting = "IND_Program_2DTexture_RGBATinting";
 
 const char* IND_Uniform_MVMatrix = "uMVmatrix";
 const char* IND_Uniform_PMatrix = "uPMatrix";
@@ -143,7 +144,24 @@ uniform sampler2D uTexture;                         \n\
 \n\
 void main()											\n\
 {                                                   \n\
-gl_FragColor = rtexture2D(uTexture,varTexCoord);    \n\
+gl_FragColor = texture2D(uTexture,varTexCoord);    \n\
+}													\n\
+";
+
+const char* IND_FragmentShader_2DTexture_RGBAColor =
+"                                                   \n\
+#version 100                                        \n\
+#ifdef GL_ES                                        \n\
+precision lowp float;                               \n\
+#endif                                              \n\
+varying vec2 varTexCoord;                           \n\
+uniform sampler2D uTexture;                         \n\
+uniform vec4 uColor;                             \n\
+\n\
+void main()											\n\
+{                                                   \n\
+    vec4 texColor = texture2D(uTexture,varTexCoord); \n\
+    gl_FragColor = texColor.bgra + (uColor * texColor.a);    \n\
 }													\n\
 ";
 

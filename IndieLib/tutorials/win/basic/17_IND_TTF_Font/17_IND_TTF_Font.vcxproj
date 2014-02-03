@@ -118,9 +118,11 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\basic\17_IND_TTF_Font\CIndieLib.cpp" />
     <ClCompile Include="..\..\..\basic\17_IND_TTF_Font\Tutorial17.cpp" />
+    <ClCompile Include="..\..\..\WorkingPath.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\basic\17_IND_TTF_Font\CIndieLib.h" />
+    <ClInclude Include="..\..\..\WorkingPath.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -119,9 +119,11 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\advanced\05_IND_TmxMap\CIndieLib.cpp" />
     <ClCompile Include="..\..\..\advanced\05_IND_TmxMap\Tutorial05.cpp" />
+    <ClCompile Include="..\..\..\WorkingPath.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\advanced\05_IND_TmxMap\CIndieLib.h" />
+    <ClInclude Include="..\..\..\WorkingPath.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

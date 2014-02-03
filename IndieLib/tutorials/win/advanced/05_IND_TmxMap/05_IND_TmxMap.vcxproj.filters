@@ -13,9 +13,15 @@
     <ClCompile Include="..\..\..\advanced\05_IND_TmxMap\Tutorial05.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\WorkingPath.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\advanced\05_IND_TmxMap\CIndieLib.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\WorkingPath.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

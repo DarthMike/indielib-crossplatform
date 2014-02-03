@@ -13,9 +13,15 @@
     <ClCompile Include="..\..\..\basic\17_IND_TTF_Font\Tutorial17.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\WorkingPath.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\basic\17_IND_TTF_Font\CIndieLib.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\WorkingPath.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

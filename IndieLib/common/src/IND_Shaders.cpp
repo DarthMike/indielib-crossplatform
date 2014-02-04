@@ -156,13 +156,14 @@ precision lowp float;                               \n\
 #endif                                              \n\
 varying vec2 varTexCoord;                           \n\
 uniform sampler2D uTexture;                         \n\
-uniform vec4 uColor;                             \n\
+uniform vec4 uColor;                                \n\
 \n\
-void main()											\n\
-{                                                   \n\
-    vec4 texColor = texture2D(uTexture,varTexCoord); \n\
-    gl_FragColor = texColor.bgra + (uColor * texColor.a);    \n\
-}													\n\
+void main()                                             \n\
+{                                                       \n\
+    vec4 texColor = texture2D(uTexture,varTexCoord);    \n\
+    vec3 color = (uColor.rgb) + (texColor.bgr);         \n\
+    gl_FragColor = vec4(color,texColor.a) * uColor.a;   \n\
+}                                                       \n\
 ";
 
 

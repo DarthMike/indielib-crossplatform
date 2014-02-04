@@ -107,6 +107,7 @@ void SurfaceTests::setActive(bool active){
 	    _entities[3]->setPosition (330, 0, 0);					// Set the position of the entity
 	    _entities[3]->setScale	(2, 2);							// Set the scale of the entity
 	    _entities[3]->setTint	(255, 0, 0);					// Set tint to color R
+        _entities[3]->setTransparency(200);                     // Add a transparency   
 	    _entities[3]->setAngleXYZ	(0, 0, 45);						// Rotation in Z angle = 45º
 
 	    // A bigger star than the original, faded to green. We only draw a region of 50x50 pixels

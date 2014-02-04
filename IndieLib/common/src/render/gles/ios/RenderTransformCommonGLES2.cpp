@@ -95,8 +95,8 @@ IND_ShaderProgram* OpenGLES2Render::preparePervertexColorProgram() {
     return program;
 }
 
-IND_ShaderProgram* OpenGLES2Render::prepareSimple2DTexturingProgram() {
-    IND_ShaderProgram* program =  _shaderManager->getProgram(IND_Program_Simple2DTexture);
+IND_ShaderProgram* OpenGLES2Render::prepare2DTexturingAndTintingProgram() {
+    IND_ShaderProgram* program = _shaderManager->getProgram(IND_Program_2DTexture_RGBATinting);
     program->use();
     
     float matrixArray [16];
@@ -106,7 +106,12 @@ IND_ShaderProgram* OpenGLES2Render::prepareSimple2DTexturingProgram() {
     program->setSingleUniformValue(matrixArray, IND_Uniform_PMatrix);
     GLint texUnit = 0;
     program->setSingleUniformValue(&texUnit, IND_Uniform_SpriteTexture);
-    
+    GLfloat tintColor [4];
+    tintColor[0] = _renderState._blendR;
+    tintColor[1] = _renderState._blendG;
+    tintColor[2] = _renderState._blendB;
+    tintColor[3] = _renderState._blendA;
+    program->setSingleUniformValue(tintColor, IND_Uniform_RGBAColor);
     return program;
 }
 /** @endcond */

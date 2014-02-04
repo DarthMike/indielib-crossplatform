@@ -1,25 +1,38 @@
 /*****************************************************************************************
- * Desc: No-tile editor tutorial
+ * File: Main.cpp
+ * Desc: Tileless editor tutorial using Indielib
+ *****************************************************************************************/
+
+/*********************************** The zlib License ************************************
  *
- * gametuto.com - Javier López López (javilop.com)
+ * Copyright (c) 2013 Indielib-crossplatform Development Team
  *
- *****************************************************************************************
+ * This software is provided 'as-is', without any express or implied
+ * warranty. In no event will the authors be held liable for any damages
+ * arising from the use of this software.
  *
- * Creative Commons - Attribution 3.0 Unported
- * You are free:
- *	to Share — to copy, distribute and transmit the work
- *	to Remix — to adapt the work
+ * Permission is granted to anyone to use this software for any purpose,
+ * including commercial applications, and to alter it and redistribute it
+ * freely, subject to the following restrictions:
  *
- * Under the following conditions:
- * Attribution. You must attribute the work in the manner specified by the author or licensor 
- * (but not in any way that suggests that they endorse you or your use of the work).
+ * 1. The origin of this software must not be misrepresented; you must not
+ * claim that you wrote the original software. If you use this software
+ * in a product, an acknowledgment in the product documentation would be
+ * appreciated but is not required.
+ *
+ * 2. Altered source versions must be plainly marked as such, and must not be
+ * misrepresented as being the original software.
+ *
+ * 3. This notice may not be removed or altered from any source
+ * distribution.
  *
  *****************************************************************************************/
 
 #include "CIndieLib.h"
 #include "Resources.h"
-#include "Map.h"
+#include "EditorMap.h"
 #include "Listener.h"
+#include "WorkingPath.h"
 
 /*
 ==================
@@ -33,17 +46,23 @@ Indielib_Main
 	CIndieLib *mI = CIndieLib::instance();
 	if (!mI->init ()) return 0;	
 
+	const char* resourcesPath = WorkingPathSetup::resourcesDirectory();
+	if (!WorkingPathSetup::setWorkingPath(resourcesPath)) {
+		std::cout<<"\nUnable to Set the working path !";
+	}
+	
 	// ----- Editor classes initialization -----
-
 	// Resource loading
 	Resources mResources;
+
 	char mPath [MAX_PATH];
-	GetCurrentDirectory (MAX_PATH, mPath);			// Get the path to the current directory
-	strcat (mPath, "../../resources/tileset_01.xml");		// Add the name of the tileset to the path
+	strcpy(mPath, resourcesPath);
+	strcat (mPath, "tileset_01.xml");		// Add the name of the tileset to the path
+	
 	if (!mResources.LoadResources (mPath)) exit (0);
 
 	// Map initialization
-	Map mMap;
+	EditorMap mMap;
 
 	// Listener initialization
 	Listener mListener (&mResources, &mMap);
@@ -133,12 +152,10 @@ Indielib_Main
 		// --- End Scene ---
 
 		mI->_render->endScene ();
-
-		//mI->_render->ShowFpsInWindowTitle();
 	}
 
 	// ----- Free memory (we don't use destructors becase IndieLib pointers would be pointing to null -----
-
+	// FIXME: This is a hack. Proper memory management please.
 	mListener.Free ();
 	mResources.Free ();
 	mMap.Free ();

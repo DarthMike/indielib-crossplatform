@@ -38,6 +38,7 @@
     <Import Project="SDL Props_Debug.props" />
     <Import Project="FreeLibProps_Debug.props" />
     <Import Project="GLEWProps_debug.props" />
+    <Import Project="FreeType_Debug.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -96,7 +97,7 @@
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../Common/;../Common/include/;../Common/src/;$(DXSDK_DIR)Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../Common/;../Common/include/;../Common/src/;../common/dependencies/freetype-2.5.0.1/devel/;../common/dependencies/freetype-2.5.0.1/include/;$(DXSDK_DIR)Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;WIN32;_WINDOWS;INDIELIB_DLLBUILD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -151,6 +152,8 @@
     <ClInclude Include="..\common\include\IND_SpriterManager.h" />
     <ClInclude Include="..\common\include\IND_TmxMap.h" />
     <ClInclude Include="..\common\include\IND_TmxMapManager.h" />
+    <ClInclude Include="..\common\include\IND_TTF_Font.h" />
+    <ClInclude Include="..\common\include\IND_TTF_FontManager.h" />
     <ClInclude Include="..\Common\src\DebugApi.h" />
     <ClInclude Include="..\Common\src\Global.h" />
     <ClInclude Include="..\Common\include\IndieLib.h" />
@@ -219,6 +222,8 @@
     <ClCompile Include="..\common\src\IND_SpriterManager.cpp" />
     <ClCompile Include="..\common\src\IND_TmxMap.cpp" />
     <ClCompile Include="..\common\src\IND_TmxMapManager.cpp" />
+    <ClCompile Include="..\common\src\IND_TTF_Font.cpp" />
+    <ClCompile Include="..\common\src\IND_TTF_FontManager.cpp" />
     <ClCompile Include="..\Common\src\IND_Window.cpp" />
     <ClCompile Include="..\common\src\platform\OSOpenGLManager.cpp" />
     <ClCompile Include="..\common\src\platform\win32\guicon.cpp" />

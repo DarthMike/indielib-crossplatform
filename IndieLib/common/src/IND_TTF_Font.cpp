@@ -39,7 +39,7 @@
 #include FT_FREETYPE_H
 #include FT_OUTLINE_H
 
-
+//! wrap of the TrueType library, so that the Indielib user does not need to include this.
 class free_type_impl {
 public:
     FT_Library				_FTLib;                 // freetype lib
@@ -385,6 +385,10 @@ int IND_TTF_Font::drawTextEx(const std::wstring& sText, float fLeft, float fTop,
 			{
 				pen_Y = fTop  + fAreaHeight - getLineWidth(curline, bFlipX, bFlipY, fZRotate, bKerning);
 			}
+            else{
+                pen_Y = 0.0f; // TODO: this is added to fix "warning C4701: potentially uninitialized local variable 'pen_Y'"
+
+            }
 		}
 		else
 		{

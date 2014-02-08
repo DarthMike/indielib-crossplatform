@@ -13,7 +13,7 @@
 #include FT_FREETYPE_H
 
 
-struct free_type_ptr_wrapped_impl {
+class free_type_ptr_wrapped_impl {
 public:
     FT_Library				_FTLib;                 // freetype lib
     

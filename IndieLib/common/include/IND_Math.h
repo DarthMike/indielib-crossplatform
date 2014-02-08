@@ -64,7 +64,7 @@ Min macro
 #define MIN(a, b)  (((a) < (b)) ? (a) : (b))
 
 /**
-You know what this is..
+You know what this is
 */
 #define PI 3.14159265358979323846f
 

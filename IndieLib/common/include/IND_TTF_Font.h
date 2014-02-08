@@ -66,12 +66,24 @@ class free_type_ptr_wrapped_impl;   // forward-declare the freetype wrapped poin
 //									 IND_TTF_Font
 // --------------------------------------------------------------------------------
 
+/**
+@defgroup IND_TTF_Font IND_TTF_Font
+@ingroup Objects
+TTF Font class managed by IND_TTF_FontManager for drawing texts into the screen, click in IND_TTF_Font to see all the methods of this class.
+*/
+/**@{*/
 
+/**
+@b IND_Font is a True Typr Font object from the class ::IND_TTF_FontManager. Read the explanation in ::IND_TTF_FontManager for having more details.
+*/
 class LIB_EXP IND_TTF_Font {
 
 public:
-	typedef unsigned char byte;     // TODO : should be moved to the defines setup
-	typedef unsigned int uint32_t;  // TODO : should be moved to the defines setup
+    //! Typedef byte - TODO : should be moved to the defines setup
+	typedef unsigned char byte;
+	
+    //! Typedef uint32_t - TODO : should be moved to the defines setup
+    typedef unsigned int uint32_t;
 
 	// ----- Init/End -----
     
@@ -81,64 +93,65 @@ public:
 
     // ----- Public methods -----
         
-	// load a TTF font from disk file
+	//! Load a TTF font from disk file
 	bool loadTTFFontFromDisk(	const std::string& strname, const std::string& strpath,
 								int iSize, bool bBold, bool bItalic);
 
-	// unload the TTF font and free all variables
+	//! Unload the TTF font and free all variables
 	void unloadFont();
 
-	// cache chars
+	//! Cache chars
 	bool buildStringCache(const std::wstring& str);
 
-	// is the character cached?
+	//! Is the character cached?
 	bool isCharCached(wchar_t charCode);
 
-	// clear all the cache entries
+	//! Clear all the cache entries
 	void clearAllCache();
 
-	// draw a tring
+	//! Draw a tring
 	bool drawText(	const std::wstring& s, float x, float y, uint32_t clrFont,bool bFlipX, bool bFlipY,
 					float fZRotate, byte btTrans, bool bKerning, bool bUnderl);
 
-	// advanced draw text function
+	//! Advanced draw text function
 	int drawTextEx(	const std::wstring& sText, float fLeft, float fTop, float fRight, float fBottom,
 					uint32_t nFormat, uint32_t clrFont, uint32_t clrBorder, uint32_t clrBack,byte btBorderTrans, 
 					byte btBackTrans,bool bFlipX, bool bFlipY, float fZRotate, byte btTrans, 
 					bool bKerning, bool bUnderl);
 
-	// get the font name 
+	//! Get the font name 
 	const std::string getFontName(){return _strName;}
 
-	// set auto cache status
+	//! Set auto cache status
 	void setAutoCache(bool bautocache) {_bAutoCache = bautocache;}
 
-	// is auto cache enabled
+	//! Is auto cache enabled
 	bool isAutoCache() {return _bAutoCache;}
 
-	// does font face has kerning
+	//! Does font face has kerning
 	bool isKerningSupportedByFace() {return _bHasKerning;}
 
-	// set x scale when bliting
+	//! Set x scale when bliting
 	void setXScale(float Scale) {_fXScale = Scale;}
 
-	// set y scale when bliting
+	//! Set y scale when bliting
 	void setYScale(float Scale) {_fYScale = Scale;}
 
-	// set x/y scale when bliting
+	//! Set x/y scale when bliting
 	void setScale(float Scale) {_fXScale = _fYScale = Scale;}
 
-	// set x hotspot when bliting
+	//! Set x hotspot when bliting
 	void setXHotspot(float spot) {_fXHotSpot = spot;}
 
-	// set y hotspot when bliting
+	//! Set y hotspot when bliting
 	void setYHotspot(float spot) {_fYHotSpot = spot;}
 
-	// set x/y hotspot when bliting
+	//! Set x/y hotspot when bliting
 	void setHotspot(float spot) {_fXHotSpot = _fYHotSpot = spot;}
 
 private:
-    
+    /** @cond DOCUMENT_PRIVATEAPI */
+
     // ----- Structures ------
     
 	// Struct for every cached character
@@ -165,8 +178,6 @@ private:
    
     free_type_impl          *_impl;                 // free type library wrapper
     
-	//FT_Library				_FTLib;             // freetype lib
-	//FT_Face					_Face;              // THIS font face
 	float					_fFaceAscender;
 
 	IND_Render				*_pIndieRender;
@@ -184,7 +195,6 @@ private:
 	
 	bool					_bBold;                 // bold
 	bool					_bItalic;               // italic
-	//FT_Matrix				_matItalic;             // transformation matrix for italic
 
 	float					_fXScale;               // x scale for bliting
 	float					_fYScale;               // y scale for bliting
@@ -194,7 +204,6 @@ private:
 
 	CharCacheMap			_FontCharCache;         // character cache map
 
-private:
     
     // ----- Private methods -----
     
@@ -228,5 +237,8 @@ private:
 							bool bFlipY, float fZRotate, byte btTrans, bool bKerning, bool bUnderl);
 
 	void doDrawBorder(float fX_s, float fX_e, float fY, uint32_t clr, byte btTrans);
+     /** @endcond */
 };
+/**@}*/
+
 #endif

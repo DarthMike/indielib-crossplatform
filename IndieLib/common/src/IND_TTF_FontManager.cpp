@@ -535,6 +535,8 @@ void IND_TTF_FontManager::removeText(uint32_t uiIndex) {
 //									Private methods
 // --------------------------------------------------------------------------------
 
+/** @cond DOCUMENT_PRIVATEAPI */
+
 void IND_TTF_FontManager::doDrawText(const std::string& strFontName,const std::wstring& s, float x, float y,
 									  uint32_t clrFont,bool bFlipX, bool bFlipY, float fZRotate, byte btTrans, 
 									  bool bKerning, bool bUnderl) {
@@ -557,3 +559,4 @@ int IND_TTF_FontManager::doDrawTextEx(const std::string& strFontName,const std::
 	return 0;
 }
 
+/** @endcond */

@@ -207,7 +207,7 @@ void OpenGLES2Render::blitTexturedQuad(CUSTOMVERTEX2D* pVertexes) {
     //Set texture params as cached
     setGLBoundTextureParams();
     
-    IND_ShaderProgram* program = prepare2DTexturingAndTintingProgram();
+    IND_ShaderProgram* program = prepareDefaultTexturingProgram();
     
     GLint posLoc = program->getPositionForVertexAttribute(IND_VertexAttribute_Position);
     glEnableVertexAttribArray(posLoc);

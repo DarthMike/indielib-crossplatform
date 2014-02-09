@@ -310,11 +310,15 @@ void OpenGLES2Render::setRainbow2d(IND_Type pType,
 		pA = 255;
 	}
     
-	//Setup neutral 'blend' for texture stage
-    _renderState._blendR = 0.f;
-    _renderState._blendG = 0.f;
-    _renderState._blendB = 0.f;
-    _renderState._blendA = 1.f;
+    // Reset 'tint'
+    _renderState._tintColorEnabled = false;
+    _renderState._tintR = 0.f;
+    _renderState._tintG = 0.f;
+    _renderState._tintB = 0.f;
+    _renderState._tintA = 1.f;
+    
+    // Reset 'fade to color'
+    _renderState._fadeToColorEnabled = false;
     
 	// ----- Filters -----
     // In GL, texture filtering is applied to the bound texture. From this method we don't know which is the
@@ -339,82 +343,52 @@ void OpenGLES2Render::setRainbow2d(IND_Type pType,
         _renderState._frontFaceIsCW = false;
     }
     
-	// ----- Blending -----
-	switch (pType) {
-        case IND_OPAQUE: {
-            // Tinting
-            if (pR != 255 || pG != 255 || pB != 255) {
-				_renderState._blendR = static_cast<float>(pR) / 255.0f;
-				_renderState._blendG = static_cast<float>(pG) / 255.0f;
-				_renderState._blendB = static_cast<float>(pB) / 255.0f;
-            }
-            
-            // Alpha
-            if (pA != 255) {
-                _renderState._blendA = static_cast<float>(pA) / 255.0f;
-            }
-            
-            // Fade to color
-            if (pFadeA != 255) {
-                // TODO
-//				blendA = static_cast<float>(pFadeA) / 255.0f;
-//                blendR = static_cast<float>(pFadeR) / 255.0f;
-//                blendG = static_cast<float>(pFadeG) / 255.0f;
-//                blendB = static_cast<float>(pFadeB) / 255.0f;
-            }
-            
-            if (pSo && pDs) {
-                // Explicit blending values
-                _renderState._alphaBlendEnabled = true;
-                _renderState._srcBlendFactor = blendValueFromIndielibValue(pSo);
-                _renderState._dstBlendFactor = blendValueFromIndielibValue(pDs);
-            } else {
-                _renderState._alphaBlendEnabled = true;
-                _renderState._srcBlendFactor = GL_ONE;
-                _renderState._dstBlendFactor = GL_ZERO;
-            }
+	// ----- Blending setup -----
+    if (pSo && pDs) {
+        // Explicit blending values
+        _renderState._alphaBlendEnabled = true;
+        _renderState._srcBlendFactor = blendValueFromIndielibValue(pSo);
+        _renderState._dstBlendFactor = blendValueFromIndielibValue(pDs);
+    } else {
+        // Default blending values. Different in opaque and alpha mode
+        
+        _renderState._alphaBlendEnabled = true;
+        if (pType == IND_OPAQUE) {
+            _renderState._srcBlendFactor = GL_ONE;
+            _renderState._dstBlendFactor = GL_ZERO;
         }
-            break;
-            
-        case IND_ALPHA: {
-            // Tinting
-            if (pR != 255 || pG != 255 || pB != 255) {
-				_renderState._blendR = static_cast<float>(pR) / 255.0f;
-				_renderState._blendG = static_cast<float>(pG) / 255.0f;
-				_renderState._blendB = static_cast<float>(pB) / 255.0f;
-            }
-            
-            // Alpha
-            if (pA != 255) {
-				_renderState._blendA = static_cast<float>(pA) / 255.0f;
-            }
-            
-            // Fade to color
-            if (pFadeA != 255) {
-                //				blendA = static_cast<float>(pFadeA) / 255.0f;
-                //                blendR = static_cast<float>(pFadeR) / 255.0f;
-                //                blendG = static_cast<float>(pFadeG) / 255.0f;
-                //                blendB = static_cast<float>(pFadeB) / 255.0f;
-            }
-            
-            _renderState._alphaBlendEnabled = true;
-            if (!pSo || !pDs) {
-                //Default alpha blending
-                _renderState._srcBlendFactor = GL_SRC_ALPHA;
-                _renderState._dstBlendFactor = GL_ONE_MINUS_SRC_ALPHA;
-            } else {
-                // Explicit blending values
-                _renderState._srcBlendFactor = blendValueFromIndielibValue(pSo);
-                _renderState._dstBlendFactor = blendValueFromIndielibValue(pDs);
-            }
-            
+        
+        if (pType == IND_ALPHA) {
+            _renderState._srcBlendFactor = GL_SRC_ALPHA;
+            _renderState._dstBlendFactor = GL_ONE_MINUS_SRC_ALPHA;
         }
-            break;
-        default: {
-        }
-	}
+    }
     
+    // Tinting
+    if (pR != 255 || pG != 255 || pB != 255) {
+        _renderState._tintColorEnabled = true;
+        _renderState._tintR = static_cast<float>(pR) / 255.0f;
+        _renderState._tintG = static_cast<float>(pG) / 255.0f;
+        _renderState._tintB = static_cast<float>(pB) / 255.0f;
+    }
     
+    // Direct alpha setting
+    if (pA != 255) {
+        _renderState._tintColorEnabled = true;
+        _renderState._fadeA = static_cast<float>(pA) / 255.0f;
+    }
+    
+    // Fade to color. Overrides tinting
+    if (pFadeA != 255) {
+        _renderState._fadeToColorEnabled = true;
+        _renderState._tintColorEnabled = false;
+        _renderState._fadeR = static_cast<float>(pFadeR) / 255.0f;
+        _renderState._fadeG = static_cast<float>(pFadeG) / 255.0f;
+        _renderState._fadeB = static_cast<float>(pFadeB) / 255.0f;
+        _renderState._fadeA = static_cast<float>(pFadeA) / 255.0f;
+    }
+    
+    // Render pipeline states
     if (_renderState._cullingEnabled) {
 		glEnable(GL_CULL_FACE);
         if (_renderState._frontFaceIsCW) {

@@ -28,7 +28,8 @@
 const char* IND_Program_UniformRGBAColor = "IND_Program_UniformRGBAColor";
 const char* IND_Program_PerVertexRGBAColor = "IND_Program_PerVertexRGBAColor";
 const char* IND_Program_Simple2DTexture = "IND_Program_Simple2DTexture";
-const char* IND_Program_2DTexture_RGBATinting = "IND_Program_2DTexture_RGBATinting";
+const char* IND_Program_2DTexture_RGBATint = "IND_Program_2DTexture_RGBATint";
+const char* IND_Program_2DTexture_RGBAFade = "IND_FragmentShader_2DTexture_RGBAFade";
 
 const char* IND_Uniform_MVMatrix = "uMVmatrix";
 const char* IND_Uniform_PMatrix = "uPMatrix";
@@ -148,7 +149,7 @@ gl_FragColor = texture2D(uTexture,varTexCoord);    \n\
 }													\n\
 ";
 
-const char* IND_FragmentShader_2DTexture_RGBAColor =
+const char* IND_FragmentShader_2DTexture_RGBATint =
 "                                                   \n\
 #version 100                                        \n\
 #ifdef GL_ES                                        \n\
@@ -161,11 +162,27 @@ uniform vec4 uColor;                                \n\
 void main()                                             \n\
 {                                                       \n\
     vec4 texColor = texture2D(uTexture,varTexCoord);    \n\
-    vec3 color = (uColor.rgb) + (texColor.bgr);         \n\
-    gl_FragColor = vec4(color,texColor.a) * uColor.a;   \n\
+    vec3 color = (uColor.rgb) * (texColor.bgr);         \n\
+    gl_FragColor = vec4(color,texColor.a * uColor.a)  ;   \n\
 }                                                       \n\
 ";
 
-
+const char* IND_FragmentShader_2DTexture_RGBAFade =
+"                                                   \n\
+#version 100                                        \n\
+#ifdef GL_ES                                        \n\
+precision lowp float;                               \n\
+#endif                                              \n\
+varying vec2 varTexCoord;                           \n\
+uniform sampler2D uTexture;                         \n\
+uniform vec4 uColor;                                \n\
+\n\
+void main()                                             \n\
+{                                                       \n\
+vec4 texColor = texture2D(uTexture,varTexCoord);    \n\
+vec3 color = (uColor.rgb) * (texColor.bgr);         \n\
+gl_FragColor = vec4(color,texColor.a * uColor.a) ;   \n\
+}                                                       \n\
+";
 
 

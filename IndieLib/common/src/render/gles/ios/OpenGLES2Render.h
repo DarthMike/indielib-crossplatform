@@ -144,14 +144,16 @@ struct RenderState {
     _alphaBlendEnabled(false),
     _srcBlendFactor(GL_ONE),
     _dstBlendFactor(GL_ZERO),
-    _blendR(0.f),
-    _blendG(0.f),
-    _blendB(0.f),
-    _blendA(0.f),
-    _replaceR(0.f),
-    _replaceG(0.f),
-    _replaceB(0.f),
-    _replaceA(0.f)
+    _tintColorEnabled(false),
+    _tintR(0.f),
+    _tintG(0.f),
+    _tintB(0.f),
+    _tintA(0.f),
+    _fadeToColorEnabled(false),
+    _fadeR(0.f),
+    _fadeG(0.f),
+    _fadeB(0.f),
+    _fadeA(0.f)
     {}
     
     bool _cullingEnabled;
@@ -161,15 +163,17 @@ struct RenderState {
     GLenum _srcBlendFactor;
     GLenum _dstBlendFactor;
     
-    GLfloat _blendR;
-    GLfloat _blendG;
-    GLfloat _blendB;
-    GLfloat _blendA;
-    
-    GLfloat _replaceR;
-    GLfloat _replaceG;
-    GLfloat _replaceB;
-    GLfloat _replaceA;
+    bool _tintColorEnabled;
+    GLfloat _tintR;
+    GLfloat _tintG;
+    GLfloat _tintB;
+    GLfloat _tintA;
+
+    bool _fadeToColorEnabled;
+    GLfloat _fadeR;
+    GLfloat _fadeG;
+    GLfloat _fadeB;
+    GLfloat _fadeA;
 };
 
 /** @cond DOCUMENT_PRIVATEAPI */
@@ -532,7 +536,7 @@ private:
     // ----- Shader helpers ----
     IND_ShaderProgram* prepareUniformColorProgram (unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA);
     IND_ShaderProgram* preparePervertexColorProgram();
-    IND_ShaderProgram* prepare2DTexturingAndTintingProgram();
+    IND_ShaderProgram* prepareDefaultTexturingProgram();
     
 	// ----- Objects -----
 	IND_Math _math;

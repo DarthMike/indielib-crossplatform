@@ -37,19 +37,23 @@ extern const char* IND_VertexAttribute_Position;
 extern const char* IND_VertexAttribute_RGBAColor;
 extern const char* IND_VertexAttribute_TexCoord;
 
-/// Sources for shaders, embedded in a string in code for faster loading
+/// Sources for vertex shaders
 extern const char* IND_VertexShader_UniformRGBAColor;
 extern const char* IND_FragmentShader_Color;
 extern const char* IND_VertexShader_PerVertexRGBAColor;
 extern const char* IND_VertexShader_Simple2DTexture;
+
+/// Sources for fragment shaders
 extern const char* IND_FragmentShader_Simple2DTexture_RGBA;
 extern const char* IND_FragmentShader_Simple2DTexture_BGRA;
-extern const char* IND_FragmentShader_2DTexture_RGBAColor;
+extern const char* IND_FragmentShader_2DTexture_RGBATint;
+extern const char* IND_FragmentShader_2DTexture_RGBAFade;
 
 /// Default engine existing shader programs. Compiled and linked, added to internal manager.
 extern const char* IND_Program_UniformRGBAColor;
 extern const char* IND_Program_PerVertexRGBAColor;
 extern const char* IND_Program_Simple2DTexture;
-extern const char* IND_Program_2DTexture_RGBATinting;
+extern const char* IND_Program_2DTexture_RGBATint;
+extern const char* IND_Program_2DTexture_RGBAFade;
 
 #endif

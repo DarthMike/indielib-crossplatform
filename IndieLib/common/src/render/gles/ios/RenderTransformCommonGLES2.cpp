@@ -95,8 +95,17 @@ IND_ShaderProgram* OpenGLES2Render::preparePervertexColorProgram() {
     return program;
 }
 
-IND_ShaderProgram* OpenGLES2Render::prepare2DTexturingAndTintingProgram() {
-    IND_ShaderProgram* program = _shaderManager->getProgram(IND_Program_2DTexture_RGBATinting);
+IND_ShaderProgram* OpenGLES2Render::prepareDefaultTexturingProgram() {
+    const char* programName;
+    if (_renderState._fadeToColorEnabled) {
+        programName = IND_Program_2DTexture_RGBAFade;
+    } else if (_renderState._tintColorEnabled) {
+        programName = IND_Program_2DTexture_RGBATint;
+    } else {
+        programName = IND_Program_Simple2DTexture;
+    }
+    
+    IND_ShaderProgram* program = _shaderManager->getProgram(programName);
     program->use();
     
     float matrixArray [16];
@@ -106,12 +115,24 @@ IND_ShaderProgram* OpenGLES2Render::prepare2DTexturingAndTintingProgram() {
     program->setSingleUniformValue(matrixArray, IND_Uniform_PMatrix);
     GLint texUnit = 0;
     program->setSingleUniformValue(&texUnit, IND_Uniform_SpriteTexture);
-    GLfloat tintColor [4];
-    tintColor[0] = _renderState._blendR;
-    tintColor[1] = _renderState._blendG;
-    tintColor[2] = _renderState._blendB;
-    tintColor[3] = _renderState._blendA;
-    program->setSingleUniformValue(tintColor, IND_Uniform_RGBAColor);
+    
+    if (_renderState._tintColorEnabled) {
+        GLfloat tintColor [4];
+        tintColor[0] = _renderState._tintR;
+        tintColor[1] = _renderState._tintG;
+        tintColor[2] = _renderState._tintB;
+        tintColor[3] = _renderState._tintA;
+        program->setSingleUniformValue(tintColor, IND_Uniform_RGBAColor);
+    }
+    
+    if (_renderState._fadeToColorEnabled) {
+        GLfloat fadeColor [4];
+        fadeColor[0] = _renderState._fadeR;
+        fadeColor[1] = _renderState._fadeG;
+        fadeColor[2] = _renderState._fadeB;
+        fadeColor[3] = _renderState._fadeA;
+        program->setSingleUniformValue(fadeColor, IND_Uniform_RGBAColor);
+    }
     return program;
 }
 /** @endcond */

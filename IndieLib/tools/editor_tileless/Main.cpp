@@ -57,7 +57,7 @@ Indielib_Main
 
 	char mPath [MAX_PATH];
 	strcpy(mPath, resourcesPath);
-	strcat (mPath, "tileset_01.xml");		// Add the name of the tileset to the path
+	strcat (mPath, "/tileset_01.xml");		// Add the name of the tileset to the path
 	
 	if (!mResources.LoadResources (mPath)) exit (0);
 

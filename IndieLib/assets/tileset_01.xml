@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- surfaces declaration -->
+    <surfaces>   
+        <surface id="0" image="layouting/tile1.BMP" />
+        <surface id="1" image="layouting/tile2.BMP" />
+    </surfaces>
+</resources>

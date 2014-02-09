@@ -32,6 +32,7 @@
 #include "Resources.h"
 #include "EditorMap.h"
 #include "Listener.h"
+#include "WorkingPath.h"
 
 /*
 ==================
@@ -45,13 +46,19 @@ Indielib_Main
 	CIndieLib *mI = CIndieLib::instance();
 	if (!mI->init ()) return 0;	
 
+	const char* resourcesPath = WorkingPathSetup::resourcesDirectory();
+	if (!WorkingPathSetup::setWorkingPath(resourcesPath)) {
+		std::cout<<"\nUnable to Set the working path !";
+	}
+	
 	// ----- Editor classes initialization -----
-
 	// Resource loading
 	Resources mResources;
+
 	char mPath [MAX_PATH];
-	GetCurrentDirectory (MAX_PATH, mPath);					// Get the path to the current directory
-	strcat (mPath, "../../resources/tileset_01.xml");		// Add the name of the tileset to the path
+	strcpy(mPath, resourcesPath);
+	strcat (mPath, "tileset_01.xml");		// Add the name of the tileset to the path
+	
 	if (!mResources.LoadResources (mPath)) exit (0);
 
 	// Map initialization
@@ -145,12 +152,10 @@ Indielib_Main
 		// --- End Scene ---
 
 		mI->_render->endScene ();
-
-		//mI->_render->ShowFpsInWindowTitle();
 	}
 
 	// ----- Free memory (we don't use destructors becase IndieLib pointers would be pointing to null -----
-
+	// FIXME: This is a hack. Proper memory management please.
 	mListener.Free ();
 	mResources.Free ();
 	mMap.Free ();

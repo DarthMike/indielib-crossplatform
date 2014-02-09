@@ -1,8 +1,3 @@
-/*****************************************************************************************
- * File: Timeline.h
- * Desc: Spriter entity's timeline object
- *****************************************************************************************/
-
 /*********************************** The zlib License ************************************
  *
  * Copyright (c) 2013 Indielib-crossplatform Development Team
@@ -27,23 +22,22 @@
  * distribution.
  *
  *****************************************************************************************/
+#ifndef _WorkingPath_h
+#define _WorkingPath_h
 
-#ifndef Indielib_FreeTypeHandle_h
-#define Indielib_FreeTypeHandle_h
 
-#include <ft2build.h>
-#include FT_FREETYPE_H
-
-//! FreeType library wrapper class
-class free_type_ptr_wrapped_impl {
+class WorkingPathSetup {
 public:
-    FT_Library				_FTLib;                 // freetype lib handle
     
-public:
-    // some functions ...
-    friend class IND_TTF_FontManager;
-    friend class IND_TTF_Font;
+    static const char* resourcesDirectory();
+    static const char* unittestsResourcesDirectory();
+    
+    
+    static bool setWorkingPath(const char* absPath);
+    
+private:
+    static bool readExeDirectory(char* exePath);
+    static void initializeResourcesDirectory();
 };
-
 
 #endif

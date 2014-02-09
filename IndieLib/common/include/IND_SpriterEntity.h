@@ -44,7 +44,7 @@
 
 // ----- Forward declarations -----
 
-
+//! Provides the folder / file relation
 struct Fileref {
     unsigned int folderId;
     unsigned int fileId;

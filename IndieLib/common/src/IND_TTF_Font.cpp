@@ -39,12 +39,15 @@
 #include FT_FREETYPE_H
 #include FT_OUTLINE_H
 
-
+//! wrap of the TrueType library, so that the Indielib user does not need to include this.
 class free_type_impl {
 public:
-    FT_Library				_FTLib;                 // freetype lib
-	FT_Face					_Face;                  // THIS font face
-    FT_Matrix				_matItalic;             // transformation matrix for italic
+    //! FreeType lib handle
+    FT_Library				_FTLib;
+    //! THIS font face
+	FT_Face					_Face;
+    //! Transformation matrix for italic
+    FT_Matrix				_matItalic;
 
 public:
     friend class IND_TTF_Font;
@@ -385,6 +388,10 @@ int IND_TTF_Font::drawTextEx(const std::wstring& sText, float fLeft, float fTop,
 			{
 				pen_Y = fTop  + fAreaHeight - getLineWidth(curline, bFlipX, bFlipY, fZRotate, bKerning);
 			}
+            else{
+                pen_Y = 0.0f; // TODO: this is added to fix "warning C4701: potentially uninitialized local variable 'pen_Y'"
+
+            }
 		}
 		else
 		{
@@ -448,6 +455,12 @@ int IND_TTF_Font::drawTextEx(const std::wstring& sText, float fLeft, float fTop,
 
 	return 1;
 }
+
+// --------------------------------------------------------------------------------
+//									Private methods
+// --------------------------------------------------------------------------------
+
+/** @cond DOCUMENT_PRIVATEAPI */
 
 bool IND_TTF_Font::renderChar(wchar_t charCode, float x, float y, uint32_t clrFont, bool bFlipX, bool bFlipY,
 							   float fZRotate, byte btTrans, bool bKerning, bool bUnderl) {
@@ -530,9 +543,6 @@ bool IND_TTF_Font::renderChar(wchar_t charCode, float x, float y, uint32_t clrFo
 	return true;
 }
 
-// --------------------------------------------------------------------------------
-//									Private methods
-// --------------------------------------------------------------------------------
 
 bool IND_TTF_Font::buildCharCache(wchar_t charCode) {
 	if (isCharCached(charCode))
@@ -968,3 +978,5 @@ void IND_TTF_Font::doDrawBorder(float fX_s, float fX_e, float fY, uint32_t clr, 
 							(int)(fY),
 							r,g,b,btTrans);
 }
+
+/** @endcond */

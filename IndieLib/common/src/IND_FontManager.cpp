@@ -46,7 +46,7 @@
 // --------------------------------------------------------------------------------
 
 /**
- * Returns 1 (true) if the adminstrator is successfully initialized.
+ * Returns 1 (true) if the manager is successfully initialized.
  * Must be called before using any method.
  * @param pImageManager					Pointer to the manager IND_ImageManager correctly initialized.
  * @param pSurfaceManager				Pointer to the manager IND_SurfaceManager correctly initialized.

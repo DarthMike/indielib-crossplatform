@@ -312,9 +312,9 @@ void OpenGLES2Render::setRainbow2d(IND_Type pType,
     
     // Reset 'tint'
     _renderState._tintColorEnabled = false;
-    _renderState._tintR = 0.f;
-    _renderState._tintG = 0.f;
-    _renderState._tintB = 0.f;
+    _renderState._tintR = 1.f;
+    _renderState._tintG = 1.f;
+    _renderState._tintB = 1.f;
     _renderState._tintA = 1.f;
     
     // Reset 'fade to color'

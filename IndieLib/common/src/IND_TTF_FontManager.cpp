@@ -61,6 +61,13 @@ IND_TTF_FontManager::~IND_TTF_FontManager(void) {
 	end();
 }
 
+/**
+ * Returns 1 (true) if the manager is successfully initialized.
+ * Must be called before using any method.
+ * @param pRender					    Pointer to the manager IND_Render correctly initialized.
+ * @param pImageManager					Pointer to the manager IND_ImageManager correctly initialized.
+ * @param pSurfaceManager				Pointer to the manager IND_SurfaceManager correctly initialized.
+ */
 bool IND_TTF_FontManager::init(IND_Render *pRender, IND_ImageManager *pImageManager, IND_SurfaceManager *pSurfaceManager) {
     
     g_debug->header("Initializing TTF FontManager", DebugApi::LogHeaderBegin);

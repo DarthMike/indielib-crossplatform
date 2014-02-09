@@ -55,7 +55,8 @@ To perform culling calculations, the comparisons need to be in same space. In ou
 */
 void OpenGLES2Render::reCalculateFrustrumPlanes() {
 
-	IND_Matrix matComb (_shaderProjectionMatrix);
+	IND_Matrix matComb;
+    _math.matrix4DMultiply(_shaderProjectionMatrix, _shaderModelViewMatrix, matComb);
 
 	// Left clipping plane
 	_frustrumPlanes._planes[0]._normal._x     = (matComb._41 + matComb._11);

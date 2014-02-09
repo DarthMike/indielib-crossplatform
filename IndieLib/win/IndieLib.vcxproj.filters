@@ -355,6 +355,8 @@
     <ClInclude Include="..\common\dependencies\TmxParser\base64\base64.h">
       <Filter>Dependencies\TMXParser\base64</Filter>
     </ClInclude>
+    <ClInclude Include="..\common\include\IND_TTF_Font.h" />
+    <ClInclude Include="..\common\include\IND_TTF_FontManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\common\src\IndieVersion.cpp">
@@ -575,6 +577,12 @@
     </ClCompile>
     <ClCompile Include="..\common\dependencies\TmxParser\base64\base64.cpp">
       <Filter>Dependencies\TMXParser\base64</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\src\IND_TTF_Font.cpp">
+      <Filter>IndieLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\src\IND_TTF_FontManager.cpp">
+      <Filter>IndieLib</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

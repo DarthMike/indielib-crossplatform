@@ -59,8 +59,11 @@ TODO: Describtion.
 class LIB_EXP IND_TTF_FontManager {
 
 public:
-	typedef unsigned char byte;     // TODO : should be moved to the defines setup
-	typedef unsigned int uint32_t;  // TODO : should be moved to the defines setup
+    //! Typedef byte - TODO : should be moved to the defines setup
+	typedef unsigned char byte;
+
+    //! Typedef uint32_t - TODO : should be moved to the defines setup
+	typedef unsigned int uint32_t;
 
 	// ----- Init/End -----    
     

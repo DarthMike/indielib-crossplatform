@@ -62,7 +62,8 @@ public:
     }
     
     // ----- Enums ------------
-    
+
+    //! The different types of fonts
     enum FONTTYPE {
         FONTTYPE_MudFont,
         FONTTYPE_AngelCode,

@@ -2,7 +2,7 @@
 <resources>
     <!-- surfaces declaration -->
     <surfaces>   
-        <surface id="0" image="layouting/tile1.BMP" />
-        <surface id="1" image="layouting/tile2.BMP" />
+        <surface id="0" image="star.png" />
+        <surface id="1" image="planet.png" />
     </surfaces>
 </resources>

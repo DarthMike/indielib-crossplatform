@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- surfaces declaration -->
+	<surfaces>	
+		<surface id="0" image="images/set3/airBubble1.png" />
+		<surface id="1" image="images/set3/background.png" />
+		<surface id="2" image="images/set3/bearPurple.png" />
+		<surface id="3" image="images/set3/bird.png" />
+		<surface id="4" image="images/set3/bearYellow.png" />
+		<surface id="5" image="images/set3/cliff.png" />
+		<surface id="6" image="images/set3/cloud1.png" />
+		<surface id="7" image="images/set3/cloud2.png" />
+		<surface id="8" image="images/set3/cloud3.png" />
+		<surface id="9" image="images/set3/fishingRod1.png" />
+		<surface id="10" image="images/set3/fishLarge1.png" />
+		<surface id="11" image="images/set3/fishLarge2.png" />
+		<surface id="12" image="images/set3/fishLarge3.png" />
+		<surface id="13" image="images/set3/fishLarge4.png" />
+		<surface id="14" image="images/set3/fishMedium1.png" />
+		<surface id="15" image="images/set3/fishMedium2.png" />
+		<surface id="16" image="images/set3/fishMedium3.png" />
+		<surface id="17" image="images/set3/fishMedium4.png" />
+		<surface id="18" image="images/set3/fishSmall1.png" />
+		<surface id="19" image="images/set3/fishSmall2.png" />
+		<surface id="20" image="images/set3/fishSmall3.png" />
+		<surface id="21" image="images/set3/fishSmall4.png" />
+		<surface id="22" image="images/set3/fishVeryLarge1.png" />
+		<surface id="23" image="images/set3/heart1.png" />
+		<surface id="24" image="images/set3/landscape1.png" />
+		<surface id="25" image="images/set3/landscape2.png" />
+		<surface id="26" image="images/set3/landscape3.png" />
+		<surface id="27" image="images/set3/landscape4.png" />
+		<surface id="28" image="images/set3/landscape5.png" />
+		<surface id="29" image="images/set3/lureBomb.png" />
+		<surface id="30" image="images/set3/lureLarge.png" />
+		<surface id="31" image="images/set3/lureMedium.png" />
+		<surface id="32" image="images/set3/lureSmall.png" />
+		<surface id="33" image="images/set3/rock1.png" />
+		<surface id="34" image="images/set3/rock2.png" />
+		<surface id="35" image="images/set3/rock3.png" />
+		<surface id="36" image="images/set3/rock4.png" />
+		<surface id="37" image="images/set3/storeContainer.png" />
+		<surface id="38" image="images/set3/watertile.png" />
+	</surfaces>
+</resources>

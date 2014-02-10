@@ -31,6 +31,7 @@
 // ------ Includes -----
 
 #include "Resources.h"
+#include <string>
 
 /* 
 ======================================									
@@ -114,7 +115,7 @@ Load Resources
 bool Resources::LoadEditorElements ()
 {
 	// Load the mouse pointer, it is loaded to and IndieLib surface
-	if (!mI->_surfaceManager->add (mMouseSurface, "cursor.png", IND_ALPHA, IND_32)) return 0;
+	if (!mI->_surfaceManager->add (mMouseSurface, "editor/images/editor/cursor.png", IND_ALPHA, IND_32)) return 0;
 	
 	// Add the Mouse entity to the IndieLib Entity Manager
 	mI->_entity2dManager->add (BRUSH_LAYER, mMouseEntity);
@@ -126,7 +127,7 @@ bool Resources::LoadEditorElements ()
 	mMouseEntity->setHotSpot (0.5f, 0.5f);
 
 	// Font loading
-	if (!mI->_fontManager->addMudFont (mFont, "font_small.png", "font_small.xml", IND_ALPHA, IND_32)) return 0;
+	if (!mI->_fontManager->addMudFont (mFont, "editor/fonts/font_small.png", "editor/fonts/font_small.xml", IND_ALPHA, IND_32)) return 0;
 	mI->_entity2dManager->add	(GUI_LAYER, mFontEntity);
 	mFontEntity->setFont			(mFont);
 	mFontEntity->setLineSpacing	(18);
@@ -156,6 +157,19 @@ bool Resources::LoadTileset (char *pTilesetFile)
 	if (!mXmlDoc.LoadFile())
 	{
 		return false;
+	}
+
+    // fetching the directory where the xml file is located
+    string tilesetTopPath;
+    string s = string(pTilesetFile);
+
+	size_t lastPosTemp = s.find_last_of("\\/");
+
+	if(lastPosTemp == string::npos){
+		tilesetTopPath = "./";
+    }
+	else{
+    	tilesetTopPath = s.substr(0, lastPosTemp + 1);
 	}
 
 	// Document root
@@ -189,9 +203,7 @@ bool Resources::LoadTileset (char *pTilesetFile)
 		return false;
 	}
 	
-	// Parse all the surfaces
-	char mFileName [1024];
-	mFileName [0] = 0;
+    string imagePath;
 
 	while (mXSurface)
 	{
@@ -211,10 +223,11 @@ bool Resources::LoadTileset (char *pTilesetFile)
 		// Path to the image
 		if (mXSurface->Attribute("image"))
 		{
-			strcpy (mFileName, mXSurface->Attribute("image"));	
+            mNewSurface->mSurface = IND_Surface::newSurface();
+            imagePath = tilesetTopPath + string(mXSurface->Attribute("image"));
 
 			// Load surface
-			if (!mI->_surfaceManager->add (mNewSurface->mSurface, mFileName, IND_ALPHA, IND_32)) return 0;
+            if (!mI->_surfaceManager->add (mNewSurface->mSurface, imagePath.c_str(), IND_ALPHA, IND_32)) return 0;
 		}
 		else
 		{

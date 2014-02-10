@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <!-- surfaces declaration -->
-    <surfaces>   
-        <surface id="0" image="star.png" />
-        <surface id="1" image="planet.png" />
-    </surfaces>
-</resources>

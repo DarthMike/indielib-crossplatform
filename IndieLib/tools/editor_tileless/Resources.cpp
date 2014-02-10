@@ -203,9 +203,6 @@ bool Resources::LoadTileset (char *pTilesetFile)
 		return false;
 	}
 	
-	// Parse all the surfaces
-	//char mFileName [1024];
-	//mFileName [0] = 0;
     string imagePath;
 
 	while (mXSurface)
@@ -226,8 +223,8 @@ bool Resources::LoadTileset (char *pTilesetFile)
 		// Path to the image
 		if (mXSurface->Attribute("image"))
 		{
+            mNewSurface->mSurface = IND_Surface::newSurface();
             imagePath = tilesetTopPath + string(mXSurface->Attribute("image"));
-			//strcpy (mFileName, mXSurface->Attribute("image"));	
 
 			// Load surface
             if (!mI->_surfaceManager->add (mNewSurface->mSurface, imagePath.c_str(), IND_ALPHA, IND_32)) return 0;

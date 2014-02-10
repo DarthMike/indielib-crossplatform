@@ -891,6 +891,7 @@ void Listener::CreateBackDropBrushes ()
 		mIter++)
 	{	
 		mBackDropBrushes [i].mId = (*mIter)->mId;								// Id
+        mBackDropBrushes [i].mEntity = IND_Entity2d::newEntity2d();               
 		mBackDropBrushes [i].mEntity->setSurface ((*mIter)->mSurface);			// Set the surface (brush image) into the entity
 		mI->_entity2dManager->add (BRUSH_LAYER, mBackDropBrushes [i].mEntity);	// Add the entity to the IndieLib manager
 		mBackDropBrushes [i].mEntity->setHotSpot (0.5f, 0.5f);					// Pivot point in the middle of the surface

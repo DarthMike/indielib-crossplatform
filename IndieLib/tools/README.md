@@ -1,7 +1,7 @@
 ## Tools
 
 ###Tileless editor
-The Tileless editor make use the of Indielib cross-platform library. Currently it is not fully cross-platform (Windows only), since the filebrowser component issue haven't been solved. Read more about this in issue 147. 
+The Tileless editor make use the of Indielib cross-platform library. Currently it is not fully cross-platform (Windows only), since the filebrowser component issue haven't been solved. Read more about this in issue 147. For information on how the editor works, how to use it etc. go [here](http://javilop.com/gamedev/c-game-programming-tutorial-non-tile-based-arbitrary-positioned-entity-engine-editor-like-in-braid-or-aquaria-games/).
 
 
 ### Third party tools

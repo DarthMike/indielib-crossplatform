@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<map>
+    <tileset tileset_file="/editor/tileset_03.xml" />
+    <nodes>
+        <node surface_id="35" x="-149" y="-352" z="0" layer="3" angle="0.000000" scale="1.445401" trans="255" mirror_x="0" mirror_y="0" tint_r="255" tint_g="255" tint_b="255" if_wrap="0" region_width="0" region_height="0" />
+        <node surface_id="8" x="-701" y="-741" z="0" layer="3" angle="0.000000" scale="1.000000" trans="141" mirror_x="0" mirror_y="0" tint_r="255" tint_g="255" tint_b="255" if_wrap="0" region_width="0" region_height="0" />
+        <node surface_id="7" x="-127" y="-751" z="0" layer="3" angle="0.000000" scale="1.000000" trans="129" mirror_x="0" mirror_y="0" tint_r="255" tint_g="255" tint_b="255" if_wrap="0" region_width="0" region_height="0" />
+        <node surface_id="10" x="67" y="-159" z="0" layer="3" angle="0.000000" scale="1.000000" trans="255" mirror_x="0" mirror_y="0" tint_r="255" tint_g="255" tint_b="255" if_wrap="0" region_width="0" region_height="0" />
+        <node surface_id="13" x="-564" y="-211" z="0" layer="3" angle="0.000000" scale="1.000000" trans="255" mirror_x="1" mirror_y="0" tint_r="255" tint_g="255" tint_b="255" if_wrap="0" region_width="0" region_height="0" />
+        <node surface_id="25" x="-593" y="-569" z="0" layer="3" angle="0.000000" scale="1.000000" trans="255" mirror_x="0" mirror_y="0" tint_r="255" tint_g="255" tint_b="255" if_wrap="0" region_width="0" region_height="0" />
+        <node surface_id="38" x="-288" y="503" z="0" layer="3" angle="0.000000" scale="1.000000" trans="255" mirror_x="0" mirror_y="0" tint_r="255" tint_g="255" tint_b="255" if_wrap="0" region_width="0" region_height="0" />
+        <node surface_id="26" x="-122" y="-527" z="0" layer="3" angle="0.000000" scale="1.000000" trans="255" mirror_x="0" mirror_y="0" tint_r="255" tint_g="255" tint_b="255" if_wrap="0" region_width="0" region_height="0" />
+        <node surface_id="35" x="-588" y="-418" z="-2" layer="3" angle="0.000000" scale="1.000000" trans="255" mirror_x="0" mirror_y="0" tint_r="255" tint_g="255" tint_b="255" if_wrap="0" region_width="0" region_height="0" />
+        <node surface_id="31" x="-497" y="-701" z="0" layer="3" angle="0.000000" scale="1.000000" trans="255" mirror_x="0" mirror_y="0" tint_r="255" tint_g="255" tint_b="255" if_wrap="0" region_width="0" region_height="0" />
+        <node surface_id="4" x="-508" y="-475" z="0" layer="4" angle="0.000000" scale="1.000000" trans="255" mirror_x="0" mirror_y="0" tint_r="255" tint_g="255" tint_b="255" if_wrap="0" region_width="0" region_height="0" />
+        <node surface_id="2" x="-263" y="-434" z="0" layer="4" angle="0.000000" scale="1.000000" trans="255" mirror_x="1" mirror_y="0" tint_r="255" tint_g="255" tint_b="255" if_wrap="0" region_width="0" region_height="0" />
+        <node surface_id="3" x="-202" y="-663" z="0" layer="4" angle="0.000000" scale="1.000000" trans="255" mirror_x="0" mirror_y="0" tint_r="255" tint_g="255" tint_b="255" if_wrap="0" region_width="0" region_height="0" />
+        <node surface_id="6" x="-631" y="-743" z="0" layer="3" angle="0.000000" scale="1.000000" trans="71" mirror_x="0" mirror_y="0" tint_r="255" tint_g="255" tint_b="255" if_wrap="0" region_width="0" region_height="0" />
+        <node surface_id="6" x="-638" y="-716" z="0" layer="3" angle="0.000000" scale="1.000000" trans="179" mirror_x="1" mirror_y="0" tint_r="255" tint_g="255" tint_b="255" if_wrap="0" region_width="0" region_height="0" />
+        <node surface_id="7" x="-185" y="-738" z="0" layer="3" angle="0.000000" scale="0.671501" trans="163" mirror_x="0" mirror_y="0" tint_r="255" tint_g="255" tint_b="255" if_wrap="0" region_width="0" region_height="0" />
+        <node surface_id="9" x="-461" y="-545" z="0" layer="4" angle="-74.899323" scale="1.000000" trans="255" mirror_x="0" mirror_y="0" tint_r="255" tint_g="255" tint_b="255" if_wrap="0" region_width="0" region_height="0" />
+        <node surface_id="14" x="-197" y="-207" z="0" layer="5" angle="0.000000" scale="1.000000" trans="255" mirror_x="0" mirror_y="0" tint_r="255" tint_g="255" tint_b="255" if_wrap="0" region_width="0" region_height="0" />
+        <node surface_id="18" x="-258" y="-303" z="0" layer="5" angle="0.000000" scale="1.000000" trans="255" mirror_x="0" mirror_y="0" tint_r="255" tint_g="255" tint_b="255" if_wrap="0" region_width="0" region_height="0" />
+        <node surface_id="22" x="-358" y="7" z="0" layer="5" angle="0.000000" scale="1.000000" trans="255" mirror_x="0" mirror_y="0" tint_r="255" tint_g="255" tint_b="255" if_wrap="0" region_width="0" region_height="0" />
+    </nodes>
+</map>

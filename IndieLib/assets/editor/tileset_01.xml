@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- surfaces declaration -->
+	<surfaces>	
+		<surface id="0" image="images/set1/black.png" />
+		<surface id="1" image="images/set1/tile-rock-0001.png" />
+		<surface id="2" image="images/set1/tile-rock-0004.png" />
+		<surface id="3" image="images/set1/tile-rock-0002.png" />
+		<surface id="4" image="images/set1/tile-rock-0003.png" />
+		<surface id="5" image="images/set1/bg-rock-rep-0002.png" />
+		<surface id="6" image="images/set1/bg-rock-rep-0003.png" />
+		<surface id="7" image="images/set1/bg-rock-0001.png" />
+		<surface id="8" image="images/set1/bg-rock-0002.png" />
+		<surface id="9" image="images/set1/bg-rock-0003.png" />
+		<surface id="10" image="images/set1/bg-rock-0004.png" />
+		<surface id="11" image="images/set1/bg-rock-0005.png" />
+		<surface id="12" image="images/set1/bg-rock-0006.png" />
+		<surface id="13" image="images/set1/bg-rock-0018.png" />
+		<surface id="14" image="images/set1/bg-rock-0019.png" />
+		<surface id="15" image="images/set1/bg-rock-0024.png" />
+		<surface id="16" image="images/set1/bg-rock-0025.png" />
+		<surface id="17" image="images/set1/forest-bg-rock-0005.png" />
+		<surface id="18" image="images/set1/grass-bed-0001.png" />
+		<surface id="19" image="images/set1/grass-rock-0001.png" />
+		<surface id="20" image="images/set1/plant-0006.png" />
+		<surface id="21" image="images/set1/plant-0001.png" />
+		<surface id="22" image="images/set1/plant-0002.png" />
+		<surface id="23" image="images/set1/plant-0003.png" />
+		<surface id="24" image="images/set1/plant-0004.png" />
+		<surface id="25" image="images/set1/plant-0005.png" />
+		<surface id="26" image="images/set1/testbed-03.png" />
+		<surface id="27" image="images/set1/testbed-01.png" />
+		<surface id="28" image="images/set1/testbed-02.png" />
+		<surface id="29" image="images/set1/cathedral-pillar-0001.png" />
+		<surface id="30" image="images/set1/memory-crystal-0001.png" />
+		<surface id="31" image="images/set1/pot-0001.png" />
+		<surface id="32" image="images/set1/forest-rock-0002.png" />
+		<surface id="33" image="images/set1/plant-0009.png" />
+		<surface id="34" image="images/set1/plant-0010.png" />
+		<surface id="35" image="images/set1/plant-0014.png" />
+		<surface id="36" image="images/set1/grass-tile-0001.png" />
+		<surface id="37" image="images/set1/plant-0011.png" />
+		<surface id="38" image="images/set1/bg-light-0003.png" />
+		<surface id="39" image="images/set1/bg-light-0001.png" />
+		<surface id="40" image="images/set1/bg-light-0002.png" />
+		<surface id="41" image="images/set1/darkness-0002.png" />
+		<surface id="42" image="images/set1/darkness-0003.png" />
+		<surface id="43" image="images/set1/darkness-0004.png" />
+		<surface id="44" image="images/set1/darkness-0001.png" />
+		<surface id="45" image="images/set1/dark-full.png" />
+		<surface id="46" image="images/set1/dark-little.png" />
+		<surface id="47" image="images/set1/dark-partial.png" />
+	</surfaces>
+</resources>

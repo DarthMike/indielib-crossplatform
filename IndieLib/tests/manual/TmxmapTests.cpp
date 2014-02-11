@@ -80,7 +80,7 @@ void TmxmapTests::performTests(float dt) {
 	CIndieLib *iLib = CIndieLib::instance();
 	
 	//Toggling of entity border lines in entities
-	if(iLib->_input->onKeyPress(IND_KEYUP) && _active) {
+	if(iLib->_input->onKeyPress(IND_Q) && _active) {
         _showIsometric = !_showIsometric;
     }
     
@@ -119,7 +119,7 @@ void TmxmapTests::setActive(bool active){
         _textSmallWhite->setPosition(5, 5, 1);
         _textSmallWhite->setAlign(IND_LEFT);
         
-        strcpy(_text, "Press up to change between the two test maps ( Isometric / Orthogonal ) \n ..... TODO: we still need to handle flipped tiles + not to redraw on every gameloop.");
+        strcpy(_text, "Press 'q' to change between the two test maps ( Isometric / Orthogonal ) \n ..... TODO: we still need to handle flipped tiles + not to redraw on every gameloop.");
         _textSmallWhite->setText(_text);
        
         

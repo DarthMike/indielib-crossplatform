@@ -3,23 +3,30 @@
  * Desc: Initialization / Destruction using OpenGL
  *****************************************************************************************/
 
-/*
-IndieLib 2d library Copyright (C) 2005 Javier López López (info@pixelartgames.com)
-THIS FILE IS AN ADDITIONAL FILE ADDED BY Miguel Angel Quiñones (2011) (mail:m.quinones.garcia@gmail.com / mikeskywalker007@gmail.com), BUT HAS THE
-SAME LICENSE AS THE WHOLE LIBRARY TO RESPECT ORIGINAL AUTHOR OF LIBRARY
-
-This library is free software; you can redistribute it and/or modify it under the
-terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2.1 of the License, or (at your option) any later version.
-
-This library is distributed in the hope that it will be useful, but WITHOUT ANY
-WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
-
-You should have received a copy of the GNU Lesser General Public License along with
-this library; if not, write to the Free Software Foundation, Inc., 59 Temple Place,
-Suite 330, Boston, MA 02111-1307 USA
-*/
+/*********************************** The zlib License ************************************
+ *
+ * Copyright (c) 2013 Indielib-crossplatform Development Team
+ *
+ * This software is provided 'as-is', without any express or implied
+ * warranty. In no event will the authors be held liable for any damages
+ * arising from the use of this software.
+ *
+ * Permission is granted to anyone to use this software for any purpose,
+ * including commercial applications, and to alter it and redistribute it
+ * freely, subject to the following restrictions:
+ *
+ * 1. The origin of this software must not be misrepresented; you must not
+ * claim that you wrote the original software. If you use this software
+ * in a product, an acknowledgment in the product documentation would be
+ * appreciated but is not required.
+ *
+ * 2. Altered source versions must be plainly marked as such, and must not be
+ * misrepresented as being the original software.
+ *
+ * 3. This notice may not be removed or altered from any source
+ * distribution.
+ *
+ *****************************************************************************************/
 #include "Defines.h"
 
 #ifdef INDIERENDER_GLES_IOS
@@ -39,6 +46,10 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "IND_Animation.h"
 #include "IND_Camera2d.h"
 #include "platform/iOS/OpenGLES2Manager.h"
+#include "IND_ShaderProgram.h"
+#include "IND_Shaders.h"
+#include "IND_ShaderManager.h"
+
 #include <OpenGLES/ES2/gl.h>
 
 /** @cond DOCUMENT_PRIVATEAPI */
@@ -113,6 +124,14 @@ IND_Window* OpenGLES2Render::initRenderAndWindow(IND_WindowProperties& props) {
 
 	writeInfo();
 
+    initializeBuffers();
+    
+    _ok = initializeDefaultPrograms();
+    if (!_ok) {
+        g_debug->header("Error compiling default shaders", DebugApi::LogHeaderError);
+        return NULL;
+    }
+    
 	g_debug->header("OpenGL ES 2 Render Created", DebugApi::LogHeaderEnd);
 	return _window;
 }
@@ -219,6 +238,7 @@ void OpenGLES2Render::initVars() {
 	_window = NULL;
 	_math.init();
 	_osOpenGLMgr = NULL;
+    _shaderManager = new IND_ShaderManager();
 
 }
 
@@ -257,6 +277,47 @@ bool OpenGLES2Render::initializeOpenGLES2Render() {
 	return resetViewport(_window->getWidth(),_window->getHeight());
 }
 
+void OpenGLES2Render::initializeBuffers() {
+    glGenBuffers(1, &_pointBuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, _pointBuffer);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(VERTEX_POS)*MAX_PIXELS, NULL, GL_DYNAMIC_DRAW);
+    glGenBuffers(1, &_pointWithColorBuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, _pointWithColorBuffer);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(VERTEX_POSANDCOLOR)*MAX_PIXELS, NULL, GL_DYNAMIC_DRAW);
+    
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+}
+
+bool OpenGLES2Render::initializeDefaultPrograms() {
+    bool success = _shaderManager->init();
+    IND_ShaderProgram* uniformColorNoTexture = IND_ShaderProgram::newShaderProgram();
+    success &= uniformColorNoTexture->compile(IND_VertexShader_UniformRGBAColor, IND_FragmentShader_Color);
+    success &= uniformColorNoTexture->link();
+    success &= _shaderManager->add(uniformColorNoTexture, IND_Program_UniformRGBAColor);
+    
+    IND_ShaderProgram* pervertexColorNoTexture = IND_ShaderProgram::newShaderProgram();
+    success &= pervertexColorNoTexture->compile(IND_VertexShader_PerVertexRGBAColor, IND_FragmentShader_Color);
+    success &= pervertexColorNoTexture->link();
+    success &= _shaderManager->add(pervertexColorNoTexture, IND_Program_PerVertexRGBAColor);
+    
+    IND_ShaderProgram* simple2dTexture = IND_ShaderProgram::newShaderProgram();
+    success &= simple2dTexture->compile(IND_VertexShader_Simple2DTexture, IND_FragmentShader_Simple2DTexture_BGRA);
+    success &= simple2dTexture->link();
+    success &= _shaderManager->add(simple2dTexture, IND_Program_Simple2DTexture);
+
+    IND_ShaderProgram* texture2dWithTinting = IND_ShaderProgram::newShaderProgram();
+    success &= texture2dWithTinting->compile(IND_VertexShader_Simple2DTexture, IND_FragmentShader_2DTexture_RGBATint);
+    success &= texture2dWithTinting->link();
+    success &= _shaderManager->add(texture2dWithTinting, IND_Program_2DTexture_RGBATint);
+    
+    IND_ShaderProgram* texture2dWithFadeToColor = IND_ShaderProgram::newShaderProgram();
+    success &= texture2dWithFadeToColor->compile(IND_VertexShader_Simple2DTexture, IND_FragmentShader_2DTexture_RGBAFade);
+    success &= texture2dWithFadeToColor->link();
+    success &= _shaderManager->add(texture2dWithFadeToColor, IND_Program_2DTexture_RGBAFade);
+    
+    return success;
+}
+
 /*
 ==================
 Check OpenGL extensions
@@ -274,6 +335,7 @@ Free memory
 void OpenGLES2Render::freeVars() {
 	DISPOSE(_osOpenGLMgr);
 	DISPOSE(_window);
+    DISPOSE(_shaderManager);
 	_ok = false;
 }
 

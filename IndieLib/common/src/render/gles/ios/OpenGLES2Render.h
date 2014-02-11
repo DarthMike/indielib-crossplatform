@@ -14,23 +14,30 @@
  * - RenderCollision2dOpenGL.cpp
  ****************************************************************************************/
 
-/*
-IndieLib 2d library Copyright (C) 2005 Javier López López (info@pixelartgames.com)
-THIS FILE IS AN ADDITIONAL FILE ADDED BY Miguel Angel Quiñones (2011) (mail:m.quinones.garcia@gmail.com / mikeskywalker007@gmail.com), BUT HAS THE
-SAME LICENSE AS THE WHOLE LIBRARY TO RESPECT ORIGINAL AUTHOR OF LIBRARY
-
-This library is free software; you can redistribute it and/or modify it under the
-terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2.1 of the License, or (at your option) any later version.
-
-This library is distributed in the hope that it will be useful, but WITHOUT ANY
-WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
-
-You should have received a copy of the GNU Lesser General Public License along with
-this library; if not, write to the Free Software Foundation, Inc., 59 Temple Place,
-Suite 330, Boston, MA 02111-1307 USA
-*/
+/*********************************** The zlib License ************************************
+ *
+ * Copyright (c) 2013 Indielib-crossplatform Development Team
+ *
+ * This software is provided 'as-is', without any express or implied
+ * warranty. In no event will the authors be held liable for any damages
+ * arising from the use of this software.
+ *
+ * Permission is granted to anyone to use this software for any purpose,
+ * including commercial applications, and to alter it and redistribute it
+ * freely, subject to the following restrictions:
+ *
+ * 1. The origin of this software must not be misrepresented; you must not
+ * claim that you wrote the original software. If you use this software
+ * in a product, an acknowledgment in the product documentation would be
+ * appreciated but is not required.
+ *
+ * 2. Altered source versions must be plainly marked as such, and must not be
+ * misrepresented as being the original software.
+ *
+ * 3. This notice may not be removed or altered from any source
+ * distribution.
+ *
+ *****************************************************************************************/
 
 
 #ifndef _OpenGLES2Render_H_
@@ -59,6 +66,8 @@ class IND_Animation;
 class IND_Camera2d;
 class IND_Camera3d;
 class OpenGLES2Manager;
+class IND_ShaderProgram;
+class IND_ShaderManager;
 
 // ----- Libs -----
 #include <OpenGLES/ES2/gl.h>
@@ -116,16 +125,55 @@ struct InfoStruct {
 
 struct TextureSamplerState {
     TextureSamplerState() :
-    minFilter(GL_NEAREST),
-    magFilter(GL_NEAREST),
-    wrapS(GL_CLAMP_TO_EDGE),
-    wrapT(GL_CLAMP_TO_EDGE)
+    _minFilter(GL_NEAREST),
+    _magFilter(GL_NEAREST),
+    _wrapS(GL_CLAMP_TO_EDGE),
+    _wrapT(GL_CLAMP_TO_EDGE)
     {}
     
-    GLint minFilter;
-    GLint magFilter;
-    GLint wrapS;
-    GLint wrapT;
+    GLint _minFilter;
+    GLint _magFilter;
+    GLint _wrapS;
+    GLint _wrapT;
+};
+
+struct RenderState {
+    RenderState() :
+    _cullingEnabled (false),
+    _frontFaceIsCW(false),
+    _alphaBlendEnabled(false),
+    _srcBlendFactor(GL_ONE),
+    _dstBlendFactor(GL_ZERO),
+    _tintColorEnabled(false),
+    _tintR(0.f),
+    _tintG(0.f),
+    _tintB(0.f),
+    _tintA(0.f),
+    _fadeToColorEnabled(false),
+    _fadeR(0.f),
+    _fadeG(0.f),
+    _fadeB(0.f),
+    _fadeA(0.f)
+    {}
+    
+    bool _cullingEnabled;
+    bool _frontFaceIsCW;
+    
+    bool _alphaBlendEnabled;
+    GLenum _srcBlendFactor;
+    GLenum _dstBlendFactor;
+    
+    bool _tintColorEnabled;
+    GLfloat _tintR;
+    GLfloat _tintG;
+    GLfloat _tintB;
+    GLfloat _tintA;
+
+    bool _fadeToColorEnabled;
+    GLfloat _fadeR;
+    GLfloat _fadeG;
+    GLfloat _fadeB;
+    GLfloat _fadeA;
 };
 
 /** @cond DOCUMENT_PRIVATEAPI */
@@ -328,7 +376,7 @@ public:
 	// ----- Render Object 2d -----
 
 	void blitSurface(IND_Surface *pSu);
-
+    
 	void blitGrid(IND_Surface *pSu, unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA);
 
 	void blitRegionSurface(IND_Surface *pSu,
@@ -338,19 +386,21 @@ public:
 	                       int pHeight);
 
 	bool blitWrapSurface(IND_Surface *pSu,
-	                     int pWidth,
-	                     int pHeight,
-	                     float pUDisplace,
-	                     float pVDisplace);
+                         int pBlitWidth,
+                         int pBlitHeight,
+                         float pUOffset,
+                         float pVOffset);
 
 	int blitAnimation(IND_Animation *pAn,
 	                  unsigned int pSequence,
 	                  int pX, int pY,
 	                  int pWidth, int pHeight,
 	                  bool pToggleWrap,
-	                  float pUDisplace,
-	                  float pVDisplace);
-
+	                  float pUOffset,
+	                  float pVOffset);
+    
+    void blitTexturedQuad(CUSTOMVERTEX2D* pVertexes);
+    
 	// ------ Render Text 2d -----
 	void blitText(IND_Font *pFo,
 	              char *pText,
@@ -445,12 +495,16 @@ private:
 	void writeInfo();
 
 	bool initializeOpenGLES2Render();   //Render init
+    void initializeBuffers();
+    bool initializeDefaultPrograms();
 	bool checkGLExtensions();        //GL extensions managing
 
 	//Blitting helpers
-	void fillPixel(PIXEL *pPixel, float pX, float pY,  float pR, float pG, float pB, float pA);
+	void fillPoint(VERTEX_POS *pPoint, float pX, float pY);
+	void fillPointWithColor(VERTEX_POSANDCOLOR *pVertex, float pX, float pY, unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA);
 	void fillVertex2d(CUSTOMVERTEX2D *pVertex2d, float pX, float pY, float pU, float pV);
-	void setForPrimitive(unsigned char pA, bool pResetTransform);
+    
+	void setTransformAndGLStateForPrimitive(unsigned char pA, bool pResetTransform);
 
 	void blitGridQuad    (int pAx, int pAy,
                           int pBx, int pBy,
@@ -462,16 +516,14 @@ private:
 
 	//Text rendering helpers
 	int getLongInPixels(IND_Font *pFo, char *pText, int pPos, int pOffset);
-
+    void blitCharsMudFont(IND_Font *pFo, char *pText, IND_Align pAlign, int pOffset, float pScaleX, float pScaleY, int pLineSpacing);
+    void blitCharsAngelCodeFont(IND_Font *pFo, char *pText, IND_Align pAlign, int pOffset, float pScaleX, float pScaleY, int pLineSpacing);
+    
 	//Setup helper
 	bool resetViewport(int pWitdh, int pHeight);
     
     //GL state helpers
     void setDefaultGLState();
-    
-    void setGLClientStateToPrimitive();
-    void setGLClientStateToTexturing();
-
     void setGLBoundTextureParams();
     
 	// ----- Collisions -----
@@ -480,14 +532,12 @@ private:
 
 	// ---- Culling helpers ----
 	void reCalculateFrustrumPlanes();
-	void transformVerticesToWorld(float pX1, float pY1,
-											float pX2, float pY2,
-											float pX3, float pY3,
-											float pX4, float pY4,
-											IND_Vector3 *mP1Res,
-											IND_Vector3 *mP2Res,
-											IND_Vector3 *mP3Res,
-											IND_Vector3 *mP4Res);
+    
+    // ----- Shader helpers ----
+    IND_ShaderProgram* prepareUniformColorProgram (unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA);
+    IND_ShaderProgram* preparePervertexColorProgram();
+    IND_ShaderProgram* prepareDefaultTexturingProgram();
+    
 	// ----- Objects -----
 	IND_Math _math;
 	IND_Window *_window;
@@ -505,8 +555,8 @@ private:
 
 	
 	struct InfoStruct _info;
-    
     struct TextureSamplerState _tex2dState;
+    struct RenderState _renderState;
 
 	//Current 'model-to-world' matrix
 	IND_Matrix _modelToWorld;
@@ -517,14 +567,15 @@ private:
     IND_Matrix _shaderModelViewMatrix;
     IND_Matrix _shaderProjectionMatrix;
     
+    IND_ShaderManager* _shaderManager;
+    
 	// ----- Primitives vertices -----
-
-	// Temporal buffer of pixels for drawing primitives
-	PIXEL _pixels [MAX_PIXELS];
-
-	// ----- Vertex array -----
-
-	// Temporal buffer of vertices for drawing regions of an IND_Surface
+    GLuint _pointBuffer;
+    GLuint _pointWithColorBuffer;
+    
+    // Temporal buffers
+    VERTEX_POS _points [MAX_PIXELS];
+    VERTEX_POSANDCOLOR _pointsWithColor [MAX_PIXELS];
 	CUSTOMVERTEX2D _vertices2d [MAX_PIXELS];
 
 	// ----- Primitives vertices -----

@@ -547,12 +547,12 @@ bool IND_Entity2d::toggleWrap(bool pWrap) {
  * Sets the horizontal and vertical displacement of the an image that is being tiled
  * to the screen using the IND_Entity2d::setRegion() and IND_Entity2d::toggleWrap() methods.
  * Using this method you can, for example, create and effect of an animated tiled background.
- * @param pUDisplace				Horizontal displacement of the image (U coordinate).
- * @param pVDisplace				Vertical displacement of the image (V coordinate).
+ * @param pUOffset				Horizontal displacement of the image (U coordinate).
+ * @param pVOffset				Vertical displacement of the image (V coordinate).
  */
-void IND_Entity2d::setWrapDisplacement(float pUDisplace, float pVDisplace) {
-	_uDisplace = pUDisplace;
-	_vDisplace = pVDisplace;
+void IND_Entity2d::setWrapOffset(float pUOffset, float pVOffset) {
+	_uOffset = pUOffset;
+	_vOffset = pVOffset;
 }
 
 /**
@@ -933,8 +933,8 @@ void IND_Entity2d::initAttrib() {
 
 	// Tiling
 	_wrap = 0;
-	_uDisplace = 0.0f;
-	_vDisplace = 0.0f;
+	_uOffset = 0.0f;
+	_vOffset = 0.0f;
 
 	// Animation attributes
 	_sequence = 0;

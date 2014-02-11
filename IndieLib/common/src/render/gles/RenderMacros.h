@@ -1,8 +1,3 @@
-/*****************************************************************************************
- * File: RenderObject3dOpenGL.cpp
- * Desc: Blitting of 3d objects using OpenGL
- *****************************************************************************************/
-
 /*********************************** The zlib License ************************************
  *
  * Copyright (c) 2013 Indielib-crossplatform Development Team
@@ -27,35 +22,19 @@
  * distribution.
  *
  *****************************************************************************************/
-#include "Defines.h"
 
-#ifdef INDIERENDER_GLES_IOS
-// ----- Includes -----
+#ifndef __INDIELIBIOS_RENDERMACROS_H__
+#define __INDIELIBIOS_RENDERMACROS_H__
 
-#include "Global.h"
-#include "IND_SurfaceManager.h"
-#include "OpenGLES2Render.h"
+#include <string>
 
-/** @cond DOCUMENT_PRIVATEAPI */
+#ifdef DEBUG
+extern std::string checkGLError(const char* srcFile, int srcLine);
 
-// --------------------------------------------------------------------------------
-//							         Public methods
-// --------------------------------------------------------------------------------
+#define CHECKGLERRORS() //logDebugGLError(checkGLError(__FILE__,__LINE__));
 
+#else
+#define CHECKGLERRORS()
+#endif
 
-void OpenGLES2Render::blit3dMesh(IND_3dMesh *) {
-//TODO
-}
-
-void OpenGLES2Render::set3dMeshSequence(IND_3dMesh *, unsigned int ) {
-//TODO
-}
-
-
-// --------------------------------------------------------------------------------
-//							         Private methods
-// --------------------------------------------------------------------------------
-
-/** @endcond */
-
-#endif //INDIERENDER_GLES_IOS
+#endif //__INDIELIBIOS_RENDERMACROS_H__

@@ -193,19 +193,33 @@ typedef struct structPixelPos PIXEL;
 #endif
 
 #ifdef INDIERENDER_GLES_IOS
-//!Pixel - When not rendering textures
-struct structPixelPos {
+//!Vertex - When not rendering textures, with uniform color
+struct structVertexPos {
 	float _x; ///< Point position x
     float _y; ///< Point position y
     float _z; ///< Point position z
-	//Color
-	float _colorR; ///< Point color R
-    float _colorG; ///< Point color G
-    float _colorB; ///< Point color B
-    float _colorA; ///< Point color A
 };
-//! Alias for the pixel structure
-typedef struct structPixelPos PIXEL;
+//! Alias for the vertex structure
+typedef struct structVertexPos VERTEX_POS;
+
+//!Vertex color attribute
+struct structVertexColor {
+    //Color
+    unsigned char _colorR; ///< Point color R
+    unsigned char _colorG; ///< Point color G
+    unsigned char _colorB; ///< Point color B
+    unsigned char _colorA; ///< Point color A
+};
+//! Alias for the vertex structure
+typedef struct structVertexColor VERTEX_COLOR;
+
+//!Vertex - When not rendering textures, with per-vertex color
+struct structVertexPosColor {
+    VERTEX_POS _pos;
+    VERTEX_COLOR _color;
+};
+//! Alias for the vertex structure
+typedef struct structVertexPosColor VERTEX_POSANDCOLOR;
 #endif
 
 //Win32 (DirectX used)
@@ -238,13 +252,18 @@ typedef struct structVertex2d CUSTOMVERTEX2D;
 #endif
 
 #ifdef INDIERENDER_GLES_IOS
-//!Vertex - When rendering with textures
-struct structVertex2d {
-	float _x; ///< Point position x
-    float _y; ///< Point position y
-    float _z; ///< Point position z
+//!Vertex u and t values - When rendering with textures
+struct structTexCoord {
 	float _u; ///< Texture mapping coordinate u
     float _v; ///< Texture mapping coordinate v
+};
+//! Alias for the 2d vertex structure
+typedef struct structTexCoord VERTEX_TEXCOORD;
+
+//!Vertex - When rendering with textures
+struct structVertex2d {
+    VERTEX_POS _pos;
+    VERTEX_TEXCOORD _texCoord;
 };
 //! Alias for the 2d vertex structure
 typedef struct structVertex2d CUSTOMVERTEX2D;
@@ -773,7 +792,7 @@ typedef int IND_BlendingType;
 #define IND_INVDESTCOLOR                    509
 //! Blend factor (f, f, f, 1); f = min(A, 1 - Ad).
 #define IND_SRCALPHASAT                     510
-//! Obsoleto.
+//! Not used.
 #define IND_BOTHSRCALPHA                    511
 //! Blend factor (1 - As, 1 - As, 1 - As, 1 - As), y el destino (As, As, As, As);
 #define IND_BOTHINVSRCALPHA                 512

@@ -1,8 +1,3 @@
-/*****************************************************************************************
- * File: RenderObject3dOpenGL.cpp
- * Desc: Blitting of 3d objects using OpenGL
- *****************************************************************************************/
-
 /*********************************** The zlib License ************************************
  *
  * Copyright (c) 2013 Indielib-crossplatform Development Team
@@ -27,35 +22,50 @@
  * distribution.
  *
  *****************************************************************************************/
-#include "Defines.h"
-
-#ifdef INDIERENDER_GLES_IOS
-// ----- Includes -----
-
-#include "Global.h"
-#include "IND_SurfaceManager.h"
-#include "OpenGLES2Render.h"
-
-/** @cond DOCUMENT_PRIVATEAPI */
-
-// --------------------------------------------------------------------------------
-//							         Public methods
-// --------------------------------------------------------------------------------
 
 
-void OpenGLES2Render::blit3dMesh(IND_3dMesh *) {
-//TODO
-}
+#ifndef _IND_SHADERMANAGER_
+#define _IND_SHADERMANAGER_
 
-void OpenGLES2Render::set3dMeshSequence(IND_3dMesh *, unsigned int ) {
-//TODO
-}
+#include <string>
+#include <map>
 
+class IND_ShaderProgram;
 
-// --------------------------------------------------------------------------------
-//							         Private methods
-// --------------------------------------------------------------------------------
+class  IND_ShaderManager {
+public:
+    
+	// ----- Init/End -----
+    
+	IND_ShaderManager(): _ok(false)  { }
+	~IND_ShaderManager() {
+		end();
+	}
+    
+	bool    init();
+	void    end();
+	bool    isOK() const {
+        return _ok;
+    }
+    
+	// ----- Public methods -----
+    
+	bool add(IND_ShaderProgram* program, const char* programName);
+	bool remove(const char* programName);
+    IND_ShaderProgram* getProgram (const char* programName);
+    
+private:
+	// ----- Private -----
+    
+	bool _ok;
+    
+	// ----- Containers -----
+    typedef std::map<std::string, IND_ShaderProgram*> ProgramsMap;
+    typedef ProgramsMap::iterator ProgramsMapIterator;
+    ProgramsMap programs;
+	// ----- Private Methods -----
+	void initVars();
+	void freeVars();
+};
 
-/** @endcond */
-
-#endif //INDIERENDER_GLES_IOS
+#endif

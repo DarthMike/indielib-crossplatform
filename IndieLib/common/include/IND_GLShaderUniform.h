@@ -1,8 +1,3 @@
-/*****************************************************************************************
- * File: RenderObject3dOpenGL.cpp
- * Desc: Blitting of 3d objects using OpenGL
- *****************************************************************************************/
-
 /*********************************** The zlib License ************************************
  *
  * Copyright (c) 2013 Indielib-crossplatform Development Team
@@ -27,35 +22,46 @@
  * distribution.
  *
  *****************************************************************************************/
+
+
+#ifndef __IND_GLSHADERUNIFORM_H_
+#define __IND_GLSHADERUNIFORM_H_
+
+#include "IND_Object.h"
 #include "Defines.h"
 
-#ifdef INDIERENDER_GLES_IOS
-// ----- Includes -----
+#include <string>
+#include <OpenGLES/ES2/gl.h>
 
-#include "Global.h"
-#include "IND_SurfaceManager.h"
-#include "OpenGLES2Render.h"
+using namespace std;
 
-/** @cond DOCUMENT_PRIVATEAPI */
+class LIB_EXP IND_GLSLShaderUniform : public IND_Object{
+public:
+    static IND_GLSLShaderUniform* newUniform() {
+        return new IND_GLSLShaderUniform();
+    }
+    
+    virtual void destroy() {
+        delete this;
+    }
+    
+    typedef enum UniformType {
+        UniformTypeUnknown,
+        UniformTypeInteger,
+        UniformTypeFloat,
+        UniformTypeIntVector,
+        UniformTypeFloatVector,
+        UniformTypeFloatMatrix,
+        UniformTypeSampler2D
+    } UniformType;
+    
+    string _nameInShader;
+    GLint _glLocation;
+    GLenum _glType;
+    
+    UniformType getType();
+    int arrayLength();
+    int matrixSize();
+};
 
-// --------------------------------------------------------------------------------
-//							         Public methods
-// --------------------------------------------------------------------------------
-
-
-void OpenGLES2Render::blit3dMesh(IND_3dMesh *) {
-//TODO
-}
-
-void OpenGLES2Render::set3dMeshSequence(IND_3dMesh *, unsigned int ) {
-//TODO
-}
-
-
-// --------------------------------------------------------------------------------
-//							         Private methods
-// --------------------------------------------------------------------------------
-
-/** @endcond */
-
-#endif //INDIERENDER_GLES_IOS
+#endif //__IND_GLSHADERUNIFORM_H_

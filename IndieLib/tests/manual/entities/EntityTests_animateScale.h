@@ -26,6 +26,8 @@
  * distribution.
  *
  *****************************************************************************************/
+
+
 #ifndef _EntityTests_animateScale_
 #define _EntityTests_animateScale_
 

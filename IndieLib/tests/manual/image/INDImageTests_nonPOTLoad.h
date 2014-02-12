@@ -26,6 +26,8 @@
  * distribution.
  *
  *****************************************************************************************/
+
+
 #ifndef _INDImageTests_nonPOTLoad_
 #define _INDImageTests_nonPOTLoad_
 

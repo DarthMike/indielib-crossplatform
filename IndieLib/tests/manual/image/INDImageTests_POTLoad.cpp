@@ -27,6 +27,7 @@
  *
  *****************************************************************************************/
 
+
 #include "CIndieLib.h"
 #include "INDImageTests_POTLoad.h"
 #include "IND_Surface.h"

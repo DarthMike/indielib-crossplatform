@@ -42,11 +42,13 @@ public:
 	_surfaceTip(NULL),
 	_fontSmall(NULL),
 	_fontBig(NULL),
+    _fontKomika(NULL),
 	_back(NULL),
 	 _tip(NULL),
 	 _textTitle(NULL),
 	_textSmallBlack(NULL),					
-	_textSmallWhite(NULL){
+	_textSmallWhite(NULL),
+    _textKomika(NULL){
 		init();
 	}
 
@@ -67,11 +69,13 @@ private:
 	IND_Surface *_surfaceTip;
 	IND_Font* _fontSmall;
 	IND_Font* _fontBig;
+    IND_Font* _fontKomika;
 	IND_Entity2d* _back;
 	IND_Entity2d* _tip;
 	IND_Entity2d* _textTitle;
 	IND_Entity2d* _textSmallBlack;					
-	IND_Entity2d* _textSmallWhite;	
+	IND_Entity2d* _textSmallWhite;
+    IND_Entity2d* _textKomika;
 };
 
 

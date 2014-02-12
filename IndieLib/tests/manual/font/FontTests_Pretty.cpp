@@ -48,6 +48,10 @@ void FontTests_Pretty::prepareTests() {
 
 	// Font 2
 	iLib->_fontManager->addMudFont(_fontBig, const_cast<char *>("font_big.png"), const_cast<char *>("font_big.xml"), IND_ALPHA, IND_32);
+    
+    // Font 3
+    iLib->_fontManager->addAngelcodeFont(_fontKomika, const_cast<char *>("komika_new.xml"), IND_ALPHA, IND_32);
+
 }
 
 void FontTests_Pretty::performTests(float dt) {
@@ -82,7 +86,7 @@ void FontTests_Pretty::setActive(bool active){
 	    // Creating 2d entity for the background
 						
 		iLib->_entity2dManager->add(_back);				// Entity adding
-		_back->setSurface(_surfaceBack);				// Set the surface into the entity
+		_back->setSurface(_surfaceBack);	                // Set the surface into the entity
 
 		// Creating 2d entity for the tips page
 						
@@ -94,12 +98,17 @@ void FontTests_Pretty::setActive(bool active){
 		_textTitle->setFont(_fontBig);					// Set the font into the entity
 
 		// Text small black			
-		iLib->_entity2dManager->add(_textSmallBlack);			// Entity adding
-		_textSmallBlack->setFont(_fontSmall);				// Set the font into the entity
+		iLib->_entity2dManager->add(_textSmallBlack);   // Entity adding
+		_textSmallBlack->setFont(_fontSmall);           // Set the font into the entity
 
 		// Text small white				
-		iLib->_entity2dManager->add(_textSmallWhite);			// Entity adding
-		_textSmallWhite->setFont(_fontSmall);				// Set the font into the entity
+		iLib->_entity2dManager->add(_textSmallWhite);   // Entity adding
+		_textSmallWhite->setFont(_fontSmall);           // Set the font into the entity
+
+        // Text Komika				
+		iLib->_entity2dManager->add(_textKomika);       // Entity adding
+		_textKomika->setFont(_fontKomika);              // Set the font into the entity
+
 
 		// ----- Changing the attributes of the 2d entities -----
 		_tip->setHotSpot(0.5f, 0.5f);
@@ -127,6 +136,13 @@ void FontTests_Pretty::setActive(bool active){
 		_textSmallWhite->setPosition(400, 230, 1);
 		_textSmallWhite->setAlign(IND_LEFT);
 
+        char komikaText[] = "This is an Angelcode font.\n\nThis fonttype is still experimental!\n\nKernings not implemented yet!\n\nAlignment is not implemented! ";
+		_textKomika->setText(komikaText);	
+		_textKomika->setLineSpacing(12);
+		_textKomika->setCharSpacing(1);
+		_textKomika->setPosition(400, 475, 1);
+		_textKomika->setAlign(IND_CENTER);
+
 
 
     } else { //Inactive
@@ -136,6 +152,7 @@ void FontTests_Pretty::setActive(bool active){
 		iLib->_entity2dManager->remove(_textTitle);
 		iLib->_entity2dManager->remove(_textSmallBlack);
 		iLib->_entity2dManager->remove(_textSmallWhite);
+        iLib->_entity2dManager->remove(_textKomika);
     }
 }
 
@@ -146,12 +163,14 @@ void FontTests_Pretty::init() {
 	_surfaceTip = IND_Surface::newSurface();
 	_fontSmall = IND_Font::newFont();
 	_fontBig = IND_Font::newFont();
+    _fontKomika = IND_Font::newFont();
 
 	_back = IND_Entity2d::newEntity2d();
 	_tip = IND_Entity2d::newEntity2d();
 	_textTitle = IND_Entity2d::newEntity2d();
 	_textSmallBlack = IND_Entity2d::newEntity2d();					
-	_textSmallWhite = IND_Entity2d::newEntity2d();					
+	_textSmallWhite = IND_Entity2d::newEntity2d();
+    _textKomika = IND_Entity2d::newEntity2d();
 }
 
 void FontTests_Pretty::release() {
@@ -162,9 +181,11 @@ void FontTests_Pretty::release() {
 	iLib->_surfaceManager->remove(_surfaceTip);
 	iLib->_fontManager->remove(_fontSmall);
 	iLib->_fontManager->remove(_fontBig);
+    iLib->_fontManager->remove(_fontKomika);
 	iLib->_entity2dManager->remove(_back);
 	iLib->_entity2dManager->remove(_tip);
 	iLib->_entity2dManager->remove(_textTitle);
 	iLib->_entity2dManager->remove(_textSmallBlack);
 	iLib->_entity2dManager->remove(_textSmallWhite);
+    iLib->_entity2dManager->remove(_textKomika);
 }

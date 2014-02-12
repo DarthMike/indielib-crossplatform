@@ -83,4 +83,4 @@ private:
 };
 
 
-#endif // _Camera2dTests_
+#endif // _CollisionTests_

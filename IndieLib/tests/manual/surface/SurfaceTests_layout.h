@@ -66,4 +66,4 @@ private:
 };
 
 
-#endif // _Camera2dTests_
+#endif // _SurfaceTests_layout_

@@ -79,4 +79,4 @@ private:
 };
 
 
-#endif // _Camera2dTests_
+#endif // _FontTests_Pretty_

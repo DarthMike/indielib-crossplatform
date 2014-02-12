@@ -69,4 +69,4 @@ private:
 };
 
 
-#endif // _Camera2dTests_
+#endif // _INDImageTests_Conversions_

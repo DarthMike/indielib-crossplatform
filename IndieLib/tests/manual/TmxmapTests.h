@@ -61,4 +61,5 @@ private:
 
 };
 
-#endif
+
+#endif // _TMXMAPTESTS_

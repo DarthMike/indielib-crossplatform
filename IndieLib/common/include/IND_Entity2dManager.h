@@ -33,6 +33,7 @@
 #define _IND_ENTITY2DMANAGER_
 
 // ----- Includes -----
+
 #include "Defines.h"
 #include <algorithm>
 #include <vector>

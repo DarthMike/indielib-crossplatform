@@ -32,7 +32,9 @@
 #ifndef _IND_CAMERA3D_
 #define _IND_CAMERA3D_
 
+
 // ----- Includes -----
+
 #include "IndiePlatforms.h"
 #include "IND_Vector3.h"
 

@@ -30,6 +30,7 @@
  *
  *****************************************************************************************/
 
+
 #include "Defines.h"
 
 #if defined (INDIERENDER_OPENGL) || defined (INDIERENDER_GLES_IOS)

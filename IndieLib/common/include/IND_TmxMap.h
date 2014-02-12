@@ -28,8 +28,10 @@
  *
  *****************************************************************************************/
 
+
 #ifndef _IND_TMXMAP_
 #define _IND_TMXMAP_
+
 
 #ifdef linux
 #include <string.h>
@@ -40,6 +42,7 @@
 #include "dependencies/TmxParser/Tmx.h"
 
 // ----- Forward declarations ------
+
 struct FIBITMAP;
 
 // --------------------------------------------------------------------------------

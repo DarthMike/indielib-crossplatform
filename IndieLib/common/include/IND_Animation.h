@@ -33,11 +33,13 @@
 #define _IND_ANIMATION_
 
 // ----- Includes -----
+
 #include <vector>
 #include "IND_Sequence.h"
 #include "IND_Object.h"
 
 // ----- Forward Declarations -----
+
 class IND_Frame;
 class IND_Image;
 class IND_Frame;

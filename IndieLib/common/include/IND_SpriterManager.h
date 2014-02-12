@@ -32,6 +32,7 @@
 #ifndef _IND_SPRITERMANAGER_
 #define _IND_SPRITERMANAGER_
 
+
 // ----- Includes -----
 
 #include "../dependencies/SpriterParser/Animation.h"

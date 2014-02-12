@@ -33,6 +33,7 @@
 #define _IND_TMXMAPMANAGER_
 
 // ----- Includes -----
+
 #include <list>
 
 // ----- Forward declarations ----

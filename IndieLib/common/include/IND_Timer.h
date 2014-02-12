@@ -32,9 +32,11 @@
 #ifndef _IND_TIMER_
 #define _IND_TIMER_
 
+
 #include "Defines.h"
 
 // ---- Forward declarations ----
+
 class PrecissionTimer;
 // --------------------------------------------------------------------------------
 //									   IND_Timer

@@ -34,6 +34,7 @@
 #define _FREEIMAGEHELPER
 
 // ----- Dependencies -----
+
 #include "dependencies/FreeImage/Dist/FreeImage.h"
 
 #ifdef linux
@@ -41,6 +42,7 @@
 #endif
 
 // ----- Includes -----
+
 #include "Defines.h"
 
 /** @cond DOCUMENT_PRIVATEAPI */

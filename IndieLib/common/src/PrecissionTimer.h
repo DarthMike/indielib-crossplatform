@@ -32,7 +32,9 @@
 #ifndef _PRECISSIONTIMER
 #define _PRECISSIONTIMER
 
+
 //Library dependencies
+
 #include "Defines.h"
 
 //Timer for Windows

@@ -32,6 +32,7 @@
 #ifndef _IND_LIGHTMANAGER_
 #define _IND_LIGHTMANAGER_
 
+
 // ----- Includes -----
 
 #include <list>

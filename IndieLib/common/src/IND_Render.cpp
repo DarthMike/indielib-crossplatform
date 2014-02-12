@@ -1,7 +1,7 @@
 /*****************************************************************************************
  * File: IND_Render.cpp
  * Desc: Initialization / Destruction of the render.
- *       Hide / wraps the platform specific render.
+ *       Hides / wraps the platform specific render.
  *****************************************************************************************/
 
 /*********************************** The zlib License ************************************

@@ -34,6 +34,7 @@
 #include "IndiePlatforms.h"
 
 //Libraries dependencies
+
 #include <math.h>
 #include <assert.h>
 

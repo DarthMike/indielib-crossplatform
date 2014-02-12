@@ -28,10 +28,13 @@
  *
  *****************************************************************************************/
 
+
 #ifndef _IND_LIGHT_
 #define _IND_LIGHT_
 
+
 // ----- Forward declarations -----
+
 struct LIGHT;
 
 // ----- Includes -----

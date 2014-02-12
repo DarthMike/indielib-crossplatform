@@ -32,6 +32,7 @@
 #ifndef _INDIELIB_
 #define _INDIELIB_
 
+
 /*
     TODO: This documentation should probably be moved somewhere else...
  

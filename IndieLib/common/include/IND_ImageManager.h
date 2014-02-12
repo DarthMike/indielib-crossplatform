@@ -33,6 +33,7 @@
 #define _IND_IMAGEMANAGER_
 
 // ----- Includes -----
+
 #include <list>
 
 

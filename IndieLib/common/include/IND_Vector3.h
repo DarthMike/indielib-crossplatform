@@ -28,12 +28,15 @@
  *
  *****************************************************************************************/
 
+
 #ifndef _IND_VECTOR3_
 #define _IND_VECTOR3_
+
 
 #include "IndiePlatforms.h"
 
 //Libraries dependencies
+
 #include <math.h>
 #include <assert.h>
 

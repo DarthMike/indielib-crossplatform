@@ -32,6 +32,7 @@
 #ifndef _IND_SPRITERENTITY_
 #define _IND_SPRITERENTITY_
 
+
 // ----- Includes -----
 
 #include "IND_Object.h"

@@ -34,6 +34,7 @@
 #include "Global.h"
 
 // ----- Library Dependencies -----
+
 #include "dependencies/SDL-2.0/include/SDL.h"
 
 // ----- Header -----

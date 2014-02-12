@@ -38,6 +38,7 @@
 #include "Defines.h"
 
 // ----- Forward declarations -----
+
 class IND_ImageManager;
 class TextureBuilder;
 class IND_Render;

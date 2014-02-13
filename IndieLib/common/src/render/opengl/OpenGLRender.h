@@ -161,8 +161,8 @@ public:
 	void endScene();
 	void showFpsInWindowTitle(char *pFPSString);
     void setPointPixelScale (float pNewScale);
-	// ----- Viewports and cameras -----
-
+	
+    // ----- Viewports and cameras -----
 
 	void clearViewPort(unsigned char pR,
 	                   unsigned char pG,
@@ -351,6 +351,7 @@ public:
 	                  float pVDisplace);
 
 	// ------ Render Text 2d -----
+
 	void blitText(IND_Font *pFo,
 	              char *pText,
 	              int pX,

@@ -405,6 +405,7 @@ public:
     void blitTexturedQuad(CUSTOMVERTEX2D* pVertexes);
     
 	// ------ Render Text 2d -----
+
 	void blitText(IND_Font *pFo,
 	              char *pText,
 	              int pX,
@@ -592,4 +593,5 @@ private:
 	friend class IND_Render;
 };
 /** @endcond */
+
 #endif // _OpenGLES2Render_H_

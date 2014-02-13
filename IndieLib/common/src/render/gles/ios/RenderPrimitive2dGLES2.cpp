@@ -28,9 +28,12 @@
  * distribution.
  *
  *****************************************************************************************/
+
+
 #include "Defines.h"
 
 #ifdef INDIERENDER_GLES_IOS
+
 // ----- Includes -----
 
 #include "Global.h"

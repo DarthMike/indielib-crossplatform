@@ -52,6 +52,7 @@
 #include "IND_Vector2.h"
 
 // ----- Forward Declarations -----
+
 class IND_Window;
 class IND_FontManager;
 class IND_SurfaceManager;
@@ -68,9 +69,11 @@ class IND_Camera3d;
 class OSOpenGLManager;
 
 // ----- Libs -----
+
 #include "dependencies/glew-1.9.0/include/GL/glew.h" //Extension loading facilites library
 
 // ----- Defines ------
+
 #define MAX_PIXELS 2048
 
 struct InfoStruct {

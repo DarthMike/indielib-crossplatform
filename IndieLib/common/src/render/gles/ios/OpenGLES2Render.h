@@ -52,6 +52,7 @@
 #include "IND_Vector2.h"
 
 // ----- Forward Declarations -----
+
 class IND_Window;
 class IND_FontManager;
 class IND_SurfaceManager;
@@ -70,9 +71,11 @@ class IND_ShaderProgram;
 class IND_ShaderManager;
 
 // ----- Libs -----
+
 #include <OpenGLES/ES2/gl.h>
 
 // ----- Defines ------
+
 #define MAX_PIXELS 2048
 
 struct InfoStruct {

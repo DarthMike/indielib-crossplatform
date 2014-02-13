@@ -121,7 +121,9 @@ public:
 	
 
 private:
+
 	/** @cond DOCUMENT_PRIVATEAPI */
+
     IND_SpriterEntity();
 	virtual ~IND_SpriterEntity();
 
@@ -145,14 +147,10 @@ private:
     bool                        _drawBones;             // TODO: support this in a later version
     bool                        _drawObjectpositions;   // TODO: support this in a later version
 
-
 	// ----- Private sets ------
 	
-
-
 	// ----- Private methods -----
-    
-    
+       
     TimelineObject* getTimelineObject(int timelineId, int keyId);
     IND_Surface* getSurface(int folderId, int fileId);
     
@@ -161,9 +159,9 @@ private:
     Animation* addAnimation(int id, const char* name, int length, const char* looping, int loop_to);
     
 	// ----- Friends -----
-
 	
     friend class IND_SpriterManager;
+
 	/** @endcond */
 };
 /**@}*/

@@ -67,9 +67,12 @@ IND_Light class managed by IND_LightManager for managing lights, click in IND_Li
 */
 class LIB_EXP IND_Light {
 public:
+
 	// ----- Init/End -----
+
 	IND_Light();
 	~IND_Light();
+
 	// ----- Public sets------
 
 	void setColor(float pR, float pG, float pB, float pA);
@@ -119,6 +122,7 @@ public:
 private:
 
 	// ----- Structures ------
+
 	LIGHT *_light;
 
 	// ----- Friends -----

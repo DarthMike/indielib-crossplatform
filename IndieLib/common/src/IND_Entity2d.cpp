@@ -885,7 +885,8 @@ Attributes initialization
 void IND_Entity2d::initAttrib() {
     //Id
     _id = 0;
-	// Assigned object
+	
+    // Assigned object
 	_su = 0;
 	_an = 0;
 	_pri2d = 0;

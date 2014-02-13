@@ -34,10 +34,14 @@
 #include "Defines.h"
 
 #if defined (INDIERENDER_OPENGL) || defined (INDIERENDER_GLES_IOS)
+
 // ----- Libs -----
+
 #include "dependencies/SDL-2.0/include/SDL.h"
 #include "dependencies/SDL-2.0/include/SDL_video.h"
+
 // ----- Includes -----
+
 #include "Global.h"
 #include "OSOpenGLManager.h"
 #include "IND_Window.h"

@@ -40,6 +40,7 @@
 #include <list>
 
 // ----- Forward declarations
+
 class IND_SurfaceManager;
 class IND_AnimationManager;
 class IND_Render;
@@ -117,7 +118,9 @@ public:
 	bool     isCollision(IND_Entity2d *pEn1, const char *pId1, IND_Entity2d *pEn2, const char *pId2);
 
 private:
-	/** @cond DOCUMENT_PRIVATEAPI */
+	
+    /** @cond DOCUMENT_PRIVATEAPI */
+
 	// ----- Private -----
 
 	bool _ok;
@@ -145,6 +148,7 @@ private:
 	void writeMessage();
 	void initVars();
 	void freeVars();
+
     /** @endcond */
 };
 /**@}*/

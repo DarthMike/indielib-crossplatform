@@ -39,6 +39,7 @@
 #include "Defines.h"
 
 // ----- Forward declarations -----
+
 class IND_Window;
 struct SDL_Window;
 
@@ -71,6 +72,7 @@ public:
 	}
 
 	// ----- Public methods -----
+
 	//Inits OpenGL context (SDL Properties)
 	virtual void setOpenGLContextParams(IND_ColorFormat colorFormat, int numBitsPerColor, int numDepthBits, int numStencilBits, bool doublebuffer);
 
@@ -88,13 +90,17 @@ public:
 protected:
 
 	// ----- Private methods -----
+
 	void _init();
 	void _end();
-	// ----- Objects -----
+	
+    // ----- Objects -----
+
 	IND_Window* _window;
 	SDL_Window* _sdlWindow;
 	void* _glContext;
-	// ----- Vars -----
+	
+    // ----- Vars -----
 
 	bool _doubleBuffering;  //Whether use double buffering or not
 

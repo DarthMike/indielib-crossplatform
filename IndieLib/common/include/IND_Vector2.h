@@ -54,7 +54,8 @@
  */
 class LIB_EXP IND_Vector2 {
 public:    
-	//----- CONSTRUCTORS/DESTRUCTORS -----
+
+    //----- CONSTRUCTORS/DESTRUCTORS -----
 	
     /**
      Default constructor, initializes elements to 0

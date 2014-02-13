@@ -32,18 +32,17 @@
 #ifndef _IND_SPRITERMANAGER_
 #define _IND_SPRITERMANAGER_
 
-
 // ----- Includes -----
 
 #include "../dependencies/SpriterParser/Animation.h"
 #include "../dependencies/SpriterParser/Mainline.h"
 #include "../dependencies/SpriterParser/Timeline.h"
 
-
 #include <list>
 #include <vector>
 
 // ----- Forward declarations -----
+
 class IND_SurfaceManager;
 class IND_Image;
 class IND_Timer;
@@ -100,15 +99,15 @@ public:
     
 
 private:
+    /** @cond DOCUMENT_PRIVATEAPI */
+	
+    // ----- Private -----
 
-	// ----- Private -----
-	/** @cond DOCUMENT_PRIVATEAPI */
-	bool _ok;
+    bool _ok;
     double _deltaTime;
     double _lastTime;
 
 	// ----- Enums -----
-
 
 	// ----- Objects -----
     
@@ -122,13 +121,13 @@ private:
 
 	// ----- Private methods -----
 
-
 	void        addToList(IND_SpriterEntity *pNewEntity);
 	void        delFromlist(IND_SpriterEntity *pEn);
 	IND_Image*  loadImage(char *pName);
 	bool        remove(IND_SpriterEntity *pEn, bool pType);
 
-    // ----- render methods -----
+    // ----- Render methods -----
+
     void        draw(IND_SpriterEntity *ent);
     void        drawTransientObject(IND_SpriterEntity *ent, MainlineObjectref *mObjectref);
     void        drawPersistentObject(IND_SpriterEntity *ent, MainlineObjectref *mObjectref);
@@ -138,9 +137,9 @@ private:
     void        updateCurrentKey(IND_SpriterEntity *ent);
     TimelineObject* getTimelineObject(IND_SpriterEntity *ent,int timelineId, int keyId);
     IND_Surface*    getSurface(IND_SpriterEntity *ent, int folderId, int fileId);
-    
-    
-    // ----- parser methods -----
+       
+    // ----- Parser methods -----
+
 	bool        parseSpriterData(const char *pSCMLFileName);
     int         toInt(const char* input);
     float       toFloat(const char* input);
@@ -148,6 +147,7 @@ private:
     void        writeMessage();
 	void        initVars();
 	void        freeVars();
+
 	/** @endcond */
 };
 /**@}*/

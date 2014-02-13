@@ -107,7 +107,9 @@ public:
 	int         getSpareY();
 
 private:
+
 	/** @cond DOCUMENT_PRIVATEAPI */
+
     IND_Surface (): _surface(NULL) {
         init();
     }
@@ -117,6 +119,7 @@ private:
     }
     
 	// ----- Structures ------
+
 	SURFACE *_surface;
 
 	// ----- Private sets ------
@@ -166,6 +169,7 @@ private:
 	friend class DirectXRender;
 	friend class OpenGLRender;
     friend class OpenGLES2Render;
+
     /** @endcond */
 };
 /**@}*/

@@ -40,6 +40,7 @@
 #include "dependencies/SDL-2.0/include/SDL.h"
 
 // ----- Libs -----
+
 #ifdef INDIERENDER_DIRECTX
 #include "render/directx/DirectXRender.h"
 #endif

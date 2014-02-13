@@ -39,6 +39,7 @@
 #include "IND_Object.h"
 
 // ----- Forward declarations -----
+
 class CollisionParser;
 class IND_Animation;
 class IND_Surface;
@@ -78,6 +79,7 @@ class LIB_EXP IND_Entity2d : public IND_Object {
 public:
 
 	// ----- Init -----
+
     static IND_Entity2d* newEntity2d();
 
     void destroy();
@@ -395,8 +397,11 @@ public:
 	/**@}*/
 
 private:
+
 	/** @cond DOCUMENT_PRIVATEAPI */
+
 	// ----- Private ------
+
 	IND_Entity2d();
 	virtual ~IND_Entity2d();
     
@@ -496,6 +501,7 @@ private:
 	// ----- Friends -----
 
 	friend class IND_Entity2dManager;
+
     /** @endcond */
 };
 /**@}*/

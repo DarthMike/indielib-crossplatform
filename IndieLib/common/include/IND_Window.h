@@ -131,7 +131,9 @@ public:
 	SDL_Window *getSDLWindow() {
 		return _attributes._sdlWindow;
 	}
+
 	// ----- Public methods -----
+
 	/**
 	@brief Sets the title shown only for non-fullscreen windows
 	@param pTitle The string to represent title
@@ -141,6 +143,7 @@ public:
 
 private:
 	/** @cond DOCUMENT_PRIVATEAPI */
+
 	// ----- Private -----
 
 	bool _ok;
@@ -171,6 +174,7 @@ private:
 	struct structAttributes _attributes;
 
 	// ----- Private methods -----
+
 	void    end();
 
 	bool create(IND_WindowProperties& props);
@@ -189,6 +193,7 @@ private:
 	friend class OpenGLRender;
 	friend class DirectXRender;
     friend class OpenGLES2Render;
+
     /** @endcond */
     
 };

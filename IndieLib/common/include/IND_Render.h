@@ -41,6 +41,7 @@
 #include "IND_AnimationManager.h"
 
 // ----- Forward Declarations -----
+
 #ifdef INDIERENDER_DIRECTX
 class DirectXRender;
 #endif
@@ -461,7 +462,9 @@ public:
 
 private:
     /** @cond DOCUMENT_PRIVATEAPI */
+
 	// ----- Objects -----
+
 #ifdef INDIERENDER_DIRECTX
 	DirectXRender *_wrappedRenderer;
 #endif
@@ -473,8 +476,10 @@ private:
 #ifdef INDIERENDER_OPENGL
 	OpenGLRender *_wrappedRenderer;
 #endif
-	// ----- Vars -----
-	// Timer
+	
+    // ----- Vars -----
+	
+    // Timer
 	IND_Timer _timer;
 	float _lastTime;
 	float _last;
@@ -487,15 +492,18 @@ private:
 	int _lastFps;
 
 	// ----- Private methods -----
+
 	IND_Window* createRender(IND_WindowProperties& windowProperties);
 	void resetTimer();
 
 	// ----- Private Interface (for friend classes) -----
+
 	void reCalculateFrustrumPlanes();
 	void blitCollisionCircle(int pPosX, int pPosY, int pRadius, float pScale, unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA, IND_Matrix pWorldMatrix);
 	void blitCollisionLine(int pPosX1, int pPosY1, int pPosX2, int pPosY2,  unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA, IND_Matrix pIndWorldMatrix);
 
 	// ----- Friends -----
+
 	friend class IND_Entity2dManager;
 	friend class IND_Input;
 	friend class DirectXTextureBuilder;

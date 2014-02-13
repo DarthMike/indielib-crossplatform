@@ -45,7 +45,9 @@
  */
 class IND_Frame {
 private:
+
 	/** @cond DOCUMENT_PRIVATEAPI */
+
 	// ----- Structures ------
 
 	// Frame
@@ -120,6 +122,7 @@ private:
 	friend class IND_Animation;
 	friend class IND_AnimationManager;
 	friend class IND_Entity2dManager;
+
     /** @endcond */
 };
 

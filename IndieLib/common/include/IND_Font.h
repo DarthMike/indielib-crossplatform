@@ -89,13 +89,14 @@ public:
 
 
 private:
+
 	/** @cond DOCUMENT_PRIVATEAPI */
+
     IND_Font() {}
     virtual ~IND_Font() {}
     
 	// ----- Structures ------
     
-
 	// LETTER
 	struct structLetter {
 		unsigned char _letter;  // Character
@@ -220,13 +221,13 @@ private:
 		return _font._type;
 	}
 
-
 	// ----- Friends -----
 
 	friend class IND_FontManager;
 	friend class DirectXRender;
 	friend class OpenGLRender;
     friend class OpenGLES2Render;
+
     /** @endcond */
 };
 /**@}*/

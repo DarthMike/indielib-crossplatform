@@ -479,10 +479,12 @@ private:
     void setGLBoundTextureParams();
     
 	// ----- Collisions -----
+
 	void blitCollisionCircle(int pPosX, int pPosY, int pRadius, float pScale, unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA, IND_Matrix pWorldMatrix);
 	void blitCollisionLine(int pPosX1, int pPosY1, int pPosX2, int pPosY2,  unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA, IND_Matrix pIndWorldMatrix);
 
 	// ---- Culling helpers ----
+
 	void reCalculateFrustrumPlanes();
 	void transformVerticesToWorld(float pX1, float pY1,
 											float pX2, float pY2,

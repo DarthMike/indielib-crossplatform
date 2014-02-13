@@ -285,7 +285,9 @@ public:
 	/**@}*/
 
 private:
+
 	/** @cond DOCUMENT_PRIVATEAPI */
+
 	// ----- Private -----
 
 	IND_Render *_render;

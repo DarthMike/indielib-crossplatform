@@ -111,6 +111,7 @@ public:
     static IND_Animation* newAnimation();
     
     virtual void destroy();
+
 	// ----- Public gets ------
 
 	// ----- Relative to lobal animation ------
@@ -164,7 +165,9 @@ public:
 	void                    setSurface(unsigned int pFrame, IND_Surface *pNewSurface);
 
 private:
+
 	/** @cond DOCUMENT_PRIVATEAPI */
+
     IND_Animation() : _vectorFrames(NULL) {
       	_vectorFrames = new vector <IND_Frame *>;
     }
@@ -172,6 +175,7 @@ private:
     virtual ~IND_Animation() {
         DISPOSE(_vectorFrames);
     }
+
 	// ----- Structures ------
 
 	vector <IND_Frame *> *_vectorFrames;    // Vector of frames
@@ -191,7 +195,7 @@ private:
         ~structAnimation() {
             DISPOSEARRAY(_name);
             
-            // ----- Free sequences for each animation -----
+            // Free sequences for each animation
             // Free all the pointers to SEQUENCE
             vector <IND_Sequence *>::iterator mVectorSequenceIter;
             for (mVectorSequenceIter  = _listSequences->begin();
@@ -234,6 +238,7 @@ private:
 	friend class DirectXRender;
 	friend class OpenGLES_iOS_Render;
 	friend class IND_Entity2dManager;
+
     /** @endcond */
 };
 /**@}*/

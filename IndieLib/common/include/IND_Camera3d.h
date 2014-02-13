@@ -155,6 +155,7 @@ public:
 
 private:
 	/** @cond DOCUMENT_PRIVATEAPI */
+
 	// ----- Private -----
 
 	bool _ok;
@@ -187,6 +188,7 @@ private:
 
 	friend class DirectXRender;
 	friend class OpenGLRender;
+
     /** @endcond */
 };
 /**@}*/

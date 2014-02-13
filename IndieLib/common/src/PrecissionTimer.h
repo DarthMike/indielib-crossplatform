@@ -32,7 +32,6 @@
 #ifndef _PRECISSIONTIMER
 #define _PRECISSIONTIMER
 
-
 //Library dependencies
 
 #include "Defines.h"
@@ -67,7 +66,9 @@
 
 class PrecissionTimer {
 public:
+
 	//----- CONSTRUCTORS/DESTRUCTORS -----
+
 	PrecissionTimer():
 		_highRes(false),
 		_started(false),
@@ -77,7 +78,9 @@ public:
 	}
 	~PrecissionTimer() {
 	}
+
 	//----- GET/SET FUNCTIONS -----
+
 	double getTicks();
 
 	bool isStarted()        {
@@ -86,15 +89,20 @@ public:
 	bool isPaused()         {
 		return _paused;
 	}
+
 	//----- OTHER FUNCTIONS -----
+
 	void start();
 	void stop();
 	void pause();
 	void unpause();
+
 	//----- PUBLIC VARIABLES ------
 
 private:
+
 	//----- INTERNAL VARIABLES -----
+
 	bool _highRes;    		//Using High-res timer?
 	bool _started;    		//Started status
 	bool _paused;     		//Paused Status
@@ -121,6 +129,7 @@ private:
 #endif
 
 	//----- INTERNAL FUNCTIONS -----
+
 	void init();
 };
 

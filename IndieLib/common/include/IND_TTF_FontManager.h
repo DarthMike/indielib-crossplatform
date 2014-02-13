@@ -32,7 +32,6 @@
 #ifndef IND_TTF_FONTMANAGER_H
 #define IND_TTF_FONTMANAGER_H
 
-
 // ----- Includes -----
 
 #include <string>
@@ -59,6 +58,7 @@ TODO: Describtion.
 class LIB_EXP IND_TTF_FontManager {
 
 public:
+
     //! Typedef byte - TODO : should be moved to the defines setup
 	typedef unsigned char byte;
 
@@ -107,8 +107,10 @@ public:
 
 private:
 	
+    /** @cond DOCUMENT_PRIVATEAPI */
+
 	// ----- Private -----
-	/** @cond DOCUMENT_PRIVATEAPI */
+
 	typedef std::map<const std::string, IND_TTF_Font*> IND_TTF_FontList;
 	typedef IND_TTF_FontList::iterator IND_TTF_FontListIterator;
 
@@ -154,7 +156,6 @@ private:
 
 	DTRList					_DTRList;
 
-
     // ----- Private methods -----
     
 	void doDrawText(const std::string& strFontName,const std::wstring& s, float x, float y,
@@ -167,6 +168,7 @@ private:
 					byte btBorderTrans = 255, byte btBackTrans = 255, bool bFlipX = false, 
 					bool bFlipY = false, float fZRotate = 0, byte btTrans = 255, bool bKerning = false, 
 					bool bUnderl = false);
+
 	/** @endcond */
 
 };

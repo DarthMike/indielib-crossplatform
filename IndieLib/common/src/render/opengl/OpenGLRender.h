@@ -117,10 +117,10 @@ struct TextureSamplerState {
     wrapT(GL_CLAMP_TO_EDGE)
     {}
     
-    GLint minFilter;
-    GLint magFilter;
-    GLint wrapS;
-    GLint wrapT;
+    GLint minFilter;    //!< Texture filter setting 
+    GLint magFilter;    //!< Texture filter setting 
+    GLint wrapS;        //!< Texture wrap setting
+    GLint wrapT;        //!< Texture wrap setting
 };
 
 /** @cond DOCUMENT_PRIVATEAPI */
@@ -438,6 +438,7 @@ public:
 private:
 
 	// ----- Private methods -----
+
 	void initVars();
 	void freeVars();
 
@@ -495,6 +496,7 @@ private:
 											IND_Vector3 *mP3Res,
 											IND_Vector3 *mP4Res);
 	// ----- Objects -----
+
 	IND_Math _math;
 	IND_Window *_window;
 	OSOpenGLManager *_osOpenGLMgr;
@@ -541,4 +543,5 @@ private:
 	friend class IND_Render;
 };
 /** @endcond */
+
 #endif // _OPENGLRENDER_H_

@@ -55,10 +55,10 @@ void DirectXRender::blitSurface(IND_Surface *pSu) {
 		// ----- Transform 4 vertices of the quad into world space coordinates -----
 
 		D3DXVECTOR4 mP1, mP2, mP3, mP4;
-        Transform4Vertices(static_cast<float>(pSu->_surface->_vertexArray[mCont]._x), static_cast<float>(pSu->_surface->_vertexArray[mCont]._y),
-		                   static_cast<float>(pSu->_surface->_vertexArray[mCont + 1]._x), static_cast<float>(pSu->_surface->_vertexArray[mCont + 1]._y),
-		                   static_cast<float>(pSu->_surface->_vertexArray[mCont + 2]._x), static_cast<float>(pSu->_surface->_vertexArray[mCont + 2]._y),
-		                   static_cast<float>(pSu->_surface->_vertexArray[mCont + 3]._x), static_cast<float>(pSu->_surface->_vertexArray[mCont + 3]._y),
+        Transform4Vertices(static_cast<float>(pSu->_surface->_vertexArray[mCont]._pos._x), static_cast<float>(pSu->_surface->_vertexArray[mCont]._pos._y),
+		                   static_cast<float>(pSu->_surface->_vertexArray[mCont + 1]._pos._x), static_cast<float>(pSu->_surface->_vertexArray[mCont + 1]._pos._y),
+		                   static_cast<float>(pSu->_surface->_vertexArray[mCont + 2]._pos._x), static_cast<float>(pSu->_surface->_vertexArray[mCont + 2]._pos._y),
+		                   static_cast<float>(pSu->_surface->_vertexArray[mCont + 3]._pos._x), static_cast<float>(pSu->_surface->_vertexArray[mCont + 3]._pos._y),
 		                   &mP1, &mP2, &mP3, &mP4);
 
 		IND_Vector3 mP1_f3(mP1.x,mP1.y,mP1.z);
@@ -103,10 +103,10 @@ void DirectXRender::blitGrid(IND_Surface *pSu, unsigned char pR, unsigned char p
 		// ----- Transform 4 vertices of the quad into world space coordinates -----
 
 		D3DXVECTOR4 mP1, mP2, mP3, mP4;
-		Transform4Vertices(static_cast<float>( pSu->_surface->_vertexArray[i]._x), static_cast<float>( pSu->_surface->_vertexArray[i]._y),
-		                   static_cast<float>( pSu->_surface->_vertexArray[i + 1]._x), static_cast<float>( pSu->_surface->_vertexArray[i + 1]._y),
-		                   static_cast<float>( pSu->_surface->_vertexArray[i + 2]._x), static_cast<float>( pSu->_surface->_vertexArray[i + 2]._y),
-		                   static_cast<float>( pSu->_surface->_vertexArray[i + 3]._x), static_cast<float>( pSu->_surface->_vertexArray[i + 3]._y),
+		Transform4Vertices(static_cast<float>( pSu->_surface->_vertexArray[i]._pos._x), static_cast<float>( pSu->_surface->_vertexArray[i]._pos._y),
+		                   static_cast<float>( pSu->_surface->_vertexArray[i + 1]._pos._x), static_cast<float>( pSu->_surface->_vertexArray[i + 1]._pos._y),
+		                   static_cast<float>( pSu->_surface->_vertexArray[i + 2]._pos._x), static_cast<float>( pSu->_surface->_vertexArray[i + 2]._pos._y),
+		                   static_cast<float>( pSu->_surface->_vertexArray[i + 3]._pos._x), static_cast<float>( pSu->_surface->_vertexArray[i + 3]._pos._y),
 		                   &mP1, &mP2, &mP3, &mP4);
 
 		IND_Vector3 mP1_f3(mP1.x,mP1.y,mP1.z);
@@ -120,10 +120,10 @@ void DirectXRender::blitGrid(IND_Surface *pSu, unsigned char pR, unsigned char p
 		// ---- Discard bounding rectangle using frustum culling if possible ----
 		//FIXME: This discards some grids when they are visible. Run test INDImageTests_nonPOTLoad to see effect on planet image grid.
 		if (_math->cullFrustumBox(mP1_f3, mP2_f3,_frustrumPlanes)) {
-			BlitGridQuad(static_cast<int>(pSu->_surface->_vertexArray[i]._x), static_cast<int>(pSu->_surface->_vertexArray[i]._y),
-			             static_cast<int>(pSu->_surface->_vertexArray[i + 1]._x), static_cast<int>(pSu->_surface->_vertexArray[i + 1]._y),
-			             static_cast<int>(pSu->_surface->_vertexArray[i + 2]._x), static_cast<int>(pSu->_surface->_vertexArray[i + 2]._y),
-			             static_cast<int>(pSu->_surface->_vertexArray[i + 3]._x), static_cast<int>(pSu->_surface->_vertexArray[i + 3]._y),
+			BlitGridQuad(static_cast<int>(pSu->_surface->_vertexArray[i]._pos._x), static_cast<int>(pSu->_surface->_vertexArray[i]._pos._y),
+			             static_cast<int>(pSu->_surface->_vertexArray[i + 1]._pos._x), static_cast<int>(pSu->_surface->_vertexArray[i + 1]._pos._y),
+			             static_cast<int>(pSu->_surface->_vertexArray[i + 2]._pos._x), static_cast<int>(pSu->_surface->_vertexArray[i + 2]._pos._y),
+			             static_cast<int>(pSu->_surface->_vertexArray[i + 3]._pos._x), static_cast<int>(pSu->_surface->_vertexArray[i + 3]._pos._y),
 			             pR, pG, pB, pA,
 			             mMatWorld);
 		}
@@ -341,11 +341,11 @@ void DirectXRender::fillVertex2d(CUSTOMVERTEX2D *pVertex2d,
                                  float pU,
                                  float pV) {
 	// Vertex
-	pVertex2d->_x       = pX;
-	pVertex2d->_y       = pY;
-	pVertex2d->_z       = 0.0f;
-	pVertex2d->_u       = pU;
-	pVertex2d->_v       = pV;
+	pVertex2d->_pos._x       = pX;
+	pVertex2d->_pos._y= pY;
+	pVertex2d->_pos._z       = 0.0f;
+	pVertex2d->_texCoord._u = pU;
+	pVertex2d->_texCoord._v       = pV;
 }
 
 /** @endcond */

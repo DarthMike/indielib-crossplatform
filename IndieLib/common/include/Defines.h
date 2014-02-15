@@ -192,7 +192,6 @@ struct structPixelPos {
 typedef struct structPixelPos PIXEL;
 #endif
 
-#ifdef INDIERENDER_GLES_IOS
 //!Vertex - When not rendering textures, with uniform color
 struct structVertexPos {
 	float _x; ///< Point position x
@@ -220,45 +219,15 @@ struct structVertexPosColor {
 };
 //! Alias for the vertex structure
 typedef struct structVertexPosColor VERTEX_POSANDCOLOR;
-#endif
 
-//Win32 (DirectX used)
-#ifdef INDIERENDER_DIRECTX
-//!Vertex - When rendering with textures
-struct structVertex2d {
-	float _x; ///< Point position x
-    float _y; ///< Point position y
-    float _z; ///< Point position z
-	float _u; ///< Texture mapping coordinate u
-    float _v; ///< Texture mapping coordinate v
-};
-//! Alias for the 2d vertex structure
-typedef struct structVertex2d CUSTOMVERTEX2D;
 
-#define D3DFVF_CUSTOMVERTEX2D (D3DFVF_XYZ | D3DFVF_TEX1)
-#endif
-
-#ifdef INDIERENDER_OPENGL
-//!Vertex - When rendering with textures
-struct structVertex2d {
-	float _x; ///< Point position x
-    float _y; ///< Point position y
-    float _z; ///< Point position z
-	float _u; ///< Texture mapping coordinate u
-    float _v; ///< Texture mapping coordinate v
-};
-//! Alias for the 2d vertex structure
-typedef struct structVertex2d CUSTOMVERTEX2D;
-#endif
-
-#ifdef INDIERENDER_GLES_IOS
-//!Vertex u and t values - When rendering with textures
-struct structTexCoord {
-	float _u; ///< Texture mapping coordinate u
-    float _v; ///< Texture mapping coordinate v
-};
-//! Alias for the 2d vertex structure
-typedef struct structTexCoord VERTEX_TEXCOORD;
+ //!Vertex u and t values - When rendering with textures
+ struct structTexCoord {
+ 	float _u; ///< Texture mapping coordinate u
+     float _v; ///< Texture mapping coordinate v
+ };
+ //! Alias for the 2d vertex structure
+ typedef struct structTexCoord VERTEX_TEXCOORD;
 
 //!Vertex - When rendering with textures
 struct structVertex2d {
@@ -267,7 +236,12 @@ struct structVertex2d {
 };
 //! Alias for the 2d vertex structure
 typedef struct structVertex2d CUSTOMVERTEX2D;
+
+#ifdef INDIERENDER_DIRECTX
+//Win32 (DirectX used)
+#define D3DFVF_CUSTOMVERTEX2D (D3DFVF_XYZ | D3DFVF_TEX1)
 #endif
+
 /**@}*/
 
 /**

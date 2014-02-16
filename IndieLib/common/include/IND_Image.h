@@ -40,6 +40,7 @@
 #include "IND_Object.h"
 
 // ----- Forward declarations ------
+
 struct FIBITMAP;
 
 // --------------------------------------------------------------------------------
@@ -60,6 +61,7 @@ class LIB_EXP IND_Image : public IND_Object {
 public:
 
 	// ----- Public methods ------
+
     static IND_Image* newImage();
     
     virtual void destroy();
@@ -145,7 +147,9 @@ public:
 	}
 
 private:
+
 	/** @cond DOCUMENT_PRIVATEAPI */
+
     IND_Image() {}
     virtual ~IND_Image() {}
     
@@ -221,6 +225,7 @@ private:
 	// ----- Friends -----
 
 	friend class IND_ImageManager;
+
     /** @endcond */
 };
 /**@}*/

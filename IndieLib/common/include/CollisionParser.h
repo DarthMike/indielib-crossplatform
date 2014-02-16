@@ -42,6 +42,7 @@
 // --------------------------------------------------------------------------------
 
 /** @cond DOCUMENT_PRIVATEAPI */
+
 class CollisionParser {
 public:
 

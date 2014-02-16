@@ -27,6 +27,7 @@
  *
  *****************************************************************************************/
 
+
 #include "CIndieLib.h"
 #include "TmxmapTests.h"
 #include "IND_TmxMap.h"
@@ -46,7 +47,7 @@ void TmxmapTests::prepareTests() {
     // ----- Font -----
 	
      _fontSmall = IND_Font::newFont();
-	iLib->_fontManager->addMudFont(_fontSmall, "font_small.png", "font_small.xml", IND_ALPHA, IND_32);
+	iLib->_fontManager->addMudFont(_fontSmall, "font/bitmap/MudFont/font_small.png", "font/bitmap/MudFont/font_small.xml", IND_ALPHA, IND_32);
     
     
 	// ----- Text creation -----
@@ -80,7 +81,7 @@ void TmxmapTests::performTests(float dt) {
 	CIndieLib *iLib = CIndieLib::instance();
 	
 	//Toggling of entity border lines in entities
-	if(iLib->_input->onKeyPress(IND_KEYUP) && _active) {
+	if(iLib->_input->onKeyPress(IND_Q) && _active) {
         _showIsometric = !_showIsometric;
     }
     
@@ -119,7 +120,7 @@ void TmxmapTests::setActive(bool active){
         _textSmallWhite->setPosition(5, 5, 1);
         _textSmallWhite->setAlign(IND_LEFT);
         
-        strcpy(_text, "Press up to change between the two test maps ( Isometric / Orthogonal ) \n ..... TODO: we still need to handle flipped tiles + not to redraw on every gameloop.");
+        strcpy(_text, "Press 'q' to change between the two test maps ( Isometric / Orthogonal ) \n ..... TODO: we still need to handle flipped tiles + not to redraw on every gameloop.");
         _textSmallWhite->setText(_text);
        
         

@@ -27,6 +27,7 @@
  *
  *****************************************************************************************/
 
+
 #include "CIndieLib.h"
 #include "INDImageTests_POTLoad.h"
 #include "IND_Surface.h"
@@ -74,7 +75,7 @@ void INDImageTests_POTLoad::performTests(float dt) {
 	CIndieLib *iLib = CIndieLib::instance();
 	
 	//Toggling of entity border lines in entities
-	if(iLib->_input->onKeyPress(IND_F1) && _active) {
+	if(iLib->_input->onKeyPress(IND_G) && _active) {
 		for (int i = 0; i < _testedEntities; ++i) {
 			_entities[i]->showGridAreas(!_entities[i]->isShowGridAreas());
 		}

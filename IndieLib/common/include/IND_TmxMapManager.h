@@ -33,6 +33,7 @@
 #define _IND_TMXMAPMANAGER_
 
 // ----- Includes -----
+
 #include <list>
 
 // ----- Forward declarations ----
@@ -90,8 +91,11 @@ public:
 	void renderStaggeredMap(IND_TmxMap *staggeredMap,IND_Surface *mSurfaceStaggeredTiles, int kMapCenterOffset);
 
 private:
+
 	/** @cond DOCUMENT_PRIVATEAPI */
+
 	// ----- Private -----
+
 	IND_Render *_render;
 	bool _ok;                                // Manager initialization flag
 	char *_supportedExt [MAX_EXT_TMXMAP];    // File extensions supported
@@ -110,6 +114,7 @@ private:
 	void writeMessage();
 	void initVars();
 	void freeVars();
+
     /** @endcond */
 };
 /**@}*/

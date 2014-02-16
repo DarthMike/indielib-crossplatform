@@ -23,6 +23,7 @@
  *
  *****************************************************************************************/
 
+
 #include "dependencies/unittest++/src/UnitTest++.h"
 #include "CIndieLib.h"
 #include "IND_Image.h"

@@ -32,7 +32,9 @@
 #ifndef _IND_INPUT_
 #define _IND_INPUT_
 
+
 // ----- Includes -----
+
 #include "IndiePlatforms.h"
 #include "Defines.h"
 #include "IND_Timer.h"
@@ -40,6 +42,7 @@
 #include <stdint.h>
 
 // ----- Forward declarations -----
+
 class IND_Render;
 
 // --------------------------------------------------------------------------------
@@ -282,7 +285,9 @@ public:
 	/**@}*/
 
 private:
+
 	/** @cond DOCUMENT_PRIVATEAPI */
+
 	// ----- Private -----
 
 	IND_Render *_render;

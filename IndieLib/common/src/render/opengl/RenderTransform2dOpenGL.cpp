@@ -424,9 +424,6 @@ void OpenGLRender::setRainbow2d(IND_Type pType,
             
             // Alpha
             if (pA != 255) {
-				glDisable(GL_ALPHA_TEST);
-				glEnable(GL_BLEND);
-				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 				blendA = static_cast<float>(pA) / 255.0f;
                 glColor4f(blendR, blendG, blendB, blendA);
             }

@@ -23,6 +23,7 @@
  *
  *****************************************************************************************/
 
+
 #include "dependencies/unittest++/src/UnitTest++.h"
 #include "CIndieLib.h"
 #include "IND_Font.h"
@@ -44,19 +45,19 @@ struct fontFixture {
 
 
 TEST_FIXTURE(fontFixture,FONTMANAGER_ADDEXISTING_ADDOK) {
-	CHECK(iLib->_fontManager->addMudFont(testFont, "font_small.png", "font_small.xml", IND_ALPHA, IND_32));
+	CHECK(iLib->_fontManager->addMudFont(testFont, "font/bitmap/MudFont/font_small.png", "font/bitmap/MudFont/font_small.xml", IND_ALPHA, IND_32));
 }
 
 TEST_FIXTURE(fontFixture,FONTMANAGER_ADDNONEXISTINGIMG_ADDFAILS) {
-	CHECK(!iLib->_fontManager->addMudFont(testFont, "BADBADBAD.png", "font_small.xml", IND_ALPHA, IND_32));
+	CHECK(!iLib->_fontManager->addMudFont(testFont, "BADBADBAD.png", "font/bitmap/MudFont/font_small.xml", IND_ALPHA, IND_32));
 }
 
 TEST_FIXTURE(fontFixture,FONTMANAGER_ADDNONEXISTINGXML_ADDFAILS) {
-	CHECK(!iLib->_fontManager->addMudFont(testFont, "font_small.png", "BADBADBAD.xml", IND_ALPHA, IND_32));
+	CHECK(!iLib->_fontManager->addMudFont(testFont, "font/bitmap/MudFont/font_small.png", "BADBADBAD.xml", IND_ALPHA, IND_32));
 }
 
 TEST_FIXTURE(fontFixture,FONTMANAGER_ADDEXISTING_REMOVEIT_NOFAIL) {
-	CHECK(iLib->_fontManager->addMudFont(testFont, "font_small.png", "font_small.xml", IND_ALPHA, IND_32));
+	CHECK(iLib->_fontManager->addMudFont(testFont, "font/bitmap/MudFont/font_small.png", "font/bitmap/MudFont/font_small.xml", IND_ALPHA, IND_32));
     CHECK(iLib->_fontManager->remove(testFont));
 }
 

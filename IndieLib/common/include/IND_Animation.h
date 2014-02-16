@@ -33,11 +33,13 @@
 #define _IND_ANIMATION_
 
 // ----- Includes -----
+
 #include <vector>
 #include "IND_Sequence.h"
 #include "IND_Object.h"
 
 // ----- Forward Declarations -----
+
 class IND_Frame;
 class IND_Image;
 class IND_Frame;
@@ -87,18 +89,18 @@ The  @b tokens or <b>keywords</b> of a @b IndieLib animation file are:
 
 <b><< Relative to frames >></b>
 
-@arg <b><frames></b>                    Frame section
-@arg <b><name></b>                      Name assigned to the frames (later it will be used in the sequences).
-@arg <b><file></b>                      Path to the image file.
-@arg <b><offset_x></b>                  X offset of the frame.    (Optional, 0 by default).
-@arg <b><offset_y></b>                  Y offset of the frame.    (Optional, 0 by default).
+@arg <b>\<frames\></b>                Frame section
+@arg <b>\<name\></b>                  Name assigned to the frames (later it will be used in the sequences).
+@arg <b>\<file\></b>                  Path to the image file.
+@arg <b>\<offset_x\></b>              X offset of the frame.    (Optional, 0 by default).
+@arg <b>\<offset_y\></b>              Y offset of the frame.    (Optional, 0 by default).
 
 <b><< Relative to sequences >></b>
 
-@arg <b><sequences></b>             Indicates that the sequences are going to be defined in the section between brackets.
-@arg <b><name></b>                  Name assigned to the sequence.
-@arg <b><frame name></b>            Name of the frame that we are refering to. Here we have to use one of the names we assigned to the loaded frames.
-@arg <b><time></b>                  Time, in milliseconds, that the frame will be displayed. (Optional, 150 by default).
+@arg <b>\<sequences\></b>             Indicates that the sequences are going to be defined in the section between brackets.
+@arg <b>\<name\></b>                  Name assigned to the sequence.
+@arg <b>\<frame name\></b>            Name of the frame that we are refering to. Here we have to use one of the names we assigned to the loaded frames.
+@arg <b>\<time\></b>                  Time, in milliseconds, that the frame will be displayed. (Optional, 150 by default).
 
 @b Note: "//"  can be used before a phrase for writing comments.
 
@@ -109,6 +111,7 @@ public:
     static IND_Animation* newAnimation();
     
     virtual void destroy();
+
 	// ----- Public gets ------
 
 	// ----- Relative to lobal animation ------
@@ -162,7 +165,9 @@ public:
 	void                    setSurface(unsigned int pFrame, IND_Surface *pNewSurface);
 
 private:
+
 	/** @cond DOCUMENT_PRIVATEAPI */
+
     IND_Animation() : _vectorFrames(NULL) {
       	_vectorFrames = new vector <IND_Frame *>;
     }
@@ -170,6 +175,7 @@ private:
     virtual ~IND_Animation() {
         DISPOSE(_vectorFrames);
     }
+
 	// ----- Structures ------
 
 	vector <IND_Frame *> *_vectorFrames;    // Vector of frames
@@ -189,7 +195,7 @@ private:
         ~structAnimation() {
             DISPOSEARRAY(_name);
             
-            // ----- Free sequences for each animation -----
+            // Free sequences for each animation
             // Free all the pointers to SEQUENCE
             vector <IND_Sequence *>::iterator mVectorSequenceIter;
             for (mVectorSequenceIter  = _listSequences->begin();
@@ -232,6 +238,7 @@ private:
 	friend class DirectXRender;
 	friend class OpenGLES_iOS_Render;
 	friend class IND_Entity2dManager;
+
     /** @endcond */
 };
 /**@}*/

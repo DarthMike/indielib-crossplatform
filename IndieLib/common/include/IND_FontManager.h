@@ -38,6 +38,7 @@
 #include <list>
 
 // ----- Forward declarations -----
+
 class IND_Font;
 
 // --------------------------------------------------------------------------------
@@ -104,7 +105,9 @@ public:
 	bool remove(IND_Font *pFo);
 
 private:
+
 	/** @cond DOCUMENT_PRIVATEAPI */
+
 	// ----- Private -----
 
 	bool _ok;                   // Manager initialization flag
@@ -140,6 +143,7 @@ private:
 	void                writeMessage();
 	void                initVars();
 	void                freeVars();
+
     /** @endcond */
 };
 /**@}*/

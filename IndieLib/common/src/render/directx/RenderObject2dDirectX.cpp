@@ -3,21 +3,32 @@
  * Desc: Blitting of 2d objects using D3D
  *****************************************************************************************/
 
-/*
-IndieLib 2d library Copyright (C) 2005 Javier López López (javierlopezpro@gmail.com)
+/*********************************** The zlib License ************************************
+ *
+ * Copyright (c) 2013 Indielib-crossplatform Development Team
+ *
+ * This software is provided 'as-is', without any express or implied
+ * warranty. In no event will the authors be held liable for any damages
+ * arising from the use of this software.
+ *
+ * Permission is granted to anyone to use this software for any purpose,
+ * including commercial applications, and to alter it and redistribute it
+ * freely, subject to the following restrictions:
+ *
+ * 1. The origin of this software must not be misrepresented; you must not
+ * claim that you wrote the original software. If you use this software
+ * in a product, an acknowledgment in the product documentation would be
+ * appreciated but is not required.
+ *
+ * 2. Altered source versions must be plainly marked as such, and must not be
+ * misrepresented as being the original software.
+ *
+ * 3. This notice may not be removed or altered from any source
+ * distribution.
+ *
+ *****************************************************************************************/
 
-This library is free software; you can redistribute it and/or modify it under the
-terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2.1 of the License, or (at your option) any later version.
 
-This library is distributed in the hope that it will be useful, but WITHOUT ANY
-WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
-
-You should have received a copy of the GNU Lesser General Public License along with
-this library; if not, write to the Free Software Foundation, Inc., 59 Temple Place,
-Suite 330, Boston, MA 02111-1307 USA
-*/
 #include "Defines.h"
 
 #ifdef INDIERENDER_DIRECTX
@@ -44,10 +55,10 @@ void DirectXRender::blitSurface(IND_Surface *pSu) {
 		// ----- Transform 4 vertices of the quad into world space coordinates -----
 
 		D3DXVECTOR4 mP1, mP2, mP3, mP4;
-        Transform4Vertices(static_cast<float>(pSu->_surface->_vertexArray[mCont]._x), static_cast<float>(pSu->_surface->_vertexArray[mCont]._y),
-		                   static_cast<float>(pSu->_surface->_vertexArray[mCont + 1]._x), static_cast<float>(pSu->_surface->_vertexArray[mCont + 1]._y),
-		                   static_cast<float>(pSu->_surface->_vertexArray[mCont + 2]._x), static_cast<float>(pSu->_surface->_vertexArray[mCont + 2]._y),
-		                   static_cast<float>(pSu->_surface->_vertexArray[mCont + 3]._x), static_cast<float>(pSu->_surface->_vertexArray[mCont + 3]._y),
+        Transform4Vertices(static_cast<float>(pSu->_surface->_vertexArray[mCont]._pos._x), static_cast<float>(pSu->_surface->_vertexArray[mCont]._pos._y),
+		                   static_cast<float>(pSu->_surface->_vertexArray[mCont + 1]._pos._x), static_cast<float>(pSu->_surface->_vertexArray[mCont + 1]._pos._y),
+		                   static_cast<float>(pSu->_surface->_vertexArray[mCont + 2]._pos._x), static_cast<float>(pSu->_surface->_vertexArray[mCont + 2]._pos._y),
+		                   static_cast<float>(pSu->_surface->_vertexArray[mCont + 3]._pos._x), static_cast<float>(pSu->_surface->_vertexArray[mCont + 3]._pos._y),
 		                   &mP1, &mP2, &mP3, &mP4);
 
 		IND_Vector3 mP1_f3(mP1.x,mP1.y,mP1.z);
@@ -92,10 +103,10 @@ void DirectXRender::blitGrid(IND_Surface *pSu, unsigned char pR, unsigned char p
 		// ----- Transform 4 vertices of the quad into world space coordinates -----
 
 		D3DXVECTOR4 mP1, mP2, mP3, mP4;
-		Transform4Vertices(static_cast<float>( pSu->_surface->_vertexArray[i]._x), static_cast<float>( pSu->_surface->_vertexArray[i]._y),
-		                   static_cast<float>( pSu->_surface->_vertexArray[i + 1]._x), static_cast<float>( pSu->_surface->_vertexArray[i + 1]._y),
-		                   static_cast<float>( pSu->_surface->_vertexArray[i + 2]._x), static_cast<float>( pSu->_surface->_vertexArray[i + 2]._y),
-		                   static_cast<float>( pSu->_surface->_vertexArray[i + 3]._x), static_cast<float>( pSu->_surface->_vertexArray[i + 3]._y),
+		Transform4Vertices(static_cast<float>( pSu->_surface->_vertexArray[i]._pos._x), static_cast<float>( pSu->_surface->_vertexArray[i]._pos._y),
+		                   static_cast<float>( pSu->_surface->_vertexArray[i + 1]._pos._x), static_cast<float>( pSu->_surface->_vertexArray[i + 1]._pos._y),
+		                   static_cast<float>( pSu->_surface->_vertexArray[i + 2]._pos._x), static_cast<float>( pSu->_surface->_vertexArray[i + 2]._pos._y),
+		                   static_cast<float>( pSu->_surface->_vertexArray[i + 3]._pos._x), static_cast<float>( pSu->_surface->_vertexArray[i + 3]._pos._y),
 		                   &mP1, &mP2, &mP3, &mP4);
 
 		IND_Vector3 mP1_f3(mP1.x,mP1.y,mP1.z);
@@ -109,10 +120,10 @@ void DirectXRender::blitGrid(IND_Surface *pSu, unsigned char pR, unsigned char p
 		// ---- Discard bounding rectangle using frustum culling if possible ----
 		//FIXME: This discards some grids when they are visible. Run test INDImageTests_nonPOTLoad to see effect on planet image grid.
 		if (_math->cullFrustumBox(mP1_f3, mP2_f3,_frustrumPlanes)) {
-			BlitGridQuad(static_cast<int>(pSu->_surface->_vertexArray[i]._x), static_cast<int>(pSu->_surface->_vertexArray[i]._y),
-			             static_cast<int>(pSu->_surface->_vertexArray[i + 1]._x), static_cast<int>(pSu->_surface->_vertexArray[i + 1]._y),
-			             static_cast<int>(pSu->_surface->_vertexArray[i + 2]._x), static_cast<int>(pSu->_surface->_vertexArray[i + 2]._y),
-			             static_cast<int>(pSu->_surface->_vertexArray[i + 3]._x), static_cast<int>(pSu->_surface->_vertexArray[i + 3]._y),
+			BlitGridQuad(static_cast<int>(pSu->_surface->_vertexArray[i]._pos._x), static_cast<int>(pSu->_surface->_vertexArray[i]._pos._y),
+			             static_cast<int>(pSu->_surface->_vertexArray[i + 1]._pos._x), static_cast<int>(pSu->_surface->_vertexArray[i + 1]._pos._y),
+			             static_cast<int>(pSu->_surface->_vertexArray[i + 2]._pos._x), static_cast<int>(pSu->_surface->_vertexArray[i + 2]._pos._y),
+			             static_cast<int>(pSu->_surface->_vertexArray[i + 3]._pos._x), static_cast<int>(pSu->_surface->_vertexArray[i + 3]._pos._y),
 			             pR, pG, pB, pA,
 			             mMatWorld);
 		}
@@ -330,11 +341,11 @@ void DirectXRender::fillVertex2d(CUSTOMVERTEX2D *pVertex2d,
                                  float pU,
                                  float pV) {
 	// Vertex
-	pVertex2d->_x       = pX;
-	pVertex2d->_y       = pY;
-	pVertex2d->_z       = 0.0f;
-	pVertex2d->_u       = pU;
-	pVertex2d->_v       = pV;
+	pVertex2d->_pos._x       = pX;
+	pVertex2d->_pos._y= pY;
+	pVertex2d->_pos._z       = 0.0f;
+	pVertex2d->_texCoord._u = pU;
+	pVertex2d->_texCoord._v       = pV;
 }
 
 /** @endcond */

@@ -40,6 +40,7 @@
 #include "IND_Image.h"
 #include "IND_ImageManager.h"
 #include "IND_Math.h"
+#include <string>
 
 // --------------------------------------------------------------------------------
 //							  Initialization / Destruction
@@ -443,6 +444,22 @@ bool IND_FontManager::parseAngelCodeFont(IND_Font *pNewFont,const char *pFileNam
         DISPOSE(mXmlDoc);
      	return 0;
     }
+
+    // Getting the path of the xmlfile
+    string angelCodeTopPath;
+    string s = string(pFileName);
+
+	size_t lastPosTemp = s.find_last_of("\\/");
+
+	if(lastPosTemp == string::npos){
+		angelCodeTopPath = "./";
+    }
+	else{
+    	angelCodeTopPath = s.substr(0, lastPosTemp + 1);
+	}
+    
+	g_debug->header("Top directory : ", 3);
+    g_debug->dataChar(angelCodeTopPath.c_str(), true);
     
     // Setting font filename
     pNewFont->setFileName(pFileName);
@@ -509,9 +526,11 @@ bool IND_FontManager::parseAngelCodeFont(IND_Font *pNewFont,const char *pFileNam
         
         // File
         if (mXPage->Attribute("file")) {
+
+            string imagePath = angelCodeTopPath + string(mXPage->Attribute("file"));
             
             IND_Image *mNewImage = IND_Image::newImage();
-            bool noImgError = _imageManager->add(mNewImage, mXPage->Attribute("file"));
+            bool noImgError = _imageManager->add(mNewImage, imagePath.c_str());
             if (!noImgError) {
                 DISPOSEMANAGED(mNewImage);
                 g_debug->header("Failed at adding page image for Angelcode font", DebugApi::LogHeaderError);

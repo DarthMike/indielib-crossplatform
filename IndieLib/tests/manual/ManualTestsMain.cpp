@@ -24,6 +24,7 @@
  trunk tree i.e "IndieLib/tests/" or "IndieLib/linux/".
  All relative loading paths will take into account that premise.
  *****************************************************************************************/
+
 /*********************************** The zlib License ************************************
  *
  * Copyright (c) 2013 Indielib-crossplatform Development Team
@@ -48,6 +49,8 @@
  * distribution.
  *
  *****************************************************************************************/
+
+
 #include "CIndieLib.h"
 #include <vector>
 
@@ -138,6 +141,7 @@ void initTests() {
 	g_tests.push_back(font1);
 	FontTests_Pretty *font2 = new FontTests_Pretty();
 	g_tests.push_back(font2);
+    // TODO: Need a tests for angelCode fonts.
 	CollisionTests *collision1 = new CollisionTests();
 	g_tests.push_back(collision1);
 	EntityTests_animateRotations * entity1 = new EntityTests_animateRotations();

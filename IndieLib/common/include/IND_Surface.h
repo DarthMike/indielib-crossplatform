@@ -39,6 +39,7 @@
 #include "IND_Object.h"
 
 // ----- Forward declarations -----
+
 struct SURFACE;
 
 // --------------------------------------------------------------------------------
@@ -98,12 +99,17 @@ public:
 	string      getTypeString();
 	//! This function returns the quality of the surface in a string. See ::IND_Quality.
 	string      getQualityString();
-
+    // ! This method returns the internal vertexes of a surface.
+    CUSTOMVERTEX2D* getVertexArray();
+    
+    
 	int         getSpareX();
 	int         getSpareY();
 
 private:
+
 	/** @cond DOCUMENT_PRIVATEAPI */
+
     IND_Surface (): _surface(NULL) {
         init();
     }
@@ -113,6 +119,7 @@ private:
     }
     
 	// ----- Structures ------
+
 	SURFACE *_surface;
 
 	// ----- Private sets ------
@@ -162,6 +169,7 @@ private:
 	friend class DirectXRender;
 	friend class OpenGLRender;
     friend class OpenGLES2Render;
+
     /** @endcond */
 };
 /**@}*/

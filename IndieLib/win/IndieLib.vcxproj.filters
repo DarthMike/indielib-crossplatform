@@ -140,6 +140,9 @@
     <Filter Include="Dependencies\TMXParser\base64">
       <UniqueIdentifier>{20c74dd7-5275-4b10-96e1-2864803dc656}</UniqueIdentifier>
     </Filter>
+    <Filter Include="IndieLib\TTF Font">
+      <UniqueIdentifier>{3315348a-7bfe-46ed-9572-c496a023fea3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Common\include\Defines.h">
@@ -355,8 +358,12 @@
     <ClInclude Include="..\common\dependencies\TmxParser\base64\base64.h">
       <Filter>Dependencies\TMXParser\base64</Filter>
     </ClInclude>
-    <ClInclude Include="..\common\include\IND_TTF_Font.h" />
-    <ClInclude Include="..\common\include\IND_TTF_FontManager.h" />
+    <ClInclude Include="..\common\include\IND_TTF_Font.h">
+      <Filter>IndieLib\TTF Font</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\include\IND_TTF_FontManager.h">
+      <Filter>IndieLib\TTF Font</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\common\src\IndieVersion.cpp">
@@ -579,10 +586,10 @@
       <Filter>Dependencies\TMXParser\base64</Filter>
     </ClCompile>
     <ClCompile Include="..\common\src\IND_TTF_Font.cpp">
-      <Filter>IndieLib</Filter>
+      <Filter>IndieLib\TTF Font</Filter>
     </ClCompile>
     <ClCompile Include="..\common\src\IND_TTF_FontManager.cpp">
-      <Filter>IndieLib</Filter>
+      <Filter>IndieLib\TTF Font</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

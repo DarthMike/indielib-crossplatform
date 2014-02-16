@@ -32,7 +32,6 @@
 #ifndef IND_TTF_FONT_H
 #define IND_TTF_FONT_H
 
-
 // ----- Includes -----
 
 #include "Indie.h"
@@ -79,6 +78,7 @@ TTF Font class managed by IND_TTF_FontManager for drawing texts into the screen,
 class LIB_EXP IND_TTF_Font {
 
 public:
+
     //! Typedef byte - TODO : should be moved to the defines setup
 	typedef unsigned char byte;
 	
@@ -150,6 +150,7 @@ public:
 	void setHotspot(float spot) {_fXHotSpot = _fYHotSpot = spot;}
 
 private:
+
     /** @cond DOCUMENT_PRIVATEAPI */
 
     // ----- Structures ------
@@ -174,7 +175,6 @@ private:
     
     //Number of spaces in a tab
 	static const unsigned int nTabSize = 4;
-
    
     free_type_impl          *_impl;                 // free type library wrapper
     
@@ -203,7 +203,6 @@ private:
 	float					_fYHotSpot;             // y hotspot for bliting
 
 	CharCacheMap			_FontCharCache;         // character cache map
-
     
     // ----- Private methods -----
     
@@ -237,6 +236,7 @@ private:
 							bool bFlipY, float fZRotate, byte btTrans, bool bKerning, bool bUnderl);
 
 	void doDrawBorder(float fX_s, float fX_e, float fY, uint32_t clr, byte btTrans);
+
      /** @endcond */
 };
 /**@}*/

@@ -38,6 +38,7 @@
 #include <vector>
 
 // ----- Forward declarations -----
+
 class IND_SurfaceManager;
 class IND_ImageManager;
 class IND_Image;
@@ -115,7 +116,9 @@ public:
 
 
 private:
+
 	/** @cond DOCUMENT_PRIVATEAPI */
+
 	// ----- Private -----
 
 	bool _ok;
@@ -167,6 +170,7 @@ private:
 	void        writeMessage();
 	void        initVars();
 	void        freeVars();
+
     /** @endcond */
 };
 /**@}*/

@@ -26,6 +26,8 @@
  * distribution.
  *
  *****************************************************************************************/
+
+
 #ifndef _INDImageTests_nonPOTLoad_
 #define _INDImageTests_nonPOTLoad_
 
@@ -69,4 +71,4 @@ private:
 };
 
 
-#endif // _Camera2dTests_
+#endif // _INDImageTests_nonPOTLoad_

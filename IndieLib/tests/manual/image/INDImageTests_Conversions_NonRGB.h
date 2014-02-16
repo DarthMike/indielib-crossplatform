@@ -26,6 +26,8 @@
  * distribution.
  *
  *****************************************************************************************/
+
+
 #ifndef _INDImageTests_Conversions_NonRGB_
 #define _INDImageTests_Conversions_NonRGB_
 
@@ -69,4 +71,4 @@ private:
 };
 
 
-#endif // _Camera2dTests_
+#endif // _INDImageTests_Conversions_NonRGB_

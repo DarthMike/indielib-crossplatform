@@ -38,6 +38,7 @@
 #include "Defines.h"
 
 // ----- Forward declarations -----
+
 class IND_ImageManager;
 class TextureBuilder;
 class IND_Render;
@@ -123,10 +124,7 @@ public:
 	             unsigned char pG,
 	             unsigned char pB);
 
-
-
 	// ----- Specifying block size -----
-
 
 	bool add(IND_Surface    *pNewSurface,
 	         const char    *pName,
@@ -154,7 +152,9 @@ public:
 	bool remove(IND_Surface *pSu);
 
 private:
+
 	/** @cond DOCUMENT_PRIVATEAPI */
+
 	// ----- Private -----
 
 	bool _ok;
@@ -163,8 +163,8 @@ private:
 
 	IND_ImageManager *_imageManager;
 	IND_Render *_render;
+    TextureBuilder *_textureBuilder;
 
-	TextureBuilder *_textureBuilder;
 	// ----- Containers -----
 
     std::list <IND_Surface *> *_listSurfaces;
@@ -190,6 +190,7 @@ private:
 	void				convertImage(IND_Image* pImage ,IND_Type pType, IND_Quality pQuality);
 	void                initVars();
 	void                freeVars();
+
     /** @endcond */
 };
 /**@}*/

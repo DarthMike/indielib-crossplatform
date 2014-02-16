@@ -47,7 +47,7 @@ public:
 	virtual ~TextureBuilder() {}
 public:
 
-	//----- Interface to implement -----
+	//Interface to implement
 	virtual bool createNewTexture(IND_Surface *pNewSurface,
 	                              IND_Image       *pImage,
 	                              int             pBlockSizeX,

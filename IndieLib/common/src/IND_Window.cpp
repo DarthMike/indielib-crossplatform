@@ -30,6 +30,7 @@
 
 
 // ----- Includes -----
+
 #include "Defines.h"
 #include "Global.h"
 #include "IND_Window.h"

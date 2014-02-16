@@ -3,26 +3,36 @@
  * Desc: Transformations applied before blitting a 2d object usind OpenGL
  *****************************************************************************************/
 
-/*
-IndieLib 2d library Copyright (C) 2005 Javier López López (info@pixelartgames.com)
-THIS FILE IS AN ADDITIONAL FILE ADDED BY Miguel Angel Quiñones (2011) (mail:m.quinones.garcia@gmail.com / mikeskywalker007@gmail.com), BUT HAS THE
-SAME LICENSE AS THE WHOLE LIBRARY TO RESPECT ORIGINAL AUTHOR OF LIBRARY
+/*********************************** The zlib License ************************************
+ *
+ * Copyright (c) 2013 Indielib-crossplatform Development Team
+ *
+ * This software is provided 'as-is', without any express or implied
+ * warranty. In no event will the authors be held liable for any damages
+ * arising from the use of this software.
+ *
+ * Permission is granted to anyone to use this software for any purpose,
+ * including commercial applications, and to alter it and redistribute it
+ * freely, subject to the following restrictions:
+ *
+ * 1. The origin of this software must not be misrepresented; you must not
+ * claim that you wrote the original software. If you use this software
+ * in a product, an acknowledgment in the product documentation would be
+ * appreciated but is not required.
+ *
+ * 2. Altered source versions must be plainly marked as such, and must not be
+ * misrepresented as being the original software.
+ *
+ * 3. This notice may not be removed or altered from any source
+ * distribution.
+ *
+ *****************************************************************************************/
 
-This library is free software; you can redistribute it and/or modify it under the
-terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2.1 of the License, or (at your option) any later version.
 
-This library is distributed in the hope that it will be useful, but WITHOUT ANY
-WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
-
-You should have received a copy of the GNU Lesser General Public License along with
-this library; if not, write to the Free Software Foundation, Inc., 59 Temple Place,
-Suite 330, Boston, MA 02111-1307 USA
-*/
 #include "Defines.h"
 
 #ifdef INDIERENDER_GLES_IOS
+
 // ----- Includes -----
 
 #include "Global.h"
@@ -32,6 +42,44 @@ Suite 330, Boston, MA 02111-1307 USA
 #include "IND_Window.h"
 
 /** @cond DOCUMENT_PRIVATEAPI */
+
+GLenum blendValueFromIndielibValue(IND_BlendingType pBlendType) {
+    
+    switch (pBlendType) {
+        case IND_ZERO:
+            return GL_ZERO;
+        case IND_ONE:
+            return GL_ONE;
+        case IND_SRCCOLOR:
+            return GL_SRC_COLOR;
+        case IND_INVSRCCOLOR:
+            return GL_ONE_MINUS_SRC_COLOR;
+        case IND_SRCALPHA:
+            return GL_SRC_ALPHA;
+        case IND_INVSRCALPHA:
+            return GL_ONE_MINUS_SRC_ALPHA;
+        case IND_DESTALPHA:
+            return GL_DST_ALPHA;
+        case IND_INVDESTALPHA:
+            return GL_ONE_MINUS_DST_ALPHA;
+        case IND_DESTCOLOR:
+            return GL_DST_COLOR;
+        case IND_INVDESTCOLOR:
+            return GL_ONE_MINUS_DST_COLOR;
+        case IND_SRCALPHASAT:
+            return GL_SRC_ALPHA_SATURATE;
+
+            // Unsupported, DirectX-only
+        case IND_BOTHSRCALPHA:
+        case IND_BOTHINVSRCALPHA:
+        case IND_BLENDFACTOR:
+        case IND_INVBLENDFACTOR:
+            return GL_ZERO;
+        default:
+            break;
+    }
+    return GL_ZERO;
+}
 
 // --------------------------------------------------------------------------------
 //							         Public methods
@@ -179,7 +227,7 @@ void OpenGLES2Render::setTransform2d(int pX,
 		_math.matrix4DMultiplyInPlace(totalTrans,hotspot);
 	}
 
-    // Mirroring (180º rotations) and translation
+    // Mirroring (180 degrees rotations) and translation
 	if (pMirrorX || pMirrorY) {
 		//A mirror is a rotation in desired axis (the actual mirror) and a repositioning because rotation
 		//also moves 'out of place' the entity translation-wise
@@ -193,8 +241,9 @@ void OpenGLES2Render::setTransform2d(int pX,
 			_math.matrix4DMultiplyInPlace(totalTrans,mirrorX);
             
             //Rotate in y, to invert texture
-			_math.matrix4DSetRotationAroundAxis(mirrorX,180.0f,IND_Vector3(0.0f,1.0f,0.0f));
-			_math.matrix4DMultiplyInPlace(totalTrans,mirrorX);
+            IND_Matrix rotation;
+			_math.matrix4DSetRotationAroundAxis(rotation,180.0f,IND_Vector3(0.0f,1.0f,0.0f));
+			_math.matrix4DMultiplyInPlace(totalTrans,rotation);
 		}
         
 		//A mirror is a rotation in desired axis (the actual mirror) and a repositioning because rotation
@@ -209,16 +258,18 @@ void OpenGLES2Render::setTransform2d(int pX,
 			_math.matrix4DMultiplyInPlace(totalTrans,mirrorY);
             
             //Rotate in x, to invert texture
-			_math.matrix4DSetRotationAroundAxis(mirrorY,180.0f,IND_Vector3(1.0f,0.0f,0.0f));
-			_math.matrix4DMultiplyInPlace(totalTrans,mirrorY);
+            IND_Matrix rotation;
+			_math.matrix4DSetRotationAroundAxis(rotation,180.0f,IND_Vector3(1.0f,0.0f,0.0f));
+			_math.matrix4DMultiplyInPlace(totalTrans,rotation);
 		}
 	}
-	//Cache the change
-	_modelToWorld = totalTrans;
-
-	//ModelView matrix will be camera * modelToWorld
+    
+    // Cache the change
+    _modelToWorld = totalTrans;
+    
+    // Affect modelView Matrix
     _math.matrix4DMultiply(_cameraMatrix, _modelToWorld, _shaderModelViewMatrix);
-
+    
 	// ----- Return World Matrix (in IndieLib format) ----
 	//Transformations have been applied where needed
 	if (pMatrix) {
@@ -227,10 +278,10 @@ void OpenGLES2Render::setTransform2d(int pX,
 }
 
 void OpenGLES2Render::setTransform2d(IND_Matrix &pMatrix) {
-	// ----- Applies the transformation -----
+    // Affect modelView Matrix
     _math.matrix4DMultiply(_cameraMatrix, pMatrix, _shaderModelViewMatrix);
 
-	//Finally cache the change
+    // Cache the change
 	_modelToWorld = pMatrix;
 }
 
@@ -245,27 +296,33 @@ void OpenGLES2Render::setIdentityTransform2d ()  {
 void OpenGLES2Render::setRainbow2d(IND_Type pType,
                                 bool pCull,
                                 bool pMirrorX,
-                                bool pMirrorY,
-                                IND_Filter pFilter,
-                                unsigned char pR,
-                                unsigned char pG,
-                                unsigned char pB,
-                                unsigned char pA,
-                                unsigned char pFadeR,
-                                unsigned char pFadeG,
-                                unsigned char pFadeB,
-                                unsigned char pFadeA,
-                                IND_BlendingType pSo,
-                                IND_BlendingType pDs) {
+                                   bool pMirrorY,
+                                   IND_Filter pFilter,
+                                   unsigned char pR,
+                                   unsigned char pG,
+                                   unsigned char pB,
+                                   unsigned char pA,
+                                   unsigned char pFadeR,
+                                   unsigned char pFadeG,
+                                   unsigned char pFadeB,
+                                   unsigned char pFadeA,
+                                   IND_BlendingType pSo,
+                                   IND_BlendingType pDs) {
 	//Parameters error correction:
 	if (pA > 255) {
 		pA = 255;
 	}
-
-	//Setup neutral 'blend' for texture stage
-	float blendR, blendG, blendB, blendA;
-	blendR = blendG = blendB = blendA = 1.0f;
-
+    
+    // Reset 'tint'
+    _renderState._tintColorEnabled = false;
+    _renderState._tintR = 1.f;
+    _renderState._tintG = 1.f;
+    _renderState._tintB = 1.f;
+    _renderState._tintA = 1.f;
+    
+    // Reset 'fade to color'
+    _renderState._fadeToColorEnabled = false;
+    
 	// ----- Filters -----
     // In GL, texture filtering is applied to the bound texture. From this method we don't know which is the
     // bound texture, so we cache the requested state, so before actually rendering, we could set the state
@@ -274,131 +331,84 @@ void OpenGLES2Render::setRainbow2d(IND_Type pType,
 	if (IND_FILTER_LINEAR == pFilter) {
 		filterType = GL_LINEAR;
 	}
-
-    _tex2dState.magFilter = filterType;
-    _tex2dState.minFilter = filterType;
-
+    
+    _tex2dState._magFilter = filterType;
+    _tex2dState._minFilter = filterType;
+    
 	// ----- Back face culling -----
-	if (pCull) {
-		glEnable(GL_CULL_FACE);
-		glFrontFace(GL_CW);    
-	} else {
-		glDisable(GL_CULL_FACE);
-	}
-
-	// ----- Back face culling -----
-	// Mirroring (180º rotations)
-	if (pMirrorX || pMirrorY) {
-		if (pMirrorX && !pMirrorY) {
-			// Back face culling
-			if (pCull) {
-				glEnable(GL_CULL_FACE);
-				glFrontFace(GL_CCW);    
-			} else {
-				glDisable(GL_CULL_FACE);
-			}
-		}
-
-		if (!pMirrorX && pMirrorY) {
-			if (pCull) {
-				glEnable(GL_CULL_FACE);
-				glFrontFace(GL_CCW);    
-			} else {
-				glDisable(GL_CULL_FACE);
-			}
-		}
-	}
-
-	// ----- Blending -----
-	switch (pType) {
-        case IND_OPAQUE: {
-            glEnable(GL_BLEND);
-            glBlendFunc(GL_ONE, GL_ZERO);
-            
-            // Tinting
-            if (pR != 255 || pG != 255 || pB != 255) {
-				blendR = static_cast<float>(pR) / 255.0f;
-				blendG = static_cast<float>(pG) / 255.0f;
-				blendB = static_cast<float>(pB) / 255.0f;
-                // FIXME: SHADERS
-//                glColor4f(blendR, blendG, blendB, blendA);
-            }
-            
-            // Alpha
-            if (pA != 255) {
-				glEnable(GL_BLEND);
-				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-				blendA = static_cast<float>(pA) / 255.0f;
-                // FIXME: SHADERS
-//                glColor4f(blendR, blendG, blendB, blendA);
-            }
-            
-            // Fade to color
-            if (pFadeA != 255) {
-				glEnable(GL_BLEND);
-				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-				blendA = static_cast<float>(pFadeA) / 255.0f;
-                blendR = static_cast<float>(pFadeR) / 255.0f;
-                blendG = static_cast<float>(pFadeG) / 255.0f;
-                blendB = static_cast<float>(pFadeB) / 255.0f;
-                // FIXME: SHADERS
-//                glColor4f(blendR, blendG, blendB, blendA);
-            }
-            
-            if (pSo && pDs) {
-                //Alpha blending
-            }
+    _renderState._cullingEnabled = pCull;
+    _renderState._frontFaceIsCW = true;
+    
+	// Mirroring. When mirrored only in one axis, culling face is inverted
+    if ((pMirrorX && !pMirrorY) ||
+        (!pMirrorX && pMirrorY)) {
+        // Back face culling CCW
+        _renderState._frontFaceIsCW = false;
+    }
+    
+	// ----- Blending setup -----
+    if (pSo && pDs) {
+        // Explicit blending values
+        _renderState._alphaBlendEnabled = true;
+        _renderState._srcBlendFactor = blendValueFromIndielibValue(pSo);
+        _renderState._dstBlendFactor = blendValueFromIndielibValue(pDs);
+    } else {
+        // Default blending values. Different in opaque and alpha mode
+        
+        _renderState._alphaBlendEnabled = true;
+        if (pType == IND_OPAQUE) {
+            _renderState._srcBlendFactor = GL_ONE;
+            _renderState._dstBlendFactor = GL_ZERO;
         }
-            break;
-            
-        case IND_ALPHA: {
-            // Alpha test = OFF
-            glEnable(GL_BLEND);
-            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-            // FIXME: SHADERS
-//            glColor4f(blendR, blendG, blendB, blendA);
-            
-            // Tinting
-            if (pR != 255 || pG != 255 || pB != 255) {
-				blendR = static_cast<float>(pR) / 255.0f;
-				blendG = static_cast<float>(pG) / 255.0f;
-				blendB = static_cast<float>(pB) / 255.0f;
-                // FIXME: SHADERS
-//                glColor4f(blendR, blendG, blendB, blendA);
-            }
-            
-            // Alpha
-            if (pA != 255) {
-				glEnable(GL_BLEND);
-				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-				blendA = static_cast<float>(pA) / 255.0f;
-                // FIXME: SHADERS
-//                glColor4f(blendR, blendG, blendB, blendA);
-            }
-            
-            // Fade to color
-            if (pFadeA != 255) {
-                blendA = static_cast<float>(pFadeA) / 255.0f;
-                blendR = static_cast<float>(pFadeR) / 255.0f;
-                blendG = static_cast<float>(pFadeG) / 255.0f;
-                blendB = static_cast<float>(pFadeB) / 255.0f;
-                // FIXME: SHADERS
-//                glColor4f(blendR, blendG, blendB, blendA);
-            }
-            
-            if (!pSo || !pDs) {
-                //Alpha blending
-            } else {
-                
-            }
-
-	}
-	break;
-	default: {
-	}
-	}
-
-
+        
+        if (pType == IND_ALPHA) {
+            _renderState._srcBlendFactor = GL_SRC_ALPHA;
+            _renderState._dstBlendFactor = GL_ONE_MINUS_SRC_ALPHA;
+        }
+    }
+    
+    // Tinting
+    if (pR != 255 || pG != 255 || pB != 255) {
+        _renderState._tintColorEnabled = true;
+        _renderState._tintR = static_cast<float>(pR) / 255.0f;
+        _renderState._tintG = static_cast<float>(pG) / 255.0f;
+        _renderState._tintB = static_cast<float>(pB) / 255.0f;
+    }
+    
+    // Direct alpha setting
+    if (pA != 255) {
+        _renderState._tintColorEnabled = true;
+        _renderState._fadeA = static_cast<float>(pA) / 255.0f;
+    }
+    
+    // Fade to color. Overrides tinting
+    if (pFadeA != 255) {
+        _renderState._fadeToColorEnabled = true;
+        _renderState._tintColorEnabled = false;
+        _renderState._fadeR = static_cast<float>(pFadeR) / 255.0f;
+        _renderState._fadeG = static_cast<float>(pFadeG) / 255.0f;
+        _renderState._fadeB = static_cast<float>(pFadeB) / 255.0f;
+        _renderState._fadeA = static_cast<float>(pFadeA) / 255.0f;
+    }
+    
+    // Render pipeline states
+    if (_renderState._cullingEnabled) {
+		glEnable(GL_CULL_FACE);
+        if (_renderState._frontFaceIsCW) {
+            glFrontFace(GL_CW);
+        } else {
+            glFrontFace(GL_CCW);
+        }
+    } else {
+        glDisable(GL_CULL_FACE);
+    }
+    
+    if (_renderState._alphaBlendEnabled) {
+        glEnable(GL_BLEND);
+        glBlendFunc(_renderState._srcBlendFactor, _renderState._dstBlendFactor);
+    } else {
+        glDisable(GL_BLEND);
+    }
 }
 
 void OpenGLES2Render::setDefaultGLState() {
@@ -411,25 +421,14 @@ void OpenGLES2Render::setDefaultGLState() {
 	//Generally we work with byte-aligned textures.
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 	glPixelStorei(GL_PACK_ALIGNMENT, 1);
-    
-    setGLClientStateToTexturing();
-}
-
-void OpenGLES2Render::setGLClientStateToPrimitive() {
-    // TODO: SHADERS
-}
-
-void OpenGLES2Render::setGLClientStateToTexturing() {
-    // TODO: SHADERS
 }
 
 void OpenGLES2Render::setGLBoundTextureParams() {
     //Texture wrap mode
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,_tex2dState.wrapS);
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,_tex2dState.wrapT);
-    //By default select fastest texture filter
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, _tex2dState.magFilter);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, _tex2dState.minFilter);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,_tex2dState._wrapS);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,_tex2dState._wrapT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, _tex2dState._magFilter);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, _tex2dState._minFilter);
 }
 
 /** @endcond */

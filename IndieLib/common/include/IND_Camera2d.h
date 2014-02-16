@@ -34,6 +34,7 @@
 
 
 // ----- Includes -----
+
 #include "IndiePlatforms.h"
 #include "IND_Vector3.h"
 
@@ -99,6 +100,7 @@ public:
 private:
 
     /** @cond DOCUMENT_PRIVATEAPI */
+
 	// ----- Private -----
 
 	bool _ok;
@@ -113,6 +115,7 @@ private:
 	float _zoom;
 	float _angle;
 	float _prevAngle;
+
 	// ----- Private methods -----
 
 	void                initVars();
@@ -123,6 +126,7 @@ private:
 	friend class DirectXRender;
 	friend class OpenGLRender;
     friend class OpenGLES2Render;
+
     /** @endcond */
 };
 

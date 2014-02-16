@@ -26,6 +26,8 @@
  * distribution.
  *
  *****************************************************************************************/
+
+
 #ifndef _INDImageTests_Conversions_
 #define _INDImageTests_Conversions_
 
@@ -69,4 +71,4 @@ private:
 };
 
 
-#endif // _Camera2dTests_
+#endif // _INDImageTests_Conversions_

@@ -85,6 +85,7 @@ You know what this is
  */
 class LIB_EXP IND_Math {
 public:
+
 	// ----- Init/End -----
 
 	IND_Math(): _ok(false)  { }
@@ -1167,10 +1168,10 @@ public:
 private:
 
     /** @cond DOCUMENT_PRIVATEAPI */
+
 	// ----- Private -----
 
 	bool _ok;
-
 
 	// ----- Private methods -----
 

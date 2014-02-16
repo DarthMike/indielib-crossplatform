@@ -47,7 +47,7 @@ void TmxmapTests::prepareTests() {
     // ----- Font -----
 	
      _fontSmall = IND_Font::newFont();
-	iLib->_fontManager->addMudFont(_fontSmall, "font_small.png", "font_small.xml", IND_ALPHA, IND_32);
+	iLib->_fontManager->addMudFont(_fontSmall, "font/bitmap/MudFont/font_small.png", "font/bitmap/MudFont/font_small.xml", IND_ALPHA, IND_32);
     
     
 	// ----- Text creation -----

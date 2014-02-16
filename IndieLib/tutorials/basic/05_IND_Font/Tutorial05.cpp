@@ -70,7 +70,7 @@ Indielib_Main
 
 	// Font 2
 	IND_Font *mFontBig = IND_Font::newFont();
-	if (!mI->_fontManager->addMudFont(mFontBig, "font_big.png", "font_big.xml", IND_ALPHA, IND_32)) return 0;
+	if (!mI->_fontManager->addMudFont(mFontBig, "font/bitmap/MudFont/font_big.png", "font/bitmap/MudFont/font_big.xml", IND_ALPHA, IND_32)) return 0;
         
     // Font 3
     IND_Font *mFontCooper = IND_Font::newFont();

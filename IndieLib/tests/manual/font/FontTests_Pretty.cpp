@@ -48,7 +48,7 @@ void FontTests_Pretty::prepareTests() {
 	iLib->_fontManager->addMudFont(_fontSmall, const_cast<char *>("font_small.png"), const_cast<char *>("font_small.xml"), IND_ALPHA, IND_32);
 
 	// Font 2
-	iLib->_fontManager->addMudFont(_fontBig, const_cast<char *>("font_big.png"), const_cast<char *>("font_big.xml"), IND_ALPHA, IND_32);
+	iLib->_fontManager->addMudFont(_fontBig, const_cast<char *>("font/bitmap/MudFont/font_big.png"), const_cast<char *>("font/bitmap/MudFont/font_big.xml"), IND_ALPHA, IND_32);
     
     // Font 3
     iLib->_fontManager->addAngelcodeFont(_fontKomika, const_cast<char *>("font/bitmap/AngelCode/komika_new.xml"), IND_ALPHA, IND_32);

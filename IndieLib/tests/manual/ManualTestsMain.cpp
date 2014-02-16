@@ -24,6 +24,7 @@
  trunk tree i.e "IndieLib/tests/" or "IndieLib/linux/".
  All relative loading paths will take into account that premise.
  *****************************************************************************************/
+
 /*********************************** The zlib License ************************************
  *
  * Copyright (c) 2013 Indielib-crossplatform Development Team
@@ -48,6 +49,8 @@
  * distribution.
  *
  *****************************************************************************************/
+
+
 #include "CIndieLib.h"
 #include <vector>
 

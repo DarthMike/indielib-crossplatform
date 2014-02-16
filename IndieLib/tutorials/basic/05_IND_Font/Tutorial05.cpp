@@ -74,7 +74,7 @@ Indielib_Main
         
     // Font 3
     IND_Font *mFontCooper = IND_Font::newFont();
-    if (!mI->_fontManager->addAngelcodeFont(mFontCooper, "cooper.xml", IND_ALPHA, IND_32)) return 0;
+    if (!mI->_fontManager->addAngelcodeFont(mFontCooper, "font/bitmap/AngelCode/cooper.xml", IND_ALPHA, IND_32)) return 0;
 
 
 	// ----- Set the surfaces and fonts into 2d entities -----

@@ -27,6 +27,7 @@
  *
  *****************************************************************************************/
 
+
 #include "CIndieLib.h"
 #include "CollisionTests.h"
 #include "IND_Animation.h"
@@ -56,7 +57,7 @@ void CollisionTests::prepareTests() {
 	// ----- Font loading -----
 
 	// Font
-	if (!iLib->_fontManager->add(_fonts[0], const_cast<char *>("font_small.png"), const_cast<char *>("font_small.xml"), IND_ALPHA, IND_32)) return;
+	if (!iLib->_fontManager->addMudFont(_fonts[0], const_cast<char *>("font/bitmap/MudFont/font_small.png"), const_cast<char *>("font/bitmap/MudFont/font_small.xml"), IND_ALPHA, IND_32)) return;
 
 	// Rocket
 	_entities[0]->setSurface(_surfaces[0]);
@@ -94,7 +95,7 @@ void CollisionTests::performTests(float dt) {
 	CIndieLib *iLib = CIndieLib::instance();
 	
 	//Toggling of entity border lines in entities
-	if(iLib->_input->onKeyPress(IND_F1) && _active) {
+	if(iLib->_input->onKeyPress(IND_G) && _active) {
 		for (int i = 0; i < _testedEntities; ++i) {
 			_entities[i]->showGridAreas(!_entities[i]->isShowGridAreas());
 			_entities[i]->showCollisionAreas(!_entities[i]->isShowCollisionAreas());

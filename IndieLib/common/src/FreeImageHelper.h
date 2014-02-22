@@ -34,6 +34,7 @@
 #define _FREEIMAGEHELPER
 
 // ----- Dependencies -----
+
 #include "dependencies/FreeImage/Dist/FreeImage.h"
 
 #ifdef linux
@@ -41,20 +42,25 @@
 #endif
 
 // ----- Includes -----
+
 #include "Defines.h"
 
 /** @cond DOCUMENT_PRIVATEAPI */
 
 class FreeImageHelper {
 public:
+
 	//----- CONSTRUCTORS/DESTRUCTORS -----
+
 	FreeImageHelper() {
 	}
 	~FreeImageHelper() {
 	}
+
 	//----- GET/SET FUNCTIONS -----
 
 	//----- OTHER FUNCTIONS -----
+
 	static int calculateINDFormat(FIBITMAP* pHandle);
 	static FREE_IMAGE_COLOR_TYPE calculateFIColorType(int pIndFormat);
 	static bool isLittleIndian();
@@ -62,11 +68,12 @@ public:
 	static void getImageFormatName(FREE_IMAGE_FORMAT format, char* pExtImage);
 	static FIBITMAP* convertBpp(FIBITMAP* pHandle, int pNewBpp);
 	static FIBITMAP* convertColorFormat(FIBITMAP* pHandle, int pNewFormat);
-	//----- PUBLIC VARIABLES ------
+	
+    //----- PUBLIC VARIABLES ------
 
 private:
-	//----- INTERNAL VARIABLES -----
 
+	//----- INTERNAL VARIABLES -----
 
 	//----- INTERNAL FUNCTIONS -----
 };

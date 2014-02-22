@@ -22,8 +22,10 @@
  * distribution.
  *
  *****************************************************************************************/
-#ifndef _WorkingPath_h
-#define _WorkingPath_h
+
+
+#ifndef _WorkingPath_h_
+#define _WorkingPath_h_
 
 
 class WorkingPathSetup {
@@ -40,4 +42,5 @@ private:
     static void initializeResourcesDirectory();
 };
 
-#endif
+
+#endif // _WorkingPath_h_

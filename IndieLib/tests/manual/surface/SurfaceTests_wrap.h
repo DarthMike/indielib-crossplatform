@@ -26,6 +26,8 @@
  * distribution.
  *
  *****************************************************************************************/
+
+
 #ifndef _SurfaceTests_wrap_
 #define _SurfaceTests_wrap_
 
@@ -66,4 +68,4 @@ private:
 };
 
 
-#endif // _Camera2dTests_
+#endif // _SurfaceTests_wrap_

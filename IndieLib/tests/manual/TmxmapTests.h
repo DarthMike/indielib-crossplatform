@@ -23,6 +23,7 @@
  *
  *****************************************************************************************/
 
+
 #ifndef _TMXMAPTESTS_
 #define _TMXMAPTESTS_
 
@@ -61,4 +62,5 @@ private:
 
 };
 
-#endif
+
+#endif // _TMXMAPTESTS_

@@ -27,6 +27,7 @@
  *
  *****************************************************************************************/
 
+
 #include "CIndieLib.h"
 #include "FontTests.h"
 #include "IND_Font.h"
@@ -37,9 +38,9 @@ void FontTests::prepareTests() {
     CIndieLib* iLib = CIndieLib::instance();
 
 	// Font 1
-	iLib->_fontManager->add(_fonts[0], const_cast<char *>("font_big.png"), const_cast<char *>("font_big.xml"), IND_ALPHA, IND_32);
-	iLib->_fontManager->add(_fonts[1], const_cast<char *>("font_big.png"), const_cast<char *>("font_big.xml"), IND_ALPHA, IND_32);
-	iLib->_fontManager->add(_fonts[2], const_cast<char *>("font_big.png"), const_cast<char *>("font_big.xml"), IND_ALPHA, IND_32);
+	iLib->_fontManager->addMudFont(_fonts[0], const_cast<char *>("font/bitmap/MudFont/font_big.png"), const_cast<char *>("font/bitmap/MudFont/font_big.xml"), IND_ALPHA, IND_32);
+	iLib->_fontManager->addMudFont(_fonts[1], const_cast<char *>("font/bitmap/MudFont/font_big.png"), const_cast<char *>("font/bitmap/MudFont/font_big.xml"), IND_ALPHA, IND_32);
+	iLib->_fontManager->addMudFont(_fonts[2], const_cast<char *>("font/bitmap/MudFont/font_big.png"), const_cast<char *>("font/bitmap/MudFont/font_big.xml"), IND_ALPHA, IND_32);
 }
 
 
@@ -51,7 +52,7 @@ void FontTests::performTests(float dt) {
 	CIndieLib *iLib = CIndieLib::instance();
 	
 	//Toggling of entity border lines in entities
-	if(iLib->_input->onKeyPress(IND_F1) && _active) {
+	if(iLib->_input->onKeyPress(IND_G) && _active) {
 		for (int i = 0; i < _testedEntities; ++i) {
 			_entities[i]->showGridAreas(!_entities[i]->isShowGridAreas());
 		}

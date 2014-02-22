@@ -34,13 +34,9 @@
 
 
 // ----- Includes -----
+
 #include "IndiePlatforms.h"
 #include "IND_Vector3.h"
-
-#ifdef INDIERENDER_DIRECTX
-#include <d3d9.h>
-#include <d3dx9.h>
-#endif
 
 // --------------------------------------------------------------------------------
 //									   IND_Camera
@@ -104,6 +100,7 @@ public:
 private:
 
     /** @cond DOCUMENT_PRIVATEAPI */
+
 	// ----- Private -----
 
 	bool _ok;
@@ -118,6 +115,7 @@ private:
 	float _zoom;
 	float _angle;
 	float _prevAngle;
+
 	// ----- Private methods -----
 
 	void                initVars();
@@ -128,6 +126,7 @@ private:
 	friend class DirectXRender;
 	friend class OpenGLRender;
     friend class OpenGLES2Render;
+
     /** @endcond */
 };
 

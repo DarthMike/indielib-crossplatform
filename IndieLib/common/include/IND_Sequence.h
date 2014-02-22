@@ -46,7 +46,9 @@
  */
 class IND_Sequence {
 private:
+
 	/** @cond DOCUMENT_PRIVATEAPI */
+
 	// ----- Structures ------
 
 	struct structFrameTime {
@@ -165,6 +167,7 @@ private:
 
 	friend class IND_Animation;
 	friend class IND_AnimationManager;
+
     /** @endcond */
 };
 

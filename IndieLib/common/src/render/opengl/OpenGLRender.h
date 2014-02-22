@@ -52,6 +52,7 @@
 #include "IND_Vector2.h"
 
 // ----- Forward Declarations -----
+
 class IND_Window;
 class IND_FontManager;
 class IND_SurfaceManager;
@@ -68,9 +69,11 @@ class IND_Camera3d;
 class OSOpenGLManager;
 
 // ----- Libs -----
+
 #include "dependencies/glew-1.9.0/include/GL/glew.h" //Extension loading facilites library
 
 // ----- Defines ------
+
 #define MAX_PIXELS 2048
 
 struct InfoStruct {
@@ -114,10 +117,10 @@ struct TextureSamplerState {
     wrapT(GL_CLAMP_TO_EDGE)
     {}
     
-    GLint minFilter;
-    GLint magFilter;
-    GLint wrapS;
-    GLint wrapT;
+    GLint minFilter;    //!< Texture filter setting 
+    GLint magFilter;    //!< Texture filter setting 
+    GLint wrapS;        //!< Texture wrap setting
+    GLint wrapT;        //!< Texture wrap setting
 };
 
 /** @cond DOCUMENT_PRIVATEAPI */
@@ -158,8 +161,8 @@ public:
 	void endScene();
 	void showFpsInWindowTitle(char *pFPSString);
     void setPointPixelScale (float pNewScale);
-	// ----- Viewports and cameras -----
-
+	
+    // ----- Viewports and cameras -----
 
 	void clearViewPort(unsigned char pR,
 	                   unsigned char pG,
@@ -348,6 +351,7 @@ public:
 	                  float pVDisplace);
 
 	// ------ Render Text 2d -----
+
 	void blitText(IND_Font *pFo,
 	              char *pText,
 	              int pX,
@@ -434,6 +438,7 @@ public:
 private:
 
 	// ----- Private methods -----
+
 	void initVars();
 	void freeVars();
 
@@ -458,6 +463,10 @@ private:
 
 	//Text rendering helpers
 	int getLongInPixels(IND_Font *pFo, char *pText, int pPos, int pOffset);
+    
+    void blitCharsMudFont(IND_Font *pFo, char *pText, IND_Align pAlign, int pOffset, float pScaleX, float pScaleY, int pLineSpacing);
+    
+    void blitCharsAngelCodeFont(IND_Font *pFo, char *pText, IND_Align pAlign, int pOffset, float pScaleX, float pScaleY, int pLineSpacing);
 
 	//Setup helper
 	bool resetViewport(int pWitdh, int pHeight);
@@ -471,10 +480,12 @@ private:
     void setGLBoundTextureParams();
     
 	// ----- Collisions -----
+
 	void blitCollisionCircle(int pPosX, int pPosY, int pRadius, float pScale, unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA, IND_Matrix pWorldMatrix);
 	void blitCollisionLine(int pPosX1, int pPosY1, int pPosX2, int pPosY2,  unsigned char pR, unsigned char pG, unsigned char pB, unsigned char pA, IND_Matrix pIndWorldMatrix);
 
 	// ---- Culling helpers ----
+
 	void reCalculateFrustrumPlanes();
 	void transformVerticesToWorld(float pX1, float pY1,
 											float pX2, float pY2,
@@ -485,6 +496,7 @@ private:
 											IND_Vector3 *mP3Res,
 											IND_Vector3 *mP4Res);
 	// ----- Objects -----
+
 	IND_Math _math;
 	IND_Window *_window;
 	OSOpenGLManager *_osOpenGLMgr;
@@ -531,4 +543,5 @@ private:
 	friend class IND_Render;
 };
 /** @endcond */
+
 #endif // _OPENGLRENDER_H_

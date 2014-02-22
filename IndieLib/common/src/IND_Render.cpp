@@ -1,7 +1,7 @@
 /*****************************************************************************************
  * File: IND_Render.cpp
  * Desc: Initialization / Destruction of the render.
- *       Hide / wraps the platform specific render.
+ *       Hides / wraps the platform specific render.
  *****************************************************************************************/
 
 /*********************************** The zlib License ************************************
@@ -40,6 +40,7 @@
 #include "dependencies/SDL-2.0/include/SDL.h"
 
 // ----- Libs -----
+
 #ifdef INDIERENDER_DIRECTX
 #include "render/directx/DirectXRender.h"
 #endif
@@ -356,7 +357,7 @@ void IND_Render::blitText(IND_Font *pFo,
 @arg @b pX, @b pY                   Upper left coordinate of the region
 @arg @b pWidth, @b pHeight          Width and Height of the region
 @arg @b pToggleWrap                 Wraping on (1) / off (0)
-@arg @b pUDisplace, @b pVDisplace   Horizontal and vertical displacement of the image
+@arg @b pUOffset, @b pVOffset   Horizontal and vertical displacement of the image
 
 @b Operation:
 
@@ -385,7 +386,7 @@ Using this method is equivalent to using all of these methods:
 - IND_Entity2d::setAnimation()
 - IND_Entity2d::setRegion()
 - IND_Entity2d::toggleWrap()
-- IND_Entity2d::setWrapDisplacement()
+- IND_Entity2d::setWrapOffset()
 */
 int IND_Render::blitAnimation(IND_Animation *pAn,
 			      unsigned int pSequence,
@@ -394,8 +395,8 @@ int IND_Render::blitAnimation(IND_Animation *pAn,
                               int pWidth,
                               int pHeight,
                               bool pToggleWrap,
-                              float pUDisplace,
-                              float pVDisplace) {
+                              float pUOffset,
+                              float pVOffset) {
 	return (_wrappedRenderer->blitAnimation(pAn,
 	                                        pSequence,
 	                                        pX,
@@ -403,8 +404,8 @@ int IND_Render::blitAnimation(IND_Animation *pAn,
 	                                        pWidth,
 	                                        pHeight,
 	                                        pToggleWrap,
-	                                        pUDisplace,
-	                                        pVDisplace));
+	                                        pUOffset,
+	                                        pVOffset));
 }
 /**@}*/
 
@@ -414,7 +415,7 @@ int IND_Render::blitAnimation(IND_Animation *pAn,
 @arg @b pSu                         Pointer to a ::IND_Surface object
 @arg @b pX, @b pY                   Upper left coordinate of the region
 @arg @b pWidth, @b pHeight          Width and Height of the region
-@arg @b pUDisplace, @b pVDisplace   Horizontal and vertical displacement of the image
+@arg @b pUOffset, @b pVOffset   Horizontal and vertical displacement of the image
 
 @b Operation:
 
@@ -437,18 +438,18 @@ Using this method is equivalent to using all of these methods:
 - IND_Entity2d::setSurface()
 - IND_Entity2d::setRegion()
 - IND_Entity2d::toggleWrap()
-- IND_Entity2d::setWrapDisplacement()
+- IND_Entity2d::setWrapOffset()
 */
 bool IND_Render::blitWrapSurface(IND_Surface *pSu,
                                  int pWidth,
                                  int pHeight,
-                                 float pUDisplace,
-                                 float pVDisplace) {
+                                 float pUOffset,
+                                 float pVOffset) {
 	return (_wrappedRenderer->blitWrapSurface(pSu,
 	        pWidth,
 	        pHeight,
-	        pUDisplace,
-	        pVDisplace));
+	        pUOffset,
+	        pVOffset));
 }
 
 /**
@@ -1446,13 +1447,6 @@ Perform frustum planes calculation in underlying renderer
 void IND_Render::reCalculateFrustrumPlanes() {
 	_wrappedRenderer->reCalculateFrustrumPlanes();
 }
-
-
-/*
-==================
-Calculates 6 planes defining the frustum
-==================
-*/
 
 /*
  ==================

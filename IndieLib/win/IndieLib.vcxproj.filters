@@ -140,6 +140,9 @@
     <Filter Include="Dependencies\TMXParser\base64">
       <UniqueIdentifier>{20c74dd7-5275-4b10-96e1-2864803dc656}</UniqueIdentifier>
     </Filter>
+    <Filter Include="IndieLib\TTF Font">
+      <UniqueIdentifier>{3315348a-7bfe-46ed-9572-c496a023fea3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Common\include\Defines.h">
@@ -187,13 +190,7 @@
     <ClInclude Include="..\Common\include\IND_Entity2d.h">
       <Filter>IndieLib\Entities\Entity Objects</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\include\IND_Entity3d.h">
-      <Filter>IndieLib\Entities\Entity Objects</Filter>
-    </ClInclude>
     <ClInclude Include="..\Common\include\IND_Entity2dManager.h">
-      <Filter>IndieLib\Entities\Entity Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\include\IND_Entity3dManager.h">
       <Filter>IndieLib\Entities\Entity Managers</Filter>
     </ClInclude>
     <ClInclude Include="..\Common\include\CollisionParser.h">
@@ -246,18 +243,6 @@
     </ClInclude>
     <ClInclude Include="..\Common\include\IND_SurfaceManager.h">
       <Filter>IndieLib\Graphics\2d\2d Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\src\Render\DirectX\XMeshHierarchy.h">
-      <Filter>IndieLib\Graphics\3d\3d Back\DirectX</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\include\XMeshStructures.h">
-      <Filter>IndieLib\Graphics\3d\3d Back\DirectX</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\include\IND_3dMesh.h">
-      <Filter>IndieLib\Graphics\3d\3d Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Common\include\IND_3dMeshManager.h">
-      <Filter>IndieLib\Graphics\3d\3d Managers</Filter>
     </ClInclude>
     <ClInclude Include="..\Common\include\IND_LightManager.h">
       <Filter>IndieLib\Graphics\Common\Common Managers</Filter>
@@ -373,6 +358,12 @@
     <ClInclude Include="..\common\dependencies\TmxParser\base64\base64.h">
       <Filter>Dependencies\TMXParser\base64</Filter>
     </ClInclude>
+    <ClInclude Include="..\common\include\IND_TTF_Font.h">
+      <Filter>IndieLib\TTF Font</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\include\IND_TTF_FontManager.h">
+      <Filter>IndieLib\TTF Font</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\common\src\IndieVersion.cpp">
@@ -459,13 +450,7 @@
     <ClCompile Include="..\Common\src\IND_Entity2d.cpp">
       <Filter>IndieLib\Entities\Entity Objects</Filter>
     </ClCompile>
-    <ClCompile Include="..\Common\src\IND_Entity3d.cpp">
-      <Filter>IndieLib\Entities\Entity Objects</Filter>
-    </ClCompile>
     <ClCompile Include="..\Common\src\IND_Entity2dManager.cpp">
-      <Filter>IndieLib\Entities\Entity Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Common\src\IND_Entity3dManager.cpp">
       <Filter>IndieLib\Entities\Entity Managers</Filter>
     </ClCompile>
     <ClCompile Include="..\Common\src\CollisionParser.cpp">
@@ -503,15 +488,6 @@
     </ClCompile>
     <ClCompile Include="..\Common\src\IND_SurfaceManager.cpp">
       <Filter>IndieLib\Graphics\2d\2d Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Common\src\Render\DirectX\XMeshHierarchy.cpp">
-      <Filter>IndieLib\Graphics\3d\3d Back\DirectX</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Common\src\IND_3dMesh.cpp">
-      <Filter>IndieLib\Graphics\3d\3d Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Common\src\IND_3dMeshManager.cpp">
-      <Filter>IndieLib\Graphics\3d\3d Managers</Filter>
     </ClCompile>
     <ClCompile Include="..\Common\src\IND_LightManager.cpp">
       <Filter>IndieLib\Graphics\Common\Common Managers</Filter>
@@ -608,6 +584,12 @@
     </ClCompile>
     <ClCompile Include="..\common\dependencies\TmxParser\base64\base64.cpp">
       <Filter>Dependencies\TMXParser\base64</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\src\IND_TTF_Font.cpp">
+      <Filter>IndieLib\TTF Font</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\src\IND_TTF_FontManager.cpp">
+      <Filter>IndieLib\TTF Font</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

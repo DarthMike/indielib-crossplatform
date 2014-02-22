@@ -14,28 +14,22 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Editor", "Editor\Editor.vcx
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Win32 = Debug|Win32
 		DevelopMent_Debug|Win32 = DevelopMent_Debug|Win32
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EC5DB2F1-5096-430A-B62F-65859F497E5D}.Debug|Win32.ActiveCfg = DevelopMent_Debug|Win32
-		{EC5DB2F1-5096-430A-B62F-65859F497E5D}.Debug|Win32.Build.0 = DevelopMent_Debug|Win32
 		{EC5DB2F1-5096-430A-B62F-65859F497E5D}.DevelopMent_Debug|Win32.ActiveCfg = DevelopMent_Debug|Win32
 		{EC5DB2F1-5096-430A-B62F-65859F497E5D}.DevelopMent_Debug|Win32.Build.0 = DevelopMent_Debug|Win32
 		{EC5DB2F1-5096-430A-B62F-65859F497E5D}.Release|Win32.ActiveCfg = Release|Win32
 		{EC5DB2F1-5096-430A-B62F-65859F497E5D}.Release|Win32.Build.0 = Release|Win32
-		{6DEA187E-ACF6-4A55-AA2F-ABBFFAE5EBEE}.Debug|Win32.ActiveCfg = Development_Debug|Win32
 		{6DEA187E-ACF6-4A55-AA2F-ABBFFAE5EBEE}.DevelopMent_Debug|Win32.ActiveCfg = Development_Debug|Win32
 		{6DEA187E-ACF6-4A55-AA2F-ABBFFAE5EBEE}.DevelopMent_Debug|Win32.Build.0 = Development_Debug|Win32
 		{6DEA187E-ACF6-4A55-AA2F-ABBFFAE5EBEE}.Release|Win32.ActiveCfg = Release|Win32
 		{6DEA187E-ACF6-4A55-AA2F-ABBFFAE5EBEE}.Release|Win32.Build.0 = Release|Win32
-		{5E7F283C-5C0E-47B8-A057-1CDAE313D18B}.Debug|Win32.ActiveCfg = Development_Debug|Win32
 		{5E7F283C-5C0E-47B8-A057-1CDAE313D18B}.DevelopMent_Debug|Win32.ActiveCfg = Development_Debug|Win32
 		{5E7F283C-5C0E-47B8-A057-1CDAE313D18B}.DevelopMent_Debug|Win32.Build.0 = Development_Debug|Win32
 		{5E7F283C-5C0E-47B8-A057-1CDAE313D18B}.Release|Win32.ActiveCfg = Release|Win32
 		{5E7F283C-5C0E-47B8-A057-1CDAE313D18B}.Release|Win32.Build.0 = Release|Win32
-		{BDA7367C-E178-454E-95CE-C8A89B0331A5}.Debug|Win32.ActiveCfg = DevelopMent_Debug|Win32
 		{BDA7367C-E178-454E-95CE-C8A89B0331A5}.DevelopMent_Debug|Win32.ActiveCfg = DevelopMent_Debug|Win32
 		{BDA7367C-E178-454E-95CE-C8A89B0331A5}.DevelopMent_Debug|Win32.Build.0 = DevelopMent_Debug|Win32
 		{BDA7367C-E178-454E-95CE-C8A89B0331A5}.Release|Win32.ActiveCfg = Release|Win32

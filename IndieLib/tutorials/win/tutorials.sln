@@ -35,6 +35,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Bench_01_Alien_BenchMark", 
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Bench_02_Rabbits_BenchMark", "benchmark\02_Rabbits_BenchMark\Bench_02_Rabbits_BenchMark.vcxproj", "{F434DE98-D552-450B-A582-67CE79104CEC}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "17_IND_TTF_Font", "basic\17_IND_TTF_Font\17_IND_TTF_Font.vcxproj", "{5D6AD1C5-C408-45D5-9DB0-FA4EABBA66AF}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Adv_05_IND_TmxMap", "advanced\05_IND_TmxMap\05_IND_TmxMap.vcxproj", "{1FD4D566-3984-4F9B-A625-DD9FF3681926}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Adv_06_Spriter", "advanced\06_Spriter\06_Spriter.vcxproj", "{3657FC71-AF00-46BF-A9A3-EDED4778C08F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		DevelopMent_Debug|Win32 = DevelopMent_Debug|Win32
@@ -109,6 +115,18 @@ Global
 		{F434DE98-D552-450B-A582-67CE79104CEC}.DevelopMent_Debug|Win32.Build.0 = Development_Debug|Win32
 		{F434DE98-D552-450B-A582-67CE79104CEC}.Release|Win32.ActiveCfg = Release|Win32
 		{F434DE98-D552-450B-A582-67CE79104CEC}.Release|Win32.Build.0 = Release|Win32
+		{5D6AD1C5-C408-45D5-9DB0-FA4EABBA66AF}.DevelopMent_Debug|Win32.ActiveCfg = Development_Debug|Win32
+		{5D6AD1C5-C408-45D5-9DB0-FA4EABBA66AF}.DevelopMent_Debug|Win32.Build.0 = Development_Debug|Win32
+		{5D6AD1C5-C408-45D5-9DB0-FA4EABBA66AF}.Release|Win32.ActiveCfg = Release|Win32
+		{5D6AD1C5-C408-45D5-9DB0-FA4EABBA66AF}.Release|Win32.Build.0 = Release|Win32
+		{1FD4D566-3984-4F9B-A625-DD9FF3681926}.DevelopMent_Debug|Win32.ActiveCfg = Development_Debug|Win32
+		{1FD4D566-3984-4F9B-A625-DD9FF3681926}.DevelopMent_Debug|Win32.Build.0 = Development_Debug|Win32
+		{1FD4D566-3984-4F9B-A625-DD9FF3681926}.Release|Win32.ActiveCfg = Release|Win32
+		{1FD4D566-3984-4F9B-A625-DD9FF3681926}.Release|Win32.Build.0 = Release|Win32
+		{3657FC71-AF00-46BF-A9A3-EDED4778C08F}.DevelopMent_Debug|Win32.ActiveCfg = Development_Debug|Win32
+		{3657FC71-AF00-46BF-A9A3-EDED4778C08F}.DevelopMent_Debug|Win32.Build.0 = Development_Debug|Win32
+		{3657FC71-AF00-46BF-A9A3-EDED4778C08F}.Release|Win32.ActiveCfg = Release|Win32
+		{3657FC71-AF00-46BF-A9A3-EDED4778C08F}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

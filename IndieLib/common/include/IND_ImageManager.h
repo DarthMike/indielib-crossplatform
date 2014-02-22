@@ -33,12 +33,15 @@
 #define _IND_IMAGEMANAGER_
 
 // ----- Includes -----
+
 #include <list>
 
 
 // ----- Forward declarations ----
+
 class IND_Image;
 struct FIBITMAP;
+
 // ----- Defines -----
 
 #define MAX_EXT_IMAGE 6
@@ -97,7 +100,9 @@ public:
 
 
 private:
+
 	/** @cond DOCUMENT_PRIVATEAPI */
+
 	// ----- Private -----
 
 	bool _ok;                               // Manager initialization flag
@@ -118,6 +123,7 @@ private:
 	void writeMessage();
 	void initVars();
 	void freeVars();
+
     /** @endcond */
 };
 /**@}*/

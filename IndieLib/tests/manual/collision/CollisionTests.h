@@ -26,6 +26,8 @@
  * distribution.
  *
  *****************************************************************************************/
+
+
 #ifndef _CollisionTests_
 #define _CollisionTests_
 
@@ -83,4 +85,4 @@ private:
 };
 
 
-#endif // _Camera2dTests_
+#endif // _CollisionTests_

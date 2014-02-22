@@ -193,14 +193,21 @@ string IND_Surface::getQualityString() {
 }
 
 /**
- * TODO: Describtion.
+ * Returns the internal vertexes of a surface
+ */
+CUSTOMVERTEX2D* IND_Surface::getVertexArray() {
+    return _surface->_vertexArray;
+}
+
+/**
+ * TODO: Description.
  */
 int IND_Surface::getSpareX() {
 	return _surface->_attributes._spareX;
 }
 
 /**
- * TODO: Describtion.
+ * TODO: Description.
  */
 int IND_Surface::getSpareY() {
 	return _surface->_attributes._spareY;
@@ -356,74 +363,74 @@ bool IND_Surface::setVertexPos(int pVertexX, int pVertexY, int pX, int pY) {
 	// ----- Corners (we must move 1 vertex) -----
 
 	if (pVertexX == 0 && pVertexY == 0) {
-		_surface->_vertexArray [((getNumBlocks() - getBlocksX()) * 4) + 2]._x = (float) pX;
-		_surface->_vertexArray [((getNumBlocks() - getBlocksX()) * 4) + 2]._y = (float) pY;
+		_surface->_vertexArray [((getNumBlocks() - getBlocksX()) * 4) + 2]._pos._x = (float) pX;
+		_surface->_vertexArray [((getNumBlocks() - getBlocksX()) * 4) + 2]._pos._y = (float) pY;
 		return 1;
 	}
 
 	if (pVertexX == getBlocksX() && pVertexY == getBlocksY()) {
-		_surface->_vertexArray [((getBlocksX() - 1) * 4) + 1]._x = (float) pX;
-		_surface->_vertexArray [((getBlocksX() - 1) * 4) + 1]._y = (float) pY;
+		_surface->_vertexArray [((getBlocksX() - 1) * 4) + 1]._pos._x = (float) pX;
+		_surface->_vertexArray [((getBlocksX() - 1) * 4) + 1]._pos._y = (float) pY;
 		return 1;
 	}
 
 	if (pVertexX == getBlocksX() && pVertexY == 0) {
-		_surface->_vertexArray [(getNumBlocks() - 1) * 4]._x = (float) pX;
-		_surface->_vertexArray [(getNumBlocks() - 1) * 4]._y = (float) pY;
+		_surface->_vertexArray [(getNumBlocks() - 1) * 4]._pos._x = (float) pX;
+		_surface->_vertexArray [(getNumBlocks() - 1) * 4]._pos._y = (float) pY;
 		return 1;
 	}
 
 	if (pVertexX == 0 && pVertexY == getBlocksY()) {
-		_surface->_vertexArray [3]._x = (float) pX;
-		_surface->_vertexArray [3]._y = (float) pY;
+		_surface->_vertexArray [3]._pos._x = (float) pX;
+		_surface->_vertexArray [3]._pos._y = (float) pY;
 		return 1;
 	}
 
 	// ----- Borders (we must move 2 vertices) -----
 
 	if (pVertexX == 0) {
-		_surface->_vertexArray [(abs(getBlocksY() - pVertexY - 1) * getBlocksX() * 4) + 2]._x = (float) pX;
-		_surface->_vertexArray [(abs(getBlocksY() - pVertexY - 1) * getBlocksX() * 4) + 2]._y = (float) pY;
-		_surface->_vertexArray [(abs(getBlocksY() - pVertexY) * getBlocksX() * 4) + 3]._x = (float) pX;
-		_surface->_vertexArray [(abs(getBlocksY() - pVertexY) * getBlocksX() * 4) + 3]._y = (float) pY;
+		_surface->_vertexArray [(abs(getBlocksY() - pVertexY - 1) * getBlocksX() * 4) + 2]._pos._x = (float) pX;
+		_surface->_vertexArray [(abs(getBlocksY() - pVertexY - 1) * getBlocksX() * 4) + 2]._pos._y = (float) pY;
+		_surface->_vertexArray [(abs(getBlocksY() - pVertexY) * getBlocksX() * 4) + 3]._pos._x = (float) pX;
+		_surface->_vertexArray [(abs(getBlocksY() - pVertexY) * getBlocksX() * 4) + 3]._pos._y = (float) pY;
 		return 1;
 	}
 
 	if (pVertexX == getBlocksX()) {
-		_surface->_vertexArray [(((abs(getBlocksY() - pVertexY - 1) * getBlocksX()) + getBlocksX() - 1) * 4)]._x = (float) pX;
-		_surface->_vertexArray [(((abs(getBlocksY() - pVertexY - 1) * getBlocksX()) + getBlocksX() - 1) * 4)]._y = (float) pY;
-		_surface->_vertexArray [(((abs(getBlocksY() - pVertexY) * getBlocksX()) + getBlocksX() - 1) * 4) + 1]._x = (float) pX;
-		_surface->_vertexArray [(((abs(getBlocksY() - pVertexY) * getBlocksX()) + getBlocksX() - 1) * 4) + 1]._y = (float) pY;
+		_surface->_vertexArray [(((abs(getBlocksY() - pVertexY - 1) * getBlocksX()) + getBlocksX() - 1) * 4)]._pos._x = (float) pX;
+		_surface->_vertexArray [(((abs(getBlocksY() - pVertexY - 1) * getBlocksX()) + getBlocksX() - 1) * 4)]._pos._y = (float) pY;
+		_surface->_vertexArray [(((abs(getBlocksY() - pVertexY) * getBlocksX()) + getBlocksX() - 1) * 4) + 1]._pos._x = (float) pX;
+		_surface->_vertexArray [(((abs(getBlocksY() - pVertexY) * getBlocksX()) + getBlocksX() - 1) * 4) + 1]._pos._y = (float) pY;
 		return 1;
 	}
 
 	if (pVertexY == getBlocksY()) {
-		_surface->_vertexArray [((pVertexX - 1) * 4) + 1]._x = (float) pX;
-		_surface->_vertexArray [((pVertexX - 1) * 4) + 1]._y = (float) pY;
-		_surface->_vertexArray [((pVertexX) * 4) + 3]._x = (float) pX;
-		_surface->_vertexArray [((pVertexX) * 4) + 3]._y = (float) pY;
+		_surface->_vertexArray [((pVertexX - 1) * 4) + 1]._pos._x = (float) pX;
+		_surface->_vertexArray [((pVertexX - 1) * 4) + 1]._pos._y = (float) pY;
+		_surface->_vertexArray [((pVertexX) * 4) + 3]._pos._x = (float) pX;
+		_surface->_vertexArray [((pVertexX) * 4) + 3]._pos._y = (float) pY;
 		return 1;
 	}
 
 	if (pVertexY == 0) {
-		_surface->_vertexArray [((getNumBlocks() - getBlocksX() + pVertexX - 1) * 4)]._x = (float) pX;
-		_surface->_vertexArray [((getNumBlocks() - getBlocksX() + pVertexX - 1) * 4)]._y = (float) pY;
-		_surface->_vertexArray [((getNumBlocks() - getBlocksX() + pVertexX) * 4) + 2]._x = (float) pX;
-		_surface->_vertexArray [((getNumBlocks() - getBlocksX() + pVertexX) * 4) + 2]._y = (float) pY;
+		_surface->_vertexArray [((getNumBlocks() - getBlocksX() + pVertexX - 1) * 4)]._pos._x = (float) pX;
+		_surface->_vertexArray [((getNumBlocks() - getBlocksX() + pVertexX - 1) * 4)]._pos._y = (float) pY;
+		_surface->_vertexArray [((getNumBlocks() - getBlocksX() + pVertexX) * 4) + 2]._pos._x = (float) pX;
+		_surface->_vertexArray [((getNumBlocks() - getBlocksX() + pVertexX) * 4) + 2]._pos._y = (float) pY;
 		return 1;
 	}
 
 	// ----- Inside (we must move 4 vertices) -----
 
 	if (pVertexX > 0 && pVertexX < getBlocksX() && pVertexY > 0 && pVertexY < getBlocksY()) {
-		_surface->_vertexArray [(((abs(getBlocksY() - pVertexY - 1) * getBlocksX()) + pVertexX - 1) * 4)]._x = (float) pX;
-		_surface->_vertexArray [(((abs(getBlocksY() - pVertexY - 1) * getBlocksX()) + pVertexX - 1) * 4)]._y = (float) pY;
-		_surface->_vertexArray [(((abs(getBlocksY() - pVertexY - 1) * getBlocksX()) + pVertexX) * 4) + 2]._x = (float) pX;
-		_surface->_vertexArray [(((abs(getBlocksY() - pVertexY - 1) * getBlocksX()) + pVertexX) * 4) + 2]._y = (float) pY;
-		_surface->_vertexArray [(((abs(getBlocksY() - pVertexY) * getBlocksX()) + pVertexX - 1) * 4) + 1]._x = (float) pX;
-		_surface->_vertexArray [(((abs(getBlocksY() - pVertexY) * getBlocksX()) + pVertexX - 1) * 4) + 1]._y = (float) pY;
-		_surface->_vertexArray [(((abs(getBlocksY() - pVertexY) * getBlocksX()) + pVertexX) * 4) + 3]._x = (float) pX;
-		_surface->_vertexArray [(((abs(getBlocksY() - pVertexY) * getBlocksX()) + pVertexX) * 4) + 3]._y = (float) pY;
+		_surface->_vertexArray [(((abs(getBlocksY() - pVertexY - 1) * getBlocksX()) + pVertexX - 1) * 4)]._pos._x = (float) pX;
+		_surface->_vertexArray [(((abs(getBlocksY() - pVertexY - 1) * getBlocksX()) + pVertexX - 1) * 4)]._pos._y = (float) pY;
+		_surface->_vertexArray [(((abs(getBlocksY() - pVertexY - 1) * getBlocksX()) + pVertexX) * 4) + 2]._pos._x = (float) pX;
+		_surface->_vertexArray [(((abs(getBlocksY() - pVertexY - 1) * getBlocksX()) + pVertexX) * 4) + 2]._pos._y = (float) pY;
+		_surface->_vertexArray [(((abs(getBlocksY() - pVertexY) * getBlocksX()) + pVertexX - 1) * 4) + 1]._pos._x = (float) pX;
+		_surface->_vertexArray [(((abs(getBlocksY() - pVertexY) * getBlocksX()) + pVertexX - 1) * 4) + 1]._pos._y = (float) pY;
+		_surface->_vertexArray [(((abs(getBlocksY() - pVertexY) * getBlocksX()) + pVertexX) * 4) + 3]._pos._x = (float) pX;
+		_surface->_vertexArray [(((abs(getBlocksY() - pVertexY) * getBlocksX()) + pVertexX) * 4) + 3]._pos._y = (float) pY;
 		return 1;
 	}
 
@@ -443,35 +450,35 @@ int IND_Surface::getVertexPosX(int pVertexX, int pVertexY) {
 	// ----- Corners -----
 
 	if (pVertexX == 0 && pVertexY == 0)
-		return (int) _surface->_vertexArray [((getNumBlocks() - getBlocksX()) * 4) + 2]._x;
+		return (int) _surface->_vertexArray [((getNumBlocks() - getBlocksX()) * 4) + 2]._pos._x;
 
 	if (pVertexX == getBlocksX() && pVertexY == getBlocksY())
-		return (int) _surface->_vertexArray [((getBlocksX() - 1) * 4) + 1]._x;
+		return (int) _surface->_vertexArray [((getBlocksX() - 1) * 4) + 1]._pos._x;
 
 	if (pVertexX == getBlocksX() && pVertexY == 0)
-		return (int) _surface->_vertexArray [(getNumBlocks() - 1) * 4]._x;
+		return (int) _surface->_vertexArray [(getNumBlocks() - 1) * 4]._pos._x;
 
 	if (pVertexX == 0 && pVertexY == getBlocksY())
-		return (int) _surface->_vertexArray [3]._x;
+		return (int) _surface->_vertexArray [3]._pos._x;
 
 	// ----- Borders -----
 
 	if (pVertexX == 0)
-		return (int) _surface->_vertexArray [(abs(getBlocksY() - pVertexY - 1) * getBlocksX() * 4) + 2]._x;
+		return (int) _surface->_vertexArray [(abs(getBlocksY() - pVertexY - 1) * getBlocksX() * 4) + 2]._pos._x;
 
 	if (pVertexX == getBlocksX())
-		return (int) _surface->_vertexArray [(((abs(getBlocksY() - pVertexY) * getBlocksX()) + getBlocksX() - 1) * 4) + 1]._x;
+		return (int) _surface->_vertexArray [(((abs(getBlocksY() - pVertexY) * getBlocksX()) + getBlocksX() - 1) * 4) + 1]._pos._x;
 
 	if (pVertexY == getBlocksY())
-		return (int) _surface->_vertexArray [((pVertexX) * 4) + 3]._x;
+		return (int) _surface->_vertexArray [((pVertexX) * 4) + 3]._pos._x;
 
 	if (pVertexY == 0)
-		return (int) _surface->_vertexArray [((getNumBlocks() - getBlocksX() + pVertexX - 1) * 4)]._x;
+		return (int) _surface->_vertexArray [((getNumBlocks() - getBlocksX() + pVertexX - 1) * 4)]._pos._x;
 
 	// ----- Inside (we must move 4 vertices) -----
 
 	if (pVertexX > 0 && pVertexX < getBlocksX() && pVertexY > 0 && pVertexY < getBlocksY())
-		return (int) _surface->_vertexArray [(((abs(getBlocksY() - pVertexY - 1) * getBlocksX()) + pVertexX - 1) * 4)]._x;
+		return (int) _surface->_vertexArray [(((abs(getBlocksY() - pVertexY - 1) * getBlocksX()) + pVertexX - 1) * 4)]._pos._x;
 
 	return 0;
 }
@@ -489,35 +496,35 @@ int IND_Surface::getVertexPosY(int pVertexX, int pVertexY) {
 	// ----- Corners -----
 
 	if (pVertexX == 0 && pVertexY == 0)
-		return (int) _surface->_vertexArray [((getNumBlocks() - getBlocksX()) * 4) + 2]._y;
+		return (int) _surface->_vertexArray [((getNumBlocks() - getBlocksX()) * 4) + 2]._pos._y;
 
 	if (pVertexX == getBlocksX() && pVertexY == getBlocksY())
-		return (int) _surface->_vertexArray [((getBlocksX() - 1) * 4) + 1]._y;
+		return (int) _surface->_vertexArray [((getBlocksX() - 1) * 4) + 1]._pos._y;
 
 	if (pVertexX == getBlocksX() && pVertexY == 0)
-		return (int) _surface->_vertexArray [(getNumBlocks() - 1) * 4]._y;
+		return (int) _surface->_vertexArray [(getNumBlocks() - 1) * 4]._pos._y;
 
 	if (pVertexX == 0 && pVertexY == getBlocksY())
-		return (int) _surface->_vertexArray [3]._y;
+		return (int) _surface->_vertexArray [3]._pos._y;
 
 	// ----- Borders -----
 
 	if (pVertexX == 0)
-		return (int) _surface->_vertexArray [(abs(getBlocksY() - pVertexY - 1) * getBlocksX() * 4) + 2]._y;
+		return (int) _surface->_vertexArray [(abs(getBlocksY() - pVertexY - 1) * getBlocksX() * 4) + 2]._pos._y;
 
 	if (pVertexX == getBlocksX())
-		return (int) _surface->_vertexArray [(((abs(getBlocksY() - pVertexY) * getBlocksX()) + getBlocksX() - 1) * 4) + 1]._y;
+		return (int) _surface->_vertexArray [(((abs(getBlocksY() - pVertexY) * getBlocksX()) + getBlocksX() - 1) * 4) + 1]._pos._y;
 
 	if (pVertexY == getBlocksY())
-		return (int) _surface->_vertexArray [((pVertexX) * 4) + 3]._y;
+		return (int) _surface->_vertexArray [((pVertexX) * 4) + 3]._pos._y;
 
 	if (pVertexY == 0)
-		return (int) _surface->_vertexArray [((getNumBlocks() - getBlocksX() + pVertexX - 1) * 4)]._y;
+		return (int) _surface->_vertexArray [((getNumBlocks() - getBlocksX() + pVertexX - 1) * 4)]._pos._y;
 
 	// ----- Inside (we must move 4 vertices) -----
 
 	if (pVertexX > 0 && pVertexX < getBlocksX() && pVertexY > 0 && pVertexY < getBlocksY())
-		return (int) _surface->_vertexArray [(((abs(getBlocksY() - pVertexY - 1) * getBlocksX()) + pVertexX - 1) * 4)]._y;
+		return (int) _surface->_vertexArray [(((abs(getBlocksY() - pVertexY - 1) * getBlocksX()) + pVertexX - 1) * 4)]._pos._y;
 
 	return 0;
 }
@@ -626,17 +633,11 @@ void IND_Surface::pushVertex(CUSTOMVERTEX2D *pVertices,
                              float pU,
                              float pV) {
 
-	pVertices [pPosVert]._x = (float) pVx;
-	pVertices [pPosVert]._y = (float) pVy;
-	pVertices [pPosVert]._z = (float) pVz;
-	pVertices [pPosVert]._u = pU;
-	pVertices [pPosVert]._v = pV;
-
-	pVertices [pPosVert]._x = (float) pVx;
-	pVertices [pPosVert]._y = (float) pVy;
-	pVertices [pPosVert]._z = (float) pVz;
-
-	//pVertices [pPosVert]._color = D3DCOLOR_COLORVALUE (1.0f, 1.0f, 1.0f, 0.1f);
+	pVertices [pPosVert]._pos._x = static_cast<float>(pVx);
+	pVertices [pPosVert]._pos._y = static_cast<float>(pVy);
+	pVertices [pPosVert]._pos._z = static_cast<float>(pVz);
+	pVertices [pPosVert]._texCoord._u = pU;
+	pVertices [pPosVert]._texCoord._v = pV;
 }
 
 /*

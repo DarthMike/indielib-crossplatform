@@ -382,12 +382,11 @@ void DirectXTextureBuilder::pushVertex(CUSTOMVERTEX2D *pVertices,
                                        int pVz,
                                        float pU,
                                        float pV) {
-	pVertices [pPosVert]._x = static_cast<float>(pVx);
-	pVertices [pPosVert]._y = static_cast<float>(pVy);
-	pVertices [pPosVert]._z = static_cast<float>(pVz);
-	pVertices [pPosVert]._u = pU;
-	pVertices [pPosVert]._v = pV;
-	//pVertices [pPosVert]._color = D3DCOLOR_COLORVALUE (1.0f, 1.0f, 1.0f, 0.1f);
+	pVertices [pPosVert]._pos._x = static_cast<float>(pVx);
+	pVertices [pPosVert]._pos._y = static_cast<float>(pVy);
+	pVertices [pPosVert]._pos._z = static_cast<float>(pVz);
+	pVertices [pPosVert]._texCoord._u = pU;
+	pVertices [pPosVert]._texCoord._v = pV;
 }
 
 

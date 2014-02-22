@@ -32,7 +32,9 @@
 #ifndef _IND_INPUT_
 #define _IND_INPUT_
 
+
 // ----- Includes -----
+
 #include "IndiePlatforms.h"
 #include "Defines.h"
 #include "IND_Timer.h"
@@ -40,6 +42,7 @@
 #include <stdint.h>
 
 // ----- Forward declarations -----
+
 class IND_Render;
 
 // --------------------------------------------------------------------------------
@@ -174,7 +177,7 @@ public:
 /** @endcond */
 
 /**
- @defgroup Touches
+ @defgroup Touches Touches
  @ingroup Input
  
  Touches data is always used in devices with touch screen, like iOS.
@@ -193,8 +196,13 @@ public:
         
     }
     
+	//! ID of the touch
     int64_t identifier;
+
+	//! Position of the touch
     IND_NormalizedPoint position;
+
+	//! State of the touch
     IND_TouchState state;
 } IND_Touch;
 
@@ -277,7 +285,9 @@ public:
 	/**@}*/
 
 private:
+
 	/** @cond DOCUMENT_PRIVATEAPI */
+
 	// ----- Private -----
 
 	IND_Render *_render;

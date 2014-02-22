@@ -332,8 +332,8 @@ void IND_Entity2dManager::renderEntities2d(int pLayer) {
 							_render->blitWrapSurface((*mIter)->_su,
 							                         (*mIter)->_regionWidth,
 							                         (*mIter)->_regionHeight,
-							                         (*mIter)->_uDisplace,
-							                         (*mIter)->_vDisplace);
+							                         (*mIter)->_uOffset,
+							                         (*mIter)->_vOffset);
 						}
 						// No wrapping
 						else {
@@ -362,8 +362,8 @@ void IND_Entity2dManager::renderEntities2d(int pLayer) {
 						                           (*mIter)->_regionWidth,
 						                           (*mIter)->_regionHeight,
 						                           (*mIter)->_wrap,
-						                           (*mIter)->_uDisplace,
-						                           (*mIter)->_vDisplace) == -1) {
+						                           (*mIter)->_uOffset,
+						                           (*mIter)->_vOffset) == -1) {
 							// Reset the animation
 							(*mIter)->_an->setActualFramePos((*mIter)->_sequence, 0);
 						}
@@ -378,8 +378,8 @@ void IND_Entity2dManager::renderEntities2d(int pLayer) {
 						                           (*mIter)->_regionWidth,
 						                           (*mIter)->_regionHeight,
 						                           (*mIter)->_wrap,
-						                           (*mIter)->_uDisplace,
-						                           (*mIter)->_vDisplace) == -1) {
+						                           (*mIter)->_uOffset,
+						                           (*mIter)->_vOffset) == -1) {
 							// There are replays
 							if ((*mIter)->_numReplays > 0) {
 								// Reset animation
@@ -667,7 +667,7 @@ bool IND_Entity2dManager::isCollision(IND_Entity2d *pEn1, const char *pId1, IND_
 	}
 	// Is an animation
 	else {
-		mBoundingList1 = (*(pEn1->_an->getVectorFrames())) [pEn1->_an->getActualFramePos(pEn1->getSequence())]->GetListBoundingCollision();
+		mBoundingList1 = (*(pEn1->_an->getVectorFrames())) [pEn1->_an->getActualFramePosInVec(pEn1->getSequence())]->GetListBoundingCollision();
 	}
 
 	// Is a surface
@@ -676,7 +676,7 @@ bool IND_Entity2dManager::isCollision(IND_Entity2d *pEn1, const char *pId1, IND_
 	}
 	// Is an animation
 	else {
-		mBoundingList2 = (*(pEn2->_an->getVectorFrames())) [pEn2->_an->getActualFramePos(pEn2->getSequence())]->GetListBoundingCollision();
+		mBoundingList2 = (*(pEn2->_an->getVectorFrames())) [pEn2->_an->getActualFramePosInVec(pEn2->getSequence())]->GetListBoundingCollision();
 	}
 
 	if (isCollision(mBoundingList1, mBoundingList2,

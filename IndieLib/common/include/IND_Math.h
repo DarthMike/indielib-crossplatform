@@ -64,7 +64,7 @@ Min macro
 #define MIN(a, b)  (((a) < (b)) ? (a) : (b))
 
 /**
-You know what this is..
+You know what this is
 */
 #define PI 3.14159265358979323846f
 
@@ -85,6 +85,7 @@ You know what this is..
  */
 class LIB_EXP IND_Math {
 public:
+
 	// ----- Init/End -----
 
 	IND_Math(): _ok(false)  { }
@@ -752,8 +753,8 @@ public:
      [        ][       ]  = target
      [        ][       ]
      
-     @param m1 First matrix (left side)
-     @param m2 Second matrix (right side)
+     @param target First matrix (left side)
+     @param next Second matrix (right side)
      
      @see matrix4DMultiply
      */
@@ -1167,10 +1168,10 @@ public:
 private:
 
     /** @cond DOCUMENT_PRIVATEAPI */
+
 	// ----- Private -----
 
 	bool _ok;
-
 
 	// ----- Private methods -----
 

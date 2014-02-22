@@ -32,9 +32,11 @@
 #ifndef _IND_TIMER_
 #define _IND_TIMER_
 
+
 #include "Defines.h"
 
 // ---- Forward declarations ----
+
 class PrecissionTimer;
 // --------------------------------------------------------------------------------
 //									   IND_Timer
@@ -57,6 +59,7 @@ public:
 
 	IND_Timer();
 	~IND_Timer();
+
 	// ----- Public methods -----
 
 	//The various clock actions
@@ -76,10 +79,14 @@ public:
 	bool isPaused();
 
 private:
+
 	/** @cond DOCUMENT_PRIVATEAPI */
+
 	// ----- Private -----
+
 	//Internal precission timer
 	PrecissionTimer *_precissionTimer;
+
     /** @endcond */
 };
 /**@}*/

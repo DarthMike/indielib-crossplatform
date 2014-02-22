@@ -28,8 +28,10 @@
  *
  *****************************************************************************************/
 
+
 #ifndef _IND_TMXMAP_
 #define _IND_TMXMAP_
+
 
 #ifdef linux
 #include <string.h>
@@ -40,6 +42,7 @@
 #include "dependencies/TmxParser/Tmx.h"
 
 // ----- Forward declarations ------
+
 struct FIBITMAP;
 
 // --------------------------------------------------------------------------------
@@ -87,7 +90,9 @@ public:
 	}
 
 private:
+
 	/** @cond DOCUMENT_PRIVATEAPI */
+
     IND_TmxMap() {}
     virtual ~IND_TmxMap() {}
     
@@ -118,8 +123,6 @@ private:
 
 	TmxMap _tmxMap;
     
-    
-
 	// ----- Private sets ------
 
 	void setName(const char *pName)   {
@@ -137,8 +140,7 @@ private:
     void setImagePath(const char *pImagePath)   {
 		strcpy(_tmxMap._imagePath, pImagePath);
 	}
-    
-    
+        
 	// ----- Private methods -----
 
 	//void setAlphaChannel(unsigned char pR, unsigned char pG, unsigned char pB);
@@ -147,6 +149,7 @@ private:
 	// ----- Friends -----
 
 	friend class IND_TmxMapManager;
+
     /** @endcond */
 };
 /**@}*/

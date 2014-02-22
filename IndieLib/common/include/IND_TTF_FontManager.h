@@ -32,7 +32,6 @@
 #ifndef IND_TTF_FONTMANAGER_H
 #define IND_TTF_FONTMANAGER_H
 
-
 // ----- Includes -----
 
 #include <string>
@@ -44,11 +43,27 @@ class free_type_ptr_wrapped_impl;  // forward-declare private "implementation" c
 
 // NOTE that this class uses STL, the performance will be a lot better in Release version
 
+/**
+@defgroup IND_TTF_FontManager IND_TTF_FontManager
+@ingroup Managers
+Manager of IND_TTF_Font objects. Click in ::IND_TTF_FontManager to see all the methods of this class.
+*/
+/**@{*/
+
+/**
+TODO: Describtion.
+*/
+
+
 class LIB_EXP IND_TTF_FontManager {
 
 public:
-	typedef unsigned char byte;     // TODO : should be moved to the defines setup
-	typedef unsigned int uint32_t;  // TODO : should be moved to the defines setup
+
+    //! Typedef byte - TODO : should be moved to the defines setup
+	typedef unsigned char byte;
+
+    //! Typedef uint32_t - TODO : should be moved to the defines setup
+	typedef unsigned int uint32_t;
 
 	// ----- Init/End -----    
     
@@ -91,6 +106,11 @@ public:
 	void setFontScale(const std::string& strFontName, float sx, float sy);
 
 private:
+	
+    /** @cond DOCUMENT_PRIVATEAPI */
+
+	// ----- Private -----
+
 	typedef std::map<const std::string, IND_TTF_Font*> IND_TTF_FontList;
 	typedef IND_TTF_FontList::iterator IND_TTF_FontListIterator;
 
@@ -136,7 +156,6 @@ private:
 
 	DTRList					_DTRList;
 
-
     // ----- Private methods -----
     
 	void doDrawText(const std::string& strFontName,const std::wstring& s, float x, float y,
@@ -150,5 +169,9 @@ private:
 					bool bFlipY = false, float fZRotate = 0, byte btTrans = 255, bool bKerning = false, 
 					bool bUnderl = false);
 
+	/** @endcond */
+
 };
-#endif
+/**@}*/
+
+#endif // IND_TTF_FONTMANAGER_H

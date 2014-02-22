@@ -1,19 +1,30 @@
 /*****************************************************************************************
- * Desc: Listener class, interface between the user and the editor using keyboard and
- * mouse Input
+ * File: Listener.cpp
+ * Desc: Listener class, interface between user and editor using keyboard and mouse input
+ *****************************************************************************************/
+
+/*********************************** The zlib License ************************************
  *
- * gametuto.com - Javier López López (javilop.com)
+ * Copyright (c) 2013 Indielib-crossplatform Development Team
  *
- *****************************************************************************************
+ * This software is provided 'as-is', without any express or implied
+ * warranty. In no event will the authors be held liable for any damages
+ * arising from the use of this software.
  *
- * Creative Commons - Attribution 3.0 Unported
- * You are free:
- *	to Share — to copy, distribute and transmit the work
- *	to Remix — to adapt the work
+ * Permission is granted to anyone to use this software for any purpose,
+ * including commercial applications, and to alter it and redistribute it
+ * freely, subject to the following restrictions:
  *
- * Under the following conditions:
- * Attribution. You must attribute the work in the manner specified by the author or licensor 
- * (but not in any way that suggests that they endorse you or your use of the work).
+ * 1. The origin of this software must not be misrepresented; you must not
+ * claim that you wrote the original software. If you use this software
+ * in a product, an acknowledgment in the product documentation would be
+ * appreciated but is not required.
+ *
+ * 2. Altered source versions must be plainly marked as such, and must not be
+ * misrepresented as being the original software.
+ *
+ * 3. This notice may not be removed or altered from any source
+ * distribution.
  *
  *****************************************************************************************/
 
@@ -26,7 +37,7 @@
 Init
 ====================================== 
 */
-Listener::Listener(Resources *pResources, Map *pMap) 
+Listener::Listener(Resources *pResources, EditorMap *pMap) 
 {
 	// Get IndieLib instante
 	mI = CIndieLib::instance();
@@ -880,6 +891,7 @@ void Listener::CreateBackDropBrushes ()
 		mIter++)
 	{	
 		mBackDropBrushes [i].mId = (*mIter)->mId;								// Id
+        mBackDropBrushes [i].mEntity = IND_Entity2d::newEntity2d();               
 		mBackDropBrushes [i].mEntity->setSurface ((*mIter)->mSurface);			// Set the surface (brush image) into the entity
 		mI->_entity2dManager->add (BRUSH_LAYER, mBackDropBrushes [i].mEntity);	// Add the entity to the IndieLib manager
 		mBackDropBrushes [i].mEntity->setHotSpot (0.5f, 0.5f);					// Pivot point in the middle of the surface

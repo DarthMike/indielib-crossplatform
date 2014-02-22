@@ -189,9 +189,9 @@ Indielib_Main
 
 	int iBlk;
 	float xPos = 0.f;
-	float yPos = 550.f;
+//	float yPos = 550.f;
 	float mSpeed = 30.f;
-	float mSpeed2 = 40.f;
+//	float mSpeed2 = 40.f;
 	float mDelta;
 
 	while (!mI->_input->onKeyPress(IND_ESCAPE) && !mI->_input->quit())

@@ -77,7 +77,7 @@ Indielib_Main
 
 	// Font
 	IND_Font *mFontSmall = IND_Font::newFont();
-	if (!mI->_fontManager->add(mFontSmall, "font_small.png", "font_small.xml", IND_ALPHA, IND_32)) return 0;
+	if (!mI->_fontManager->addMudFont(mFontSmall, "font/bitmap/MudFont/font_small.png", "font/bitmap/MudFont/font_small.xml", IND_ALPHA, IND_32)) return 0;
 
 	// ----- Font creation -----
 
@@ -120,10 +120,10 @@ Indielib_Main
 	// ----- Camera ------
 
 	// Camera for the viewport 1
-	IND_Camera2d *mCamera1 = new IND_Camera2d(mI->_window->getWidth () / 2, mI->_window->getHeight() / 4);
+	IND_Camera2d *mCamera1 = new IND_Camera2d(mI->_window->getWidth () / 2.00f, mI->_window->getHeight() / 4.00f);
 
 	// Camera for the viewport 2
-	IND_Camera2d *mCamera2 = new IND_Camera2d(mI->_window->getWidth () / 2, mI->_window->getHeight() / 4);
+	IND_Camera2d *mCamera2 = new IND_Camera2d(mI->_window->getWidth () / 2.00f, mI->_window->getHeight() / 4.00f);
 
 	// ----- Main Loop -----
 

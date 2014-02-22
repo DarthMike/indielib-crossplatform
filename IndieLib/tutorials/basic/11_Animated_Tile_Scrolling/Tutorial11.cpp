@@ -85,7 +85,7 @@ Indielib_Main
 		mDelta = mI->_render->getFrameTime() / 1000.0f;
 
 		mDisp += mSpeed * mDelta;
-		mSun->setWrapDisplacement(mDisp, mDisp);	
+		mSun->setWrapOffset(mDisp, mDisp);
 
 		// ----- Render  -----
 

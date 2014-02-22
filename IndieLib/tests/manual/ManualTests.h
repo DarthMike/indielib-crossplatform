@@ -26,6 +26,8 @@
  * distribution.
  *
  *****************************************************************************************/
+
+
 #ifndef _MANUALTESTS_
 #define _MANUALTESTS_
 
@@ -60,4 +62,4 @@ protected:
 };
 
 
-#endif // _FUNCTIONALITYTESTS_
+#endif // _MANUALTESTS_

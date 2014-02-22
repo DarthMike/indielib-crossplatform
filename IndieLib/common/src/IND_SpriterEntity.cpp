@@ -70,14 +70,19 @@ IND_SpriterEntity::~IND_SpriterEntity() {
 //									 Public methods
 // --------------------------------------------------------------------------------
 
-
+/**
+ * Starts the animation
+ * @param animation			The index of the animation to play.
+ */
 void IND_SpriterEntity::playAnimation(int animation/*, IND_Render *render*/) { // TODO: MFK maybe animation name instead?
     _currentAnimation   = animation;
     _currentKey         = 0;
     _currentTime        = 0;
 }
 
-
+/**
+ * Stops the animation
+ */
 void IND_SpriterEntity::stopAnimation() {
     _currentAnimation   = -1;
     _currentKey         = -1;

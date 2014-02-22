@@ -26,6 +26,8 @@
  * distribution.
  *
  *****************************************************************************************/
+
+
 #ifndef _ANIMATIONTESTS_
 #define _ANIMATIONTESTS_
 
@@ -66,4 +68,4 @@ private:
 };
 
 
-#endif // _Camera2dTests_
+#endif // _ANIMATIONTESTS_

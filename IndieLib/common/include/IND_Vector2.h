@@ -34,6 +34,7 @@
 #include "IndiePlatforms.h"
 
 //Libraries dependencies
+
 #include <math.h>
 #include <assert.h>
 
@@ -53,7 +54,8 @@
  */
 class LIB_EXP IND_Vector2 {
 public:    
-	//----- CONSTRUCTORS/DESTRUCTORS -----
+
+    //----- CONSTRUCTORS/DESTRUCTORS -----
 	
     /**
      Default constructor, initializes elements to 0

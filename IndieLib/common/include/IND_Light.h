@@ -3,27 +3,38 @@
  * Desc: Light object
  *****************************************************************************************/
 
-/*
-IndieLib 2d library Copyright (C) 2005 Javier López López (info@pixelartgames.com)
-MODIFIED BY Miguel Angel Quiñones (2011) (mail:m.quinones.garcia@gmail.com / mikeskywalker007@gmail.com)
+/*********************************** The zlib License ************************************
+ *
+ * Copyright (c) 2013 Indielib-crossplatform Development Team
+ *
+ * This software is provided 'as-is', without any express or implied
+ * warranty. In no event will the authors be held liable for any damages
+ * arising from the use of this software.
+ *
+ * Permission is granted to anyone to use this software for any purpose,
+ * including commercial applications, and to alter it and redistribute it
+ * freely, subject to the following restrictions:
+ *
+ * 1. The origin of this software must not be misrepresented; you must not
+ * claim that you wrote the original software. If you use this software
+ * in a product, an acknowledgment in the product documentation would be
+ * appreciated but is not required.
+ *
+ * 2. Altered source versions must be plainly marked as such, and must not be
+ * misrepresented as being the original software.
+ *
+ * 3. This notice may not be removed or altered from any source
+ * distribution.
+ *
+ *****************************************************************************************/
 
-This library is free software; you can redistribute it and/or modify it under the
-terms of the GNU Lesser General Public License as published by the Free Software
-Foundation; either version 2.1 of the License, or (at your option) any later version.
-
-This library is distributed in the hope that it will be useful, but WITHOUT ANY
-WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
-
-You should have received a copy of the GNU Lesser General Public License along with
-this library; if not, write to the Free Software Foundation, Inc., 59 Temple Place,
-Suite 330, Boston, MA 02111-1307 USA
-*/
 
 #ifndef _IND_LIGHT_
 #define _IND_LIGHT_
 
+
 // ----- Forward declarations -----
+
 struct LIGHT;
 
 // ----- Includes -----
@@ -56,9 +67,12 @@ IND_Light class managed by IND_LightManager for managing lights, click in IND_Li
 */
 class LIB_EXP IND_Light {
 public:
+
 	// ----- Init/End -----
+
 	IND_Light();
 	~IND_Light();
+
 	// ----- Public sets------
 
 	void setColor(float pR, float pG, float pB, float pA);
@@ -108,6 +122,7 @@ public:
 private:
 
 	// ----- Structures ------
+
 	LIGHT *_light;
 
 	// ----- Friends -----

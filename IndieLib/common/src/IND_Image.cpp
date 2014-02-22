@@ -37,6 +37,7 @@
 #include "FreeImageHelper.h"
 
 // ----- Dependencies -----
+
 #include "dependencies/FreeImage/Dist/FreeImage.h"
 
 // --------------------------------------------------------------------------------

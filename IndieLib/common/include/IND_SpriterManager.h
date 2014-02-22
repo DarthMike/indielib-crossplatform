@@ -38,11 +38,11 @@
 #include "../dependencies/SpriterParser/Mainline.h"
 #include "../dependencies/SpriterParser/Timeline.h"
 
-
 #include <list>
 #include <vector>
 
 // ----- Forward declarations -----
+
 class IND_SurfaceManager;
 class IND_Image;
 class IND_Timer;
@@ -57,6 +57,17 @@ class IND_Timer;
 //									IND_SpriterManager
 // --------------------------------------------------------------------------------
 
+/**
+@defgroup IND_SpriterManager IND_SpriterManager
+@ingroup Managers
+Manager of IND_SpriterEntity objects. Click in ::IND_SpriterManager to see all the methods of this class.
+*/
+/**@{*/
+
+/**
+TODO: Describtion.
+*/
+
 class LIB_EXP IND_SpriterManager {
 public:
 
@@ -69,6 +80,7 @@ public:
 
 	bool    init(IND_SurfaceManager *pSurfaceManager, IND_Render *pRender);
 	void    end();
+    //! True if object initialized correctly, false otherwise
 	bool    isOK() {
 		return _ok;
 	}
@@ -77,7 +89,8 @@ public:
     
 	bool addSpriterFile(const char *pSCMLFileName);
 	bool remove(IND_SpriterEntity *pSen);
-    
+
+    //! Get the list of managed entities
     vector <IND_SpriterEntity *>* getEntities() {
         return _listSpriterEntity;
     }
@@ -86,15 +99,15 @@ public:
     
 
 private:
+    /** @cond DOCUMENT_PRIVATEAPI */
+	
+    // ----- Private -----
 
-	// ----- Private -----
-
-	bool _ok;
+    bool _ok;
     double _deltaTime;
     double _lastTime;
 
 	// ----- Enums -----
-
 
 	// ----- Objects -----
     
@@ -108,13 +121,13 @@ private:
 
 	// ----- Private methods -----
 
-
 	void        addToList(IND_SpriterEntity *pNewEntity);
 	void        delFromlist(IND_SpriterEntity *pEn);
 	IND_Image*  loadImage(char *pName);
 	bool        remove(IND_SpriterEntity *pEn, bool pType);
 
-    // ----- render methods -----
+    // ----- Render methods -----
+
     void        draw(IND_SpriterEntity *ent);
     void        drawTransientObject(IND_SpriterEntity *ent, MainlineObjectref *mObjectref);
     void        drawPersistentObject(IND_SpriterEntity *ent, MainlineObjectref *mObjectref);
@@ -124,16 +137,19 @@ private:
     void        updateCurrentKey(IND_SpriterEntity *ent);
     TimelineObject* getTimelineObject(IND_SpriterEntity *ent,int timelineId, int keyId);
     IND_Surface*    getSurface(IND_SpriterEntity *ent, int folderId, int fileId);
-    
-    
-    // ----- parser methods -----
+       
+    // ----- Parser methods -----
+
 	bool        parseSpriterData(const char *pSCMLFileName);
     int         toInt(const char* input);
-    float      toFloat(const char* input);
+    float       toFloat(const char* input);
 	
     void        writeMessage();
 	void        initVars();
 	void        freeVars();
+
+	/** @endcond */
 };
+/**@}*/
 
 #endif // _IND_SPRITERMANAGER_

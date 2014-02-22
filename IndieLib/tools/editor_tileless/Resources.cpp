@@ -1,24 +1,37 @@
 /*****************************************************************************************
- * Desc: Resources class, for loading the initial tileset of brushes and the editor graphics.
+ * File: Resources.cpp
+ * Desc: Resources class, for loading the initial tileset of brushes and the editor graphics
+ *****************************************************************************************/
+
+/*********************************** The zlib License ************************************
  *
- * gametuto.com - Javier López López (javilop.com)
+ * Copyright (c) 2013 Indielib-crossplatform Development Team
  *
- *****************************************************************************************
+ * This software is provided 'as-is', without any express or implied
+ * warranty. In no event will the authors be held liable for any damages
+ * arising from the use of this software.
  *
- * Creative Commons - Attribution 3.0 Unported
- * You are free:
- *	to Share — to copy, distribute and transmit the work
- *	to Remix — to adapt the work
+ * Permission is granted to anyone to use this software for any purpose,
+ * including commercial applications, and to alter it and redistribute it
+ * freely, subject to the following restrictions:
  *
- * Under the following conditions:
- * Attribution. You must attribute the work in the manner specified by the author or licensor 
- * (but not in any way that suggests that they endorse you or your use of the work).
+ * 1. The origin of this software must not be misrepresented; you must not
+ * claim that you wrote the original software. If you use this software
+ * in a product, an acknowledgment in the product documentation would be
+ * appreciated but is not required.
+ *
+ * 2. Altered source versions must be plainly marked as such, and must not be
+ * misrepresented as being the original software.
+ *
+ * 3. This notice may not be removed or altered from any source
+ * distribution.
  *
  *****************************************************************************************/
 
 // ------ Includes -----
 
 #include "Resources.h"
+#include <string>
 
 /* 
 ======================================									
@@ -102,7 +115,7 @@ Load Resources
 bool Resources::LoadEditorElements ()
 {
 	// Load the mouse pointer, it is loaded to and IndieLib surface
-	if (!mI->_surfaceManager->add (mMouseSurface, "../../resources/images/editor/cursor.png", IND_ALPHA, IND_32)) return 0;
+	if (!mI->_surfaceManager->add (mMouseSurface, "editor/images/editor/cursor.png", IND_ALPHA, IND_32)) return 0;
 	
 	// Add the Mouse entity to the IndieLib Entity Manager
 	mI->_entity2dManager->add (BRUSH_LAYER, mMouseEntity);
@@ -114,7 +127,7 @@ bool Resources::LoadEditorElements ()
 	mMouseEntity->setHotSpot (0.5f, 0.5f);
 
 	// Font loading
-	if (!mI->_fontManager->add (mFont, "../../resources/fonts/font_small.png", "../../resources/fonts/font_small.xml", IND_ALPHA, IND_32)) return 0;
+	if (!mI->_fontManager->addMudFont (mFont, "editor/fonts/font_small.png", "editor/fonts/font_small.xml", IND_ALPHA, IND_32)) return 0;
 	mI->_entity2dManager->add	(GUI_LAYER, mFontEntity);
 	mFontEntity->setFont			(mFont);
 	mFontEntity->setLineSpacing	(18);
@@ -144,6 +157,19 @@ bool Resources::LoadTileset (char *pTilesetFile)
 	if (!mXmlDoc.LoadFile())
 	{
 		return false;
+	}
+
+    // fetching the directory where the xml file is located
+    string tilesetTopPath;
+    string s = string(pTilesetFile);
+
+	size_t lastPosTemp = s.find_last_of("\\/");
+
+	if(lastPosTemp == string::npos){
+		tilesetTopPath = "./";
+    }
+	else{
+    	tilesetTopPath = s.substr(0, lastPosTemp + 1);
 	}
 
 	// Document root
@@ -177,9 +203,7 @@ bool Resources::LoadTileset (char *pTilesetFile)
 		return false;
 	}
 	
-	// Parse all the surfaces
-	char mFileName [1024];
-	mFileName [0] = 0;
+    string imagePath;
 
 	while (mXSurface)
 	{
@@ -199,10 +223,11 @@ bool Resources::LoadTileset (char *pTilesetFile)
 		// Path to the image
 		if (mXSurface->Attribute("image"))
 		{
-			strcpy (mFileName, mXSurface->Attribute("image"));	
+            mNewSurface->mSurface = IND_Surface::newSurface();
+            imagePath = tilesetTopPath + string(mXSurface->Attribute("image"));
 
 			// Load surface
-			if (!mI->_surfaceManager->add (mNewSurface->mSurface, mFileName, IND_ALPHA, IND_32)) return 0;
+            if (!mI->_surfaceManager->add (mNewSurface->mSurface, imagePath.c_str(), IND_ALPHA, IND_32)) return 0;
 		}
 		else
 		{

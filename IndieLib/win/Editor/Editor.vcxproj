@@ -70,11 +70,13 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreAllDefaultLibraries>
+      </IgnoreAllDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AssemblyDebug />
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -99,45 +101,32 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Reference Include="System">
-      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
-      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
-    </Reference>
-    <Reference Include="System.Data">
-      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
-      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
-    </Reference>
-    <Reference Include="System.Xml">
-      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
-      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
+    <ClCompile Include="..\..\tools\editor_tileless\EditorMap.cpp" />
+    <ClCompile Include="..\..\tools\editor_tileless\Listener.cpp" />
     <ClCompile Include="..\..\tools\editor_tileless\Main.cpp" />
     <ClCompile Include="..\..\tools\editor_tileless\CIndieLib.cpp" />
-    <ClCompile Include="..\..\tools\editor_tileless\Listener.cpp" />
-    <ClCompile Include="..\..\tools\editor_tileless\Map.cpp" />
-    <ClCompile Include="..\..\tools\editor_tileless\Node.cpp" />
-    <ClCompile Include="..\..\tools\editor_tileless\Resources.cpp" />
     <ClCompile Include="..\..\common\dependencies\tinyxml\tinystr.cpp" />
     <ClCompile Include="..\..\common\dependencies\tinyxml\tinyxml.cpp" />
     <ClCompile Include="..\..\common\dependencies\tinyxml\tinyxmlerror.cpp" />
     <ClCompile Include="..\..\common\dependencies\tinyxml\tinyxmlparser.cpp" />
+    <ClCompile Include="..\..\tools\editor_tileless\Node.cpp" />
+    <ClCompile Include="..\..\tools\editor_tileless\Resources.cpp" />
+    <ClCompile Include="..\..\tools\editor_tileless\WorkingPath.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\tools\editor_tileless\CIndieLib.h" />
-    <ClInclude Include="..\..\tools\editor_tileless\Defines.h" />
-    <ClInclude Include="..\..\tools\editor_tileless\Listener.h" />
-    <ClInclude Include="..\..\tools\editor_tileless\Map.h" />
-    <ClInclude Include="..\..\tools\editor_tileless\Node.h" />
-    <ClInclude Include="..\..\tools\editor_tileless\Resources.h" />
     <ClInclude Include="..\..\common\dependencies\tinyxml\tinystr.h" />
     <ClInclude Include="..\..\common\dependencies\tinyxml\tinyxml.h" />
+    <ClInclude Include="..\..\tools\editor_tileless\Defines.h" />
+    <ClInclude Include="..\..\tools\editor_tileless\EditorMap.h" />
+    <ClInclude Include="..\..\tools\editor_tileless\Listener.h" />
+    <ClInclude Include="..\..\tools\editor_tileless\Node.h" />
+    <ClInclude Include="..\..\tools\editor_tileless\Resources.h" />
+    <ClInclude Include="..\..\tools\editor_tileless\WorkingPath.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="IndieLib.vcxproj">
+    <ProjectReference Include="..\IndieLib.vcxproj">
       <Project>{ec5db2f1-5096-430a-b62f-65859f497e5d}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -35,6 +35,7 @@
 
 #ifdef _DEBUG
 #include <stdio.h>
+
 /** @cond DOCUMENT_PRIVATEAPI */
 
 void RedirectIOToConsole();

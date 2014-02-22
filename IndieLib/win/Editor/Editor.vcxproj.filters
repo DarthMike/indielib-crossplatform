@@ -24,18 +24,6 @@
     <ClCompile Include="..\..\tools\editor_tileless\CIndieLib.cpp">
       <Filter>Indielib</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\tools\editor_tileless\Listener.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\tools\editor_tileless\Map.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\tools\editor_tileless\Node.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\tools\editor_tileless\Resources.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\common\dependencies\tinyxml\tinystr.cpp">
       <Filter>Dependencies\TinyXml</Filter>
     </ClCompile>
@@ -48,18 +36,39 @@
     <ClCompile Include="..\..\common\dependencies\tinyxml\tinyxmlparser.cpp">
       <Filter>Dependencies\TinyXml</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\tools\editor_tileless\EditorMap.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\tools\editor_tileless\Listener.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\tools\editor_tileless\Node.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\tools\editor_tileless\Resources.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\tools\editor_tileless\WorkingPath.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\tools\editor_tileless\CIndieLib.h">
       <Filter>Indielib</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\common\dependencies\tinyxml\tinystr.h">
+      <Filter>Dependencies\TinyXml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\dependencies\tinyxml\tinyxml.h">
+      <Filter>Dependencies\TinyXml</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\tools\editor_tileless\Defines.h">
       <Filter>Classes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\tools\editor_tileless\Listener.h">
+    <ClInclude Include="..\..\tools\editor_tileless\EditorMap.h">
       <Filter>Classes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\tools\editor_tileless\Map.h">
+    <ClInclude Include="..\..\tools\editor_tileless\Listener.h">
       <Filter>Classes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\tools\editor_tileless\Node.h">
@@ -68,11 +77,8 @@
     <ClInclude Include="..\..\tools\editor_tileless\Resources.h">
       <Filter>Classes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\common\dependencies\tinyxml\tinystr.h">
-      <Filter>Dependencies\TinyXml</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\common\dependencies\tinyxml\tinyxml.h">
-      <Filter>Dependencies\TinyXml</Filter>
+    <ClInclude Include="..\..\tools\editor_tileless\WorkingPath.h">
+      <Filter>Classes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

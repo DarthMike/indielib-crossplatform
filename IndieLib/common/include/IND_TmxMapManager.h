@@ -33,6 +33,7 @@
 #define _IND_TMXMAPMANAGER_
 
 // ----- Includes -----
+
 #include <list>
 
 // ----- Forward declarations ----
@@ -50,28 +51,15 @@ class IND_Render;
 //									IND_ImageManager
 // --------------------------------------------------------------------------------
 
-/*!
-\defgroup IND_ImageManager IND_ImageManager
-\ingroup Managers
-Manager of IND_Image objects. Click in ::IND_ImageManager to see all the methods of this class.
+/**
+@defgroup IND_TmxMapManager IND_TmxMapManager
+@ingroup Managers
+Manager of IND_TmxMap objects. Click in ::IND_TmxMapManager to see all the methods of this class.
 */
 /**@{*/
 
-/*!
-This manager that stores IND_Image objects works as a mediator between the image (bitmap) loaded
-in memory and the IND_Surface object which finally appears in the screen. The IND_Image objects
-which are stored in this class can not be rendered directly to the screen.
-But this class is very useful for applying <b>filters</b> (like in Gimp or Photoshop programs) to
-loaded images, and later they can be converted to IND_Surface objects, which can be directly
-rendered.
-
-Other possible uses of this class are:
-- <b>Hardness maps</b>. Used for making collisions or path finding.
-- GetPixel() / PutPixel()
-- <b>Colorkey</b>. By changing a certain color into transparent using SetAlpha().
-- Generation of new images (procedurally).
-- Convert formats. Changing the number of bytes per pixel using Convert()
-- Direct accesing to the bitmap. Using IND_Image::getPointer()
+/**
+TODO: Describtion.
 */
 class LIB_EXP IND_TmxMapManager {
 public:
@@ -103,8 +91,11 @@ public:
 	void renderStaggeredMap(IND_TmxMap *staggeredMap,IND_Surface *mSurfaceStaggeredTiles, int kMapCenterOffset);
 
 private:
+
 	/** @cond DOCUMENT_PRIVATEAPI */
+
 	// ----- Private -----
+
 	IND_Render *_render;
 	bool _ok;                                // Manager initialization flag
 	char *_supportedExt [MAX_EXT_TMXMAP];    // File extensions supported
@@ -123,6 +114,7 @@ private:
 	void writeMessage();
 	void initVars();
 	void freeVars();
+
     /** @endcond */
 };
 /**@}*/

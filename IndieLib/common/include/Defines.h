@@ -192,63 +192,56 @@ struct structPixelPos {
 typedef struct structPixelPos PIXEL;
 #endif
 
-#ifdef INDIERENDER_GLES_IOS
-//!Pixel - When not rendering textures
-struct structPixelPos {
+//!Vertex - When not rendering textures, with uniform color
+struct structVertexPos {
 	float _x; ///< Point position x
     float _y; ///< Point position y
     float _z; ///< Point position z
-	//Color
-	float _colorR; ///< Point color R
-    float _colorG; ///< Point color G
-    float _colorB; ///< Point color B
-    float _colorA; ///< Point color A
 };
-//! Alias for the pixel structure
-typedef struct structPixelPos PIXEL;
-#endif
+//! Alias for the vertex structure
+typedef struct structVertexPos VERTEX_POS;
 
-//Win32 (DirectX used)
-#ifdef INDIERENDER_DIRECTX
+//!Vertex color attribute
+struct structVertexColor {
+    //Color
+    unsigned char _colorR; ///< Point color R
+    unsigned char _colorG; ///< Point color G
+    unsigned char _colorB; ///< Point color B
+    unsigned char _colorA; ///< Point color A
+};
+//! Alias for the vertex structure
+typedef struct structVertexColor VERTEX_COLOR;
+
+//!Vertex - When not rendering textures, with per-vertex color
+struct structVertexPosColor {
+    VERTEX_POS _pos;
+    VERTEX_COLOR _color;
+};
+//! Alias for the vertex structure
+typedef struct structVertexPosColor VERTEX_POSANDCOLOR;
+
+
+ //!Vertex u and t values - When rendering with textures
+ struct structTexCoord {
+ 	float _u; ///< Texture mapping coordinate u
+     float _v; ///< Texture mapping coordinate v
+ };
+ //! Alias for the 2d vertex structure
+ typedef struct structTexCoord VERTEX_TEXCOORD;
+
 //!Vertex - When rendering with textures
 struct structVertex2d {
-	float _x; ///< Point position x
-    float _y; ///< Point position y
-    float _z; ///< Point position z
-	float _u; ///< Texture mapping coordinate u
-    float _v; ///< Texture mapping coordinate v
+    VERTEX_POS _pos;
+    VERTEX_TEXCOORD _texCoord;
 };
 //! Alias for the 2d vertex structure
 typedef struct structVertex2d CUSTOMVERTEX2D;
 
+#ifdef INDIERENDER_DIRECTX
+//Win32 (DirectX used)
 #define D3DFVF_CUSTOMVERTEX2D (D3DFVF_XYZ | D3DFVF_TEX1)
 #endif
 
-#ifdef INDIERENDER_OPENGL
-//!Vertex - When rendering with textures
-struct structVertex2d {
-	float _x; ///< Point position x
-    float _y; ///< Point position y
-    float _z; ///< Point position z
-	float _u; ///< Texture mapping coordinate u
-    float _v; ///< Texture mapping coordinate v
-};
-//! Alias for the 2d vertex structure
-typedef struct structVertex2d CUSTOMVERTEX2D;
-#endif
-
-#ifdef INDIERENDER_GLES_IOS
-//!Vertex - When rendering with textures
-struct structVertex2d {
-	float _x; ///< Point position x
-    float _y; ///< Point position y
-    float _z; ///< Point position z
-	float _u; ///< Texture mapping coordinate u
-    float _v; ///< Texture mapping coordinate v
-};
-//! Alias for the 2d vertex structure
-typedef struct structVertex2d CUSTOMVERTEX2D;
-#endif
 /**@}*/
 
 /**
@@ -301,6 +294,10 @@ public:
 		_11 = _12 = _13 = _14 = _21 = _22 = _23 = _24 = _31 = _32 = _33 = _34 = _41 = _42 = _43 = _44 = 0;
 	}
     
+	/**
+     @brief Copy constructor
+	 @param other Other matrix to xopy values from
+     */
     IND_Matrix(const IND_Matrix& other) {
         _11 = other._11;
         _21 = other._21;
@@ -335,6 +332,9 @@ public:
 		readFromArray(matrixArray);
 	}
     
+	 /**
+     @brief The identity matrix
+     */
     static IND_Matrix identity() {
         IND_Matrix m = IND_Matrix();
         m._11 = 1.f;
@@ -766,7 +766,7 @@ typedef int IND_BlendingType;
 #define IND_INVDESTCOLOR                    509
 //! Blend factor (f, f, f, 1); f = min(A, 1 - Ad).
 #define IND_SRCALPHASAT                     510
-//! Obsoleto.
+//! Not used.
 #define IND_BOTHSRCALPHA                    511
 //! Blend factor (1 - As, 1 - As, 1 - As, 1 - As), y el destino (As, As, As, As);
 #define IND_BOTHINVSRCALPHA                 512
@@ -1242,7 +1242,7 @@ typedef struct structBoundingCollision BOUNDING_COLLISION;
 /**@}*/
 
 /**
- * @defgroup Culling
+ * @defgroup Culling Culling
  * @ingroup Types
  */
 /**@{*/

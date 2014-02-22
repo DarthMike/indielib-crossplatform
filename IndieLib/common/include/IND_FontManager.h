@@ -38,6 +38,7 @@
 #include <list>
 
 // ----- Forward declarations -----
+
 class IND_Font;
 
 // --------------------------------------------------------------------------------
@@ -84,22 +85,29 @@ public:
 
 	// ----- Public methods -----
 
-	bool add(IND_Font       *pNewFont,
-	         const char    *pName,
-	         const char    *pFile,
-	         IND_Type        pType,
-	         IND_Quality     pQuality);
+	bool addMudFont(IND_Font    *pNewFont,
+                    const char  *pName,
+                    const char  *pFile,
+                    IND_Type    pType,
+                    IND_Quality pQuality);
 
-	bool add(IND_Font       *pNewFont,
-	         IND_Image       *pImage,
-	         const char    *pFile,
-	         IND_Type        pType,
-	         IND_Quality     pQuality);
+	bool addMudFont(IND_Font    *pNewFont,
+                    IND_Image   *pImage,
+                    const char  *pFile,
+                    IND_Type    pType,
+                    IND_Quality pQuality);
+    
+    bool addAngelcodeFont(IND_Font      *pNewFont,
+                          const char    *pFile,
+                          IND_Type      pType,
+                          IND_Quality   pQuality);    
 
-	bool remove(IND_Font       *pFo);
+	bool remove(IND_Font *pFo);
 
 private:
+
 	/** @cond DOCUMENT_PRIVATEAPI */
+
 	// ----- Private -----
 
 	bool _ok;                   // Manager initialization flag
@@ -126,7 +134,8 @@ private:
 
 	// ----- Private methods -----
 
-	bool                parseFont(IND_Font *pNewFont,const char *pFontName);
+	bool                parseMudFont(IND_Font *pNewFont,const char *pFontName);
+    bool                parseAngelCodeFont(IND_Font *pNewFont,const char *pFontName, IND_Type pType, IND_Quality pQuality);
 
 	void                addToList(IND_Font *pNewFont);
 	void                delFromlist(IND_Font *pFo);
@@ -134,6 +143,7 @@ private:
 	void                writeMessage();
 	void                initVars();
 	void                freeVars();
+
     /** @endcond */
 };
 /**@}*/

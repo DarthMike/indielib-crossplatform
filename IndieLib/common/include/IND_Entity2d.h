@@ -39,6 +39,7 @@
 #include "IND_Object.h"
 
 // ----- Forward declarations -----
+
 class CollisionParser;
 class IND_Animation;
 class IND_Surface;
@@ -78,6 +79,7 @@ class LIB_EXP IND_Entity2d : public IND_Object {
 public:
 
 	// ----- Init -----
+
     static IND_Entity2d* newEntity2d();
 
     void destroy();
@@ -146,7 +148,7 @@ public:
 	bool    setHotSpot(float pX, float pY);
 	bool    setRegion(int pOffX, int pOffY, int pRegionWidth, int pRegionHeight);
 	bool    toggleWrap(bool pWrap);
-	void    setWrapDisplacement(float pUDisplace, float pVDisplace);
+	void    setWrapOffset(float pUOffset, float pVOffset);
 	void    setLayer(int pLayer);
 	/**@}*/
 
@@ -395,8 +397,11 @@ public:
 	/**@}*/
 
 private:
+
 	/** @cond DOCUMENT_PRIVATEAPI */
+
 	// ----- Private ------
+
 	IND_Entity2d();
 	virtual ~IND_Entity2d();
     
@@ -454,8 +459,8 @@ private:
 
 	// Tiling
 	bool _wrap;             // Wrapping
-	float _uDisplace;       // U Coordinate displacement
-	float _vDisplace;       // V Coordinate displacement
+	float _uOffset;       // U Coordinate displacement
+	float _vOffset;       // V Coordinate displacement
 
 	// Animation attributes
 	unsigned int _sequence;          // Index of the sequence
@@ -496,6 +501,7 @@ private:
 	// ----- Friends -----
 
 	friend class IND_Entity2dManager;
+
     /** @endcond */
 };
 /**@}*/

@@ -32,6 +32,7 @@
 #ifndef _IND_SPRITERENTITY_
 #define _IND_SPRITERENTITY_
 
+
 // ----- Includes -----
 
 #include "IND_Object.h"
@@ -44,7 +45,7 @@
 
 // ----- Forward declarations -----
 
-
+//! Provides the folder / file relation
 struct Fileref {
     unsigned int folderId;
     unsigned int fileId;
@@ -77,6 +78,17 @@ struct Fileref {
 //									IND_SpriterEntity
 // --------------------------------------------------------------------------------
 
+/**
+@defgroup IND_SpriterEntity IND_SpriterEntity
+@ingroup Objects
+IND_SpriterEntity class managed by IND_SpriterManager for displaying Spriter animations into the screen. Click in IND_SpriterEntity to see all the methods of this class.
+*/
+/**@{*/
+
+/**
+@b IND_SpriterEntity is an Spriter Entity object from the class ::IND_SpriterManager. Read the explanation in ::IND_SpriterManager for more details.
+*/
+
 class LIB_EXP IND_SpriterEntity : public IND_Object {
 public:
 
@@ -94,22 +106,24 @@ public:
 
 	// ----- Public gets ------
 
-	
+	//! Get the ID of the entity
     const char* getId() {
         return _id;
     }
-	
+	//! Get the name of the entity
     const char* getName() {
         return _name;
     }
-    
-     std::vector <Animation *>* getAnimations() {
+    //! Get the list of animations that the entity exhebits
+    std::vector <Animation *>* getAnimations() {
          return _animations;
-     }
+    }
 	
 
 private:
-	
+
+	/** @cond DOCUMENT_PRIVATEAPI */
+
     IND_SpriterEntity();
 	virtual ~IND_SpriterEntity();
 
@@ -133,14 +147,10 @@ private:
     bool                        _drawBones;             // TODO: support this in a later version
     bool                        _drawObjectpositions;   // TODO: support this in a later version
 
-
 	// ----- Private sets ------
 	
-
-
 	// ----- Private methods -----
-    
-    
+       
     TimelineObject* getTimelineObject(int timelineId, int keyId);
     IND_Surface* getSurface(int folderId, int fileId);
     
@@ -149,10 +159,11 @@ private:
     Animation* addAnimation(int id, const char* name, int length, const char* looping, int loop_to);
     
 	// ----- Friends -----
-
 	
     friend class IND_SpriterManager;
 
+	/** @endcond */
 };
+/**@}*/
 
 #endif // _IND_SPRITERENTITY_

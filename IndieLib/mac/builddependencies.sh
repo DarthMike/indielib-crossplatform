@@ -3,7 +3,7 @@ RUNDIR=`pwd`
 FREEIMAGEDIR="FreeImage"
 SDLDIR="SDL-2.0"
 GLEWDIR="glew-1.9.0"
-FREETYPEDIR="freetype-2.5.0.1"
+FREETYPEDIR="freetype"
 
 set -e
 

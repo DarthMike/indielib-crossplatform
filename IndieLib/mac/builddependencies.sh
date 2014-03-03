@@ -41,7 +41,7 @@ echo -e "\n\n************* BUILDING FREETYPE ***********************\n\n"
 cd ..
 cd "$FREETYPEDIR"
 export MACOSX_DEPLOYMENT_TARGET=10.6 
-./configure --disable-shared --enable-static --prefix=`pwd`/osx --with-old-mac-fonts CFLAGS="-Os -arch i386 -arch x86_64"
+./configure --disable-shared --enable-static --prefix=`pwd`/osx --with-old-mac-fonts --without-png CFLAGS="-Os -arch i386 -arch x86_64"
 make clean
 make
 make install

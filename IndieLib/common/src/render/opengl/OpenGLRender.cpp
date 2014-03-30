@@ -270,22 +270,7 @@ Check OpenGL extensions
 ==================
 */
 bool OpenGLRender::checkGLExtensions() {
-
-	GLenum err = glewInit();
-	if (GLEW_OK != err) {
-		g_debug->header("Extensions loading (GLEW) failed!", DebugApi::LogHeaderError);
-		return false;
-	}
-
-	//Check system support for minimum targeted version of library
-	if (!glewIsSupported(MINIMUM_OPENGL_VERSION_STRING)) {
-		g_debug->header("Minimum OPENGL version is not available!", DebugApi::LogHeaderError);
-		return false;
-	}
-
-	strcpy(_info._version, MINIMUM_OPENGL_VERSION_STRING);
-
-	//TODO: Other extensions
+	// Entry point for extensions
 
 	return true;
 }

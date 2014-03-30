@@ -693,7 +693,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../common/dependencies/FreeImage/Dist\"",
-					"\"$(SRCROOT)/../../common/dependencies/glew-1.9.0/lib\"",
 					"\"$(SRCROOT)/../../common/dependencies/SDL-2.0/osx/lib\"",
 					"\"$(SRCROOT)/../../common/dependencies/freetype/osx/lib\"",
 				);
@@ -701,7 +700,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-lSDL2",
-					"-lGLEW",
 					"-lfreeimage",
 					"-lfreetype",
 				);
@@ -743,14 +741,12 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../common/dependencies/FreeImage/Dist\"",
-					"\"$(SRCROOT)/../../common/dependencies/glew-1.9.0/lib\"",
 					"\"$(SRCROOT)/../../common/dependencies/SDL-2.0/osx/lib\"",
 					"\"$(SRCROOT)/../../common/dependencies/freetype/osx/lib\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_LDFLAGS = (
 					"-lSDL2",
-					"-lGLEW",
 					"-lfreeimage",
 					"-lfreetype",
 				);
@@ -774,7 +770,6 @@
 				LD_DYLIB_INSTALL_NAME = "@loader_path/$(EXECUTABLE_NAME)";
 				"OTHER_LDFLAGS[arch=*]" = (
 					"-lSDL2",
-					"-lGLEW",
 					"-lfreeimage",
 					"-lfreetype",
 				);
@@ -796,7 +791,6 @@
 				LD_DYLIB_INSTALL_NAME = "@loader_path/$(EXECUTABLE_NAME)";
 				"OTHER_LDFLAGS[arch=*]" = (
 					"-lSDL2",
-					"-lGLEW",
 					"-lfreeimage",
 					"-lfreetype",
 				);

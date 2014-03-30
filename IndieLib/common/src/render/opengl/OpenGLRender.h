@@ -50,6 +50,7 @@
 #include "IND_Math.h"
 #include "IND_Render.h"
 #include "IND_Vector2.h"
+#include "dependencies/SDL-2.0/include/SDL_opengl.h"
 
 // ----- Forward Declarations -----
 
@@ -69,8 +70,6 @@ class IND_Camera3d;
 class OSOpenGLManager;
 
 // ----- Libs -----
-
-#include "dependencies/glew-1.9.0/include/GL/glew.h" //Extension loading facilites library
 
 // ----- Defines ------
 

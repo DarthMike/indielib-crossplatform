@@ -12,8 +12,13 @@
 * iOS
 
 ###Renderers
-* OpenGL 1.5 desktop support (3.2 later on)
-* OpenGL ES 2.0 iOS  support (3.0 later on)
+* OpenGL 1.5 desktop support
+* OpenGL ES 2.0 iOS  support
+
+##IMPORTANT INFORMATION:
+This project does not have active developers working on it. The team leader, DarthMike, has moved on to other projects because of lack of time to both maintain regularly and deliver more features. MFK, the second active member of the team is not actively developing anymore. You are more than welcome to take over the project if you want. 
+
+Thank you for your understanding!
 
 ### Features
 Simple interface and extreme easiness: really fast game prototyping using entities for each of the graphical objects and changing their attributes. All the methods are as simple as "SetPos", "SetCollisionArea", "SetFade", "SetTransparency", etc.

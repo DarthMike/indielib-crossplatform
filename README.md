@@ -16,7 +16,7 @@
 * OpenGL ES 2.0 iOS  support
 
 ##IMPORTANT INFORMATION:
-This project does not have active developers working on it. The team leader, DarthMike, has moved on to other projects because of lack of time to both maintain regularly and deliver more features. MFK, the second active member of the team is not actively developing anymore. You are more than welcome to take over the project if you want. 
+**This project does not have active developers working on it. The team leader, DarthMike, has moved on to other projects because of lack of time to both maintain regularly and deliver more features. MFK, the second active member of the team is not actively developing anymore. You are more than welcome to take over the project if you want.** 
 
 Thank you for your understanding!
 

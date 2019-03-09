@@ -4,6 +4,11 @@
 // Design and implementation by
 // - Ryan Rubley <ryan@lostreality.org>
 // - Raphaël Gaquer <raphael.gaquer@alcer.com>
+// - Aaron Shumate <aaron@shumate.us>
+//
+// References
+// http://www.w3.org/Graphics/GIF/spec-gif87.txt
+// http://www.w3.org/Graphics/GIF/spec-gif89a.txt
 //
 // This file is part of FreeImage 3
 //
@@ -376,7 +381,7 @@ bool StringTable::Decompress(BYTE *buf, int *len)
 			m_partial >>= m_codeSize;
 			m_partialSize -= m_codeSize;
 
-			if( code > m_nextCode || (m_nextCode == MAX_LZW_CODE && code != m_clearCode) || code == m_endCode ) {
+			if( code > m_nextCode || /*(m_nextCode == MAX_LZW_CODE && code != m_clearCode) || */code == m_endCode ) {
 				m_done = true;
 				*len = (int)(bufpos - buf);
 				return true;
@@ -387,7 +392,7 @@ bool StringTable::Decompress(BYTE *buf, int *len)
 			}
 
 			//add new string to string table, if not the first pass since a clear code
-			if( m_oldCode != MAX_LZW_CODE ) {
+			if( m_oldCode != MAX_LZW_CODE && m_nextCode < MAX_LZW_CODE) {
 				m_strings[m_nextCode] = m_strings[m_oldCode] + m_strings[code == m_nextCode ? m_oldCode : code][0];
 			}
 
@@ -489,23 +494,20 @@ MimeType() {
 	return "image/gif";
 }
 
-static BOOL DLL_CALLCONV 
+static BOOL DLL_CALLCONV
 Validate(FreeImageIO *io, fi_handle handle) {
-	char buf[6];
-	if( io->read_proc(buf, 6, 1, handle) < 1 ) {
-		return FALSE;
-	}
+	BYTE GIF89a[] = { 0x47, 0x49, 0x46, 0x38, 0x39, 0x61 };	// ASCII code for "GIF89a"
+	BYTE GIF87a[] = { 0x47, 0x49, 0x46, 0x38, 0x37, 0x61 };	// ASCII code for "GIF87a"
+	BYTE signature[6] = { 0, 0, 0, 0, 0, 0 };
 
-	BOOL bResult = FALSE;
-	if( !strncmp(buf, "GIF", 3) ) {
-		if( buf[3] >= '0' && buf[3] <= '9' && buf[4] >= '0' && buf[4] <= '9' && buf[5] >= 'a' && buf[5] <= 'z' ) {
-			bResult = TRUE;
-		}
-	}
+	io->read_proc(signature, 1, 6, handle);
 
-	io->seek_proc(handle, -6, SEEK_CUR);
+	if (memcmp(GIF89a, signature, 6) == 0)
+		return TRUE;
+	if (memcmp(GIF87a, signature, 6) == 0)
+		return TRUE;
 
-	return bResult;
+	return FALSE;
 }
 
 static BOOL DLL_CALLCONV 
@@ -529,18 +531,15 @@ Open(FreeImageIO *io, fi_handle handle, BOOL read) {
 		return NULL;
 	}
 
-	// 25/02/2008 MDA:	Not safe to memset GIFinfo structure with VS 2008 (safe iterators),
-	//					perform initialization in constructor instead.
-	// memset(info, 0, sizeof(GIFinfo));
-
+	// set Read/Write mode
 	info->read = read;
+
 	if( read ) {
 		try {
-			//Header
+			// read Header (6 bytes)
 			if( !Validate(io, handle) ) {
 				throw FI_MSG_ERROR_MAGIC_NUMBER;
 			}
-			io->seek_proc(handle, 6, SEEK_CUR);
 
 			//Logical Screen Descriptor
 			io->seek_proc(handle, 4, SEEK_CUR);
@@ -773,7 +772,11 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 					}
 					if( info.disposal_method == GIF_DISPOSAL_BACKGROUND ) {
 						for( y = 0; y < info.height; y++ ) {
-							scanline = (RGBQUAD *)FreeImage_GetScanLine(dib, logicalheight - (y + info.top) - 1) + info.left;
+							const int scanidx = logicalheight - (y + info.top) - 1;
+							if ( scanidx < 0 ) {
+								break;  // If data is corrupt, don't calculate in invalid scanline
+							}
+							scanline = (RGBQUAD *)FreeImage_GetScanLine(dib, scanidx) + info.left;
 							for( x = 0; x < info.width; x++ ) {
 								*scanline++ = background;
 							}
@@ -800,7 +803,11 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 					}
 					//copy page data into logical buffer, with full alpha opaqueness
 					for( y = 0; y < info.height; y++ ) {
-						scanline = (RGBQUAD *)FreeImage_GetScanLine(dib, logicalheight - (y + info.top) - 1) + info.left;
+						const int scanidx = logicalheight - (y + info.top) - 1;
+						if ( scanidx < 0 ) {
+							break;  // If data is corrupt, don't calculate in invalid scanline
+						}
+						scanline = (RGBQUAD *)FreeImage_GetScanLine(dib, scanidx) + info.left;
 						BYTE *pageline = FreeImage_GetScanLine(pagedib, info.height - y - 1);
 						for( x = 0; x < info.width; x++ ) {
 							if( !have_transparent || *pageline != transparent_color ) {
@@ -1018,7 +1025,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 					io->read_proc(&b, 1, 1, handle);
 				}
 				comment.append(1, '\0');
-				sprintf(buf, "Comment%d", idx);
+				sprintf(buf, "Comment%zd", idx);
 				DWORD comment_size = (DWORD)comment.size();
 				FreeImage_SetMetadataEx(FIMD_COMMENTS, dib, buf, 1, FIDT_ASCII, comment_size, comment_size, comment.c_str());
 			}

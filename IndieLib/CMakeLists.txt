@@ -51,8 +51,8 @@ set ( SRC	${CMAKE_CURRENT_SOURCE_DIR}/common/src/CollisionParser.cpp
 			${CMAKE_CURRENT_SOURCE_DIR}/common/src/IND_Image.cpp
 			${CMAKE_CURRENT_SOURCE_DIR}/common/src/IND_ImageManager.cpp
 			${CMAKE_CURRENT_SOURCE_DIR}/common/src/IND_Input.cpp
-			${CMAKE_CURRENT_SOURCE_DIR}/common/src/IND_Light.cpp
-			${CMAKE_CURRENT_SOURCE_DIR}/common/src/IND_LightManager.cpp
+			#${CMAKE_CURRENT_SOURCE_DIR}/common/src/IND_Light.cpp
+			#${CMAKE_CURRENT_SOURCE_DIR}/common/src/IND_LightManager.cpp
 			${CMAKE_CURRENT_SOURCE_DIR}/common/src/IND_Math.cpp
 			${CMAKE_CURRENT_SOURCE_DIR}/common/src/IND_Render.cpp
 			${CMAKE_CURRENT_SOURCE_DIR}/common/src/IND_SpriterEntity.cpp
@@ -94,6 +94,19 @@ if (USE_OPENGL)
 
 endif (USE_OPENGL)
 
+include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/common/include"
+					 "${CMAKE_CURRENT_SOURCE_DIR}/common/src"
+					 "${CMAKE_CURRENT_SOURCE_DIR}/common"
+					 SDL2_INCLUDE_DIR
+					 FreeImage_INCLUDE_DIR
+					 GLEW_INCLUDE_DIR
+					 OpenGLES_INCLUDE_DIR
+					 TmxParser_INCLUDE_DIR
+					 UnitTest++_INCLUDE_DIR
+					 TINYXML_INCLUDE_DIR
+					 freetype_INCLUDE_DIR
+					)
+
 set (SDL_SHARED OFF)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/common/dependencies/SDL-2.0)
 set (SDL2_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/common/dependencies/SDL-2.0/include)
@@ -113,8 +126,13 @@ set ( TmxParser_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/common/dependencies/TmxP
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/common/dependencies/glew-1.9.0)
 set ( GLEW_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/common/dependencies/glew-1.9.0/include)
 
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/common/dependencies/freetype-2.5.0.1)
-set ( freetype_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/common/dependencies/freetype-2.5.0.1/include)
+#add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/common/dependencies/freetype-2.9)
+#set ( freetype_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/common/dependencies/freetype-2.9/include)
+
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/common/dependencies/freetype-2.9)
+set ( freetype_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/common/dependencies/freetype-2.9/include)
+
+
 
 if (USE_OPENGLES)
 	find_package(OpenGLES)
@@ -123,19 +141,6 @@ if (USE_OPENGLES)
 		set (OpenGLES_INCLUDE_DIR "common/dependencies/OpenGL ES/GLES/v1.1")
 	endif(NOT OpenGLES_FOUND)
 endif(USE_OPENGLES)
-
-include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/common/include"
-					 "${CMAKE_CURRENT_SOURCE_DIR}/common/src"
-					 "${CMAKE_CURRENT_SOURCE_DIR}/common"
-					 SDL2_INCLUDE_DIR
-					 FreeImage_INCLUDE_DIR
-					 GLEW_INCLUDE_DIR
-					 OpenGLES_INCLUDE_DIR
-					 TmxParser_INCLUDE_DIR
-					 UnitTest++_INCLUDE_DIR
-					 TINYXML_INCLUDE_DIR
-					 freetype_INCLUDE_DIR
-					)
 
 add_subdirectory(common/dependencies/SpriterParser)
 
@@ -151,4 +156,4 @@ add_definitions("-fPIC")
 
 add_library( IndieLib ${IndieLib_BUILD_TYPE} ${SRC} ${INC} )
 
-target_link_libraries( IndieLib SpriterParser TinyXML GLEW SDL2 FreeImage TmxParser freeType UnitTest++  )
+target_link_libraries( IndieLib SpriterParser TinyXML GLEW SDL2 -LFreeImage TmxParser -LfreeType UnitTest++  )

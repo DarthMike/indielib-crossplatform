@@ -97,7 +97,7 @@ int FreeImage_stricmp(const char *s1, const char *s2);
 // ==========================================================
 
 extern "C" {
-	BOOL DLL_CALLCONV FreeImage_Validate(FREE_IMAGE_FORMAT fif, FreeImageIO *io, fi_handle handle);
+	BOOL DLL_CALLCONV FreeImage_ValidateFIF(FREE_IMAGE_FORMAT fif, FreeImageIO *io, fi_handle handle);
     void * DLL_CALLCONV FreeImage_Open(PluginNode *node, FreeImageIO *io, fi_handle handle, BOOL open_for_reading);
     void DLL_CALLCONV FreeImage_Close(PluginNode *node, FreeImageIO *io, fi_handle handle, void *data); // plugin.cpp
     PluginList * DLL_CALLCONV FreeImage_GetPluginList(); // plugin.cpp
@@ -138,5 +138,7 @@ void DLL_CALLCONV InitPFM(Plugin *plugin, int format_id);
 void DLL_CALLCONV InitPICT(Plugin *plugin, int format_id);
 void DLL_CALLCONV InitRAW(Plugin *plugin, int format_id);
 void DLL_CALLCONV InitJNG(Plugin *plugin, int format_id);
+void DLL_CALLCONV InitWEBP(Plugin *plugin, int format_id);
+void DLL_CALLCONV InitJXR(Plugin *plugin, int format_id);
 
 #endif //!PLUGIN_H

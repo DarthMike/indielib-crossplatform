@@ -656,46 +656,6 @@ jpeg_read_xmp_profile(FIBITMAP *dib, const BYTE *dataptr, unsigned int datalen) 
 }
 
 /**
-	Read JPEG_APP1 marker (Exif profile)
-	@param dib Input FIBITMAP
-	@param dataptr Pointer to the APP1 marker
-	@param datalen APP1 marker length
-	@return Returns TRUE if successful, FALSE otherwise
-*/
-static BOOL  
-jpeg_read_exif_profile_raw(FIBITMAP *dib, const BYTE *profile, unsigned int length) {
-    // marker identifying string for Exif = "Exif\0\0"
-    BYTE exif_signature[6] = { 0x45, 0x78, 0x69, 0x66, 0x00, 0x00 };
-
-	// verify the identifying string
-	if(memcmp(exif_signature, profile, sizeof(exif_signature)) != 0) {
-		// not an Exif profile
-		return FALSE;
-	}
-
-	// create a tag
-	FITAG *tag = FreeImage_CreateTag();
-	if(tag) {
-		FreeImage_SetTagID(tag, EXIF_MARKER);	// (JPEG_APP0 + 1) => EXIF marker / Adobe XMP marker
-		FreeImage_SetTagKey(tag, g_TagLib_ExifRawFieldName);
-		FreeImage_SetTagLength(tag, (DWORD)length);
-		FreeImage_SetTagCount(tag, (DWORD)length);
-		FreeImage_SetTagType(tag, FIDT_BYTE);
-		FreeImage_SetTagValue(tag, profile);
-
-		// store the tag
-		FreeImage_SetMetadata(FIMD_EXIF_RAW, dib, FreeImage_GetTagKey(tag), tag);
-
-		// destroy the tag
-		FreeImage_DeleteTag(tag);
-
-		return TRUE;
-	}
-
-	return FALSE;
-}
-
-/**
 	Read JFIF "JFXX" extension APP0 marker
 	@param dib Input FIBITMAP
 	@param dataptr Pointer to the APP0 marker
@@ -1125,66 +1085,6 @@ store_size_info(FIBITMAP *dib, JDIMENSION width, JDIMENSION height) {
 	}
 }
 
-// ------------------------------------------------------------
-//   Rotate a dib according to Exif info
-// ------------------------------------------------------------
-
-static void 
-rotate_exif(FIBITMAP **dib) {
-	// check for Exif rotation
-	if(FreeImage_GetMetadataCount(FIMD_EXIF_MAIN, *dib)) {
-		FIBITMAP *rotated = NULL;
-		// process Exif rotation
-		FITAG *tag = NULL;
-		FreeImage_GetMetadata(FIMD_EXIF_MAIN, *dib, "Orientation", &tag);
-		if(tag != NULL) {
-			if(FreeImage_GetTagID(tag) == TAG_ORIENTATION) {
-				unsigned short orientation = *((unsigned short *)FreeImage_GetTagValue(tag));
-				switch (orientation) {
-					case 1:		// "top, left side" => 0°
-						break;
-					case 2:		// "top, right side" => flip left-right
-						FreeImage_FlipHorizontal(*dib);
-						break;
-					case 3:		// "bottom, right side"; => -180°
-						rotated = FreeImage_Rotate(*dib, 180);
-						FreeImage_Unload(*dib);
-						*dib = rotated;
-						break;
-					case 4:		// "bottom, left side" => flip up-down
-						FreeImage_FlipVertical(*dib);
-						break;
-					case 5:		// "left side, top" => +90° + flip up-down
-						rotated = FreeImage_Rotate(*dib, 90);
-						FreeImage_Unload(*dib);
-						*dib = rotated;
-						FreeImage_FlipVertical(*dib);
-						break;
-					case 6:		// "right side, top" => -90°
-						rotated = FreeImage_Rotate(*dib, -90);
-						FreeImage_Unload(*dib);
-						*dib = rotated;
-						break;
-					case 7:		// "right side, bottom" => -90° + flip up-down
-						rotated = FreeImage_Rotate(*dib, -90);
-						FreeImage_Unload(*dib);
-						*dib = rotated;
-						FreeImage_FlipVertical(*dib);
-						break;
-					case 8:		// "left side, bottom" => +90°
-						rotated = FreeImage_Rotate(*dib, 90);
-						FreeImage_Unload(*dib);
-						*dib = rotated;
-						break;
-					default:
-						break;
-				}
-			}
-		}
-	}
-}
-
-
 // ==========================================================
 // Plugin Implementation
 // ==========================================================
@@ -1227,8 +1127,9 @@ Validate(FreeImageIO *io, fi_handle handle) {
 static BOOL DLL_CALLCONV
 SupportsExportDepth(int depth) {
 	return (
-			(depth == 8) ||
-			(depth == 24)
+			(depth == 8)  ||
+			(depth == 24) ||
+			(depth == 32)	// only if 32-bit CMYK
 		);
 }
 
@@ -1319,13 +1220,18 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 				cinfo.do_fancy_upsampling = FALSE;
 			}
 
+			if ((flags & JPEG_GREYSCALE) == JPEG_GREYSCALE) {
+				// force loading as a 8-bit greyscale image
+				cinfo.out_color_space = JCS_GRAYSCALE;
+			}
+
 			// step 5a: start decompressor and calculate output width and height
 
 			jpeg_start_decompress(&cinfo);
 
 			// step 5b: allocate dib and init header
 
-			if((cinfo.num_components == 4) && (cinfo.out_color_space == JCS_CMYK)) {
+			if((cinfo.output_components == 4) && (cinfo.out_color_space == JCS_CMYK)) {
 				// CMYK image
 				if((flags & JPEG_CMYK) == JPEG_CMYK) {
 					// load as CMYK
@@ -1339,10 +1245,10 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 				}
 			} else {
 				// RGB or greyscale image
-				dib = FreeImage_AllocateHeader(header_only, cinfo.output_width, cinfo.output_height, 8 * cinfo.num_components, FI_RGBA_RED_MASK, FI_RGBA_GREEN_MASK, FI_RGBA_BLUE_MASK);
+				dib = FreeImage_AllocateHeader(header_only, cinfo.output_width, cinfo.output_height, 8 * cinfo.output_components, FI_RGBA_RED_MASK, FI_RGBA_GREEN_MASK, FI_RGBA_BLUE_MASK);
 				if(!dib) throw FI_MSG_ERROR_DIB_MEMORY;
 
-				if (cinfo.num_components == 1) {
+				if (cinfo.output_components == 1) {
 					// build a greyscale palette
 					RGBQUAD *colors = FreeImage_GetPalette(dib);
 
@@ -1411,6 +1317,10 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 						dst += 3;
 					}
 				}
+				
+				// if original image is CMYK but is converted to RGB, remove ICC profile from Exif-TIFF metadata
+				FreeImage_SetMetadata(FIMD_EXIF_MAIN, dib, "InterColorProfile", NULL);
+
 			} else if((cinfo.out_color_space == JCS_CMYK) && ((flags & JPEG_CMYK) == JPEG_CMYK)) {
 				// convert from LibJPEG CMYK to standard CMYK
 
@@ -1467,7 +1377,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 
 			// check for automatic Exif rotation
 			if(!header_only && ((flags & JPEG_EXIFROTATE) == JPEG_EXIFROTATE)) {
-				rotate_exif(&dib);
+				RotateExif(&dib);
 			}
 
 			// everything went well. return the loaded dib
@@ -1496,12 +1406,12 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 		try {
 			// Check dib format
 
-			const char *sError = "only 24-bit highcolor or 8-bit greyscale/palette bitmaps can be saved as JPEG";
+			const char *sError = "only 24-bit RGB, 8-bit greyscale/palette or 32-bit CMYK bitmaps can be saved as JPEG";
 
 			FREE_IMAGE_COLOR_TYPE color_type = FreeImage_GetColorType(dib);
 			WORD bpp = (WORD)FreeImage_GetBPP(dib);
 
-			if ((bpp != 24) && (bpp != 8)) {
+			if ((bpp != 24) && (bpp != 8) && !(bpp == 32 && (color_type == FIC_CMYK))) {
 				throw sError;
 			}
 
@@ -1550,7 +1460,10 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 					cinfo.in_color_space = JCS_GRAYSCALE;
 					cinfo.input_components = 1;
 					break;
-
+				case FIC_CMYK:
+					cinfo.in_color_space = JCS_CMYK;
+					cinfo.input_components = 4;
+					break;
 				default :
 					cinfo.in_color_space = JCS_RGB;
 					cinfo.input_components = 3;
@@ -1577,14 +1490,14 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 
 			// thumbnail support (JFIF 1.02 extension markers)
 			if(FreeImage_GetThumbnail(dib) != NULL) {
-				cinfo.write_JFIF_header = 1; //<### force it, though when color is CMYK it will be incorrect
+				cinfo.write_JFIF_header = static_cast<boolean>(1); //<### force it, though when color is CMYK it will be incorrect
 				cinfo.JFIF_minor_version = 2;
 			}
 
 			// baseline JPEG support
-			if ((flags & JPEG_BASELINE) ==  JPEG_BASELINE) {
-				cinfo.write_JFIF_header = 0;	// No marker for non-JFIF colorspaces
-				cinfo.write_Adobe_marker = 0;	// write no Adobe marker by default				
+			if ((flags & JPEG_BASELINE) == JPEG_BASELINE) {
+				cinfo.write_JFIF_header = static_cast<boolean>(0);	// No marker for non-JFIF colorspaces
+				cinfo.write_Adobe_marker = static_cast<boolean>(0);	// write no Adobe marker by default				
 			}
 
 			// set subsampling options if required
@@ -1689,6 +1602,33 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 						target_p += 3;
 					}
 #endif
+					// write the scanline
+					jpeg_write_scanlines(&cinfo, &target, 1);
+				}
+				free(target);
+			}
+			else if(color_type == FIC_CMYK) {
+				unsigned pitch = FreeImage_GetPitch(dib);
+				BYTE *target = (BYTE*)malloc(pitch * sizeof(BYTE));
+				if (target == NULL) {
+					throw FI_MSG_ERROR_MEMORY;
+				}
+				
+				while (cinfo.next_scanline < cinfo.image_height) {
+					// get a copy of the scanline
+					memcpy(target, FreeImage_GetScanLine(dib, FreeImage_GetHeight(dib) - cinfo.next_scanline - 1), pitch);
+					
+					BYTE *target_p = target;
+					for(unsigned x = 0; x < cinfo.image_width; x++) {
+						// CMYK pixels are inverted
+						target_p[0] = ~target_p[0];	// C
+						target_p[1] = ~target_p[1];	// M
+						target_p[2] = ~target_p[2];	// Y
+						target_p[3] = ~target_p[3];	// K
+
+						target_p += 4;
+					}
+					
 					// write the scanline
 					jpeg_write_scanlines(&cinfo, &target, 1);
 				}

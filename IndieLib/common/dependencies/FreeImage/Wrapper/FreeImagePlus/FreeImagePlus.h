@@ -194,6 +194,26 @@ public:
 	*/
 	BOOL crop(int left, int top, int right, int bottom);
 
+	/**
+	@brief Returns a reference (a.k.a. "dynamic view") to a sub part of the current image.
+
+	A dynamic view is a FreeImage bitmap with its own width and height, that, however, shares its
+	bits with another FreeImage bitmap. Typically, views are used to define one or more
+	rectangular sub-images of an existing bitmap. All FreeImage operations, like saving,
+	displaying and all the toolkit functions, when applied to the view, only affect the view's
+	rectangular area.
+	This method works with any bitmap type.
+
+	@param dynamicView  Returns a reference to the specified dynamic view
+	@param left Specifies the left position of the view's area
+	@param top Specifies the top position of the view's area
+	@param right Specifies the right position of the view's area
+	@param bottom Specifies the bottom position of the view's area
+	@return Returns TRUE if successful, returns FALSE otherwise
+	@see FreeImage_CreateView
+	*/
+	BOOL createView(fipImage& dynamicView, unsigned left, unsigned top, unsigned right, unsigned bottom);
+
 	//@}
 
 	/** @name File type identification
@@ -238,19 +258,36 @@ public:
 	 */
 	//@{	
 	/**
-	@brief Loads an image from disk, given its file name and an optional flag.
+	Loads an image from disk, given its file name and an optional flag.
+	The function will use FreeImage_GetFileType to get the right FREE_IMAGE_FORMAT.
+	@param lpszPathName Path and file name of the image to load.
+	@param flag The signification of this flag depends on the image to be read.
+	@return Returns TRUE if successful, FALSE otherwise.
+	@see FreeImage_Load, FreeImage_GetFileType, FreeImage documentation
+	*/
+	BOOL load(const char* lpszPathName, int flag = 0);
+
+	/**
+	@brief Loads an image from disk, given its format, file name and an optional flag.
+	@param fif Format identifier (FreeImage format)
 	@param lpszPathName Path and file name of the image to load.
 	@param flag The signification of this flag depends on the image to be read.
 	@return Returns TRUE if successful, FALSE otherwise.
 	@see FreeImage_Load, FreeImage documentation
 	*/
-	BOOL load(const char* lpszPathName, int flag = 0);
+	BOOL load(FREE_IMAGE_FORMAT fif, const char* lpszPathName, int flag = 0);
 
 	/**
 	UNICODE version of load (this function only works under WIN32 and does nothing on other OS)
 	@see load
 	*/
 	BOOL loadU(const wchar_t* lpszPathName, int flag = 0);
+
+	/**
+	UNICODE version of load (this function only works under WIN32 and does nothing on other OS)
+	@see load
+	*/
+	BOOL loadU(FREE_IMAGE_FORMAT fif, const wchar_t* lpszPathName, int flag = 0);
 
 	/**
 	@brief Loads an image using the specified FreeImageIO struct and fi_handle, and an optional flag.
@@ -272,19 +309,46 @@ public:
 	BOOL loadFromMemory(fipMemoryIO& memIO, int flag = 0);
 
 	/**
-	@brief Saves an image to disk, given its file name and an optional flag.
+	@brief Loads an image using the specified fif and memory stream and an optional flag.
+	@param fif Expected format identifier (FreeImage format)
+	@param memIO FreeImage memory stream
+	@param flag The signification of this flag depends on the image to be read.
+	@return Returns TRUE if successful, FALSE otherwise.
+	@see FreeImage_LoadFromMemory, FreeImage documentation
+	*/
+	BOOL loadFromMemory(FREE_IMAGE_FORMAT fif, fipMemoryIO& memIO, int flag = 0);
+
+	/**
+	Saves an image to disk, given its file name and an optional flag.
+	The function will use FreeImage_GetFIFFromFilename to get the right FREE_IMAGE_FORMAT.
+	@param lpszPathName Path and file name of the image to save.
+	@param flag The signification of this flag depends on the image to be saved.
+	@return Returns TRUE if successful, FALSE otherwise.
+	@see FreeImage_Save, FreeImage_GetFIFFromFilename, FreeImage documentation
+	*/
+	BOOL save(const char* lpszPathName, int flag = 0);
+
+	/**
+	Saves an image to disk, given its format, file name and an optional flag.
+	@param fif Format identifier (FreeImage format)
 	@param lpszPathName Path and file name of the image to save.
 	@param flag The signification of this flag depends on the image to be saved.
 	@return Returns TRUE if successful, FALSE otherwise.
 	@see FreeImage_Save, FreeImage documentation
 	*/
-	BOOL save(const char* lpszPathName, int flag = 0) const;
+	BOOL save(FREE_IMAGE_FORMAT fif, const char* lpszPathName, int flag = 0);
 
 	/**
 	UNICODE version of save (this function only works under WIN32 and does nothing on other OS)
 	@see save
 	*/
-	BOOL saveU(const wchar_t* lpszPathName, int flag = 0) const;
+	BOOL saveU(const wchar_t* lpszPathName, int flag = 0);
+
+	/**
+	UNICODE version of save (this function only works under WIN32 and does nothing on other OS)
+	@see save
+	*/
+	BOOL saveU(FREE_IMAGE_FORMAT fif, const wchar_t* lpszPathName, int flag = 0);
 
 	/**
 	@brief Saves an image using the specified FreeImageIO struct and fi_handle, and an optional flag.
@@ -295,7 +359,7 @@ public:
 	@return Returns TRUE if successful, FALSE otherwise.
 	@see FreeImage_SaveToHandle, FreeImage documentation
 	*/
-	BOOL saveToHandle(FREE_IMAGE_FORMAT fif, FreeImageIO *io, fi_handle handle, int flag = 0) const;
+	BOOL saveToHandle(FREE_IMAGE_FORMAT fif, FreeImageIO *io, fi_handle handle, int flag = 0);
 
 	/**
 	@brief Saves an image using the specified memory stream and an optional flag.
@@ -305,7 +369,7 @@ public:
 	@return Returns TRUE if successful, FALSE otherwise.
 	@see FreeImage_SaveToMemory, FreeImage documentation
 	*/
-	BOOL saveToMemory(FREE_IMAGE_FORMAT fif, fipMemoryIO& memIO, int flag = 0) const;
+	BOOL saveToMemory(FREE_IMAGE_FORMAT fif, fipMemoryIO& memIO, int flag = 0);
 
 	//@}
 
@@ -319,6 +383,11 @@ public:
 	@see FreeImage_GetImageType
 	*/
 	FREE_IMAGE_TYPE getImageType() const;
+
+	/**
+	Return the original (or last saved) fif format if available, returns FIF_UNKNOWN otherwise
+	*/
+	FREE_IMAGE_FORMAT getFIF() const;
 
 	/**
 	Returns the image width in pixels
@@ -361,20 +430,26 @@ public:
 	Returns a pointer to the bitmap's BITMAPINFO header. 
 	@see FreeImage_GetInfo
 	*/
-	BITMAPINFO* getInfo() const;
+	const BITMAPINFO* getInfo() const;
 
 	/**
 	Returns a pointer to the bitmap's BITMAPINFOHEADER. 
 	@see FreeImage_GetInfoHeader
 	*/
-    BITMAPINFOHEADER* getInfoHeader() const;
+    const BITMAPINFOHEADER* getInfoHeader() const;
 
 	/**
 	Returns the size of the bitmap in bytes. 
 	The size of the bitmap is the BITMAPINFOHEADER + the size of the palette + the size of the bitmap data. 
 	@see FreeImage_GetDIBSize
 	*/
-	LONG getImageSize() const;
+	unsigned getImageSize() const;
+
+	/**
+	Returns the memory footprint of a bitmap, in bytes. 
+	@see FreeImage_GetMemorySize
+	*/
+	unsigned getImageMemorySize() const;
 	
 	/**
 	Returns the bitdepth of the bitmap. <br>
@@ -454,14 +529,14 @@ public:
 
 	/**
 	Retrieves a copy the thumbnail possibly attached to the bitmap
-	@return Returns TRUE if the thumbnail is present in the bitmap and successfully retrieved, returns FALSE otherwise
+	@return Returns TRUE if the thumbnail is present in the bitmap and successfuly retrieved, returns FALSE otherwise
 	@see FreeImage_GetThumbnail
 	*/
 	BOOL getThumbnail(fipImage& image) const;
 
 	/**
 	Attach a thumbnail to the bitmap
-	@return Returns TRUE if the thumbnail was successfully set, returns FALSE otherwise
+	@return Returns TRUE if the thumbnail was successfuly set, returns FALSE otherwise
 	@see FreeImage_SetThumbnail
 	*/
 	BOOL setThumbnail(const fipImage& image);
@@ -507,7 +582,7 @@ public:
 	@param x Pixel position in horizontal direction
 	@param y Pixel position in vertical direction
 	@param value Pixel index (returned value)
-	@return Returns TRUE if successfull, FALSE otherwise. 
+	@return Returns TRUE if successful, FALSE otherwise. 
 	@see FreeImage_GetPixelIndex
 	*/
 	BOOL getPixelIndex(unsigned x, unsigned y, BYTE *value) const;
@@ -517,7 +592,7 @@ public:
 	@param x Pixel position in horizontal direction
 	@param y Pixel position in vertical direction
 	@param value Pixel color (returned value)
-	@return Returns TRUE if successfull, FALSE otherwise. 
+	@return Returns TRUE if successful, FALSE otherwise. 
 	@see FreeImage_GetPixelColor
 	*/
 	BOOL getPixelColor(unsigned x, unsigned y, RGBQUAD *value) const;
@@ -527,7 +602,7 @@ public:
 	@param x Pixel position in horizontal direction
 	@param y Pixel position in vertical direction
 	@param value Pixel index
-	@return Returns TRUE if successfull, FALSE otherwise. 
+	@return Returns TRUE if successful, FALSE otherwise. 
 	@see FreeImage_SetPixelIndex
 	*/
 	BOOL setPixelIndex(unsigned x, unsigned y, BYTE *value);
@@ -537,7 +612,7 @@ public:
 	@param x Pixel position in horizontal direction
 	@param y Pixel position in vertical direction
 	@param value Pixel color
-	@return Returns TRUE if successfull, FALSE otherwise. 
+	@return Returns TRUE if successful, FALSE otherwise. 
 	@see FreeImage_SetPixelColor
 	*/
 	BOOL setPixelColor(unsigned x, unsigned y, RGBQUAD *value);
@@ -552,7 +627,7 @@ public:
 	Converts an image to a type supported by FreeImage.
 	@param image_type New image type
 	@param scale_linear TRUE if image pixels must be scaled linearly when converting to a standard bitmap
-	@return Returns TRUE if successfull, FALSE otherwise. 
+	@return Returns TRUE if successful, FALSE otherwise. 
 	@see FreeImage_ConvertToType, FreeImage_ConvertToStandardType
 	*/
 	BOOL convertToType(FREE_IMAGE_TYPE image_type, BOOL scale_linear = TRUE);
@@ -560,7 +635,7 @@ public:
 	/** 
 	Converts the bitmap to 1 bit using a threshold T.
 	@param T Threshold value in [0..255]
-	@return Returns TRUE if successfull, FALSE otherwise. 
+	@return Returns TRUE if successful, FALSE otherwise. 
 	@see FreeImage_Threshold
 	*/
 	BOOL threshold(BYTE T);
@@ -568,21 +643,21 @@ public:
 	/** 
 	Converts a 8-bit image to a monochrome 1-bit image using a dithering algorithm.
 	@param algorithm Dithering algorithm to use.
-	@return Returns TRUE if successfull, FALSE otherwise. 
+	@return Returns TRUE if successful, FALSE otherwise. 
 	@see FreeImage_Dither, FREE_IMAGE_DITHER
 	*/
 	BOOL dither(FREE_IMAGE_DITHER algorithm);
 
 	/** 
 	Converts the bitmap to 4 bits. Unless the bitmap is a 1-bit palettized bitmap, colour values are converted to greyscale.
-	@return Returns TRUE if successfull, FALSE otherwise. 
+	@return Returns TRUE if successful, FALSE otherwise. 
 	@see FreeImage_ConvertTo4Bits
 	*/
 	BOOL convertTo4Bits();
 
 	/** 
 	Converts the bitmap to 8 bits. If the bitmap is 24 or 32-bit RGB, the colour values are converted to greyscale.
-	@return Returns TRUE if successfull, FALSE otherwise. 
+	@return Returns TRUE if successful, FALSE otherwise. 
 	@see FreeImage_ConvertTo8Bits
 	*/
 	BOOL convertTo8Bits();
@@ -591,7 +666,7 @@ public:
 	Converts the bitmap to 8 bits.<br> 
 	For palletized bitmaps, the color map is converted to a greyscale ramp.
 	@see FreeImage_ConvertToGreyscale
-	@return Returns TRUE if successfull, FALSE otherwise. 
+	@return Returns TRUE if successful, FALSE otherwise. 
 	*/
 	BOOL convertToGrayscale();
 	
@@ -599,66 +674,80 @@ public:
 	Quantizes a full colour 24-bit bitmap to a palletised 8-bit bitmap.<br>
 	The quantize parameter specifies which colour reduction algorithm should be used.
 	@param algorithm Color quantization algorithm to use.
-	@return Returns TRUE if successfull, FALSE otherwise. 
+	@return Returns TRUE if successful, FALSE otherwise. 
 	@see FreeImage_ColorQuantize, FREE_IMAGE_QUANTIZE
 	*/
 	BOOL colorQuantize(FREE_IMAGE_QUANTIZE algorithm);
 
 	/** 
 	Converts the bitmap to 16 bits. The resulting bitmap has a layout of 5 bits red, 5 bits green, 5 bits blue and 1 unused bit. 
-	@return Returns TRUE if successfull, FALSE otherwise. 
+	@return Returns TRUE if successful, FALSE otherwise. 
 	@see FreeImage_ConvertTo16Bits555
 	*/
 	BOOL convertTo16Bits555();
 	
 	/** 
 	Converts the bitmap to 16 bits. The resulting bitmap has a layout of 5 bits red, 6 bits green and 5 bits blue. 
-	@return Returns TRUE if successfull, FALSE otherwise. 
+	@return Returns TRUE if successful, FALSE otherwise. 
 	@see FreeImage_ConvertTo16Bits565
 	*/
 	BOOL convertTo16Bits565();
 	
 	/** 
 	Converts the bitmap to 24 bits. 
-	@return Returns TRUE if successfull, FALSE otherwise. 
+	@return Returns TRUE if successful, FALSE otherwise. 
 	@see FreeImage_ConvertTo24Bits
 	*/
 	BOOL convertTo24Bits();
 	
 	/** 
 	Converts the bitmap to 32 bits. 
-	@return Returns TRUE if successfull, FALSE otherwise. 
+	@return Returns TRUE if successful, FALSE otherwise. 
 	@see FreeImage_ConvertTo32Bits
 	*/
 	BOOL convertTo32Bits();
 
 	/** 
 	Converts the bitmap to a 32-bit float image. 
-	@return Returns TRUE if successfull, FALSE otherwise. 
+	@return Returns TRUE if successful, FALSE otherwise. 
 	@see FreeImage_ConvertToFloat
 	*/
 	BOOL convertToFloat();
 
 	/** 
 	Converts the bitmap to a 96-bit RGBF image. 
-	@return Returns TRUE if successfull, FALSE otherwise. 
+	@return Returns TRUE if successful, FALSE otherwise. 
 	@see FreeImage_ConvertToRGBF
 	*/
 	BOOL convertToRGBF();
 
 	/** 
+	Converts the bitmap to a 128-bit RGBAF image. 
+	@return Returns TRUE if successful, FALSE otherwise. 
+	@see FreeImage_ConvertToRGBAF
+	*/
+	BOOL convertToRGBAF();
+
+	/** 
 	Converts the bitmap to a 16-bit unsigned short image. 
-	@return Returns TRUE if successfull, FALSE otherwise. 
+	@return Returns TRUE if successful, FALSE otherwise. 
 	@see FreeImage_ConvertToUINT16
 	*/
 	BOOL convertToUINT16();
 
 	/** 
 	Converts the bitmap to a 48-bit RGB16 image. 
-	@return Returns TRUE if successfull, FALSE otherwise. 
+	@return Returns TRUE if successful, FALSE otherwise. 
 	@see FreeImage_ConvertToRGB16
 	*/
 	BOOL convertToRGB16();
+
+	/** 
+	Converts the bitmap to a 64-bit RGBA16 image. 
+	@return Returns TRUE if successful, FALSE otherwise. 
+	@see FreeImage_ConvertToRGBA16
+	*/
+	BOOL convertToRGBA16();
 
 	/**
 	Converts a High Dynamic Range image (48-bit RGB or 96-bit RGB Float) to a 24-bit RGB image. 
@@ -667,7 +756,7 @@ public:
 	@param second_param Second tone mapping algorithm parameter (algorithm dependant)
 	@param third_param Third tone mapping algorithm parameter (algorithm dependant)
 	@param fourth_param Fourth tone mapping algorithm parameter (algorithm dependant)
-	@return Returns TRUE if successfull, FALSE otherwise. 
+	@return Returns TRUE if successful, FALSE otherwise. 
 	@see FreeImage_ToneMapping, FreeImage_TmoReinhard05Ex
 	*/
 	BOOL toneMapping(FREE_IMAGE_TMO tmo, double first_param = 0, double second_param = 0, double third_param = 1, double fourth_param = 0);
@@ -951,7 +1040,7 @@ public:
 	fipImage image;
 	// ...
 	fipTag tag;
-	tag.setKeyValue("Caption/Abstract", "my caption");
+	tag.setKeyValue("Caption-Abstract", "my caption");
 	image.setMetadata(FIMD_IPTC, tag.getKey(), tag);
 	tag.setKeyValue("Keywords", "FreeImage;Library;Images;Compression");
 	image.setMetadata(FIMD_IPTC, tag.getKey(), tag);
@@ -964,8 +1053,12 @@ public:
 	@see FreeImage_SetMetadata
 	*/
 	BOOL setMetadata(FREE_IMAGE_MDMODEL model, const char *key, fipTag& tag);
+	
+	/**
+	Clear all metadata contained in the dib
+	*/
+	void clearMetadata();
 	//@}
-
 
   protected:
 	/**@name Internal use */

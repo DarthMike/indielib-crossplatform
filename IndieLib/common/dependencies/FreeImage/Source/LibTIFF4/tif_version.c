@@ -1,4 +1,3 @@
-/* $Header: /cvsroot/freeimage/FreeImage/Source/LibTIFF4/tif_version.c,v 1.2 2012/02/25 17:48:20 drolon Exp $ */
 /*
  * Copyright (c) 1992-1997 Sam Leffler
  * Copyright (c) 1992-1997 Silicon Graphics, Inc.

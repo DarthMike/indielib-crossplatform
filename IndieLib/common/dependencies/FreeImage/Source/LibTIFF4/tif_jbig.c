@@ -1,5 +1,3 @@
-/* $Id: tif_jbig.c,v 1.2 2012/02/25 17:48:20 drolon Exp $ */
-
 /*
  * Copyright (c) 1988-1997 Sam Leffler
  * Copyright (c) 1991-1997 Silicon Graphics, Inc.
@@ -94,6 +92,7 @@ static int JBIGDecode(TIFF* tif, uint8* buffer, tmsize_t size, uint16 s)
 			     jbg_strerror(decodeStatus)
 #endif
 			     );
+		jbg_dec_free(&decoder);
 		return 0;
 	}
 

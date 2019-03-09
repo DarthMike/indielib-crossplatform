@@ -41,6 +41,8 @@ read_iptc_profile(FIBITMAP *dib, const BYTE *dataptr, unsigned int datalen) {
 	size_t length = datalen;
 	BYTE *profile = (BYTE*)dataptr;
 
+	const char *JPEG_AdobeCM_Tag = "Adobe_CM";
+
 	std::string Keywords;
 	std::string SupplementalCategory;
 
@@ -49,6 +51,16 @@ read_iptc_profile(FIBITMAP *dib, const BYTE *dataptr, unsigned int datalen) {
 	if(!dataptr || (datalen == 0)) {
 		return FALSE;
 	}
+
+	if(datalen > 8) {
+		if(memcmp(JPEG_AdobeCM_Tag, dataptr, 8) == 0) {
+			// the "Adobe_CM" APP13 segment presumably contains color management information, 
+			// but the meaning of the data is currently unknown. 
+			// If anyone has an idea about what this means, please let me know.
+			return FALSE;
+		}
+	}
+
 
 	// create a tag
 
@@ -87,6 +99,11 @@ read_iptc_profile(FIBITMAP *dib, const BYTE *dataptr, unsigned int datalen) {
             // data for tag extends beyond end of iptc segment
             break;
         }
+
+		if(tagByteCount == 0) {
+			// go to next tag
+			continue;
+		}
 
 		// process the tag
 

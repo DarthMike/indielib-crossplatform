@@ -19,8 +19,8 @@
 // Use at your own risk!
 // ==========================================================
 
-#ifndef FREEIMAGETAG_H
-#define FREEIMAGETAG_H
+#ifndef FREEIMAGE_TAG_H
+#define FREEIMAGE_TAG_H
 
 // ==========================================================
 // Exif JPEG tags
@@ -291,13 +291,21 @@
 // Helper functions to deal with the FITAG structure
 // --------------------------------------------------------------------------
 
-/** 
+/**
 Describes the tag format descriptor
+Given a FREE_IMAGE_MDTYPE, calculate the size of this type in bytes unit
 @param type Tag data type
-@return Returns the width of a single element, in bytes
+@return Returns the size of the data type, in bytes
 @see FREE_IMAGE_MDTYPE
 */
 unsigned FreeImage_TagDataWidth(FREE_IMAGE_MDTYPE type);
+
+/**
+Calculate the memory size required by a tag, including the size of the structure
+@param tag The tag to examine
+@return Retuns the memory size used by a tag
+*/
+size_t FreeImage_GetTagMemorySize(FITAG *tag);
 
 // --------------------------------------------------------------------------
 
@@ -312,14 +320,24 @@ typedef struct tagTagInfo {
 
 
 /**
-	Class to hold tag information (based on Meyers’ Singleton).<br>
+Class to hold tag information (based on Meyers’ Singleton).<br>
 
-	Sample usage :<br>
-	<code>
-	TagLib& s = TagLib::instance();
-	TagInfo *tag_info = s.getTagInfo(EXIF_MAIN, 0x0100);
-	</code>
+Sample usage :<br>
+<code>
+TagLib& s = TagLib::instance();
+TagInfo *tag_info = s.getTagInfo(EXIF_MAIN, 0x0100);
+</code>
 
+Note on multi-threaded applications : 
+
+The singleton pattern must be carefully constructed in multi-threaded applications. 
+If two threads are to execute the creation method at the same time when a singleton 
+does not yet exist, they both must check for an instance of the singleton and then 
+only one should create the new one.
+The classic solution to this problem is to use mutual exclusion on the class that 
+indicates that the object is being instantiated.
+The FreeImage solution is to instantiate the singleton before any other thread is launched, 
+i.e. inside the FreeImage_Initialise function (see Plugin.cpp). 
 */
 
 class TagLib {
@@ -457,10 +475,24 @@ static const char *g_TagLib_ExifRawFieldName = "ExifRaw";
 extern "C" {
 #endif
 
-// JPEG Exif profile
-BOOL jpeg_read_exif_profile(FIBITMAP *dib, const BYTE *dataptr, unsigned int datalen);
+// JPEG / JPEG-XR Exif profile (see Exif.cpp)
+// --------------------------------------------------------------------------
+BOOL jpeg_read_exif_profile(FIBITMAP *dib, const BYTE *dataptr, unsigned datalen);
+BOOL jpeg_read_exif_profile_raw(FIBITMAP *dib, const BYTE *profile, unsigned length);
+BOOL jpegxr_read_exif_profile(FIBITMAP *dib, const BYTE *profile, unsigned length, unsigned file_offset);
+BOOL jpegxr_read_exif_gps_profile(FIBITMAP *dib, const BYTE *profile, unsigned length, unsigned file_offset);
 
-// JPEG / TIFF IPTC profile
+BOOL tiff_get_ifd_profile(FIBITMAP *dib, FREE_IMAGE_MDMODEL md_model, BYTE **ppbProfile, unsigned *uProfileLength);
+
+
+// PSD Exif profile (see Exif.cpp)
+// --------------------------------------------------------------------------
+BOOL psd_read_exif_profile(FIBITMAP *dib, const BYTE *dataptr, unsigned datalen);
+BOOL psd_read_exif_profile_raw(FIBITMAP *dib, const BYTE *dataptr, unsigned datalen);
+
+
+// JPEG / PSD / TIFF IPTC profile (see IPTC.cpp)
+// --------------------------------------------------------------------------
 BOOL read_iptc_profile(FIBITMAP *dib, const BYTE *dataptr, unsigned int datalen);
 BOOL write_iptc_profile(FIBITMAP *dib, BYTE **profile, unsigned *profile_size);
 
@@ -469,6 +501,6 @@ BOOL write_iptc_profile(FIBITMAP *dib, BYTE **profile, unsigned *profile_size);
 #endif
 
 
-#endif // FREEIMAGETAG_H
+#endif // FREEIMAGE_TAG_H
 
 

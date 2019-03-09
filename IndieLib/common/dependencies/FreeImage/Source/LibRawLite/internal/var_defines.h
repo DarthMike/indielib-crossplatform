@@ -1,12 +1,12 @@
 /* -*- C++ -*-
  * File: var_defines.h
- * Copyright 2008-2009 LibRaw LLC (info@libraw.org)
+ * Copyright 2008-2018 LibRaw LLC (info@libraw.org)
  * Created: Sat Mar  8, 2008
  *
  * LibRaw redefinitions of dcraw internal variables
 
 LibRaw is free software; you can redistribute it and/or modify
-it under the terms of the one of three licenses as you choose:
+it under the terms of the one of two licenses as you choose:
 
 1. GNU LESSER GENERAL PUBLIC LICENSE version 2.1
    (See file LICENSE.LGPL provided in LibRaw distribution archive for details).
@@ -14,23 +14,26 @@ it under the terms of the one of three licenses as you choose:
 2. COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0
    (See file LICENSE.CDDL provided in LibRaw distribution archive for details).
 
-3. LibRaw Software License 27032010
-   (See file LICENSE.LibRaw.pdf provided in LibRaw distribution archive for details).
  */
 
 #ifndef VAR_DEFINES_H
 #define VAR_DEFINES_H
 
+
 // imgdata.idata
 #define make            (imgdata.idata.make)
 #define model           (imgdata.idata.model)
+#define software        (imgdata.idata.software)
 #define is_raw          (imgdata.idata.raw_count)
 #define dng_version     (imgdata.idata.dng_version)
 #define is_foveon       (imgdata.idata.is_foveon)
 #define colors          (imgdata.idata.colors)
 #define cdesc           (imgdata.idata.cdesc)
 #define filters         (imgdata.idata.filters)
-
+#define xtrans          (imgdata.idata.xtrans)
+#define xtrans_abs      (imgdata.idata.xtrans_abs)
+#define xmpdata			(imgdata.idata.xmpdata)
+#define xmplen			(imgdata.idata.xmplen)
 //imgdata image
 #define image           (imgdata.image)
 #define raw_image       (imgdata.rawdata.raw_image)
@@ -39,6 +42,7 @@ it under the terms of the one of three licenses as you choose:
 // imgdata.sizes
 #define raw_height      (imgdata.sizes.raw_height)
 #define raw_width       (imgdata.sizes.raw_width)
+#define raw_pitch       (imgdata.sizes.raw_pitch)
 #define height          (imgdata.sizes.height)
 #define width           (imgdata.sizes.width)
 #define top_margin      (imgdata.sizes.top_margin)
@@ -49,6 +53,7 @@ it under the terms of the one of three licenses as you choose:
 #define iwidth          (imgdata.sizes.iwidth)
 #define pixel_aspect    (imgdata.sizes.pixel_aspect)
 #define flip            (imgdata.sizes.flip)
+#define mask            (imgdata.sizes.mask)
 
 //imgdata.color
 #define white           (imgdata.color.white)
@@ -71,6 +76,7 @@ it under the terms of the one of three licenses as you choose:
 #define flash_used      (imgdata.color.flash_used)
 #define canon_ev        (imgdata.color.canon_ev)
 #define model2          (imgdata.color.model2)
+#define baseline_exposure  (imgdata.color.baseline_exposure)
 
 //imgdata.thumbnail
 
@@ -101,7 +107,6 @@ it under the terms of the one of three licenses as you choose:
 #define threshold       (imgdata.params.threshold)
 #define half_size       (imgdata.params.half_size)
 #define four_color_rgb  (imgdata.params.four_color_rgb)
-#define document_mode   (imgdata.params.document_mode)
 #define highlight       (imgdata.params.highlight)
 //#define verbose         (imgdata.params.verbose)
 #define use_auto_wb     (imgdata.params.use_auto_wb)
@@ -113,25 +118,14 @@ it under the terms of the one of three licenses as you choose:
 #define output_tiff     (imgdata.params.output_tiff)
 #define med_passes      (imgdata.params.med_passes)
 #define no_auto_bright  (imgdata.params.no_auto_bright)
+#define auto_bright_thr  (imgdata.params.auto_bright_thr)
 #define use_fuji_rotate (imgdata.params.use_fuji_rotate)
 #define filtering_mode (imgdata.params.filtering_mode)
 
-// Demosaic packs
-//AFD
-//#define afd_noise_att				(imgdata.params.afd_noise_att)
-//#define afd_noise_thres				(imgdata.params.afd_noise_thres)
-//#define afd_luminance_passes		(imgdata.params.afd_luminance_passes)
-//#define afd_chrominance_method		(imgdata.params.afd_chrominance_method)
-//#define afd_luminance_only			(imgdata.params.afd_luminance_only)
 // DCB
 #define dcb_iterations   (imgdata.params.iterations)
 #define dcb_enhance_fl   (imgdata.params.dcb_enhance)
 #define fbdd_noiserd     (imgdata.params.fbdd_noiserd)
-// VCD
-#define eeci_refine    (imgdata.params.eeci_refine)
-#define es_med_passes  (imgdata.params.es_med_passes)
-
-
 
 //rgb_constants
 #define xyz_rgb         (rgb_constants.xyz_rgb)
@@ -144,6 +138,7 @@ it under the terms of the one of three licenses as you choose:
 #define ofp             libraw_internal_data.internal_data.output
 #define profile_offset  (libraw_internal_data.internal_data.profile_offset)
 #define thumb_offset    (libraw_internal_data.internal_data.toffset)
+#define pana_black		(libraw_internal_data.internal_data.pana_black)
 
 //libraw_internal_data.internal_output_params
 #define mix_green       (libraw_internal_data.internal_output_params.mix_green)
@@ -163,6 +158,7 @@ it under the terms of the one of three licenses as you choose:
 //libraw_internal_data.identify_data
 #define exif_cfa        (libraw_internal_data.identify_data.olympus_exif_cfa)
 #define unique_id       (libraw_internal_data.identify_data.unique_id)
+#define OlyID           (libraw_internal_data.identify_data.OlyID)
 #define tiff_nifds      (libraw_internal_data.identify_data.tiff_nifds)
 #define tiff_flip       (libraw_internal_data.identify_data.tiff_flip)
 
@@ -186,6 +182,8 @@ it under the terms of the one of three licenses as you choose:
 #define tile_width      (libraw_internal_data.unpacker_data.tile_width)
 #define tile_length     (libraw_internal_data.unpacker_data.tile_length)
 #define load_flags      (libraw_internal_data.unpacker_data.load_flags)
+#define pana_encoding   (libraw_internal_data.unpacker_data.pana_encoding)
+#define pana_bpp        (libraw_internal_data.unpacker_data.pana_bpp)
 
 #ifdef LIBRAW_IO_REDEFINED
 #define fread(ptr,size,n,stream) stream->read(ptr,size,n)
@@ -193,6 +191,7 @@ it under the terms of the one of three licenses as you choose:
 #define fseeko(stream,o,w)	 stream->seek(o,w)
 #define ftell(stream)		 stream->tell()
 #define ftello(stream)		 stream->tell()
+#define feof(stream)		 stream->eof()
 #ifdef getc
 #undef getc
 #endif

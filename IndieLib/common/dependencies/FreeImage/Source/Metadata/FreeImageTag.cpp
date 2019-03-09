@@ -117,11 +117,23 @@ FreeImage_CloneTag(FITAG *tag) {
 		// tag length
 		dst_tag->length = src_tag->length;
 		// tag value
-		dst_tag->value = (BYTE*)malloc(src_tag->length * sizeof(BYTE));
-		if(!dst_tag->value) {
-			throw FI_MSG_ERROR_MEMORY;
+		switch(dst_tag->type) {
+			case FIDT_ASCII:
+				dst_tag->value = (BYTE*)malloc((src_tag->length + 1) * sizeof(BYTE));
+				if(!dst_tag->value) {
+					throw FI_MSG_ERROR_MEMORY;
+				}
+				memcpy(dst_tag->value, src_tag->value, src_tag->length);
+				((BYTE*)dst_tag->value)[src_tag->length] = 0;
+				break;
+			default:
+				dst_tag->value = (BYTE*)malloc(src_tag->length * sizeof(BYTE));
+				if(!dst_tag->value) {
+					throw FI_MSG_ERROR_MEMORY;
+				}
+				memcpy(dst_tag->value, src_tag->value, src_tag->length);
+				break;
 		}
-		memcpy(dst_tag->value, src_tag->value, src_tag->length);
 
 		return clone;
 
@@ -283,11 +295,6 @@ FreeImage_SetTagValue(FITAG *tag, const void *value) {
 // FITAG internal helper functions
 // --------------------------------------------------------------------------
 
-/**
-Given a FREE_IMAGE_MDTYPE, calculate the size of this type in bytes unit
-@param type Input data type
-@return Returns the size of the data type, in bytes unit
-*/
 unsigned 
 FreeImage_TagDataWidth(FREE_IMAGE_MDTYPE type) {
 	static const unsigned format_bytes[] = { 
@@ -316,3 +323,31 @@ FreeImage_TagDataWidth(FREE_IMAGE_MDTYPE type) {
 		  format_bytes[type] : 0;
 }
 
+size_t 
+FreeImage_GetTagMemorySize(FITAG *tag) {
+	size_t size = 0;
+	if (tag) {
+		FITAGHEADER *tag_header = (FITAGHEADER *)tag->data;
+		size += sizeof(FITAG);
+		size += sizeof(FITAGHEADER);
+		if (tag_header->key) {
+			size += strlen(tag_header->key) + 1;
+		}
+		if (tag_header->description) {
+			size += strlen(tag_header->description) + 1;
+		}
+		if (tag_header->value) {
+			switch (tag_header->type) {
+				case FIDT_ASCII:
+					// for ASCII strings, the value of the count part of an ASCII tag entry includes the NULL.
+					// however, FreeImage adds another '\0' to be sure that this last character is present.
+					size += tag_header->length + 1;
+					break;
+				default:
+					size += tag_header->length;
+					break;
+			}
+		}
+	}
+	return size;
+}

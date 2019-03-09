@@ -1,19 +1,16 @@
 /* -*- C++ -*-
  * File: libraw_internal_funcs.h
- * Copyright 2008-2009 LibRaw LLC (info@libraw.org)
+ * Copyright 2008-2018 LibRaw LLC (info@libraw.org)
  * Created: Sat Mar  14, 2008
 
 LibRaw is free software; you can redistribute it and/or modify
-it under the terms of the one of three licenses as you choose:
+it under the terms of the one of two licenses as you choose:
 
 1. GNU LESSER GENERAL PUBLIC LICENSE version 2.1
    (See file LICENSE.LGPL provided in LibRaw distribution archive for details).
 
 2. COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0
    (See file LICENSE.CDDL provided in LibRaw distribution archive for details).
-
-3. LibRaw Software License 27032010
-   (See file LICENSE.LibRaw.pdf provided in LibRaw distribution archive for details).
 
  */
 
@@ -23,24 +20,71 @@ it under the terms of the one of three licenses as you choose:
 #ifndef LIBRAW_LIBRARY_BUILD
 #error "This file should be used only for libraw library build"
 #else
-// inline functions
+    /* WF */
+    void        wf_bayer4_igauss_filter(int radius,void* src_image, int src_imgmode, void* dst_image, int dst_imgmode);
+    void			wf_bayer4_green_blur   (int mode,void* src_image, int src_imgmode, void* dst_image, int dst_imgmode);
+    void        wf_bayer4_block_filter (int* radius_list, void* src_image, int src_imgmode, void* dst_image, int dst_imgmode);
+    double	wf_filter_energy       (int r1_greenmode, int r1, int r2_greenmode, int r2);
+
+
+/* inline functions */
     ushort      sget2 (uchar *s);
+    ushort      sget2Rev(uchar *s);
+    unsigned setCanonBodyFeatures (unsigned id);
+    void 	processCanonCameraInfo (unsigned id, uchar *CameraInfo, unsigned maxlen, unsigned type);
+    void	Canon_CameraSettings();
+    void	Canon_WBpresets (int skip1, int skip2);
+    void	Canon_WBCTpresets (short WBCTversion);
+    void	parseCanonMakernotes (unsigned tag, unsigned type, unsigned len);
+    void	processNikonLensData (uchar *LensData, unsigned len);
+    void	setOlympusBodyFeatures (unsigned long long id);
+    void	setPhaseOneFeatures (unsigned id);
+    void	setPentaxBodyFeatures (unsigned id);
+    void	PentaxISO (ushort c);
+    void	PentaxLensInfo (unsigned id, unsigned len);
+    void	setSonyBodyFeatures (unsigned id);
+    void	parseSonyLensType2 (uchar a, uchar b);
+    void 	parseSonyLensFeatures (uchar a, uchar b);
+    void	process_Sony_0x0116 (uchar * buf, ushort, unsigned id);
+    void	process_Sony_0x2010 (uchar * buf, ushort);
+    void	process_Sony_0x9050 (uchar * buf, ushort, unsigned id);
+    void	process_Sony_0x9400 (uchar * buf, ushort, unsigned id);
+    void	process_Sony_0x9402 (uchar * buf, ushort);
+    void	process_Sony_0x9403 (uchar * buf, ushort);
+    void	process_Sony_0x9406 (uchar * buf, ushort);
+    void	process_Sony_0x940c (uchar * buf, ushort);
+    void	process_Sony_0x940e (uchar * buf, ushort, unsigned id);
+    void	parseSonyMakernotes (unsigned tag, unsigned type, unsigned len, unsigned dng_writer,
+                               uchar *&table_buf_0x0116, ushort &table_buf_0x0116_len,
+                               uchar *&table_buf_0x2010, ushort &table_buf_0x2010_len,
+                               uchar *&table_buf_0x9050, ushort &table_buf_0x9050_len,
+                               uchar *&table_buf_0x9400, ushort &table_buf_0x9400_len,
+                               uchar *&table_buf_0x9402, ushort &table_buf_0x9402_len,
+                               uchar *&table_buf_0x9403, ushort &table_buf_0x9403_len,
+                               uchar *&table_buf_0x9406, ushort &table_buf_0x9406_len,
+                               uchar *&table_buf_0x940c, ushort &table_buf_0x940c_len,
+                               uchar *&table_buf_0x940e, ushort &table_buf_0x940e_len);
+
+    void	parseFujiMakernotes (unsigned tag, unsigned type);
+
     ushort      get2();
     unsigned    sget4 (uchar *s);
     unsigned    getint (int type);
     float       int_to_float (int i);
     double      getreal (int type);
-    void        read_shorts (ushort *pixel, int count);
+    void        read_shorts (ushort *pixel, unsigned count);
 
-// Canon P&S cameras
+/* Canon P&S cameras */
     void        canon_600_fixed_wb (int temp);
     int         canon_600_color (int ratio[2], int mar);
     void        canon_600_auto_wb();
     void        canon_600_coeff();
     void        canon_600_load_raw();
+    void        canon_600_correct();
     int         canon_s2is();
-    void        parse_ciff (int offset, int length);
+void        parse_ciff (int offset, int length, int);
     void        ciff_block_1030();
+
 
 // LJPEG decoder
     unsigned    getbithuff (int nbits, ushort *huff);
@@ -48,33 +92,37 @@ it under the terms of the one of three licenses as you choose:
     ushort*     make_decoder (const uchar *source);
     int         ljpeg_start (struct jhead *jh, int info_only);
     void        ljpeg_end(struct jhead *jh);
-    int         ljpeg_diff (ushort *huff); 
-    int         ljpeg_diff_new (LibRaw_bit_buffer& bits, LibRaw_byte_buffer* buf,ushort *huff);
-    int         ljpeg_diff_pef (LibRaw_bit_buffer& bits, LibRaw_byte_buffer* buf,ushort *huff);
+    int         ljpeg_diff (ushort *huff);
     ushort *    ljpeg_row (int jrow, struct jhead *jh);
-    ushort *    ljpeg_row_new (int jrow, struct jhead *jh, LibRaw_bit_buffer& bits,LibRaw_byte_buffer* bytes);
-
+    void	ljpeg_idct (struct jhead *jh);
     unsigned    ph1_bithuff (int nbits, ushort *huff);
 
 // Canon DSLRs
 void        crw_init_tables (unsigned table, ushort *huff[2]);
     int         canon_has_lowbits();
-    void        canon_compressed_load_raw();
+    void        canon_load_raw();
     void        lossless_jpeg_load_raw();
     void        canon_sraw_load_raw();
 // Adobe DNG
-    void        adobe_copy_pixel (int row, int col, ushort **rp);
-    void        adobe_dng_load_raw_lj();
-    void        adobe_dng_load_raw_nc();
+    void        adobe_copy_pixel (unsigned int row, unsigned int col, ushort **rp);
+    void        lossless_dng_load_raw();
+    void        deflate_dng_load_raw();
+    void        packed_dng_load_raw();
+    void        lossy_dng_load_raw();
+//void        adobe_dng_load_raw_nc();
 
 // Pentax
     void        pentax_load_raw();
+    void	pentax_4shot_load_raw();
+
     void        pentax_tree();
 
 // Nikon (and Minolta Z2)
-    void        nikon_compressed_load_raw();
     void        nikon_load_raw();
-    int         nikon_is_compressed();
+    void        nikon_load_striped_packed_raw();
+    void        nikon_load_sraw();
+    void        nikon_yuv_load_raw();
+    void	nikon_coolscan_load_raw();
     int         nikon_e995();
     int         nikon_e2100();
     void        nikon_3700();
@@ -82,7 +130,7 @@ void        crw_init_tables (unsigned table, ushort *huff[2]);
     void        nikon_e2100_load_raw();
 
 // Fuji
-    void        fuji_load_raw();
+//void        fuji_load_raw();
     void        parse_fuji (int offset);
 
 // RedCine
@@ -94,9 +142,9 @@ void        crw_init_tables (unsigned table, ushort *huff[2]);
     void        parse_rollei();
 
 // MF backs
-    int         bayer (unsigned row, unsigned col);
+//int         bayer (unsigned row, unsigned col);
+    int         raw(unsigned,unsigned);
     void        phase_one_flat_field (int is_float, int nc);
-    void        phase_one_correct();
     void        phase_one_load_raw();
     unsigned    ph1_bits (int nbits);
     void        phase_one_load_raw_c();
@@ -104,16 +152,25 @@ void        crw_init_tables (unsigned table, ushort *huff[2]);
     void        leaf_hdr_load_raw();
     void        sinar_4shot_load_raw();
     void        imacon_full_load_raw();
+    void        hasselblad_full_load_raw();
     void        packed_load_raw();
     float	find_green(int,int,int,int);
     void        unpacked_load_raw();
+    void        unpacked_load_raw_reversed();
+    void        unpacked_load_raw_fuji_f700s20();
     void        parse_sinar_ia();
     void        parse_phase_one (int base);
 
 // Misc P&S cameras
+    void        parse_broadcom();
+    void        broadcom_load_raw();
     void        nokia_load_raw();
-    unsigned    pana_bits (int nbits);
+    void        android_loose_load_raw();
+    void        android_tight_load_raw();
+    void        canon_rmf_load_raw();
+    unsigned    pana_data (int nb, unsigned *bytes);
     void        panasonic_load_raw();
+    void        panasonic_16x10_load_raw();
     void        olympus_load_raw();
     void        olympus_cseries_load_raw();
     void        minolta_rd175_load_raw();
@@ -139,8 +196,10 @@ void        crw_init_tables (unsigned table, ushort *huff[2]);
     int         kodak_65000_decode (short *out, int bsize);
     void        kodak_65000_load_raw();
     void        kodak_rgb_load_raw();
-    void        kodak_yrgb_load_raw();
     void        kodak_ycbcr_load_raw();
+//    void        kodak_yrgb_load_raw();
+    void        kodak_c330_load_raw();
+    void        kodak_c603_load_raw();
     void        kodak_rgb_load_thumb();
     void        kodak_ycbcr_load_thumb();
 
@@ -149,26 +208,22 @@ void        crw_init_tables (unsigned table, ushort *huff[2]);
     void        sony_load_raw();
     void        sony_arw_load_raw();
     void        sony_arw2_load_raw();
+    void        sony_arq_load_raw();
+    void        samsung_load_raw();
+    void        samsung2_load_raw();
+    void        samsung3_load_raw();
     void        parse_minolta (int base);
 
 // Foveon/Sigma
-    void        foveon_load_camf();
-    void        foveon_load_raw();
-    const char* foveon_camf_param (const char *block, const char *param);
-    void *      foveon_camf_matrix (unsigned dim[3], const char *name);
-    int         foveon_fixed (void *ptr, int size, const char *name);
-    float       foveon_avg (short *pix, int range[2], float cfilt);
-    short *     foveon_make_curve (double max, double mul, double filt);
-    void        foveon_make_curves(short **curvep, float dq[3], float div[3], float filt);
-    int         foveon_apply_curve (short *curve, int i);
-    void        foveon_interpolate();
-    char *      foveon_gets (int offset, char *str, int len);
-    void        parse_foveon();
+// We always have x3f code compiled in!
+    void        parse_x3f();
+    void        x3f_load_raw();
+    void        x3f_dpq_interpolate_rg();
+	void        x3f_dpq_interpolate_af(int xstep, int ystep, int scale); // 1x1 af pixels
+	void        x3f_dpq_interpolate_af_sd(int xstart,int ystart, int xend, int yend, int xstep, int ystep, int scale); // sd Quattro interpolation
 
 // CAM/RGB
     void        pseudoinverse (double (*in)[3], double (*out)[3], int size);
-    void        cam_xyz_coeff (double cam_xyz[4][3]);
-    void        adobe_coeff (const char *, const char *);
     void        simple_coeff (int index);
 
 
@@ -176,15 +231,19 @@ void        crw_init_tables (unsigned table, ushort *huff[2]);
     void        tiff_get (unsigned base,unsigned *tag, unsigned *type, unsigned *len, unsigned *save);
     void        parse_thumb_note (int base, unsigned toff, unsigned tlen);
     void        parse_makernote (int base, int uptag);
+		void        parse_makernote_0xc634(int base, int uptag, unsigned dng_writer);
     void        parse_exif (int base);
     void        linear_table (unsigned len);
+    void        Kodak_WB_0x08tags(int wb, unsigned type);
     void        parse_kodak_ifd (int base);
     int         parse_tiff_ifd (int base);
     int         parse_tiff (int base);
     void        apply_tiff(void);
     void        parse_gps (int base);
-    void        romm_coeff (float romm_cam[3][3]);
+		void        parse_gps_libraw(int base);
+		void        romm_coeff(float romm_cam[3][3]);
     void        parse_mos (int offset);
+    void        parse_qt (int end);
     void        get_timestamp (int reversed);
 
 // External JPEGs, what cameras uses it ?
@@ -194,22 +253,28 @@ void        crw_init_tables (unsigned table, ushort *huff[2]);
     short       guess_byte_order (int words);
 
 // Tiff writer
-    void        tiff_set (ushort *ntag, ushort tag, ushort type, int count, int val);
+    void        tiff_set(struct tiff_hdr *th, ushort *ntag,ushort tag, ushort type, int count, int val);
     void        tiff_head (struct tiff_hdr *th, int full);
 
-// splitted AHD code
-#define TS 256
+// split AHD code
+#define TS 512
     void        ahd_interpolate_green_h_and_v(int top, int left, ushort (*out_rgb)[TS][TS][3]);
-    void ahd_interpolate_r_and_b_in_rgb_and_convert_to_cielab(int top, int left, ushort (*inout_rgb)[TS][3], short (*out_lab)[TS][3], const float (&xyz_cam)[3][4]);
-    void ahd_interpolate_r_and_b_and_convert_to_cielab(int top, int left, ushort (*inout_rgb)[TS][TS][3], short (*out_lab)[TS][TS][3], const float (&xyz_cam)[3][4]);
+    void ahd_interpolate_r_and_b_in_rgb_and_convert_to_cielab(int top, int left, ushort (*inout_rgb)[TS][3], short (*out_lab)[TS][3]);
+    void ahd_interpolate_r_and_b_and_convert_to_cielab(int top, int left, ushort (*inout_rgb)[TS][TS][3], short (*out_lab)[TS][TS][3]);
     void ahd_interpolate_build_homogeneity_map(int top, int left, short (*lab)[TS][TS][3], char (*out_homogeneity_map)[TS][2]);
     void ahd_interpolate_combine_homogeneous_pixels(int top, int left, ushort (*rgb)[TS][TS][3], char (*homogeneity_map)[TS][2]);
 
 #undef TS
+	void init_fuji_compr(struct fuji_compressed_params* info);
+	void init_fuji_block(struct fuji_compressed_block* info, const struct fuji_compressed_params *params, INT64 raw_offset, unsigned dsize);
+	void copy_line_to_xtrans(struct fuji_compressed_block* info, int cur_line, int cur_block, int cur_block_width);
+	void copy_line_to_bayer(struct fuji_compressed_block* info, int cur_line, int cur_block, int cur_block_width);
+	void xtrans_decode_block(struct fuji_compressed_block* info, const struct fuji_compressed_params *params, int cur_line);
+	void fuji_bayer_decode_block(struct fuji_compressed_block* info, const struct fuji_compressed_params *params, int cur_line);
+	void fuji_compressed_load_raw();
+	void fuji_14bit_load_raw();
+	void parse_fuji_compressed_header();
 
-// LibRaw demosaic packs  functions
-// AMaZe
-    int         LinEqSolve(int,  float*, float*, float*);
 // DCB
     void        dcb_pp();
     void        dcb_copy_to_buffer(float (*image2)[3]);
@@ -231,11 +296,6 @@ void        crw_init_tables (unsigned table, ushort *huff[2]);
     void 	dcb_color3(float (*image3)[3]);
     void 	dcb_decide(float (*image2)[3], float (*image3)[3]);
     void 	dcb_nyquist();
-// VCD/modified dcraw
-    void        refinement();
-    void        ahd_partial_interpolate(int threshold_value);
-    void        es_median_filter();
-    void        median_filter_new();
 #endif
 
 #endif

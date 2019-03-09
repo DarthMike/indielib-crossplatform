@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////
 //
-// Copyright (c) 2004, Industrial Light & Magic, a division of Lucas
+// Copyright (c) 2004-2012, Industrial Light & Magic, a division of Lucas
 // Digital Ltd. LLC
 // 
 // All rights reserved.
@@ -46,6 +46,7 @@
 #include "ImathExc.h"
 #include "ImathLimits.h"
 #include "ImathMath.h"
+#include "ImathNamespace.h"
 
 #include <iostream>
 
@@ -56,7 +57,7 @@
 #endif
 
 
-namespace Imath {
+IMATH_INTERNAL_NAMESPACE_HEADER_ENTER
 
 template <class T> class Vec2;
 template <class T> class Vec3;
@@ -224,11 +225,11 @@ template <class T> class Vec2
     T			length2 () const;
 
     const Vec2 &	normalize ();           // modifies *this
-    const Vec2 &	normalizeExc () throw (Iex::MathExc);
+    const Vec2 &	normalizeExc () throw (IEX_NAMESPACE::MathExc);
     const Vec2 &	normalizeNonNull ();
 
     Vec2<T>		normalized () const;	// does not modify *this
-    Vec2<T>		normalizedExc () const throw (Iex::MathExc);
+    Vec2<T>		normalizedExc () const throw (IEX_NAMESPACE::MathExc);
     Vec2<T>		normalizedNonNull () const;
 
 
@@ -436,11 +437,11 @@ template <class T> class Vec3
     T			length2 () const;
 
     const Vec3 &	normalize ();           // modifies *this
-    const Vec3 &	normalizeExc () throw (Iex::MathExc);
+    const Vec3 &	normalizeExc () throw (IEX_NAMESPACE::MathExc);
     const Vec3 &	normalizeNonNull ();
 
     Vec3<T>		normalized () const;	// does not modify *this
-    Vec3<T>		normalizedExc () const throw (Iex::MathExc);
+    Vec3<T>		normalizedExc () const throw (IEX_NAMESPACE::MathExc);
     Vec3<T>		normalizedNonNull () const;
 
 
@@ -618,11 +619,11 @@ template <class T> class Vec4
     T               length2 () const;
 
     const Vec4 &    normalize ();           // modifies *this
-    const Vec4 &    normalizeExc () throw (Iex::MathExc);
+    const Vec4 &    normalizeExc () throw (IEX_NAMESPACE::MathExc);
     const Vec4 &    normalizeNonNull ();
 
     Vec4<T>         normalized () const;	// does not modify *this
-    Vec4<T>         normalizedExc () const throw (Iex::MathExc);
+    Vec4<T>         normalizedExc () const throw (IEX_NAMESPACE::MathExc);
     Vec4<T>         normalizedNonNull () const;
 
 
@@ -710,7 +711,7 @@ template <> const Vec2<short> &
 Vec2<short>::normalize ();
 
 template <> const Vec2<short> &
-Vec2<short>::normalizeExc () throw (Iex::MathExc);
+Vec2<short>::normalizeExc () throw (IEX_NAMESPACE::MathExc);
 
 template <> const Vec2<short> &
 Vec2<short>::normalizeNonNull ();
@@ -719,7 +720,7 @@ template <> Vec2<short>
 Vec2<short>::normalized () const;
 
 template <> Vec2<short>
-Vec2<short>::normalizedExc () const throw (Iex::MathExc);
+Vec2<short>::normalizedExc () const throw (IEX_NAMESPACE::MathExc);
 
 template <> Vec2<short>
 Vec2<short>::normalizedNonNull () const;
@@ -734,7 +735,7 @@ template <> const Vec2<int> &
 Vec2<int>::normalize ();
 
 template <> const Vec2<int> &
-Vec2<int>::normalizeExc () throw (Iex::MathExc);
+Vec2<int>::normalizeExc () throw (IEX_NAMESPACE::MathExc);
 
 template <> const Vec2<int> &
 Vec2<int>::normalizeNonNull ();
@@ -743,7 +744,7 @@ template <> Vec2<int>
 Vec2<int>::normalized () const;
 
 template <> Vec2<int>
-Vec2<int>::normalizedExc () const throw (Iex::MathExc);
+Vec2<int>::normalizedExc () const throw (IEX_NAMESPACE::MathExc);
 
 template <> Vec2<int>
 Vec2<int>::normalizedNonNull () const;
@@ -758,7 +759,7 @@ template <> const Vec3<short> &
 Vec3<short>::normalize ();
 
 template <> const Vec3<short> &
-Vec3<short>::normalizeExc () throw (Iex::MathExc);
+Vec3<short>::normalizeExc () throw (IEX_NAMESPACE::MathExc);
 
 template <> const Vec3<short> &
 Vec3<short>::normalizeNonNull ();
@@ -767,7 +768,7 @@ template <> Vec3<short>
 Vec3<short>::normalized () const;
 
 template <> Vec3<short>
-Vec3<short>::normalizedExc () const throw (Iex::MathExc);
+Vec3<short>::normalizedExc () const throw (IEX_NAMESPACE::MathExc);
 
 template <> Vec3<short>
 Vec3<short>::normalizedNonNull () const;
@@ -782,7 +783,7 @@ template <> const Vec3<int> &
 Vec3<int>::normalize ();
 
 template <> const Vec3<int> &
-Vec3<int>::normalizeExc () throw (Iex::MathExc);
+Vec3<int>::normalizeExc () throw (IEX_NAMESPACE::MathExc);
 
 template <> const Vec3<int> &
 Vec3<int>::normalizeNonNull ();
@@ -791,7 +792,7 @@ template <> Vec3<int>
 Vec3<int>::normalized () const;
 
 template <> Vec3<int>
-Vec3<int>::normalizedExc () const throw (Iex::MathExc);
+Vec3<int>::normalizedExc () const throw (IEX_NAMESPACE::MathExc);
 
 template <> Vec3<int>
 Vec3<int>::normalizedNonNull () const;
@@ -805,7 +806,7 @@ template <> const Vec4<short> &
 Vec4<short>::normalize ();
 
 template <> const Vec4<short> &
-Vec4<short>::normalizeExc () throw (Iex::MathExc);
+Vec4<short>::normalizeExc () throw (IEX_NAMESPACE::MathExc);
 
 template <> const Vec4<short> &
 Vec4<short>::normalizeNonNull ();
@@ -814,7 +815,7 @@ template <> Vec4<short>
 Vec4<short>::normalized () const;
 
 template <> Vec4<short>
-Vec4<short>::normalizedExc () const throw (Iex::MathExc);
+Vec4<short>::normalizedExc () const throw (IEX_NAMESPACE::MathExc);
 
 template <> Vec4<short>
 Vec4<short>::normalizedNonNull () const;
@@ -829,7 +830,7 @@ template <> const Vec4<int> &
 Vec4<int>::normalize ();
 
 template <> const Vec4<int> &
-Vec4<int>::normalizeExc () throw (Iex::MathExc);
+Vec4<int>::normalizeExc () throw (IEX_NAMESPACE::MathExc);
 
 template <> const Vec4<int> &
 Vec4<int>::normalizeNonNull ();
@@ -838,7 +839,7 @@ template <> Vec4<int>
 Vec4<int>::normalized () const;
 
 template <> Vec4<int>
-Vec4<int>::normalizedExc () const throw (Iex::MathExc);
+Vec4<int>::normalizedExc () const throw (IEX_NAMESPACE::MathExc);
 
 template <> Vec4<int>
 Vec4<int>::normalizedNonNull () const;
@@ -981,7 +982,7 @@ bool
 Vec2<T>::equalWithAbsError (const Vec2<T> &v, T e) const
 {
     for (int i = 0; i < 2; i++)
-	if (!Imath::equalWithAbsError ((*this)[i], v[i], e))
+	if (!IMATH_INTERNAL_NAMESPACE::equalWithAbsError ((*this)[i], v[i], e))
 	    return false;
 
     return true;
@@ -992,7 +993,7 @@ bool
 Vec2<T>::equalWithRelError (const Vec2<T> &v, T e) const
 {
     for (int i = 0; i < 2; i++)
-	if (!Imath::equalWithRelError ((*this)[i], v[i], e))
+	if (!IMATH_INTERNAL_NAMESPACE::equalWithRelError ((*this)[i], v[i], e))
 	    return false;
 
     return true;
@@ -1143,16 +1144,16 @@ template <class T>
 T
 Vec2<T>::lengthTiny () const
 {
-    T absX = (x >= 0)? x: -x;
-    T absY = (y >= 0)? y: -y;
+    T absX = (x >= T (0))? x: -x;
+    T absY = (y >= T (0))? y: -y;
     
     T max = absX;
 
     if (max < absY)
 	max = absY;
 
-    if (max == 0)
-	return 0;
+    if (max == T (0))
+	return T (0);
 
     //
     // Do not replace the divisions by max with multiplications by 1/max.
@@ -1172,7 +1173,7 @@ Vec2<T>::length () const
 {
     T length2 = dot (*this);
 
-    if (length2 < 2 * limits<T>::smallest())
+    if (length2 < T (2) * limits<T>::smallest())
 	return lengthTiny();
 
     return Math<T>::sqrt (length2);
@@ -1191,7 +1192,7 @@ Vec2<T>::normalize ()
 {
     T l = length();
 
-    if (l != 0)
+    if (l != T (0))
     {
         //
         // Do not replace the divisions by l with multiplications by 1/l.
@@ -1208,11 +1209,11 @@ Vec2<T>::normalize ()
 
 template <class T>
 const Vec2<T> &
-Vec2<T>::normalizeExc () throw (Iex::MathExc)
+Vec2<T>::normalizeExc () throw (IEX_NAMESPACE::MathExc)
 {
     T l = length();
 
-    if (l == 0)
+    if (l == T (0))
 	throw NullVecExc ("Cannot normalize null vector.");
 
     x /= l;
@@ -1237,7 +1238,7 @@ Vec2<T>::normalized () const
 {
     T l = length();
 
-    if (l == 0)
+    if (l == T (0))
 	return Vec2 (T (0));
 
     return Vec2 (x / l, y / l);
@@ -1245,11 +1246,11 @@ Vec2<T>::normalized () const
 
 template <class T>
 Vec2<T>
-Vec2<T>::normalizedExc () const throw (Iex::MathExc)
+Vec2<T>::normalizedExc () const throw (IEX_NAMESPACE::MathExc)
 {
     T l = length();
 
-    if (l == 0)
+    if (l == T (0))
 	throw NullVecExc ("Cannot normalize null vector.");
 
     return Vec2 (x / l, y / l);
@@ -1354,7 +1355,7 @@ Vec3<T>::Vec3 (const Vec4<S> &v, InfException)
     T vz = T (v.z);
     T vw = T (v.w);
 
-    T absW = (vw >= 0)? vw: -vw;
+    T absW = (vw >= T (0))? vw: -vw;
 
     if (absW < 1)
     {
@@ -1444,7 +1445,7 @@ bool
 Vec3<T>::equalWithAbsError (const Vec3<T> &v, T e) const
 {
     for (int i = 0; i < 3; i++)
-	if (!Imath::equalWithAbsError ((*this)[i], v[i], e))
+	if (!IMATH_INTERNAL_NAMESPACE::equalWithAbsError ((*this)[i], v[i], e))
 	    return false;
 
     return true;
@@ -1455,7 +1456,7 @@ bool
 Vec3<T>::equalWithRelError (const Vec3<T> &v, T e) const
 {
     for (int i = 0; i < 3; i++)
-	if (!Imath::equalWithRelError ((*this)[i], v[i], e))
+	if (!IMATH_INTERNAL_NAMESPACE::equalWithRelError ((*this)[i], v[i], e))
 	    return false;
 
     return true;
@@ -1629,9 +1630,9 @@ template <class T>
 T
 Vec3<T>::lengthTiny () const
 {
-    T absX = (x >= 0)? x: -x;
-    T absY = (y >= 0)? y: -y;
-    T absZ = (z >= 0)? z: -z;
+    T absX = (x >= T (0))? x: -x;
+    T absY = (y >= T (0))? y: -y;
+    T absZ = (z >= T (0))? z: -z;
     
     T max = absX;
 
@@ -1641,8 +1642,8 @@ Vec3<T>::lengthTiny () const
     if (max < absZ)
 	max = absZ;
 
-    if (max == 0)
-	return 0;
+    if (max == T (0))
+	return T (0);
 
     //
     // Do not replace the divisions by max with multiplications by 1/max.
@@ -1663,7 +1664,7 @@ Vec3<T>::length () const
 {
     T length2 = dot (*this);
 
-    if (length2 < 2 * limits<T>::smallest())
+    if (length2 < T (2) * limits<T>::smallest())
 	return lengthTiny();
 
     return Math<T>::sqrt (length2);
@@ -1682,7 +1683,7 @@ Vec3<T>::normalize ()
 {
     T l = length();
 
-    if (l != 0)
+    if (l != T (0))
     {
         //
         // Do not replace the divisions by l with multiplications by 1/l.
@@ -1700,11 +1701,11 @@ Vec3<T>::normalize ()
 
 template <class T>
 const Vec3<T> &
-Vec3<T>::normalizeExc () throw (Iex::MathExc)
+Vec3<T>::normalizeExc () throw (IEX_NAMESPACE::MathExc)
 {
     T l = length();
 
-    if (l == 0)
+    if (l == T (0))
 	throw NullVecExc ("Cannot normalize null vector.");
 
     x /= l;
@@ -1731,7 +1732,7 @@ Vec3<T>::normalized () const
 {
     T l = length();
 
-    if (l == 0)
+    if (l == T (0))
 	return Vec3 (T (0));
 
     return Vec3 (x / l, y / l, z / l);
@@ -1739,11 +1740,11 @@ Vec3<T>::normalized () const
 
 template <class T>
 Vec3<T>
-Vec3<T>::normalizedExc () const throw (Iex::MathExc)
+Vec3<T>::normalizedExc () const throw (IEX_NAMESPACE::MathExc)
 {
     T l = length();
 
-    if (l == 0)
+    if (l == T (0))
 	throw NullVecExc ("Cannot normalize null vector.");
 
     return Vec3 (x / l, y / l, z / l);
@@ -1865,7 +1866,7 @@ bool
 Vec4<T>::equalWithAbsError (const Vec4<T> &v, T e) const
 {
     for (int i = 0; i < 4; i++)
-        if (!Imath::equalWithAbsError ((*this)[i], v[i], e))
+        if (!IMATH_INTERNAL_NAMESPACE::equalWithAbsError ((*this)[i], v[i], e))
             return false;
 
     return true;
@@ -1876,7 +1877,7 @@ bool
 Vec4<T>::equalWithRelError (const Vec4<T> &v, T e) const
 {
     for (int i = 0; i < 4; i++)
-        if (!Imath::equalWithRelError ((*this)[i], v[i], e))
+        if (!IMATH_INTERNAL_NAMESPACE::equalWithRelError ((*this)[i], v[i], e))
             return false;
 
     return true;
@@ -2027,10 +2028,10 @@ template <class T>
 T
 Vec4<T>::lengthTiny () const
 {
-    T absX = (x >= 0)? x: -x;
-    T absY = (y >= 0)? y: -y;
-    T absZ = (z >= 0)? z: -z;
-    T absW = (w >= 0)? w: -w;
+    T absX = (x >= T (0))? x: -x;
+    T absY = (y >= T (0))? y: -y;
+    T absZ = (z >= T (0))? z: -z;
+    T absW = (w >= T (0))? w: -w;
     
     T max = absX;
 
@@ -2043,8 +2044,8 @@ Vec4<T>::lengthTiny () const
     if (max < absW)
         max = absW;
 
-    if (max == 0)
-        return 0;
+    if (max == T (0))
+        return T (0);
 
     //
     // Do not replace the divisions by max with multiplications by 1/max.
@@ -2067,7 +2068,7 @@ Vec4<T>::length () const
 {
     T length2 = dot (*this);
 
-    if (length2 < 2 * limits<T>::smallest())
+    if (length2 < T (2) * limits<T>::smallest())
         return lengthTiny();
 
     return Math<T>::sqrt (length2);
@@ -2086,7 +2087,7 @@ Vec4<T>::normalize ()
 {
     T l = length();
 
-    if (l != 0)
+    if (l != T (0))
     {
         //
         // Do not replace the divisions by l with multiplications by 1/l.
@@ -2105,11 +2106,11 @@ Vec4<T>::normalize ()
 
 template <class T>
 const Vec4<T> &
-Vec4<T>::normalizeExc () throw (Iex::MathExc)
+Vec4<T>::normalizeExc () throw (IEX_NAMESPACE::MathExc)
 {
     T l = length();
 
-    if (l == 0)
+    if (l == T (0))
         throw NullVecExc ("Cannot normalize null vector.");
 
     x /= l;
@@ -2138,7 +2139,7 @@ Vec4<T>::normalized () const
 {
     T l = length();
 
-    if (l == 0)
+    if (l == T (0))
         return Vec4 (T (0));
 
     return Vec4 (x / l, y / l, z / l, w / l);
@@ -2146,11 +2147,11 @@ Vec4<T>::normalized () const
 
 template <class T>
 Vec4<T>
-Vec4<T>::normalizedExc () const throw (Iex::MathExc)
+Vec4<T>::normalizedExc () const throw (IEX_NAMESPACE::MathExc)
 {
     T l = length();
 
-    if (l == 0)
+    if (l == T (0))
         throw NullVecExc ("Cannot normalize null vector.");
 
     return Vec4 (x / l, y / l, z / l, w / l);
@@ -2221,6 +2222,6 @@ operator * (T a, const Vec4<T> &v)
 #pragma warning(pop)
 #endif
 
-} // namespace Imath
+IMATH_INTERNAL_NAMESPACE_HEADER_EXIT
 
-#endif
+#endif // INCLUDED_IMATHVEC_H

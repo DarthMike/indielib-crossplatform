@@ -5,6 +5,7 @@
 // - Floris van den Berg (flvdberg@wxs.nl)
 // - Hervé Drolon <drolon@infonie.fr>
 // - Ryan Rubley (ryan@lostreality.org)
+// - Mihail Naydenov (mnaydenov@users.sourceforge.net)
 //
 // This file is part of FreeImage 3
 //
@@ -21,8 +22,8 @@
 // Use at your own risk!
 // ==========================================================
 
-#ifndef UTILITIES_H
-#define UTILITIES_H
+#ifndef FREEIMAGE_UTILITIES_H
+#define FREEIMAGE_UTILITIES_H
 
 // ==========================================================
 //   Standard includes used by the library
@@ -72,12 +73,13 @@ Allocate a FIBITMAP with possibly no pixel data
 (i.e. only header data and some or all metadata)
 @param header_only If TRUE, allocate a 'header only' FIBITMAP, otherwise allocate a full FIBITMAP
 @param type Image type
-@param width
-@param height
-@param bpp
-@param red_mask
-@param green_mask
-@param blue_mask
+@param width Image width
+@param height Image height
+@param bpp Number of bits per pixel
+@param red_mask Image red mask 
+@param green_mask Image green mask
+@param blue_mask Image blue mask
+@return Returns the allocated FIBITMAP
 @see FreeImage_AllocateT
 */
 DLL_API FIBITMAP * DLL_CALLCONV FreeImage_AllocateHeaderT(BOOL header_only, FREE_IMAGE_TYPE type, int width, int height, int bpp FI_DEFAULT(8), unsigned red_mask FI_DEFAULT(0), unsigned green_mask FI_DEFAULT(0), unsigned blue_mask FI_DEFAULT(0));
@@ -86,15 +88,38 @@ DLL_API FIBITMAP * DLL_CALLCONV FreeImage_AllocateHeaderT(BOOL header_only, FREE
 Allocate a FIBITMAP of type FIT_BITMAP, with possibly no pixel data 
 (i.e. only header data and some or all metadata)
 @param header_only If TRUE, allocate a 'header only' FIBITMAP, otherwise allocate a full FIBITMAP
-@param width
-@param height
-@param bpp
-@param red_mask
-@param green_mask
-@param blue_mask
+@param width Image width
+@param height Image height
+@param bpp Number of bits per pixel
+@param red_mask Image red mask 
+@param green_mask Image green mask
+@param blue_mask Image blue mask
+@return Returns the allocated FIBITMAP
 @see FreeImage_Allocate
 */
 DLL_API FIBITMAP * DLL_CALLCONV FreeImage_AllocateHeader(BOOL header_only, int width, int height, int bpp, unsigned red_mask FI_DEFAULT(0), unsigned green_mask FI_DEFAULT(0), unsigned blue_mask FI_DEFAULT(0));
+
+/**
+Allocate a FIBITMAP with no pixel data and wrap a user provided pixel buffer
+@param ext_bits Pointer to external user's pixel buffer
+@param ext_pitch Pointer to external user's pixel buffer pitch
+@param type Image type
+@param width Image width
+@param height Image height
+@param bpp Number of bits per pixel
+@param red_mask Image red mask 
+@param green_mask Image green mask
+@param blue_mask Image blue mask
+@return Returns the allocated FIBITMAP
+@see FreeImage_ConvertFromRawBitsEx
+*/
+DLL_API FIBITMAP * DLL_CALLCONV FreeImage_AllocateHeaderForBits(BYTE *ext_bits, unsigned ext_pitch, FREE_IMAGE_TYPE type, int width, int height, int bpp, unsigned red_mask, unsigned green_mask, unsigned blue_mask);
+
+/**
+Helper for 16-bit FIT_BITMAP
+@see FreeImage_GetRGBMasks
+*/
+DLL_API BOOL DLL_CALLCONV FreeImage_HasRGBMasks(FIBITMAP *dib);
 
 #if defined(__cplusplus)
 }
@@ -251,26 +276,27 @@ CalculateUsedBits(int bits) {
 }
 
 inline unsigned
-CalculateLine(unsigned width, unsigned bitdepth) {
+CalculateLine(const unsigned width, const unsigned bitdepth) {
 	return (unsigned)( ((unsigned long long)width * bitdepth + 7) / 8 );
 }
 
 inline unsigned
-CalculatePitch(unsigned line) {
-	return line + 3 & ~3;
+CalculatePitch(const unsigned line) {
+	return (line + 3) & ~3;
 }
 
 inline unsigned
-CalculateUsedPaletteEntries(unsigned bit_count) {
-	if ((bit_count >= 1) && (bit_count <= 8))
+CalculateUsedPaletteEntries(const unsigned bit_count) {
+	if ((bit_count >= 1) && (bit_count <= 8)) {
 		return 1 << bit_count;
+	}
 
 	return 0;
 }
 
-inline unsigned char *
-CalculateScanLine(unsigned char *bits, unsigned pitch, int scanline) {
-	return (bits + (pitch * scanline));
+inline BYTE*
+CalculateScanLine(BYTE *bits, const unsigned pitch, const int scanline) {
+	return bits ? (bits + ((size_t)pitch * scanline)) : NULL;
 }
 
 // ----------------------------------------------------------
@@ -359,6 +385,13 @@ RGBA to RGB conversion
 */
 FIBITMAP* RemoveAlphaChannel(FIBITMAP* dib);
 
+/**
+Rotate a dib according to Exif info
+@param dib Input / Output dib to rotate
+@see Exif.cpp, PluginJPEG.cpp
+*/
+void RotateExif(FIBITMAP **dib);
+
 
 // ==========================================================
 //   Big Endian / Little Endian utility functions
@@ -401,25 +434,6 @@ __SwapUInt32(DWORD arg) {
 	return result; 
 #endif 
 } 
- 
-/**
-for later use ...
-inline uint64_t 
-SwapInt64(uint64_t arg) { 
-#if defined(_MSC_VER) && _MSC_VER >= 1310 
-	return _byteswap_uint64(arg); 
-#else 
-	union Swap { 
-		uint64_t sv; 
-		uint32_t ul[2]; 
-	} tmp, result; 
-	tmp.sv = arg; 
-	result.ul[0] = SwapInt32(tmp.ul[1]);  
-	result.ul[1] = SwapInt32(tmp.ul[0]); 
-	return result.sv; 
-#endif 
-} 
-*/
 
 inline void
 SwapShort(WORD *sp) {
@@ -429,6 +443,24 @@ SwapShort(WORD *sp) {
 inline void
 SwapLong(DWORD *lp) {
 	*lp = __SwapUInt32(*lp);
+}
+ 
+inline void
+SwapInt64(UINT64 *arg) {
+#if defined(_MSC_VER) && _MSC_VER >= 1310
+	*arg = _byteswap_uint64(*arg);
+#else
+	union Swap {
+		UINT64 sv;
+		DWORD ul[2];
+	} tmp, result;
+	tmp.sv = *arg;
+	SwapLong(&tmp.ul[0]);
+	SwapLong(&tmp.ul[1]);
+	result.ul[0] = tmp.ul[1];
+	result.ul[1] = tmp.ul[0];
+	*arg = result.sv;
+#endif
 }
 
 // ==========================================================
@@ -445,7 +477,7 @@ A Standard Default Color Space for the Internet - sRGB.
 */
 #define LUMA_REC709(r, g, b)	(0.2126F * r + 0.7152F * g + 0.0722F * b)
 
-#define GREY(r, g, b) (BYTE)LUMA_REC709(r, g, b)
+#define GREY(r, g, b) (BYTE)(LUMA_REC709(r, g, b) + 0.5F)
 /*
 #define GREY(r, g, b) (BYTE)(((WORD)r * 77 + (WORD)g * 150 + (WORD)b * 29) >> 8)	// .299R + .587G + .114B
 */
@@ -453,17 +485,37 @@ A Standard Default Color Space for the Internet - sRGB.
 #define GREY(r, g, b) (BYTE)(((WORD)r * 169 + (WORD)g * 256 + (WORD)b * 87) >> 9)	// .33R + 0.5G + .17B
 */
 
+/**
+Convert a RGB 24-bit value to a 16-bit 565 value
+*/
 #define RGB565(b, g, r) ((((b) >> 3) << FI16_565_BLUE_SHIFT) | (((g) >> 2) << FI16_565_GREEN_SHIFT) | (((r) >> 3) << FI16_565_RED_SHIFT))
+
+/**
+Convert a RGB 24-bit value to a 16-bit 555 value
+*/
 #define RGB555(b, g, r) ((((b) >> 3) << FI16_555_BLUE_SHIFT) | (((g) >> 3) << FI16_555_GREEN_SHIFT) | (((r) >> 3) << FI16_555_RED_SHIFT))
 
-#define FORMAT_RGB565(dib) ((FreeImage_GetRedMask(dib) == FI16_565_RED_MASK) &&(FreeImage_GetGreenMask(dib) == FI16_565_GREEN_MASK) &&(FreeImage_GetBlueMask(dib) == FI16_565_BLUE_MASK))
-#define RGBQUAD_TO_WORD(dib, color) (FORMAT_RGB565(dib) ? RGB565((color)->rgbBlue, (color)->rgbGreen, (color)->rgbRed) : RGB555((color)->rgbBlue, (color)->rgbGreen, (color)->rgbRed))
+/**
+Returns TRUE if the format of a dib is RGB565
+*/
+#define IS_FORMAT_RGB565(dib) ((FreeImage_GetRedMask(dib) == FI16_565_RED_MASK) && (FreeImage_GetGreenMask(dib) == FI16_565_GREEN_MASK) && (FreeImage_GetBlueMask(dib) == FI16_565_BLUE_MASK))
 
+/**
+Convert a RGB565 or RGB555 RGBQUAD pixel to a WORD
+*/
+#define RGBQUAD_TO_WORD(dib, color) (IS_FORMAT_RGB565(dib) ? RGB565((color)->rgbBlue, (color)->rgbGreen, (color)->rgbRed) : RGB555((color)->rgbBlue, (color)->rgbGreen, (color)->rgbRed))
+
+/**
+Create a greyscale palette
+*/
 #define CREATE_GREYSCALE_PALETTE(palette, entries) \
 	for (unsigned i = 0, v = 0; i < entries; i++, v += 0x00FFFFFF / (entries - 1)) { \
 		((unsigned *)palette)[i] = v; \
 	}
 
+/**
+Create a reverse greyscale palette
+*/
 #define CREATE_GREYSCALE_PALETTE_REVERSE(palette, entries) \
 	for (unsigned i = 0, v = 0x00FFFFFF; i < entries; i++, v -= (0x00FFFFFF / (entries - 1))) { \
 		((unsigned *)palette)[i] = v; \
@@ -481,4 +533,4 @@ static const char *FI_MSG_ERROR_UNSUPPORTED_FORMAT = "Unsupported format";
 static const char *FI_MSG_ERROR_UNSUPPORTED_COMPRESSION = "Unsupported compression type";
 static const char *FI_MSG_WARNING_INVALID_THUMBNAIL = "Warning: attached thumbnail cannot be written to output file (invalid format) - Thumbnail saving aborted";
 
-#endif // UTILITIES_H
+#endif // FREEIMAGE_UTILITIES_H

@@ -15,9 +15,17 @@ LIBRARIES = -lstdc++
 
 MODULES = $(SRCS:.c=.o)
 MODULES := $(MODULES:.cpp=.o)
-CFLAGS ?= -O3 -fPIC -fexceptions -fvisibility=hidden -DNO_LCMS
+CFLAGS ?= -O3 -fPIC -fexceptions -fvisibility=hidden
+# OpenJPEG
+CFLAGS += -DOPJ_STATIC
+# LibRaw
+CFLAGS += -DNO_LCMS
+# LibJXR
+CFLAGS += -DDISABLE_PERF_MEASUREMENT -D__ANSI__
 CFLAGS += $(INCLUDE)
 CXXFLAGS ?= -O3 -fPIC -fexceptions -fvisibility=hidden -Wno-ctor-dtor-privacy
+# LibJXR
+CXXFLAGS += -D__ANSI__
 CXXFLAGS += $(INCLUDE)
 
 ifeq ($(shell sh -c 'uname -m 2>/dev/null || echo not'),x86_64)
@@ -39,9 +47,10 @@ default: all
 all: dist
 
 dist: FreeImage
-	cp *.a Dist
-	cp *.so Dist
-	cp Source/FreeImage.h Dist
+	mkdir -p Dist
+	cp *.a Dist/
+	cp *.so Dist/
+	cp Source/FreeImage.h Dist/
 
 dos2unix:
 	@$(DOS2UNIX) $(SRCS) $(INCLS)

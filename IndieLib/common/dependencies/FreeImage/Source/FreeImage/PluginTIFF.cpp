@@ -44,29 +44,22 @@
 #include "FreeImageIO.h"
 #include "PSDParser.h"
 
-// ----------------------------------------------------------
-//   geotiff interface (see XTIFF.cpp)
-// ----------------------------------------------------------
-
-// Extended TIFF Directory GEO Tag Support
+// --------------------------------------------------------------------------
+// GeoTIFF profile (see XTIFF.cpp)
+// --------------------------------------------------------------------------
 void XTIFFInitialize();
+BOOL tiff_read_geotiff_profile(TIFF *tif, FIBITMAP *dib);
+BOOL tiff_write_geotiff_profile(TIFF *tif, FIBITMAP *dib);
 
-// GeoTIFF profile
-void tiff_read_geotiff_profile(TIFF *tif, FIBITMAP *dib);
-void tiff_write_geotiff_profile(TIFF *tif, FIBITMAP *dib);
-
+// --------------------------------------------------------------------------
+// TIFF Exif profile (see XTIFF.cpp)
 // ----------------------------------------------------------
-//   exif interface (see XTIFF.cpp)
-// ----------------------------------------------------------
-
-// TIFF Exif profile
 BOOL tiff_read_exif_tags(TIFF *tif, TagLib::MDMODEL md_model, FIBITMAP *dib);
 BOOL tiff_write_exif_tags(TIFF *tif, TagLib::MDMODEL md_model, FIBITMAP *dib);
 
-// ----------------------------------------------------------
+// --------------------------------------------------------------------------
 //   LogLuv conversion functions interface (see TIFFLogLuv.cpp)
-// ----------------------------------------------------------
-
+// --------------------------------------------------------------------------
 void tiff_ConvertLineXYZToRGB(BYTE *target, BYTE *source, double stonits, int width_in_pixels);
 void tiff_ConvertLineRGBToXYZ(BYTE *target, BYTE *source, int width_in_pixels);
 
@@ -110,8 +103,8 @@ static void WriteCompression(TIFF *tiff, uint16 bitspersample, uint16 samplesper
 
 static BOOL tiff_read_iptc_profile(TIFF *tiff, FIBITMAP *dib);
 static BOOL tiff_read_xmp_profile(TIFF *tiff, FIBITMAP *dib);
-static BOOL tiff_read_exif_profile(TIFF *tiff, FIBITMAP *dib);
-static void ReadMetadata(TIFF *tiff, FIBITMAP *dib);
+static BOOL tiff_read_exif_profile(FreeImageIO *io, fi_handle handle, TIFF *tiff, FIBITMAP *dib);
+static void ReadMetadata(FreeImageIO *io, fi_handle handle, TIFF *tiff, FIBITMAP *dib);
 
 static BOOL tiff_write_iptc_profile(TIFF *tiff, FIBITMAP *dib);
 static BOOL tiff_write_xmp_profile(TIFF *tiff, FIBITMAP *dib);
@@ -141,19 +134,19 @@ typedef struct {
 static tmsize_t 
 _tiffReadProc(thandle_t handle, void *buf, tmsize_t size) {
 	fi_TIFFIO *fio = (fi_TIFFIO*)handle;
-	return fio->io->read_proc(buf, size, 1, fio->handle) * size;
+	return fio->io->read_proc(buf, (unsigned)size, 1, fio->handle) * size;
 }
 
 static tmsize_t
 _tiffWriteProc(thandle_t handle, void *buf, tmsize_t size) {
 	fi_TIFFIO *fio = (fi_TIFFIO*)handle;
-	return fio->io->write_proc(buf, size, 1, fio->handle) * size;
+	return fio->io->write_proc(buf, (unsigned)size, 1, fio->handle) * size;
 }
 
 static toff_t
 _tiffSeekProc(thandle_t handle, toff_t off, int whence) {
 	fi_TIFFIO *fio = (fi_TIFFIO*)handle;
-	fio->io->seek_proc(fio->handle, off, whence);
+	fio->io->seek_proc(fio->handle, (long)off, whence);
 	return fio->io->tell_proc(fio->handle);
 }
 
@@ -192,23 +185,11 @@ Open a TIFF file descriptor for reading or writing
 TIFF *
 TIFFFdOpen(thandle_t handle, const char *name, const char *mode) {
 	TIFF *tif;
-
-    // Set up the callback for extended TIFF directory tag support
-	// (see XTIFF.cpp)
-    XTIFFInitialize();	
 	
 	// Open the file; the callback will set everything up
 	tif = TIFFClientOpen(name, mode, handle,
 	    _tiffReadProc, _tiffWriteProc, _tiffSeekProc, _tiffCloseProc,
 	    _tiffSizeProc, _tiffMapProc, _tiffUnmapProc);
-
-	// Warning: tif_fd is declared as 'int' currently (see libTIFF), 
-    // may result in incorrect file pointers inside libTIFF on 
-    // 64bit machines (sizeof(int) != sizeof(long)). 
-    // Needs to be fixed within libTIFF.
-	if (tif) {
-		tif->tif_fd = (long)handle;
-	}
 
 	return tif;
 }
@@ -230,6 +211,14 @@ TIFFOpen(const char* name, const char* mode) {
 void*
 _TIFFmalloc(tmsize_t s) {
 	return malloc(s);
+}
+
+void* 
+_TIFFcalloc(tmsize_t nmemb, tmsize_t siz) {
+	if (nmemb == 0 || siz == 0) {
+		return ((void *)NULL);
+	}
+	return calloc((size_t)nmemb, (size_t)siz);
 }
 
 void
@@ -746,13 +735,20 @@ WriteCompression(TIFF *tiff, uint16 bitspersample, uint16 samplesperpixel, uint1
 			TIFFSetField(tiff, TIFFTAG_PREDICTOR, 1);
 		}
 	}
-	else if(compression == COMPRESSION_CCITTFAX3) {
-		// try to be compliant with the TIFF Class F specification
-		// that documents the TIFF tags specific to FAX applications
-		// see http://palimpsest.stanford.edu/bytopic/imaging/std/tiff-f.html
-		uint32 group3options = GROUP3OPT_2DENCODING | GROUP3OPT_FILLBITS;	
-		TIFFSetField(tiff, TIFFTAG_GROUP3OPTIONS, group3options);	// 2d-encoded, has aligned EOL
-		TIFFSetField(tiff, TIFFTAG_FILLORDER, FILLORDER_LSB2MSB);	// lsb-to-msb fillorder
+	else if((compression == COMPRESSION_CCITTFAX3) || (compression == COMPRESSION_CCITTFAX4)) {
+		uint32 imageLength = 0;
+		TIFFGetField(tiff, TIFFTAG_IMAGELENGTH, &imageLength);
+		// overwrite previous RowsPerStrip
+		TIFFSetField(tiff, TIFFTAG_ROWSPERSTRIP, imageLength);
+
+		if(compression == COMPRESSION_CCITTFAX3) {
+			// try to be compliant with the TIFF Class F specification
+			// that documents the TIFF tags specific to FAX applications
+			// see http://palimpsest.stanford.edu/bytopic/imaging/std/tiff-f.html
+			uint32 group3options = GROUP3OPT_2DENCODING | GROUP3OPT_FILLBITS;	
+			TIFFSetField(tiff, TIFFTAG_GROUP3OPTIONS, group3options);	// 2d-encoded, has aligned EOL
+			TIFFSetField(tiff, TIFFTAG_FILLORDER, FILLORDER_LSB2MSB);	// lsb-to-msb fillorder
+		}
 	}
 }
 
@@ -821,9 +817,9 @@ tiff_read_xmp_profile(TIFF *tiff, FIBITMAP *dib) {
 	@return Returns TRUE if successful, FALSE otherwise
 */
 static BOOL 
-tiff_read_exif_profile(TIFF *tiff, FIBITMAP *dib) {
+tiff_read_exif_profile(FreeImageIO *io, fi_handle handle, TIFF *tiff, FIBITMAP *dib) {
 	BOOL bResult = FALSE;
-    toff_t exif_offset = 0;
+	toff_t exif_offset = 0;
 
 	// read EXIF-TIFF tags
 	bResult = tiff_read_exif_tags(tiff, TagLib::EXIF_MAIN, dib);
@@ -831,13 +827,17 @@ tiff_read_exif_profile(TIFF *tiff, FIBITMAP *dib) {
 	// get the IFD offset
 	if(TIFFGetField(tiff, TIFFTAG_EXIFIFD, &exif_offset)) {
 
+		const long tell_pos = io->tell_proc(handle);
+		const uint16 cur_dir = TIFFCurrentDirectory(tiff);
+
 		// read EXIF tags
-		if(!TIFFReadEXIFDirectory(tiff, exif_offset)) {
-			return FALSE;
+		if (TIFFReadEXIFDirectory(tiff, exif_offset)) {
+			// read all known exif tags
+			bResult = tiff_read_exif_tags(tiff, TagLib::EXIF_EXIF, dib);
 		}
 
-		// read all known exif tags
-		bResult = tiff_read_exif_tags(tiff, TagLib::EXIF_EXIF, dib);
+		io->seek_proc(handle, tell_pos, SEEK_SET);
+		TIFFSetDirectory(tiff, cur_dir);
 	}
 
 	return bResult;
@@ -847,7 +847,7 @@ tiff_read_exif_profile(TIFF *tiff, FIBITMAP *dib) {
 Read TIFF special profiles
 */
 static void 
-ReadMetadata(TIFF *tiff, FIBITMAP *dib) {
+ReadMetadata(FreeImageIO *io, fi_handle handle, TIFF *tiff, FIBITMAP *dib) {
 
 	// IPTC/NAA
 	tiff_read_iptc_profile(tiff, dib);
@@ -859,7 +859,7 @@ ReadMetadata(TIFF *tiff, FIBITMAP *dib) {
 	tiff_read_geotiff_profile(tiff, dib);
 
 	// Exif-TIFF
-	tiff_read_exif_profile(tiff, dib);
+	tiff_read_exif_profile(io, handle, tiff, dib);
 }
 
 // ----------------------------------------------------------
@@ -929,7 +929,6 @@ tiff_write_xmp_profile(TIFF *tiff, FIBITMAP *dib) {
 static BOOL
 tiff_write_exif_profile(TIFF *tiff, FIBITMAP *dib) {
 	BOOL bResult = FALSE;
-	uint32 exif_offset = 0;
 	
 	// write EXIF_MAIN tags, EXIF_EXIF not supported yet
 	bResult = tiff_write_exif_tags(tiff, TagLib::EXIF_MAIN, dib);
@@ -986,16 +985,21 @@ MimeType() {
 
 static BOOL DLL_CALLCONV
 Validate(FreeImageIO *io, fi_handle handle) {	
-	BYTE tiff_id1[] = { 0x49, 0x49, 0x2A, 0x00 };
-	BYTE tiff_id2[] = { 0x4D, 0x4D, 0x00, 0x2A };
+	BYTE tiff_id1[] = { 0x49, 0x49, 0x2A, 0x00 };	// Classic TIFF, little-endian
+	BYTE tiff_id2[] = { 0x4D, 0x4D, 0x00, 0x2A };	// Classic TIFF, big-endian
+	BYTE tiff_id3[] = { 0x49, 0x49, 0x2B, 0x00 };	// Big TIFF, little-endian
+	BYTE tiff_id4[] = { 0x4D, 0x4D, 0x00, 0x2B };	// Big TIFF, big-endian
 	BYTE signature[4] = { 0, 0, 0, 0 };
 
 	io->read_proc(signature, 1, 4, handle);
 
 	if(memcmp(tiff_id1, signature, 4) == 0)
 		return TRUE;
-
 	if(memcmp(tiff_id2, signature, 4) == 0)
+		return TRUE;
+	if(memcmp(tiff_id3, signature, 4) == 0)
+		return TRUE;
+	if(memcmp(tiff_id4, signature, 4) == 0)
 		return TRUE;
 
 	return FALSE;
@@ -1053,6 +1057,8 @@ Open(FreeImageIO *io, fi_handle handle, BOOL read) {
 	if (read) {
 		fio->tif = TIFFFdOpen((thandle_t)fio, "", "r");
 	} else {
+		// mode = "w"	: write Classic TIFF
+		// mode = "w8"	: write Big TIFF
 		fio->tif = TIFFFdOpen((thandle_t)fio, "", "w");
 	}
 	if(fio->tif == NULL) {
@@ -1122,7 +1128,15 @@ IsValidBitsPerSample(uint16 photometric, uint16 bitspersample, uint16 samplesper
 			}
 			break;
 		case 32:
-			return TRUE;
+			if((photometric == PHOTOMETRIC_MINISWHITE) || (photometric == PHOTOMETRIC_MINISBLACK) || (photometric == PHOTOMETRIC_LOGLUV)) { 
+				return TRUE;
+			} else if((photometric == PHOTOMETRIC_RGB) && (samplesperpixel == 3) || (samplesperpixel == 4)) {
+				// RGB[A]F
+				return TRUE;
+			} else {
+				return FALSE;
+			}
+			break;
 		case 64:
 		case 128:
 			if(photometric == PHOTOMETRIC_MINISBLACK) { 
@@ -1223,50 +1237,59 @@ Read embedded thumbnail
 static void 
 ReadThumbnail(FreeImageIO *io, fi_handle handle, void *data, TIFF *tiff, FIBITMAP *dib) {
 	FIBITMAP* thumbnail = NULL;
-
+	
 	// read exif thumbnail (IFD 1) ...
-
-	uint32 exif_offset = 0;
+	
+	/*
+	// this code can cause unwanted recursion causing an overflow, it is thus disabled until we have a better solution
+	// do we really need to read a thumbnail from the Exif segment ? knowing that TIFF store the thumbnail in the subIFD ...
+	// 
+	toff_t exif_offset = 0;
 	if(TIFFGetField(tiff, TIFFTAG_EXIFIFD, &exif_offset)) {
-
-		if(TIFFLastDirectory(tiff) != 0) {
+		
+		if(!TIFFLastDirectory(tiff)) {
 			// save current position
-			long tell_pos = io->tell_proc(handle);
-			uint16 cur_dir = TIFFCurrentDirectory(tiff);
-
+			const long tell_pos = io->tell_proc(handle);
+			const uint16 cur_dir = TIFFCurrentDirectory(tiff);
+			
 			// load the thumbnail
-			int page = 1; 
+			int page = 1;
 			int flags = TIFF_DEFAULT;
 			thumbnail = Load(io, handle, page, flags, data);
-			// store the thumbnail (remember to release it later ...)
+			// store the thumbnail (remember to release it before return)
 			FreeImage_SetThumbnail(dib, thumbnail);
-
+			
 			// restore current position
 			io->seek_proc(handle, tell_pos, SEEK_SET);
 			TIFFSetDirectory(tiff, cur_dir);
 		}
 	}
-
+	*/
+	
 	// ... or read the first subIFD
-
+	
 	if(!thumbnail) {
 		uint16 subIFD_count = 0;
-		uint64* subIFD_offsets = NULL;
-		// ### Theoretically this should also read the first subIFD from a Photoshop-created file with "pyramid".
-		// It does not however - the tag is there (using Tag Viewer app) but libtiff refuses to read it
+		toff_t* subIFD_offsets = NULL;
+		
+		// This will also read the first (and only) subIFD from a Photoshop-created "pyramid" file.
+		// Subsequent, smaller images are 'nextIFD' in that subIFD. Currently we only load the first one. 
+		
 		if(TIFFGetField(tiff, TIFFTAG_SUBIFD, &subIFD_count, &subIFD_offsets)) {
 			if(subIFD_count > 0) {
 				// save current position
-				long tell_pos = io->tell_proc(handle);
-				uint16 cur_dir = TIFFCurrentDirectory(tiff);
+				const long tell_pos = io->tell_proc(handle);
+				const uint16 cur_dir = TIFFCurrentDirectory(tiff);
+				
 				if(TIFFSetSubDirectory(tiff, subIFD_offsets[0])) {
 					// load the thumbnail
 					int page = -1; 
 					int flags = TIFF_DEFAULT;
 					thumbnail = Load(io, handle, page, flags, data);
-					// store the thumbnail (remember to release it later ...)
+					// store the thumbnail (remember to release it before return)
 					FreeImage_SetThumbnail(dib, thumbnail);
 				}
+				
 				// restore current position
 				io->seek_proc(handle, tell_pos, SEEK_SET);
 				TIFFSetDirectory(tiff, cur_dir);
@@ -1275,17 +1298,17 @@ ReadThumbnail(FreeImageIO *io, fi_handle handle, void *data, TIFF *tiff, FIBITMA
 	}
 	
 	// ... or read Photoshop thumbnail
-
+	
 	if(!thumbnail) {
 		uint32 ps_size = 0;
 		void *ps_data = NULL;
-
+		
 		if(TIFFGetField(tiff, TIFFTAG_PHOTOSHOP, &ps_size, &ps_data)) {
 			FIMEMORY *handle = FreeImage_OpenMemory((BYTE*)ps_data, ps_size);
-
+			
 			FreeImageIO io;
 			SetMemoryIO(&io);
-		
+			
 			psdParser parser;
 			parser.ReadImageResources(&io, handle, ps_size);
 
@@ -1293,9 +1316,8 @@ ReadThumbnail(FreeImageIO *io, fi_handle handle, void *data, TIFF *tiff, FIBITMA
 			
 			FreeImage_CloseMemory(handle);
 		}
-		
 	}
-
+	
 	// release thumbnail
 	FreeImage_Unload(thumbnail);
 }
@@ -1882,6 +1904,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 				if(buf == NULL) {
 					throw FI_MSG_ERROR_MEMORY;
 				}
+				memset(buf, 0, TIFFStripSize(tif) * sizeof(BYTE));
 				
 				BOOL bThrowMessage = FALSE;
 				
@@ -2019,8 +2042,8 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 
 				// calculate src line and dst pitch
 				int dst_pitch = FreeImage_GetPitch(dib);
-				int tileRowSize = TIFFTileRowSize(tif);
-				int imageRowSize = TIFFScanlineSize(tif);
+				uint32 tileRowSize = (uint32)TIFFTileRowSize(tif);
+				uint32 imageRowSize = (uint32)TIFFScanlineSize(tif);
 
 
 				// In the tiff file the lines are saved from up to down 
@@ -2028,11 +2051,10 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 
 				BYTE *bits = FreeImage_GetScanLine(dib, height - 1);
 				
-				uint32 x, y, rowSize;
-				for (y = 0; y < height; y += tileHeight) {						
+				for (uint32 y = 0; y < height; y += tileHeight) {						
 					int32 nrows = (y + tileHeight > height ? height - y : tileHeight);					
 
-					for (x = 0, rowSize = 0; x < width; x += tileWidth, rowSize += tileRowSize) {
+					for (uint32 x = 0, rowSize = 0; x < width; x += tileWidth, rowSize += tileRowSize) {
 						memset(tileBuffer, 0, tileSize);
 
 						// read one tile
@@ -2205,23 +2227,30 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 
 			throw FI_MSG_ERROR_UNSUPPORTED_FORMAT;
 		}
-
-		// copy ICC profile data (must be done after FreeImage_Allocate)
-
-		FreeImage_CreateICCProfile(dib, iccBuf, iccSize);		
-		if (photometric == PHOTOMETRIC_SEPARATED && asCMYK) {
-			FreeImage_GetICCProfile(dib)->flags |= FIICC_COLOR_IS_CMYK;
-		}			
-
+		
 		// copy TIFF metadata (must be done after FreeImage_Allocate)
 
-		ReadMetadata(tif, dib);
+		ReadMetadata(io, handle, tif, dib);
+
+		// copy ICC profile data (must be done after FreeImage_Allocate)
+		
+		FreeImage_CreateICCProfile(dib, iccBuf, iccSize);
+		if (photometric == PHOTOMETRIC_SEPARATED) {
+			if (asCMYK) {
+				// set the ICC profile as CMYK
+				FreeImage_GetICCProfile(dib)->flags |= FIICC_COLOR_IS_CMYK;
+			}
+			else {
+				// if original image is CMYK but is converted to RGB, remove ICC profile from Exif-TIFF metadata
+				FreeImage_SetMetadata(FIMD_EXIF_MAIN, dib, "InterColorProfile", NULL);
+			}
+		}
 
 		// copy TIFF thumbnail (must be done after FreeImage_Allocate)
 		
 		ReadThumbnail(io, handle, data, tif, dib);
 
-		return (FIBITMAP *)dib;
+		return dib;
 
 	} catch (const char *message) {			
 		if(dib)	{
@@ -2237,6 +2266,19 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 
 // --------------------------------------------------------------------------
 
+/**
+Save a single image into a TIF
+
+@param io FreeImage IO
+@param dib The dib to be saved
+@param handle FreeImage handle
+@param page Page number
+@param flags FreeImage TIFF save flag
+@param data TIFF plugin context
+@param ifd TIFF Image File Directory (0 means save image, > 0 && (page == -1) means save thumbnail)
+@param ifdCount 1 if no thumbnail to save, 2 if image + thumbnail to save
+@return Returns TRUE if successful, returns FALSE otherwise
+*/
 static BOOL 
 SaveOneTIFF(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void *data, unsigned ifd, unsigned ifdCount) {
 	if (!dib || !handle || !data) {
@@ -2609,6 +2651,10 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 void DLL_CALLCONV
 InitTIFF(Plugin *plugin, int format_id) {
 	s_format_id = format_id;
+
+    // Set up the callback for extended TIFF directory tag support (see XTIFF.cpp)
+	// Must be called before using libtiff
+    XTIFFInitialize();	
 
 	plugin->format_proc = Format;
 	plugin->description_proc = Description;

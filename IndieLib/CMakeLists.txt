@@ -28,6 +28,11 @@ project(IndieLib)
 
 option(USE_OPENGLES "Compile with OpenGL ES support" NO)
 
+option(IndieLib_BUILD_STATIC "Build IndieLib as a static library. Otherwise it is built as a shared library." OFF)
+
+option (USE_OPENGL "Use OpenGL for rendering." ON)
+
+
 # this is only for testing the linux output dir (run cmake ../ -G "Unix Makefiles" in the "bin" dir)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/linux)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/linux)
@@ -71,8 +76,6 @@ set ( SRC	${CMAKE_CURRENT_SOURCE_DIR}/common/src/CollisionParser.cpp
 file ( GLOB INC common/include/*.h common/include/*.hpp common/src/*.h common/src/*.hpp )
 
 set( CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules" )
-
-option (USE_OPENGL "Use OpenGL for rendering." ON)
 
 if (USE_OPENGL)
 	find_package(OpenGL REQUIRED)
@@ -132,6 +135,8 @@ set ( GLEW_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/common/dependencies/glew-1.9.
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/common/dependencies/freetype-2.9)
 set ( freetype_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/common/dependencies/freetype-2.9/include)
 
+add_subdirectory(common/dependencies/SpriterParser)
+
 
 
 if (USE_OPENGLES)
@@ -142,15 +147,13 @@ if (USE_OPENGLES)
 	endif(NOT OpenGLES_FOUND)
 endif(USE_OPENGLES)
 
-add_subdirectory(common/dependencies/SpriterParser)
-
-option(IndieLib_BUILD_STATIC "Build IndieLib as a static library. Otherwise it is built as a shared library." OFF)
 
 if (IndieLib_BUILD_STATIC)
 	set (IndieLib_BUILD_TYPE STATIC)
 else (IndieLib_BUILD_STATIC)
 	set (IndieLib_BUILD_TYPE SHARED)
 endif (IndieLib_BUILD_STATIC)
+
 
 add_definitions("-fPIC")
 

@@ -158,16 +158,162 @@ add_library( IndieLib ${IndieLib_BUILD_TYPE} ${SRC} ${INC} )
 
 target_link_libraries( IndieLib SpriterParser TinyXML GLEW SDL2 freeimage TmxParser freetype UnitTest++  )
 
+set ( EXETUTORIALSRC01 ${EXETUTORIALSRC01}
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/01_Installing/Tutorial01.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/01_Installing/CIndieLib.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/01_Installing/CIndieLib.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
+)
+add_executable( Tutorial01 ${EXETUTORIALSRC01} ${INC} )
+target_link_libraries( Tutorial01 IndieLib )
 
-set ( EXESRC	${EXESRC}
+set ( EXETUTORIALSRC02 ${EXETUTORIALSRC02}
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/02_IND_Surface/Tutorial02.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/02_IND_Surface/CIndieLib.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/02_IND_Surface/CIndieLib.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
+)
+add_executable( Tutorial02 ${EXETUTORIALSRC02} ${INC} )
+target_link_libraries( Tutorial02 IndieLib )
+
+set ( EXETUTORIALSRC03 ${EXETUTORIALSRC03}
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/03_IND_Image/Tutorial03.cpp
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/03_IND_Image/CIndieLib.cpp
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/03_IND_Image/CIndieLib.h
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
 )
+add_executable( Tutorial03 ${EXETUTORIALSRC03} ${INC} )
+target_link_libraries( Tutorial03 IndieLib )
 
+set ( EXETUTORIALSRC04 ${EXETUTORIALSRC04}
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/04_IND_Animation/Tutorial04.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/04_IND_Animation/CIndieLib.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/04_IND_Animation/CIndieLib.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
+)
+add_executable( Tutorial04 ${EXETUTORIALSRC04} ${INC} )
+target_link_libraries( Tutorial04 IndieLib )
 
+set ( EXETUTORIALSRC05 ${EXETUTORIALSRC05}
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/05_IND_Font/Tutorial05.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/05_IND_Font/CIndieLib.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/05_IND_Font/CIndieLib.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
+)
+add_executable( Tutorial05 ${EXETUTORIALSRC05} ${INC} )
+target_link_libraries( Tutorial05 IndieLib )
 
-add_executable(Tutorial03 ${EXESRC} ${INC})
-target_link_libraries( Tutorial03 IndieLib)
+set ( EXETUTORIALSRC06 ${EXETUTORIALSRC06}
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/06_Primitives/Tutorial06.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/06_Primitives/CIndieLib.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/06_Primitives/CIndieLib.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
+)
+add_executable( Tutorial06 ${EXETUTORIALSRC06} ${INC} )
+target_link_libraries( Tutorial06 IndieLib )
+
+set ( EXETUTORIALSRC07 ${EXETUTORIALSRC07}
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/07_IND_Input/Tutorial07.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/07_IND_Input/CIndieLib.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/07_IND_Input/CIndieLib.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
+)
+add_executable( Tutorial07 ${EXETUTORIALSRC07} ${INC} )
+target_link_libraries( Tutorial07 IndieLib )
+
+set ( EXETUTORIALSRC08 ${EXETUTORIALSRC08}
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/08_Collisions/Tutorial08.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/08_Collisions/CIndieLib.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/08_Collisions/CIndieLib.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
+)
+add_executable( Tutorial08 ${EXETUTORIALSRC08} ${INC} )
+target_link_libraries( Tutorial08 IndieLib )
+
+#set ( EXETUTORIALSRC09 ${EXETUTORIALSRC09}
+#				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/09_IND_3dMesh/Tutorial09.cpp
+#				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/09_IND_3dMesh/CIndieLib.cpp
+#				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/09_IND_3dMesh/CIndieLib.h
+#				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
+#				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
+#)
+#add_executable( Tutorial09 ${EXETUTORIALSRC09} ${INC} )
+#target_link_libraries( Tutorial09 IndieLib )
+
+#set ( EXETUTORIALSRC10 ${EXETUTORIALSRC10}
+#				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/10_IND_Light/Tutorial10.cpp
+#				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/10_IND_Light/CIndieLib.cpp
+#				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/10_IND_Light/CIndieLib.h
+#				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
+#				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
+#)
+#add_executable( Tutorial10 ${EXETUTORIALSRC10} ${INC} )
+#target_link_libraries( Tutorial10 IndieLib )
+
+set ( EXETUTORIALSRC11 ${EXETUTORIALSRC11}
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/11_Animated_Tile_Scrolling/Tutorial11.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/11_Animated_Tile_Scrolling/CIndieLib.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/11_Animated_Tile_Scrolling/CIndieLib.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
+)
+add_executable( Tutorial11 ${EXETUTORIALSRC11} ${INC} )
+target_link_libraries( Tutorial11 IndieLib )
+
+set ( EXETUTORIALSRC13 ${EXETUTORIALSRC13}
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/13_2d_Camera/Tutorial13.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/13_2d_Camera/CIndieLib.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/13_2d_Camera/CIndieLib.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
+)
+add_executable( Tutorial13 ${EXETUTORIALSRC13} ${INC} )
+target_link_libraries( Tutorial13 IndieLib )
+
+#set ( EXETUTORIALSRC14 ${EXETUTORIALSRC14}
+#				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/14_3d_Camera/Tutorial14.cpp
+#				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/14_3d_Camera/CIndieLib.cpp
+#				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/14_3d_Camera/CIndieLib.h
+#				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
+#				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
+#)
+#add_executable( Tutorial14 ${EXETUTORIALSRC14} ${INC} )
+#target_link_libraries( Tutorial14 IndieLib )
+
+set ( EXETUTORIALSRC15 ${EXETUTORIALSRC15}
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/15_Parallax_Scrolling/Tutorial15.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/15_Parallax_Scrolling/CIndieLib.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/15_Parallax_Scrolling/CIndieLib.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
+)
+add_executable( Tutorial15 ${EXETUTORIALSRC15} ${INC} )
+target_link_libraries( Tutorial15 IndieLib )
+
+set ( EXETUTORIALSRC16 ${EXETUTORIALSRC16}
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/16_IND_Timer/Tutorial16.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/16_IND_Timer/CIndieLib.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/16_IND_Timer/CIndieLib.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
+)
+add_executable( Tutorial16 ${EXETUTORIALSRC16} ${INC} )
+target_link_libraries( Tutorial16 IndieLib )
+
+#set ( EXETUTORIALSRC17 ${EXETUTORIALSRC17}
+#				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/17_IND_TTF_Font/Tutorial17.cpp
+#				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/17_IND_TTF_Font/CIndieLib.cpp
+#				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/17_IND_TTF_Font/CIndieLib.h
+#				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
+#				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
+#)
+#add_executable( Tutorial17 ${EXETUTORIALSRC17} ${INC} )
+#target_link_libraries( Tutorial17 IndieLib )

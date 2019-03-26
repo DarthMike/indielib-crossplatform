@@ -28,7 +28,7 @@ project(IndieLib)
 
 option(USE_OPENGLES "Compile with OpenGL ES support" NO)
 
-option(IndieLib_BUILD_STATIC "Build IndieLib as a static library. Otherwise it is built as a shared library." OFF)
+option(IndieLib_BUILD_STATIC "Build IndieLib as a static library. Otherwise it is built as a shared library." ON)
 
 option (USE_OPENGL "Use OpenGL for rendering." ON)
 
@@ -93,7 +93,7 @@ if (USE_OPENGL)
 				${CMAKE_CURRENT_SOURCE_DIR}/common/src/render/opengl/RenderTransform3dOpenGL.cpp
 				${CMAKE_CURRENT_SOURCE_DIR}/common/src/render/opengl/RenderTransformCommonOpenGL.cpp
 				${CMAKE_CURRENT_SOURCE_DIR}/common/src/platform/OSOpenGLManager.cpp
-		)
+		) 
 
 endif (USE_OPENGL)
 
@@ -129,9 +129,6 @@ set ( TmxParser_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/common/dependencies/TmxP
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/common/dependencies/glew-1.9.0)
 set ( GLEW_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/common/dependencies/glew-1.9.0/include)
 
-#add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/common/dependencies/freetype-2.9)
-#set ( freetype_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/common/dependencies/freetype-2.9/include)
-
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/common/dependencies/freetype-2.9)
 set ( freetype_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/common/dependencies/freetype-2.9/include)
 
@@ -150,7 +147,7 @@ endif(USE_OPENGLES)
 
 if (IndieLib_BUILD_STATIC)
 	set (IndieLib_BUILD_TYPE STATIC)
-else (IndieLib_BUILD_STATIC)
+else ()
 	set (IndieLib_BUILD_TYPE SHARED)
 endif (IndieLib_BUILD_STATIC)
 
@@ -159,4 +156,18 @@ add_definitions("-fPIC")
 
 add_library( IndieLib ${IndieLib_BUILD_TYPE} ${SRC} ${INC} )
 
-target_link_libraries( IndieLib SpriterParser TinyXML GLEW SDL2 -LFreeImage TmxParser -LfreeType UnitTest++  )
+target_link_libraries( IndieLib SpriterParser TinyXML GLEW SDL2 freeimage TmxParser freetype UnitTest++  )
+
+
+set ( EXESRC	${EXESRC}
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/03_IND_Image/Tutorial03.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/03_IND_Image/CIndieLib.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/03_IND_Image/CIndieLib.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
+)
+
+
+
+add_executable(Tutorial03 ${EXESRC} ${INC})
+target_link_libraries( Tutorial03 IndieLib)

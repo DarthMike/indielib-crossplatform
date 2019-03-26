@@ -378,4 +378,29 @@ set ( EXE_TUTORIAL_ADVANCED_SRC_06 ${EXE_TUTORIAL_ADVANCED_SRC_06}
 add_executable( Tutorial_Advanced_06 ${EXE_TUTORIAL_ADVANCED_SRC_06} ${INC} )
 target_link_libraries( Tutorial_Advanced_06 IndieLib )
 
+set ( EXE_TUTORIAL_BENCHMARK_SRC_01 ${EXE_TUTORIAL_BENCHMARK_SRC_01}
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/benchmark/01_Alien_BenchMark/Tutorial01.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/benchmark/01_Alien_BenchMark/CTerrain.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/benchmark/01_Alien_BenchMark/CTerrain.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/benchmark/01_Alien_BenchMark/CUfo.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/benchmark/01_Alien_BenchMark/CUfo.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/benchmark/01_Alien_BenchMark/CIndieLib.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/benchmark/01_Alien_BenchMark/CIndieLib.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
+)
+add_executable( Tutorial_Benchmark_01 ${EXE_TUTORIAL_BENCHMARK_SRC_01} ${INC} )
+target_link_libraries( Tutorial_Benchmark_01 IndieLib )
+
+set ( EXE_TUTORIAL_BENCHMARK_SRC_02 ${EXE_TUTORIAL_BENCHMARK_SRC_02}
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/benchmark/02_Rabbits_BenchMark/Tutorial02.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/benchmark/02_Rabbits_BenchMark/CRabbit.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/benchmark/02_Rabbits_BenchMark/CRabbit.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/benchmark/02_Rabbits_BenchMark/CIndieLib.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/benchmark/02_Rabbits_BenchMark/CIndieLib.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
+)
+add_executable( Tutorial_Benchmark_02 ${EXE_TUTORIAL_BENCHMARK_SRC_02} ${INC} )
+target_link_libraries( Tutorial_Benchmark_02 IndieLib )
 

@@ -29,8 +29,8 @@
 
 
 #include "CIndieLib.h"
-#include "IND_Entity2D.h"
-#include "IND_Spriterentity.h"
+#include "IND_Entity2d.h"
+#include "IND_SpriterEntity.h"
 #include "IND_Font.h"
 #include "../../WorkingPath.h"
 

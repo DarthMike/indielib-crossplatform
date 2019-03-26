@@ -308,7 +308,7 @@ set ( EXETUTORIALSRC16 ${EXETUTORIALSRC16}
 add_executable( Tutorial16 ${EXETUTORIALSRC16} ${INC} )
 target_link_libraries( Tutorial16 IndieLib )
 
-#set ( EXETUTORIALSRC17 ${EXETUTORIALSRC17}
+#set ( EXETUTORIALSRC17 ${EXETUTORIALSRC17}  //FIXME
 #				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/17_IND_TTF_Font/Tutorial17.cpp
 #				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/17_IND_TTF_Font/CIndieLib.cpp
 #				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/17_IND_TTF_Font/CIndieLib.h
@@ -317,3 +317,65 @@ target_link_libraries( Tutorial16 IndieLib )
 #)
 #add_executable( Tutorial17 ${EXETUTORIALSRC17} ${INC} )
 #target_link_libraries( Tutorial17 IndieLib )
+
+set ( EXE_TUTORIAL_ADVANCED_SRC_01 ${EXE_TUTORIAL_ADVANCED_SRC_01}
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/advanced/01_IND_Surface_Grids/Tutorial01.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/advanced/01_IND_Surface_Grids/CIndieLib.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/advanced/01_IND_Surface_Grids/CIndieLib.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
+)
+add_executable( Tutorial_Advanced_01 ${EXE_TUTORIAL_ADVANCED_SRC_01} ${INC} )
+target_link_libraries( Tutorial_Advanced_01 IndieLib )
+
+set ( EXE_TUTORIAL_ADVANCED_SRC_02 ${EXE_TUTORIAL_ADVANCED_SRC_02}
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/advanced/02_Blitting_2d_Directly/Tutorial02.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/advanced/02_Blitting_2d_Directly/CIndieLib.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/advanced/02_Blitting_2d_Directly/CIndieLib.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
+)
+add_executable( Tutorial_Advanced_02 ${EXE_TUTORIAL_ADVANCED_SRC_02} ${INC} )
+target_link_libraries( Tutorial_Advanced_02 IndieLib )
+
+#set ( EXE_TUTORIAL_ADVANCED_SRC_03 ${EXE_TUTORIAL_ADVANCED_SRC_03}
+#				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/advanced/03_Blitting_3d_Directly/Tutorial03.cpp
+#				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/advanced/03_Blitting_3d_Directly/CIndieLib.cpp
+#				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/advanced/03_Blitting_3d_Directly/CIndieLib.h
+#				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
+#				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
+#)
+#add_executable( Tutorial_Advanced_03 ${EXE_TUTORIAL_ADVANCED_SRC_03} ${INC} )
+#target_link_libraries( Tutorial_Advanced_03 IndieLib )
+
+set ( EXE_TUTORIAL_ADVANCED_SRC_04 ${EXE_TUTORIAL_ADVANCED_SRC_04}
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/advanced/04_Several_ViewPorts/Tutorial04.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/advanced/04_Several_ViewPorts/CIndieLib.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/advanced/04_Several_ViewPorts/CIndieLib.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
+)
+add_executable( Tutorial_Advanced_04 ${EXE_TUTORIAL_ADVANCED_SRC_04} ${INC} )
+target_link_libraries( Tutorial_Advanced_04 IndieLib )
+
+set ( EXE_TUTORIAL_ADVANCED_SRC_05 ${EXE_TUTORIAL_ADVANCED_SRC_05}
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/advanced/05_IND_TmxMap/Tutorial05.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/advanced/05_IND_TmxMap/CIndieLib.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/advanced/05_IND_TmxMap/CIndieLib.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
+)
+add_executable( Tutorial_Advanced_05 ${EXE_TUTORIAL_ADVANCED_SRC_05} ${INC} )
+target_link_libraries( Tutorial_Advanced_05 IndieLib )
+
+set ( EXE_TUTORIAL_ADVANCED_SRC_06 ${EXE_TUTORIAL_ADVANCED_SRC_06}
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/advanced/06_Spriter/Tutorial06.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/advanced/06_Spriter/CIndieLib.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/advanced/06_Spriter/CIndieLib.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
+)
+add_executable( Tutorial_Advanced_06 ${EXE_TUTORIAL_ADVANCED_SRC_06} ${INC} )
+target_link_libraries( Tutorial_Advanced_06 IndieLib )
+
+

@@ -36,7 +36,7 @@
 #include "CIndieLib.h"
 #include "dependencies/tinyxml/tinyxml.h"
 #include "Defines.h"
-#include "Ind_Font.h"
+#include "IND_Font.h"
 #include <vector>
 using namespace std; 
 

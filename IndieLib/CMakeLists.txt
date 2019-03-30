@@ -404,3 +404,20 @@ set ( EXE_TUTORIAL_BENCHMARK_SRC_02 ${EXE_TUTORIAL_BENCHMARK_SRC_02}
 add_executable( Tutorial_Benchmark_02 ${EXE_TUTORIAL_BENCHMARK_SRC_02} ${INC} )
 target_link_libraries( Tutorial_Benchmark_02 IndieLib )
 
+# TODO: WIN specific use of [MAX_PATH] ... DarthMike fixed this in workinpath class for about 4 years ago .... must take a closer look when im not so tired =(
+#set ( EXE_TOOL_TILELESS_EDITOR_SRC ${EXE_TOOL_TILELESS_EDITOR_SRC}
+#                ${CMAKE_CURRENT_SOURCE_DIR}/tools/editor_tileless/Main.cpp
+#				${CMAKE_CURRENT_SOURCE_DIR}/tools/editor_tileless/EditorMap.cpp
+#				${CMAKE_CURRENT_SOURCE_DIR}/tools/editor_tileless/EditorMap.h
+#				${CMAKE_CURRENT_SOURCE_DIR}/tools/editor_tileless/Listener.cpp
+#				${CMAKE_CURRENT_SOURCE_DIR}/tools/editor_tileless/Listener.h
+#				${CMAKE_CURRENT_SOURCE_DIR}/tools/editor_tileless/Node.cpp
+#                ${CMAKE_CURRENT_SOURCE_DIR}/tools/editor_tileless/Node.h
+#                ${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
+#				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
+#                ${CMAKE_CURRENT_SOURCE_DIR}/tools/editor_tileless/Resources.cpp
+#				${CMAKE_CURRENT_SOURCE_DIR}/tools/editor_tileless/Resources.h
+#)
+#add_executable( Tool_Tileless_Editor ${EXE_TOOL_TILELESS_EDITOR_SRC} ${INC} )
+#target_link_libraries( Tool_Tileless_Editor IndieLib )
+

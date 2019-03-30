@@ -34,7 +34,7 @@
 // ------ Includes -----
 
 #include <vector>
-#include "dependencies/tinyXml/tinyxml.h"
+#include "dependencies/tinyxml/tinyxml.h"
 #include "Resources.h"
 #include "Node.h"
 #include "CIndieLib.h"

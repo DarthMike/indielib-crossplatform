@@ -32,7 +32,7 @@
 #define _EDITOR_DEFINES_
 
 #include "IndiePlatforms.h"
-#include "Ind_Entity2d.h"
+#include "IND_Entity2d.h"
 #include "IND_Surface.h"
 
 

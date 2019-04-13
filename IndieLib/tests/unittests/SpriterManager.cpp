@@ -13,7 +13,7 @@
  */
 
 #include "dependencies/unittest++/src/UnitTest++.h"
-#include "CIndieLib.h"
+#include "../CIndieLib.h"
 #include "IND_SpriterEntity.h"
 
 struct fixture {

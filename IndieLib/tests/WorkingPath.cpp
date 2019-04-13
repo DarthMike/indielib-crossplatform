@@ -22,8 +22,6 @@
  * distribution.
  *
  *****************************************************************************************/
-
-
 #include "Defines.h"
 #include "WorkingPath.h"
 #include <string.h>
@@ -42,6 +40,7 @@
 #endif //PLATFORM_WIN32
 
 #ifdef PLATFORM_LINUX
+#include <unistd.h>
 #include <stdio.h>
 #endif //PLATFORM_LINUX
 
@@ -72,8 +71,12 @@ const char* WorkingPathSetup::resourcesDirectory() {
     strcat(g_resourcesDir, "/../Resources/assets");
 #endif
     
-#if defined (PLATFORM_WIN32) || defined (PLATFORM_LINUX)
+#if defined (PLATFORM_WIN32)
     strcat(g_resourcesDir, "/../../assets");
+#endif
+
+#if defined (PLATFORM_LINUX)
+    strcat(g_resourcesDir, "../../assets");
 #endif
     
     return g_resourcesDir;

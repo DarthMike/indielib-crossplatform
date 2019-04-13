@@ -421,3 +421,26 @@ target_link_libraries( Tutorial_Benchmark_02 IndieLib )
 #add_executable( Tool_Tileless_Editor ${EXE_TOOL_TILELESS_EDITOR_SRC} ${INC} )
 #target_link_libraries( Tool_Tileless_Editor IndieLib )
 
+
+enable_testing ()
+set ( EXE_UNITTESTS_ALL_SRC ${EXE_UNITTESTS_ALL_SRC}
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/unittests/UnitTests.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/unittests/Collisions.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/unittests/FontManager.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/unittests/Image.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/unittests/ImageManager.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/unittests/Math.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/unittests/SpriterManager.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/unittests/SurfaceManager.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/unittests/Vector2.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/WorkingPath.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/WorkingPath.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/CIndieLib.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/CIndieLib.h
+
+)
+add_executable( Unittests_all ${EXE_UNITTESTS_ALL_SRC} ${INC} )
+target_link_libraries( Unittests_all IndieLib )
+add_test (NAME Unittests COMMAND Unittests_all)
+
+

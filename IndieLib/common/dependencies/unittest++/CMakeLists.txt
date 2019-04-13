@@ -34,6 +34,7 @@ set ( SRC	src/AssertException.cpp
 			src/TestDetails.cpp
 			src/TestList.cpp
 			src/TestReporter.cpp
+            src/TestReporterStdout.cpp
 			src/TestResults.cpp
 			src/TestRunner.cpp
 			src/TimeConstraint.cpp

@@ -31,7 +31,7 @@
 #ifndef _CAMERA2DTESTS_
 #define _CAMERA2DTESTS_
 
-#include "manual/ManualTests.h"
+#include "../ManualTests.h"
 
 class IND_Camera2d;
 

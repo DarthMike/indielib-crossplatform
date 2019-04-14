@@ -421,9 +421,63 @@ target_link_libraries( Tutorial_Benchmark_02 IndieLib )
 #add_executable( Tool_Tileless_Editor ${EXE_TOOL_TILELESS_EDITOR_SRC} ${INC} )
 #target_link_libraries( Tool_Tileless_Editor IndieLib )
 
+set ( EXE_MANUALTESTS_SRC ${EXE_MANUALTESTS_SRC}
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/ManualTests.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/ManualTestsMain.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/TmxmapTests.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/TmxmapTests.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/animation/AnimationTests.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/animation/AnimationTests.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/camera2d/Camera2dTests.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/camera2d/Camera2dTests.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/collision/CollisionTests.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/collision/CollisionTests.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/entities/EntityTests_animateRotations.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/entities/EntityTests_animateRotations.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/entities/EntityTests_animateScale.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/entities/EntityTests_animateScale.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/entities/EntityTests_interactions.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/entities/EntityTests_interactions.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/font/FontTests.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/font/FontTests.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/font/FontTests_Pretty.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/font/FontTests_Pretty.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/functionality/FunctionalityTests.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/functionality/FunctionalityTests.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/image/INDImageTests_Conversions.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/image/INDImageTests_Conversions.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/image/INDImageTests_Conversions_NonRGB.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/image/INDImageTests_Conversions_NonRGB.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/image/INDImageTests_nonPOTLoad.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/image/INDImageTests_nonPOTLoad.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/image/INDImageTests_POTLoad.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/image/INDImageTests_POTLoad.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/primitives/PrimitiveTests.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/primitives/PrimitiveTests.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/surface/SurfaceTests.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/surface/SurfaceTests.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/surface/SurfaceTests_Filters.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/surface/SurfaceTests_Filters.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/surface/SurfaceTests_layout.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/surface/SurfaceTests_layout.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/surface/SurfaceTests_textBlock.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/surface/SurfaceTests_textBlock.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/surface/SurfaceTests_wrap.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/manual/surface/SurfaceTests_wrap.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/WorkingPath.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/WorkingPath.h
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/CIndieLib.cpp
+				${CMAKE_CURRENT_SOURCE_DIR}/tests/CIndieLib.h
+)
+add_executable( Tests_Manual ${EXE_MANUALTESTS_SRC} ${INC} )
+target_link_libraries( Tests_Manual IndieLib )
+
+
+
+
 
 enable_testing ()
-set ( EXE_UNITTESTS_ALL_SRC ${EXE_UNITTESTS_ALL_SRC}
+set ( EXE_TESTS_UNITTESTS_SRC ${EXE_TESTS_UNITTESTS_SRC}
 				${CMAKE_CURRENT_SOURCE_DIR}/tests/unittests/UnitTests.cpp
 				${CMAKE_CURRENT_SOURCE_DIR}/tests/unittests/Collisions.cpp
 				${CMAKE_CURRENT_SOURCE_DIR}/tests/unittests/FontManager.cpp
@@ -439,8 +493,8 @@ set ( EXE_UNITTESTS_ALL_SRC ${EXE_UNITTESTS_ALL_SRC}
 				${CMAKE_CURRENT_SOURCE_DIR}/tests/CIndieLib.h
 
 )
-add_executable( Unittests_all ${EXE_UNITTESTS_ALL_SRC} ${INC} )
-target_link_libraries( Unittests_all IndieLib )
-add_test (NAME Unittests COMMAND Unittests_all)
+add_executable( Tests_Unittests ${EXE_TESTS_UNITTESTS_SRC} ${INC} )
+target_link_libraries( Tests_Unittests IndieLib )
+add_test (NAME Unittests COMMAND Tests_Unittests)
 
 

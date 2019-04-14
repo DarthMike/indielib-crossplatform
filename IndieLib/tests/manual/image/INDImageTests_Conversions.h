@@ -31,7 +31,7 @@
 #ifndef _INDImageTests_Conversions_
 #define _INDImageTests_Conversions_
 
-#include "manual/ManualTests.h"
+#include "../ManualTests.h"
 
 class IND_Surface;
 class IND_Image;

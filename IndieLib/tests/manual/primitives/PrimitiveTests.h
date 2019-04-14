@@ -31,7 +31,7 @@
 #ifndef _PRIMITIVETESTS_
 #define _PRIMITIVETESTS_
 
-#include "manual/ManualTests.h"
+#include "../ManualTests.h"
 
 class IND_Entity2d;
 

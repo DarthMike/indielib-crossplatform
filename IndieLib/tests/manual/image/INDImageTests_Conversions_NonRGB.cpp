@@ -28,7 +28,7 @@
  *****************************************************************************************/
 
 
-#include "CIndieLib.h"
+#include "../../CIndieLib.h"
 #include "INDImageTests_Conversions_NonRGB.h"
 #include "IND_Surface.h"
 #include "IND_Entity2d.h"

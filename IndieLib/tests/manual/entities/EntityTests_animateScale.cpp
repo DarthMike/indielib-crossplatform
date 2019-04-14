@@ -28,7 +28,7 @@
  *****************************************************************************************/
 
 
-#include "CIndieLib.h"
+#include "../../CIndieLib.h"
 #include "EntityTests_animateScale.h"
 #include "IND_Animation.h"
 #include "IND_Entity2d.h"

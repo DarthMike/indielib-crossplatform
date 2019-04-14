@@ -28,7 +28,7 @@
  *****************************************************************************************/
 
 
-#include "CIndieLib.h"
+#include "../../CIndieLib.h"
 #include "Camera2dTests.h"
 #include "IND_Entity2d.h"
 

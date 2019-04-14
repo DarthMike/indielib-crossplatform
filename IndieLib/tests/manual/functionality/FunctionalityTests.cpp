@@ -28,7 +28,7 @@
  *****************************************************************************************/
 
 
-#include "CIndieLib.h"
+#include "../../CIndieLib.h"
 #include "FunctionalityTests.h"
 
 static const float g_testingInterval = 500.f;

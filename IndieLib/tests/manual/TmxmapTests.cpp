@@ -28,11 +28,11 @@
  *****************************************************************************************/
 
 
-#include "CIndieLib.h"
+#include "../CIndieLib.h"
 #include "TmxmapTests.h"
 #include "IND_TmxMap.h"
 #include "IND_Surface.h"
-#include "IND_Entity2D.h"
+#include "IND_Entity2d.h"
 #include "IND_Font.h"
 
 #include "../WorkingPath.h"

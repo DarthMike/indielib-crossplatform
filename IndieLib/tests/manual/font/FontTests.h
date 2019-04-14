@@ -31,7 +31,7 @@
 #ifndef _FontTests_
 #define _FontTests_
 
-#include "manual/ManualTests.h"
+#include "../ManualTests.h"
 
 class IND_Font;
 class IND_Entity2d;

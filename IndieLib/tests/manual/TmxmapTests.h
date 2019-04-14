@@ -27,7 +27,7 @@
 #ifndef _TMXMAPTESTS_
 #define _TMXMAPTESTS_
 
-#include "manual/ManualTests.h"
+#include "ManualTests.h"
 
 class TmxmapTests : public ManualTests {
 public:

@@ -31,7 +31,7 @@
 #ifndef _EntityTests_animateRotations_
 #define _EntityTests_animateRotations_
 
-#include "manual/ManualTests.h"
+#include "../ManualTests.h"
 
 class IND_Surface;
 class IND_Entity2d;

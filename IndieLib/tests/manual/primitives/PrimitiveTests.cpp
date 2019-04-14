@@ -28,7 +28,7 @@
  *****************************************************************************************/
 
 
-#include "CIndieLib.h"
+#include "../../CIndieLib.h"
 #include "PrimitiveTests.h"
 #include "IND_Entity2d.h"
 

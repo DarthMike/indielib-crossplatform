@@ -51,7 +51,7 @@
  *****************************************************************************************/
 
 
-#include "CIndieLib.h"
+#include "../CIndieLib.h"
 #include <vector>
 
 //Leaks control
@@ -60,12 +60,12 @@
 #endif
 
 //Working path utility
-#include "WorkingPath.h"
+#include "../WorkingPath.h"
 
 #include "IndiePlatforms.h"
 
 //Tests
-#include "manual/ManualTests.h"
+#include "ManualTests.h"
 #include "functionality/FunctionalityTests.h"
 #include "primitives/PrimitiveTests.h"
 #include "camera2d/Camera2dTests.h"

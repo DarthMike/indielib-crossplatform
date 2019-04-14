@@ -29,7 +29,7 @@
  *****************************************************************************************/
 
 
-#include "CIndieLib.h"
+#include "../../CIndieLib.h"
 #include "SurfaceTests_Filters.h"
 #include "IND_Surface.h"
 #include "IND_Entity2d.h"

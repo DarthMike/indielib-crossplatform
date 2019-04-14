@@ -28,7 +28,7 @@
  *****************************************************************************************/
 
 
-#include "CIndieLib.h"
+#include "../../CIndieLib.h"
 #include "FontTests.h"
 #include "IND_Font.h"
 #include "IND_Entity2d.h"

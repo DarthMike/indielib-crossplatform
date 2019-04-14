@@ -31,7 +31,7 @@
 #ifndef _SurfaceTests_layout_
 #define _SurfaceTests_layout_
 
-#include "manual/ManualTests.h"
+#include "../ManualTests.h"
 
 class IND_Surface;
 class IND_Entity2d;

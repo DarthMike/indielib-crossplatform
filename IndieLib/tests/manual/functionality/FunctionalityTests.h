@@ -31,7 +31,7 @@
 #ifndef _FUNCTIONALITYTESTS_
 #define _FUNCTIONALITYTESTS_
 
-#include "manual/ManualTests.h"
+#include "../ManualTests.h"
 
 class FunctionalityTests : public ManualTests {
 public:

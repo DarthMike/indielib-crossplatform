@@ -31,7 +31,7 @@
 #ifndef _CollisionTests_
 #define _CollisionTests_
 
-#include "manual/ManualTests.h"
+#include "../ManualTests.h"
 
 class IND_Surface;
 class IND_Entity2d;

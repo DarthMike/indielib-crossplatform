@@ -165,8 +165,8 @@ set ( EXETUTORIALSRC01 ${EXETUTORIALSRC01}
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
 )
-add_executable( Tutorial01 ${EXETUTORIALSRC01} ${INC} )
-target_link_libraries( Tutorial01 IndieLib )
+add_executable( Tutorial_Basic_01 ${EXETUTORIALSRC01} ${INC} )
+target_link_libraries( Tutorial_Basic_01 IndieLib )
 
 set ( EXETUTORIALSRC02 ${EXETUTORIALSRC02}
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/02_IND_Surface/Tutorial02.cpp
@@ -175,8 +175,8 @@ set ( EXETUTORIALSRC02 ${EXETUTORIALSRC02}
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
 )
-add_executable( Tutorial02 ${EXETUTORIALSRC02} ${INC} )
-target_link_libraries( Tutorial02 IndieLib )
+add_executable( Tutorial_Basic_02 ${EXETUTORIALSRC02} ${INC} )
+target_link_libraries( Tutorial_Basic_02 IndieLib )
 
 set ( EXETUTORIALSRC03 ${EXETUTORIALSRC03}
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/03_IND_Image/Tutorial03.cpp
@@ -185,8 +185,8 @@ set ( EXETUTORIALSRC03 ${EXETUTORIALSRC03}
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
 )
-add_executable( Tutorial03 ${EXETUTORIALSRC03} ${INC} )
-target_link_libraries( Tutorial03 IndieLib )
+add_executable( Tutorial_Basic_03 ${EXETUTORIALSRC03} ${INC} )
+target_link_libraries( Tutorial_Basic_03 IndieLib )
 
 set ( EXETUTORIALSRC04 ${EXETUTORIALSRC04}
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/04_IND_Animation/Tutorial04.cpp
@@ -195,8 +195,8 @@ set ( EXETUTORIALSRC04 ${EXETUTORIALSRC04}
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
 )
-add_executable( Tutorial04 ${EXETUTORIALSRC04} ${INC} )
-target_link_libraries( Tutorial04 IndieLib )
+add_executable( Tutorial_Basic_04 ${EXETUTORIALSRC04} ${INC} )
+target_link_libraries( Tutorial_Basic_04 IndieLib )
 
 set ( EXETUTORIALSRC05 ${EXETUTORIALSRC05}
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/05_IND_Font/Tutorial05.cpp
@@ -205,8 +205,8 @@ set ( EXETUTORIALSRC05 ${EXETUTORIALSRC05}
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
 )
-add_executable( Tutorial05 ${EXETUTORIALSRC05} ${INC} )
-target_link_libraries( Tutorial05 IndieLib )
+add_executable( Tutorial_Basic_05 ${EXETUTORIALSRC05} ${INC} )
+target_link_libraries( Tutorial_Basic_05 IndieLib )
 
 set ( EXETUTORIALSRC06 ${EXETUTORIALSRC06}
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/06_Primitives/Tutorial06.cpp
@@ -215,8 +215,8 @@ set ( EXETUTORIALSRC06 ${EXETUTORIALSRC06}
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
 )
-add_executable( Tutorial06 ${EXETUTORIALSRC06} ${INC} )
-target_link_libraries( Tutorial06 IndieLib )
+add_executable( Tutorial_Basic_06 ${EXETUTORIALSRC06} ${INC} )
+target_link_libraries( Tutorial_Basic_06 IndieLib )
 
 set ( EXETUTORIALSRC07 ${EXETUTORIALSRC07}
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/07_IND_Input/Tutorial07.cpp
@@ -225,8 +225,8 @@ set ( EXETUTORIALSRC07 ${EXETUTORIALSRC07}
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
 )
-add_executable( Tutorial07 ${EXETUTORIALSRC07} ${INC} )
-target_link_libraries( Tutorial07 IndieLib )
+add_executable( Tutorial_Basic_07 ${EXETUTORIALSRC07} ${INC} )
+target_link_libraries( Tutorial_Basic_07 IndieLib )
 
 set ( EXETUTORIALSRC08 ${EXETUTORIALSRC08}
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/08_Collisions/Tutorial08.cpp
@@ -235,8 +235,8 @@ set ( EXETUTORIALSRC08 ${EXETUTORIALSRC08}
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
 )
-add_executable( Tutorial08 ${EXETUTORIALSRC08} ${INC} )
-target_link_libraries( Tutorial08 IndieLib )
+add_executable( Tutorial_Basic_08 ${EXETUTORIALSRC08} ${INC} )
+target_link_libraries( Tutorial_Basic_08 IndieLib )
 
 #set ( EXETUTORIALSRC09 ${EXETUTORIALSRC09}
 #				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/09_IND_3dMesh/Tutorial09.cpp
@@ -245,8 +245,8 @@ target_link_libraries( Tutorial08 IndieLib )
 #				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
 #				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
 #)
-#add_executable( Tutorial09 ${EXETUTORIALSRC09} ${INC} )
-#target_link_libraries( Tutorial09 IndieLib )
+#add_executable( Tutorial_Basic_09 ${EXETUTORIALSRC09} ${INC} )
+#target_link_libraries( Tutorial_Basic_09 IndieLib )
 
 #set ( EXETUTORIALSRC10 ${EXETUTORIALSRC10}
 #				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/10_IND_Light/Tutorial10.cpp
@@ -255,8 +255,8 @@ target_link_libraries( Tutorial08 IndieLib )
 #				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
 #				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
 #)
-#add_executable( Tutorial10 ${EXETUTORIALSRC10} ${INC} )
-#target_link_libraries( Tutorial10 IndieLib )
+#add_executable( Tutorial_Basic_10 ${EXETUTORIALSRC10} ${INC} )
+#target_link_libraries( Tutorial_Basic_10 IndieLib )
 
 set ( EXETUTORIALSRC11 ${EXETUTORIALSRC11}
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/11_Animated_Tile_Scrolling/Tutorial11.cpp
@@ -265,8 +265,8 @@ set ( EXETUTORIALSRC11 ${EXETUTORIALSRC11}
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
 )
-add_executable( Tutorial11 ${EXETUTORIALSRC11} ${INC} )
-target_link_libraries( Tutorial11 IndieLib )
+add_executable( Tutorial_Basic_11 ${EXETUTORIALSRC11} ${INC} )
+target_link_libraries( Tutorial_Basic_11 IndieLib )
 
 set ( EXETUTORIALSRC13 ${EXETUTORIALSRC13}
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/13_2d_Camera/Tutorial13.cpp
@@ -275,8 +275,8 @@ set ( EXETUTORIALSRC13 ${EXETUTORIALSRC13}
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
 )
-add_executable( Tutorial13 ${EXETUTORIALSRC13} ${INC} )
-target_link_libraries( Tutorial13 IndieLib )
+add_executable( Tutorial_Basic_13 ${EXETUTORIALSRC13} ${INC} )
+target_link_libraries( Tutorial_Basic_13 IndieLib )
 
 #set ( EXETUTORIALSRC14 ${EXETUTORIALSRC14}
 #				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/14_3d_Camera/Tutorial14.cpp
@@ -285,8 +285,8 @@ target_link_libraries( Tutorial13 IndieLib )
 #				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
 #				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
 #)
-#add_executable( Tutorial14 ${EXETUTORIALSRC14} ${INC} )
-#target_link_libraries( Tutorial14 IndieLib )
+#add_executable( Tutorial_Basic_14 ${EXETUTORIALSRC14} ${INC} )
+#target_link_libraries( Tutorial_Basic_14 IndieLib )
 
 set ( EXETUTORIALSRC15 ${EXETUTORIALSRC15}
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/15_Parallax_Scrolling/Tutorial15.cpp
@@ -295,8 +295,8 @@ set ( EXETUTORIALSRC15 ${EXETUTORIALSRC15}
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
 )
-add_executable( Tutorial15 ${EXETUTORIALSRC15} ${INC} )
-target_link_libraries( Tutorial15 IndieLib )
+add_executable( Tutorial_Basic_15 ${EXETUTORIALSRC15} ${INC} )
+target_link_libraries( Tutorial_Basic_15 IndieLib )
 
 set ( EXETUTORIALSRC16 ${EXETUTORIALSRC16}
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/16_IND_Timer/Tutorial16.cpp
@@ -305,8 +305,8 @@ set ( EXETUTORIALSRC16 ${EXETUTORIALSRC16}
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
 )
-add_executable( Tutorial16 ${EXETUTORIALSRC16} ${INC} )
-target_link_libraries( Tutorial16 IndieLib )
+add_executable( Tutorial_Basic_16 ${EXETUTORIALSRC16} ${INC} )
+target_link_libraries( Tutorial_Basic_16 IndieLib )
 
 #set ( EXETUTORIALSRC17 ${EXETUTORIALSRC17}  //FIXME
 #				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/17_IND_TTF_Font/Tutorial17.cpp
@@ -315,8 +315,8 @@ target_link_libraries( Tutorial16 IndieLib )
 #				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.cpp
 #				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/WorkingPath.h
 #)
-#add_executable( Tutorial17 ${EXETUTORIALSRC17} ${INC} )
-#target_link_libraries( Tutorial17 IndieLib )
+#add_executable( Tutorial_Basic_17 ${EXETUTORIALSRC17} ${INC} )
+#target_link_libraries( Tutorial_Basic_17 IndieLib )
 
 set ( EXE_TUTORIAL_ADVANCED_SRC_01 ${EXE_TUTORIAL_ADVANCED_SRC_01}
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/advanced/01_IND_Surface_Grids/Tutorial01.cpp

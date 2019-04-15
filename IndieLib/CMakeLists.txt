@@ -23,7 +23,7 @@
  #
  ##########################################################################################
 
-cmake_minimum_required (VERSION 2.6)
+cmake_minimum_required (VERSION 3.2)
 project(IndieLib)
 
 option(USE_OPENGLES "Compile with OpenGL ES support" NO)
@@ -496,5 +496,15 @@ set ( EXE_TESTS_UNITTESTS_SRC ${EXE_TESTS_UNITTESTS_SRC}
 add_executable( Tests_Unittests ${EXE_TESTS_UNITTESTS_SRC} ${INC} )
 target_link_libraries( Tests_Unittests IndieLib )
 add_test (NAME Unittests COMMAND Tests_Unittests)
+
+
+add_custom_target(release COMMAND
+    ${CMAKE_COMMAND} -E tar "cfv" "archive.zip" --format=zip
+       "${CMAKE_CURRENT_SOURCE_DIR}/common/include"
+       "${CMAKE_CURRENT_SOURCE_DIR}/docs/Doxygen/"
+       "${CMAKE_CURRENT_SOURCE_DIR}/docs/BUILD_ENVIRONMENT_SETUP_HOWTO.txt"
+       "${CMAKE_CURRENT_SOURCE_DIR}/assets"
+)
+
 
 

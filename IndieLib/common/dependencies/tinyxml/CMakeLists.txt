@@ -23,6 +23,8 @@
  #
  ##########################################################################################
 
+option (TINYXML_BUILD_STATIC "Build TinyXML as a static library. Otherwise build it as a shared library." ON)
+
 set ( SRC	tinystr.cpp
 			tinyxml.cpp
 			tinyxmlerror.cpp
@@ -30,8 +32,6 @@ set ( SRC	tinystr.cpp
 	)
 
 file ( GLOB INC *.h *.hpp )
-
-option ( TINXML_BUILD_STATIC "Build TinyXML as a static library. Otherwise build it as a shared library." ON)
 
 if (TINYXML_BUILD_STATIC)
 	set( TINYXML_BUILD_TYPE STATIC )

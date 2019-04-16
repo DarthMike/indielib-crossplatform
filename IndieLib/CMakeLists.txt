@@ -25,6 +25,9 @@
 
 cmake_minimum_required (VERSION 3.2)
 project(IndieLib)
+set (IndieLib_VERSION_MAJOR 5)
+set (IndieLib_VERSION_MINOR 9)
+set (IndieLib_VERSION_PATCH 0)
 
 option(USE_OPENGLES "Compile with OpenGL ES support" NO)
 
@@ -33,10 +36,37 @@ option(IndieLib_BUILD_STATIC "Build IndieLib as a static library. Otherwise it i
 option (USE_OPENGL "Use OpenGL for rendering." ON)
 
 
+# http://www.openguru.com/2009/04/cmake-detecting-platformoperating.html
+# TODO: handle IOS ( it's properly detected as darwin, so we need to look at other viables as well.
+IF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+   message("Building for Mac OS X")
+   set(OperatingSystem "OSX")
+   set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/mac)
+   set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/mac)
+   set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/mac)
+ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+
+IF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+   message("Building for Linux")
+   set(OperatingSystem "Linux")
+   set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/linux)
+   set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/linux)
+   set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/linux)
+ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+
+IF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+   message("Building for Windows")
+   set(OperatingSystem "Windows")
+   set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/win)
+   set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/win)
+   set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/win)
+ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+
+
+
+
 # this is only for testing the linux output dir (run cmake ../ -G "Unix Makefiles" in the "bin" dir)
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/linux)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/linux)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/linux)
+
 # end testing linux output dir
 
 
@@ -499,11 +529,12 @@ add_test (NAME Unittests COMMAND Tests_Unittests)
 
 
 add_custom_target(release COMMAND
-    ${CMAKE_COMMAND} -E tar "cfv" "archive.zip" --format=zip
-       "${CMAKE_CURRENT_SOURCE_DIR}/common/include"
-       "${CMAKE_CURRENT_SOURCE_DIR}/docs/Doxygen/"
-       "${CMAKE_CURRENT_SOURCE_DIR}/docs/BUILD_ENVIRONMENT_SETUP_HOWTO.txt"
-       "${CMAKE_CURRENT_SOURCE_DIR}/assets"
+    ${CMAKE_COMMAND} -E tar "cfv" "Indielib_${OperatingSystem}_${IndieLib_VERSION_MAJOR}.${IndieLib_VERSION_MINOR}.${IndieLib_VERSION_PATCH}.zip" --format=zip
+        "${CMAKE_CURRENT_SOURCE_DIR}/common/include"
+        "${CMAKE_CURRENT_SOURCE_DIR}/docs/Doxygen/"
+        "${CMAKE_CURRENT_SOURCE_DIR}/docs/BUILD_ENVIRONMENT_SETUP_HOWTO.txt"
+        "${CMAKE_CURRENT_SOURCE_DIR}/assets"
+        "${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}"
 )
 
 

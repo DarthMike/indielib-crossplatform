@@ -63,7 +63,7 @@ This library bases on several others to achieve some of it's functionality:
 * [SDL](http://www.libsdl.org/)
 * [TinyXML](http://www.grinninglizard.com/tinyxml/)
 * [FreeType](http://www.freetype.org/)
-* [Unittest++](http://unittest-cpp.sourceforge.net/)
+* [Unittest++](https://github.com/unittest-cpp/unittest-cpp/)
 * [GLEW](http://glew.sourceforge.net/)
 
 # Building the library

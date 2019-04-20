@@ -16,9 +16,7 @@
 * OpenGL ES 2.0 iOS  support
 
 ##IMPORTANT INFORMATION:
-**This project does not have active developers working on it. The team leader, DarthMike, has moved on to other projects because of lack of time to both maintain regularly and deliver more features. MFK, the second active member of the team is not actively developing anymore. You are more than welcome to take over the project if you want.
-
-If so, - you might wan't to take a look at the CMake branch where building the project in linux is way easier (have not tested Win + Mac yet). (MFK 2019)** 
+**This project does not have active developers working on it. The team leader, DarthMike, has moved on to other projects because of lack of time to both maintain regularly and deliver more features. MFK, the second active member of the team is not actively developing anymore. You are more than welcome to take over the project if you want. If so, - you might wan't to take a look at the CMake branch where building the project in linux is way easier (have not tested Win + Mac yet). (MFK 2019)** 
 
 Thank you for your understanding!
 

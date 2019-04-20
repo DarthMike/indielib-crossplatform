@@ -31,6 +31,9 @@ set (IndieLib_VERSION_PATCH 0)
 
 option(USE_OPENGLES "Compile with OpenGL ES support" NO)
 
+
+#https://stackoverflow.com/questions/2152077/is-it-possible-to-get-cmake-to-build-both-a-static-and-shared-version-of-the-sam/29824424#29824424
+#TODO: build both static and shared library at the same time
 option(IndieLib_BUILD_STATIC "Build IndieLib as a static library. Otherwise it is built as a shared library." ON)
 
 option (USE_OPENGL "Use OpenGL for rendering." ON)
@@ -138,6 +141,7 @@ include_directories( "${CMAKE_CURRENT_SOURCE_DIR}/common/include"
 					 UnitTest++_INCLUDE_DIR
 					 TINYXML_INCLUDE_DIR
 					 freetype_INCLUDE_DIR
+                     SpriterParser_INCLUDE_DIR   
 					)
 
 set (SDL_SHARED OFF)
@@ -162,7 +166,8 @@ set ( GLEW_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/common/dependencies/glew-1.9.
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/common/dependencies/freetype-2.9)
 set ( freetype_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/common/dependencies/freetype-2.9/include)
 
-add_subdirectory(common/dependencies/SpriterParser)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/common/dependencies/SpriterParser)
+set ( SpriterParser_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/common/dependencies/SpriterParser)
 
 
 

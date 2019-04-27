@@ -169,7 +169,9 @@ set ( freetype_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/common/dependencies/freet
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/common/dependencies/SpriterParser)
 set ( SpriterParser_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/common/dependencies/SpriterParser)
 
+# TODO: for android we need the opengles, but find_package(OpenGLES) dosn't exist ( https://stackoverflow.com/questions/40074981/add-static-prebuilt-libraries-and-glesv2-support-to-ndk-app-in-android-studio-us] )
 
+# cmake ../ -G "Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE=/home/mfk/Android/Sdk/ndk-bundle/build/cmake/android.toolchain.cmake
 
 if (USE_OPENGLES)
 	find_package(OpenGLES)

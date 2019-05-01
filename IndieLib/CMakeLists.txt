@@ -29,7 +29,9 @@ set (IndieLib_VERSION_MAJOR 5)
 set (IndieLib_VERSION_MINOR 9)
 set (IndieLib_VERSION_PATCH 0)
 
-option(USE_OPENGLES "Compile with OpenGL ES support" NO)
+set(CMAKE_VERBOSE_MAKEFILE OFF)
+
+option(USE_OPENGLES "Compile with OpenGL ES support" OFF)
 
 
 #https://stackoverflow.com/questions/2152077/is-it-possible-to-get-cmake-to-build-both-a-static-and-shared-version-of-the-sam/29824424#29824424
@@ -194,6 +196,10 @@ add_definitions("-fPIC")
 add_library( IndieLib ${IndieLib_BUILD_TYPE} ${SRC} ${INC} )
 
 target_link_libraries( IndieLib SpriterParser TinyXML GLEW SDL2 freeimage TmxParser freetype UnitTest++  )
+
+#https://foonathan.net/blog/2018/10/17/cmake-warnings.html
+target_include_directories(IndieLib PRIVATE include/
+                                      SYSTEM INTERFACE include/)
 
 set ( EXETUTORIALSRC01 ${EXETUTORIALSRC01}
 				${CMAKE_CURRENT_SOURCE_DIR}/tutorials/basic/01_Installing/Tutorial01.cpp
